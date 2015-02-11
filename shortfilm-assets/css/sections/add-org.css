@@ -1,0 +1,4 @@
+.single-rep:last-child,
+.single-committee-member:last-child {
+  margin-bottom: 30px;
+}

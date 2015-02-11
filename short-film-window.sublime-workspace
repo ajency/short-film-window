@@ -1,0 +1,1193 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"slder",
+				"slider2"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"fon",
+				"font-weight"
+			],
+			[
+				"se",
+				"section	Tag"
+			],
+			[
+				"s",
+				"select	Tag"
+			],
+			[
+				"f",
+				"fieldset	Tag"
+			],
+			[
+				"l",
+				"legend	Tag"
+			],
+			[
+				"fil",
+				"fieldset	Tag"
+			],
+			[
+				"t",
+				"type	Attr"
+			],
+			[
+				"h",
+				"head	Tag"
+			],
+			[
+				"c",
+				"class	Attr"
+			],
+			[
+				"fo",
+				"form	Tag"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"vote",
+				"vote-down"
+			],
+			[
+				"ta",
+				"table-cell"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"imo",
+				"important"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"border",
+				"border-right"
+			],
+			[
+				"head",
+				"header	Tag"
+			],
+			[
+				"for",
+				"form	Tag"
+			],
+			[
+				"brea",
+				"break-word"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"hed",
+				"header	Tag"
+			],
+			[
+				"modal",
+				"modalForm"
+			],
+			[
+				"d",
+				"div	Tag"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"btn-",
+				"btn-primary"
+			],
+			[
+				"i",
+				"inside"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"list-s",
+				"list-style-type"
+			],
+			[
+				"a",
+				"a	Tag"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"sel",
+				"select	Tag"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"he",
+				"header	Tag"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"tab",
+				"tab_grey_txt"
+			],
+			[
+				"chi",
+				"first-child"
+			],
+			[
+				"imp",
+				"important"
+			],
+			[
+				"col-",
+				"col-md-12"
+			],
+			[
+				"col",
+				"col-md-6"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"tab_",
+				"tab_grey_txt"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"b",
+				"black"
+			],
+			[
+				"bl",
+				"blue_btn"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"nav",
+				"navy_border"
+			],
+			[
+				"change",
+				"change-theme-color"
+			],
+			[
+				"the",
+				"themeColorView"
+			],
+			[
+				"I",
+				"itemView"
+			],
+			[
+				"th",
+				"themeColorCollection"
+			],
+			[
+				"sub",
+				"submenuData"
+			],
+			[
+				"su",
+				"submenuTpl"
+			],
+			[
+				"sit",
+				"siteProfile"
+			],
+			[
+				"si",
+				"siteProfile"
+			],
+			[
+				"site",
+				"sitemodel"
+			],
+			[
+				"ro",
+				"roomsummarymodel"
+			],
+			[
+				"Ro",
+				"RoomSummaryModel"
+			],
+			[
+				"form",
+				"formdata"
+			],
+			[
+				"lang",
+				"language"
+			],
+			[
+				"lan",
+				"langName"
+			],
+			[
+				"re",
+				"remove"
+			],
+			[
+				"resp",
+				"response"
+			],
+			[
+				"rep",
+				"response"
+			],
+			[
+				"cu",
+				"currentPass"
+			],
+			[
+				"getView",
+				"getGeneralFormView"
+			],
+			[
+				"user",
+				"userProfile"
+			],
+			[
+				"men",
+				"menu_url"
+			],
+			[
+				"tr",
+				"trigger"
+			],
+			[
+				"coo",
+				"collection"
+			],
+			[
+				"ite",
+				"itemView"
+			],
+			[
+				"menu",
+				"menu_id"
+			],
+			[
+				"me",
+				"menuId"
+			],
+			[
+				"lis",
+				"listenTo"
+			],
+			[
+				"sli",
+				"slidesCollection"
+			],
+			[
+				"menu_i",
+				"menu_item_id"
+			],
+			[
+				"req",
+				"reqres"
+			],
+			[
+				"add",
+				"add"
+			],
+			[
+				"new",
+				"newOrder"
+			],
+			[
+				"pla",
+				"planCollection"
+			],
+			[
+				"get",
+				"getPlanById"
+			],
+			[
+				"A",
+				"API"
+			],
+			[
+				"dele",
+				"deleteroom_link"
+			],
+			[
+				"room",
+				"roomId"
+			],
+			[
+				"date",
+				"dateRanges"
+			],
+			[
+				"app",
+				"App"
+			],
+			[
+				"pr",
+				"preventDeafult"
+			],
+			[
+				"trigg",
+				"triggerMethod"
+			],
+			[
+				"dateR",
+				"dateRangeView"
+			],
+			[
+				"roomtariff",
+				"roomtariff"
+			],
+			[
+				"Roo",
+				"RoomModel"
+			],
+			[
+				"Room",
+				"Rooms"
+			],
+			[
+				"ap",
+				"App"
+			],
+			[
+				"insr",
+				"insert"
+			],
+			[
+				"Site",
+				"SiteModel"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/dashboard/wm-commission-panel-table.tpl",
+			"settings":
+			{
+				"buffer_size": 4480,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/firm-list.html",
+			"settings":
+			{
+				"buffer_size": 15977,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-firm.html",
+			"settings":
+			{
+				"buffer_size": 14032,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-firm-tabs.html",
+			"settings":
+			{
+				"buffer_size": 30898,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 265.0,
+		"selected_items":
+		[
+			[
+				"ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"e",
+				"Set Syntax: Emmet"
+			],
+			[
+				"h",
+				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"emmet",
+				"Set Syntax: Emmet"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/dashboard/wm-commissions-panel.tpl",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-category.html",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/css/style.css",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-doc-temp.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/rolewise-capabilities.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/manage-capabilities.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-firm-tabs.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-role.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-firm.html",
+		"/C/xampp/htdocs/short-film-window/home.html",
+		"/C/xampp/htdocs/short-film-window/explorecouch.html",
+		"/C/xampp/htdocs/short-film-window/assets/less/theme.less",
+		"/C/xampp/htdocs/short-film-window/assets/short-film/global/custom-styles.less",
+		"/C/Users/dhiraj/Desktop/GRID.html",
+		"/C/xampp/htdocs/short-film-window/assets/short-film/theme.less",
+		"/C/xampp/htdocs/short-film-window/shortfilm-assets/less/theme.less",
+		"/C/xampp/htdocs/short-film-window/explorelist.html",
+		"/C/xampp/htdocs/short-film-window/playlist-list.html",
+		"/C/xampp/htdocs/short-film-window/assets/less/plugins/slick.less",
+		"/C/xampp/htdocs/short-film-window/director.html",
+		"/C/xampp/htdocs/short-film-window/shortfilm-assets/less/global/grid-blocks.less",
+		"/C/Users/dhiraj/AppData/Local/Temp/Temp1_slidercodefiles.zip/slick.css",
+		"/C/Users/dhiraj/AppData/Local/Temp/Temp1_slidercodefiles.zip/slick.less",
+		"/C/xampp/htdocs/shortfilm/explorelist.html",
+		"/C/xampp/htdocs/shortfilm/director.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/rolewise-email-capabilities.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/assets/less/global/structure.less",
+		"/C/xampp/htdocs/shortfilm/home.html",
+		"/C/xampp/htdocs/shortfilm/select-playlist.html",
+		"/C/xampp/htdocs/shortfilm/playlist-list.html",
+		"/C/xampp/htdocs/shortfilm/shortfilm-assets/less/global/custom-styles.less",
+		"/C/xampp/htdocs/shortfilm/shortfilm-assets/less/theme.less",
+		"/C/xampp/htdocs/shortfilm/movie.html",
+		"/C/xampp/htdocs/shortfilm/playlist-name.html",
+		"/C/xampp/htdocs/shortfilm/playlist.html",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/frontend/view-business-proposals/loop_business.tpl",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/frontend/business-proposal/single-business-view.tpl",
+		"/C/xampp/htdocs/seedeisplatform/html/index.html",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dist/js/templates/frontend/business-proposal/single-business-view.tpl",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/BusinessProposalTemplate.js",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/js/frontend/view-business-proposals.js",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/frontend/view-business-proposals.js",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/views/frontend/view-proposals/view-proposals-full.js",
+		"/C/xampp/htdocs/shortfilm/index.html",
+		"/C/xampp/htdocs/shortfilm/shortfilm-assets/css/theme.css",
+		"/C/xampp/htdocs/shortfilm/homepage.html",
+		"/C/xampp/htdocs/shortfilm/shortfilm-assets/less/custom-style.less",
+		"/C/xampp/htdocs/shortfilm/assets/less/global/forms.less",
+		"/C/xampp/htdocs/shortfilm/shortfilm-assets/less/global/forms.less",
+		"/C/xampp/htdocs/shortfilm/shortfilm-assets/less/global/fonts.less",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/frontend/view-business-proposals/proposals_listing.tpl",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/email-capabilities.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/edit-product.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/doc-listview.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-email-temp.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/style-guide.html",
+		"/C/xampp/htdocs/Phoenix-new/manage-capabilities.html",
+		"/C/Users/dhiraj/Desktop/emmet.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/email-listview.html",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/assets/less/global/tables.less",
+		"/C/xampp/htdocs/minyawns/wp-content/themes/minyawns/css/main.css",
+		"/C/xampp/htdocs/minyawns/wp-content/themes/minyawns/less/main.less",
+		"/C/xampp/htdocs/minyawns/wp-content/css/main.css",
+		"/G/button1easy.html",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/routers/view-business-proposals.js",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/assets/less/global/custom-variables.less",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/style.css",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/assets/less/theme.less",
+		"/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/assets/less/plugins/magicsuggest.less",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/theme.less",
+		"/C/xampp/htdocs/Phoenix-new/index.css",
+		"/C/xampp/htdocs/Phoenix-new/tiny.html",
+		"/C/Users/dhiraj/Downloads/bootstrap-wysiwyg-master/bootstrap-wysiwyg-master/index.css",
+		"/C/Users/dhiraj/Desktop/bootstrap-wysiwyg-master/index.html",
+		"/C/xampp/htdocs/Phoenix-new/rolewise-capabilities.html",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/sections/custom-styles.less",
+		"/C/xampp/htdocs/Phoenix-new/manage-capabilities2.html",
+		"/C/xampp/htdocs/Phoenix-new/edit-product.html",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/plugins/magicsuggest-min.less",
+		"/C/xampp/htdocs/Phoenix-new/assets/css/theme.css",
+		"/C/xampp/htdocs/Phoenix-new/add-category.html",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/css/bootstrap.css",
+		"/C/xampp/htdocs/Phoenix-new/add-firm-tabs.html",
+		"/C/xampp/htdocs/Phoenix-new/add-firm.html",
+		"/C/xampp/htdocs/Phoenix-new/add-new-product.html",
+		"/C/xampp/htdocs/Phoenix-new/product-view.html",
+		"/C/xampp/htdocs/Phoenix-new/tabs.html",
+		"/C/xampp/htdocs/Phoenix-new/assets/css/plugins/tabs.css",
+		"/C/xampp/htdocs/Phoenix-new/testing-tabs.html",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/global/tabs.less",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/frontend/business-proposal/administer-tab.tpl",
+		"/C/Users/dhiraj/AppData/Local/Temp/Temp1_pure-css-tab-with-fade-animation.zip/pure-css-tab-with-fade-animation/css/style.css",
+		"/C/Users/dhiraj/AppData/Local/Temp/Temp1_pure-css-tab-with-fade-animation.zip/pure-css-tab-with-fade-animation/index.html",
+		"/C/Users/dhiraj/AppData/Local/Temp/Temp1_pure-css-tab-with-fade-animation.zip/pure-css-tab-with-fade-animation/css/animate.min.css",
+		"/C/Users/dhiraj/AppData/Local/Temp/Temp1_pure-css-tab-with-fade-animation.zip/pure-css-tab-with-fade-animation/css/default.css",
+		"/C/xampp/htdocs/Phoenix-new/tabs.less",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/global/formidable.less",
+		"/C/xampp/htdocs/Phoenix-new/tabs.css",
+		"/C/xampp/htdocs/Phoenix-new/assets/css/global/fonts.css",
+		"/C/xampp/htdocs/Phoenix-new/assets/css/custom.css",
+		"/C/xampp/htdocs/Phoenix-new/edit-product2.html",
+		"/C/xampp/htdocs/Phoenix-new/table.html",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/global/header.less",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/bootstrap/dropdowns.less",
+		"/C/xampp/htdocs/Phoenix-new/assets/less/global/custom-variables.less",
+		"/C/xampp/htdocs/Phoenix-new/assets/js/modenizr.js",
+		"/C/xampp/htdocs/Pheonix/add-new-product.html",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/assets/less/theme.less",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/assets/less/theme.less",
+		"/C/Users/dhiraj/Desktop/Pheonix/assets/less/theme.less",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/add-new-product.html",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/assets/less/global/alerts.less",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/assets/js/bootstrap.min.js",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/jquery.js",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/dashboard/dev/coffee/common/root.ctrl.coffee",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/table.html",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/menu.html",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/profile/intermediary-login-details.tpl",
+		"/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/profile/intermediary-profile-details.tpl",
+		"/C/Users/dhiraj/Desktop/Pheonix/html/index.html",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/assets/less/plugins/pickadate.less",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/footer.php",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/dashboard/dev/coffee/stashes/edit/edit.view.coffee",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/_dashboard_includes/templates/stashes/stashes.edit.template.php",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/dashboard-spa-template.php",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/bower_components/pickadate/lib/picker.date.js",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/assets/less/global/structure.less",
+		"/C/xampp/htdocs/EUC/wp-content/themes/euc/taxonomy-pa_schools.php"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\short-film-window\\shortfilm-assets",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\Phoenix-2.0",
+			"",
+			"C:\\xampp\\htdocs\\Phoenix-2.0\\wp-content\\themes\\phoenix\\html",
+			"",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\Phoenix-new",
+			"C:\\xampp\\htdocs\\EUC",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\EUC",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\EUC",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\EUC",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\Users\\dhiraj\\Desktop\\wisebuddha\\WiseBuddha",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\Users\\dhiraj\\Desktop\\wisebuddha\\WiseBuddha",
+			"C:\\xampp\\htdocs\\seedeisplatform\\wp-content\\themes\\seedeisplatform",
+			"C:\\Users\\dhiraj\\Desktop\\wisebuddha\\WiseBuddha",
+			"C:\\xampp\\htdocs\\neves\\wp-content\\themes\\WiseBuddha-child",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\Users\\dhiraj\\Desktop\\NEW\\PROJECT",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"",
+			"C:\\xampp\\htdocs\\seedeisplatform\\wp-content\\themes\\seedeisplatform\\dev\\js\\views\\business",
+			"C:\\xampp\\htdocs\\seedeisplatform\\wp-content\\themes\\seedeisplatform\\dev\\js\\templates\\business",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\Users\\dhiraj\\Desktop\\HTML",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform,C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\seedeisplatform",
+			"C:\\xampp\\htdocs\\minyawns",
+			"C:\\xampp\\htdocs\\smiley\\wp-content\\themes\\salient",
+			"C:\\xampp\\htdocs\\greekconnectbuddy",
+			"C:\\xampp\\htdocs\\skyi\\wp-content\\themes\\skyi\\js",
+			"C:\\xampp\\htdocs\\skyi\\wp-content\\themes\\skyi\\js\\dev",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\menu-manager",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\entities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms\\facilities",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms\\tariffs",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms\\tariffs",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms\\tariffs",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source\\apps\\rooms\\tariffs",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent\\app\\dev\\source",
+			"C:\\xampp\\htdocs\\impruw\\wp-content\\themes\\impruwclientparent"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"ui-datepicker-div",
+			"<button type=\"button\" class=\"ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all\" data-handler=\"today\" data-event=\"click\">Today</button>",
+			"hasDatepicker",
+			"form-control month_year hasDatepicker",
+			"dashboard-tab-content",
+			"wm_commissions_pane",
+			"ui-datepicker-calendar",
+			"ui-datepicker-buttonpane ui-widget-content",
+			"221B",
+			"221 B",
+			"tooltip",
+			"table tablesorter table-striped",
+			"commision-table",
+			"categry",
+			"category",
+			"entity\n",
+			"entity",
+			"firm id",
+			"category",
+			"categry",
+			"Update",
+			"update",
+			"Update",
+			"slider2",
+			"transition",
+			"Principlal",
+			"principal",
+			"hr",
+			"section",
+			"p-lr-30",
+			"hr",
+			"h4",
+			"role-sett",
+			"role-settings",
+			"row-nomargin",
+			"role-settings",
+			"m-t-10",
+			"hr",
+			"row-margin",
+			"h4",
+			"border",
+			"section",
+			"row-margin",
+			"sm",
+			"social",
+			"sea",
+			"statdown",
+			"dashboard-main-view",
+			"statleft ",
+			"duration",
+			"time",
+			"left",
+			"popover",
+			"FOCUS",
+			"focus",
+			"<i>",
+			"select",
+			"img-responsive",
+			"img",
+			"content-wrapper",
+			"business-content",
+			"50",
+			"center-btn",
+			"edit",
+			"product",
+			"default",
+			"remove",
+			"fly-label",
+			"cancel",
+			"delete",
+			"add category",
+			"a",
+			"tabs",
+			"@state-success-bg",
+			"alert",
+			"alert-danger",
+			"alert-delete",
+			"alert-primary",
+			"alert-info",
+			"alert-primary",
+			"navigation",
+			"content-wrapper",
+			"tabs",
+			"table",
+			"title",
+			"TITLE",
+			"grid",
+			"h5",
+			"form",
+			"400",
+			"first-child",
+			"sm",
+			"popover",
+			"id=\"accordion\"",
+			"accordian",
+			"#accordian",
+			"important",
+			"legend",
+			"section",
+			"form",
+			"websites",
+			"221b",
+			"add proposal",
+			"text-primary",
+			"border",
+			".border",
+			"hr",
+			"section",
+			"awm",
+			"role-settings",
+			"editor",
+			"fork",
+			"tab-content",
+			"popover",
+			"cap",
+			"h5",
+			"position: absolute",
+			"top",
+			"append",
+			"popover",
+			"manage",
+			"checkbox",
+			"save",
+			"ms-ctn",
+			"proposal_approver_img",
+			".popover.left",
+			".proposals_list_container",
+			"tabcontent"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"xs",
+			"right",
+			"left",
+			"$.extend",
+			"'",
+			"",
+			"menu_id",
+			"menuCollection",
+			"editplan",
+			"EditPlan",
+			"editPlan",
+			"RoomBooking",
+			"roombooking",
+			"RoomBooking",
+			"RoomTariff",
+			"roomtariff",
+			"Plans"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/xampp/htdocs/seedeisplatform/wp-content/themes/seedeisplatform/dev/js/templates/dashboard/wm-commission-panel-table.tpl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								529,
+								529
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/firm-list.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7341,
+								7341
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3231.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-firm.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14032,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10816,
+								10816
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4376.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/xampp/htdocs/Phoenix-2.0/wp-content/themes/phoenix/html/add-firm-tabs.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30898,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22054,
+								22054
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8627.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 352.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "/C/Users/dhiraj/Documents/phoenix-new.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\dhiraj\\Documents\\EUC.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 696.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 274.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

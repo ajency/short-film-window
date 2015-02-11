@@ -1,0 +1,34 @@
+/* custom-style */
+.media .media-left img {
+  width: 80px;
+}
+.img-content .img-div {
+  width: 100px;
+  float: left;
+  margin-right: 20px;
+}
+.role-settings .row {
+  margin-top: 0;
+}
+.movie-cat ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.movie-cat ul li {
+  border-left: 1px solid #cccccc;
+  padding-left: 20px;
+}
+.movie-cat ul li:hover {
+  border-color: #4d4d4d;
+}
+.movie-cat ul li a {
+  text-decoration: none;
+  display: block;
+}
+.movie-cat ul li.active {
+  border-color: #4d4d4d;
+}
+.movie-cat ul li.active a {
+  color: #4d4d4d;
+}
