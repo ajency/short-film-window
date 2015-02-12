@@ -45,15 +45,6 @@
   .m-l-@{index} {
     margin-left: unit(@index, px);
   }
-  .loop(@index + 5);
-}
-.loop(@from);
-
-/* Padding classes */
-@from : 0;
-@to : 50;
- 
-.loop(@index) when(@index =< @to) {
   .p-t-@{index} {
     padding-top: unit(@index, px);
   }
