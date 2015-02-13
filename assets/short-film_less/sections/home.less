@@ -1,0 +1,28 @@
+.movie-cat{
+	ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		li{
+			border-left: 1px solid @gray-light;
+			padding-left: 20px;
+			&:hover{
+				border-color: @brand-primary;
+				a{
+					color: @brand-primary;
+				}
+			}
+			a{
+				text-decoration: none;
+				display: block;
+				color: @gray;
+			}
+			&.active{
+				border-color: @brand-primary;
+				a{
+					color: @gray-darker;
+				}
+			}
+		}
+	}
+}

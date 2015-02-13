@@ -1,4 +1,8 @@
 
+.content-wrapper{
+    background: @body-bg;
+}
+
 .media{
 	.media-left{
 		img{
@@ -18,30 +22,5 @@
 .role-settings{
 	.row{
 		margin-top: 0;
-	}
-}
-
-.movie-cat{
-	ul{
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		li{
-			border-left: 1px solid @gray-light;
-			padding-left: 20px;
-			&:hover{
-				border-color: @gray-darker;
-			}
-			a{
-				text-decoration: none;
-				display: block;
-			}
-			&.active{
-				border-color: @gray-darker;
-				a{
-					color: @gray-darker;
-				}
-			}
-		}
 	}
 }

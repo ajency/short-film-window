@@ -13,11 +13,9 @@
 
 
     <!-- slick slider -->
-    <link href="assets/css/plugins/slick-slider/slick.css" rel="stylesheet">
-    <link href="assets/css/plugins/slick-slider/slick-theme.css" rel="stylesheet">
-    <link href="assets/css/theme.css" rel="stylesheet">
-
-    <link href="shortfilm-assets/css/theme.css" rel="stylesheet">
+    <!--<link href="assets/css/plugins/slick-slider/slick.css" rel="stylesheet">
+     <link href="assets/css/plugins/slick-slider/slick-theme.css" rel="stylesheet"> -->
+    <link href="assets/css/theme-child.css" rel="stylesheet">
 
     <!-- <link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html"> -->
 
@@ -31,45 +29,54 @@
 <body>
 
     <div class="wrapper">
-        <div class="cover">
-            <div class="pull-left">
-                SHORT FILM WINDOW
+        <div class="header">
+            <div class="logo">
+                <img src="assets/img/logo.jpg">
             </div>
             <div class="pull-right">
-                <a href="">LOGIN</a>
-                <a href="">SEARCH</a>
+                <div class="links">
+                    <a href="#">LOGIN</a>
+                    <span>|</span>
+                    <a href="#">SEARCH</a>
+                </div>
+                <div class="social">
+                    
+                </div>                
             </div>
+            <div class="clearfix"></div>
         </div>
             
         <!--Navigation-->
         
         <!-- slider -->
                  
-                <div class="slider3 full-slider">
-                  <div><img src="https://placeimg.com/1000/404/tech" class="img-responsive"></div>
-                  <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div>
-                  <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
-                  <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div>
-                </div>
+        <div class="slider3 full-slider">
+          <div><img src="assets/img/home_main.jpg" class="img-responsive"></div>
+          <!-- <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div>
+          <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
+          <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
+        </div>
             
         <!-- slider ends -->
         
         <!--Content-->
         <div class="container">
             <div class="content-wrapper">
+                <div class="spacer-40"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>STAFF PICKS<small>This Week's Premiere</small></h3><hr class="m-t-0">
+                        <h2>STAFF PICKS <small> This Week's Premiere</small></h2>
+                        <hr class="m-t-0">
                         <div class="row">
-                            <div class="col-md-9">
-                                <img src="img/video.png" alt="" class="img-responsive">
+                            <div class="col-sm-9">
+                                <img src="assets/img/video.png" alt="" class="img-responsive">
                                 <div class="role-settings">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="pull-left">
-                                                    <h3>HELLO WORLD<small>by Director</small></h3>
+                                                    <h3>HELLO WORLD <small> by Director</small></h3>
                                                 </div>        
                                             </div>
                                             <div class="col-md-6">
@@ -81,24 +88,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><hr class="m-t-0">
+                                        </div>
+                                        <hr class="m-t-0 m-b-5">
                                         <div class="row">
-                                            <div class="col-md-6 col-xs-6">
-                                                <p>Tag line</p>
-                                                <p>1.7 Min / Region</p>
-                                                <p>Horror</p>
+                                            <div class="col-xs-6">
+                                                <h5 class="m-t-0 m-b-0"><small>Tag line</small></h5>
+                                                <h5 class="m-t-0 m-b-0"><small>1.7 Min / Region</small></h5>
+                                                <h5 class="m-t-0 m-b-0"><small>Horror</small></h5>
                                             </div>
-                                            <div class="col-md-6 col-xs-6 text-right">
-                                                <p><a href="">199 <i class="fa fa-eye"></i></a></p>
-                                                <p><a href="">75 <i class="fa fa-thumbs-up"></i></a></p>
-                                                <p><a href="">Watchlist <i class="fa fa-binoculars"></i></a></p>
+                                            <div class="col-xs-6 text-right">
+                                                <div>199 <i class="fa fa-eye"></i></div>
+                                                <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                <div>Watchlist <i class="fa fa-binoculars"></i></div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-sm-3">
                                 <nav class="movie-cat">
                                     <ul>
                                         <li class="active"><a href="">THIS WEEK'S PREMIERE</a></li>
@@ -128,289 +136,239 @@
                     </div>
                 </div>
 
+                <div class="spacer-50"></div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="pull-left">
+                            <h2>NEW AND NOTEWORTHY</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="pull-right m-t-20">
+                            <form action="" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12"><input type="text" class="form-control" placeholder="Search"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <hr class="m-t-0">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="grid-box grid-full content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title">GRID TITLE</div>
+                                    <div class="grid-meta">Meta text</div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title">GRID TITLE</div>
+                                    <div class="grid-meta">Meta text</div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title">GRID TITLE</div>
+                                    <div class="grid-meta">Meta text</div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title">GRID TITLE</div>
+                                    <div class="grid-meta">Meta text</div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title">GRID TITLE</div>
+                                    <div class="grid-meta">Meta text</div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-full content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title">GRID TITLE</div>
+                                    <div class="grid-meta">Meta text</div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>                            
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                    <h6>
+                        <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>
+                    </h6>
+                    </div>
+                </div>
+
+                <div class="spacer-50"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="pull-left">
+                            <h3>IN FOCUS</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pull-right m-t-20">
+                            <form action="" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12"><input type="text" class="form-control" placeholder="Search"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <hr class="m-t-0"> 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="pull-left">
-                                    <h3>NEW AND NOTEWORTHY</h3>
+                        <div class="slider1 regular-slider">
+                          <div>
+                            <img src="https://placeimg.com/960/338/tech" class="img-responsive">
+                            <div>
+                                <h6>THE ARTICLE</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse architecto placeat saepe delectus voluptatem facere aliquid perferendis animi illo blanditiis iste veritatis, eius consequuntur ipsam est minima soluta consectetur. Officia.</p>
+                                <div>
+                                    <p class="pull-left"><small>January 29 2015</small></p>
+                                    <p class="pull-right">
+                                        <span>75 <i class="fa fa-thumbs-up"></i></span>
+                                        <span>199 <i class="fa fa-eye"></i></span>
+                                    </p>
                                 </div>
+                                <div class="clearfix"></div>
+                                <hr class="m-t-0">
                             </div>
-                            <div class="col-md-6">
-                                <div class="pull-right">
-                                    <form action="" class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-md-12">
-                                                <div class="m-t-20">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                          </div>
+                          <div>
+                            <img src="https://placeimg.com/960/338/nature" class="img-responsive">
+                            <div>
+                                <h6>THE ARTICLE</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum nesciunt iste dolore voluptatem fugiat ratione, sed minima nisi illo consequuntur aut, possimus, odio fugit necessitatibus. Tempore quidem a beatae vitae!</p>
+                                <div>
+                                    <p class="pull-left"><small>January 29 2015</small></p>
+                                    <p class="pull-right">
+                                        <span>75 <i class="fa fa-thumbs-up"></i></span>
+                                        <span>199 <i class="fa fa-eye"></i></span>
+                                    </p>
                                 </div>
+                                <div class="clearfix"></div>
+                                <hr class="m-t-0">
                             </div>
-                        </div><hr class="m-t-0">
-                        <!-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-                                    </div>
+                          </div>
+                          <div>
+                            <img src="https://placeimg.com/960/338/people" class="img-responsive">
+                            <div>
+                                <h6>THE ARTICLE</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod inventore animi similique voluptas maiores corrupti sit explicabo laudantium delectus cum nihil assumenda laborum qui quibusdam, debitis, molestias quam minima eveniet?</p>
+                                <div>
+                                    <p class="pull-left"><small>January 29 2015</small></p>
+                                    <p class="pull-right">
+                                        <span>75 <i class="fa fa-thumbs-up"></i></span>
+                                        <span>199 <i class="fa fa-eye"></i></span>
+                                    </p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6">
-                                        <img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-6 col-xs-6">
-                                        <img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-                                    </div>
-                                </div>
+                                <div class="clearfix"></div><hr class="m-t-0">
                             </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-6 col-xs-6">
-                                        <img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-                                    </div>
-                                    <div class="col-md-6 col-xs-6">
-                                        <img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-                                    </div>
-                                </div>
                             </div>
+                          <div>
+                            <img src="https://placeimg.com/960/338/nature" class="img-responsive">
+                            <div>
+                                <h6>THE ARTICLE</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam praesentium quaerat veniam laudantium, quas vel, eaque, animi temporibus delectus quae, eius voluptas! Quidem incidunt repudiandae fugiat harum aperiam doloremque excepturi?</p>
+                                <div>
+                                    <p class="pull-left"><small>January 29 2015</small></p>
+                                    <p class="pull-right">
+                                        <span>75 <i class="fa fa-thumbs-up"></i></span>
+                                        <span>199 <i class="fa fa-eye"></i></span>
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr class="m-t-0">
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="spacer-50"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3><small>SORT BY</small> GENRE</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- <div class="pull-right m-t-20">
+                            <form action="" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12"><input type="text" class="form-control"></div>
+                                </div>
+                            </form>
                         </div> -->
-
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3>Grid with Two size Blocks</h3>
-                                <hr>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="grid-box grid-full content-align-bottom">
-                                    <a class="content-bottom" href="#">
-                                        <div class="grid-image">
-                                            <img src="https://placeimg.com/600/900/sepia">
-                                        </div>
-                                        <div class="grid-text-wrap">
-                                            <div class="grid-title">GRID TITLE</div>
-                                            <div class="grid-meta">Meta text</div>
-                                        </div>
-                                        <div class="overlay-vertical"></div>
-                                    </a>
-                                </div>
-                                <div class="grid-box grid-half content-align-bottom">
-                                    <a class="content-bottom" href="#">
-                                        <div class="grid-image">
-                                            <img src="https://placeimg.com/600/900/sepia">
-                                        </div>
-                                        <div class="grid-text-wrap">
-                                            <div class="grid-title">GRID TITLE</div>
-                                            <div class="grid-meta">Meta text</div>
-                                        </div>
-                                        <div class="overlay-vertical"></div>
-                                    </a>
-                                </div>
-                                <div class="grid-box grid-half content-align-bottom">
-                                    <a class="content-bottom" href="#">
-                                        <div class="grid-image">
-                                            <img src="https://placeimg.com/600/900/sepia">
-                                        </div>
-                                        <div class="grid-text-wrap">
-                                            <div class="grid-title">GRID TITLE</div>
-                                            <div class="grid-meta">Meta text</div>
-                                        </div>
-                                        <div class="overlay-vertical"></div>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">                            
-                                <div class="grid-box grid-half content-align-bottom">
-                                    <a class="content-bottom" href="#">
-                                        <div class="grid-image">
-                                            <img src="https://placeimg.com/600/900/sepia">
-                                        </div>
-                                        <div class="grid-text-wrap">
-                                            <div class="grid-title">GRID TITLE</div>
-                                            <div class="grid-meta">Meta text</div>
-                                        </div>
-                                        <div class="overlay-vertical"></div>
-                                    </a>
-                                </div>
-                                <div class="grid-box grid-half content-align-bottom">
-                                    <a class="content-bottom" href="#">
-                                        <div class="grid-image">
-                                            <img src="https://placeimg.com/600/900/sepia">
-                                        </div>
-                                        <div class="grid-text-wrap">
-                                            <div class="grid-title">GRID TITLE</div>
-                                            <div class="grid-meta">Meta text</div>
-                                        </div>
-                                        <div class="overlay-vertical"></div>
-                                    </a>
-                                </div>
-                                <div class="grid-box grid-full content-align-bottom">
-                                    <a class="content-bottom" href="#">
-                                        <div class="grid-image">
-                                            <img src="https://placeimg.com/600/900/sepia">
-                                        </div>
-                                        <div class="grid-text-wrap">
-                                            <div class="grid-title">GRID TITLE</div>
-                                            <div class="grid-meta">Meta text</div>
-                                        </div>
-                                        <div class="overlay-vertical"></div>
-                                    </a>
-                                </div>                            
-                            </div>                    
-                        </div>
-
-                        
-                        
-
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                            <a href="" class="btn btn-link button">EXPLORE ALL FILMS <i class="icon-double-angle-down"></i></a></div>
+                    </div>
+                </div>
+                <hr class="m-t-0"> 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="slider1 regular-slider">
+                          <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
+                          <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                          <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
+                          <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
                         </div>
                     </div>
                 </div>
 
+                <div class="spacer-50"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="pull-left">
-                                    <h3>IN FOCUS</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="pull-right m-t-20">
-                                    <form action="" class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-md-12"><input type="text" class="form-control"></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div><hr class="m-t-0"> 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider1 regular-slider">
-                                  <div>
-                                    <img src="https://placeimg.com/960/338/tech" class="img-responsive">
-                                    <div>
-                                        <h6>THE ARTICLE</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse architecto placeat saepe delectus voluptatem facere aliquid perferendis animi illo blanditiis iste veritatis, eius consequuntur ipsam est minima soluta consectetur. Officia.</p>
-                                        <div>
-                                            <p class="pull-left">January 29 2015</p>
-                                            <p class="pull-right">
-                                                <a href="">75 <i class="fa fa-thumbs-up"></i></a>
-                                                <a href="">199 <i class="fa fa-eye"></i></a>
-                                            </p>
-                                        </div>
-                                        <div class="clearfix"></div><hr class="m-t-0">
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <img src="https://placeimg.com/960/338/nature" class="img-responsive">
-                                    <div>
-                                        <h6>THE ARTICLE</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum nesciunt iste dolore voluptatem fugiat ratione, sed minima nisi illo consequuntur aut, possimus, odio fugit necessitatibus. Tempore quidem a beatae vitae!</p>
-                                        <div>
-                                            <p class="pull-left">January 29 2015</p>
-                                            <p class="pull-right">
-                                                <a href="">75 <i class="fa fa-thumbs-up"></i></a>
-                                                <a href="">199 <i class="fa fa-eye"></i></a>
-                                            </p>
-                                        </div>
-                                        <div class="clearfix"></div><hr class="m-t-0">
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <img src="https://placeimg.com/960/338/people" class="img-responsive">
-                                    <div>
-                                        <h6>THE ARTICLE</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod inventore animi similique voluptas maiores corrupti sit explicabo laudantium delectus cum nihil assumenda laborum qui quibusdam, debitis, molestias quam minima eveniet?</p>
-                                        <div>
-                                            <p class="pull-left">January 29 2015</p>
-                                            <p class="pull-right">
-                                                <a href="">75 <i class="fa fa-thumbs-up"></i></a>
-                                                <a href="">199 <i class="fa fa-eye"></i></a>
-                                            </p>
-                                        </div>
-                                        <div class="clearfix"></div><hr class="m-t-0">
-                                    </div>
-                                    </div>
-                                  <div>
-                                    <img src="https://placeimg.com/960/338/nature" class="img-responsive">
-                                    <div>
-                                        <h6>THE ARTICLE</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam praesentium quaerat veniam laudantium, quas vel, eaque, animi temporibus delectus quae, eius voluptas! Quidem incidunt repudiandae fugiat harum aperiam doloremque excepturi?</p>
-                                        <div>
-                                            <p class="pull-left">January 29 2015</p>
-                                            <p class="pull-right">
-                                                <a href="">75 <i class="fa fa-thumbs-up"></i></a>
-                                                <a href="">199 <i class="fa fa-eye"></i></a>
-                                            </p>
-                                        </div>
-                                        <div class="clearfix"></div><hr class="m-t-0">
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="pull-left">
-                                    <h3><small>SORT BY</small> GENRE</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="pull-right m-t-20">
-                                    <form action="" class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-md-12"><input type="text" class="form-control"></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div><hr class="m-t-0"> 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider1 regular-slider">
-                                  <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
-                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
-                                  <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
-                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3><small>SOME AWESOME</small> PLAYLIST</h3><hr>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider2 regular-slider">
-                                    <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
-                                    <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
-                                    <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
-                                    <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
-                                    <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
-                                    <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                        <h3><small>SOME AWESOME</small> PLAYLISTS</h3>
+                        <hr class="m-t-0">
+                        <div class="slider2 regular-slider">
+                            <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
+                            <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                            <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
+                            <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                            <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
+                            <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                        </div>                            
+                    </div>                    
                 </div>
 
             </div>
@@ -454,15 +412,11 @@
                                     <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-feedback">
                                 <label for="" class="col-md-5">SUBSCRIBE</label>
                                 <div class="col-md-7">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                                        </div>
-                                    </div>
+                                    <input type="text" class="form-control input-sm" name="subscribe" placeholder="Newsletter" >
+                                    <span class="fa fa-envelope form-control-feedback" aria-hidden="true"></span>
                                 </div>
                             </div>
                         </form>
@@ -470,9 +424,9 @@
                 </div>
             </div>
         </div>            
-            <div class="p-l-20">                    
-                <p>&copy; 2015 ShortFilmWindow | All Rights Reserved.</p>
-            </div>
+        <div class="container-fluid footer-bar">                    
+            &copy; 2015 ShortFilmWindow | All Rights Reserved.
+        </div>
     </footer>
 
 
@@ -510,7 +464,7 @@
     </script>
 
     <script>
-    jquery(document).ready(function(){
+    jQuery(document).ready(function(){
         $(".button").click(function(){
             $(".slide").slideToggle();
         });
