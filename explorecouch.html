@@ -10,7 +10,10 @@
     <link rel="icon" href="../../favicon.ico">
 
     <title>Explore Couch</title>
-
+    
+    <!-- slick slider -->
+    <link href="assets/css/plugins/slick-slider/slick.css" rel="stylesheet">
+    <link href="assets/css/plugins/slick-slider/slick-theme.css" rel="stylesheet">
     <link href="assets/css/theme.css" rel="stylesheet">
     <link href="shortfilm-assets/css/theme.css" rel="stylesheet">
     
@@ -133,11 +136,31 @@
 				<div class="row">
                     <div class="col-md-12">
                         <h3>TRENDING</h3><hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider1 regular-slider">
+                                  <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <h3>AWARD WINNING</h3><hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider1 regular-slider">
+                                  <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -156,6 +179,17 @@
                                     <form action="">
                                         <div class="form-group m-t-25"><input type="text" class="form-control"></div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider2 regular-slider">
+                                  <div><img src="https://placeimg.com/960/338/tech" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/people" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
+                                  <div><img src="https://placeimg.com/960/338/nature" class="img-responsive"></div>
                                 </div>
                             </div>
                         </div>
@@ -234,8 +268,23 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/flyLabel/flyLabel.min.js"></script>
     <script src="assets/js/modernizr/modernizr.js"></script>
+    <script src="assets/js/slick-slider/slick.min.js"></script>
+        
+    <script>
+        $('.slider1').slick({
+        mobileFirst: true,
+        infinite: true,
+        slidesToShow: 3
+    });
+    </script>
 
-    
+    <script>
+        $('.slider2').slick({
+        mobileFirst: true,
+        infinite: true,
+        slidesToShow: 4
+    });
+    </script>
 
    
     
