@@ -9870,19 +9870,50 @@ hr {
 .header {
   position: fixed;
   width: 100%;
+  padding: 15px;
   z-index: 1;
   background-color: rgba(77, 77, 77, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
 }
 .logo {
   float: left;
-  padding: 15px;
 }
 .links {
-  padding: 38px 15px;
+  padding: 22px 15px;
 }
 .links a {
   color: #cccccc;
+}
+.social-links .link {
+  position: relative;
+}
+.social-links .action,
+.social-links .icon {
+  float: left;
+}
+.social-links .icon {
+  padding: 4px;
+  background-color: #3b5998;
+  color: #ffffff;
+}
+.social-links .action {
+  background-color: #718dc8;
+  width: 60px;
+  text-align: center;
+  position: relative;
+}
+.social-links .action a {
+  color: #ffffff;
+}
+.social-links .twitter {
+  top: -4px;
+}
+.social-links .twitter .icon {
+  background-color: #00aced;
+}
+.social-links .twitter .action {
+  bottom: -8px;
+  background-color: #54d0ff;
 }
 .footer {
   color: #ffffff;

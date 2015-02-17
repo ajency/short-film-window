@@ -1,6 +1,7 @@
 .header{
 	position: fixed;
 	width: 100%;
+	padding: 15px;
 	// height: 100px;
 	z-index: 1;
 	background-color: fade(@gray-darker, 60%);
@@ -9,12 +10,44 @@
 
 .logo{
 	float: left;
-	padding: 15px;
 }
 
 .links{
-	padding: 38px 15px;
+	padding: 22px 15px;
 	a{
 		color: @gray-light;
+	}
+}
+
+.social-links{
+	.link{
+		position: relative;
+	}
+	.action, .icon{
+		float: left;
+	}
+	.icon{
+		padding: 4px;
+		background-color: @fb-brand;
+		color: @white;
+	}
+	.action{
+		background-color: lighten(@fb-brand, 20%);
+		width: 60px;
+		text-align: center;
+		position: relative;
+		a{
+			color: @white;
+		}
+	}
+	.twitter{
+		top: -4px;
+		.icon{
+			background-color: @twitter-brand;
+		}		
+		.action{
+			bottom: -8px;
+			background-color: lighten(@twitter-brand, 20%)
+		}
 	}
 }
