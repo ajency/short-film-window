@@ -10024,6 +10024,17 @@ hr {
 .movie-cat ul li.active a {
   color: #4d4d4d;
 }
+/* In Focus */
+.focus-img {
+  height: 150px;
+  width: 100%;
+  max-width: 280px;
+  margin: auto;
+  overflow: hidden;
+}
+.focus-img img {
+  width: 100%;
+}
 /* Plugins */
 .slick-prev:before,
 .slick-next:before {
