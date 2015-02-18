@@ -9854,6 +9854,12 @@ fieldset[disabled] #ncf_sidebar a.ncf_button {
 }
 /* short-film theme */
 /* Global */
+body {
+  background: url('../img/noisy-texture.png');
+}
+.content-wrapper {
+  background: url('../img/noisy-texture.png');
+}
 .wrapper {
   min-height: 100%;
   margin-bottom: -160px;
@@ -9867,12 +9873,18 @@ hr {
 .row {
   margin-top: 0;
 }
+.header-space {
+  padding-top: 180px;
+}
+a {
+  color: #787878;
+}
 .header {
   position: fixed;
   width: 100%;
   padding: 15px;
-  z-index: 1;
-  background-color: rgba(77, 77, 77, 0.6);
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
 }
 .logo {
@@ -9914,6 +9926,18 @@ hr {
 .social-links .twitter .action {
   bottom: -8px;
   background-color: #54d0ff;
+}
+.sub-header {
+  position: fixed;
+  background: url('../img/noisy-texture.png');
+  width: 100%;
+  height: 150px;
+  text-align: center;
+  z-index: 1;
+  padding-top: 120px;
+}
+.sub-header span {
+  margin: 0 30px;
 }
 .footer {
   color: #ffffff;
@@ -9982,9 +10006,6 @@ hr {
 }
 .grid-half .vid-desc {
   display: none;
-}
-.content-wrapper {
-  background: #dcdcdc;
 }
 .media .media-left img {
   width: 80px;
