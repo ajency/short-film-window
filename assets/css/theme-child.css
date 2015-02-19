@@ -9969,6 +9969,12 @@ a {
 .footer .social-links .link .fa {
   color: #ffffff;
 }
+.footer .subscribe::-webkit-input-placeholder {
+  line-height: 1;
+  font-size: 8.5px;
+  white-space: normal;
+  color: #999999;
+}
 .footer-bar {
   background-color: #af152f;
   padding-top: 10px;
