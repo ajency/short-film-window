@@ -10066,6 +10066,7 @@ a {
   text-decoration: none;
   display: block;
   color: #999999;
+  font-style: italic;
 }
 .movie-cat ul li.active {
   border-color: #af152f;
