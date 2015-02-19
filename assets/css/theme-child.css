@@ -9927,6 +9927,9 @@ a {
   bottom: -8px;
   background-color: #54d0ff;
 }
+.social-links .youtube .icon {
+  background-color: #bb0000;
+}
 .sub-header {
   position: fixed;
   background: url('../img/noisy-texture.png');
@@ -9943,11 +9946,27 @@ a {
   color: #ffffff;
   padding-bottom: 0;
 }
+.footer .footer-container {
+  max-width: 1140px;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
 .footer .fa {
   color: #787878;
 }
 .footer a {
   color: #f2f2f2;
+}
+.footer .social-links .link {
+  position: static;
+}
+.footer .social-links .link .icon {
+  margin: 0 2px;
+}
+.footer .social-links .link .fa {
+  color: #ffffff;
 }
 .footer-bar {
   background-color: #af152f;
