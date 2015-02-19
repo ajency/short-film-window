@@ -18,16 +18,49 @@
         	}
         }
     }
+
     &:hover{
-    	.grid-text-wrap{
-    		bottom: -50px;
-    		opacity: 0;
-	    	&.hover-text{
-	    		bottom: 0;
-	    		// right: auto;
-	    		opacity: 1;
-	    	}
-    	}
+        .grid-text-wrap{
+            bottom: -50px;
+            opacity: 0;
+            &.hover-text{
+                bottom: 0;
+                // right: auto;
+                opacity: 1;
+            }
+        }
+    }
+
+    &.playlist-box{
+        height: 230px;
+        width: 32.26%;
+        .grid-text-wrap{
+            top: 0;
+            bottom: 0;
+            opacity: 1;
+            .playlist-meta{
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 10px;
+            }
+        }
+        .overlay-full{
+            background: fade(@gray-base, 35%);
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        &:nth-child(3n){
+            margin-right: 0;
+        }
+        &:nth-child(4n){
+            margin-right: 1.6%;
+        }
     }
 }
 
