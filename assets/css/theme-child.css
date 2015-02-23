@@ -9986,6 +9986,9 @@ a {
   opacity: 1;
   transition: all 300ms;
 }
+.grid-box.content-align-bottom .grid-text-wrap .grid-title {
+  text-decoration: underline;
+}
 .grid-box.content-align-bottom .grid-text-wrap .grid-meta {
   line-height: 1.4;
   font-style: italic;
@@ -10115,5 +10118,9 @@ a {
 .slick-prev:before,
 .slick-next:before {
   color: #787878;
+}
+.regular-slider.arrows-top .slick-prev,
+.regular-slider.arrows-top .slick-next {
+  top: 75px;
 }
 /*# sourceMappingURL=theme-child.css.map */
