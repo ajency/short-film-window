@@ -1,7 +1,6 @@
 @import "../css/plugins/megamenu/fhmm.css";
 @import "../css/plugins/slick-slider/slick.css";
 @import "../css/plugins/slick-slider/slick-theme.css";
-@import url(http://fonts.googleapis.com/css?family=PT+Sans|Montserrat:400,700|Open+Sans:400,700);
 /* Parent Import */
 /*---- CSS Imports ----*/
 /* Bootstrap Defaults */
@@ -897,7 +896,7 @@ body {
   font-size: 14px;
   line-height: 1.7;
   color: #787878;
-  background-color: #dcdcdc;
+  background-color: #ffffff;
 }
 input,
 button,
@@ -942,7 +941,7 @@ img {
 .img-thumbnail {
   padding: 4px;
   line-height: 1.7;
-  background-color: #dcdcdc;
+  background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 0;
   -webkit-transition: all 0.2s ease-in-out;
@@ -992,7 +991,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "PT Sans", Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: #4d4d4d;
@@ -1396,7 +1395,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 970px;
+    width: 1170px;
   }
 }
 .container-fluid {
@@ -2089,7 +2088,7 @@ th {
   border-top: 2px solid #dddddd;
 }
 .table .table {
-  background-color: #dcdcdc;
+  background-color: #ffffff;
 }
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
@@ -3691,7 +3690,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
   color: #999999;
-  background-color: #dcdcdc;
+  background-color: #ffffff;
   border: 1px solid #dddddd;
   border-bottom-color: transparent;
   cursor: default;
@@ -3737,7 +3736,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .nav-tabs.nav-justified > .active > a,
   .nav-tabs.nav-justified > .active > a:hover,
   .nav-tabs.nav-justified > .active > a:focus {
-    border-bottom-color: #dcdcdc;
+    border-bottom-color: #ffffff;
   }
 }
 .nav-pills > li {
@@ -3805,7 +3804,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .nav-tabs-justified > .active > a,
   .nav-tabs-justified > .active > a:hover,
   .nav-tabs-justified > .active > a:focus {
-    border-bottom-color: #dcdcdc;
+    border-bottom-color: #ffffff;
   }
 }
 .tab-content > .tab-pane {
@@ -4652,7 +4651,7 @@ a.badge:focus {
   padding: 4px;
   margin-bottom: 23px;
   line-height: 1.7;
-  background-color: #dcdcdc;
+  background-color: #ffffff;
   border: 1px solid #dddddd;
   border-radius: 0;
   -webkit-transition: border 0.2s ease-in-out;
@@ -6769,7 +6768,7 @@ body {
 }
 @media (min-width: 1200px) {
   .navigation .nav-justified {
-    width: 970px;
+    width: 1170px;
     margin: auto;
   }
 }
@@ -6784,7 +6783,7 @@ body {
   margin-bottom: 0;
   color: #787878;
   background-color: #f2f2f2;
-  font-family: "PT Sans", Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: #4d4d4d;
@@ -6865,7 +6864,7 @@ body {
   text-decoration: none;
 }
 .masthead .banner {
-  font-family: "PT Sans", Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: #4d4d4d;
@@ -6907,7 +6906,7 @@ body {
     display: block;
   }
   .masthead .banner {
-    font-family: "PT Sans", Arial, sans-serif;
+    font-family: "Raleway", Arial, sans-serif;
     font-weight: 700;
     line-height: 1.2;
     color: #4d4d4d;
@@ -6991,21 +6990,6 @@ body {
   color: #999999;
 }
 /* Site Elements */
-/*@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Oswald Light'), local('Oswald-Light'), url(../fonts/Oswald-Light.woff) format('woff'), url(../fonts/Oswald-Light.woff2) format('woff2'), url(../fonts/Oswald-Light.ttf) format('truetype');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}
-
-@font-face {
-  font-family: 'Oswald';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Oswald Regular'), local('Oswald-Regular'), url(../fonts/Oswald-Regular.woff) format('woff'), url(../fonts/Oswald-Regular.woff2) format('woff2'), url(../fonts/Oswald-Regular.ttf) format('truetype');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
-}*/
 /*!
  *  Font Awesome 4.2.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -9220,7 +9204,7 @@ h6.thin {
   z-index: 1;
 }
 .grid-box .grid-text-wrap .grid-title {
-  font-family: "PT Sans", Arial, sans-serif;
+  font-family: "Raleway", Arial, sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: #4d4d4d;
@@ -9347,7 +9331,7 @@ h6.thin {
     margin-right: 0;
   }
   .grid-box .grid-text-wrap .grid-title {
-    font-family: "PT Sans", Arial, sans-serif;
+    font-family: "Raleway", Arial, sans-serif;
     font-weight: 700;
     line-height: 1.2;
     color: #4d4d4d;
@@ -9854,12 +9838,6 @@ fieldset[disabled] #ncf_sidebar a.ncf_button {
 }
 /* short-film theme */
 /* Global */
-body {
-  background: url('../img/noisy-texture.png');
-}
-.content-wrapper {
-  background: url('../img/noisy-texture.png');
-}
 .wrapper {
   min-height: 100%;
   margin-bottom: -160px;
@@ -9868,7 +9846,7 @@ body {
   height: 160px;
 }
 hr {
-  border-top: 2px solid #787878;
+  border-top: 2px solid #cccccc;
 }
 .row {
   margin-top: 0;
@@ -9879,6 +9857,12 @@ hr {
 a {
   color: #787878;
 }
+.width-full {
+  width: 100%;
+}
+small em {
+  font-style: normal;
+}
 .header {
   position: fixed;
   width: 100%;
@@ -9886,15 +9870,48 @@ a {
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
+}
+.header .social-links {
+  margin-top: 10px;
+}
+.header .social-links .icon {
+  padding: 0 2px;
+}
+.header.smaller {
+  background-color: #262626;
+}
+.header.smaller .logo {
+  width: 175px;
+}
+.header.smaller .links {
+  padding: 15px;
+}
+.header.smaller .social-links {
+  margin-top: 0;
 }
 .logo {
+  width: 230px;
   float: left;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .links {
   padding: 22px 15px;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .links a {
   color: #cccccc;
+}
+.social-links {
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .social-links .link {
   position: relative;
@@ -9909,23 +9926,17 @@ a {
   color: #ffffff;
 }
 .social-links .action {
-  background-color: #718dc8;
+  background-color: #999999;
   width: 60px;
   text-align: center;
   position: relative;
+  box-shadow: -1px 0 1px #787878;
 }
 .social-links .action a {
   color: #ffffff;
 }
-.social-links .twitter {
-  top: -4px;
-}
 .social-links .twitter .icon {
   background-color: #00aced;
-}
-.social-links .twitter .action {
-  bottom: -8px;
-  background-color: #54d0ff;
 }
 .social-links .youtube .icon {
   background-color: #bb0000;
@@ -9969,12 +9980,6 @@ a {
 .footer .social-links .link .fa {
   color: #ffffff;
 }
-.footer .subscribe::-webkit-input-placeholder {
-  line-height: 1;
-  font-size: 8.5px;
-  white-space: normal;
-  color: #999999;
-}
 .footer-bar {
   background-color: #af152f;
   padding-top: 10px;
@@ -9987,11 +9992,10 @@ a {
   transition: all 300ms;
 }
 .grid-box.content-align-bottom .grid-text-wrap .grid-title {
-  text-decoration: underline;
+  text-transform: uppercase;
 }
 .grid-box.content-align-bottom .grid-text-wrap .grid-meta {
   line-height: 1.4;
-  font-style: italic;
   font-size: 85%;
 }
 .grid-box.content-align-bottom .grid-text-wrap.hover-text {
@@ -10086,7 +10090,7 @@ a {
   padding-left: 20px;
 }
 .movie-cat ul li:hover {
-  border-color: #af152f;
+  border-color: #787878;
 }
 .movie-cat ul li:hover a {
   color: #af152f;
@@ -10095,10 +10099,9 @@ a {
   text-decoration: none;
   display: block;
   color: #999999;
-  font-style: italic;
 }
 .movie-cat ul li.active {
-  border-color: #af152f;
+  border-color: #787878;
 }
 .movie-cat ul li.active a {
   color: #4d4d4d;
@@ -10107,7 +10110,6 @@ a {
 .focus-img {
   height: 150px;
   width: 100%;
-  max-width: 280px;
   margin: auto;
   overflow: hidden;
 }

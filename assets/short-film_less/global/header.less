@@ -6,20 +6,45 @@
 	z-index: 2;
 	background-color: fade(@gray-base, 60%);
 	-webkit-transform: translate3d(0,0,0);
+	.ease;
+
+	.social-links{
+		margin-top: 10px;
+		.icon{
+			padding: 0 2px;
+		}
+	}
+
+	&.smaller{
+		background-color: darken(@gray-darker, 15%);
+		.logo{
+			width: 175px;
+		}
+		.links{
+			padding: 15px;
+		}
+		.social-links{
+			margin-top: 0;
+		}
+	}
 }
 
 .logo{
+	width: 230px;
 	float: left;
+	.ease;
 }
 
 .links{
 	padding: 22px 15px;
+	.ease;
 	a{
 		color: @gray-light;
 	}
 }
 
 .social-links{
+	.ease;
 	.link{
 		position: relative;
 	}
@@ -32,22 +57,23 @@
 		color: @white;
 	}
 	.action{
-		background-color: lighten(@fb-brand, 20%);
+		background-color: @gray;
 		width: 60px;
 		text-align: center;
 		position: relative;
+		box-shadow: -1px 0 1px @gray-dark;
 		a{
 			color: @white;
 		}
 	}
 	.twitter{
-		top: -4px;
+		// top: -4px;
 		.icon{
 			background-color: @twitter-brand;
 		}		
 		.action{
-			bottom: -8px;
-			background-color: lighten(@twitter-brand, 20%)
+			// bottom: -8px;
+			// background-color: lighten(@twitter-brand, 20%)
 		}
 	}
 	.youtube{
