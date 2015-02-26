@@ -34,37 +34,67 @@
 	</head>
 	
 	<body <?php body_class(); ?>>
+		<div class="wrapper">
 				
-		<header role="banner">
-				
-			<div class="navbar navbar-default navbar-fixed-top">
-				<div class="container">
-          
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
+			<!--<header role="banner">
+					
+				<div class="navbar navbar-default navbar-fixed-top">
+					<div class="container">
+	          
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
 
-						<a class="navbar-brand" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
-					</div>
+							<a class="navbar-brand" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+						</div>
 
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
-						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>
+						<div class="collapse navbar-collapse navbar-responsive-collapse">
+							<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>
 
-						<?php //if(of_get_option('search_bar', '1')) {?>
-						<form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-							<div class="form-group">
-								<input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="<?php _e('Search','wpbootstrap'); ?>">
-							</div>
-						</form>
-						<?php //} ?>
-					</div>
+							<?php //if(of_get_option('search_bar', '1')) {?>
+							<form class="navbar-form navbar-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
+								<div class="form-group">
+									<input name="s" id="s" type="text" class="search-query form-control" autocomplete="off" placeholder="<?php _e('Search','wpbootstrap'); ?>">
+								</div>
+							</form>
+							<?php //} ?>
+						</div>
 
-				</div> <!-- end .container -->
-			</div> <!-- end .navbar -->
+					</div> 
+				</div> 
+			
+			</header> --> <!-- end header -->
+
+			<div class="header">
+			    <div class="logo">
+			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.jpg">
+			    </div>
+			    <div class="pull-right">
+			        <div class="links pull-left">
+			            <a href="#">LOGIN</a>
+			            <span>|</span>
+			            <a href="#">SEARCH</a>
+			        </div>
+			        <div class="social-links pull-left">
+			            <div class="fb link">
+			                <div class="icon">
+			                    <i class="fa fa-facebook fa-lg fa-fw"></i>
+			                </div>
+			                <div class="action"><a href="#"><small>Like</small></a></div>                        
+			            </div>
+			            <div class="clearfix"></div>
+			            <div class="twitter link">
+			                <div class="action"><a href="#"><small>Follow</small></a></div>
+			                <div class="icon">
+			                    <i class="fa fa-twitter fa-lg fa-fw"></i>
+			                </div>
+			            </div>
+			        </div>                
+			    </div>
+			    <div class="clearfix"></div>
+			</div>
 		
-		</header> <!-- end header -->
-		
-		<div class="container">
+			
