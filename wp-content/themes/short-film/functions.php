@@ -240,7 +240,29 @@ add_action( 'widgets_init', 'wp_bootstrap_register_sidebars' );
 // Comment Layout
 function wp_bootstrap_comments($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
-	<li <?php comment_class(); ?>>
+   <li class="post comments-section">
+    <div class="user-profile-pic-wrapper">
+      <div class="user-profile-pic-normal">
+        <?php echo get_avatar( $comment ); ?>
+      </div>
+    </div>
+    <div class="info-wrapper">
+      <div class="username">
+          <?php printf('<h5 class="m-b-0">%s</h5>', get_comment_author_link()) ?>
+      </div>
+      <div class="info">
+        <?php edit_comment_link(__('Edit','wpbootstrap'),'<span class="edit-comment btn btn-sm btn-link"><i class="glyphicon-white glyphicon-pencil"></i>','</span>') ?>
+          <?php if ($comment->comment_approved == '0') : ?>
+            <div class="alert-message success">
+              <p><?php _e('Your comment is awaiting moderation.','wpbootstrap') ?></p>
+            </div>
+          <?php endif; ?>
+        <?php comment_text() ?>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+
+	<!-- <li <?php comment_class(); ?>>
 		<article id="comment-<?php comment_ID(); ?>" class="clearfix">
 			<div class="comment-author vcard clearfix">
 				<div class="avatar col-sm-3">
@@ -263,10 +285,17 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 					<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
                 </div>
 			</div>
-		</article>
+		</article> -->
     <!-- </li> is added by wordpress automatically -->
 <?php
 } // don't remove this bracket!
+
+add_filter('get_avatar','change_avatar_css');
+
+function change_avatar_css($class) {
+$class = str_replace("class='avatar", "class='img-responsive", $class) ;
+return $class;
+}
 
 // Display trackbacks/pings callback function
 function list_pings($comment, $args, $depth) {
