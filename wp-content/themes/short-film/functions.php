@@ -1,4 +1,14 @@
 <?php
+//code added by Surekha///
+
+require_once (get_template_directory().'/classes/class.video.php');
+require_once (get_template_directory().'/api/class.video.api.php');
+require_once (get_template_directory().'/functions/functions.php');
+
+
+//code added by Surekha///
+
+
 
 // Add Translation Option
 load_theme_textdomain( 'wpbootstrap', TEMPLATEPATH.'/languages' );
@@ -707,4 +717,22 @@ function wp_bootstrap_filter_ptags_on_images( $content ){
 }
 add_filter( 'the_content', 'wp_bootstrap_filter_ptags_on_images' );
 
-?>
+//code added by Surekha//
+
+add_action( 'init', 'create_region_taxonomy' );
+
+//register a taxonomy//
+function create_region_taxonomy() {
+  register_taxonomy(
+    'region',
+    'post',
+    array(
+      'label' => __( 'Region' ),
+      'rewrite' => array( 'slug' => 'region' ),
+      'hierarchical' => true,
+    )
+  );
+}
+
+
+
