@@ -1,4 +1,14 @@
 <?php
+//code added by Surekha///
+
+require_once (get_template_directory().'/classes/class.video.php');
+require_once (get_template_directory().'/api/class.video.api.php');
+require_once (get_template_directory().'/functions/functions.php');
+
+
+//code added by Surekha///
+
+
 
 // Add Translation Option
 load_theme_textdomain( 'wpbootstrap', TEMPLATEPATH.'/languages' );
@@ -725,4 +735,40 @@ function wp_bootstrap_filter_ptags_on_images( $content ){
 }
 add_filter( 'the_content', 'wp_bootstrap_filter_ptags_on_images' );
 
-?>
+//code added by Surekha//
+
+add_action( 'init', 'create_region_taxonomy' );
+
+//register a taxonomy//
+function create_region_taxonomy() {
+  register_taxonomy(
+    'region',
+    'post',
+    array(
+      'label' => __( 'Region' ),
+      'rewrite' => array( 'slug' => 'region' ),
+      'hierarchical' => true,
+    )
+  );
+}
+
+function wp_trim_all_excerpt($text) {
+
+  global $post;
+  
+  if ( '' == $text ) {
+
+      $text = $post->post_content;
+      $text = strip_shortcodes( $text );
+      
+      
+   }
+
+$text = strip_tags($text);
+$excerpt_length = apply_filters('excerpt_length', 55);
+$text = wp_trim_words( $text, $excerpt_length, $excerpt_more ); 
+
+return apply_filters('wp_trim_excerpt', $text, $raw_excerpt); 
+}
+
+add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
