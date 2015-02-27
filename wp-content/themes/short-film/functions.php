@@ -752,5 +752,23 @@ function create_region_taxonomy() {
   );
 }
 
+function wp_trim_all_excerpt($text) {
 
+  global $post;
+  
+  if ( '' == $text ) {
 
+      $text = $post->post_content;
+      $text = strip_shortcodes( $text );
+      
+      
+   }
+
+$text = strip_tags($text);
+$excerpt_length = apply_filters('excerpt_length', 55);
+$text = wp_trim_words( $text, $excerpt_length, $excerpt_more ); 
+
+return apply_filters('wp_trim_excerpt', $text, $raw_excerpt); 
+}
+
+add_filter('get_the_excerpt', 'wp_trim_all_excerpt');

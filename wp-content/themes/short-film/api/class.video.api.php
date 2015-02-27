@@ -22,6 +22,10 @@ class Video_API
             array( array( $this, 'get_video'), WP_JSON_Server::READABLE)
             
         );
+        $routes['/videos'] = array(
+            array( array( $this, 'get_all_videos'), WP_JSON_Server::READABLE)
+            
+        );
         
     	return $routes;
 	}
@@ -32,6 +36,38 @@ class Video_API
 		global $video;
 
 		$response = $video->get($id);
+
+		if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+	}
+
+	public function get_all_videos()
+	{
+
+		global $video;
+
+		$args = array(
+					'orderby'          => 'post_date',
+					'order'            => 'DESC',
+					'post_type' 	   => 'post',
+					'post_status'      => 'publish',
+
+
+		);
+
+		$response = $video->get_all_videos($args);
 
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
