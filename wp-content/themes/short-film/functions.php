@@ -465,7 +465,7 @@ function wp_bootstrap_first_paragraph( $content ){
     else
         return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
 }
-add_filter( 'the_content', 'wp_bootstrap_first_paragraph' );
+// add_filter( 'the_content', 'wp_bootstrap_first_paragraph' );
 
 // Menu output mods
 class Bootstrap_walker extends Walker_Nav_Menu{

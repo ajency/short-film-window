@@ -18,14 +18,16 @@ The comments page for Bones
 
 <?php if ( have_comments() ) : ?>
 	<?php if ( ! empty($comments_by_type['comment']) ) : ?>
-	<h3 id="comments"><?php comments_number('<span>' . __("No","wpbootstrap") . '</span> ' . __("Responses","wpbootstrap") . '', '<span>' . __("One","wpbootstrap") . '</span> ' . __("Response","wpbootstrap") . '', '<span>%</span> ' . __("Responses","wpbootstrap") );?> <?php _e("to","wpbootstrap"); ?> &#8220;<?php the_title(); ?>&#8221;</h3>
+	<!-- <h3 id="comments"><?php comments_number('<span>' . __("No","wpbootstrap") . '</span> ' . __("Responses","wpbootstrap") . '', '<span>' . __("One","wpbootstrap") . '</span> ' . __("Response","wpbootstrap") . '', '<span>%</span> ' . __("Responses","wpbootstrap") );?> <?php _e("to","wpbootstrap"); ?> &#8220;<?php the_title(); ?>&#8221;</h3> -->
+	<h4>WHAT ARE PEOPLE SAYING</h4>
+	<hr>
 
-	<nav id="comment-nav">
+	<!-- <nav id="comment-nav">
 		<ul class="clearfix">
 	  		<li><?php previous_comments_link( __("Older comments","wpbootstrap") ) ?></li>
 	  		<li><?php next_comments_link( __("Newer comments","wpbootstrap") ) ?></li>
 	 	</ul>
-	</nav>
+	</nav> -->
 	
 	<ol class="commentlist">
 		<?php wp_list_comments('type=comment&callback=wp_bootstrap_comments'); ?>
