@@ -29,7 +29,7 @@ class Video_API
 	public function get_video($id)
 	{
 
-		$response = Film\Video::get($post->ID);
+		$response = Film\Video::get($id);
 
 		
 

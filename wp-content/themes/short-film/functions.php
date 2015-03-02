@@ -571,13 +571,19 @@ add_action( 'wp_enqueue_scripts', 'wp_bootstrap_theme_styles' );
 // enqueue custom styles
 function add_custom_scripts() {
 
+    
+
     wp_register_style( 'theme_css', get_template_directory_uri(). '/assets/css/theme-child.css');
     wp_enqueue_style( 'theme_css' );
 
+    wp_register_script( 'jquery', get_template_directory_uri() . '/bower_components/jquery/jquery.min.js', '', false, true );
+    wp_enqueue_script( 'jquery' );
+
+    wp_localize_script( "jquery", "SITEURL", site_url() );
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
 
-    wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/slick-slider/slick.min.js', '', false, true );
+    wp_register_script( 'slick', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', '', false, true );
     wp_enqueue_script( 'slick' );
 
     wp_register_script( 'custom_js', get_template_directory_uri() . '/assets/js/custom.js', '', false, true );
@@ -885,70 +891,65 @@ add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
 
 function save_meta_box_data( $post_id ) {
 
-  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
-  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-    return;
-  }
+        // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+          return;
+        }
 
-  // Check the user's permissions.
-  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+        // Check the user's permissions.
+        if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
 
-    if ( ! current_user_can( 'edit_page', $post_id ) ) {
-      return;
-    }
+          if ( ! current_user_can( 'edit_page', $post_id ) ) {
+            return;
+          }
 
-  } else {
+        } else {
 
-    if ( ! current_user_can( 'edit_post', $post_id ) ) {
-      return;
-    }
-  }
+          if ( ! current_user_can( 'edit_post', $post_id ) ) {
+            return;
+          }
+        }
 
-  /* OK, it's safe for us to save the data now. */
+        /* OK, it's safe for us to save the data now. */
 
-  // Sanitize user input.
- $film_type = sanitize_text_field( $_POST['film_type'] );
+        // Sanitize user input.
+       $film_type = sanitize_text_field( $_POST['film_type'] );
 
-  // Update the meta field in the database.
-  update_post_meta( $post_id, 'type', $film_type );
+        // Update the meta field in the database.
+        update_post_meta( $post_id, 'type', $film_type );
 
 
 
-    // Sanitize user input.
-$videourl = sanitize_text_field( $_POST['videourl'] );
+          // Sanitize user input.
+      $videourl = sanitize_text_field( $_POST['videourl'] );
 
-  if (filter_var($url, FILTER_VALIDATE_URL) === false) {
-   
-    add_settings_error(
-        'videourl',
-        '',
-        'Entered URL is not valid.',
-        'error'
-      );
-   set_transient( 'settings_errors', get_settings_errors(), 30 );
+      if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
+       
+        add_settings_error(
+            'videourl',
+            '',
+            'Entered URL is not valid.',
+            'error'
+          );
+       set_transient( 'settings_errors', get_settings_errors(), 30 );
 
-   return false;
-}
+       return false;
+      }
 
-  // Update the meta field in the database.
-  update_post_meta( $post_id, 'videourl', $videourl );
+        // Update the meta field in the database.
+        update_post_meta( $post_id, 'videourl', $videourl );
 
-   // Sanitize user input.
- $duration = sanitize_text_field( $_POST['duration'] );
+         // Sanitize user input.
+       $duration = sanitize_text_field( $_POST['duration'] );
 
-  // Update the meta field in the database.
-  update_post_meta( $post_id, 'duration', $duration );
+        // Update the meta field in the database.
+        update_post_meta( $post_id, 'duration', $duration );
 
 }
 add_action( 'save_post', 'save_meta_box_data' );
 
 add_action( 'admin_notices', '_location_admin_notices' );
-/**
- * Writes an error message to the screen if the 'Plan' meta data is not specified for the current
- * post.
- *
- * @since    1.0.0
- */
+
 function _location_admin_notices() {
 
   // If there are no errors, then we'll exit the function

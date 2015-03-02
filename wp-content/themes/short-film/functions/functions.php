@@ -49,3 +49,23 @@ function get_user_details($user_id = 0){
 
 }
 
+function get_custom_taxonomy_terms($post_id){
+
+
+
+	$results = get_the_terms($post_id, 'region');
+
+	$response = array();
+	
+	if(!empty($results) > 0){
+		foreach ($results as $key => $value) {
+
+			$response[] = $value->name;
+		
+		}
+	}
+	
+
+	return $response;
+
+}

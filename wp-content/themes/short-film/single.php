@@ -8,14 +8,16 @@ get_header(); ?>
 	global $post;
 
 	$response = Film\Video::get($post->ID);
-	//print_r($response);
 
+	
+	
 	?>
 		
 
 			<div class="slider3 full-slider">
-			  http://www.youtube.com/watch?v=dQw4w9WgXcQ
-			  <!-- <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
+			 <div class="previous"></div>
+			 <div><iframe width="500" height="281" src="<?php echo $response['videourl'] ;?>" frameborder="0" allowfullscreen></iframe></div>
+			 <div class="next"></div> <!-- <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
 			  <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
 			</div>
 
@@ -28,7 +30,7 @@ get_header(); ?>
 						    <div class="col-xs-9">
 						        <h6 class="m-t-0"><small><em>Tagline of the film</em></small></h6>
 						        <h5 class="m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
-						        <h6 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h6>
+						        <h6 class="m-t-0 m-b-0"><small><em><?php echo $response['duration'] ;?> Min /<?php echo implode(',',$response['region']) ;?></em></small></h6>
 						        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $response['categories']); ?></em></small></h6>
 						    </div>
 						    <div class="col-xs-3 text-right">
@@ -147,3 +149,22 @@ get_header(); ?>
 
 
 <?php get_footer(); ?>
+
+
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+
+
+jQuery('button.slick-prev').click(function(x){
+
+	window.location.href = SITEURL+'/'+"<?php echo $response['prev_post'];?>";
+});
+
+jQuery('button.slick-next').click(function(x){
+
+	window.location.href = SITEURL+'/'+"<?php echo $response['next_post'];?>";
+});
+});
+
+</script>

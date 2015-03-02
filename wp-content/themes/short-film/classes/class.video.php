@@ -8,6 +8,7 @@ class Video
 
 		global $post;
 
+		$post_id;
 		//wordpress fn to get single post
 		$post  = get_post($post_id); 
 
@@ -16,17 +17,17 @@ class Video
 			
 			//prev post
 			$prev_post = retrieve_previous_post();
-			$prev_post = $prev_post == 0 ? 0 : $prev_post->ID;
+			$prev_post = $prev_post == 0 ? 0 : $prev_post->post_name;
 
 			//next post
 			$next_post = retrieve_next_post();
-			$next_post = $next_post == 0 ? 0 : $next_post->ID;
+			$next_post = $next_post == 0 ? 0 : $next_post->post_name;
 
 			//get author name
 			$name = (!get_user_details($post->post_author)) ? "" :
 						 get_user_details($post->post_author)->display_name;
 
-
+			
 			//assign the required details
 			$response = array(
 
@@ -37,10 +38,10 @@ class Video
 				'director'		=> $name,
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
-				'comments'		=> get_comments(array('post_id' => $post->ID)),
+				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
 				'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
 				'duration'		=> get_post_meta( $post->ID , 'duration',true ),
-				'region'		=> get_the_terms($post->ID, 'region'),
+				'region'		=> get_custom_taxonomy_terms($post->ID),
 				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' ))
 
 			);
