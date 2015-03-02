@@ -2,33 +2,32 @@
 
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-			<div class="slider3 full-slider">
-			  <div><img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"></div>
-			  <div><img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"></div>
+			<div class="">
+			  <div><img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive width-full"></div>
 			  <!-- <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
 			  <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
-			</div>
-
-			<div class="container">
-				<div class="row">
-				    <div class="col-md-10 col-md-offset-1">
-						<h3><?php the_title(); ?></h3>
-						<hr class="m-t-0 m-b-5">
-						<div class="row">
-						    <div class="col-xs-9">
-						        <h6 class="m-t-0"><small><em>Tagline of the film</em></small></h6>
-						        <h5 class="m-t-0 m-b-0"><small><em>by</em></small> Name of the Director</h5>
-						        <h6 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h6>
-						        <h6 class="m-t-0 m-b-0"><small><em><?php the_category(', '); ?></em></small></h6>
-						    </div>
-						    <div class="col-xs-3 text-right">
-						        <div class="small">199 <i class="fa fa-eye"></i></div>
-						        <div class="small">75 <i class="fa fa-thumbs-up"></i></div>
-						        <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
-						    </div>
+				<div class="container movie-info">
+					<div class="row">
+					    <div class="col-md-10 col-md-offset-1">
+							<h3><?php the_title(); ?></h3>
+							<hr class="m-t-0 m-b-5">
+							<div class="row">
+							    <div class="col-xs-9">
+							        <h6 class="m-t-0"><small><em>Tagline of the film</em></small></h6>
+							        <h5 class="m-t-0 m-b-0"><small><em>by</em></small> Name of the Director</h5>
+							        <h6 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h6>
+							        <h6 class="m-t-0 m-b-0"><small><em><?php the_category(', '); ?></em></small></h6>
+							    </div>
+							    <div class="col-xs-3 text-right">
+							        <div class="small">199 <i class="fa fa-eye"></i></div>
+							        <div class="small">75 <i class="fa fa-thumbs-up"></i></div>
+							        <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
+							    </div>
+							</div>
 						</div>
 					</div>
 				</div>
+				<div class="overlay"></div>
 			</div>
 			
 			<div class="container">
