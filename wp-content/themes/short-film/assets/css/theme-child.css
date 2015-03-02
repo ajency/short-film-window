@@ -11278,3 +11278,34 @@ a {
 .video-js-responsive-container.vjs-hd {
   padding-top: 48%;
 }
+.vid-previous,
+.vid-next {
+  position: absolute;
+  top: 40%;
+  display: block;
+  width: 50px;
+  height: 100px;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: url(../img/arrow.png);
+  background-size: contain;
+  opacity: 0.5;
+}
+.vid-previous:hover,
+.vid-previous:focus,
+.vid-next:hover,
+.vid-next:focus {
+  color: transparent;
+  outline: none;
+  opacity: 1;
+}
+.vid-previous {
+  left: 25px;
+}
+.vid-next {
+  right: 25px;
+  transform: rotate(180deg);
+}
