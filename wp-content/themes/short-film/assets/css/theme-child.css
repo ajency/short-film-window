@@ -10117,6 +10117,9 @@ a {
 .focus-img img {
   width: 100%;
 }
+.movie-header {
+  position: relative;
+}
 .movie-info {
   position: absolute;
   bottom: 20px;

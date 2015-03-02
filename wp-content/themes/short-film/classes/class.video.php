@@ -1,4 +1,5 @@
 <?php
+namespace Film;
 
 class Video
 {
@@ -21,23 +22,26 @@ class Video
 			$next_post = retrieve_next_post();
 			$next_post = $next_post == 0 ? 0 : $next_post->ID;
 
+			//get author name
+			$name = (!get_user_details($post->post_author)) ? "" :
+						 get_user_details($post->post_author)->display_name;
 
 
 			//assign the required details
 			$response = array(
 
 				'title'			=> $post->post_title,
-				'type'			=> get_field('type'),
-				'videourl'  	=> get_field('videourl'),
+				'type'			=> get_post_meta( $post->ID , 'type',true ),
+				'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
 				'excerpt'		=> get_the_excerpt(),
-				'director'		=> $post->post_author,
+				'director'		=> $name,
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
-				'comments'		=> get_comments(),
-				'categories'	=> wp_get_post_categories($post->ID),
-				'duration'		=> get_field('duration'),
+				'comments'		=> get_comments(array('post_id' => $post->ID)),
+				'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
+				'duration'		=> get_post_meta( $post->ID , 'duration',true ),
 				'region'		=> get_the_terms($post->ID, 'region'),
-				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'ids' ))
+				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' ))
 
 			);
 			return $response;

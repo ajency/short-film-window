@@ -741,11 +741,30 @@ add_action( 'init', 'create_region_taxonomy' );
 
 //register a taxonomy//
 function create_region_taxonomy() {
+
+  $labels = array(
+    'name'                       => _x( 'Regions', 'taxonomy general name' ),
+    'singular_name'              => _x( 'Region', 'taxonomy singular name' ),
+    'search_items'               => __( 'Search Regions' ),
+    'popular_items'              => __( 'Popular Regions' ),
+    'all_items'                  => __( 'All Regions' ),
+    'parent_item'                => null,
+    'parent_item_colon'          => null,
+    'edit_item'                  => __( 'Edit Region' ),
+    'update_item'                => __( 'Update Region' ),
+    'add_new_item'               => __( 'Add New Region' ),
+    'new_item_name'              => __( 'New Region Name' ),
+    'separate_items_with_commas' => __( 'Separate Regions with commas' ),
+    'add_or_remove_items'        => __( 'Add or remove Regions' ),
+    'choose_from_most_used'      => __( 'Choose from the most used Regions' ),
+    'not_found'                  => __( 'No Regions found.' ),
+    'menu_name'                  => __( 'Regions' ),
+  );
   register_taxonomy(
     'region',
     'post',
     array(
-      'label' => __( 'Region' ),
+      'labels' => $labels,
       'rewrite' => array( 'slug' => 'region' ),
       'hierarchical' => true,
     )
@@ -772,3 +791,183 @@ return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
 }
 
 add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
+
+//register custom fields for post///
+
+function render_film_type( $post ) {
+
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_type_meta_box', 'film_type_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $type = get_post_meta( $post->ID, 'type', true );
+
+  ?>
+    <select name="film_type" id="film_type">
+        <option value="youtube" <?php if($type == 'youtube') echo 'selected'; ?>>Youtube</option>
+        <option value="vimeo" <?php if($type == 'vimeo') echo 'selected'; ?>>Vimeo</option>
+           </select>
+  <?php
+
+  
+ 
+}
+function render_film_videourl( $post ) {
+
+ 
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_videourl_meta_box', 'film_videourl_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $videourl = get_post_meta( $post->ID, 'videourl', true );
+
+  ?>
+    <input type="textbox" name="videourl" id="videourl" value="<?php echo $videourl ;?>" />
+  <?php
+
+ 
+}
+
+function render_film_duration( $post ) {
+
+ 
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_duration_meta_box', 'film_duration_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $duration = get_post_meta( $post->ID, 'duration', true );
+
+  ?>
+    <input type="textbox" name="duration" id="duration" value="<?php echo $duration ;?>" />
+  <?php
+
+ 
+}
+
+function adding_custom_meta_boxes( $post ) {
+    add_meta_box( 
+        'film_type',
+        __( 'Type' ),
+        'render_film_type',
+        'post',
+        'normal',
+        'default'
+    );
+
+    add_meta_box( 
+        'film_videourl',
+        __( 'Video URL' ),
+        'render_film_videourl',
+        'post',
+        'normal',
+        'default'
+    );
+
+    add_meta_box( 
+        'film_duration',
+        __( 'Duration (mins)' ),
+        'render_film_duration',
+        'post',
+        'normal',
+        'default'
+    );
+}
+add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
+
+function save_meta_box_data( $post_id ) {
+
+  // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+  if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+    return;
+  }
+
+  // Check the user's permissions.
+  if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+
+    if ( ! current_user_can( 'edit_page', $post_id ) ) {
+      return;
+    }
+
+  } else {
+
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+      return;
+    }
+  }
+
+  /* OK, it's safe for us to save the data now. */
+
+  // Sanitize user input.
+ $film_type = sanitize_text_field( $_POST['film_type'] );
+
+  // Update the meta field in the database.
+  update_post_meta( $post_id, 'type', $film_type );
+
+
+
+    // Sanitize user input.
+$videourl = sanitize_text_field( $_POST['videourl'] );
+
+  if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+   
+    add_settings_error(
+        'videourl',
+        '',
+        'Entered URL is not valid.',
+        'error'
+      );
+   set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+   return false;
+}
+
+  // Update the meta field in the database.
+  update_post_meta( $post_id, 'videourl', $videourl );
+
+   // Sanitize user input.
+ $duration = sanitize_text_field( $_POST['duration'] );
+
+  // Update the meta field in the database.
+  update_post_meta( $post_id, 'duration', $duration );
+
+}
+add_action( 'save_post', 'save_meta_box_data' );
+
+add_action( 'admin_notices', '_location_admin_notices' );
+/**
+ * Writes an error message to the screen if the 'Plan' meta data is not specified for the current
+ * post.
+ *
+ * @since    1.0.0
+ */
+function _location_admin_notices() {
+
+  // If there are no errors, then we'll exit the function
+  if ( ! ( $errors = get_transient( 'settings_errors' ) ) ) {
+    return;
+  }
+
+  // Otherwise, build the list of errors that exist in the settings errores
+  $message = '<div id="acme-message" class="error below-h2"><p><ul>';
+  foreach ( $errors as $error ) {
+    $message .= '<li>' . $error['message'] . '</li>';
+  }
+  $message .= '</ul></p></div><!-- #error -->';
+
+  // Write them out to the screen
+  echo $message;
+
+  // Clear and the transient and unhook any other notices so we don't see duplicate messages
+  delete_transient( 'settings_errors' );
+  remove_action( 'admin_notices', '_location_admin_notices' );
+
+}

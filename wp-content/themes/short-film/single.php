@@ -1,22 +1,31 @@
-<?php get_header(); ?>
+<?php 
 
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+get_header(); ?>
 
-			<div class="">
-			  <div><img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive width-full"></div>
-			  <!-- <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
-			  <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
+	
+	<?php if (have_posts()) : while (have_posts()) : the_post(); 
+	
+	global $post;
+
+	$response = Film\Video::get($post->ID);
+	//print_r($response);
+
+	?>
+
+			<div class="movie-header">
+			  <div><img src="https://placeimg.com/1000/404/people" class="img-responsive width-full"></div>
+			  <!-- <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
 				<div class="container movie-info">
 					<div class="row">
 					    <div class="col-md-10 col-md-offset-1">
-							<h3><?php the_title(); ?></h3>
+							<h3><?php echo ucfirst($response['title']); ?></h3>
 							<hr class="m-t-0 m-b-5">
 							<div class="row">
 							    <div class="col-xs-9">
 							        <h6 class="m-t-0"><small><em>Tagline of the film</em></small></h6>
-							        <h5 class="m-t-0 m-b-0"><small><em>by</em></small> Name of the Director</h5>
+							        <h5 class="m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
 							        <h6 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h6>
-							        <h6 class="m-t-0 m-b-0"><small><em><?php the_category(', '); ?></em></small></h6>
+							        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $response['categories']); ?></em></small></h6>
 							    </div>
 							    <div class="col-xs-3 text-right">
 							        <div class="small">199 <i class="fa fa-eye"></i></div>
@@ -29,6 +38,7 @@
 				</div>
 				<div class="overlay"></div>
 			</div>
+
 			
 			<div class="container">
 			    <div class="content-wrapper">
@@ -40,7 +50,7 @@
 			                    <?php the_post_thumbnail( 'wpbs-featured', array( 'class' => 'img-responsive' ) ); ?>
 			                </div>
 			                <div class="img-content">
-			                	<?php the_content(); ?>
+			                	<?php echo $response['excerpt']; ?>
 			                </div>
 			            </div>
 			        </div>

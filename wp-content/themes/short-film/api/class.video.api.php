@@ -3,11 +3,7 @@ function im_json_api_default_filters( $server ) {
     
 	global $video_api;
 
-	global $video;
-
-	$video = new Video();
-
-   	$video_api = new Video_API( $server);
+	$video_api = new Video_API( $server);
 
     add_filter( 'json_endpoints', array( $video_api, 'register_routes' ) );
 
@@ -33,9 +29,9 @@ class Video_API
 	public function get_video($id)
 	{
 
-		global $video;
+		$response = Film\Video::get($post->ID);
 
-		$response = $video->get($id);
+		
 
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
@@ -56,7 +52,7 @@ class Video_API
 	public function get_all_videos()
 	{
 
-		global $video;
+		
 
 		$args = array(
 					'orderby'          => 'post_date',
@@ -66,8 +62,8 @@ class Video_API
 
 
 		);
-
-		$response = $video->get_all_videos($args);
+		$response = Film\Video::get_all_videos($args);
+		
 
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
