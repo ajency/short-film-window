@@ -32,3 +32,20 @@ function retrieve_next_post()
 	return $post;
 }
 
+
+function get_user_details($user_id = 0){
+
+	if($user_id == 0)
+		$user_id = get_current_user_by_id();
+
+	$response = get_userdata($user_id);
+
+	if($response)
+		return $response;
+	else
+		return false;
+
+
+
+}
+
