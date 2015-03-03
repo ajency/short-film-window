@@ -11185,6 +11185,38 @@ a {
 .grid-half .vid-desc {
   display: none;
 }
+@media (max-width: 767px) {
+  h1,
+  .h1 {
+    font-size: 38px;
+    line-height: 1;
+  }
+  h2,
+  .h2 {
+    font-size: 32px;
+    line-height: 1;
+  }
+  h3,
+  .h3 {
+    font-size: 28px;
+    line-height: 1;
+  }
+  h4,
+  .h4 {
+    font-size: 22px;
+    line-height: 1;
+  }
+  h5,
+  .h5 {
+    font-size: 18px;
+    line-height: 1;
+  }
+  h6,
+  .h6 {
+    font-size: 14px;
+    line-height: 1;
+  }
+}
 .media .media-left img {
   width: 80px;
 }
@@ -11238,6 +11270,19 @@ a {
     height: auto;
     max-width: none;
   }
+}
+/* Search placeholder */
+input.search::-webkit-input-placeholder::before {
+  font-family: fontAwesome;
+  content: '\f002  ';
+}
+input.search::-moz-placeholder::before {
+  font-family: fontAwesome;
+  content: '\f002  ';
+}
+input.search:-ms-input-placeholder::before {
+  font-family: fontAwesome;
+  content: '\f002  ';
 }
 .movie-header {
   position: relative;
