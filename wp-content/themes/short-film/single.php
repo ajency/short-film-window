@@ -109,18 +109,18 @@ get_header(); ?>
 	            <h3>SIMILAR MOVIES WE PICKED FOR YOU</h3>
 	            <hr>
 	                <div class="row">
-	                    <div class="col-md-4 col-sm-4">
+	                    <div class="col-sm-4">
 	                    	<div class="focus-img">
 	                    		<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
 	                    	</div>
 	                        
 	                    </div>
-	                    <div class="col-md-4 col-sm-4">
+	                    <div class="col-sm-4">
 	                    	<div class="focus-img">
 	                        	<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
 	                        </div>
 	                    </div>
-	                    <div class="col-md-4 col-sm-4">
+	                    <div class="col-sm-4">
 	                    	<div class="focus-img">
 	                        	<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
 	                        </div>
