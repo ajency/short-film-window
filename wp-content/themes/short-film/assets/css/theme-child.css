@@ -10980,6 +10980,9 @@ a {
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
 }
+.header .social-links {
+  float: left;
+}
 .logo {
   float: left;
 }
@@ -10992,9 +10995,6 @@ a {
 }
 .links a {
   color: #cccccc;
-}
-.social-links {
-  float: left;
 }
 .social-links .link {
   position: relative;
