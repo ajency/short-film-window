@@ -2,15 +2,43 @@
 <!-- slider -->
     $(document).ready(function() {
         $('.slider1').slick({
-            mobileFirst: true,
+            // mobileFirst: true,
             infinite: true,
-            slidesToShow: 3
+            slidesToShow: 3,
+            responsive: [
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1
+                  }
+                }
+              ]
         });
 
         $('.slider2').slick({
-            mobileFirst: true,
+            // mobileFirst: true,
             infinite: true,
-            slidesToShow: 4
+            slidesToShow: 4,
+            responsive: [
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1
+                  }
+                }
+              ]
         });
 
         $('.slider3').slick({
