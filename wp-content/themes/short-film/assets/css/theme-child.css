@@ -10979,12 +10979,35 @@ a {
   z-index: 2;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .header .social-links {
   float: left;
 }
+.header.smaller {
+  background-color: #262626;
+}
+.header.smaller .logo {
+  width: 175px;
+}
+.header.smaller .links {
+  padding: 15px;
+}
+.header.smaller .social-links {
+  margin-top: 0;
+}
 .logo {
+  width: 230px;
   float: left;
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .header-links {
   float: right;
@@ -10992,9 +11015,21 @@ a {
 .links {
   padding: 22px 15px;
   float: left;
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .links a {
   color: #cccccc;
+}
+.social-links {
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .social-links .link {
   position: relative;
