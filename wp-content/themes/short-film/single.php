@@ -199,7 +199,9 @@ get_header(); ?>
 
 <script type="text/javascript">
 
-jQuery(document).ready(function() {
+window.onload = function() {
+
+	console.log('aaaaaaaaaaaaaaaaaa');
 
 	jQuery('.vid-previous').click(function(x){
 
@@ -210,6 +212,6 @@ jQuery(document).ready(function() {
 
 		window.location.href = SITEURL+'/'+"<?php echo $response['next_post'];?>";
 	});
-});
+}
 
 </script>
