@@ -81,21 +81,18 @@ Template Name: Homepage
                                 <li><a href="">COMEDY</a></li>
                                 <li><a href="">ROMANCE</a></li>
                                 <li><a href="">SCI-FI</a></li>
-                                <li><a href="">SHORT DOC</a></li>
-                                <li><a href="">ACTION</a></li>
-                                <li><a href="">DRAMA</a></li>
+                                <li><a href="">FANTASY</a></li>
+                                <li><a href="">AWARD WINNING</a></li>
                                 <li><a href="">INDIAN</a></li>
-                                <li><a href="">ANIMATED</a></li>
-                                <li><a href="">SHORT DOC</a></li>
-                                <li><a href="">GOTHIC</a></li>
-                                <li><a href="">DARK</a></li>
-                                <li><a href="">FAMOUS</a></li>
-                                <li><a href="">HEART WARMING</a></li>
-                                <li><a href="">SCI-FI</a></li>
-                                <li><a href="">SHORT DOC</a></li>
-                                <li><a href="">ACTION</a></li>
+                                <li><a href="">THRILLER</a></li>
                                 <li><a href="">DRAMA</a></li>
-                                <li><a href="">ACTION</a></li>
+                                <li><a href="">SHORT DOC</a></li>
+                                <li><a href="">ANIMATION</a></li>
+                                <li><a href="">MUSIC VIDEO</a></li>
+                                <li><a href="">EXPERIMENTAL</a></li>
+                                <li><a href="">HEART WARMING</a></li>
+                                <li><a href="">FAMOUS DIRECTORS</a></li>
+                                <li><a href="">DARK</a></li>
                             </ul>
                         </nav>
                     </div>
