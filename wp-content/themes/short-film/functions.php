@@ -956,32 +956,54 @@ function save_meta_box_data( $post_id ) {
         // Sanitize user input.
        $film_type = sanitize_text_field( $_POST['film_type'] );
 
+
+
         // Update the meta field in the database.
         update_post_meta( $post_id, 'type', $film_type );
 
 
 
           // Sanitize user input.
-      $videourl = sanitize_text_field( $_POST['videourl'] );
+        $videourl = sanitize_text_field( $_POST['videourl'] );
 
-      if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
-       
-        add_settings_error(
-            'videourl',
-            '',
-            'Entered URL is not valid.',
-            'error'
-          );
-       set_transient( 'settings_errors', get_settings_errors(), 30 );
+        // $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        // echo finfo_file($finfo, $videourl);
+        // finfo_close($finfo);
 
-       return false;
-      }
+
+
+        if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
+         
+          add_settings_error(
+              'videourl',
+              '',
+              'Entered URL is not valid.',
+              'error'
+            );
+         set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+         return false;
+        }
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'videourl', $videourl );
 
          // Sanitize user input.
-       $duration = sanitize_text_field( $_POST['duration'] );
+        $duration = sanitize_text_field( $_POST['duration'] );
+
+        if($duration == "")
+       {
+          add_settings_error(
+            'duration',
+            '',
+            'Enter Duration.',
+            'error'
+          );
+
+         set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+          return false;
+       }
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'duration', $duration );
