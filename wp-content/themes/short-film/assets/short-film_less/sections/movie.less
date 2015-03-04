@@ -26,6 +26,21 @@
     }
 }
 
+@media (max-width:767px){
+    .movie-info{
+        position: static;
+        h3, h5, h6{
+            color: @gray-dark;
+            small{
+                color: @gray-dark;
+            }
+        }
+        & + .overlay{
+            display: none;
+        }
+    }
+}
+
 
 /* Comments Section */
 .comments-section {
@@ -90,6 +105,7 @@
     outline: none;
     background: url(../img/arrow.png);
     background-size: contain;
+    background-repeat: no-repeat;
     opacity: 0.5;
 }
 .vid-previous:hover,
@@ -111,4 +127,21 @@
 {
     right: 25px;
     transform: rotate(180deg);
+}
+
+@media (max-width:767px){
+    .vid-previous,
+    .vid-next
+    {
+        top: 30%;
+        width: 40px;
+        height: 60px;
+    }
+}
+@media (max-width:480px){
+     .vid-previous,
+    .vid-next
+    {
+        top: 15%;
+    }
 }

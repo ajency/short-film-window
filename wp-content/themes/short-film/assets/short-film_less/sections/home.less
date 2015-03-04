@@ -35,7 +35,31 @@
 	max-width: 280px;
 	margin: auto;
 	overflow: hidden;
+	margin-bottom: 10px;
 	img{
 		width: 100%;
+	}
+}
+
+@media (max-width:767px){
+	.focus-img{
+		height: auto;
+		max-width: none;
+	}
+}
+
+/* Search placeholder */
+input.search{
+	&::-webkit-input-placeholder::before{
+		font-family: fontAwesome; 
+		content:'\f002  ';
+	}
+	&::-moz-placeholder::before {
+		font-family: fontAwesome; 
+		content:'\f002  ';
+	}
+	&:-ms-input-placeholder::before {
+		font-family: fontAwesome; 
+		content:'\f002  ';
 	}
 }

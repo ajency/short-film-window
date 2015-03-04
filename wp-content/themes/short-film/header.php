@@ -69,16 +69,13 @@
 			</header> --> <!-- end header -->
 
 			<div class="header">
-			    <div class="logo">
-			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.jpg">
-			    </div>
-			    <div class="pull-right">
-			        <div class="links pull-left">
+			    <div class="header-links">
+			        <div class="links">
 			            <a href="#">LOGIN</a>
 			            <span>|</span>
 			            <a href="#">SEARCH</a>
 			        </div>
-			        <div class="social-links pull-left">
+			        <div class="social-links">
 			            <div class="fb link">
 			                <div class="icon">
 			                    <i class="fa fa-facebook fa-lg fa-fw"></i>
@@ -93,6 +90,9 @@
 			                </div>
 			            </div>
 			        </div>                
+			    </div>
+			    <div class="logo">
+			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.jpg" class="img-responsive">
 			    </div>
 			    <div class="clearfix"></div>
 			</div>
