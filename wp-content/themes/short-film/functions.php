@@ -902,6 +902,45 @@ function render_film_duration( $post ) {
 
  
 }
+function render_film_tagline( $post ) {
+
+ 
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_tagline_meta_box', 'film_tagline_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $tagline = get_post_meta( $post->ID, 'tagline', true );
+
+  ?>
+    <input type="textbox" name="tagline" id="tagline" value="<?php echo $tagline ;?>" />
+  <?php
+
+ 
+}
+
+function render_film_language( $post ) {
+
+ 
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_language_meta_box', 'film_language_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $language = get_post_meta( $post->ID, 'language', true );
+
+  ?>
+     <select name="language" id="language">
+        <option value="ENGLISH" <?php if($type == 'ENGLISH') echo 'selected'; ?>>ENGLISH</option>
+        <option value="FRENCH" <?php if($type == 'FRENCH') echo 'selected'; ?>>FRENCH</option>
+           </select>  <?php
+
+ 
+}
 
 function adding_custom_meta_boxes( $post ) {
     add_meta_box( 
@@ -926,6 +965,24 @@ function adding_custom_meta_boxes( $post ) {
         'film_duration',
         __( 'Duration (mins)' ),
         'render_film_duration',
+        'post',
+        'normal',
+        'default'
+    );
+
+     add_meta_box( 
+        'film_tagline',
+        __( 'Tagline' ),
+        'render_film_tagline',
+        'post',
+        'normal',
+        'default'
+    );
+
+     add_meta_box( 
+        'film_language',
+        __( 'language' ),
+        'render_film_language',
         'post',
         'normal',
         'default'
@@ -1010,6 +1067,17 @@ function save_meta_box_data( $post_id ) {
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'duration', $duration );
+
+          // Sanitize user input.
+        $tagline = sanitize_text_field( $_POST['tagline'] );
+
+        update_post_meta( $post_id, 'tagline', $tagline );
+
+           // Sanitize user input.
+        $language = sanitize_text_field( $_POST['language'] );
+
+        update_post_meta( $post_id, 'language', $language );
+
 
 }
 add_action( 'save_post', 'save_meta_box_data' );
