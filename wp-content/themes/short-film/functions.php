@@ -608,7 +608,7 @@ function add_custom_scripts() {
     wp_register_script( 'jquery', get_template_directory_uri() . '/bower_components/jquery/jquery.min.js', '', false, true );
     wp_enqueue_script( 'jquery' );
 
-    wp_localize_script( "jquery", "SITEURL", site_url() );
+   
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
 
@@ -632,6 +632,8 @@ function add_custom_scripts() {
 
     wp_register_script( 'custom_js', get_template_directory_uri() . '/assets/js/custom.js', '', false, true );
     wp_enqueue_script( 'custom_js' );
+
+    wp_localize_script( "jquery", "SITEURL", site_url() );
     
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
@@ -902,6 +904,45 @@ function render_film_duration( $post ) {
 
  
 }
+function render_film_tagline( $post ) {
+
+ 
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_tagline_meta_box', 'film_tagline_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $tagline = get_post_meta( $post->ID, 'tagline', true );
+
+  ?>
+    <input type="textbox" name="tagline" id="tagline" value="<?php echo $tagline ;?>" />
+  <?php
+
+ 
+}
+
+function render_film_language( $post ) {
+
+ 
+  // Add an nonce field so we can check for it later.
+  wp_nonce_field( 'film_language_meta_box', 'film_language_nonce' );
+
+  /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+  $language = get_post_meta( $post->ID, 'language', true );
+
+  ?>
+     <select name="language" id="language">
+        <option value="ENGLISH" <?php if($type == 'ENGLISH') echo 'selected'; ?>>ENGLISH</option>
+        <option value="FRENCH" <?php if($type == 'FRENCH') echo 'selected'; ?>>FRENCH</option>
+           </select>  <?php
+
+ 
+}
 
 function adding_custom_meta_boxes( $post ) {
     add_meta_box( 
@@ -926,6 +967,24 @@ function adding_custom_meta_boxes( $post ) {
         'film_duration',
         __( 'Duration (mins)' ),
         'render_film_duration',
+        'post',
+        'normal',
+        'default'
+    );
+
+     add_meta_box( 
+        'film_tagline',
+        __( 'Tagline' ),
+        'render_film_tagline',
+        'post',
+        'normal',
+        'default'
+    );
+
+     add_meta_box( 
+        'film_language',
+        __( 'language' ),
+        'render_film_language',
         'post',
         'normal',
         'default'
@@ -959,35 +1018,68 @@ function save_meta_box_data( $post_id ) {
         // Sanitize user input.
        $film_type = sanitize_text_field( $_POST['film_type'] );
 
+
+
         // Update the meta field in the database.
         update_post_meta( $post_id, 'type', $film_type );
 
 
 
           // Sanitize user input.
-      $videourl = sanitize_text_field( $_POST['videourl'] );
+        $videourl = sanitize_text_field( $_POST['videourl'] );
 
-      if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
-       
-        add_settings_error(
-            'videourl',
-            '',
-            'Entered URL is not valid.',
-            'error'
-          );
-       set_transient( 'settings_errors', get_settings_errors(), 30 );
+        // $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        // echo finfo_file($finfo, $videourl);
+        // finfo_close($finfo);
 
-       return false;
-      }
+
+
+        if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
+         
+          add_settings_error(
+              'videourl',
+              '',
+              'Entered URL is not valid.',
+              'error'
+            );
+         set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+         return false;
+        }
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'videourl', $videourl );
 
          // Sanitize user input.
-       $duration = sanitize_text_field( $_POST['duration'] );
+        $duration = sanitize_text_field( $_POST['duration'] );
+
+        if($duration == "")
+       {
+          add_settings_error(
+            'duration',
+            '',
+            'Enter Duration.',
+            'error'
+          );
+
+         set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+          return false;
+       }
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'duration', $duration );
+
+          // Sanitize user input.
+        $tagline = sanitize_text_field( $_POST['tagline'] );
+
+        update_post_meta( $post_id, 'tagline', $tagline );
+
+           // Sanitize user input.
+        $language = sanitize_text_field( $_POST['language'] );
+
+        update_post_meta( $post_id, 'language', $language );
+
 
 }
 add_action( 'save_post', 'save_meta_box_data' );

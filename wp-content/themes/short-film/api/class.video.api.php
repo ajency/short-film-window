@@ -19,9 +19,10 @@ class Video_API
             
         );
         $routes['/videos'] = array(
-            array( array( $this, 'get_all_videos'), WP_JSON_Server::READABLE)
+            array( array( $this, 'get_many'), WP_JSON_Server::READABLE)
             
         );
+
         
     	return $routes;
 	}
@@ -49,20 +50,34 @@ class Video_API
         return $response;
 	}
 
-	public function get_all_videos()
+	public function get_many()
 	{
 
-		
+		$genre = isset($_REQUEST['genre']) && $_REQUEST['genre'] !="" ? 
+						$_REQUEST['genre'] : "";
+		$language = isset($_REQUEST['language']) && $_REQUEST['language'] !="" ? 
+						$_REQUEST['language'] : "";
+
+		$posts_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] 
+		!= "" ? $_REQUEST['posts_per_page'] : "";
+		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
+						$_REQUEST['offset'] : 0;
+
+		if($offset != 0)
+			$offset = intval($offset) +  1;
 
 		$args = array(
-					'orderby'          => 'post_date',
-					'order'            => 'DESC',
-					'post_type' 	   => 'post',
-					'post_status'      => 'publish',
+					'orderby'           => 'post_date',
+					'order'             => 'DESC',
+					'genre'		    	=> $genre,
+					'language'			=> $language,
+					'posts_per_page'   	=> $posts_per_page,
+					'offset'           	=> $offset,
 
 
 		);
-		$response = Film\Video::get_all_videos($args);
+
+		$response = Film\Video::get_many($args);
 		
 
 		if (is_wp_error($response)){
