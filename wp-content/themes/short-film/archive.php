@@ -163,12 +163,12 @@
 				if(count($response) > 0)
 					{ 
 						foreach ($response as $key => $value) {
-					# code...
+					
 				 ?>
                 <div class="row">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value['featured_image'];?>">
                                 </div>
@@ -263,7 +263,7 @@ window.onload = function() {
 						html += '<div class="row">'
 				                    +'<div class="col-sm-6 multi-grid">'
 				                        +'<div class="grid-box grid-full content-align-bottom">'
-				                            +'<a class="content-bottom" href="#">'
+				                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 				                                +'<div class="grid-image">'
 				                                    +'<img src="'+value.featured_image+'">'
 				                                +'</div>'

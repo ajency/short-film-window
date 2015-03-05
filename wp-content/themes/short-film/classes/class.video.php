@@ -31,7 +31,7 @@ class Video
 			
 			//assign the required details
 			$response = array(
-
+				'slug'			=> $post->post_name,
 				'title'			=> $post->post_title,
 				'type'			=> get_post_meta( $post->ID , 'type',true ),
 				'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
@@ -90,7 +90,7 @@ class Video
         	'/img/placeholder.jpg';
 
 			$post_response[] = array(
-
+					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $image,
 					'title'				=> $post_detail['title'],
 					'duration'			=> $post_detail['duration'],
