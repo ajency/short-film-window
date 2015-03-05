@@ -58,8 +58,8 @@ class Video_API
 		$language = isset($_REQUEST['language']) && $_REQUEST['language'] !="" ? 
 						$_REQUEST['language'] : "";
 
-		$post_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] !=
-					"" ? $_REQUEST['posts_per_page'] : "";
+		$posts_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] 
+		!= "" ? $_REQUEST['posts_per_page'] : "";
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
 						$_REQUEST['offset'] : 0;
 
@@ -71,12 +71,12 @@ class Video_API
 					'order'             => 'DESC',
 					'genre'		    	=> $genre,
 					'language'			=> $language,
-					'posts_per_page'   	=> $post_per_page,
+					'posts_per_page'   	=> $posts_per_page,
 					'offset'           	=> $offset,
 
 
 		);
-		
+
 		$response = Film\Video::get_many($args);
 		
 

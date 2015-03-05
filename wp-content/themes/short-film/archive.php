@@ -154,7 +154,7 @@
 					'order'             => 'DESC',
 					'genre'		    	=> '',
 					'language'			=> '',
-					'posts_per_page'   	=> 12,
+					'posts_per_page'   	=> 1,
 					'offset'           	=> 0,
 
 
@@ -215,25 +215,51 @@
 
 window.onload = function() {
 
-	count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
-	jQuery('#offset').val(count);
+	
 	jQuery('#genre').live('change',function(e){
-		console.log('aaaaa')
+
+		jQuery('.all_posts').html("")
+		get_all_posts();
+	    
+
+		
+	});
+
+
+	jQuery('#language').live('change',function(e){
+
+		jQuery('#genre').trigger('change');
+	});
+
+	jQuery('.load_more').live('click',function(e){
+
+		count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
+		jQuery('#offset').val(count);
+
+
+		e.preventDefault();
+		get_all_posts();
+
+		
+	});
+
+
+	function get_all_posts(){
+
 		genre = jQuery('#genre').val();
 		language = jQuery('#language').val();
-		posts_per_page = 12;
+		posts_per_page = 1;
 		offset = jQuery('#offset').val();
 		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset;
+		
 
 		jQuery.ajax({
 				type : 'GET',
 				url : SITEURL+'/wp-json/videos',
 				data : data,
 				success:function(response){
-					html = ""
-					jQuery('.all_posts').html("")
+					html = jQuery('.all_posts').html()
 					jQuery.each(response,function(index,value){
-
 						html += '<div class="row">'
 				                    +'<div class="col-sm-6 multi-grid">'
 				                        +'<div class="grid-box grid-full content-align-bottom">'
@@ -266,23 +292,7 @@ window.onload = function() {
 					
 				} 
 			})
-	    
-
-		
-	});
-
-
-	jQuery('#language').live('change',function(e){
-
-		jQuery('#genre').trigger('change');
-	});
-
-	jQuery('.load_more').live('click',function(e){
-
-		e.preventDefault();
-
-		jQuery('#genre').trigger('change');
-	});
+	}
 
 	
 }
