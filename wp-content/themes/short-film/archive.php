@@ -148,7 +148,7 @@
 
                 <hr>
 
-                <div class="spacer-40"></div><div class="all_posts">
+                <div class="spacer-40"></div><div class="loader"></div><div class="all_posts">
                 <?php $args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
@@ -218,6 +218,7 @@ window.onload = function() {
 	
 	jQuery('#genre').live('change',function(e){
 
+		jQuery('.loader').text("Loading data...")
 		jQuery('.all_posts').html("")
 		get_all_posts();
 	    
@@ -235,7 +236,7 @@ window.onload = function() {
 
 		count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
 		jQuery('#offset').val(count);
-
+		jQuery('.loader').text("Loading data...")
 
 		e.preventDefault();
 		get_all_posts();
@@ -258,8 +259,11 @@ window.onload = function() {
 				url : SITEURL+'/wp-json/videos',
 				data : data,
 				success:function(response){
+					jQuery('.loader').text("")
 					html = jQuery('.all_posts').html()
-					jQuery.each(response,function(index,value){
+					if(response.length>0)
+					{
+						jQuery.each(response,function(index,value){
 						html += '<div class="row">'
 				                    +'<div class="col-sm-6 multi-grid">'
 				                        +'<div class="grid-box grid-full content-align-bottom">'
@@ -282,12 +286,20 @@ window.onload = function() {
 				                +'</div>'
 
 
-					});
-				jQuery('.all_posts').html(html);
+						});
+						jQuery('.all_posts').html(html);
+					}
+					else
+					{
+						html += "<div>No more posts found.</div>";
+						jQuery('.all_posts').html(html);
+					}
+					
+				
 					
 				},
 				error:function(error){
-					
+					jQuery('.loader').text("Loading data...")
 					jQuery('.all_posts').html('No Posts found');
 					
 				} 
