@@ -60,7 +60,7 @@ class Video
 	{
 		global $post;
 
-		$meta_key = array_key_exists('language', $args) ? 'language' : '';
+		$meta_key = $args['language']!="" ? 'language' : '';
 
 		$params = array(
 					'orderby'          		=> 'post_date',
@@ -70,11 +70,12 @@ class Video
 					'category'		  	 	=> $args['genre'],
 					'meta_key'				=> $meta_key,
 					'meta_value'			=> $args['language'],
-					'posts_per_page'   		=> $post_per_page,
-					'offset'           		=> $offset,
+					'posts_per_page'   		=> $args['post_per_page'],
+					'offset'           		=> $args['offset'],
 	
 				);
 
+		
 		#get all posts
 		$posts_array = get_posts($params); 
 
@@ -82,7 +83,25 @@ class Video
 		foreach ($posts_array as $key => $post) {
 
 			$post_detail = self::get($post->ID);
-			$post_response[] = $post_detail;
+
+			$post_thumbnail_id = get_post_thumbnail_id($post->ID); 
+			$image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
+        	'/img/placeholder.jpg';
+
+			$post_response[] = array(
+
+					'featured_image'	=> $image,
+					'title'				=> $post_detail['title'],
+					'duration'			=> $post_detail['duration'],
+					'region'			=> $post_detail['region'],
+					'director'			=> $post_detail['director'],
+					'categories'		=> $post_detail['categories']
+				
+				
+				
+				
+				);
 			
 		}
 

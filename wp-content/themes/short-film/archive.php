@@ -1,10 +1,51 @@
 <?php get_header(); ?>
-			
-			<div id="content" class="clearfix row">
+			<div class="header">
+            <div class="logo">
+                <img src="../assets/img/logo.jpg">
+            </div>
+            <div class="pull-right">
+                <div class="links pull-left">
+                    <a href="#">LOGIN</a>
+                    <span>|</span>
+                    <a href="#">SEARCH</a>
+                </div>
+                <div class="social-links pull-left">
+                    <div class="fb link">
+                        <div class="icon">
+                            <i class="fa fa-facebook fa-lg fa-fw"></i>
+                        </div>
+                        <div class="action"><a href="#"><small>Like</small></a></div>                        
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="twitter link">
+                        <div class="action"><a href="#"><small>Follow</small></a></div>
+                        <div class="icon">
+                            <i class="fa fa-twitter fa-lg fa-fw"></i>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="sub-header">
+            <a href="#">Home</a>
+            <span>|</span>
+            <a href="#">Movies</a>
+            <span>|</span>
+            <a href="#">Playlists</a>
+            <span>|</span>
+            <a href="#">Articles</a>
+            <span>|</span>
+            <a href="#">Submit Films</a>
+        </div>
+            
+        <!--Navigation--> 
+			<!-- <div id="content" class="clearfix row">
 			
 				<div id="main" class="col-sm-8 clearfix" role="main">
-				
-					<div class="page-header">
+				 -->
+					<!-- <!-- <div class="page-header">
 					<?php if (is_category()) { ?>
 						<h1 class="archive_title h2">
 							<span><?php _e("Posts Categorized:", "wpbootstrap"); ?></span> <?php single_cat_title(); ?>
@@ -30,69 +71,220 @@
 					    	<span><?php _e("Yearly Archives:", "wpbootstrap"); ?></span> <?php the_time('Y'); ?>
 					    </h1>
 					<?php } ?>
-					</div>
+					</div> --> 
 
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
-					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
-						
-						<header>
-							
-							<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-							
-							<p class="meta"><?php _e("Posted", "wpbootstrap"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_time(); ?></time> <?php _e("by", "wpbootstrap"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "wpbootstrap"); ?> <?php the_category(', '); ?>.</p>
-						
-						</header> <!-- end article header -->
-					
-						<section class="post_content">
-						
-							<?php the_post_thumbnail( 'wpbs-featured' ); ?>
-						
-							<?php the_excerpt(); ?>
-					
-						</section> <!-- end article section -->
-						
-						<footer>
-							
-						</footer> <!-- end article footer -->
-					
-					</article> <!-- end article -->
-					
-					<?php endwhile; ?>	
-					
-					<?php if (function_exists('wp_bootstrap_page_navi')) { // if expirimental feature is active ?>
-						
-						<?php wp_bootstrap_page_navi(); // use the page navi function ?>
+				
+        
+        <!--Content-->
+        <div class="container header-space">
+            <div class="content-wrapper">
 
-					<?php } else { // if it is disabled, display regular wp prev & next links ?>
-						<nav class="wp-prev-next">
-							<ul class="pager">
-								<li class="previous"><?php next_posts_link(_e('&laquo; Older Entries', "wpbootstrap")) ?></li>
-								<li class="next"><?php previous_posts_link(_e('Newer Entries &raquo;', "wpbootstrap")) ?></li>
-							</ul>
-						</nav>
-					<?php } ?>
-								
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>EXPLORE</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pull-right m-t-20">
+                            <form action="" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12"><input type="text" class="form-control" placeholder="Search"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="m-t-0">
+                
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <h5>FILTER BY</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
+                                        <div class="col-md-9"><select name="genre" id="genre">
+                                                <option value="">all</option>
+                                                <?php 
+												  $categories = get_categories(); 
+												  foreach ($categories as $category) {
+												  	$option = '<option value="'.$category->term_id.'">';
+													$option .= $category->cat_name;
+													$option .= '</option>';
+													echo $option;
+												  }
+												 ?>
+                                            </select></div>
+                                    </div>
+                                </form>
+                                <form action="" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3 control-label"><em>Language:</em> </label>
+                                        <div class="col-md-9"><select name="language" id="language">
+                                                <option value="">all</option>
+                                                <option value="ENGLISH">ENGLISH</option>
+                                                <option value="FRENCH">FRENCH</option>
+                                            </select></div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <form action="" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="" class="col-md-3 control-label"><em>SORT BY:</em> </label>
+                                        <div class="col-md-9"><select name="" id="">
+                                                <option value="">all</option>
+                                            </select></div>
+                                    </div>
+                                </form>
+                                <a href="#"><i class="fa fa-th-large fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-th-list fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-list-alt fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="spacer-40"></div><div class="all_posts">
+                <?php $args = array(
+					'orderby'           => 'post_date',
+					'order'             => 'DESC',
+					'genre'		    	=> '',
+					'language'			=> '',
+					'posts_per_page'   	=> 12,
+					'offset'           	=> 0,
+
+
+				);
+				$response = Film\Video::get_many($args);
+				if(count($response) > 0)
+					{ 
+						foreach ($response as $key => $value) {
+					# code...
+				 ?>
+                <div class="row">
+                    <div class="col-sm-6 multi-grid">
+                        <div class="grid-box grid-full content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="<?php echo $value['featured_image'];?>">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title"><?php echo $value['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo $value['director'];?></div>
+                                </div>
+                                
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                                                    
+                    </div>                    
+                </div>
+              
+
+                
+        <!-- /container -->
+       
+
 					
-					<?php else : ?>
+						 <!-- end article -->
 					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("No Posts Yet", "wpbootstrap"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, What you were looking for is not here.", "wpbootstrap"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
-			
-				</div> <!-- end #main -->
+					<?php }
+
+					}?></div> 
+
+ 					<div class="spacer-40"></div>
+					</div> <div class="text-center">
+					<input type="hidden" name="offset" id="offset" value="0" />
+                    <a href="#" class="btn btn-primary load_more">Load More...</a>
+                </div>
+                <div class="spacer-40"></div><!-- end #main -->
     
-				<?php get_sidebar(); // sidebar 1 ?>
+				
     
-			</div> <!-- end #content -->
+			 <!-- end #content -->
 
-<?php get_footer(); ?>
+			<?php get_footer(); ?>
+
+<script type="text/javascript">
+
+window.onload = function() {
+
+	count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
+	jQuery('#offset').val(count);
+	jQuery('#genre').live('change',function(e){
+		console.log('aaaaa')
+		genre = jQuery('#genre').val();
+		language = jQuery('#language').val();
+		posts_per_page = 12;
+		offset = jQuery('#offset').val();
+		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset;
+
+		jQuery.ajax({
+				type : 'GET',
+				url : SITEURL+'/wp-json/videos',
+				data : data,
+				success:function(response){
+					html = ""
+					jQuery('.all_posts').html("")
+					jQuery.each(response,function(index,value){
+
+						html += '<div class="row">'
+				                    +'<div class="col-sm-6 multi-grid">'
+				                        +'<div class="grid-box grid-full content-align-bottom">'
+				                            +'<a class="content-bottom" href="#">'
+				                                +'<div class="grid-image">'
+				                                    +'<img src="'+value.featured_image+'">'
+				                                +'</div>'
+				                                +'<div class="grid-text-wrap">'
+				                                    +'<div class="grid-title">'+value.title+'</div>'
+				                                    +'<div class="grid-meta">'+value.region.join(',')+'/'+value.region+' MIN</div>'
+				                                    +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
+				                                    +'<div class="grid-meta">DIR.'+value.director+'</div>'
+				                                +'</div>'
+				                                
+				                                +'<div class="overlay-vertical"></div>'
+				                            +'</a>'
+				                        +'</div>'
+				                                                    
+				                    +'</div>'                    
+				                +'</div>'
+
+
+					});
+				jQuery('.all_posts').html(html);
+					
+				},
+				error:function(error){
+					
+					jQuery('.all_posts').html('No Posts found');
+					
+				} 
+			})
+	    
+
+		
+	});
+
+
+	jQuery('#language').live('change',function(e){
+
+		jQuery('#genre').trigger('change');
+	});
+
+	jQuery('.load_more').live('click',function(e){
+
+		e.preventDefault();
+
+		jQuery('#genre').trigger('change');
+	});
+
+	
+}
+
+</script>

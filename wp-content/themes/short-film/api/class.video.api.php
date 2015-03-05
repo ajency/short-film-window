@@ -61,7 +61,10 @@ class Video_API
 		$post_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] !=
 					"" ? $_REQUEST['posts_per_page'] : "";
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
-						$_REQUEST['offset'] : "";
+						$_REQUEST['offset'] : 0;
+
+		if($offset != 0)
+			$offset = intval($offset) +  1;
 
 		$args = array(
 					'orderby'           => 'post_date',
@@ -73,6 +76,7 @@ class Video_API
 
 
 		);
+		
 		$response = Film\Video::get_many($args);
 		
 
