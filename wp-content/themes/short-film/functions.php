@@ -4,6 +4,7 @@
 require_once (get_template_directory().'/classes/class.video.php');
 require_once (get_template_directory().'/api/class.video.api.php');
 require_once (get_template_directory().'/functions/functions.php');
+require_once (get_template_directory().'/functions/post-like.php');
 
 
 //code added by Surekha///
@@ -605,6 +606,9 @@ function add_custom_scripts() {
     wp_register_style( 'theme_css', get_template_directory_uri(). '/assets/css/theme-child.css');
     wp_enqueue_style( 'theme_css' );
 
+    wp_register_style( 'like_css', get_template_directory_uri(). '/assets/css/like-styles.css');
+    wp_enqueue_style( 'like_css' );
+
     wp_register_script( 'jquery', get_template_directory_uri() . '/bower_components/jquery/jquery.min.js', '', false, true );
     wp_enqueue_script( 'jquery' );
 
@@ -632,6 +636,9 @@ function add_custom_scripts() {
 
     wp_register_script( 'custom_js', get_template_directory_uri() . '/assets/js/custom.js', '', false, true );
     wp_enqueue_script( 'custom_js' );
+
+    wp_register_script( 'like_js', get_template_directory_uri(). '/assets/js/post-like.min.js');
+    wp_enqueue_script( 'like_js' );
 
     wp_localize_script( "jquery", "SITEURL", site_url() );
     
@@ -1108,3 +1115,4 @@ function _location_admin_notices() {
   remove_action( 'admin_notices', '_location_admin_notices' );
 
 }
+

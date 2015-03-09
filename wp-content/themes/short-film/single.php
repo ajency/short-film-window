@@ -39,12 +39,30 @@ get_header(); ?>
 			    <div class="col-xs-9">
 			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
 			        <h5 class="m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
-			        <h6 class="m-t-0 m-b-0"><small><em><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$response['region']) ;?></em></small></h6>
-			        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $response['categories']); ?></em></small></h6>
+			        <?php
+			        	$region_array = array();
+			        	$cat_array = array();
+			        	foreach ($response['region'] as $value) {
+			        			$id = get_term_by( 'name', $value, 'region');
+			        			$category_link = get_term_link( $id );
+			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" title="Region Name">'.$value.'</a>';
+			        			array_push($region_array, $link);
+			        	}
+			        	
+			        	foreach ($response['categories'] as $value) {
+			        			$category_id = get_cat_ID( $value );
+			        			$category_link = get_category_link( $category_id );
+			        			$link = '<a href='.esc_url( $category_link ).' target="_blank"  title="Category Name">'.$value.'</a>';
+			        			array_push($cat_array, $link);
+			        	}
+			        	
+			        ?>
+			        <h6 class="m-t-0 m-b-0"><small><em><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$region_array) ;?></em></small></h6>
+			        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $cat_array); ?></em></small></h6>
 			    </div>
 			    <div class="col-xs-3 text-right">
 			        <div class="small">199 <i class="fa fa-eye"></i></div>
-			        <div class="small">75 <i class="fa fa-thumbs-up"></i></div>
+			        <div class="small"><?php echo getPostLikeLink( get_the_ID() ); ;?></div>
 			        <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
 			    </div>
 			</div>
@@ -57,9 +75,9 @@ get_header(); ?>
 	<div class="container">
 
 	    <div class="img-content">
-	        <div class="img-div">
+	       <!--  <div class="img-div">
 	            <?php the_post_thumbnail( 'wpbs-featured', array( 'class' => 'img-responsive' ) ); ?>
-	        </div>
+	        </div> -->
 	        <div class="img-content">
 	        	<?php echo $response['excerpt']; ?>
 	        </div>
