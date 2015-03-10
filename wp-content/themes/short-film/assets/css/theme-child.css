@@ -10976,7 +10976,7 @@ a {
   position: fixed;
   width: 100%;
   padding: 15px;
-  z-index: 2;
+  z-index: 3;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
   /* transition */
@@ -11514,7 +11514,7 @@ input.search:-ms-input-placeholder::before {
   left: 0;
 }
 .video-js-responsive-container.vjs-hd {
-  padding-top: 48%;
+  padding-top: 56.2%;
 }
 .vid-previous,
 .vid-next {
@@ -11561,4 +11561,58 @@ input.search:-ms-input-placeholder::before {
   .vid-next {
     top: 15%;
   }
+}
+#home-video,
+#home-video img {
+  min-width: 100%;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+}
+#home-video span.play-button {
+  background-position: 0 0;
+  width: 150px;
+  height: 150px;
+  top: 20%;
+  left: 35%;
+  position: absolute;
+  display: block;
+}
+@media screen and (min-width: 992px) {
+  #home-video span.play-button {
+    top: 25%;
+    left: 47%;
+  }
+}
+@media screen and (min-width: 1700px) {
+  #home-video span.play-button {
+    top: 35%;
+  }
+}
+#home-video:hover span.play-button {
+  background-position: 0 150px;
+  width: 150px;
+  height: 150px;
+}
+#home-video span.close-button {
+  background-position: 0 0;
+  width: 100px;
+  height: 100px;
+  top: 8%;
+  right: 2%;
+  position: absolute;
+  display: block;
+  z-index: 100;
+}
+#home-video span.close-button:hover {
+  background-position: 0 100px;
+  width: 100px;
+  height: 100px;
+}
+#home-video iframe#video-player {
+  min-height: 600px;
+  top: 0;
+  left: 0;
+  position: absolute;
 }

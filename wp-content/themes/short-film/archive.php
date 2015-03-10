@@ -1,32 +1,4 @@
 <?php get_header(); ?>
-			<div class="header">
-            <div class="logo">
-                <img src="../assets/img/logo.jpg">
-            </div>
-            <div class="pull-right">
-                <div class="links pull-left">
-                    <a href="#">LOGIN</a>
-                    <span>|</span>
-                    <a href="#">SEARCH</a>
-                </div>
-                <div class="social-links pull-left">
-                    <div class="fb link">
-                        <div class="icon">
-                            <i class="fa fa-facebook fa-lg fa-fw"></i>
-                        </div>
-                        <div class="action"><a href="#"><small>Like</small></a></div>                        
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="twitter link">
-                        <div class="action"><a href="#"><small>Follow</small></a></div>
-                        <div class="icon">
-                            <i class="fa fa-twitter fa-lg fa-fw"></i>
-                        </div>
-                    </div>
-                </div>                
-            </div>
-            <div class="clearfix"></div>
-        </div>
 
         <div class="sub-header">
             <a href="#">Home</a>
@@ -83,64 +55,72 @@
                     <div class="col-md-6">
                         <h2>EXPLORE</h2>
                     </div>
-                    <div class="col-md-6">
-                        <div class="pull-right m-t-20">
-                            <form action="" class="form-horizontal">
+					<div class="col-md-3 col-md-offset-3 col-sm-12">
+						<div class="m-t-20">
+                            <form action="" class="">
                                 <div class="form-group">
-                                    <div class="col-md-12"><input type="text" class="form-control" placeholder="Search"></div>
+                                    <input type="text" class="form-control search" placeholder="Search">
                                 </div>
                             </form>
                         </div>
-                    </div>
+					</div>
                 </div>
 
                 <hr class="m-t-0">
                 
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <h5>FILTER BY</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <form action="" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
-                                        <div class="col-md-9"><select name="genre" id="genre">
-                                                <option value="">all</option>
-                                                <?php 
-												  $categories = get_categories(); 
-												  foreach ($categories as $category) {
-												  	$option = '<option value="'.$category->term_id.'">';
-													$option .= $category->cat_name;
-													$option .= '</option>';
-													echo $option;
-												  }
-												 ?>
-                                            </select></div>
-                                    </div>
-                                </form>
-                                <form action="" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-3 control-label"><em>Language:</em> </label>
-                                        <div class="col-md-9"><select name="language" id="language">
-                                                <option value="">all</option>
-                                                <option value="ENGLISH">ENGLISH</option>
-                                                <option value="FRENCH">FRENCH</option>
-                                            </select></div>
-                                    </div>
-                                </form>
+                    <div class="col-md-5">
+                		<h5>FILTER BY</h5>
+                        <form action="" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
+                                <div class="col-md-9">
+                                	<select name="genre" id="genre">
+                                        <option value="">All</option>
+                                        <?php 
+										  $categories = get_categories(); 
+										  foreach ($categories as $category) {
+										  	$option = '<option value="'.$category->term_id.'">';
+											$option .= $category->cat_name;
+											$option .= '</option>';
+											echo $option;
+										  }
+										 ?>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-md-6 text-right">
-                                <form action="" class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="" class="col-md-3 control-label"><em>SORT BY:</em> </label>
-                                        <div class="col-md-9"><select name="" id="">
-                                                <option value="">all</option>
-                                            </select></div>
-                                    </div>
-                                </form>
-                                <a href="#"><i class="fa fa-th-large fa-2x"></i></a>
-                                <a href="#"><i class="fa fa-th-list fa-2x"></i></a>
-                                <a href="#"><i class="fa fa-list-alt fa-2x"></i></a>
+                        </form>
+                        <form action="" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="" class="col-md-3 control-label"><em>Language:</em> </label>
+                                <div class="col-md-9">
+                                	<select name="language" id="language">
+                                        <option value="">All</option>
+                                        <option value="ENGLISH">ENGLISH</option>
+                                        <option value="FRENCH">FRENCH</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4 col-md-offset-3">
+                    	 <h5>SORT BY</h5>
+                        <form action="" class="">
+                            <div class="form-group">
+                                <select name="" id="">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <a href="#" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <a href="#" title="List"><i class="fa fa-th-list fa-3x"></i></a>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                <a href="#" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
                             </div>
                         </div>
                     </div>
