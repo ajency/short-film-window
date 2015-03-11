@@ -69,3 +69,31 @@ function get_custom_taxonomy_terms($post_id){
 	return $response;
 
 }
+
+function get_focus_film($id){
+
+	$args = array(
+        'tag' 					=> 'infocus',
+        'posts_per_page' 		=> 1,
+        'orderby'          		=> 'post_date',
+		'order'            		=> 'DESC',
+		'post_type' 	   		=> 'post',
+		'post_status'      		=> 'publish',
+					
+      );
+
+	
+	$query = new WP_Query( $args);
+
+	$response = array();
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		$response = Film\Video::get($query->post->ID);
+	}
+
+	
+
+	return $response;
+
+
+}

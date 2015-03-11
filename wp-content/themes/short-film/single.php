@@ -16,7 +16,7 @@ get_header(); ?>
          class="video-js vjs-default-skin"
          height="auto"
          width="auto"
-         poster="http://video-js.zencoder.com/oceans-clip.png"
+         poster="<?php echo $response['image'];?>"
          loop 
          data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
 
@@ -74,51 +74,21 @@ get_header(); ?>
 	<div class="spacer-40"></div>
 	<div class="container">
 
-	    <div class="img-content">
-	       <!--  <div class="img-div">
-	            <?php the_post_thumbnail( 'wpbs-featured', array( 'class' => 'img-responsive' ) ); ?>
-	        </div> -->
+	    
+	      
 	        <div class="img-content">
 	        	<?php echo $response['excerpt']; ?>
 	        </div>
-	    </div>
+	  
 
 		<div class="clearfix"></div>
-		        
+		 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/<?php echo $post->ID ;?>"></a>
+       
 	    <div class="spacer-50"></div>
+	    <div class="infocus">
+	    
+</div>
 
-	    <div class="row">
-	        <div class="col-md-6">
-	            <div class="pull-left">
-	                <h4>IN FOCUS: <small><em>Name of the film</em></small></h4>
-	            </div> 
-	        </div>
-	        <div class="col-md-6">
-	            <div class="m-t-30 pull-right">
-	                <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-	                <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-	                <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
-	            </div>
-	        </div>
-	    </div>
-	    <hr class="m-t-0"> 
-
-	    <div class="row">
-	        <div class="col-md-5">
-	             <img src="http://lorempixel.com/500/150" class="img-responsive">
-	        </div>
-	        <div class="col-md-7">
-	            <h5 class="m-t-0">HELLO WORLD</h5>
-	            <div>
-	                <p class="pull-left"><small>January 29, 2015</small></p>
-	                <p class="pull-right">
-	                    <span><i class="fa fa-thumbs-up"></i> 75 </span>
-	                    <span><i class="fa fa-eye"></i> 199 </span>
-	                </p>
-	            </div>
-	            <div class="clearfix"></div>
-	        </div>
-	    </div>
 
 	    
 	    <div class="spacer-40"></div>
@@ -245,6 +215,62 @@ window.onload = function() {
 
 		window.location.href = SITEURL+'/'+"<?php echo $response['next_post'];?>";
 	});
+
+	jQuery('.infocus').infinitescroll({
+	
+		navSelector  	: "a#next:last",
+		nextSelector 	: "a#next:last",
+		itemSelector 	: ".infocus",
+		debug		 	: true,
+		dataType	 	: 'json',
+		// behavior		: 'twitter',
+		appendCallback	: false, // USE FOR PREPENDING
+		// pathParse     	: function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+    	console.log(response);
+
+    	html = '<div class="row">'
+	        +'<div class="col-md-6">'
+	            +'<div class="pull-left">'
+	                +'<h4>IN FOCUS: <small><em>'+response.title+'</em></small></h4>'
+	            +'</div> '
+	        +'</div>'
+	        +'<div class="col-md-6">'
+	            +'<div class="m-t-30 pull-right">'
+	                +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
+	                +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
+	                +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
+	            +'</div>'
+	        +'</div>'
+	    +'</div>'
+	    +'<hr class="m-t-0"> '
+
+	    +'<div class="row">'
+	        +'<div class="col-md-5">'
+	             +'<img src="'+response.image+'" class="img-responsive">'
+	        +'</div>'
+	        +'<div class="col-md-7">'
+	            +'<h5 class="m-t-0">'+response.excerpt+'</h5>'
+	           +' <div>'
+	                +'<p class="pull-left"><small>January 29, 2015</small></p>'
+	               +' <p class="pull-right">'
+	                    +'<span><i class="fa fa-thumbs-up"></i> 75 </span>'
+	                    +'<span><i class="fa fa-eye"></i> 199 </span>'
+	                +'</p>'
+	            +'</div>'
+	           +' <div class="clearfix"></div>'
+	        +'</div>'
+	    +'</div>';
+
+	    jQuery('.infocus').html(html);
+						
+						
+				      });
+
+
+
+
+
 }
 
 </script>

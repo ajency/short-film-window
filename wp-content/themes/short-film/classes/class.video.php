@@ -29,6 +29,11 @@ class Video
 						 get_user_meta(get_user_details($post->post_author)->ID,'last_name' , true);
 
 			
+			$post_thumbnail_id = get_post_thumbnail_id($post->ID); 
+			$image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
+        	'/img/placeholder.jpg';
+
 			//assign the required details
 			$response = array(
 				'slug'			=> $post->post_name,
@@ -44,7 +49,8 @@ class Video
 				'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
 				'duration'		=> get_post_meta( $post->ID , 'duration',true ),
 				'region'		=> get_custom_taxonomy_terms($post->ID),
-				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' ))
+				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
+				'image'			=> $image
 
 			);
 			return $response;
@@ -84,14 +90,14 @@ class Video
 
 			$post_detail = self::get($post->ID);
 
-			$post_thumbnail_id = get_post_thumbnail_id($post->ID); 
-			$image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
-			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
-        	'/img/placeholder.jpg';
+			// $post_thumbnail_id = get_post_thumbnail_id($post->ID); 
+			// $image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+			// $image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
+   //      	'/img/placeholder.jpg';
 
 			$post_response[] = array(
 					'slug'				=> $post_detail['slug'],
-					'featured_image'	=> $image,
+					'featured_image'	=> $post_detail['image'],
 					'title'				=> $post_detail['title'],
 					'duration'			=> $post_detail['duration'],
 					'region'			=> $post_detail['region'],

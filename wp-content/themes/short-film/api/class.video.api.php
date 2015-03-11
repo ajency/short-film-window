@@ -22,6 +22,10 @@ class Video_API
             array( array( $this, 'get_many'), WP_JSON_Server::READABLE)
             
         );
+        $routes['/page2/(?P<id>\d+)'] = array(
+            array( array( $this, 'get_focus_film'), WP_JSON_Server::READABLE)
+            
+        );
 
         
     	return $routes;
@@ -30,6 +34,7 @@ class Video_API
 	public function get_video($id)
 	{
 
+		
 		$response = Film\Video::get($id);
 
 		
@@ -79,6 +84,28 @@ class Video_API
 
 		$response = Film\Video::get_many($args);
 		
+
+		if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+	}
+
+	public function get_focus_film($id){
+
+		
+		$response = get_focus_film($id);
+
 
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
