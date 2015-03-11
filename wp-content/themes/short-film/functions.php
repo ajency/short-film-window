@@ -616,7 +616,7 @@ function add_custom_scripts() {
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
 
-    wp_register_script( 'slick', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', '', false, true );
+    wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', '', false, true );
     wp_enqueue_script( 'slick' );
 
     wp_register_script( 'imgsloaded', get_template_directory_uri() . '/assets/js/imagesLoaded/imagesloaded.pkgd.min.js', '', false, true );
@@ -640,7 +640,7 @@ function add_custom_scripts() {
     wp_register_script( 'like_js', get_template_directory_uri(). '/assets/js/post-like.min.js');
     wp_enqueue_script( 'like_js' );
 
-     wp_register_script( 'scroll_js', get_template_directory_uri(). '/bower_components/jquery-infinite-scroll/jquery.infinitescroll.min.js');
+     wp_register_script( 'scroll_js', get_template_directory_uri(). 'assets/js/jquery.infinitescroll.min.js');
     wp_enqueue_script( 'scroll_js' );
 
 
