@@ -55,7 +55,23 @@
             autoPlay: false
         });
         // // var w = $(window).width();
-        // jQuery('#bg-video').css('width', '100%' );        
+        // jQuery('#bg-video').css('width', '100%' );
+
+        // $("#home-video img, #home-video span.play-button").on("click", function() {
+        //   $("#home-video").css("min-height","600px");
+        //   var video = '<iframe id="video-player" width="100%" height="600px" src="' + $("#home-video img").attr('data-video') + '" frameborder="0" allowfullscreen wmode="opaque"></iframe>';
+        //   $(video).insertAfter($("#home-video img"));
+        //   $("#home-video span.play-button").hide();
+        //   var closebtn = '<span class="close-button"></span>';
+        //   $(closebtn).insertAfter($(this));
+          
+        //   $("#home-video span.close-button").on("click", function() {
+        //     $("#home-video").css("min-height","100px");
+        //     $("#video-player").remove();
+        //     $(this).remove();
+        //     $("#home-video span.play-button").show();
+        //   });
+        // });
 
     });
 

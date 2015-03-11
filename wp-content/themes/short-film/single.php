@@ -27,6 +27,10 @@ get_header(); ?>
 
 	<div id="movie-header" class="movie-header">
 		<div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div>
+		<!-- <div id="home-video">
+		  <img src="http://video-js.zencoder.com/oceans-clip.png" class="img-responsive" data-video="https://www.youtube.com/embed/aVgeJ5eqlSM?rel=0&amp;controls=0&amp;showinfo=0" title="Play Video" />
+		  <span class="play-button"></span>
+		</div> -->
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
 		
