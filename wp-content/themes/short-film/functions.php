@@ -1005,17 +1005,21 @@ add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
 
 function save_meta_box_data( $post_id ) {
 
+
         // If this is an autosave, our form has not been submitted, so we don't want to do anything.
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
           return;
         }
 
         // Check the user's permissions.
-        if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+      
+        if ( isset( $_REQUEST['post_type'] ) &&  'page' == $_REQUEST['post_type'] ) {
 
-          if ( ! current_user_can( 'edit_page', $post_id ) ) {
-            return;
-          }
+          return;
+
+          // if ( ! current_user_can( 'edit_page', $post_id ) ) {
+          //   return;
+          // }
 
         } else {
 
@@ -1039,13 +1043,12 @@ function save_meta_box_data( $post_id ) {
           // Sanitize user input.
         $videourl = sanitize_text_field( $_POST['videourl'] );
 
-        // $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        // echo finfo_file($finfo, $videourl);
-        // finfo_close($finfo);
+       
 
 
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$videourl)) {
+          
 
-        if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
          
           add_settings_error(
               'videourl',
@@ -1090,6 +1093,8 @@ function save_meta_box_data( $post_id ) {
         $language = sanitize_text_field( $_POST['language'] );
 
         update_post_meta( $post_id, 'language', $language );
+
+
 
 
 }
