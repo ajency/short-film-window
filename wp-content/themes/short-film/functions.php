@@ -1049,7 +1049,7 @@ function save_meta_box_data( $post_id ) {
          
           add_settings_error(
               'videourl',
-              '',
+              'Videourl cannot be empty',
               'Entered URL is not valid.',
               'error'
             );

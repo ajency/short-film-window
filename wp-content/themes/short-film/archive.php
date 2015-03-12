@@ -197,7 +197,7 @@ window.onload = function() {
 
 	
 	jQuery('#genre').live('change',function(e){
-
+		jQuery('#offset').val(0)
 		jQuery('.loader').text("Loading data...")
 		jQuery('.all_posts').html("")
 		get_all_posts();
