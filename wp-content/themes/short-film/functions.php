@@ -1011,8 +1011,6 @@ function save_meta_box_data( $post_id ) {
           return;
         }
 
-        // Check the user's permissions.
-      
         if ( isset( $_REQUEST['post_type'] ) &&  'page' == $_REQUEST['post_type'] ) {
 
           return;
