@@ -160,7 +160,27 @@
                                     <div class="grid-meta"><?php echo implode(',',$value['categories']);?></div>
                                     <div class="grid-meta">DIR.<?php echo $value['director'];?></div>
                                 </div>
-                                
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
@@ -259,7 +279,27 @@ window.onload = function() {
 				                                    +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
 				                                    +'<div class="grid-meta">DIR.'+value.director+'</div>'
 				                                +'</div>'
-				                                
+				                                 +'<div class="grid-text-wrap hover-text">'
+                                    +'<div class="grid-title">'+value.title+'</div>'
+                                    +'<div class="grid-meta">'
+                                        +'<div class="row">'
+                                            +'<div class="col-sm-4">'
+                                                +'<div class="pull-left text-center m-t-10">'
+                                                    +'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                +'</div>'
+                                                +'<div class="pull-left p-l-10 m-t-10">'
+                                                    +'<div>199 <i class="fa fa-eye"></i></div>'
+                                                    +'<div>75 <i class="fa fa-thumbs-up"></i></div>'
+                                                +'</div>'
+                                           +' </div>'
+                                            +'<div class="col-sm-8">'
+                                                +'<div class="pull-right text-right m-t-10">'+
+                                                  +value.excerpt+
+                                                +'</div>'
+                                            +'</div>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
 				                                +'<div class="overlay-vertical"></div>'
 				                            +'</a>'
 				                        +'</div>'
