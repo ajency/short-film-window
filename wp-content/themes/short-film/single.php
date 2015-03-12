@@ -258,7 +258,7 @@ window.onload = function() {
 	           +' <div>'
 	                +'<p class="pull-left"><small>January 29, 2015</small></p>'
 	               +' <p class="pull-right">'
-	                    +'<span><i class="fa fa-thumbs-up"></i> 75 </span>'
+	                    +'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
 	                    +'<span><i class="fa fa-eye"></i> 199 </span>'
 	                +'</p>'
 	            +'</div>'
