@@ -8,9 +8,10 @@ class Video
 
 		global $post;
 
-		$post_id;
+		
 		//wordpress fn to get single post
 		$post  = get_post($post_id); 
+		
 
 		if(!is_null($post))
 		{
@@ -57,7 +58,7 @@ class Video
 		}
 		else
 		{
-			return new WP_Error( 'post_not_found', __( 'Post not found.'));
+			return new \WP_Error( 'post_not_found', __( 'Post not found.'));
 		}
 
 	}
