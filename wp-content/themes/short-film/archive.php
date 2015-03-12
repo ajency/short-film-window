@@ -129,10 +129,12 @@
                 <hr>
 
                 <div class="spacer-40"></div><div class="loader"></div><div class="all_posts">
-                <?php $args = array(
+                <?php $queried_object = get_queried_object();
+ 					
+ 				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
-					'genre'		    	=> '',
+					'genre'		    	=> $queried_object->term_id ,
 					'language'			=> '',
 					'posts_per_page'   	=> 1,
 					'offset'           	=> 0,
@@ -194,7 +196,7 @@
 <script type="text/javascript">
 
 window.onload = function() {
-
+	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 	
 	jQuery('#genre').live('change',function(e){
 		jQuery('#offset').val(0)

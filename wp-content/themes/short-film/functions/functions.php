@@ -89,9 +89,10 @@ function get_focus_film($id){
 	while ( $query->have_posts() ) {
 		$query->the_post();
 		$response = Film\Video::get($query->post->ID);
+		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
 	}
 
-	
+
 
 	return $response;
 
