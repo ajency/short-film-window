@@ -1003,8 +1003,16 @@ function adding_custom_meta_boxes( $post ) {
 }
 add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
 
-function save_meta_box_data( $post_id ) {
+function save_meta_box_data( $post_id,$post ) {
 
+ 
+
+      if($post->post_status == 'auto-draft')
+        return;
+      
+        
+
+    
 
         // If this is an autosave, our form has not been submitted, so we don't want to do anything.
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -1044,10 +1052,10 @@ function save_meta_box_data( $post_id ) {
        
 
 
-        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$videourl)) {
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$videourl) && $post->post_status != 'inherit' ) {
           
 
-         
+       
           add_settings_error(
               'videourl',
               'Videourl cannot be empty',
@@ -1065,7 +1073,7 @@ function save_meta_box_data( $post_id ) {
          // Sanitize user input.
         $duration = sanitize_text_field( $_POST['duration'] );
 
-        if($duration == "")
+        if($duration == "" && $post->post_status != 'inherit')
        {
           add_settings_error(
             'duration',
@@ -1078,7 +1086,7 @@ function save_meta_box_data( $post_id ) {
 
           return false;
        }
-        if(!is_numeric($duration ))
+        if(!is_numeric($duration ) && $post->post_status != 'inherit')
        {
           add_settings_error(
             'duration',
@@ -1109,7 +1117,7 @@ function save_meta_box_data( $post_id ) {
 
 
 }
-add_action( 'save_post', 'save_meta_box_data' );
+add_action( 'save_post', 'save_meta_box_data',3,2 );
 
 add_action( 'admin_notices', '_location_admin_notices' );
 
@@ -1122,6 +1130,7 @@ function _location_admin_notices() {
 
   // Otherwise, build the list of errors that exist in the settings errores
   $message = '<div id="acme-message" class="error below-h2"><p><ul>';
+
   foreach ( $errors as $error ) {
     $message .= '<li>' . $error['message'] . '</li>';
   }

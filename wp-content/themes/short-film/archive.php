@@ -114,13 +114,13 @@
                         </form>
                         <div class="row">
                             <div class="col-xs-4">
-                                <a href="#" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
+                                <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <a href="#" title="List"><i class="fa fa-th-list fa-3x"></i></a>
+                                <a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
                             </div>
                             <div class="col-xs-4 text-right">
-                                <a href="#" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
+                                <a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
 						foreach ($response as $key => $value) {
 					
 				 ?>
-                <div class="row">
+                <div class="row gridlayout">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
                             <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -158,7 +158,7 @@
                                     <div class="grid-title"><?php echo $value['title'];?></div>
                                     <div class="grid-meta"><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</div>
                                     <div class="grid-meta"><?php echo implode(',',$value['categories']);?></div>
-                                    <div class="grid-meta">DIR.<?php echo $value['director'];?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value['director']);?></div>
                                 </div>
                                 <div class="grid-text-wrap hover-text">
                                     <div class="grid-title"><?php echo $value['title'];?></div>
@@ -187,6 +187,87 @@
                                                     
                     </div>                    
                 </div>
+                <div class="row listlayout">
+                	 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+                    <div class="col-md-5">
+                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive">
+                    </div>
+                    <div class="col-md-7">
+                        <h3 class="m-t-0"><?php echo $value['title'];?><small><em>BY <?php echo ucfirst($value['director']);?></em></small></h3>
+                        <hr class="m-t-0 m-b-5">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <p><?php echo $value['excerpt'];?></p>
+                                <h6 class="m-t-0 m-b-0"><small><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</small></h6>
+                                <h6 class="m-t-0 m-b-0"><small><?php echo implode(',',$value['categories']);?></small></h6>
+                                <h6 class="m-t-0 m-b-0"><small>Dir:<?php echo ucfirst($value['director']);?></small></h6>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
+                                <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
+                                <div class="small m-t-20">199 <i class="fa fa-eye"></i></div>
+                                <div class="small">75 <i class="fa fa-thumbs-up"></i></div>
+                                <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </div>
+
+            <div class="couchlayout">
+            	 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+            	 <img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h3 class="pull-left"><?php echo $value['title'];?><small><em>by <?php echo ucfirst($value['director']);?></em></small></h3>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="social-strip">
+                                    <div class="pull-right"> 
+                                         Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>
+                                    </div>
+                                    <div class="pull-right">
+                                        | 75 <a href="#"><i class="fa fa-thumbs-up"></i></a> | 
+                                    </div>
+                                    <div class="share-button">
+                                        <div class="social-toggle"><i class="fa fa-share-alt"></i></div>
+                                        <div class="social-networks">
+                                          <ul>
+                                            <li class="social-twitter">
+                                              <a href="http://www.twitter.com"><i class="fa fa-twitter fa-lg"></i></a>
+                                            </li>
+                                            <li class="social-facebook">
+                                            <a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>
+                                            </li>
+                                            <li class="social-gplus">
+                                            <a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr class="m-t-0 m-b-5">
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <h6><em><?php echo $value['excerpt'];?></em></h6>
+                                <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</em></small></h6>
+                                <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['categories']);?></em></small></h6>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <div class="small">199 <i class="fa fa-eye"></i></div>
+                            </div>
+                        </div>
+                        <div class="spacer-20"></div>
+                        <p><em><?php echo $value['excerpt'];?></em></p>
+                    </a>
+
+
+
+            </div>
               
 
                 
@@ -201,6 +282,7 @@
 					}?></div> 
 
  					<div class="spacer-40"></div>
+ 					<input type="hidden" name="tracker" id="tracker" value="" / >
 					</div> <div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
@@ -216,6 +298,7 @@
 <script type="text/javascript">
 
 window.onload = function() {
+	jQuery('#tracker').val('gridoption');
 	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 	
 	jQuery('#genre').live('change',function(e){
@@ -246,6 +329,34 @@ window.onload = function() {
 		
 	});
 
+	jQuery('.option').live('click',function(e){
+		e.preventDefault();
+		jQuery('#tracker').val(e.currentTarget.id);
+		showLayout();
+		
+		
+	});
+
+	function showLayout(){
+
+		if(jQuery('#tracker').val() == 'gridoption'){
+
+			jQuery('.listlayout').hide();
+			jQuery('.couchlayout').hide();
+			jQuery('.gridlayout').show();
+
+		}
+		else if(jQuery('#tracker').val() == 'listoption'){
+			jQuery('.gridlayout').hide();
+			jQuery('.couchlayout').hide();
+			jQuery('.listlayout').show();
+		}
+		else if(jQuery('#tracker').val() == 'couchoption'){
+			jQuery('.gridlayout').hide();
+			jQuery('.listlayout').hide();
+			jQuery('.couchlayout').show();
+		}
+	}
 
 	function get_all_posts(){
 
@@ -266,7 +377,7 @@ window.onload = function() {
 					if(response.length>0)
 					{
 						jQuery.each(response,function(index,value){
-						html += '<div class="row">'
+						html += '<div class="row gridlayout">'
 				                    +'<div class="col-sm-6 multi-grid">'
 				                        +'<div class="grid-box grid-full content-align-bottom">'
 				                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
@@ -277,7 +388,7 @@ window.onload = function() {
 				                                    +'<div class="grid-title">'+value.title+'</div>'
 				                                    +'<div class="grid-meta">'+value.region.join(',')+'/'+value.region+' MIN</div>'
 				                                    +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
-				                                    +'<div class="grid-meta">DIR.'+value.director+'</div>'
+				                                    +'<div class="grid-meta">DIR.'+value.director.toUpperCase()+'</div>'
 				                                +'</div>'
 				                                 +'<div class="grid-text-wrap hover-text">'
                                     +'<div class="grid-title">'+value.title+'</div>'
@@ -305,11 +416,99 @@ window.onload = function() {
 				                        +'</div>'
 				                                                    
 				                    +'</div>'                    
-				                +'</div>'
+				                +'</div></div>';
+
+
+				        html += '<div class="row listlayout">'
+				        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+                     
+                     +'<div class="col-md-5">'
+                          +'<img src="'+value.featured_image+'" class="img-responsive">'
+                     +'</div>'
+                     +'<div class="col-md-7">'
+                         +'<h3 class="m-t-0">'+value.title+'<small><em>BY '+value.director.toUpperCase()+'</em></small></h3>'
+                         +'<hr class="m-t-0 m-b-5">'
+                         +'<div class="row">'
+                             +'<div class="col-xs-8">'
+                                 +'<p>'+value.excerpt+'</p>'
+                                 +'<h6 class="m-t-0 m-b-0"><small>'+value.region.join(',')+'/'+value.region+' MIN</small></h6>'
+                                 +'<h6 class="m-t-0 m-b-0"><small>'+value.categories.join(',')+'</small></h6>'
+                                 +'<h6 class="m-t-0 m-b-0"><small>Dir:'+value.director.toUpperCase()+'</small></h6>'
+                             +'</div>'
+                             +'<div class="col-xs-4 text-right">'
+                                 +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
+                                 +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
+                                 +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
+                                 +'<div class="small m-t-20">199 <i class="fa fa-eye"></i></div>'
+                                 +'<div class="small">75 <i class="fa fa-thumbs-up"></i></div>'
+                                 +'<div class="small">Watchlist <i class="fa fa-binoculars"></i></div>'
+                             +'</div>'
+                         +'</div>'
+                     +'</div>'
+                      +'</a>'
+                 +'</div>';
+
+
+                 html += '<div class="couchlayout">'
+                  +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+
+            	  +'<img src="'+value.featured_image+'" alt="" class="img-responsive">'
+                         +'<div class="row">'
+                             +'<div class="col-sm-8">'
+                                 +'<h3 class="pull-left">'+value.title+'<small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
+                             +'</div>'
+                             +'<div class="col-sm-4">'
+                                 +'<div class="social-strip">'
+                                     +'<div class="pull-right"> '
+                                         +' Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>'
+                                     +'</div>'
+                                     +'<div class="pull-right">'
+                                         +'| 75 <a href="#"><i class="fa fa-thumbs-up"></i></a> | '
+                                     +'</div>'
+                                     +'<div class="share-button">'
+                                         +'<div class="social-toggle"><i class="fa fa-share-alt"></i></div>'
+                                         +'<div class="social-networks">'
+                                           +'<ul>'
+                                             +'<li class="social-twitter">'
+                                               +'<a href="http://www.twitter.com"><i class="fa fa-twitter fa-lg"></i></a>'
+                                             +'</li>'
+                                             +'<li class="social-facebook">'
+                                             +'<a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>'
+                                             +'</li>'
+                                             +'<li class="social-gplus">'
+                                             +'<a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>'
+                                             +'</li>'
+                                          +' </ul>'
+                                         +'</div>'
+                                     +'</div>'
+                                 +'</div>'
+                            +' </div>'
+                         +'</div>'
+                         +'<div class="clearfix"></div>'
+                         +'<hr class="m-t-0 m-b-5">'
+                         +'<div class="row">'
+                             +'<div class="col-xs-9">'
+                                 +'<h6><em>'+value.excerpt+'</em></h6>'
+                                 +'<h6 class="m-t-0 m-b-0"><small><em>'+value.region.join(',')+'/'+value.region+' MIN</em></small></h6>'
+                                 +'<h6 class="m-t-0 m-b-0"><small><em>'+value.categories.join(',')+'</em></small></h6>'
+                             +'</div>'
+                             +'<div class="col-xs-3 text-right">'
+                                 +'<div class="small">199 <i class="fa fa-eye"></i></div>'
+                             +'</div>'
+                         +'</div>'
+                         +'<div class="spacer-20"></div>'
+                         +'<p><em>'+value.excerpt+'</em></p>'
+
+
+ 				+'</a>'
+             +'</div>';
+
+
 
 
 						});
 						jQuery('.all_posts').html(html);
+						showLayout();
 					}
 					else
 					{
@@ -321,14 +520,14 @@ window.onload = function() {
 					
 				},
 				error:function(error){
-					jQuery('.loader').text("Loading data...")
+					jQuery('.loader').text("")
 					jQuery('.all_posts').html('No Posts found');
 					
 				} 
 			})
 	}
 
-	
+	showLayout();
 }
 
 </script>
