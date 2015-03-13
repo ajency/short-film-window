@@ -1078,6 +1078,19 @@ function save_meta_box_data( $post_id ) {
 
           return false;
        }
+        if(!is_numeric($duration ))
+       {
+          add_settings_error(
+            'duration',
+            '',
+            'Duration should only contain numbers.',
+            'error'
+          );
+
+         set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+          return false;
+       }
 
         // Update the meta field in the database.
         update_post_meta( $post_id, 'duration', $duration );
