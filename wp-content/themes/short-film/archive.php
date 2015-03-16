@@ -378,6 +378,7 @@ window.onload = function() {
 					if(response.length>0)
 					{
 						jQuery.each(response,function(index,value){
+							console.log(excerpt = value.excerpt);
 							if(value.region.length == 0){
 								value.region = ['No regions added'];}
 						html += '<div class="row gridlayout">'
@@ -408,7 +409,7 @@ window.onload = function() {
                                            +' </div>'
                                             +'<div class="col-sm-8">'
                                                 +'<div class="pull-right text-right m-t-10">'+
-                                                 
+                                                  excerpt
                                                 +'</div>'
                                             +'</div>'
                                         +'</div>'
