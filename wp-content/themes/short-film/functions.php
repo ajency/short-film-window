@@ -609,14 +609,14 @@ function add_custom_scripts() {
     wp_register_style( 'like_css', get_template_directory_uri(). '/assets/css/like-styles.css');
     wp_enqueue_style( 'like_css' );
 
-    wp_register_script( 'jquery', get_template_directory_uri() . '/bower_components/jquery/jquery.min.js', '', false, true );
+    wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
     wp_enqueue_script( 'jquery' );
 
    
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
 
-    wp_register_script( 'slick', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', '', false, true );
+    wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', '', false, true );
     wp_enqueue_script( 'slick' );
 
     wp_register_script( 'imgsloaded', get_template_directory_uri() . '/assets/js/imagesLoaded/imagesloaded.pkgd.min.js', '', false, true );
@@ -639,6 +639,10 @@ function add_custom_scripts() {
 
     wp_register_script( 'like_js', get_template_directory_uri(). '/assets/js/post-like.min.js');
     wp_enqueue_script( 'like_js' );
+
+     wp_register_script( 'scroll_js', get_template_directory_uri(). '/assets/js/jquery.infinitescroll.min.js');
+    wp_enqueue_script( 'scroll_js' );
+
 
     wp_localize_script( "jquery", "SITEURL", site_url() );
     
@@ -999,19 +1003,29 @@ function adding_custom_meta_boxes( $post ) {
 }
 add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
 
-function save_meta_box_data( $post_id ) {
+function save_meta_box_data( $post_id,$post ) {
+
+ 
+
+      if($post->post_status == 'auto-draft')
+        return;
+      
+        
+
+    
 
         // If this is an autosave, our form has not been submitted, so we don't want to do anything.
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
           return;
         }
 
-        // Check the user's permissions.
-        if ( isset( $_POST['post_type'] ) && 'page' == $_POST['post_type'] ) {
+        if ( isset( $_REQUEST['post_type'] ) &&  'page' == $_REQUEST['post_type'] ) {
 
-          if ( ! current_user_can( 'edit_page', $post_id ) ) {
-            return;
-          }
+          return;
+
+          // if ( ! current_user_can( 'edit_page', $post_id ) ) {
+          //   return;
+          // }
 
         } else {
 
@@ -1035,17 +1049,16 @@ function save_meta_box_data( $post_id ) {
           // Sanitize user input.
         $videourl = sanitize_text_field( $_POST['videourl'] );
 
-        // $finfo = finfo_open(FILEINFO_MIME_TYPE);
-        // echo finfo_file($finfo, $videourl);
-        // finfo_close($finfo);
+       
 
 
+        if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$videourl) && $post->post_status != 'inherit' ) {
+          
 
-        if (filter_var($videourl, FILTER_VALIDATE_URL) === false) {
-         
+       
           add_settings_error(
               'videourl',
-              '',
+              'Videourl cannot be empty',
               'Entered URL is not valid.',
               'error'
             );
@@ -1060,12 +1073,25 @@ function save_meta_box_data( $post_id ) {
          // Sanitize user input.
         $duration = sanitize_text_field( $_POST['duration'] );
 
-        if($duration == "")
+        if($duration == "" && $post->post_status != 'inherit')
        {
           add_settings_error(
             'duration',
             '',
             'Enter Duration.',
+            'error'
+          );
+
+         set_transient( 'settings_errors', get_settings_errors(), 30 );
+
+          return false;
+       }
+        if(!is_numeric($duration ) && $post->post_status != 'inherit')
+       {
+          add_settings_error(
+            'duration',
+            '',
+            'Duration should only contain numbers.',
             'error'
           );
 
@@ -1088,8 +1114,10 @@ function save_meta_box_data( $post_id ) {
         update_post_meta( $post_id, 'language', $language );
 
 
+
+
 }
-add_action( 'save_post', 'save_meta_box_data' );
+add_action( 'save_post', 'save_meta_box_data',3,2 );
 
 add_action( 'admin_notices', '_location_admin_notices' );
 
@@ -1102,6 +1130,7 @@ function _location_admin_notices() {
 
   // Otherwise, build the list of errors that exist in the settings errores
   $message = '<div id="acme-message" class="error below-h2"><p><ul>';
+
   foreach ( $errors as $error ) {
     $message .= '<li>' . $error['message'] . '</li>';
   }

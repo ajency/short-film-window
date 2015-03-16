@@ -40,6 +40,8 @@ function get_user_details($user_id = 0){
 
 	$response = get_userdata($user_id);
 
+	$response->user_like_count = get_user_meta( $user_id, "wp__user_like_count", true );
+
 	if($response)
 		return $response;
 	else
@@ -67,5 +69,35 @@ function get_custom_taxonomy_terms($post_id){
 	
 
 	return $response;
+
+}
+
+function get_focus_film($id){
+
+	$args = array(
+        'tag' 					=> 'infocus',
+        'posts_per_page' 		=> 1,
+        'orderby'          		=> 'post_date',
+		'order'            		=> 'DESC',
+		'post_type' 	   		=> 'post',
+		'post_status'      		=> 'publish',
+					
+      );
+
+	
+	$query = new WP_Query( $args);
+
+	$response = array();
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		$response = Film\Video::get($query->post->ID);
+		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
+		$response['post_date']	= date('Y-m-d',strtotime($query->post->post_date));
+	}
+
+
+
+	return $response;
+
 
 }
