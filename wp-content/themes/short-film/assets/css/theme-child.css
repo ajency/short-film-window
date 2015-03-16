@@ -11118,6 +11118,7 @@ a {
 }
 .footer .social-links .link .icon {
   margin: 0 2px;
+  padding: 0 4px;
 }
 .footer .social-links .link .fa {
   color: #ffffff;
@@ -11616,3 +11617,4 @@ input.search:-ms-input-placeholder::before {
   left: 0;
   position: absolute;
 }
+/*# sourceMappingURL=theme-child.css.map */
