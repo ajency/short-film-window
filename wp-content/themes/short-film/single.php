@@ -235,6 +235,8 @@ window.onload = function() {
     	console.log(response);
 
     	html = '<div class="row">'
+    	+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+	         
 	        +'<div class="col-md-6">'
 	            +'<div class="pull-left">'
 	                +'<h4>IN FOCUS: <small><em>'+response.title+'</em></small></h4>'
@@ -265,6 +267,7 @@ window.onload = function() {
 	            +'</div>'
 	           +' <div class="clearfix"></div>'
 	        +'</div>'
+	        +'</a>'
 	    +'</div>';
 
 	    jQuery('.infocus').html(html);
