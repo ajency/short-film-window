@@ -145,7 +145,8 @@
 				if(count($response) > 0)
 					{ 
 						foreach ($response as $key => $value) {
-					
+							if(count($value['region']) == 0)
+								$value['region'] = array(0 => 'No regions added');
 				 ?>
                 <div class="row gridlayout">
                     <div class="col-sm-6 multi-grid">
@@ -377,6 +378,8 @@ window.onload = function() {
 					if(response.length>0)
 					{
 						jQuery.each(response,function(index,value){
+							if(value.region.length == 0){
+								value.region = ['No regions added'];}
 						html += '<div class="row gridlayout">'
 				                    +'<div class="col-sm-6 multi-grid">'
 				                        +'<div class="grid-box grid-full content-align-bottom">'
@@ -386,7 +389,7 @@ window.onload = function() {
 				                                +'</div>'
 				                                +'<div class="grid-text-wrap">'
 				                                    +'<div class="grid-title">'+value.title+'</div>'
-				                                    +'<div class="grid-meta">'+value.region.join(',')+'/'+value.region+' MIN</div>'
+				                                    +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
 				                                    +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
 				                                    +'<div class="grid-meta">DIR.'+value.director.toUpperCase()+'</div>'
 				                                +'</div>'
@@ -431,7 +434,7 @@ window.onload = function() {
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
                                  +'<p>'+value.excerpt+'</p>'
-                                 +'<h6 class="m-t-0 m-b-0"><small>'+value.region.join(',')+'/'+value.region+' MIN</small></h6>'
+                                 +'<h6 class="m-t-0 m-b-0"><small>'+value.region.join(',')+'/'+value.duration+' MIN</small></h6>'
                                  +'<h6 class="m-t-0 m-b-0"><small>'+value.categories.join(',')+'</small></h6>'
                                  +'<h6 class="m-t-0 m-b-0"><small>Dir:'+value.director.toUpperCase()+'</small></h6>'
                              +'</div>'
@@ -489,7 +492,7 @@ window.onload = function() {
                          +'<div class="row">'
                              +'<div class="col-xs-9">'
                                  +'<h6><em>'+value.excerpt+'</em></h6>'
-                                 +'<h6 class="m-t-0 m-b-0"><small><em>'+value.region.join(',')+'/'+value.region+' MIN</em></small></h6>'
+                                 +'<h6 class="m-t-0 m-b-0"><small><em>'+value.region.join(',')+'/'+value.duration+' MIN</em></small></h6>'
                                  +'<h6 class="m-t-0 m-b-0"><small><em>'+value.categories.join(',')+'</em></small></h6>'
                              +'</div>'
                              +'<div class="col-xs-3 text-right">'
