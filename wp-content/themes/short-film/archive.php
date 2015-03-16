@@ -379,7 +379,7 @@ window.onload = function() {
 					{
 						jQuery.each(response,function(index,value){
 							if(value.region.length == 0){
-								value.region = new array(0 => 'No regions added');}
+								value.region = ['No regions added'];}
 						html += '<div class="row gridlayout">'
 				                    +'<div class="col-sm-6 multi-grid">'
 				                        +'<div class="grid-box grid-full content-align-bottom">'
