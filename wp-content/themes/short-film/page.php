@@ -408,7 +408,7 @@ window.onload = function() {
                                            +' </div>'
                                             +'<div class="col-sm-8">'
                                                 +'<div class="pull-right text-right m-t-10">'+
-                                                
+                                                  value.excerpt
                                                 +'</div>'
                                             +'</div>'
                                         +'</div>'
@@ -419,7 +419,7 @@ window.onload = function() {
 				                        +'</div>'
 				                                                    
 				                    +'</div>'                    
-				                +'</div></div>';
+				                +'</div>';
 
 
 				        html += '<div class="row listlayout">'
