@@ -40,6 +40,8 @@ function get_user_details($user_id = 0){
 
 	$response = get_userdata($user_id);
 
+	$response->user_like_count = get_user_meta( $user_id, "wp__user_like_count", true );
+
 	if($response)
 		return $response;
 	else

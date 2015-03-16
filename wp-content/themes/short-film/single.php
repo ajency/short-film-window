@@ -66,7 +66,7 @@ get_header(); ?>
 			    </div>
 			    <div class="col-xs-3 text-right">
 			        <div class="small">199 <i class="fa fa-eye"></i></div>
-			        <div class="small"><?php echo getPostLikeLink( get_the_ID() ); ;?></div>
+			        <div class="small"><?php echo $response['user_like_count'] ;?></div>
 			        <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
 			    </div>
 			</div>
