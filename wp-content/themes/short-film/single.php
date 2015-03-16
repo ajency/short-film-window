@@ -232,10 +232,10 @@ window.onload = function() {
 		appendCallback	: false, // USE FOR PREPENDING
 		// pathParse     	: function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
     }, function( response ) {
-    	console.log(response);
+    	
 
     	html = '<div class="row">'
-    	+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+    	+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'
 	         
 	        +'<div class="col-md-6">'
 	            +'<div class="pull-left">'
