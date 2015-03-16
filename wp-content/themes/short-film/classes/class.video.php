@@ -29,7 +29,8 @@ class Video
 						 get_user_meta(get_user_details($post->post_author)->ID,'first_name' , true).' '.
 						 get_user_meta(get_user_details($post->post_author)->ID,'last_name' , true);
 			
-			if($name == "")
+
+			if($name == " ")
 				$name = get_user_details($post->post_author)->data->display_name;
 
 			$post_user_like = (!get_user_details($post->post_author)) ? "" :get_user_details($post->post_author)->user_like_count;
