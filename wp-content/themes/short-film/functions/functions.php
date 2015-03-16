@@ -67,7 +67,7 @@ function get_custom_taxonomy_terms($post_id){
 		}
 	}
 	
-	
+
 	return $response;
 
 }
@@ -92,6 +92,7 @@ function get_focus_film($id){
 		$query->the_post();
 		$response = Film\Video::get($query->post->ID);
 		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
+		$response['post_date']	= date('Y-m-d',strtotime($query->post->post_date));
 	}
 
 

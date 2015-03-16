@@ -257,7 +257,7 @@ window.onload = function() {
 	        +'<div class="col-md-7">'
 	            +'<h5 class="m-t-0">'+response.excerpt+'</h5>'
 	           +' <div>'
-	                +'<p class="pull-left"><small>January 29, 2015</small></p>'
+	                +'<p class="pull-left"><small>'+response.post_date+'</small></p>'
 	               +' <p class="pull-right">'
 	                    +'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
 	                    +'<span><i class="fa fa-eye"></i> 199 </span>'
