@@ -67,7 +67,7 @@ function get_custom_taxonomy_terms($post_id){
 		}
 	}
 	
-
+	
 	return $response;
 
 }

@@ -52,7 +52,8 @@ get_header(); ?>
 			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" title="Region Name">'.$value.'</a>';
 			        			array_push($region_array, $link);
 			        	}
-			        	
+			        	if(count($region_array) == 0)
+			        		$region_array = array(0 => 'No regions added');
 			        	foreach ($response['categories'] as $value) {
 			        			$category_id = get_cat_ID( $value );
 			        			$category_link = get_category_link( $category_id );
