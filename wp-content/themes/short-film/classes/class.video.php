@@ -108,7 +108,8 @@ class Video
 					'duration'			=> $post_detail['duration'],
 					'region'			=> $post_detail['region'],
 					'director'			=> $post_detail['director'],
-					'categories'		=> $post_detail['categories']
+					'categories'		=> $post_detail['categories'],
+					'excerpt'			=> $post_detail['excerpt'],
 				
 				
 				
