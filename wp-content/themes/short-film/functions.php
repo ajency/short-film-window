@@ -1019,7 +1019,7 @@ function save_meta_box_data( $post_id,$post ) {
           return;
         }
 
-        if ( isset( $_REQUEST['post_type'] ) &&  'page' == $_REQUEST['post_type'] ) {
+        if ( isset( $_REQUEST['post_type'] ) &&  'page' == $_REQUEST['post_type'] || isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'trash' ) {
 
           return;
 
