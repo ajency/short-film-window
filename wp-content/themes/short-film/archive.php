@@ -301,6 +301,7 @@
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
 	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
+	jQuery('#gridoption').children().addClass('text-primary');
 	
 	jQuery('#genre').live('change',function(e){
 		jQuery('#offset').val(0)
@@ -332,6 +333,8 @@ window.onload = function() {
 
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
+		jQuery('#gridoption').children().removeClass('text-primary');
+		// jQuery('#gridoption').children().nextAll().removeClass('text-primary');
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
 		
