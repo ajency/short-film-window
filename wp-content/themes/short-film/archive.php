@@ -144,11 +144,234 @@
 				$response = Film\Video::get_many($args);
 				if(count($response) > 0)
 					{ 
-						foreach ($response as $key => $value) {
-							if(count($value['region']) == 0)
-								$value['region'] = array(0 => 'No regions added');
-				 ?>
-                <div class="row gridlayout">
+						$gridreposnse = generate_grid_response($response);
+						
+						foreach ($gridreposnse as $key => $value){?>
+							<div class="row">
+                    			
+							
+				 		<div class="col-sm-6 multi-grid">
+                        <div class="grid-box grid-full content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="<?php $value[0]['image'] ;?>">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title"><?php echo $value[0]['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[0]['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
+
+                                </div>
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value[0]['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value[0]['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title"><?php echo $value[1]['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[1]['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
+
+                                </div>
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value[1]['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value[1]['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                    <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[2]['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
+
+                                </div>
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value[2]['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 multi-grid">
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                     <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[3]['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
+
+                                </div>
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value[3]['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-half content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                     <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[4]['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
+
+                                </div>
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value[4]['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>
+                        <div class="grid-box grid-full content-align-bottom">
+                            <a class="content-bottom" href="#">
+                                <div class="grid-image">
+                                    <img src="https://placeimg.com/600/900/sepia">
+                                </div>
+                                <div class="grid-text-wrap">
+                                     <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
+                                    <div class="grid-meta"><?php echo implode(',',$value[5]['categories']);?></div>
+                                    <div class="grid-meta">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
+
+                                </div>
+                                <div class="grid-text-wrap hover-text">
+                                    <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                    <div class="grid-meta">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="pull-left text-center m-t-10">
+                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                </div>
+                                                <div class="pull-left p-l-10 m-t-10">
+                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="pull-right text-right m-t-10">
+                                                  <?php echo $value[5]['excerpt'];?>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overlay-vertical"></div>
+                            </a>
+                        </div>                            
+                    </div>                    
+              
+                <!-- <div class="row gridlayout">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
                             <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -186,8 +409,21 @@
                             </a>
                         </div>                                                    
                     </div>                    
-                </div>
+                </div> -->
+                <?php
+       
+          ?>
 
+            </div>
+
+            <?php
+      }
+        
+                	foreach ($response as $key => $value) {
+							if(count($value['region']) == 0)
+								$value['region'] = array(0 => 'No regions added');
+				 
+                ?>
                 <div class="row listlayout">                	 
                     <div class="col-md-5">
                          <img src="<?php echo $value['featured_image'];?>" class="img-responsive">
