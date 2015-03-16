@@ -101,3 +101,51 @@ function get_focus_film($id){
 
 
 }
+
+function generate_grid_response($response){
+
+	
+	$grid = array();
+	$multiple = array(6,12);
+	$k = 0 ;
+	
+	for ($i= 0; $i < $multiple[$k]; $i++) { 
+		
+		if($response[$i] == ""){
+			$grid[$k][$i] =  array(
+				'slug'			=> "",
+				'title'			=> "",
+				'type'			=> "",
+				'tagline'		=> "",
+				'videourl'  	=> "",
+				'excerpt'		=> "",
+				'director'		=> "Not yet created",
+				'next_post'		=> "",
+				'prev_post'		=> "",
+				'comments'		=> "",
+				'categories'	=> array(0 => 'No categories'),
+				'duration'		=> 0,
+				'region'		=> array(0 => 'No regions'),
+				'tags'			=> "",
+				'image'			=> 'image',
+				'user_like_count'	=> ""
+
+			);
+
+		}
+		else
+			$grid[$k][$i] = $response[$i];
+		
+		if($i == 5 && count($response) > $multiple[$k])
+		{
+			$k = $k + 1;
+			$i =0 ;
+		}
+			
+	}
+	
+
+	return $grid;
+
+
+}
