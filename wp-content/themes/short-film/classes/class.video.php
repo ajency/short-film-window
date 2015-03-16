@@ -29,6 +29,9 @@ class Video
 						 get_user_meta(get_user_details($post->post_author)->ID,'first_name' , true).' '.
 						 get_user_meta(get_user_details($post->post_author)->ID,'last_name' , true);
 
+			if($name == "")
+				$name = get_user_details($post->post_author)->display_name;
+			
 			$post_user_like = (!get_user_details($post->post_author)) ? "" :get_user_details($post->post_author)->user_like_count;
 			$post_thumbnail_id = get_post_thumbnail_id($post->ID); 
 			$image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
