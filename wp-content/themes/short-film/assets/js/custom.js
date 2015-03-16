@@ -75,6 +75,11 @@
 
     });
 
+    /* Social Toggle */
+    $('.social-toggle').on('click', function() {
+      $(this).next().toggleClass('open-menu');
+    });
+
     
 })(jQuery);
 

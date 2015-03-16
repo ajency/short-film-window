@@ -184,17 +184,21 @@
                                 </div>
                                 <div class="overlay-vertical"></div>
                             </a>
-                        </div>
-                                                    
+                        </div>                                                    
                     </div>                    
                 </div>
-                <div class="row listlayout">
-                	 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+
+                <div class="row listlayout">                	 
                     <div class="col-md-5">
                          <img src="<?php echo $value['featured_image'];?>" class="img-responsive">
                     </div>
                     <div class="col-md-7">
-                        <h3 class="m-t-0"><?php echo $value['title'];?><small><em>BY <?php echo ucfirst($value['director']);?></em></small></h3>
+                        <h3 class="m-t-0">
+                        	<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+                        		<?php echo $value['title'];?>
+                        	</a>
+                        	<small><em>BY <?php echo ucfirst($value['director']);?></em></small>
+                        </h3>
                         <hr class="m-t-0 m-b-5">
                         <div class="row">
                             <div class="col-xs-8">
@@ -212,63 +216,61 @@
                                 <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
                             </div>
                         </div>
-                    </div>
-                </a>
+                    </div>	                
                 </div>
 
-            <div class="couchlayout">
-            	 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-            	 <img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <h3 class="pull-left"><?php echo $value['title'];?><small><em>by <?php echo ucfirst($value['director']);?></em></small></h3>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="social-strip">
-                                    <div class="pull-right"> 
-                                         Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>
-                                    </div>
-                                    <div class="pull-right">
-                                        | 75 <a href="#"><i class="fa fa-thumbs-up"></i></a> | 
-                                    </div>
-                                    <div class="share-button">
-                                        <div class="social-toggle"><i class="fa fa-share-alt"></i></div>
-                                        <div class="social-networks">
-                                          <ul>
-                                            <li class="social-twitter">
-                                              <a href="http://www.twitter.com"><i class="fa fa-twitter fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-facebook">
-                                            <a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-gplus">
-                                            <a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>
-                                            </li>
-                                          </ul>
-                                        </div>
+	            <div class="couchlayout">	            	
+            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h3 class="pull-left">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+                                	<?php echo $value['title'];?>
+                                </a>
+                                <small><em>by <?php echo ucfirst($value['director']);?></em></small>	                                
+                            </h3>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="social-strip">
+                                <div class="pull-right"> 
+                                     Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>
+                                </div>
+                                <div class="pull-right">
+                                    | 75 <a href="#"><i class="fa fa-thumbs-up"></i></a> | 
+                                </div>
+                                <div class="share-button">
+                                    <div class="social-toggle"><i class="fa fa-share-alt"></i></div>
+                                    <div class="social-networks">
+                                      <ul>
+                                        <li class="social-twitter">
+                                          <a href="http://www.twitter.com"><i class="fa fa-twitter fa-lg"></i></a>
+                                        </li>
+                                        <li class="social-facebook">
+                                        <a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>
+                                        </li>
+                                        <li class="social-gplus">
+                                        <a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>
+                                        </li>
+                                      </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                        <hr class="m-t-0 m-b-5">
-                        <div class="row">
-                            <div class="col-xs-9">
-                                <h6><em><?php echo $value['excerpt'];?></em></h6>
-                                <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</em></small></h6>
-                                <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['categories']);?></em></small></h6>
-                            </div>
-                            <div class="col-xs-3 text-right">
-                                <div class="small">199 <i class="fa fa-eye"></i></div>
-                            </div>
+                    </div>
+                    <hr class="m-t-0 m-b-5">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <h6><em><?php echo $value['excerpt'];?></em></h6>
+                            <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</em></small></h6>
+                            <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['categories']);?></em></small></h6>
                         </div>
-                        <div class="spacer-20"></div>
-                        <p><em><?php echo $value['excerpt'];?></em></p>
-                    </a>
-
-
-
-            </div>
+                        <div class="col-xs-3 text-right">
+                            <div class="small">199 <i class="fa fa-eye"></i></div>
+                        </div>
+                    </div>
+                    <div class="spacer-20"></div>
+                    <p><em><?php echo $value['excerpt'];?></em></p>                    
+	            </div>
               
 
                 
@@ -427,13 +429,11 @@ window.onload = function() {
 
 
 				        html += '<div class="row listlayout">'
-				        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
-                     
                      +'<div class="col-md-5">'
                           +'<img src="'+value.featured_image+'" class="img-responsive">'
                      +'</div>'
                      +'<div class="col-md-7">'
-                         +'<h3 class="m-t-0">'+value.title+'<small><em>BY '+value.director.toUpperCase()+'</em></small></h3>'
+                         +'<h3 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>BY '+value.director.toUpperCase()+'</em></small></h3>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
@@ -452,17 +452,15 @@ window.onload = function() {
                              +'</div>'
                          +'</div>'
                      +'</div>'
-                      +'</a>'
                  +'</div>';
 
 
                  html += '<div class="couchlayout">'
-                  +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 
             	  +'<img src="'+value.featured_image+'" alt="" class="img-responsive">'
                          +'<div class="row">'
                              +'<div class="col-sm-8">'
-                                 +'<h3 class="pull-left">'+value.title+'<small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
+                                 +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
                              +'</div>'
                              +'<div class="col-sm-4">'
                                  +'<div class="social-strip">'
@@ -505,9 +503,6 @@ window.onload = function() {
                          +'</div>'
                          +'<div class="spacer-20"></div>'
                          +'<p><em>'+value.excerpt+'</em></p>'
-
-
- 				+'</a>'
              +'</div>';
 
 
