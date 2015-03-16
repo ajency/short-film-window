@@ -78,7 +78,7 @@ function get_focus_film($id){
         'tag' 					=> 'infocus',
         'posts_per_page' 		=> 1,
         'orderby'          		=> 'post_date',
-		'order'            		=> 'DESC',
+		'order'            		=> 'ASC',
 		'post_type' 	   		=> 'post',
 		'post_status'      		=> 'publish',
 					
