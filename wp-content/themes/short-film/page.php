@@ -301,6 +301,7 @@
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
 	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
+	jQuery('#gridoption').children().addClass('text-primary');
 	
 	jQuery('#genre').live('change',function(e){
 		jQuery('#offset').val(0)
@@ -332,6 +333,8 @@ window.onload = function() {
 
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
+		jQuery('#gridoption').children().removeClass('text-primary');
+		// jQuery('#gridoption').children().nextAll().removeClass('text-primary');
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
 		
@@ -378,6 +381,7 @@ window.onload = function() {
 					if(response.length>0)
 					{
 						jQuery.each(response,function(index,value){
+							console.log(excerpt = value.excerpt);
 							if(value.region.length == 0){
 								value.region = ['No regions added'];}
 						html += '<div class="row gridlayout">'
@@ -408,7 +412,7 @@ window.onload = function() {
                                            +' </div>'
                                             +'<div class="col-sm-8">'
                                                 +'<div class="pull-right text-right m-t-10">'+
-                                                  value.excerpt
+                                                  excerpt
                                                 +'</div>'
                                             +'</div>'
                                         +'</div>'
@@ -419,7 +423,7 @@ window.onload = function() {
 				                        +'</div>'
 				                                                    
 				                    +'</div>'                    
-				                +'</div>';
+				                +'</div></div>';
 
 
 				        html += '<div class="row listlayout">'
