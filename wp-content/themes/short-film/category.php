@@ -47,7 +47,7 @@
 						<div class="m-t-20">
                             <form action="" class="">
                                 <div class="form-group">
-                                    <input type="text" class="form-control search" placeholder="Search">
+                                    <input type="text" class="form-control search" value="" />
                                 </div>
                             </form>
                         </div>
@@ -548,6 +548,29 @@ window.onload = function() {
 		
 	});
 
+    jQuery('.search').live('change',function(e){
+        e.preventDefault();
+        console.log(jQuery(e.target).val());
+        data = 'title='+jQuery(e.target).val();
+        jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/filters',
+                data : data,
+                success:function(response){
+                    jQuery('#offset').val(0)
+                    jQuery('.loader').text("Loading data...")
+                    jQuery('.all_posts').html("")
+                    generate_data(response);
+                },
+                error:function(response){
+
+                }
+        });
+        
+        
+        
+    });
+
 	function showLayout(){
 
 		if(jQuery('#tracker').val() == 'gridoption'){
@@ -583,18 +606,184 @@ window.onload = function() {
 				url : SITEURL+'/wp-json/videos',
 				data : data,
 				success:function(response){
-					jQuery('.loader').text("")
-					html = jQuery('.all_posts').html()
-					if(response.length>0)
-					{
-						grid = generate_grid_reponse(response);
 
-						jQuery.each(grid,function(index,value){
-							
-							html+='<div class="row gridlayout">'
-                    			
-							
-				 		+'<div class="col-sm-6 multi-grid">'
+                    
+					
+                    generate_data(response);
+					
+				
+					
+				},
+				error:function(error){
+					jQuery('.loader').text("")
+					jQuery('.all_posts').html('No Posts found');
+					
+				} 
+			})
+	}
+
+	showLayout();
+
+	function generate_grid_reponse(response){
+
+		
+		var grid ={};
+		var multiple = [6,12];
+		var k = 0 ;
+		grid[k] = {};
+			
+		for (var i= 0; i < multiple[k]; i++) { 
+			if(response[i] == undefined){
+				grid[k][i] = {
+					'slug'			: "",
+					'title'			: "",
+					'type'			: "",
+					'tagline'		: "",
+					'videourl'  	: "",
+					'excerpt'		: "",
+					'director'		: "Not yet created",
+					'next_post'		: "",
+					'prev_post'		: "",
+					'comments'		: "",
+					'categories'	: ['No categories'],
+					'duration'		: 0,
+					'region'		: ['No regions'],
+					'tags'			: "",
+					'image'			: 'image',
+					'user_like_count'	: ""
+
+				};
+
+			}
+			else
+				grid[k][i] = response[i];
+			
+			if(i == 5 && response.length > multiple[k])
+			{
+				k = k + 1;
+				i = 0 ;
+			}
+				
+		}
+		
+		
+		return grid;
+		}
+
+
+    jQuery('.trending').infinitescroll({
+    
+        navSelector     : "a#next:last",
+        nextSelector    : "a#next:last",
+        itemSelector    : ".trending",
+        debug           : true,
+        dataType        : 'json',
+        // behavior     : 'twitter',
+        appendCallback  : false, // USE FOR PREPENDING
+        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+        html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        jQuery.each(response,function(index,value){
+
+                html += '<div>'
+                        +'<div class="focus-img">'
+                           +' <img src="'+value.image+'" class="img-responsive">'
+                       +' </div>'
+                    +'</div>'
+
+
+        });
+       
+               
+               
+                   
+        html +='</div>';
+
+        jQuery('.trending').html(html);
+                        
+                        
+    });
+    jQuery('.awardwinning').infinitescroll({
+    
+        navSelector     : "a#award:last",
+        nextSelector    : "a#award:last",
+        itemSelector    : ".awardwinning",
+        debug           : true,
+        dataType        : 'json',
+        // behavior     : 'twitter',
+        appendCallback  : false, // USE FOR PREPENDING
+        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+        html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        jQuery.each(response,function(index,value){
+
+                html += '<div>'
+                        +'<div class="focus-img">'
+                           +' <img src="'+value.image+'" class="img-responsive">'
+                       +' </div>'
+                    +'</div>'
+
+
+        });
+       
+               
+               
+                   
+        html +='</div>';
+
+        jQuery('.awardwinning').html(html);
+                        
+                        
+    });
+    jQuery('.indian').infinitescroll({
+    
+        navSelector     : "a#indian:last",
+        nextSelector    : "a#indian:last",
+        itemSelector    : ".indian",
+        debug           : true,
+        dataType        : 'json',
+        // behavior     : 'twitter',
+        appendCallback  : false, // USE FOR PREPENDING
+        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+        html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        jQuery.each(response,function(index,value){
+
+                html += '<div>'
+                        +'<div class="focus-img">'
+                           +' <img src="'+value.image+'" class="img-responsive">'
+                       +' </div>'
+                    +'</div>'
+
+
+        });
+       
+               
+               
+                   
+        html +='</div>';
+
+        jQuery('.indian').html(html);
+                        
+                        
+    });
+
+
+    function generate_data(response){
+
+        jQuery('.loader').text("")
+        html = jQuery('.all_posts').html()
+
+        if(response.length>0)
+                    {
+                        grid = generate_grid_reponse(response);
+
+                        jQuery.each(grid,function(index,value){
+                            
+                            html+='<div class="row gridlayout">'
+                                
+                            
+                        +'<div class="col-sm-6 multi-grid">'
                        +' <div class="grid-box grid-full content-align-bottom">'
                             +'<a class="content-bottom" href="#">'
                                 +'<div class="grid-image">'
@@ -814,17 +1003,17 @@ window.onload = function() {
                     +'</div></div> ';
 
 
-						});
+                        });
 
-			
-			jQuery.each(response,function(index,value){
-							
-							if(value.region.length == 0){
-								value.region = ['No regions added'];}
-						
+            
+            jQuery.each(response,function(index,value){
+                            
+                            if(value.region.length == 0){
+                                value.region = ['No regions added'];}
+                        
 
 
-				        html += '<div class="row listlayout">'
+                        html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
                           +'<img src="'+value.featured_image+'" class="img-responsive">'
                      +'</div>'
@@ -853,7 +1042,7 @@ window.onload = function() {
 
                  html += '<div class="couchlayout">'
 
-            	  +'<img src="'+value.featured_image+'" alt="" class="img-responsive">'
+                  +'<img src="'+value.featured_image+'" alt="" class="img-responsive">'
                          +'<div class="row">'
                              +'<div class="col-sm-8">'
                                  +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
@@ -904,172 +1093,18 @@ window.onload = function() {
 
 
 
-						});
-						jQuery('.all_posts').html(html);
-						showLayout();
-					}
-					else
-					{
-						html += "<div>No more posts found.</div>";
-						jQuery('.all_posts').html(html);
-					}
-					
-				
-					
-				},
-				error:function(error){
-					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
-					
-				} 
-			})
-	}
+                        });
+                        jQuery('.all_posts').html(html);
+                        showLayout();
+                    }
+                    else
+                    {
+                        html += "<div>No more posts found.</div>";
+                        jQuery('.all_posts').html(html);
+                    }
+                    
 
-	showLayout();
-
-	function generate_grid_reponse(response){
-
-		
-		var grid ={};
-		var multiple = [6,12];
-		var k = 0 ;
-		grid[k] = {};
-			
-		for (var i= 0; i < multiple[k]; i++) { 
-			if(response[i] == undefined){
-				grid[k][i] = {
-					'slug'			: "",
-					'title'			: "",
-					'type'			: "",
-					'tagline'		: "",
-					'videourl'  	: "",
-					'excerpt'		: "",
-					'director'		: "Not yet created",
-					'next_post'		: "",
-					'prev_post'		: "",
-					'comments'		: "",
-					'categories'	: ['No categories'],
-					'duration'		: 0,
-					'region'		: ['No regions'],
-					'tags'			: "",
-					'image'			: 'image',
-					'user_like_count'	: ""
-
-				};
-
-			}
-			else
-				grid[k][i] = response[i];
-			
-			if(i == 5 && response.length > multiple[k])
-			{
-				k = k + 1;
-				i = 0 ;
-			}
-				
-		}
-		
-		
-		return grid;
-		}
-
-
-    jQuery('.trending').infinitescroll({
-    
-        navSelector     : "a#next:last",
-        nextSelector    : "a#next:last",
-        itemSelector    : ".trending",
-        debug           : true,
-        dataType        : 'json',
-        // behavior     : 'twitter',
-        appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
-    }, function( response ) {
-        html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
-        jQuery.each(response,function(index,value){
-
-                html += '<div>'
-                        +'<div class="focus-img">'
-                           +' <img src="'+value.image+'" class="img-responsive">'
-                       +' </div>'
-                    +'</div>'
-
-
-        });
-       
-               
-               
-                   
-        html +='</div>';
-
-        jQuery('.trending').html(html);
-                        
-                        
-    });
-    jQuery('.awardwinning').infinitescroll({
-    
-        navSelector     : "a#award:last",
-        nextSelector    : "a#award:last",
-        itemSelector    : ".awardwinning",
-        debug           : true,
-        dataType        : 'json',
-        // behavior     : 'twitter',
-        appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
-    }, function( response ) {
-        html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
-        jQuery.each(response,function(index,value){
-
-                html += '<div>'
-                        +'<div class="focus-img">'
-                           +' <img src="'+value.image+'" class="img-responsive">'
-                       +' </div>'
-                    +'</div>'
-
-
-        });
-       
-               
-               
-                   
-        html +='</div>';
-
-        jQuery('.awardwinning').html(html);
-                        
-                        
-    });
-    jQuery('.indian').infinitescroll({
-    
-        navSelector     : "a#indian:last",
-        nextSelector    : "a#indian:last",
-        itemSelector    : ".indian",
-        debug           : true,
-        dataType        : 'json',
-        // behavior     : 'twitter',
-        appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
-    }, function( response ) {
-        html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
-        jQuery.each(response,function(index,value){
-
-                html += '<div>'
-                        +'<div class="focus-img">'
-                           +' <img src="'+value.image+'" class="img-responsive">'
-                       +' </div>'
-                    +'</div>'
-
-
-        });
-       
-               
-               
-                   
-        html +='</div>';
-
-        jQuery('.indian').html(html);
-                        
-                        
-    });
+    }
 }
 
 </script>

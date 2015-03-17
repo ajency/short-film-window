@@ -30,6 +30,10 @@ class Video_API
             array( array( $this, 'get_posts_based_tags'), WP_JSON_Server::READABLE)
             
         );
+        $routes['/filters'] = array(
+            array( array( $this, 'get_posts_filter'), WP_JSON_Server::READABLE)
+            
+        );
         
 
         
@@ -72,6 +76,7 @@ class Video_API
 		!= "" ? $_REQUEST['posts_per_page'] : "";
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
 						$_REQUEST['offset'] : 0;
+
 
 		if($offset != 0)
 			$offset = intval($offset) +  1;
@@ -151,6 +156,46 @@ class Video_API
         return $response;
 
 	}
+
+    public function get_posts_filter(){
+
+
+        $title = isset($_REQUEST['title']) && $_REQUEST['title'] !="" ? 
+                        $_REQUEST['title'] : "" ;
+
+        $args = array(
+                    'orderby'           => 'post_date',
+                    'order'             => 'DESC',
+                    'posts_per_page'    => 5,
+                    'offset'            => 0,
+                    'title'             =>  $title
+
+
+        );
+
+      
+        $response = get_posts_filter($args);
+        
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+
+
+
+
+    }
 
     
 
