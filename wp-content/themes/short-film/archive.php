@@ -1,23 +1,11 @@
 <?php get_header(); ?>
 
-        <div class="sub-header">
-            <a href="#">Home</a>
-            <span>|</span>
-            <a href="#">Movies</a>
-            <span>|</span>
-            <a href="#">Playlists</a>
-            <span>|</span>
-            <a href="#">Articles</a>
-            <span>|</span>
-            <a href="#">Submit Films</a>
-        </div>
-            
         <!--Navigation--> 
 			<!-- <div id="content" class="clearfix row">
 			
 				<div id="main" class="col-sm-8 clearfix" role="main">
 				 -->
-					<!-- <!-- <div class="page-header">
+					<!-- <div class="page-header">
 					<?php if (is_category()) { ?>
 						<h1 class="archive_title h2">
 							<span><?php _e("Posts Categorized:", "wpbootstrap"); ?></span> <?php single_cat_title(); ?>

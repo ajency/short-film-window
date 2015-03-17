@@ -177,3 +177,26 @@
     color: @gray;
   }
 }
+
+@media (max-width:767px){
+  .watchlist-add, .social-toggle{
+    color: @gray-dark;
+    a{
+      color: @gray-dark;
+      &:hover{
+        color: @brand-primary;
+        text-decoration: none;
+      }
+    }
+    .fa{
+      color: @gray;
+    }
+  }
+  .post-like{
+    color: @gray-dark;
+    &:hover{
+      color: @brand-primary;
+      text-decoration: none;
+    }
+  }
+}

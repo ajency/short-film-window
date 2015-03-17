@@ -1,17 +1,5 @@
 <?php get_header(); ?>
 
-        <div class="sub-header">
-            <a href="#">Home</a>
-            <span>|</span>
-            <a href="#">Movies</a>
-            <span>|</span>
-            <a href="#">Playlists</a>
-            <span>|</span>
-            <a href="#">Articles</a>
-            <span>|</span>
-            <a href="#">Submit Films</a>
-        </div>
-            
         <!--Navigation--> 
 			<!-- <div id="content" class="clearfix row">
 			
