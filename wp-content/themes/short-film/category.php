@@ -17,7 +17,7 @@
 			
 				<div id="main" class="col-sm-8 clearfix" role="main">
 				 -->
-					<!-- <div class="page-header">
+					<!-- <!-- <div class="page-header">
 					<?php if (is_category()) { ?>
 						<h1 class="archive_title h2">
 							<span><?php _e("Posts Categorized:", "wpbootstrap"); ?></span> <?php single_cat_title(); ?>
@@ -129,12 +129,12 @@
                 <hr>
 
                 <div class="spacer-40"></div><div class="loader"></div><div class="all_posts">
-                <?php 
+                <?php $queried_object = get_queried_object();
  					
  				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
-					'genre'		    	=> '',
+					'genre'		    	=> $queried_object->term_id ,
 					'language'			=> '',
 					'posts_per_page'   	=> 1,
 					'offset'           	=> 0,
@@ -508,6 +508,7 @@
                 <div class="indian">
                 </div>
     
+    
 				
     
 			 <!-- end #content -->
@@ -518,7 +519,7 @@
 
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
-	// jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
+	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 	jQuery('#gridoption').children().addClass('text-primary');
 	
 	jQuery('#genre').live('change',function(e){
@@ -983,6 +984,7 @@ window.onload = function() {
 		
 		return grid;
 		}
+
 
     jQuery('.trending').infinitescroll({
     

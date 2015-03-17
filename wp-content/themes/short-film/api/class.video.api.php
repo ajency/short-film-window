@@ -26,6 +26,11 @@ class Video_API
             array( array( $this, 'get_focus_film'), WP_JSON_Server::READABLE)
             
         );
+        $routes['/page2/tagposts'] = array(
+            array( array( $this, 'get_posts_based_tags'), WP_JSON_Server::READABLE)
+            
+        );
+        
 
         
     	return $routes;
@@ -123,5 +128,30 @@ class Video_API
         return $response;
 	}
 
+	public function get_posts_based_tags(){
+
+        $tag = $_REQUEST['tag'];
+
+		$response = get_posts_based_tags($tag);
+
+
+		if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+
+	}
+
+    
 
 }
