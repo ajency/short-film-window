@@ -107,7 +107,7 @@ get_header(); ?>
 	        <div class="img-content">
 	        	<?php echo $response['excerpt']; ?>
 	        </div>
-	  
+	  		
 
 		<div class="clearfix"></div>
 		 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/<?php echo $post->ID ;?>"></a>
@@ -254,8 +254,10 @@ window.onload = function() {
 		// behavior		: 'twitter',
 		appendCallback	: false, // USE FOR PREPENDING
 		// pathParse     	: function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
-    }, function( response ) {
+    }, function( resp ) {
     	
+    	response = resp[0];
+
 
     	html = '<div class="row">'
     	+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'

@@ -83,7 +83,8 @@ class Video
 					'meta_key'				=> $meta_key,
 					'meta_value'			=> $args['language'],
 					'posts_per_page'   		=> $args['posts_per_page'],
-					'offset'           		=> $args['offset'],
+					'offset'           		=> $args['offset']
+
 	
 				);
 

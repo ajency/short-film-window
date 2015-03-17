@@ -88,16 +88,18 @@ function get_focus_film($id){
 	$query = new WP_Query( $args);
 
 	$response = array();
+	$actual_response = array();
 	while ( $query->have_posts() ) {
 		$query->the_post();
 		$response = Film\Video::get($query->post->ID);
 		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
 		$response['post_date']	= date('Y-m-d',strtotime($query->post->post_date));
+		$actual_response[] = $response;
 	}
 
 
 
-	return $response;
+	return $actual_response;
 
 
 }
@@ -178,5 +180,53 @@ function generate_grid_response($response){
 
 	return $grid;
 
+
+}
+
+function get_posts_filter($args){
+
+	global $wpdb;
+
+	$response = array();
+	    
+
+	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+
+    $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
+	$user_query = new WP_User_Query($args1);
+
+	$author = "";
+	if ( ! empty( $user_query->results ) ) {
+
+		foreach ( $user_query->results as $user ) {
+			$author =  $user->id;
+		}
+
+	}
+	
+	if(count($postid) != 0 || $author != "")
+	{
+		$params = array(
+        'post__in'			=> $postid,
+        'posts_per_page'	=> $args['posts_per_page'],
+        'order' 			=> $args['order'],
+        'orderby'			=> $args['orderby'],
+        'post_type' 		=> 'post',
+        'author'			=> $author
+    	);
+
+
+	    
+		$query = new WP_Query($params);
+	    while ( $query->have_posts() ) {
+			$query->the_post();
+			$response[] = Film\Video::get($query->post->ID);
+			
+		}
+	}
+
+	
+
+   return $response;
 
 }
