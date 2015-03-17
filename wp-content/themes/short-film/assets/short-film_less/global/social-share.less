@@ -1,9 +1,10 @@
 .social-strip{
   // position: relative;
   // float: right;
+  color: @gray;
   padding-top: 40px;
   a{
-    color: @brand-primary
+    // color: @brand-primary
   }
 }
 
@@ -18,7 +19,7 @@
   float: right;
   // width:6em;
   height:2em;
-  width: 30px;
+  width: 75px;
   // line-height:2em;
  }
 
@@ -31,9 +32,15 @@
   text-align:center;
   transition:all 0.25s;
   // color:@white;
-  color:@brand-primary;
+  color:@gray-light;
   cursor: pointer;
   // border: 2px solid @brand-primary;
+  &:hover{
+    color: @gray;
+  }
+  .fa{
+    color: @gray;
+  }
 }
 
 .social-toggle:hover {
@@ -58,12 +65,12 @@
   opacity: 0;
   -webkit-transition: all .4s ease;
   transition: all .4s ease;
-  margin-left: -250%;
+  margin-left: -75%;
   /* stops flickering */
   -webkit-backface-visibility: hidden;
 }
 
-.social-gplus {
+.social-pin {
   background: @pinterest-brand;
 }
 
@@ -134,5 +141,39 @@
 }
 
 .social-networks a:hover {
-  color:#222;
+  // color:#222;
+}
+
+
+/* Like */
+.post-like{
+  color: @gray-light;
+  .ease;
+  &:hover{
+    color: @brand-primary;
+    text-decoration: none;
+  }
+  .fa{
+    color: fade(@gray, 50%);
+  }
+  &.liked{
+    .fa{
+      color: @gray;
+    }
+  }
+}
+
+/* Watchlist */
+.watchlist-add{
+  a{
+    .ease;
+    color: @gray-light;
+    &:hover{
+      color: @brand-primary;
+      text-decoration: none;
+    }
+  }
+  .fa{
+    color: @gray;
+  }
 }

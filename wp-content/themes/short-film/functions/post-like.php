@@ -191,7 +191,7 @@ function getPostLikeLink( $post_id ) {
 	} else {
 		$class = esc_attr( '' );
 		$title = esc_attr( 'Like' );
-		$heart = '<i id="icon-unlike" class="fa fa-thumbs-up"></i>';
+		$heart = '<i id="icon-unlike" class="fa fa-thumbs-o-up"></i>';
 	}
 	
 	$output = '<a href="#" class="post-like'.$class.'" data-post_id="'.$post_id.'" title="'.$title.'">'.$heart.'&nbsp;'.$count.'</a>';
