@@ -11417,6 +11417,32 @@ a {
 .watchlist-add .fa {
   color: #999999;
 }
+@media (max-width: 767px) {
+  .watchlist-add,
+  .social-toggle {
+    color: #787878;
+  }
+  .watchlist-add a,
+  .social-toggle a {
+    color: #787878;
+  }
+  .watchlist-add a:hover,
+  .social-toggle a:hover {
+    color: #af152f;
+    text-decoration: none;
+  }
+  .watchlist-add .fa,
+  .social-toggle .fa {
+    color: #999999;
+  }
+  .post-like {
+    color: #787878;
+  }
+  .post-like:hover {
+    color: #af152f;
+    text-decoration: none;
+  }
+}
 .media .media-left img {
   width: 80px;
 }
