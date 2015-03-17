@@ -484,7 +484,30 @@
 					<input type="hidden" name="offset" id="offset" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
                 </div>
-                <div class="spacer-40"></div><!-- end #main -->
+                <div class="spacer-40"></div>
+
+                <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
+       
+                    
+                <div class="trending">
+                </div>
+
+                <div class="spacer-40"></div>
+
+                <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=awardwinning"></a>
+       
+                    
+                <div class="awardwinning">
+                </div>
+
+                <div class="spacer-40"></div>
+
+                <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=indian"></a>
+       
+                    
+                <div class="indian">
+                </div>
+    
     
 				
     
@@ -961,6 +984,104 @@ window.onload = function() {
 		
 		return grid;
 		}
+
+
+    jQuery('.trending').infinitescroll({
+    
+        navSelector     : "a#next:last",
+        nextSelector    : "a#next:last",
+        itemSelector    : ".trending",
+        debug           : true,
+        dataType        : 'json',
+        // behavior     : 'twitter',
+        appendCallback  : false, // USE FOR PREPENDING
+        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+        html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        jQuery.each(response,function(index,value){
+
+                html += '<div>'
+                        +'<div class="focus-img">'
+                           +' <img src="'+value.image+'" class="img-responsive">'
+                       +' </div>'
+                    +'</div>'
+
+
+        });
+       
+               
+               
+                   
+        html +='</div>';
+
+        jQuery('.trending').html(html);
+                        
+                        
+    });
+    jQuery('.awardwinning').infinitescroll({
+    
+        navSelector     : "a#award:last",
+        nextSelector    : "a#award:last",
+        itemSelector    : ".awardwinning",
+        debug           : true,
+        dataType        : 'json',
+        // behavior     : 'twitter',
+        appendCallback  : false, // USE FOR PREPENDING
+        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+        html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        jQuery.each(response,function(index,value){
+
+                html += '<div>'
+                        +'<div class="focus-img">'
+                           +' <img src="'+value.image+'" class="img-responsive">'
+                       +' </div>'
+                    +'</div>'
+
+
+        });
+       
+               
+               
+                   
+        html +='</div>';
+
+        jQuery('.awardwinning').html(html);
+                        
+                        
+    });
+    jQuery('.indian').infinitescroll({
+    
+        navSelector     : "a#indian:last",
+        nextSelector    : "a#indian:last",
+        itemSelector    : ".indian",
+        debug           : true,
+        dataType        : 'json',
+        // behavior     : 'twitter',
+        appendCallback  : false, // USE FOR PREPENDING
+        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+    }, function( response ) {
+        html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        jQuery.each(response,function(index,value){
+
+                html += '<div>'
+                        +'<div class="focus-img">'
+                           +' <img src="'+value.image+'" class="img-responsive">'
+                       +' </div>'
+                    +'</div>'
+
+
+        });
+       
+               
+               
+                   
+        html +='</div>';
+
+        jQuery('.indian').html(html);
+                        
+                        
+    });
 }
 
 </script>
