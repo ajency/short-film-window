@@ -95,6 +95,10 @@
 			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.jpg" class="img-responsive">
 			    </div>
 			    <div class="clearfix"></div>
+
+			<div class="sub-header">
+				<?php wp_nav_menu(); ?>
+	        </div>
 			</div>
 		
 			

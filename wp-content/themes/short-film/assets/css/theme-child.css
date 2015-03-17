@@ -11066,16 +11066,36 @@ a {
   background-color: #bb0000;
 }
 .sub-header {
-  position: fixed;
-  background: url('../img/noisy-texture.png');
   width: 100%;
-  height: 150px;
   text-align: center;
   z-index: 1;
-  padding-top: 120px;
+  padding: 5px 0 0;
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .sub-header span {
   margin: 0 30px;
+}
+.sub-header .menu {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.sub-header .menu li {
+  display: inline-block;
+}
+.sub-header .menu li a {
+  padding: 0 20px;
+  color: #cccccc;
+}
+.sub-header .menu li:after {
+  content: '|';
+}
+.sub-header .menu li:last-child:after {
+  content: '';
 }
 @media (max-width: 480px) {
   .header {
