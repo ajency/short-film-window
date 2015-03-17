@@ -1,5 +1,8 @@
 .movie-header{
     position: relative;
+    .overlay{
+        .ease;
+    }
 }
 
 .movie-info{
@@ -9,6 +12,7 @@
     right: 0;
     color: @gray-darker;
     z-index: 2;
+    .ease;
     h3, h5, h6{
         color: @gray-light;
         small{
@@ -26,6 +30,10 @@
     }
     .views{
         color: @gray-light;
+    }
+    &.playing{
+        opacity: 0;
+        left: -2000px;
     }
 }
 

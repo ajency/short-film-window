@@ -11513,6 +11513,13 @@ input.search:-ms-input-placeholder::before {
 .movie-header {
   position: relative;
 }
+.movie-header .overlay {
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
+}
 .movie-info {
   position: absolute;
   bottom: 20px;
@@ -11520,6 +11527,11 @@ input.search:-ms-input-placeholder::before {
   right: 0;
   color: #4d4d4d;
   z-index: 2;
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 .movie-info h3,
 .movie-info h5,
@@ -11542,6 +11554,10 @@ input.search:-ms-input-placeholder::before {
 }
 .movie-info .views {
   color: #cccccc;
+}
+.movie-info.playing {
+  opacity: 0;
+  left: -2000px;
 }
 @media (max-width: 767px) {
   .movie-info {
