@@ -15,7 +15,7 @@ get_header(); ?>
          class="video-js vjs-default-skin"
          height="auto"
          width="auto"
-         poster="<?php echo $response['image'];?>"
+         poster="<?php echo $response['featured_image'];?>"
          loop 
          data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
 
@@ -286,7 +286,7 @@ window.onload = function() {
 
 	    +'<div class="row">'
 	        +'<div class="col-md-5">'
-	             +'<img src="'+response.image+'" class="img-responsive">'
+	             +'<img src="'+response.featured_image+'" class="img-responsive">'
 	        +'</div>'
 	        +'<div class="col-md-7">'
 	            +'<h5 class="m-t-0">'+response.excerpt+'</h5>'

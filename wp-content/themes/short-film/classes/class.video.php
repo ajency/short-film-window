@@ -37,7 +37,7 @@ class Video
 			$post_thumbnail_id = get_post_thumbnail_id($post->ID); 
 			$image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
 			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
-        	'/img/placeholder.jpg';
+        	'/assets/img/placeholder.jpg';
 
 			//assign the required details
 			$response = array(
@@ -58,7 +58,7 @@ class Video
 									get_post_meta( $post->ID , 'duration',true ) : 0,
 				'region'		=> get_custom_taxonomy_terms($post->ID),
 				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
-				'image'			=> $image,
+				'featured_image'			=> $image,
 				'user_like_count'	=> $post_user_like,
 				'post_like_count' => get_post_meta( $post->ID, "_post_like_count", true ) != false ?
 									get_post_meta( $post->ID, "_post_like_count", true ) : 0,
@@ -112,7 +112,7 @@ class Video
 
 			$post_response[] = array(
 					'slug'				=> $post_detail['slug'],
-					'featured_image'	=> $post_detail['image'],
+					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],
 					'duration'			=> $post_detail['duration'],
 					'region'			=> $post_detail['region'],
