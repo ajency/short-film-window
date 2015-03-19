@@ -93,7 +93,7 @@ function get_focus_film($id){
 		$query->the_post();
 		$response = Film\Video::get($query->post->ID);
 		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
-		$response['post_date']	= date('Y-m-d',strtotime($query->post->post_date));
+		$response['post_date']	= date('M d,Y',strtotime($query->post->post_date));
 		$actual_response[] = $response;
 	}
 
@@ -189,7 +189,10 @@ function generate_grid_response($response){
 				'region'		=> array(0 => ''),
 				'tags'			=> "",
 				'featured_image'			=> 'image',
-				'user_like_count'	=> ""
+				'user_like_count'	=> "",
+				'post_like_count' => 0,
+				'no_of_views'	=> 0
+
 
 			);
 
@@ -256,5 +259,31 @@ function get_posts_filter($args){
 	
 
    return $response;
+
+}
+
+function store_post_views($views,$post_id){
+
+	$response = update_post_meta($post_id, "no_of_views", $views );
+
+	$data = get_post_meta( $post_id, "no_of_views", true ) != false ?
+									get_post_meta( $post_id, "no_of_views", true ) : 0;
+
+	return $data;
+
+
+}
+
+function get_sorted_posts($args){
+
+	$query = new WP_Query($args);
+	$response = array();
+    while ( $query->have_posts() ) {
+		$query->the_post();
+		$response[] = Film\Video::get($query->post->ID);
+		
+	}
+
+	return $response;
 
 }

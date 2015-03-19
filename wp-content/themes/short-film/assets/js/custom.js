@@ -76,6 +76,22 @@
       player_name.on('play', function(){ 
         $('.movie-info').addClass('playing');
         $('.movie-header .overlay').css('display', 'none');
+        views = parseInt(jQuery('#noofviews').val()) + 1 ; 
+        data = 'views='+views+'&post_id='+jQuery('#post_id').val();
+        jQuery.ajax({
+                type : 'POST',
+                url : SITEURL+'/wp-json/views',
+                data : data,
+                success:function(response){
+                    jQuery('#noofviews').val(response);
+
+                },
+                error:function(response){
+
+
+                }
+        });
+
       });
       player_name.on('pause', function(){ 
         $('.movie-info').removeClass('playing');
