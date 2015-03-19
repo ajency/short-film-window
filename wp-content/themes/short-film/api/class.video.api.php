@@ -30,6 +30,10 @@ class Video_API
             array( array( $this, 'get_posts_based_tags'), WP_JSON_Server::READABLE)
             
         );
+         $routes['/page2/catposts'] = array(
+            array( array( $this, 'get_posts_based_cats'), WP_JSON_Server::READABLE)
+            
+        );
         $routes['/filters'] = array(
             array( array( $this, 'get_posts_filter'), WP_JSON_Server::READABLE)
             
@@ -159,6 +163,30 @@ class Video_API
         return $response;
 
 	}
+
+    public function get_posts_based_cats(){
+
+        $cat = $_REQUEST['cat'];
+
+        $response = get_posts_based_cats($cat);
+
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+
+    }
 
     public function get_posts_filter(){
 
