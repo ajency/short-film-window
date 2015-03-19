@@ -8,7 +8,6 @@ get_header(); ?>
 	global $post;
 
 	$response = Film\Video::get($post->ID);
-
 	
 	
 	?>
@@ -78,7 +77,8 @@ get_header(); ?>
 			        			array_push($region_array, $link);
 			        	}
 			        	if(count($region_array) == 0)
-			        		$region_array = array(0 => 'No regions added');
+			        		$region_array = array(0 => 'No regions');
+
 			        	foreach ($response['categories'] as $value) {
 			        			$category_id = get_cat_ID( $value );
 			        			$category_link = get_category_link( $category_id );
