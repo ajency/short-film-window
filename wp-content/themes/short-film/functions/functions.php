@@ -132,6 +132,33 @@ function get_posts_based_tags($tag){
 
 }
 
+function get_posts_based_cats($cat){
+
+	$args = array(
+        'category' 					=> $cat,
+        'posts_per_page' 			=> 3,
+        'orderby'          			=> 'post_date',
+		'order'            			=> 'DESC',
+		'post_type' 	   			=> 'post',
+		'post_status'      			=> 'publish',
+					
+      );
+
+	
+	$query = new WP_Query( $args);
+
+	$response = array();
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		$response[] = Film\Video::get($query->post->ID);
+		
+	}
+
+
+
+	return $response;
+
+}
 
 
 

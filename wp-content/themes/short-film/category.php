@@ -510,7 +510,7 @@
 
                 <div class="spacer-40"></div>
 
-                <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=awardwinning"></a>
+                <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=awardwinning"></a>
        
                     
                 <div class="awardwinning">
@@ -518,7 +518,7 @@
 
                 <div class="spacer-40"></div>
 
-                <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=indian"></a>
+                <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=indian"></a>
        
                     
                 <div class="indian">
