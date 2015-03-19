@@ -168,7 +168,7 @@
                         <div class="grid-box grid-full content-align-bottom">
                             <a class="content-bottom" href="#">
                                 <div class="grid-image">
-                                    <img src="<?php $value[0]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[0]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[0]['title'];?></div>
@@ -205,7 +205,7 @@
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="#">
                                 <div class="grid-image">
-                                    <img src="<?php $value[1]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[1]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[1]['title'];?></div>
@@ -241,7 +241,7 @@
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="#">
                                 <div class="grid-image">
-                                    <img src="<?php $value[2]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[2]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[2]['title'];?></div>
@@ -279,7 +279,7 @@
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="#">
                                 <div class="grid-image">
-                                    <img src="<?php $value[3]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[3]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                      <div class="grid-title"><?php echo $value[3]['title'];?></div>
@@ -315,7 +315,7 @@
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="#">
                                 <div class="grid-image">
-                                    <img src="<?php $value[4]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[4]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                      <div class="grid-title"><?php echo $value[4]['title'];?></div>
@@ -351,7 +351,7 @@
                         <div class="grid-box grid-full content-align-bottom">
                             <a class="content-bottom" href="#">
                                 <div class="grid-image">
-                                    <img src="<?php $value[5]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[5]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                      <div class="grid-title"><?php echo $value[5]['title'];?></div>
