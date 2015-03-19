@@ -135,7 +135,7 @@ function get_posts_based_tags($tag){
 function get_posts_based_cats($cat){
 
 	$args = array(
-        'category' 					=> $cat,
+        'category_name' 			=> $cat,
         'posts_per_page' 			=> 3,
         'orderby'          			=> 'post_date',
 		'order'            			=> 'DESC',
