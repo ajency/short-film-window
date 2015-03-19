@@ -1,7 +1,7 @@
 (function($){
 <!-- slider -->
-    $(document).ready(function() {
-        $('.slider1').slick({
+    jQuery(document).ready(function() {
+        jQuery('.slider1').slick({
             // mobileFirst: true,
             infinite: true,
             slidesToShow: 3,
@@ -79,6 +79,21 @@
     $('.social-toggle').on('click', function() {
       $(this).next().toggleClass('open-menu');
     });
+
+    var player_name = _V_('#bg-video'); 
+
+      player_name.on('waiting', function(){ 
+        $('.vjs-poster').css('opacity', '0');
+      });
+      player_name.on('play', function(){ 
+        $('.movie-info').addClass('playing');
+        $('.movie-header .overlay').css('display', 'none');
+      });
+      player_name.on('pause', function(){ 
+        $('.movie-info').removeClass('playing');
+        $('.movie-header .overlay').css('display', 'block');
+      }); 
+
 
     
 })(jQuery);

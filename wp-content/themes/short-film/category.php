@@ -122,7 +122,7 @@
  				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
-					'genre'		    	=> '',
+					'genre'		    	=> $queried_object->term_id ,
 					'language'			=> '',
 					'posts_per_page'   	=> 12,
 					'offset'           	=> 0,
@@ -497,6 +497,7 @@
  					<input type="hidden" name="tracker" id="tracker" value="" / >
 					</div> <div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
+                    <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
                 </div>
                 <div class="spacer-40"></div>
@@ -534,8 +535,10 @@
 
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
-	
+	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 	jQuery('#gridoption').children().addClass('text-primary');
+    count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
+    jQuery('#offset').val(count);
 	
 	jQuery('#genre').live('change',function(e){
 		jQuery('#offset').val(0)
@@ -555,8 +558,7 @@ window.onload = function() {
 
 	jQuery('.load_more').live('click',function(e){
 
-		count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
-		jQuery('#offset').val(count);
+		
 		jQuery('.loader').text("Loading data...")
 
 		e.preventDefault();
@@ -589,6 +591,21 @@ window.onload = function() {
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
                     jQuery('.all_posts').html("")
+                     myarr = [];
+                    jQuery.each(response,function(index,value){
+                           
+                            console.log(value);
+                           
+                                if(value.id != "")
+                                {
+                                    myarr.push(value['id']);  
+                                    
+                                }
+                                
+                                    
+                           
+                    });
+                    jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
                 },
                 error:function(response){
@@ -627,7 +644,7 @@ window.onload = function() {
 		language = jQuery('#language').val();
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
-		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset;
+		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 		
 
 		jQuery.ajax({
@@ -639,7 +656,8 @@ window.onload = function() {
                     
 					
                     generate_data(response);
-					
+					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
+                    jQuery('#offset').val(count);
 				
 					
 				},
@@ -664,6 +682,7 @@ window.onload = function() {
 		for (var i= 0; i < multiple[k]; i++) { 
 			if(response[j] == undefined){
 				grid[k][i] = {
+                    'id'            : "",
 					'slug'			: "",
 					'title'			: "",
 					'type'			: "",
@@ -685,7 +704,7 @@ window.onload = function() {
 
 			}
 			else
-				grid[k][i] = response[j];
+				grid[0][i] = response[j];
 			
 			if(i == 5 && response.length > multiple[k])
 			{
@@ -1148,6 +1167,7 @@ window.onload = function() {
                     }
                     else
                     {
+                        jQuery('.all_posts').html("");
                         html += "<div>No posts found.</div>";
                         jQuery('.all_posts').html(html);
                     }

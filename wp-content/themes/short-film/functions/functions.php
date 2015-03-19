@@ -67,7 +67,7 @@ function get_custom_taxonomy_terms($post_id){
 		}
 	}
 	
-
+	
 	return $response;
 
 }
@@ -88,16 +88,146 @@ function get_focus_film($id){
 	$query = new WP_Query( $args);
 
 	$response = array();
+	$actual_response = array();
 	while ( $query->have_posts() ) {
 		$query->the_post();
 		$response = Film\Video::get($query->post->ID);
 		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
 		$response['post_date']	= date('Y-m-d',strtotime($query->post->post_date));
+		$actual_response[] = $response;
+	}
+
+
+
+	return $actual_response;
+
+
+}
+
+function get_posts_based_tags($tag){
+
+	$args = array(
+        'tag' 					=> $tag,
+        'posts_per_page' 		=> 3,
+        'orderby'          		=> 'post_date',
+		'order'            		=> 'DESC',
+		'post_type' 	   		=> 'post',
+		'post_status'      		=> 'publish',
+					
+      );
+
+	
+	$query = new WP_Query( $args);
+
+	$response = array();
+	while ( $query->have_posts() ) {
+		$query->the_post();
+		$response[] = Film\Video::get($query->post->ID);
+		
 	}
 
 
 
 	return $response;
 
+}
+
+
+
+
+function generate_grid_response($response){
+
+	
+	$grid = array();
+	$multiple = array(6,6);
+	$k = 0 ;
+	
+	$j = 0; 
+	for ($i = 0; $i < $multiple[$k]; $i++) { 
+		if($response[$j] == ""){
+			$grid[$k][$i] =  array(
+				'id'			=> "",
+				'slug'			=> "",
+				'title'			=> "",
+				'type'			=> "",
+				'tagline'		=> "",
+				'videourl'  	=> "",
+				'excerpt'		=> "",
+				'director'		=> "",
+				'next_post'		=> "",
+				'prev_post'		=> "",
+				'comments'		=> "",
+				'categories'	=> array(0 => ''),
+				'duration'		=> 0,
+				'region'		=> array(0 => ''),
+				'tags'			=> "",
+				'image'			=> 'image',
+				'user_like_count'	=> ""
+
+			);
+
+		}
+		else
+			$grid[$k][$i] = $response[$j];
+		
+		if($i == 5 && count($response) > $multiple[$k])
+		{
+			$k = $k + 1;
+			$i = -1 ;
+		}
+		$j++;	
+	}
+	
+
+	return $grid;
+
+
+}
+
+function get_posts_filter($args){
+
+	global $wpdb;
+
+	$response = array();
+	    
+
+	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+
+    $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
+	$user_query = new WP_User_Query($args1);
+
+	$author = "";
+	if ( ! empty( $user_query->results ) ) {
+
+		foreach ( $user_query->results as $user ) {
+			$author =  $user->id;
+		}
+
+	}
+	
+	if(count($postid) != 0 || $author != "")
+	{
+		$params = array(
+        'post__in'			=> $postid,
+        'posts_per_page'	=> $args['posts_per_page'],
+        'order' 			=> $args['order'],
+        'orderby'			=> $args['orderby'],
+        'post_type' 		=> 'post',
+        'author'			=> $author
+    	);
+
+
+	    
+		$query = new WP_Query($params);
+	    while ( $query->have_posts() ) {
+			$query->the_post();
+			$response[] = Film\Video::get($query->post->ID);
+			
+		}
+	}
+
+	
+
+   return $response;
 
 }
