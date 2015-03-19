@@ -847,8 +847,7 @@ function wp_trim_all_excerpt($text) {
    }
 
 $text = strip_tags($text);
-$excerpt_length = apply_filters('excerpt_length', 55);
-$excerpt_more = apply_filters('excerpt_more', ' ' . '[...]');
+$excerpt_length = apply_filters('excerpt_length', 30);
 $text = wp_trim_words( $text, $excerpt_length, $excerpt_more ); 
 
 return apply_filters('wp_trim_excerpt', $text, $raw_excerpt); 
