@@ -54,13 +54,16 @@ class Video
 				'prev_post'		=> $prev_post,
 				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
 				'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
-				'duration'		=> get_post_meta( $post->ID , 'duration',true ),
+				'duration'		=> get_post_meta( $post->ID , 'duration',true ) != false?
+									get_post_meta( $post->ID , 'duration',true ) : 0,
 				'region'		=> get_custom_taxonomy_terms($post->ID),
 				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
 				'image'			=> $image,
 				'user_like_count'	=> $post_user_like,
 				'post_like_count' => get_post_meta( $post->ID, "_post_like_count", true ) != false ?
-									get_post_meta( $post->ID, "_post_like_count", true ) : 0
+									get_post_meta( $post->ID, "_post_like_count", true ) : 0,
+				'no_of_views'	=> get_post_meta( $post->ID, "no_of_views", true ) != false ?
+									get_post_meta( $post->ID, "no_of_views", true ) : 0
 
 			);
 			return $response;
@@ -116,7 +119,8 @@ class Video
 					'director'			=> $post_detail['director'],
 					'categories'		=> $post_detail['categories'],
 					'excerpt'			=> $post_detail['excerpt'],
-					'post_like_count'	=> $post_detail['post_like_count']
+					'post_like_count'	=> $post_detail['post_like_count'],
+					'no_of_views'		=> $post_detail['no_of_views']
 				
 				
 				

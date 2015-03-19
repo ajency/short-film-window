@@ -38,6 +38,14 @@ class Video_API
             array( array( $this, 'get_posts_filter'), WP_JSON_Server::READABLE)
             
         );
+        $routes['/views'] = array(
+            array( array( $this, 'store_post_views'), WP_JSON_Server::CREATABLE)
+            
+        );
+        $routes['/sort'] = array(
+            array( array( $this, 'get_sorted_posts'), WP_JSON_Server::READABLE)
+            
+        );
         
 
         
@@ -226,6 +234,87 @@ class Video_API
 
 
 
+    }
+
+    public function store_post_views(){
+
+        $views = $_REQUEST['views'];
+
+        $post_id = $_REQUEST['post_id'];
+
+        $response = store_post_views($views,$post_id);
+        
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(201);
+
+        }
+
+        return $response;
+
+
+    }
+
+    public function get_sorted_posts(){
+
+        $sort = $_REQUEST['sort'];
+
+        if($sort == 1){
+            $args = array(
+                    'orderby'           => 'post_date',
+                    'order'             => 'DESC',
+                    'posts_per_page'    => 12,
+                    'offset'            => 0,
+                    'post_type'         => 'post'
+
+
+            );
+        }
+        else if($sort == 2)
+        {
+            $args = array(
+                'posts_per_page'    => 12,
+                'order'             => 'DESC',
+                'orderby'           => 'meta_value_num',
+                'meta_key'          => 'no_of_views',
+                'post_type'         => 'post'
+            );
+        }
+        else
+        {
+            $args = array(
+                'posts_per_page'    => 12,
+                'order'             => 'DESC',
+                'orderby'           => 'meta_value_num',
+                'meta_key'          => 'duration',
+                'post_type'         => 'post'
+            );
+        }
+
+        $response = get_sorted_posts($args);
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
     }
 
     

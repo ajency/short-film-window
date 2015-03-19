@@ -91,14 +91,15 @@ get_header(); ?>
 			        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $cat_array); ?></em></small></h6>
 			    </div>
 			    <div class="col-xs-3 text-right">
-			        <div class="small views"><i class="fa fa-eye"></i> 199 </div>
+			        <div class="small views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></div>
 			    </div>
 			</div>
 		</div>
 		<div class="overlay"></div>
 	</div>
 
-	
+	<input type="hidden" name="noofviews" id="noofviews" value="0" / >
+	<input type="hidden" name="post_id" id="post_id" value="<?php echo $response["id"];?>" / >
 	<div class="spacer-40"></div>
 	<div class="container">
 
@@ -217,7 +218,7 @@ get_header(); ?>
 
 window.onload = function() {
 
-	
+	jQuery('#noofviews').val();
 	jQuery('.vid-previous').click(function(x){
 
 		prev = "<?php echo $response['prev_post'];?>";
@@ -287,7 +288,7 @@ window.onload = function() {
 	                +'<p class="pull-left"><small>'+response.post_date+'</small></p>'
 	               +' <p class="pull-right">'
 	                    +'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
-	                    +'<span><i class="fa fa-eye"></i> 199 </span>'
+	                    +'<span><i class="fa fa-eye"></i>'+response.no_of_views+'</span>'
 	                +'</p>'
 	            +'</div>'
 	           +' <div class="clearfix"></div>'

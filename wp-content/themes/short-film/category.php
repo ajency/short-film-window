@@ -95,8 +95,10 @@
                     	 <h5>SORT BY</h5>
                         <form action="" class="">
                             <div class="form-group">
-                                <select name="" id="">
-                                    <option value="">All</option>
+                                <select name="sort" id="sort">
+                                    <option value="1">Freshness</option>
+                                    <option value="2">Popularity</option>
+                                    <option value="3">Length</option>
                                 </select>
                             </div>
                         </form>
@@ -186,7 +188,7 @@
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
                                                 <div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                     <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
                                                         <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -223,7 +225,7 @@
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
                                                 <div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                     <div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                 </div>
                                             </div>
@@ -259,7 +261,7 @@
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
                                                 <div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                     <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                 </div>
                                             </div>
@@ -297,7 +299,7 @@
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
                                                 <div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                     <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                 </div>
                                             </div>
@@ -333,7 +335,7 @@
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
                                                 <div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                     <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                 </div>
                                             </div>
@@ -369,7 +371,7 @@
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
                                                 <div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
+                                                    <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                     <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                 </div>
                                             </div>
@@ -420,7 +422,7 @@
                                 <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
                                 <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
                                 <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
-                                <div class="small m-t-20">199 <i class="fa fa-eye"></i></div>
+                                <div class="small m-t-20"><?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
                                 <div class="small"><?php echo $value['post_like_count'] ;?><i class="fa fa-thumbs-up"></i></div>
                                 <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
                             </div>
@@ -474,7 +476,7 @@
                             <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['categories']);?></em></small></h6>
                         </div>
                         <div class="col-xs-3 text-right">
-                            <div class="small">199 <i class="fa fa-eye"></i></div>
+                            <div class="small"<?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
                         </div>
                     </div>
                     <div class="spacer-20"></div>
@@ -579,6 +581,31 @@ window.onload = function() {
 		
 		
 	});
+
+    jQuery('#sort').live('change',function(e){
+        e.preventDefault();
+        data = 'sort='+jQuery(e.target).val()
+        jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/sort',
+                data : data,
+                success:function(response){
+                    jQuery('.loader').text("Loading data...")
+                    jQuery('.all_posts').html("")
+                    generate_data(response);
+
+
+                    },
+                    error:function(response){
+
+                    }
+
+        });
+        
+        
+        
+        
+    });
 
     jQuery('.search').live('change',function(e){
         e.preventDefault();
@@ -702,7 +729,9 @@ window.onload = function() {
 					'region'		: [],
 					'tags'			: "",
 					'image'			: 'image',
-					'user_like_count'	: ""
+					'user_like_count'	: "",
+                    'post_like_count' : 0,
+                    'no_of_views'    : 0
 
 				};
 
@@ -744,9 +773,9 @@ window.onload = function() {
                 
 
                 html += '<div>'
-                        +'<div class="focus-img">'
+                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
                            +' <img src="'+value.image+'" class="img-responsive">'
-                       +' </div>'
+                       +' </div></a>'
                     +'</div>'
 
 
@@ -778,9 +807,9 @@ window.onload = function() {
 
                
                 html += '<div>'
-                        +'<div class="focus-img">'
+                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
                            +' <img src="'+value.image+'" class="img-responsive">'
-                       +' </div>'
+                       +' </div></a>'
                     +'</div>'
 
 
@@ -810,9 +839,9 @@ window.onload = function() {
         jQuery.each(response,function(index,value){
 
                 html += '<div>'
-                        +'<div class="focus-img">'
+                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
                            +' <img src="'+value.image+'" class="img-responsive">'
-                       +' </div>'
+                       +' </div></a>'
                     +'</div>'
 
 
@@ -880,7 +909,7 @@ window.onload = function() {
                                                     +'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
-                                                    +'<div>199 <i class="fa fa-eye"></i></div>'
+                                                    +'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
                                                     +'<div class="'+value[0]['class']+'">'+value[0]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                 +'</div>'
                                             +'</div>'
@@ -916,7 +945,7 @@ window.onload = function() {
                                                    +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
-                                                   +' <div>199 <i class="fa fa-eye"></i></div>'
+                                                   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
                                                     +'<div class="'+value[1]['class']+'">'+value[1]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                +' </div>'
                                             +'</div>'
@@ -952,7 +981,7 @@ window.onload = function() {
                                                    +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
                                                +' </div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
-                                                   +' <div>199 <i class="fa fa-eye"></i></div>'
+                                                   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
                                                     +'<div class="'+value[2]['class']+'">'+value[2]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                +' </div>'
                                             +'</div>'
@@ -990,7 +1019,7 @@ window.onload = function() {
                                                     +'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
-                                                   +' <div>199 <i class="fa fa-eye"></i></div>'
+                                                   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
                                                    +' <div class="'+value[3]['class']+'">'+value[3]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                 +'</div>'
                                            +' </div>'
@@ -1025,7 +1054,7 @@ window.onload = function() {
                                                    +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
-                                                   +' <div>199 <i class="fa fa-eye"></i></div>'
+                                                   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
                                                    +' <div class="'+value[4]['class']+'">'+value[4]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                +' </div>'
                                            +' </div>'
@@ -1060,7 +1089,7 @@ window.onload = function() {
                                                     +'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
                                                 +'</div>'
                                                +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
-                                                   +'<div>199 <i class="fa fa-eye"></i></div>'
+                                                   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
                                                     +'<div class="'+value[5]['class']+'">'+value[5]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                 +'</div>'
                                             +'</div>'
@@ -1106,7 +1135,7 @@ window.onload = function() {
                                  +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
                                  +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
                                  +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
-                                 +'<div class="small m-t-20">199 <i class="fa fa-eye"></i></div>'
+                                 +'<div class="small m-t-20">'+value.no_of_views+'<i class="fa fa-eye"></i></div>'
                                  +'<div class="small">'+value.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
                                  +'<div class="small">Watchlist <i class="fa fa-binoculars"></i></div>'
                              +'</div>'
@@ -1158,7 +1187,7 @@ window.onload = function() {
                                  +'<h6 class="m-t-0 m-b-0"><small><em>'+value.categories.join(',')+'</em></small></h6>'
                              +'</div>'
                              +'<div class="col-xs-3 text-right">'
-                                 +'<div class="small">199 <i class="fa fa-eye"></i></div>'
+                                 +'<div class="small">'+value.no_of_views+'<i class="fa fa-eye"></i></div>'
                              +'</div>'
                          +'</div>'
                          +'<div class="spacer-20"></div>'
