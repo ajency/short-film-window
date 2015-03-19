@@ -47,6 +47,7 @@ class Video
 				'type'			=> get_post_meta( $post->ID , 'type',true ),
 				'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
 				'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
+				'content'		=> get_the_content('Read more'),
 				'excerpt'		=> get_the_excerpt(),
 				'director'		=> $name,
 				'next_post'		=> $next_post,
