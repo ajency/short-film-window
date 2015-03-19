@@ -47,7 +47,7 @@
 						<div class="m-t-20">
                             <form action="" class="">
                                 <div class="form-group">
-                                    <input type="text" class="form-control search" value="" />
+                                    <input type="text" class="form-control search" value="" placeholder="Search"/>
                                 </div>
                             </form>
                         </div>
@@ -161,233 +161,231 @@
                          
                             ?>
 
-							<div class="row gridlayout">
+					<div class="row gridlayout">
                     			
-							
 				 		<div class="col-sm-6 multi-grid">
-                        <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="#">
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[0]['featured_image'] ;?>">
-                                </div>
-                                <div class="grid-text-wrap">
-                                    <div class="grid-title"><?php echo $value[0]['title'];?></div>
-                                    <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
-                                    <div class="grid-meta"><?php echo implode(',',$value[0]['categories']);?></div>
-                                    <div class="grid-meta <?php echo $value[0]['class'] ;?>">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
+                            <div class="grid-box grid-full content-align-bottom">
+                                <a class="content-bottom" href="#">
+                                    <div class="grid-image">
+                                        <img src="<?php echo $value[0]['featured_image'] ;?>">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title"><?php echo $value[0]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(',',$value[0]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[0]['class'] ;?>">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
 
-                                </div>
-                                <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title"><?php echo $value[0]['title'];?></div>
-                                    <div class="grid-meta">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[0]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
+                                                        <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                    </div>
+                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
+                                                        <div>199 <i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
+                                                            <i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
-                                                        <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="pull-right text-right m-t-10">
-                                                  <?php echo $value[0]['excerpt'];?>  
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[0]['excerpt'];?>  
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="overlay-vertical"></div>
-                            </a>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="#">
+                                    <div class="grid-image">
+                                        <img src="<?php echo $value[1]['featured_image'] ;?>">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title"><?php echo $value[1]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(',',$value[1]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[1]['class'] ;?>">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
+
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[1]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
+                                                        <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                    </div>
+                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
+                                                        <div>199 <i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[1]['excerpt'];?>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="#">
+                                    <div class="grid-image">
+                                        <img src="<?php echo $value[2]['featured_image'] ;?>">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(',',$value[2]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[2]['class'] ;?>">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
+
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
+                                                        <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                    </div>
+                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
+                                                        <div>199 <i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[2]['excerpt'];?>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
                         </div>
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[1]['featured_image'] ;?>">
-                                </div>
-                                <div class="grid-text-wrap">
-                                    <div class="grid-title"><?php echo $value[1]['title'];?></div>
-                                    <div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
-                                    <div class="grid-meta"><?php echo implode(',',$value[1]['categories']);?></div>
-                                    <div class="grid-meta <?php echo $value[1]['class'] ;?>">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
+                        <div class="col-sm-6 multi-grid">
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="#">
+                                    <div class="grid-image">
+                                        <img src="<?php echo $value[3]['featured_image'] ;?>">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                         <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(',',$value[3]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[3]['class'] ;?>">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
 
-                                </div>
-                                <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title"><?php echo $value[1]['title'];?></div>
-                                    <div class="grid-meta">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
+                                                        <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                    </div>
+                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
+                                                        <div>199 <i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="pull-right text-right m-t-10">
-                                                  <?php echo $value[1]['excerpt'];?>  
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[3]['excerpt'];?>  
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="overlay-vertical"></div>
-                            </a>
-                        </div>
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[2]['featured_image'] ;?>">
-                                </div>
-                                <div class="grid-text-wrap">
-                                    <div class="grid-title"><?php echo $value[2]['title'];?></div>
-                                    <div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
-                                    <div class="grid-meta"><?php echo implode(',',$value[2]['categories']);?></div>
-                                    <div class="grid-meta <?php echo $value[2]['class'] ;?>">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="#">
+                                    <div class="grid-image">
+                                        <img src="<?php echo $value[4]['featured_image'] ;?>">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                         <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(',',$value[4]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[4]['class'] ;?>">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
 
-                                </div>
-                                <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title"><?php echo $value[2]['title'];?></div>
-                                    <div class="grid-meta">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
+                                                        <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                    </div>
+                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
+                                                        <div>199 <i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="pull-right text-right m-t-10">
-                                                  <?php echo $value[2]['excerpt'];?>  
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[4]['excerpt'];?>  
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="overlay-vertical"></div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 multi-grid">
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[3]['featured_image'] ;?>">
-                                </div>
-                                <div class="grid-text-wrap">
-                                     <div class="grid-title"><?php echo $value[3]['title'];?></div>
-                                    <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
-                                    <div class="grid-meta"><?php echo implode(',',$value[3]['categories']);?></div>
-                                    <div class="grid-meta <?php echo $value[3]['class'] ;?>">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-full content-align-bottom">
+                                <a class="content-bottom" href="#">
+                                    <div class="grid-image">
+                                        <img src="<?php echo $value[5]['featured_image'] ;?>">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                         <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(',',$value[5]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[5]['class'] ;?>">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
 
-                                </div>
-                                <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title"><?php echo $value[3]['title'];?></div>
-                                    <div class="grid-meta">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
+                                                        <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+                                                    </div>
+                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
+                                                        <div>199 <i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="pull-right text-right m-t-10">
-                                                  <?php echo $value[3]['excerpt'];?>  
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[5]['excerpt'];?>  
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="overlay-vertical"></div>
-                            </a>
-                        </div>
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[4]['featured_image'] ;?>">
-                                </div>
-                                <div class="grid-text-wrap">
-                                     <div class="grid-title"><?php echo $value[4]['title'];?></div>
-                                    <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
-                                    <div class="grid-meta"><?php echo implode(',',$value[4]['categories']);?></div>
-                                    <div class="grid-meta <?php echo $value[4]['class'] ;?>">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
-
-                                </div>
-                                <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title"><?php echo $value[4]['title'];?></div>
-                                    <div class="grid-meta">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="pull-right text-right m-t-10">
-                                                  <?php echo $value[4]['excerpt'];?>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="overlay-vertical"></div>
-                            </a>
-                        </div>
-                        <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="#">
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[5]['featured_image'] ;?>">
-                                </div>
-                                <div class="grid-text-wrap">
-                                     <div class="grid-title"><?php echo $value[5]['title'];?></div>
-                                    <div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
-                                    <div class="grid-meta"><?php echo implode(',',$value[5]['categories']);?></div>
-                                    <div class="grid-meta <?php echo $value[5]['class'] ;?>">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
-
-                                </div>
-                                <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title"><?php echo $value[5]['title'];?></div>
-                                    <div class="grid-meta">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="pull-right text-right m-t-10">
-                                                  <?php echo $value[5]['excerpt'];?>  
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="overlay-vertical"></div>
-                            </a>
-                        </div>                            
-                    </div>                    
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>                            
+                        </div>                    
               
-                
-            </div>
+                    </div>
 
             <?php
       }
@@ -397,17 +395,47 @@
 								$value['region'] = array(0 => 'No regions added');
 				 
                 ?>
-                <div class="row listlayout">                	 
+                <div class="row listlayout">
                     <div class="col-md-5">
                          <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
                     </div>
                     <div class="col-md-7">
-                        <h3 class="m-t-0">
-                        	<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-                        		<?php echo $value['title'];?>
-                        	</a>
-                        	<small><em>BY <?php echo ucfirst($value['director']);?></em></small>
-                        </h3>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="m-t-0">
+                                	<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+                                		<?php echo $value['title'];?>
+                                	</a>
+                                	<small><em>By <?php echo ucfirst($value['director']);?></em></small>
+                                </h4>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="social-strip">
+                                    <div class="pull-right watchlist-add"> 
+                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
+                                    </div>
+                                    <div class="pull-right like-action">
+                                        <span class="m-l-5 m-r-5">|</span> <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
+                                    </div>
+                                    <div class="share-button">
+                                        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
+                                        <div class="social-networks">
+                                          <ul>
+                                            <li class="social-twitter">
+                                              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
+                                            </li>
+                                            <li class="social-facebook">
+                                            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+                                            </li>
+                                            <li class="social-pin">
+                                            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr class="m-t-0 m-b-5">
                         <div class="row">
                             <div class="col-xs-8">
@@ -417,12 +445,7 @@
                                 <h6 class="m-t-0 m-b-0"><small>Dir:<?php echo ucfirst($value['director']);?></small></h6>
                             </div>
                             <div class="col-xs-4 text-right">
-                                <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-                                <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-                                <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
-                                <div class="small m-t-20">199 <i class="fa fa-eye"></i></div>
-                                <div class="small"><?php echo $value['post_like_count'] ;?><i class="fa fa-thumbs-up"></i></div>
-                                <div class="small">Watchlist <i class="fa fa-binoculars"></i></div>
+                                <div class="small">199 <i class="fa fa-eye"></i></div>
                             </div>
                         </div>
                     </div>	                
@@ -440,25 +463,25 @@
                             </h3>
                         </div>
                         <div class="col-sm-4">
-                            <div class="social-strip">
-                                <div class="pull-right"> 
-                                     Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>
+                            <div class="social-strip m-t-40">
+                                <div class="pull-right watchlist-add"> 
+                                    <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
                                 </div>
-                                <div class="pull-right">
-                                    |<?php echo $value['post_like_count'] ;?><a href="#"><i class="fa fa-thumbs-up"></i></a> | 
+                                <div class="pull-right like-action">
+                                    <span class="m-l-5 m-r-5">|</span> <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> <span class="m-l-5 m-r-5">|</span>
                                 </div>
                                 <div class="share-button">
-                                    <div class="social-toggle"><i class="fa fa-share-alt"></i></div>
+                                    <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
                                     <div class="social-networks">
                                       <ul>
                                         <li class="social-twitter">
-                                          <a href="http://www.twitter.com"><i class="fa fa-twitter fa-lg"></i></a>
+                                          <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
                                         </li>
                                         <li class="social-facebook">
-                                        <a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>
+                                        <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
                                         </li>
-                                        <li class="social-gplus">
-                                        <a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>
+                                        <li class="social-pin">
+                                        <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
                                         </li>
                                       </ul>
                                     </div>
@@ -1089,7 +1112,37 @@ window.onload = function() {
                           +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
                      +'</div>'
                      +'<div class="col-md-7">'
-                         +'<h3 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>BY '+value.director.toUpperCase()+'</em></small></h3>'
+                        +'<div class="row">'
+                            +'<div class="col-md-8">'
+                                +'<h4 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>BY '+value.director.toUpperCase()+'</em></small></h4>'
+                            +'</div>'
+                            +'<div class="col-md-4">'
+                                +'<div class="social-strip">'
+                                    +'<div class="pull-right watchlist-add">' 
+                                        +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                    +'</div>'
+                                    +'<div class="pull-right like-action">'
+                                        +'<span class="m-l-5 m-r-5">|</span> '+value.post_like_count+' <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>'
+                                    +'</div>'
+                                    +'<div class="share-button">'
+                                        +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
+                                        +'<div class="social-networks">'
+                                          +'<ul>'
+                                            +'<li class="social-twitter">'
+                                              +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-facebook">'
+                                            +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-pin">'
+                                            +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
+                                            +'</li>'
+                                          +'</ul>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+                            +'</div>'
+                        +'</div>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
@@ -1099,12 +1152,7 @@ window.onload = function() {
                                  +'<h6 class="m-t-0 m-b-0"><small>Dir:'+value.director.toUpperCase()+'</small></h6>'
                              +'</div>'
                              +'<div class="col-xs-4 text-right">'
-                                 +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
-                                 +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
-                                 +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
                                  +'<div class="small m-t-20">199 <i class="fa fa-eye"></i></div>'
-                                 +'<div class="small">'+value.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
-                                 +'<div class="small">Watchlist <i class="fa fa-binoculars"></i></div>'
                              +'</div>'
                          +'</div>'
                      +'</div>'
@@ -1119,15 +1167,15 @@ window.onload = function() {
                                  +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
                              +'</div>'
                              +'<div class="col-sm-4">'
-                                 +'<div class="social-strip">'
+                                 +'<div class="social-strip m-t-40">'
                                      +'<div class="pull-right"> '
                                          +' Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>'
                                      +'</div>'
                                      +'<div class="pull-right">'
-                                         +'|'+value.post_like_count+'<a href="#"><i class="fa fa-thumbs-up"></i></a> | '
+                                         +'| '+value.post_like_count+' <i class="fa fa-thumbs-up"></i> | '
                                      +'</div>'
                                      +'<div class="share-button">'
-                                         +'<div class="social-toggle"><i class="fa fa-share-alt"></i></div>'
+                                         +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
                                          +'<div class="social-networks">'
                                            +'<ul>'
                                              +'<li class="social-twitter">'
@@ -1136,7 +1184,7 @@ window.onload = function() {
                                              +'<li class="social-facebook">'
                                              +'<a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>'
                                              +'</li>'
-                                             +'<li class="social-gplus">'
+                                             +'<li class="social-pin">'
                                              +'<a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>'
                                              +'</li>'
                                           +' </ul>'

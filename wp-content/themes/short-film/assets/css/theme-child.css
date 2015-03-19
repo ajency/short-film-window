@@ -11222,7 +11222,6 @@ a {
 }
 .social-strip {
   color: #999999;
-  padding-top: 40px;
 }
 .share-button {
   position: relative;
@@ -11237,7 +11236,6 @@ a {
   padding: 0 10px;
   text-align: center;
   transition: all 0.25s;
-  color: #cccccc;
   cursor: pointer;
 }
 .social-toggle:hover {
@@ -11331,7 +11329,6 @@ a {
 }
 /* Like */
 .post-like {
-  color: #cccccc;
   /* transition */
   -webkit-transition: all 0.3s ease-in 0s;
   -moz-transition: all 0.3s ease-in 0s;
@@ -11355,7 +11352,6 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
-  color: #cccccc;
 }
 .watchlist-add a:hover {
   color: #af152f;
@@ -11363,6 +11359,22 @@ a {
 }
 .watchlist-add .fa {
   color: #999999;
+}
+.movie-info .social-strip {
+  padding-top: 40px;
+}
+.movie-info .social-toggle {
+  color: #cccccc;
+}
+.movie-info .post-like {
+  color: #cccccc;
+}
+.movie-info .watchlist-add a {
+  /* transition */
+  -webkit-transition: all 0.3s ease-in 0s;
+  -moz-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 @media (max-width: 767px) {
   .watchlist-add,
@@ -11666,5 +11678,16 @@ input.search:-ms-input-placeholder::before {
   .vid-next {
     top: 15%;
   }
+}
+.listlayout,
+.couchlayout {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 40px;
+}
+.listlayout:last-child,
+.couchlayout:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
 }
 /*# sourceMappingURL=theme-child.css.map */

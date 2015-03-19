@@ -36,32 +36,38 @@ get_header(); ?>
 		<!--<div><img src="https://placeimg.com/1000/404/people" class="img-responsive width-full"></div>
 		<div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
 		<div class="container movie-info">
-			<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
-			<div class="social-strip">
-			    <div class="pull-right watchlist-add"> 
-			        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-			    </div>
-			    <div class="pull-right like-action">
-			        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ;?> <span class="m-l-5 m-r-5">|</span>
-			    </div>
-			    <div class="share-button">
-			        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-			        <div class="social-networks">
-			          <ul>
-			            <li class="social-twitter">
-			              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-			            </li>
-			            <li class="social-facebook">
-			            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-			            </li>
-			            <li class="social-pin">
-			            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-			            </li>
-			          </ul>
-			        </div>
-			    </div>
+			<div class="row">
+				<div class="col-md-8">
+					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
+				</div>
+				<div class="col-md-4">
+					<div class="social-strip">
+					    <div class="pull-right watchlist-add"> 
+					        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
+					    </div>
+					    <div class="pull-right like-action">
+					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ;?> <span class="m-l-5 m-r-5">|</span>
+					    </div>
+					    <div class="share-button">
+					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
+					        <div class="social-networks">
+					          <ul>
+					            <li class="social-twitter">
+					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
+					            </li>
+					            <li class="social-facebook">
+					            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+					            </li>
+					            <li class="social-pin">
+					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+					            </li>
+					          </ul>
+					        </div>
+					    </div>
+					</div>
+				</div>
 			</div>
-			<div class="clearfix"></div>
+			
 			<hr class="m-t-0 m-b-5">
 			<div class="row">
 			    <div class="col-xs-9">
