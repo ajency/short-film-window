@@ -541,6 +541,7 @@ window.onload = function() {
     jQuery('#offset').val(count);
 	
 	jQuery('#genre').live('change',function(e){
+        jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
 		jQuery('.loader').text("Loading data...")
