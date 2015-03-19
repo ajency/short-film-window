@@ -399,7 +399,7 @@
                 ?>
                 <div class="row listlayout">                	 
                     <div class="col-md-5">
-                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive">
+                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
                     </div>
                     <div class="col-md-7">
                         <h3 class="m-t-0">
@@ -429,7 +429,7 @@
                 </div>
 
 	            <div class="couchlayout">	            	
-            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive">
+            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
                     <div class="row">
                         <div class="col-sm-8">
                             <h3 class="pull-left">
@@ -1086,7 +1086,7 @@ window.onload = function() {
 
                         html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
-                          +'<img src="'+value.featured_image+'" class="img-responsive">'
+                          +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
                      +'</div>'
                      +'<div class="col-md-7">'
                          +'<h3 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>BY '+value.director.toUpperCase()+'</em></small></h3>'
@@ -1113,7 +1113,7 @@ window.onload = function() {
 
                  html += '<div class="couchlayout">'
 
-                  +'<img src="'+value.featured_image+'" alt="" class="img-responsive">'
+                  +'<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
                          +'<div class="row">'
                              +'<div class="col-sm-8">'
                                  +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
