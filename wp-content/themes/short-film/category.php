@@ -683,6 +683,7 @@ window.onload = function() {
 		grid[k] = {};
 		var j = 0;	
 		for (var i= 0; i < multiple[k]; i++) { 
+
 			if(response[j] == undefined){
 				grid[k][i] = {
                     'id'            : "",
@@ -707,18 +708,21 @@ window.onload = function() {
 
 			}
 			else
-				grid[0][i] = response[j];
+				grid[k][i] = response[j];
 			
 			if(i == 5 && response.length > multiple[k])
 			{
+
 				k = k + 1;
 				i = -1 ;
+                if(multiple.hasOwnProperty(k))
+                    grid[k] = {};
 			}
             j = j + 1;
 				
 		}
 		
-		
+		console.log(grid);
 		return grid;
 		}
 
