@@ -161,7 +161,7 @@ function generate_grid_response($response){
 				'duration'		=> 0,
 				'region'		=> array(0 => ''),
 				'tags'			=> "",
-				'image'			=> 'image',
+				'featured_image'			=> 'image',
 				'user_like_count'	=> ""
 
 			);

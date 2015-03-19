@@ -105,7 +105,7 @@ get_header(); ?>
 	    
 	      
 	        <div class="img-content">
-	        	<?php echo $response['excerpt']; ?>
+	        	<?php echo $response['content']; ?>
 	        </div>
 	  		
 
