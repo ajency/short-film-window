@@ -541,6 +541,7 @@ window.onload = function() {
     jQuery('#offset').val(count);
 	
 	jQuery('#genre').live('change',function(e){
+        jQuery('.search').val("");
 		jQuery('#offset').val(0)
 		jQuery('.loader').text("Loading data...")
 		jQuery('.all_posts').html("")
@@ -553,6 +554,7 @@ window.onload = function() {
 
 	jQuery('#language').live('change',function(e){
 
+        
 		jQuery('#genre').trigger('change');
 	});
 
