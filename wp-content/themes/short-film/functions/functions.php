@@ -67,7 +67,7 @@ function get_custom_taxonomy_terms($post_id){
 		}
 	}
 	
-
+	
 	return $response;
 
 }
@@ -139,26 +139,27 @@ function generate_grid_response($response){
 
 	
 	$grid = array();
-	$multiple = array(6,12);
+	$multiple = array(6,6);
 	$k = 0 ;
 	
-	for ($i= 0; $i < $multiple[$k]; $i++) { 
-		
-		if($response[$i] == ""){
+	$j = 0; 
+	for ($i = 0; $i < $multiple[$k]; $i++) { 
+		if($response[$j] == ""){
 			$grid[$k][$i] =  array(
+				'id'			=> "",
 				'slug'			=> "",
 				'title'			=> "",
 				'type'			=> "",
 				'tagline'		=> "",
 				'videourl'  	=> "",
 				'excerpt'		=> "",
-				'director'		=> "Not yet created",
+				'director'		=> "",
 				'next_post'		=> "",
 				'prev_post'		=> "",
 				'comments'		=> "",
-				'categories'	=> array(0 => 'No categories'),
+				'categories'	=> array(0 => ''),
 				'duration'		=> 0,
-				'region'		=> array(0 => 'No regions'),
+				'region'		=> array(0 => ''),
 				'tags'			=> "",
 				'image'			=> 'image',
 				'user_like_count'	=> ""
@@ -167,14 +168,14 @@ function generate_grid_response($response){
 
 		}
 		else
-			$grid[$k][$i] = $response[$i];
+			$grid[$k][$i] = $response[$j];
 		
 		if($i == 5 && count($response) > $multiple[$k])
 		{
 			$k = $k + 1;
-			$i =0 ;
+			$i = -1 ;
 		}
-			
+		$j++;	
 	}
 	
 

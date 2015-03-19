@@ -76,6 +76,8 @@ class Video_API
 		!= "" ? $_REQUEST['posts_per_page'] : "";
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
 						$_REQUEST['offset'] : 0;
+        $exclude = isset($_REQUEST['exclude']) && $_REQUEST['exclude'] !="" ? 
+                        $_REQUEST['exclude'] : 0;
 
 
 		if($offset != 0)
@@ -88,6 +90,7 @@ class Video_API
 					'language'			=> $language,
 					'posts_per_page'   	=> $posts_per_page,
 					'offset'           	=> $offset,
+                    'exclude'           => $exclude
 
 
 		);
@@ -173,7 +176,7 @@ class Video_API
 
         );
 
-      
+
         $response = get_posts_filter($args);
         
 
