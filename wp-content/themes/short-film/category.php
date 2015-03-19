@@ -728,7 +728,7 @@ window.onload = function() {
 					'duration'		: 0,
 					'region'		: [],
 					'tags'			: "",
-					'image'			: 'image',
+					'featured_image'			: SITEURL()+'wp-content/themes/short-film/assets/img/placeholder.jpg',
 					'user_like_count'	: "",
                     'post_like_count' : 0,
                     'no_of_views'    : 0
@@ -774,7 +774,7 @@ window.onload = function() {
 
                 html += '<div>'
                         +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.image+'" class="img-responsive">'
+                           +' <img src="'+value.featured_image+'" class="img-responsive">'
                        +' </div></a>'
                     +'</div>'
 
@@ -808,7 +808,7 @@ window.onload = function() {
                
                 html += '<div>'
                         +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.image+'" class="img-responsive">'
+                           +' <img src="'+value.featured_image+'" class="img-responsive">'
                        +' </div></a>'
                     +'</div>'
 
@@ -840,7 +840,7 @@ window.onload = function() {
 
                 html += '<div>'
                         +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.image+'" class="img-responsive">'
+                           +' <img src="'+value.featured_image+'" class="img-responsive">'
                        +' </div></a>'
                     +'</div>'
 
@@ -927,7 +927,7 @@ window.onload = function() {
                         +'<div class="grid-box grid-half content-align-bottom">'
                             +'<a class="content-bottom" href="#">'
                                 +'<div class="grid-image">'
-                                    +'<img src="'+value[1]['image']+'">'
+                                    +'<img src="'+value[1]['featured_image']+'">'
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[1]['title']+'</div>'
