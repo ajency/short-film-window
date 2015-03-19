@@ -187,7 +187,7 @@ get_header(); ?>
 	    </div> -->
 
 	    <div class="text-center">
-	        <a href="" class="btn btn-primary btn-lg">Watch more awesome movies</a>
+	        <a href="" class="btn btn-primary btn-lg">Watch more awesome films</a>
 	    </div>
 	        
 	</div>
