@@ -188,7 +188,7 @@ function generate_grid_response($response){
 				'duration'		=> 0,
 				'region'		=> array(0 => ''),
 				'tags'			=> "",
-				'featured_image'			=> 'image',
+				'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
 				'user_like_count'	=> "",
 				'post_like_count' => 0,
 				'no_of_views'	=> 0
