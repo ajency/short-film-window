@@ -27,18 +27,14 @@ Template Name: Homepage
                 <hr class="m-t-0">
 
                 <form class="m-b-10 visible-xs" method="get">
-            		<select id="" name="categori" class="">
+            		<select id="" name="" class="">
     					<option value="" selected>THIS WEEK'S PREMIERE</option>
-    					<?php 
-                          $categories = get_categories(); 
-                          foreach ($categories as $category) {
-                            $option = '<option value="'.$category->term_id.'">';
-                            $option .= $category->cat_name;
-                            $option .= '</option>';
-                            echo $option;
-                          }
-
-                        ?>
+    					<option value="" >HORROR</option>
+    					<option value="" >COMEDY</option>
+    					<option value="" >ROMANCE</option>
+    					<option value="" >SCI-FI</option>
+    					<option value="" >SHORT DOC</option>
+    					<option value="" >ACTION</option>
         			</select>
             	</form>
 
@@ -81,14 +77,22 @@ Template Name: Homepage
                         <nav class="movie-cat visible-sm visible-md visible-lg">
                             <ul>
                                 <li class="active"><a href="">THIS WEEK'S PREMIERE</a></li>
-                                <?php 
-                          $categories = get_categories(); 
-
-                          print_r($categories);
-
-                          ?>
-                                
-                               
+                                <li><a href="">HORROR</a></li>
+                                <li><a href="">COMEDY</a></li>
+                                <li><a href="">ROMANCE</a></li>
+                                <li><a href="">SCI-FI</a></li>
+                                <li><a href="">FANTASY</a></li>
+                                <li><a href="">AWARD WINNING</a></li>
+                                <li><a href="">INDIAN</a></li>
+                                <li><a href="">THRILLER</a></li>
+                                <li><a href="">DRAMA</a></li>
+                                <li><a href="">SHORT DOC</a></li>
+                                <li><a href="">ANIMATION</a></li>
+                                <li><a href="">MUSIC VIDEO</a></li>
+                                <li><a href="">EXPERIMENTAL</a></li>
+                                <li><a href="">HEART WARMING</a></li>
+                                <li><a href="">FAMOUS DIRECTORS</a></li>
+                                <li><a href="">DARK</a></li>
                             </ul>
                         </nav>
                     </div>
