@@ -16,7 +16,8 @@ get_header(); ?>
          height="auto"
          width="auto"
          poster="<?php echo $response['featured_image'];?>"
-         loop 
+         loop
+         controls
          data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
 
       <p>
