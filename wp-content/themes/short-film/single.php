@@ -226,9 +226,28 @@ get_header(); ?>
 window.onload = function() {
 
 	jQuery('#noofviews').val();
+	prev = "<?php echo $response['prev_post'];?>";
+
+	if(parseInt(prev) == 0)
+	{
+		jQuery('.vid-previous').hide();
+		
+	}
+
+	next = "<?php echo $response['next_post'];?>";
+
+	if(parseInt(next) == 0)
+	{
+		jQuery('.vid-next').hide();
+		
+	}
+
+
+	
+
 	jQuery('.vid-previous').click(function(x){
 
-		prev = "<?php echo $response['prev_post'];?>";
+		
 
 		if(parseInt(prev) == 0)
 		{
@@ -241,7 +260,7 @@ window.onload = function() {
 
 	jQuery('.vid-next').click(function(x){
 
-		next = "<?php echo $response['next_post'];?>";
+		
 
 		if(parseInt(next) == 0)
 		{

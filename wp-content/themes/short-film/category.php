@@ -167,7 +167,7 @@
                     			
 				 		<div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-full content-align-bottom">
-                                <a class="content-bottom" href="#">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
                                     <div class="grid-image">
                                         <img src="<?php echo $value[0]['featured_image'] ;?>">
                                     </div>
@@ -205,7 +205,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="#">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
                                     <div class="grid-image">
                                         <img src="<?php echo $value[1]['featured_image'] ;?>">
                                     </div>
@@ -242,7 +242,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="#">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
                                     <div class="grid-image">
                                         <img src="<?php echo $value[2]['featured_image'] ;?>">
                                     </div>
@@ -280,7 +280,7 @@
 
                         <div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="#">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
                                     <div class="grid-image">
                                         <img src="<?php echo $value[3]['featured_image'] ;?>">
                                     </div>
@@ -315,7 +315,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="#">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
                                     <div class="grid-image">
                                         <img src="<?php echo $value[4]['featured_image'] ;?>">
                                     </div>
@@ -350,7 +350,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-full content-align-bottom">
-                                <a class="content-bottom" href="#">
+                                <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
                                     <div class="grid-image">
                                         <img src="<?php echo $value[5]['featured_image'] ;?>">
                                     </div>
@@ -720,7 +720,6 @@ window.onload = function() {
 				} 
 			})
 	}
-
 	showLayout();
 
 	function generate_grid_reponse(response){
@@ -731,6 +730,7 @@ window.onload = function() {
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;	
+        var image  = SITEURL+'wp-content/themes/short-film/assets/img/placeholder.jpg';
 		for (var i= 0; i < multiple[k]; i++) { 
 
 			if(response[j] == undefined){
@@ -750,7 +750,7 @@ window.onload = function() {
 					'duration'		: 0,
 					'region'		: [],
 					'tags'			: "",
-					'featured_image'			: SITEURL()+'wp-content/themes/short-film/assets/img/placeholder.jpg',
+					'featured_image': image,
 					'user_like_count'	: "",
                     'post_like_count' : 0,
                     'no_of_views'    : 0
@@ -911,7 +911,7 @@ window.onload = function() {
                             
                         +'<div class="col-sm-6 multi-grid">'
                        +' <div class="grid-box grid-full content-align-bottom">'
-                            +'<a class="content-bottom" href="#">'
+                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[0]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[0]['featured_image']+'">'
                                 +'</div>'
@@ -947,7 +947,7 @@ window.onload = function() {
                            +' </a>'
                         +'</div>'
                         +'<div class="grid-box grid-half content-align-bottom">'
-                            +'<a class="content-bottom" href="#">'
+                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[1]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[1]['featured_image']+'">'
                                 +'</div>'
@@ -983,7 +983,7 @@ window.onload = function() {
                             +'</a>'
                         +'</div>'
                         +'<div class="grid-box grid-half content-align-bottom">'
-                           +' <a class="content-bottom" href="#">'
+                           +' <a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[2]['slug']+'">'
                                 +'<div class="grid-image">'
                                    +' <img src="'+value[2]['featured_image']+'">'
                                +' </div>'
@@ -1021,7 +1021,7 @@ window.onload = function() {
                    +' </div>'
                     +'<div class="col-sm-6 multi-grid">'
                        +' <div class="grid-box grid-half content-align-bottom">'
-                            +'<a class="content-bottom" href="#">'
+                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[3]['slug']+'">'
                                 +'<div class="grid-image">'
                                    +' <img src="'+value[3]['featured_image']+'">'
                                 +'</div>'
@@ -1057,7 +1057,7 @@ window.onload = function() {
                            +' </a>'
                        +' </div>'
                        +' <div class="grid-box grid-half content-align-bottom">'
-                            +'<a class="content-bottom" href="#">'
+                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[4]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[4]['featured_image']+'">'
                                 +'</div>'
@@ -1092,7 +1092,7 @@ window.onload = function() {
                             +'</a>'
                         +'</div>'
                         +'<div class="grid-box grid-full content-align-bottom">'
-                            +'<a class="content-bottom" href="#">'
+                            +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[5]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[5]['featured_image']+'">'
                                 +'</div>'
