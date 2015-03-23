@@ -730,6 +730,7 @@ window.onload = function() {
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;	
+        var image  = SITEURL+'wp-content/themes/short-film/assets/img/placeholder.jpg';
 		for (var i= 0; i < multiple[k]; i++) { 
 
 			if(response[j] == undefined){
@@ -749,7 +750,7 @@ window.onload = function() {
 					'duration'		: 0,
 					'region'		: [],
 					'tags'			: "",
-					'featured_image'			: SITEURL()+'wp-content/themes/short-film/assets/img/placeholder.jpg',
+					'featured_image': image,
 					'user_like_count'	: "",
                     'post_like_count' : 0,
                     'no_of_views'    : 0
