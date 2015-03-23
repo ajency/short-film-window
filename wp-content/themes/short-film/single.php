@@ -230,7 +230,7 @@ window.onload = function() {
 	if(parseInt(prev) == 0)
 	{
 		jQuery('.vid-previous').hide();
-		return false;
+		
 	}
 
 	next = "<?php echo $response['next_post'];?>";
@@ -238,7 +238,7 @@ window.onload = function() {
 	if(parseInt(next) == 0)
 	{
 		jQuery('.vid-next').hide();
-		return false;
+		
 	}
 
 
@@ -247,6 +247,7 @@ window.onload = function() {
 	jQuery('.vid-previous').click(function(x){
 
 		
+
 		if(parseInt(prev) == 0)
 		{
 			alert('No previous video');
