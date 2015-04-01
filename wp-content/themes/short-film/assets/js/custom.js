@@ -75,6 +75,7 @@
       });
       player_name.on('play', function(){ 
         $('.movie-info').addClass('playing');
+        $('.header').addClass('playing');
         $('.movie-header .overlay').css('display', 'none');
         views = parseInt(jQuery('#noofviews').val()) + 1 ; 
         data = 'views='+views+'&post_id='+jQuery('#post_id').val();
@@ -95,6 +96,7 @@
       });
       player_name.on('pause', function(){ 
         $('.movie-info').removeClass('playing');
+        $('.header').removeClass('playing');
         $('.movie-header .overlay').css('display', 'block');
       });
     }
