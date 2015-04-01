@@ -57,6 +57,23 @@ The comments page for Bones
 
 <?php if ( comments_open() ) : ?>
 
-	<?php comment_form(); ?>
-
+<!--####################-->
+					<?php //// comment_form(); ?> 
+	
+	<div id="fbcomments">
+		<div id="fb-root">
+		</div>
+			
+		<script src="http://connect.facebook.net/en_US/all.js#xfbml=1">
+		</script>
+		<fb:comments href="<?php the_permalink(); ?>" width="880"> </fb:comments>
+		
+	</div>
+	
+<!--####################-->
 <?php endif; // if you delete this the sky will fall on your head ?>
+
+
+<!-- ***************************************************************** -->
+<!-- ***************************************************************** -->
+
