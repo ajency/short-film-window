@@ -1,4 +1,4 @@
-@import "../css/plugins/megamenu/fhmm.css";
+﻿@import "../css/plugins/megamenu/fhmm.css";
 @import "../css/plugins/slick-slider/slick.css";
 @import "../css/plugins/slick-slider/slick-theme.css";
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700);
@@ -11697,3 +11697,8 @@ input.search:-ms-input-placeholder::before {
   margin-bottom: 0;
 }
 /*# sourceMappingURL=theme-child.css.map */
+
+.ssba, .ssba a {
+
+  float: left;
+}

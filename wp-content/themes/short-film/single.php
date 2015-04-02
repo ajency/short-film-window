@@ -49,17 +49,15 @@ get_header(); ?>
 					    <div class="pull-right like-action">
 					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ; ?> <span class="m-l-5 m-r-5">|</span>
 					    </div>
+					<!--
 					    <div class="share-button">
 					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
 					        <div class="social-networks">
 							
 							<?php///ssba_activate(); ?>
 							
-							<?php echo do_shortcode("[ssba]"); ?>
-							
-							<?php ///echo do_shortcode("[ssba]"); ?>
-							<?php //echo do_shortcode("[ssba]"); ?>
-							
+							<?php // echo do_shortcode("[ssba]"); ?>
+					-->
 							  <!--
 					          <ul>
 					            <li class="social-twitter">
@@ -73,8 +71,10 @@ get_header(); ?>
 					            </li>
 					          </ul>
 							  -->
+					<!--		  
 					        </div>
 					    </div>
+					-->
 					</div>
 				</div>
 			</div>
@@ -135,6 +135,16 @@ get_header(); ?>
 	    
 </div>
 
+
+		<div class="row">
+	        <div class="col-md-12">
+
+				<?php///ssba_activate(); ?>
+				
+				<?php echo do_shortcode("[ssba]"); ?>
+
+			</div>
+		</div>
 
 	    
 	    <div class="spacer-40"></div>
