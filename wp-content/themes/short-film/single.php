@@ -47,11 +47,18 @@ get_header(); ?>
 					        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
 					    </div>
 					    <div class="pull-right like-action">
-					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ;?> <span class="m-l-5 m-r-5">|</span>
+					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ; ?> <span class="m-l-5 m-r-5">|</span>
 					    </div>
+					<!--
 					    <div class="share-button">
 					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
 					        <div class="social-networks">
+							
+							<?php///ssba_activate(); ?>
+							
+							<?php // echo do_shortcode("[ssba]"); ?>
+					-->
+							  <!--
 					          <ul>
 					            <li class="social-twitter">
 					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
@@ -63,8 +70,11 @@ get_header(); ?>
 					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
 					            </li>
 					          </ul>
+							  -->
+					<!--		  
 					        </div>
 					    </div>
+					-->
 					</div>
 				</div>
 			</div>
@@ -126,6 +136,16 @@ get_header(); ?>
 </div>
 
 
+		<div class="row">
+	        <div class="col-md-12">
+
+				<?php///ssba_activate(); ?>
+				
+				<?php echo do_shortcode("[ssba]"); ?>
+
+			</div>
+		</div>
+
 	    
 	    <div class="spacer-40"></div>
 	    <div class="row">
@@ -133,7 +153,20 @@ get_header(); ?>
 	            <h3>SIMILAR MOVIES WE PICKED FOR YOU</h3>
 	            <hr>
 	                <div class="row">
-	                    <div class="col-sm-4">
+					
+						<div class="col-sm-4">
+							<?php 
+								
+								related_posts(); 
+								
+								//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
+								
+								//print_r(related_posts());
+							?>
+						</div>
+					
+						<!--
+						<div class="col-sm-4">
 	                    	<div class="focus-img">
 	                    		<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
 	                    	</div>
@@ -149,7 +182,8 @@ get_header(); ?>
 	                        	<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
 	                        </div>
 	                    </div>
-	                </div>
+						-->
+					</div>
 	        </div>
 	    </div>
 
