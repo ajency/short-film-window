@@ -38,17 +38,29 @@ get_header(); ?>
 		<div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
 		<div class="container movie-info">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-7">
 					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-5">
 					<div class="social-strip">
+					
+
+						
 					    <div class="pull-right watchlist-add"> 
 					        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
 					    </div>
 					    <div class="pull-right like-action">
 					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ; ?> <span class="m-l-5 m-r-5">|</span>
 					    </div>
+															
+						<div class="pull-right share-button">
+						
+								<?php///ssba_activate(); ?>
+								
+								<?php echo do_shortcode("[ssba]"); ?>
+							
+						</div>
+									
 					<!--
 					    <div class="share-button">
 					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
@@ -77,7 +89,10 @@ get_header(); ?>
 					-->
 					</div>
 				</div>
+
 			</div>
+			
+
 			
 			<hr class="m-t-0 m-b-5">
 			<div class="row">
@@ -107,6 +122,10 @@ get_header(); ?>
 			        <h6 class="m-t-0 m-b-0"><small><em><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$region_array) ;?></em></small></h6>
 			        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $cat_array); ?></em></small></h6>
 			    </div>
+				
+						
+		
+				
 			    <div class="col-xs-3 text-right">
 			        <div class="small views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></div>
 			    </div>
@@ -135,16 +154,6 @@ get_header(); ?>
 	    
 </div>
 
-
-		<div class="row">
-	        <div class="col-md-12">
-
-				<?php///ssba_activate(); ?>
-				
-				<?php echo do_shortcode("[ssba]"); ?>
-
-			</div>
-		</div>
 
 	    
 	    <div class="spacer-40"></div>
@@ -306,7 +315,7 @@ window.onload = function() {
 	});
 
 	jQuery('.infocus').infinitescroll({
-	
+		
 		navSelector  	: "a#next:last",
 		nextSelector 	: "a#next:last",
 		itemSelector 	: ".infocus",
@@ -330,9 +339,11 @@ window.onload = function() {
 	        +'</div>'
 	        +'<div class="col-md-6">'
 	            +'<div class="m-t-30 pull-right">'
-	                +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
-	                +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
-	                +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
+	                 // +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
+	                 // +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
+	                 // +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
+					
+					
 	            +'</div>'
 	        +'</div>'
 	    +'</div>'
