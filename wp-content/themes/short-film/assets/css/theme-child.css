@@ -11702,3 +11702,7 @@ input.search:-ms-input-placeholder::before {
 
   float: left;
 }
+
+.share-button{
+width: auto;
+}
