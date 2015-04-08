@@ -50,11 +50,16 @@ Template Name: Homepage
                                 </div>
                                 <div class="col-md-3">
                                     <div class="pull-right">
-                                        <div class="m-t-30 pull-right">
+                                        <!--
+										<div class="m-t-30 pull-right">
                                         <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
                                         <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
                                         <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
                                         </div>
+										-->
+										<div class="pull-right share-button">													
+											<?php echo do_shortcode("[ssba]"); ?>							
+										</div>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +80,8 @@ Template Name: Homepage
                     </div>
                     <div class="col-sm-3">
                         <nav class="movie-cat visible-sm visible-md visible-lg">
-                            <ul>
+                            <!--
+							<ul>
                                 <li class="active"><a href="">THIS WEEK'S PREMIERE</a></li>
                                 <li><a href="">HORROR</a></li>
                                 <li><a href="">COMEDY</a></li>
@@ -94,6 +100,25 @@ Template Name: Homepage
                                 <li><a href="">FAMOUS DIRECTORS</a></li>
                                 <li><a href="">DARK</a></li>
                             </ul>
+							-->
+							<?php
+								$args = array(
+								  'orderby' => 'name',
+								  'parent' => 0
+								  );
+								$categories = get_categories( $args );
+							?>
+							<a href="">THIS WEEK'S PREMIERE</a> <br/>
+							<?php							
+								foreach ( $categories as $category )
+								{
+									echo '<a data-cat-id="'. $category->term_id.'" href="#">' . $category->name . '</a><br/>';
+									
+								}
+								//
+								//
+							?>
+							
                         </nav>
                     </div>
                 </div>
@@ -495,3 +520,58 @@ Template Name: Homepage
         </div>
 
 <?php get_footer(); ?>
+
+
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function($) {
+	
+		$('#data-cat-id').click(function(){
+	
+			var cat_id = $('#catSelect').val();
+			var post_id = $('#postSelect').val();
+		
+			// make ajax request
+			$.ajax({
+				url : ajaxurl,
+				type : 'POST',
+				data:{
+					action : 'save_homepage_video',
+					cat_id : cat_id,
+					post_id : post_id
+				},
+				success : function(){
+					$( "div.update_message" ).html( "<p>Updation of Home Page Video Successful</p>" );
+				}
+			});
+			
+		});
+	
+	});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
