@@ -163,7 +163,8 @@ get_header(); ?>
 	            <hr>
 	                <div class="row">
 					
-						<div class="col-sm-4">
+						<!-- <div class="col-sm-4"> -->
+						<div class="col-md-12">
 							<?php 
 								
 								related_posts(); 

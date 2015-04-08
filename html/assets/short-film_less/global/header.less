@@ -1,0 +1,71 @@
+.header{
+	position: fixed;
+	width: 100%;
+	padding: 15px;
+	// height: 100px;
+	z-index: 2;
+	background-color: fade(@gray-base, 60%);
+	-webkit-transform: translate3d(0,0,0);
+}
+
+.logo{
+	float: left;
+}
+
+.links{
+	padding: 22px 15px;
+	a{
+		color: @gray-light;
+	}
+}
+
+.social-links{
+	.link{
+		position: relative;
+	}
+	.action, .icon{
+		float: left;
+	}
+	.icon{
+		padding: 4px;
+		background-color: @fb-brand;
+		color: @white;
+	}
+	.action{
+		background-color: lighten(@fb-brand, 20%);
+		width: 60px;
+		text-align: center;
+		position: relative;
+		a{
+			color: @white;
+		}
+	}
+	.twitter{
+		top: -4px;
+		.icon{
+			background-color: @twitter-brand;
+		}		
+		.action{
+			bottom: -8px;
+			background-color: lighten(@twitter-brand, 20%)
+		}
+	}
+	.youtube{
+		.icon{
+			background-color: @youtube-brand;
+		}
+	}
+}
+
+.sub-header{
+	position: fixed;
+	background: url('../img/noisy-texture.png');
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	z-index: 1;
+	padding-top: 120px;
+	span{
+		margin: 0 30px
+	}
+}

@@ -47,7 +47,12 @@ class Video_API
             
         );
         
-
+/*
+       $routes['/staffpickspage/(?P<id>\d+)'] = array(
+            array( array( $this, 'staffpicks'), WP_JSON_Server::READABLE)
+            
+        );
+*/
         
     	return $routes;
 	}
