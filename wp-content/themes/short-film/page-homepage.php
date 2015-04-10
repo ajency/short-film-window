@@ -26,97 +26,64 @@ Template Name: Homepage
 
                 <hr class="m-t-0">
 
-                <form class="m-b-10 visible-xs" method="get">
-            		<select id="" name="" class="">
-    					<option value="" selected>THIS WEEK'S PREMIERE</option>
-    					<option value="" >HORROR</option>
-    					<option value="" >COMEDY</option>
-    					<option value="" >ROMANCE</option>
-    					<option value="" >SCI-FI</option>
-    					<option value="" >SHORT DOC</option>
-    					<option value="" >ACTION</option>
-        			</select>
-            	</form>
-
                 <div class="row">
                     <div class="col-sm-9">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/video_placeholder.jpg" alt="" class="img-responsive width-full">
-                        <div class="role-settings">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="pull-left">
-                                        <h3>HELLO WORLD <small><em>by Director</em></small></h3>
-                                    </div>        
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="pull-right">
-                                        <!--
-										<div class="m-t-30 pull-right">
-                                        <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-                                        <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
-                                        <a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>
-                                        </div>
-										-->
-										<div class="pull-right share-button">													
-											<?php echo do_shortcode("[ssba]"); ?>							
+						
+						<div class="staffpick-display-section">
+							<!--
+							<div class="inside-script">
+								<img src="<?php //echo get_template_directory_uri(); ?>/assets/img/video_placeholder.jpg" alt="" class="img-responsive width-full">
+								
+								<div class="role-settings">
+									<div class="row">
+										<div class="col-md-9">
+											<div class="pull-left">
+												<h3>HELLO WORLD <small><em>by Director</em></small></h3>
+											</div>        
 										</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="m-t-0 m-b-5">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <h5 class="m-t-0 m-b-0"><small><em>Tag line</em></small></h5>
-                                    <h5 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h5>
-                                    <h5 class="m-t-0 m-b-0"><small><em>Horror</em></small></h5>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <div>199 <i class="fa fa-eye"></i></div>
-                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                    <div>Watchlist <i class="fa fa-binoculars"></i></div>
-                                </div>
-                            </div>
-                        </div>
+										<div class="col-md-3">
+											<div class="pull-right">
+											
+												<div class="pull-right share-button">													
+													<?php //echo do_shortcode("[ssba]"); ?>							
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr class="m-t-0 m-b-5">
+									<div class="row">
+										<div class="col-xs-6">
+											<h5 class="m-t-0 m-b-0"><small><em>Tag line</em></small></h5>
+											<h5 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h5>
+											<h5 class="m-t-0 m-b-0"><small><em>Horror</em></small></h5>
+										</div>
+										<div class="col-xs-6 text-right">
+											<div>199 <i class="fa fa-eye"></i></div>
+											<div>75 <i class="fa fa-thumbs-up"></i></div>
+											<div>Watchlist <i class="fa fa-binoculars"></i></div>
+										</div>
+									</div>
+								</div>
+							</div>		
+							-->
+						</div>
+						
                     </div>
                     <div class="col-sm-3">
                         <nav class="movie-cat visible-sm visible-md visible-lg">
-                            <!--
-							<ul>
-                                <li class="active"><a href="">THIS WEEK'S PREMIERE</a></li>
-                                <li><a href="">HORROR</a></li>
-                                <li><a href="">COMEDY</a></li>
-                                <li><a href="">ROMANCE</a></li>
-                                <li><a href="">SCI-FI</a></li>
-                                <li><a href="">FANTASY</a></li>
-                                <li><a href="">AWARD WINNING</a></li>
-                                <li><a href="">INDIAN</a></li>
-                                <li><a href="">THRILLER</a></li>
-                                <li><a href="">DRAMA</a></li>
-                                <li><a href="">SHORT DOC</a></li>
-                                <li><a href="">ANIMATION</a></li>
-                                <li><a href="">MUSIC VIDEO</a></li>
-                                <li><a href="">EXPERIMENTAL</a></li>
-                                <li><a href="">HEART WARMING</a></li>
-                                <li><a href="">FAMOUS DIRECTORS</a></li>
-                                <li><a href="">DARK</a></li>
-                            </ul>
-							-->
-							<?php
-								$args = array(
-								  'orderby' => 'name',
-								  'parent' => 0
-								  );
-								$categories = get_categories( $args );
-							?>
+
 							<a href="">THIS WEEK'S PREMIERE</a> <br/>
-							<?php							
-								foreach ( $categories as $category )
-								{
-									echo '<a data-cat-id="'. $category->term_id.'" href="#">' . $category->name . '</a><br/>';
+							
+							<?php
+							
+								$pairs = get_pairs_category_post();
+												
+								foreach ( $pairs as $pair )
+								{								
+									echo '<a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a><br/>';
 									
 								}
-								//
-								//
+							
 							?>
 							
                         </nav>
@@ -524,31 +491,145 @@ Template Name: Homepage
 
 
 <script type="text/javascript">
-
+	
 	jQuery(document).ready(function($) {
-	
-		$('#data-cat-id').click(function(){
-	
-			var cat_id = $('#catSelect').val();
-			var post_id = $('#postSelect').val();
 		
+
+		jQuery('.staffpick-display-section').text("Loading data...");
+		
+		jQuery.ajax({
+		
+			type : 'GET',
+			url : ajaxurl,
+			data:{
+				action : 'show_default_staffpick_post'
+			},
+			success:function(response)
+			{	
+				generate_data(response);
+				
+				console.log("Success");
+								
+			},
+			error:function(response)
+			{
+				console.log("Error");
+			}
+
+        });
+		
+		
+		$('.staffpick-category').click(function(event){
+	
+			
+			//var cat_id = $('#catSelect').val();
+			
+			event.preventDefault();
+			var postid = $(event.target).attr('data-post-id');
+			
+			console.log(postid);
+			
+	
 			// make ajax request
 			$.ajax({
-				url : ajaxurl,
-				type : 'POST',
-				data:{
-					action : 'save_homepage_video',
-					cat_id : cat_id,
-					post_id : post_id
-				},
-				success : function(){
-					$( "div.update_message" ).html( "<p>Updation of Home Page Video Successful</p>" );
-				}
-			});
 			
+				type : 'GET',
+				url : SITEURL+'/wp-json/videos/'+postid,
+				success:function(response)
+				{			
+                    generate_data(response);
+					console.log("Success");	
+					console.log(response);						
+				},
+				error:function(error)
+				{
+					console.log("Error");	
+				} 
+			
+			});
 		});
+	//================================================================================
 	
-	});
+		
+	function generate_data(response)
+	{		
+		jQuery('.staffpick-display-section').text("")
+		jQuery('.staffpick-display-section').html("")
+       
+	   html = jQuery('.staffpick-display-section').html()
+		console.log(response);
+		if(response)
+		{
+			html+=
+					'<div class="inside-script">'
+					
+								// +'<video id="bg-video" '
+									// +'class="video-js vjs-default-skin" '
+									// +'height="auto"'
+									// +'width="auto" '
+									// +'poster="'+response.featured_image+' " '
+									// +'loop'
+									// +'controls'
+									// +'data-setup={ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src":" '+ response.videourl+' "}">'
+
+								  // +'<p>Your browser doesnot support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example'
+								  // +'</p>'
+								// +'</video>'
+					
+					
+							+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+							
+							+'<div class="role-settings">'
+								+'<div class="row">'
+									+'<div class="col-md-9">'
+										+'<div class="pull-left">'
+											+'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
+										+'</div>'
+									+'</div>'
+									+'<div class="col-md-3">'
+										+'<div class="pull-right">'
+										
+											+'<div class="pull-right share-button">'
+												+'<?php echo do_shortcode("[ssba]"); ?>'							
+											+'</div>'
+										+'</div>'
+									+'</div>'
+								+'</div>'
+								+'<hr class="m-t-0 m-b-5">'
+								+'<div class="row">'
+									+'<div class="col-xs-6">'
+										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.tagline+'</em></small></h5>'
+										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region[0]+' </em></small></h5>'
+										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.categories[0]+'</em></small></h5>'
+									+'</div>'
+									+'<div class="col-xs-6 text-right">'
+										+'<div>'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
+										+'<div>'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
+										+'<div>Watchlist <i class="fa fa-binoculars"></i></div>'
+									+'</div>'
+								+'</div>'
+							+'</div>'
+					+'</div>'		
+		
+			;
+		
+			jQuery('.staffpick-display-section').html(html);
+					 
+		}
+		else
+		{
+			jQuery('.staffpick-display-section').html("");
+			html += "<div>No posts found.</div>";
+			jQuery('.staffpick-display-section').html(html);
+		}
+		
+
+    } // end of generate_data
+		
+		
+
+	
+	});  // end of document.ready function
 
 </script>
 

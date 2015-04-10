@@ -647,6 +647,7 @@ function add_custom_scripts() {
 
 
     wp_localize_script( "jquery", "SITEURL", site_url() );
+    wp_localize_script( "jquery", "ajaxurl", admin_url( 'admin-ajax.php' ) );
     
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
@@ -1207,13 +1208,137 @@ function shortfilm_menu()
 
 		if(update_option('homepage_video',$post_id))
 		{
-			echo "Updation of Home Page Video Successful";
+			$response = Film\Video::get($post_id);
+			
+			//echo "Updation of Home Page Video Successful";
+			
+			wp_send_json($response);
+			
 		}
 		else
 		{
-			echo "Updation failed. Please select other category/post";
+			echo "Updation failed. Please select another category/post";
 		}
 
 		die();
 	}
 
+
+	add_action('wp_ajax_show_default_staffpick_post', 'get_default_staffpick_post');
+
+	function get_default_staffpick_post()
+	{
+		
+		$args = array( 'numberposts' => '1' );
+		$recent_posts = wp_get_recent_posts( $args );
+		
+		//---------
+		// echo "recent post!!";
+		// print_r($recent_posts);
+		// exit;
+		//-----------
+		
+		$recent_post_id = $recent_posts[0]["ID"];
+		
+		//$response = Film\Video::get_the_post_info($recent_post_id);
+		$response = Film\Video::get($recent_post_id);
+	
+
+		if (is_wp_error($response))
+		{
+		   echo false;
+		}
+		else
+		{
+		   wp_send_json($response);
+
+		}
+			
+
+
+		//die();
+		
+	}  // end func get_default_staffpick_post
+
+
+	
+	add_action('wp_ajax_show_staffpick_category_post', 'get_staffpick_category_post');
+
+	function get_staffpick_category_post($postid)
+	{
+
+		//$response = Film\Video::get_the_post_info($recent_post_id);
+		$response = Film\Video::get($postid);
+	
+
+		if (is_wp_error($response))
+		{
+		   echo false;
+		}
+		else
+		{
+		   wp_send_json($response);
+
+		}
+
+		//die();
+		
+	}  // end func get_staffpick_category_post
+	
+	
+	function get_pairs_category_post()
+	{
+		$response = array();
+		
+		$args_cat = array(
+			'orderby' => 'name',
+			'parent' => 0
+		);
+		
+		$categories = get_categories( $args_cat );
+		
+		foreach ( $categories as $category )
+		{
+			$args_post = array( 'numberposts' => '1', 'category' => $category->term_id);
+			
+			$recent_posts = wp_get_recent_posts( $args_post );
+			
+			$recent_post_id = $recent_posts[0]["ID"];
+			
+			$response[]=array(
+				
+				'catid' => $category->term_id,
+				'catname' => $category->name,
+				'postid' => $recent_post_id
+			);	
+						
+		}		
+
+		if (is_wp_error($response))
+		{
+		   return false;
+		}
+		else
+		{
+		    // echo "hey pairs !! ";
+		    // print_r($response);
+
+			// echo"**********************   ";	
+
+			// echo $response[0][catid];
+			// echo $response[0][catname];
+			// echo $response[0][postid];
+		
+		   return $response;
+		}
+	
+		
+	}  // end func get_pairs_category_post
+
+
+
+
+
+
+
+	
