@@ -170,8 +170,7 @@ get_header(); ?>
 								related_posts(); 
 								
 								//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
-								
-								//print_r(related_posts());
+							
 							?>
 						</div>
 					
