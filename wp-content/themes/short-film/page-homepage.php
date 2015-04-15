@@ -93,7 +93,7 @@ Template Name: Homepage
                 <div class="spacer-50"></div>
                 <div class="row">
                     <div class="col-md-9">
-                        <div class="pull-left">
+                        <div class="">
                             <h2>NEW AND NOTEWORTHY</h2>
                         </div>
                     </div>
@@ -334,7 +334,7 @@ Template Name: Homepage
                 <div class="spacer-50"></div>
                 <div class="row">
                     <div class="col-md-9">
-                        <div class="pull-left">
+                        <div class="">
                             <h3>IN FOCUS</h3>
                         </div>
                     </div>
@@ -427,12 +427,12 @@ Template Name: Homepage
                 </div>
 
                 <div class="spacer-50"></div>
-                <div class="row">
-                    <div class="col-md-6">
+                <div class="row ge">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
                         <h3><small><em>SORT BY</em></small> GENRE</h3>
                     </div>
-                    <div class="col-md-6">
-                         <div class="pull-right m-t-20">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                         <div class="pull-right">
                             <div class="btn-group genre-dd">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     Genre <i class="fa fa-angle-double-down"></i>

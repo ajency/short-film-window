@@ -66,6 +66,13 @@ input.search{
 }
 
 //genre dropdown
+.genre-dd {
+    margin-top: 20px;
+    @media screen and (max-width: 768px) {
+        margin-top: 14px;
+    }
+    @media screen and (max-width: 768px) {}
+}
 .genre-dd .btn { 
     background: transparent;
     border: 0;
@@ -146,5 +153,15 @@ input.search{
             vertical-align: bottom;
             text-align: right;
         }
+    }
+}
+
+@media screen and (max-width: 445px) {
+    .ge .col-xs-6 {width: 100%; float: none;}
+    .ge .pull-right {float: none !important;}
+    .ge .genre-dd {
+        display: block;
+        .btn {display: block; width: 100%;}
+        .dropdown-menu {width: 100%;}
     }
 }

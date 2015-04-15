@@ -52,7 +52,7 @@ get_header(); ?>
 					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
 				</div>
 				<div class="col-md-5">
-					<div class="social-strip">
+					<div class="social-strip soc-ico">
                         <?php echo do_shortcode("[ssba]"); ?>
 <!--
                         <div class="soc-ico">
