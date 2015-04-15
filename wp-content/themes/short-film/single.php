@@ -30,6 +30,9 @@ get_header(); ?>
 	<div id="movie-header" class="movie-header without-vid">
         <div class="vid-splash text-center">
             <div class="img-fi-he">
+                <a href="#" class="play_movie_big">
+                    <i class="fa fa-play"></i>
+                </a>
                 <img id="splash" src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder.jpg" class="img-fi-he-img" />
             </div>
         </div>
