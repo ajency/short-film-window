@@ -71,8 +71,8 @@ Template Name: Homepage
                     </div>
                     <div class="col-sm-3">
                         <nav class="movie-cat visible-sm visible-md visible-lg">
-
-							<a href="">THIS WEEK'S PREMIERE</a> <br/>
+                            <ul>
+							     <li><a href="">THIS WEEK'S PREMIERE</a></li>
 							
 							<?php
 							
@@ -80,12 +80,12 @@ Template Name: Homepage
 												
 								foreach ( $pairs as $pair )
 								{								
-									echo '<a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a><br/>';
+									echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
 									
 								}
 							
 							?>
-							
+							</ul>
                         </nav>
                     </div>
                 </div>
@@ -99,8 +99,9 @@ Template Name: Homepage
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group m-t-20">
-                        	<form action="" class="">
+                        	<form action="" class="search_menu">
                                 <input type="text" class="form-control search" placeholder="Search">
+                                <i class="fa fa-reorder"></i>
                         	</form>
                         </div>
                     </div>
@@ -127,7 +128,7 @@ Template Name: Homepage
                                                 <div class="pull-left text-center m-t-10">
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10">
+                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
                                                     <div>199 <i class="fa fa-eye"></i></div>
                                                     <div>75 <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -162,7 +163,7 @@ Template Name: Homepage
                                                 <div class="pull-left text-center m-t-10">
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10">
+                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
                                                     <div>199 <i class="fa fa-eye"></i></div>
                                                     <div>75 <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -197,7 +198,7 @@ Template Name: Homepage
                                                 <div class="pull-left text-center m-t-10">
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10">
+                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
                                                     <div>199 <i class="fa fa-eye"></i></div>
                                                     <div>75 <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -234,7 +235,7 @@ Template Name: Homepage
                                                 <div class="pull-left text-center m-t-10">
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10">
+                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
                                                     <div>199 <i class="fa fa-eye"></i></div>
                                                     <div>75 <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -269,7 +270,7 @@ Template Name: Homepage
                                                 <div class="pull-left text-center m-t-10">
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10">
+                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
                                                     <div>199 <i class="fa fa-eye"></i></div>
                                                     <div>75 <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -304,7 +305,7 @@ Template Name: Homepage
                                                 <div class="pull-left text-center m-t-10">
                                                     <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                 </div>
-                                                <div class="pull-left p-l-10 m-t-10">
+                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
                                                     <div>199 <i class="fa fa-eye"></i></div>
                                                     <div>75 <i class="fa fa-thumbs-up"></i></div>
                                                 </div>
@@ -339,8 +340,9 @@ Template Name: Homepage
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group m-t-20">
-                        	<form action="" class="">
+                        	<form action="" class="search_menu">
                                 <input type="text" class="form-control search" placeholder="Search">
+                                <i class="fa fa-reorder"></i>
                         	</form>
                         </div>
                     </div>
@@ -430,13 +432,19 @@ Template Name: Homepage
                         <h3><small><em>SORT BY</em></small> GENRE</h3>
                     </div>
                     <div class="col-md-6">
-                        <!-- <div class="pull-right m-t-20">
-                            <form action="" class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-12"><input type="text" class="form-control"></div>
-                                </div>
-                            </form>
-                        </div> -->
+                         <div class="pull-right m-t-20">
+                            <div class="btn-group genre-dd">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    Genre <i class="fa fa-angle-double-down"></i>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Adventure</a></li>
+                                    <li><a href="#">Fiction</a></li>
+                                    <li><a href="#">Drama</a></li>
+                                </ul>
+                            </div>
+                        </div> 
                     </div>
                 </div>
                 <hr class="m-t-0"> 
@@ -472,13 +480,103 @@ Template Name: Homepage
                     <div class="col-md-12">
                         <h3><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
                         <hr class="m-t-0">
-                        <div class="slider2 regular-slider">
-                            <div><img src="https://placeimg.com/338/338/tech" class="img-responsive"></div>
-                            <div><img src="https://placeimg.com/338/338/nature" class="img-responsive"></div>
-                            <div><img src="https://placeimg.com/338/338/people" class="img-responsive"></div>
-                            <div><img src="https://placeimg.com/338/338/nature" class="img-responsive"></div>
-                            <div><img src="https://placeimg.com/338/338/people" class="img-responsive"></div>
-                            <div><img src="https://placeimg.com/338/338/nature" class="img-responsive"></div>
+                        <div class="slider2 regular-slider cap-show-on-hover">
+                            <div class="slide-cont">
+                                <img src="https://placeimg.com/338/338/tech" class="img-responsive">
+                                <div class="cap-s">
+                                    <h5><a href="#">Playlist Name</a></h5>
+                                    <p>Description with some words to look important</p>
+                                    <div class="sli-foot">
+                                        <div class="pull-l eft numbers">
+                                            <p>415 <i class="fa fa-eye"></i></p>
+                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
+                                        </div>
+                                        <div class="pull-ri ght sm-numbers">
+                                            <span class="number">15</span> Films
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-cont">
+                                <img src="https://placeimg.com/338/338/nature" class="img-responsive">
+                                <div class="cap-s">
+                                    <h5><a href="#">Playlist Name</a></h5>
+                                    <p>Description with some words to look important</p>
+                                    <div class="sli-foot">
+                                        <div class="pull-l eft numbers">
+                                            <p>415 <i class="fa fa-eye"></i></p>
+                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
+                                        </div>
+                                        <div class="pull-ri ght sm-numbers">
+                                            <span class="number">15</span> Films
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-cont">
+                                <img src="https://placeimg.com/338/338/people" class="img-responsive">
+                                <div class="cap-s">
+                                    <h5><a href="#">Playlist Name</a></h5>
+                                    <p>Description with some words to look important</p>
+                                    <div class="sli-foot">
+                                        <div class="pull-l eft numbers">
+                                            <p>415 <i class="fa fa-eye"></i></p>
+                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
+                                        </div>
+                                        <div class="pull-ri ght sm-numbers">
+                                            <span class="number">15</span> Films
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-cont">
+                                <img src="https://placeimg.com/338/338/nature" class="img-responsive">
+                                <div class="cap-s">
+                                    <h5><a href="#">Playlist Name</a></h5>
+                                    <p>Description with some words to look important</p>
+                                    <div class="sli-foot">
+                                        <div class="pull-l eft numbers">
+                                            <p>415 <i class="fa fa-eye"></i></p>
+                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
+                                        </div>
+                                        <div class="pull-ri ght sm-numbers">
+                                            <span class="number">15</span> Films
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-cont">
+                                <img src="https://placeimg.com/338/338/people" class="img-responsive">
+                                <div class="cap-s">
+                                    <h5><a href="#">Playlist Name</a></h5>
+                                    <p>Description with some words to look important</p>
+                                    <div class="sli-foot">
+                                        <div class="pull-l eft numbers">
+                                            <p>415 <i class="fa fa-eye"></i></p>
+                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
+                                        </div>
+                                        <div class="pull-ri ght sm-numbers">
+                                            <span class="number">15</span> Films
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slide-cont">
+                                <img src="https://placeimg.com/338/338/nature" class="img-responsive">
+                                <div class="cap-s">
+                                    <h5><a href="#">Playlist Name</a></h5>
+                                    <p>Description with some words to look important</p>
+                                    <div class="sli-foot">
+                                        <div class="pull-l eft numbers">
+                                            <p>415 <i class="fa fa-eye"></i></p>
+                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
+                                        </div>
+                                        <div class="pull-ri ght sm-numbers">
+                                            <span class="number">15</span> Films
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>                            
                     </div>                    
                 </div>

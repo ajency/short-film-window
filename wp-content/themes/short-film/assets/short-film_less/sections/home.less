@@ -4,7 +4,7 @@
 		margin: 0;
 		padding: 0;
 		li{
-			border-left: 1px solid @gray-light;
+			border-left: 2px solid @gray-light;
 			padding-left: 20px;
 			&:hover{
 				border-color: @brand-primary;
@@ -17,6 +17,7 @@
 				display: block;
 				color: @gray;
 				font-style: italic;
+                text-transform: uppercase;
 			}
 			&.active{
 				border-color: @brand-primary;
@@ -62,4 +63,88 @@ input.search{
 		font-family: fontAwesome; 
 		content:'\f002  ';
 	}
+}
+
+//genre dropdown
+.genre-dd .btn { 
+    background: transparent;
+    border: 0;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: @gray-darker;
+    padding: 0 25px;
+}
+//search icon
+.search_menu {
+    position: relative;
+    i {
+        font-size: 21px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 10px;
+        color: @gray-dark;
+    }
+}
+//awesome playlists
+.slide-cont {
+    position: relative;
+    &:hover .cap-s {
+        opacity: 1;
+        visibility: visible;
+    }
+    .cap-s {
+        opacity: 0;
+        visibility: hidden;
+        width: 100%;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.83);
+        color: #ddd;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        padding: 10px;
+        transition: all 0.5s;
+        h5, p {text-align: right;}
+        h5 a {
+            color: #eee;
+            margin: 0;
+            text-decoration: underline;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+        p {
+            color: #A9A9A9;
+            font-size: 16px;
+            line-height: 22px;
+            font-style: italic;
+        }
+        .sli-foot {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 10px 14px;
+            display: table;
+            div {
+                display: table-cell;
+            }
+        }
+        .sli-foot .numbers p {
+            font-style: normal;
+            margin: 0;
+            font-size: 13px;
+            color: #eee;
+            text-align: left;
+            i {margin-left: 5px;}
+        }
+        .sli-foot .sm-numbers {
+            vertical-align: bottom;
+            text-align: right;
+        }
+    }
 }
