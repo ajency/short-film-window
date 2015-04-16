@@ -77,10 +77,10 @@ get_header(); ?>
 					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
 					            </li>
 					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
 					            </li>
 					            <li class="social-pin">
-					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
 					            </li>
 					          </ul>
 							  -->
@@ -111,14 +111,15 @@ get_header(); ?>
 			        	}
 			        	if(count($region_array) == 0)
 			        		$region_array = array(0 => 'No regions');
-
+						$temp = array();
 			        	foreach ($response['categories'] as $value) {
 			        			$category_id = get_cat_ID( $value );
 			        			$category_link = get_category_link( $category_id );
+								array_push($temp, $category_link);
 			        			$link = '<a href='.esc_url( $category_link ).' target="_blank"  title="Category Name">'.$value.'</a>';
 			        			array_push($cat_array, $link);
 			        	}
-			        	
+					
 			        ?>
 			        <h6 class="m-t-0 m-b-0"><small><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$region_array) ;?></small></h6>
 			        <p class="categories m-t-10 m-b-0">
@@ -167,7 +168,30 @@ get_header(); ?>
 	    
 	      
 	        <div class="img-content">
-	        	<?php echo $response['content']; ?>
+				
+				<?php 
+				
+					//echo $response['content'];
+			
+				
+					$postcontent = $response['content'];
+					
+					
+					
+					echo $postcontent;
+					
+					
+					//----------
+					
+					//$postexcerpt = $response['excerpt'];
+					
+					// $postexcerpt = get_the_excerpt();
+					
+					// echo $postexcerpt;
+					
+					
+				?>
+				
 	        </div>
 	  		
 
@@ -199,24 +223,7 @@ get_header(); ?>
 							?>
 						</div>
 					
-						<!--
-						<div class="col-sm-4">
-	                    	<div class="focus-img">
-	                    		<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-	                    	</div>
-	                        
-	                    </div>
-	                    <div class="col-sm-4">
-	                    	<div class="focus-img">
-	                        	<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-	                        </div>
-	                    </div>
-	                    <div class="col-sm-4">
-	                    	<div class="focus-img">
-	                        	<img src="http://erikjohanssonphoto.com/wp-content/uploads/2014/12/dont-look-back-588x388.jpg" class="img-responsive">
-	                        </div>
-	                    </div>
-						-->
+
 					</div>
 	        </div>
 	    </div>
@@ -263,7 +270,8 @@ get_header(); ?>
 	    </div> -->
 
 	    <div class="text-center">
-	        <a href="" class="btn btn-primary btn-lg">Watch more awesome films</a>
+			
+	        <a href="<?php echo $temp[0] ?>"  class="btn btn-primary btn-lg">Watch more awesome films</a>
 	    </div>
 	        
 	</div>
@@ -310,6 +318,21 @@ window.onload = function() {
 		
 	}
 
+
+jQuery('.img-content').readmore({
+speed: 100,
+collapsedHeight: 200,
+heightMargin: 16,
+moreLink: '<a href="#">Read More</a>',
+lessLink: '<a href="#">Close</a>',
+embedCSS: true,
+blockCSS: 'display: block; width: 100%;',
+startOpen: false,
+
+// callbacks
+beforeToggle: function(){},
+afterToggle: function(){}
+});
 
 	
 
@@ -397,11 +420,17 @@ window.onload = function() {
 						
 				      });
 
-
-
-
-
 }
+
+
 
 </script>
 
+
+
+
+<<<<<<< HEAD
+=======
+</script>
+
+>>>>>>> ff329add03f30dce956a47373959caa341ed705c

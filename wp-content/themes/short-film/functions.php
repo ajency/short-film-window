@@ -616,6 +616,7 @@ function add_custom_scripts() {
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
 
+	
     wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', '', false, true );
     wp_enqueue_script( 'slick' );
 
@@ -624,6 +625,12 @@ function add_custom_scripts() {
 
     wp_register_script( 'classie', get_template_directory_uri() . '/assets/js/classie/classie.js', '', false, true );
     wp_enqueue_script( 'classie' );
+	
+	////
+	wp_register_script( 'readmore', get_template_directory_uri() . '/assets/js/readmore/readmore.js', array('jquery'),'1.2'  );
+    wp_enqueue_script( 'readmore' );
+	
+
 
     if( is_single()){
       wp_register_script( 'videojs', get_template_directory_uri() . '/assets/js/video-js/video.js', '', false, true );
@@ -853,10 +860,16 @@ $text = strip_tags($text);
 $excerpt_length = apply_filters('excerpt_length', 20);
 $text = wp_trim_words( $text, $excerpt_length, $excerpt_more ); 
 
+
+// $excerpt_more = apply_filters( 'excerpt_more', ' <a href="#">' . 'Read More &raquo;' . '</a>' );
+
 return apply_filters('wp_trim_excerpt', $text, $raw_excerpt); 
+
+
 }
 
 add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
+
 
 
 
@@ -1320,15 +1333,6 @@ function shortfilm_menu()
 		}
 		else
 		{
-		    // echo "hey pairs !! ";
-		    // print_r($response);
-
-			// echo"**********************   ";	
-
-			// echo $response[0][catid];
-			// echo $response[0][catname];
-			// echo $response[0][postid];
-		
 		   return $response;
 		}
 	
@@ -1336,9 +1340,60 @@ function shortfilm_menu()
 	}  // end func get_pairs_category_post
 
 
+	function create_custom_post_article() 
+	{
+		$labels = array(
+			'name'               => _x( 'Articles', 'post type general name' ),
+			'singular_name'      => _x( 'Article', 'post type singular name' ),
+			'add_new'            => _x( 'Add New', 'article' ),
+			'add_new_item'       => __( 'Add New Article' ),
+			'edit_item'          => __( 'Edit Article' ),
+			'new_item'           => __( 'New Article' ),
+			'all_items'          => __( 'All Articles' ),
+			'view_item'          => __( 'View Article' ),
+			'search_items'       => __( 'Search Article' ),
+			'not_found'          => __( 'No articles found' ),
+			'not_found_in_trash' => __( 'No articles found in the Trash' ), 
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Articles'
+		);
+		$args = array(
+			'labels'        => $labels,
+			'description'   => 'Holds title, excerpt etc.',
+			'public'        => true,
+			'menu_position' => 5,
+			'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+			'has_archive'   => true,
+			'rewrite' => array('slug' => 'article'),
+		);
+		register_post_type( 'article', $args ); 
+	}
+	
+	add_action( 'init', 'create_custom_post_article' );
+
+	
+	function new_excerpt_more($more) 
+	{
+
+		echo "hiii  ";
+		global $post;
+
+		return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
+		//return "read more.";
+
+   }
+
+   add_filter('excerpt_more', 'new_excerpt_more',10);
 
 
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
