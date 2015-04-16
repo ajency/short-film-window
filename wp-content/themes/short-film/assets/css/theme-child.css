@@ -12108,7 +12108,7 @@ h6.brand {
   color: transparent;
   border: none;
   outline: none;
-  background: url(../img/arrow.png) #eeeeee;
+  background: url(../img/arrow.png);
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.5;
