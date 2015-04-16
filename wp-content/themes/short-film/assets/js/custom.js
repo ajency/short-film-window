@@ -50,16 +50,9 @@
         });
 
         /* Social Toggle */
-        $('.social-toggle').on('click', function() {
+        $(document).on('click', '.social-toggle', function() {
           $(this).next().toggleClass('open-menu');
         });
-
-        //converting yarpp-related to slick
-//        jQuery('.yarpp-related .yarpp-thumbnails-horizontal').addClass('slider2 regular-slider cap-show-on-hover yarpp-slick');
-//        jQuery('.yarpp-slick .yarpp-thumbnail').each(function() {
-//            jQuery(this).addClass('slide-cont');
-//            jQuery(this).children('.yarpp-thumbnail-title').addClass('cap-s');
-//        });
 
     });
 
