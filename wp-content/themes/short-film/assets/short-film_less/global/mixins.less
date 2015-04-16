@@ -1,0 +1,7 @@
+//All mixins
+.grad(@dir1: left, @dir2: right, @clr1: rgba(0,0,0,1), @clr2: rgba(0,0,0,0)) {
+    background: -webkit-linear-gradient(@dir1, @clr1 , @clr2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(@dir2, @clr1, @clr2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(@dir2, @clr1, @clr2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to @dir2, @clr1 , @clr2); /* Standard syntax */
+}

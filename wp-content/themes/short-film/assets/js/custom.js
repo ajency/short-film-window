@@ -50,10 +50,9 @@
         });
 
         /* Social Toggle */
-        $('.social-toggle').on('click', function() {
+        $(document).on('click', '.social-toggle', function() {
           $(this).next().toggleClass('open-menu');
         });
-
 
     });
 
