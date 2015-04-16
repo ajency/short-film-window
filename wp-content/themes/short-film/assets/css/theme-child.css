@@ -11669,6 +11669,10 @@ input.search:-ms-input-placeholder::before {
 }
 .vid-next {
   right: 25px;
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 @media (max-width: 767px) {

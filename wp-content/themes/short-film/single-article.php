@@ -1,5 +1,5 @@
-<?php 
 
+<?php 
 get_header(); ?>
 
 	
@@ -11,6 +11,7 @@ get_header(); ?>
 	
 	
 	?>
+
 	<video id="bg-video"
          class="video-js vjs-default-skin"
          height="auto"
@@ -24,18 +25,18 @@ get_header(); ?>
         Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
       </p>
     </video>
-
+	
+	
+	<!--
+	<img src="<?php// echo $response['featured_image'];?>" class="img-responsive width-full">
+	-->
+	
 	<div id="movie-header" class="movie-header">
 		<div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div>
-		<!-- <div id="home-video">
-		  <img src="http://video-js.zencoder.com/oceans-clip.png" class="img-responsive" data-video="https://www.youtube.com/embed/aVgeJ5eqlSM?rel=0&amp;controls=0&amp;showinfo=0" title="Play Video" />
-		  <span class="play-button"></span>
-		</div> -->
+	
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
-		
-		<!--<div><img src="https://placeimg.com/1000/404/people" class="img-responsive width-full"></div>
-		<div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
+
 		<div class="container movie-info">
 			<div class="row">
 				<div class="col-md-7">
@@ -43,12 +44,7 @@ get_header(); ?>
 				</div>
 				<div class="col-md-5">
 					<div class="social-strip">
-					
 
-						
-					    <div class="pull-right watchlist-add"> 
-					        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-					    </div>
 					    <div class="pull-right like-action">
 					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ; ?> <span class="m-l-5 m-r-5">|</span>
 					    </div>
@@ -76,10 +72,10 @@ get_header(); ?>
 					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
 					            </li>
 					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+					            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
 					            </li>
 					            <li class="social-pin">
-					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
 					            </li>
 					          </ul>
 							  -->
@@ -99,29 +95,7 @@ get_header(); ?>
 			    <div class="col-xs-9">
 			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
 			        <h5 class="m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
-			        <?php
-			        	$region_array = array();
-			        	$cat_array = array();
-			        	foreach ($response['region'] as $value) {
-			        			$id = get_term_by( 'name', $value, 'region');
-			        			$category_link = get_term_link( $id );
-			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" title="Region Name">'.$value.'</a>';
-			        			array_push($region_array, $link);
-			        	}
-			        	if(count($region_array) == 0)
-			        		$region_array = array(0 => 'No regions');
-						$temp = array();
-			        	foreach ($response['categories'] as $value) {
-			        			$category_id = get_cat_ID( $value );
-			        			$category_link = get_category_link( $category_id );
-								array_push($temp, $category_link);
-			        			$link = '<a href='.esc_url( $category_link ).' target="_blank"  title="Category Name">'.$value.'</a>';
-			        			array_push($cat_array, $link);
-			        	}
-					
-			        ?>
-			        <h6 class="m-t-0 m-b-0"><small><em><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$region_array) ;?></em></small></h6>
-			        <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',', $cat_array); ?></em></small></h6>
+
 			    </div>
 				
 						
@@ -140,50 +114,30 @@ get_header(); ?>
 	<div class="spacer-40"></div>
 	<div class="container">
 
-	    
-	      
-	        <div class="img-content">
-				
-				<?php 
-				
-					//echo $response['content'];
-			
-				
-					$postcontent = $response['content'];
-					
-					
-					
-					echo $postcontent;
-					
-					
-					//----------
-					
-					//$postexcerpt = $response['excerpt'];
-					
-					// $postexcerpt = get_the_excerpt();
-					
-					// echo $postexcerpt;
-					
-					
-				?>
-				
-	        </div>
-	  		
-
 		<div class="clearfix"></div>
 		 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/<?php echo $post->ID ;?>"></a>
        
 	    <div class="spacer-50"></div>
-	    <div class="infocus">
 	    
-</div>
-
+		<div class="description">
+			
+			<?php  
+				
+				echo $response['content'] ;
+			?>
+			
+		</div>
+		
+		<!--
+		<div class="infocus">
+		</div>
+		-->
 
 	    
 	    <div class="spacer-40"></div>
 	    <div class="row">
 	        <div class="col-md-12">
-	            <h3>SIMILAR MOVIES WE PICKED FOR YOU</h3>
+	            <h3>SOME MOVIES WE PICKED FOR YOU</h3>
 	            <hr>
 	                <div class="row">
 					
@@ -197,7 +151,6 @@ get_header(); ?>
 							
 							?>
 						</div>
-					
 
 					</div>
 	        </div>
@@ -205,48 +158,9 @@ get_header(); ?>
 
 	    <div class="spacer-40"></div>
 
-	    <h4>WHAT ARE PEOPLE SAYING</h4>
-	    <hr class="m-t-0">
-
-	    <!-- <ul class="p-l-0">
-	        <li class="post comments-section">
-	        	<div class="user-profile-pic-wrapper">
-	        		<div class="user-profile-pic-normal">
-	        			<img alt="" src="http://erikjohanssonphoto.com/wp-content/uploads/2015/01/walk-a-way-188x188.jpg" class="img-circle img-responsive">
-	        		</div>
-	        	</div>
-	        	<div class="info-wrapper">
-	        		<div class="username">
-	        			<h5 class="m-b-0">
-	        				<a href="#">Amy</a>
-	        			</h5>
-	        		</div>
-	        		<div class="info">
-	        			Crazy Film
-	        		</div>
-	        	</div>
-	        	<div class="clearfix"></div>
-	        </li>
-	    </ul> -->
-
-	    <?php comments_template('',true); ?>
-
-	    <!-- <div class="row">
-	        <form action="" class="form-horizontal">
-	            <div class="form-group">
-	                <label class="col-md-1 col-sm-1">
-	                    <img src="http://erikjohanssonphoto.com/wp-content/uploads/2015/01/dreamwalker-188x188.jpg" class="img-responsive">
-	                </label>
-	                <div class="col-md-11 col-sm-11">
-	                    <textarea name="" id="" class="form-control"></textarea>
-	                </div>
-	            </div>
-	        </form>
-	    </div> -->
 
 	    <div class="text-center">
-			
-	        <a href="<?php echo $temp[0] ?>"  class="btn btn-primary btn-lg">Watch more awesome films</a>
+	        <a href="" class="btn btn-primary btn-lg">Watch more awesome films</a>
 	    </div>
 	        
 	</div>
@@ -293,21 +207,6 @@ window.onload = function() {
 		
 	}
 
-
-jQuery('.img-content').readmore({
-speed: 100,
-collapsedHeight: 200,
-heightMargin: 16,
-moreLink: '<a href="#">Read More</a>',
-lessLink: '<a href="#">Close</a>',
-embedCSS: true,
-blockCSS: 'display: block; width: 100%;',
-startOpen: false,
-
-// callbacks
-beforeToggle: function(){},
-afterToggle: function(){}
-});
 
 	
 
@@ -395,12 +294,10 @@ afterToggle: function(){}
 						
 				      });
 
+
+
+
+
 }
 
-
-
 </script>
-
-
-
-
