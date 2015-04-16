@@ -1,0 +1,8 @@
+.media .media-left img {
+  width: 80px;
+}
+.img-content .img-div {
+  width: 100px;
+  float: left;
+  margin-right: 20px;
+}

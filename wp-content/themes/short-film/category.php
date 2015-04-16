@@ -37,7 +37,7 @@
         
         <!--Content-->
         <div class="container header-space">
-            <div class="content-wrapper">
+            <div class="content-wrapper" style="  overflow: visible;">
 
                 <div class="row">
                     <div class="col-md-6">
@@ -45,9 +45,10 @@
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
-                            <form action="" class="">
+                            <form action="" class="search_menu">
                                 <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
+                                    <i class="fa fa-reorder"></i>
                                 </div>
                             </form>
                         </div>
@@ -56,9 +57,9 @@
 
                 <hr class="m-t-0">
                 
-                <div class="row">
+                <div class="row pushin">
                     <div class="col-md-5">
-                		<h5>FILTER BY</h5>
+                		<h5 class="un">FILTER BY</h5>
                         <form action="" class="form-horizontal">
                             <div class="form-group">
                                 <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
@@ -91,11 +92,12 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-4 col-md-offset-3">
-                    	 <h5>SORT BY</h5>
-                        <form action="" class="">
-                            <div class="form-group">
-                                <select name="sort" id="sort">
+                    <div class="col-md-4 col-md-offset-3 padd-68">
+<!--                    	 <h5>SORT BY</h5>-->
+                        <form action="" class="form-group row form-horizontal">
+                            <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
+                            <div class="col-md-9">
+                                <select class="" name="sort" id="sort">
                                     <option value="1">Freshness</option>
                                     <option value="2">Popularity</option>
                                     <option value="3">Length</option>
@@ -103,13 +105,13 @@
                             </div>
                         </form>
                         <div class="row">
-                            <div class="col-xs-4">
+                            <div class="col-xs-3 col-xs-offset-3">
                                 <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
                             </div>
-                            <div class="col-xs-4 text-center">
+                            <div class="col-xs-3 text-center">
                                 <a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
                             </div>
-                            <div class="col-xs-4 text-right">
+                            <div class="col-xs-3 text-right">
                                 <a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
                             </div>
                         </div>
@@ -187,7 +189,7 @@
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
                                                         <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                     </div>
-                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
                                                         <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
                                                             <i class="fa fa-thumbs-up"></i></div>
@@ -225,7 +227,7 @@
                                                         <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                     </div>
 
-                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
                                                         <div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
@@ -260,7 +262,7 @@
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
                                                         <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                     </div>
-                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
                                                         <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
@@ -298,7 +300,7 @@
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
                                                         <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                     </div>
-                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
                                                         <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
@@ -333,7 +335,7 @@
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
                                                         <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                     </div>
-                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
                                                         <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
@@ -368,7 +370,7 @@
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
                                                         <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
                                                     </div>
-                                                    <div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
                                                         <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
@@ -402,7 +404,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <h4 class="m-t-0">
                                 	<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 		<?php echo $value['title'];?>
@@ -410,43 +412,59 @@
                                 	<small><em>By <?php echo ucfirst($value['director']);?></em></small>
                                 </h4>
                             </div>
+<!--
                             <div class="col-md-4">
-                                <div class="social-strip">
-                                    <div class="pull-right watchlist-add"> 
-                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-                                    </div>
-                                    <div class="pull-right like-action">
-                                        <span class="m-l-5 m-r-5">|</span> <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
-                                    </div>
-                                    <div class="share-button">
-                                        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-                                        <div class="social-networks">
-                                          <ul>
-                                            <li class="social-twitter">
-                                              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-facebook">
-                                            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-pin">
-                                            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-                                            </li>
-                                          </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
+-->
                         </div>
                         <hr class="m-t-0 m-b-5">
                         <div class="row">
-                            <div class="col-xs-8">
+                            <div class="col-xs-8 cont">
                                 <p><?php echo $value['excerpt'];?></p>
-                                <h6 class="m-t-0 m-b-0"><small><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</small></h6>
-                                <h6 class="m-t-0 m-b-0"><small><?php echo implode(',',$value['categories']);?></small></h6>
-                                <h6 class="m-t-0 m-b-0"><small>Dir:<?php echo ucfirst($value['director']);?></small></h6>
+                                <h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
+                                <p class="categories">
+                                    <span class="label label-greydark">
+                                        <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+                                    </span>
+                                </p>
+                                <h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
                             </div>
-                            <div class="col-xs-4 text-right">
-                                <div class="small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div>
+                            <?php echo $value['permalink']; ?>
+                            <div class="col-xs-4 text-right list-info-btns">
+                                <div class="soc-ico nh">
+                                   <?php echo do_shortcode("[ssba]"); ?>
+                                </div>
+                                <div class="share-button hidden">
+                                    <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
+                                    
+                                    <div class="social-networks">
+                                        <ul>
+                                            <li class="social-twitter">
+                                                <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
+                                            </li>
+                                            <li class="social-facebook">
+                                                <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+                                            </li>
+                                            <li class="social-pin">
+                                                <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="lico_c">
+                                    <div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div>
+                                    <div class="lico like-action">
+<!--                                        <span class="m-l-5 m-r-5">|</span>-->
+                                        <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i>
+<!--                                        <span class="m-l-5 m-r-5">|</span>-->
+                                    </div>
+                                    <div class="lico watchlist-add"> 
+                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>	                
@@ -455,24 +473,21 @@
 	            <div class="couchlayout">	            	
             		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
                     <div class="row">
-                        <div class="col-sm-8">
-                            <h3 class="pull-left">
+                        <div class="col-sm-10">
+                            <h3 class="pull-l eft">
                                 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 	<?php echo $value['title'];?>
                                 </a>
                                 <small><em>by <?php echo ucfirst($value['director']);?></em></small>	                                
                             </h3>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="social-strip m-t-40">
-                                <div class="pull-right watchlist-add"> 
-                                    <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-                                </div>
-                                <div class="pull-right like-action">
-                                    <span class="m-l-5 m-r-5">|</span> <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> <span class="m-l-5 m-r-5">|</span>
-                                </div>
-                                <div class="share-button">
-                                    <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
+                        <div class="col-sm-2">
+                            <div class="soc-ico nh pull-right" style="margin-top: 35px;">
+                               <?php echo do_shortcode("[ssba]"); ?>
+                            </div>
+                                
+                            <div class="pull-right share-button hidden">
+                                <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
                                     <div class="social-networks">
                                       <ul>
                                         <li class="social-twitter">
@@ -487,20 +502,44 @@
                                       </ul>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     <hr class="m-t-0 m-b-5">
-                    <div class="row">
-                        <div class="col-xs-9">
-                            <h6><em><?php echo $value['excerpt'];?></em></h6>
-                            <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['region']);?>/<?php echo $value['duration'];?> MIN</em></small></h6>
-                            <h6 class="m-t-0 m-b-0"><small><em><?php echo implode(',',$value['categories']);?></em></small></h6>
+                    <div class="row main-ex">
+                        <div class="col-xs-9 cont">
+                            <p><em><?php echo $value['excerpt'];?></em></p>
+                            
+                            <h6 class="m-t-30 m-b-0"><em><?php echo implode(',',$value['region']);?> / <?php echo $value['duration'];?> MIN</em></h6>
+                            <p class="categories">
+                                <span class="label label-greydark">
+                                    <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+                                </span>
+                            </p>
                         </div>
+                        
                         <div class="col-xs-3 text-right">
-                            <div class="small"<?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
+                            <div class="">
+                                
+                                <div class="lico_c social-strip">
+                                    <div class="lico small"><?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                    
+                                    <div class="lico like-action">
+<!--                                        <span class="m-l-5 m-r-5">|</span>-->
+                                        <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i>
+<!--                                        <span class="m-l-5 m-r-5">|</span>-->
+                                    </div>
+                                    
+                                    <div class="lico watchlist-add"> 
+                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                
                     </div>
+                    
+                    <hr class="m-t-20 m-b-20">
+                    
                     <div class="spacer-20"></div>
                     <p><em><?php echo $value['excerpt'];?></em></p>                    
 	            </div>
@@ -1135,11 +1174,72 @@ window.onload = function() {
             jQuery.each(response,function(index,value){
                             
                             if(value.region.length == 0){
-                                value.region = ['No regions added'];}
+                                value.region = ['No regions added'];
+                            }
                         
 
 
-                        html += '<div class="row listlayout">'
+                html += '<div class="row listlayout">'
+                    + '<div class="col-md-5">'
+                         + '<img src="'+value.featured_image+'" class="img-responsive width-full">'
+                    + '</div>'
+                    + '<div class="col-md-7">'
+                        + '<div class="row">'
+                            + '<div class="col-md-12">'
+                                + '<h4 class="m-t-0">'
+                                	+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+                                		+ value.title
+                                	+ '</a>'
+                                	+ '<small><em>By '+value.director+'</em></small>'
+                                + '</h4>'
+                            + '</div>'
+                        + '</div>'
+                        + '<hr class="m-t-0 m-b-5">'
+                        + '<div class="row">'
+                            + '<div class="col-xs-8 cont">'
+                                + '<p>'+value.excerpt+'</p>'
+                                + '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
+                                + '<p class="categories">'
+                                    + '<span class="label label-greydark">'
+                                        + value.categories.join('</span><span class="label label-greydark">')
+                                    + '</span>'
+                                + '</p>'
+                                + '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+                            + '</div>'
+                            + '<div class="col-xs-4 text-right list-info-btns">'
+                                + '<div class="soc-ic o nh">'
+                                   +'<div class="share-button">'
+                                        +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
+                                        +'<div class="social-networks">'
+                                          +'<ul>'
+                                            +'<li class="social-twitter">'
+                                              +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-facebook">'
+                                            +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-pin">'
+                                            +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
+                                            +'</li>'
+                                          +'</ul>'
+                                        +'</div>'
+                                    +'</div>'
+                                + '</div>'
+                                + '<div class="lico_c">'
+                                    + '<div class="lico small">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
+                                    + '<div class="lico like-action">'
+                                    + value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+                                    + '</div>'
+                                    + '<div class="lico watchlist-add"> '
+                                        + '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                    + '</div>'
+                                + '</div>'
+                            + '</div>'
+                        + '</div>'
+                    + '</div>'
+                + '</div>';
+                
+                        /*html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
                           +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
                      +'</div>'
@@ -1188,58 +1288,72 @@ window.onload = function() {
                              +'</div>'
                          +'</div>'
                      +'</div>'
-                 +'</div>';
+                 +'</div>';*/
 
-
-                 html += '<div class="couchlayout">'
-
-                  +'<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
-                         +'<div class="row">'
-                             +'<div class="col-sm-8">'
-                                 +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
-                             +'</div>'
-                             +'<div class="col-sm-4">'
-                                 +'<div class="social-strip m-t-40">'
-                                     +'<div class="pull-right"> '
-                                         +' Add to Watchlist <a href="#"><i class="fa fa-binoculars"></i></a>'
-                                     +'</div>'
-                                     +'<div class="pull-right">'
-                                         +'| '+value.post_like_count+' <i class="fa fa-thumbs-up"></i> | '
-                                     +'</div>'
-                                     +'<div class="share-button">'
-                                         +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
-                                         +'<div class="social-networks">'
-                                           +'<ul>'
-                                             +'<li class="social-twitter">'
-                                               +'<a href="http://www.twitter.com"><i class="fa fa-twitter fa-lg"></i></a>'
-                                             +'</li>'
-                                             +'<li class="social-facebook">'
-                                             +'<a href="http://www.facebook.com"><i class="fa fa-facebook-square fa-lg"></i></a>'
-                                             +'</li>'
-                                             +'<li class="social-pin">'
-                                             +'<a href="http://www.gplus.com"><i class="fa fa-pinterest fa-lg"></i></a>'
-                                             +'</li>'
-                                          +' </ul>'
-                                         +'</div>'
-                                     +'</div>'
-                                 +'</div>'
-                            +' </div>'
-                         +'</div>'
-                         +'<div class="clearfix"></div>'
-                         +'<hr class="m-t-0 m-b-5">'
-                         +'<div class="row">'
-                             +'<div class="col-xs-9">'
-                                 +'<h6><em>'+value.excerpt+'</em></h6>'
-                                 +'<h6 class="m-t-0 m-b-0"><small><em>'+value.region.join(',')+'/'+value.duration+' MIN</em></small></h6>'
-                                 +'<h6 class="m-t-0 m-b-0"><small><em>'+value.categories.join(',')+'</em></small></h6>'
-                             +'</div>'
-                             +'<div class="col-xs-3 text-right">'
-                                 +'<div class="small">'+value.no_of_views+'<i class="fa fa-eye"></i></div>'
-                             +'</div>'
-                         +'</div>'
-                         +'<div class="spacer-20"></div>'
-                         +'<p><em>'+value.excerpt+'</em></p>'
-             +'</div>';
+                html += '<div class="couchlayout">'
+            		+ '<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+                    + '<div class="row">'
+                        + '<div class="col-sm-10">'
+                            + '<h3 class="pull-l eft">'
+                                + '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+                                	+ value.title
+                                + '</a>'
+                                + '<small><em>by '+value.director+'</em></small>'    
+                            + '</h3>'
+                        + '</div>'
+                        + '<div class="col-sm-2">'
+                            + '<div class="pull-right share-button">'
+                                + '<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
+                                    + '<div class="social-networks">'
+                                      + '<ul>'
+                                        + '<li class="social-twitter">'
+                                          + '<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
+                                        + '</li>'
+                                        + '<li class="social-facebook">'
+                                        + '<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
+                                        + '</li>'
+                                        + '<li class="social-pin">'
+                                        + '<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
+                                        + '</li>'
+                                      + '</ul>'
+                                    + '</div>'
+                                + '</div>'
+                        + '</div>'
+                    + '</div>'
+                    + '<hr class="m-t-0 m-b-5">'
+                    + '<div class="row main-ex">'
+                        + '<div class="col-xs-9 cont">'
+                            + '<p><em>'+value.excerpt+'</em></p>'
+                            
+                            + '<h6 class="m-t-30 m-b-0"><em>'+value.region.join(', ')+'/'+value.duration+' MIN</em></h6>'
+                            + '<p class="categories">'
+                                + '<span class="label label-greydark">'
+                                    + value.categories.join('</span><span class="label label-greydark">')
+                                + '</span>'
+                            + '</p>'
+                        + '</div>'
+                        
+                        + '<div class="col-xs-3 text-right">'
+                            + '<div class="">'
+                                + '<div class="lico_c social-strip">'
+                                    + '<div class="lico small">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
+                                    + '<div class="lico like-action">'
+                                        + value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+                                    + '</div>'
+                                    + '<div class="lico watchlist-add">'
+                                        + '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                    + '</div>'
+                                + '</div>'
+                            + '</div>'
+                        + '</div>'
+                    + '</div>'
+                    + '<hr class="m-t-20 m-b-20">'
+                    + '<div class="spacer-20"></div>'
+                    + '<p><em>'+value.excerpt+'</em></p>'
+	            + '</div>';
+                
+                
+                
 
 
 

@@ -2,6 +2,7 @@
 	position: fixed;
 	width: 100%;
 	padding: 15px;
+    padding-bottom: 1px;
 	// height: 100px;
 	z-index: 3;
 	background-color: fade(@gray-base, 60%);
@@ -47,6 +48,52 @@
 
 .header-links{
 	float: right;
+    @media screen and (max-width: 767px) {
+        width: 100%;
+        float: none;
+        height: 85px;
+        .social-links {float: right;}
+    }
+}
+.navbar-default {
+    background: transparent;
+    border: 0;
+    margin-bottom: 0;
+    margin-top: 10px;
+    min-height: 0;
+    @media screen and (max-width: 767px) {
+        margin-top: -70px;
+        float: right;
+        width: 100%;
+    }
+    .navbar-toggle {
+        border: 0;
+        margin-right: 0;
+        padding: 20px 0;
+        &:hover, &:focus {
+            background: transparent;
+            .icon-bar {background: @brand-primary}
+        }
+        .icon-bar {
+            background: #fff;
+        }
+    }
+    .navbar-collapse {border: 0; width: 100%; margin-left: 0;}
+}
+@media screen and (max-width: 767px) {
+    .navbar-default .menu ul {padding-top: 10px;}
+    .navbar-collapse {background: rgba(0,0,0,0.8)}
+    .sub-header .navbar-default .menu li {
+        display: block;
+//        text-align: right;
+        a {
+            display: block;
+            color: @brand-primary;
+            padding: 5px;
+            &:hover {background: #eee;}
+        }
+        &:after {display: none;}
+    }
 }
 
 .links{
@@ -116,6 +163,7 @@
 		margin: 0;
 		padding: 0;
 		list-style-type: none;
+        ul {padding-left: 0;}
 		li{
 			display: inline-block;
 			a{
@@ -129,17 +177,22 @@
 				content: '';
 			}
 		}
+        a:hover {
+            text-decoration: none;
+            color: #fff;
+        }
 	}
 }
 
 @media (max-width:480px){
 	.header{
-		position: static;
+		position: relative;
 		.logo{
 			width: 100%;
 			img{
-				margin: auto;
+//				margin: auto;
 				display: block;
+                height: 65px;
 			}
 		}
 
@@ -151,4 +204,5 @@
 			float: right;
 		}
 	}
+    .navbar-collapse {background: rgba(0,0,0,0)}
 }
