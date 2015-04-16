@@ -11719,6 +11719,14 @@ input.search:-ms-input-placeholder::before {
     width: 100%;
   }
 }
+h1.brand,
+h2.brand,
+h3.brand,
+h4.brand,
+h5.brand,
+h6.brand {
+  color: #af152f;
+}
 .movie-header {
   position: relative;
 }
@@ -11845,10 +11853,18 @@ input.search:-ms-input-placeholder::before {
 .movie-info h5,
 .movie-info h6 {
   color: #cccccc;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.movie-info h3.director,
+.movie-info h5.director,
+.movie-info h6.director {
+  text-transform: none;
 }
 .movie-info h3 small,
 .movie-info h5 small,
 .movie-info h6 small {
+  text-transform: none;
   color: #cccccc;
 }
 .movie-info + .overlay {
@@ -11860,6 +11876,21 @@ input.search:-ms-input-placeholder::before {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
   z-index: 1;
 }
+.movie-info .categories .label-greydark {
+  padding: 4px;
+  font-weight: normal;
+  margin: 5px 5px 5px 0;
+  background: #4d4d4d;
+}
+.movie-info .categories .label-greydark:hover {
+  background: #af152f;
+}
+.movie-info .categories .label-greydark a {
+  display: inline-block;
+  color: #fff;
+  padding: 4px 11px;
+  text-decoration: none;
+}
 .movie-info .views {
   color: #cccccc;
 }
@@ -11868,7 +11899,7 @@ input.search:-ms-input-placeholder::before {
   left: -2000px;
 }
 .movie-info .info-ico {
-  margin-top: 5px;
+  margin-top: 10px;
   padding-right: 5px;
 }
 .movie-info .info-ico i {
@@ -11983,6 +12014,16 @@ input.search:-ms-input-placeholder::before {
     display: none;
   }
 }
+.yarpp-thumbnails-horizontal.slider2 .yarpp-thumbnail.slide-cont,
+.yarpp-thumbnail.slide-cont > img,
+.yarpp-thumbnail.slide-cont .yarpp-thumbnail-default {
+  width: auto;
+  height: auto;
+}
+.img-content {
+  font-size: 15px;
+  color: #4d4d4d;
+}
 .img-content ol {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -12067,7 +12108,7 @@ input.search:-ms-input-placeholder::before {
   color: transparent;
   border: none;
   outline: none;
-  background: url(../img/arrow.png);
+  background: url(../img/arrow.png) #eeeeee;
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.5;
@@ -12085,6 +12126,10 @@ input.search:-ms-input-placeholder::before {
 }
 .vid-next {
   right: 25px;
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 @media (max-width: 767px) {

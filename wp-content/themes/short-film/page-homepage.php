@@ -22,7 +22,7 @@ Template Name: Homepage
             <div class="content-wrapper">
                 <div class="spacer-40"></div>
 
-                <h2>STAFF PICKS <small><em>This Week's Premiere</em></small></h2>
+                <h2 class="brand">STAFF PICKS <small><em>This Week's Premiere</em></small></h2>
 
                 <hr class="m-t-0">
 
@@ -94,7 +94,7 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-9">
                         <div class="">
-                            <h2>NEW AND NOTEWORTHY</h2>
+                            <h2 class="brand">NEW AND NOTEWORTHY</h2>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
@@ -335,7 +335,7 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-9">
                         <div class="">
-                            <h3>IN FOCUS</h3>
+                            <h3 class="brand">IN FOCUS</h3>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
@@ -429,7 +429,7 @@ Template Name: Homepage
                 <div class="spacer-50"></div>
                 <div class="row ge">
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <h3><small><em>SORT BY</em></small> GENRE</h3>
+                        <h3 class="brand"><small><em>SORT BY</em></small> GENRE</h3>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                          <div class="pull-right">
@@ -478,7 +478,7 @@ Template Name: Homepage
                 <div class="spacer-50"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
+                        <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
                         <hr class="m-t-0">
                         <div class="slider2 regular-slider cap-show-on-hover">
                             <div class="slide-cont">
