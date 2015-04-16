@@ -11636,6 +11636,8 @@ input.search:-ms-input-placeholder::before {
 }
 .slide-cont {
   position: relative;
+  height: 177px;
+  overflow: hidden;
 }
 .slide-cont:hover .cap-s {
   opacity: 1;
@@ -11979,7 +11981,7 @@ h6.brand {
   padding: 4px 11px;
   text-decoration: none;
 }
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .movie-info {
     position: static;
   }
@@ -11995,6 +11997,28 @@ h6.brand {
   }
   .movie-info + .overlay {
     display: none;
+  }
+  .movie-info .col-xs-9,
+  .movie-info .col-xs-3 {
+    width: 100%;
+    float: none;
+  }
+  .movie-info .col-xs-3 .info-ico div {
+    float: left;
+    color: #4d4d4d;
+  }
+  .movie-info .col-xs-3 .info-ico div *,
+  .movie-info .col-xs-3 .info-ico div .views {
+    color: #4d4d4d;
+  }
+  .movie-info .col-xs-3 .info-ico div.watchlist-add,
+  .movie-info .col-xs-3 .info-ico div.like-action {
+    border-left: 1px solid #999999;
+    padding-left: 5px;
+    margin-left: 5px;
+    padding-left: 10px;
+    margin-left: 12px;
+    margin-right: 0;
   }
 }
 .yarpp-thumbnails-horizontal.slider2 .yarpp-thumbnail.slide-cont,

@@ -260,7 +260,7 @@
             }
         }
     }
-@media (max-width:767px){
+@media screen and (max-width:767px){
     .movie-info{
         position: static;
         h3, h5, h6{
@@ -271,6 +271,24 @@
         }
         & + .overlay{
             display: none;
+        }
+        .col-xs-9, .col-xs-3 {
+            width: 100%;
+            float: none;
+        }
+        .col-xs-3 .info-ico div {
+            float: left;
+//            margin-right: 10px;
+            color: @gray-darker;
+            *, .views {color: @gray-darker;}
+            &.watchlist-add, &.like-action {
+                border-left: 1px solid @gray;
+                padding-left: 5px;
+                margin-left: 5px;
+                padding-left: 10px;
+                margin-left: 12px;
+                margin-right: 0;
+            }
         }
     }
 }
