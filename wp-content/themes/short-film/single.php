@@ -428,9 +428,3 @@ afterToggle: function(){}
 
 
 </script>
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> ac932595da58423531d0cd9c264dee67d5cf96dd
