@@ -1375,7 +1375,7 @@ function shortfilm_menu()
 	function new_excerpt_more($more) 
 	{
 
-		echo "hiii  ";
+		//echo "hiii  ";
 		global $post;
 
 		return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
