@@ -1375,8 +1375,12 @@ function shortfilm_menu()
 	// function new_excerpt_more($more) 
 	// {
 
+
 		
 		// global $post;
+
+		//echo "hiii  ";
+
 
 		// return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
 		//return "read more.";
