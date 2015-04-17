@@ -425,12 +425,3 @@ afterToggle: function(){}
 
 
 </script>
-
-
-
-
-<<<<<<< HEAD
-=======
-</script>
-
->>>>>>> ff329add03f30dce956a47373959caa341ed705c

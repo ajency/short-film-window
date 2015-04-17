@@ -1,0 +1,42 @@
+.with_frm_style .frm_left_container label.frm_primary_label {
+  width: auto;
+}
+.with_frm_style label.frm_primary_label,
+.with_frm_style.frm_login_form label {
+  font-family: 'Roboto';
+  font-size: 14px;
+}
+.frm_forms {
+  margin-top: -23px;
+}
+.frm_forms .highlight-first {
+  background: #444847;
+  text-align: right;
+  padding: 25px;
+}
+.frm_forms .highlight-first .form-field {
+  margin-bottom: 0;
+}
+.frm_forms .highlight-first .frm_left_container label.frm_primary_label {
+  float: none;
+  color: #fff;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.frm_forms .highlight-first select {
+  display: inline-block;
+  padding: 5px 10px;
+  box-shadow: 0 0 0 2px #444847, 0 0 0 3px #fff;
+  max-width: 200px;
+}
+.frm_forms .rest-of-form {
+  padding: 25px;
+}
+.frm_forms .rest-of-form .form-field *,
+.frm_forms .rest-of-form .form-field.frm_left_container label.frm_primary_label {
+  display: inline-block;
+}
+.frm_forms .rest-of-form .form-field.frm_left_container label.frm_primary_label {
+  padding-right: 15px;
+}
