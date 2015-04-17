@@ -1372,18 +1372,18 @@ function shortfilm_menu()
 	add_action( 'init', 'create_custom_post_article' );
 
 	
-	function new_excerpt_more($more) 
-	{
+	// function new_excerpt_more($more) 
+	// {
 
 		
-		global $post;
+		// global $post;
 
-		return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
+		// return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
 		//return "read more.";
 
-   }
+   // }
 
-   add_filter('excerpt_more', 'new_excerpt_more',10);
+   // add_filter('excerpt_more', 'new_excerpt_more',10);
 
 
 	
