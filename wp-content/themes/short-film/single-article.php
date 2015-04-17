@@ -11,25 +11,26 @@ get_header(); ?>
 	
 	
 	?>
-
+	
+	<!--
 	<video id="bg-video"
          class="video-js vjs-default-skin"
          height="auto"
          width="auto"
-         poster="<?php echo $response['featured_image'];?>"
+         poster="<?php// echo $response['featured_image'];?>"
          loop
          controls
-         data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
+         data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php// echo $response['videourl'] ;?>" }'>
 
       <p>
         Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
       </p>
     </video>
-	
-	
-	<!--
-	<img src="<?php// echo $response['featured_image'];?>" class="img-responsive width-full">
 	-->
+	
+	
+	<img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">
+	
 	
 	<div id="movie-header" class="movie-header">
 		<div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div>
