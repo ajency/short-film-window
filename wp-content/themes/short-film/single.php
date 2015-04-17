@@ -11,41 +11,44 @@ get_header(); ?>
 	
 	
 	?>
-<!--
-	<video id="bg-video"
-         class="video-js vjs-default-skin"
-         height="auto"
-         width="auto"
-         poster="<?php echo $response['featured_image'];?>"
-         loop
-         controls
-         data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
+	
+		<video id="bg-video"
+			 class="video-js vjs-default-skin"
+			 height="auto"
+			 width="auto"
+			 poster="<?php echo $response['featured_image'];?>"
+			 loop
+			 controls
+			 data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
 
-      <p>
-        Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
-      </p>
-    </video>
--->
+			  <p>
+				Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
+			  </p>
+		</video>
+	
+		
 
-	<div id="movie-header" class="movie-header without-vid">
-        <div class="vid-splash text-center">
-            <div class="img-fi-he">
-                <a href="#" class="play_movie_big">
-                    <i class="fa fa-play"></i>
-                </a>
-                <img id="splash" src="<?php echo get_template_directory_uri(); ?>/assets/img/placeholder.jpg" class="img-fi-he-img" />
-            </div>
-        </div>
-<!--		<div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div>-->
+	<!-- <div id="movie-header" class="movie-header without-vid">  -->
+	
+	<div id="movie-header" class="movie-header">
+	
+	
+		<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
+
+		</div>
+	
+
 		<!-- <div id="home-video">
-		  <img src="http://video-js.zencoder.com/oceans-clip.png" class="img-responsive" data-video="https://www.youtube.com/embed/aVgeJ5eqlSM?rel=0&amp;controls=0&amp;showinfo=0" title="Play Video" />
-		  <span class="play-button"></span>
-		</div> -->
+				  <img src="http://video-js.zencoder.com/oceans-clip.png" class="img-responsive" data-video="https://www.youtube.com/embed/aVgeJ5eqlSM?rel=0&amp;controls=0&amp;showinfo=0" title="Play Video" />
+				  <span class="play-button"></span>
+			</div> -->
+		
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
 		
 		<!--<div><img src="https://placeimg.com/1000/404/people" class="img-responsive width-full"></div>
 		<div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
+		
 		<div class="container movie-info">
 			<div class="row">
 				<div class="col-md-7">
@@ -425,3 +428,9 @@ afterToggle: function(){}
 
 
 </script>
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> ac932595da58423531d0cd9c264dee67d5cf96dd

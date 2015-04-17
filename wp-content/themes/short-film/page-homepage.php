@@ -687,8 +687,7 @@ Template Name: Homepage
 									+'<div class="col-md-3">'
 										+'<div class="pull-right">'
 										
-											+'<div class="pull-right share-button">'
-												+'<?php echo do_shortcode("[ssba]"); ?>'							
+											+'<div class="pull-right share-button">'						
 											+'</div>'
 										+'</div>'
 									+'</div>'
@@ -712,7 +711,9 @@ Template Name: Homepage
 			;
 		
 			jQuery('.staffpick-display-section').html(html);
-					 
+			
+			jQuery('.staffpick-display-section').find(".share-button").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
+			
 		}
 		else
 		{
