@@ -61,6 +61,16 @@
             &.frm_left_container input {
                 float: right;
                 padding: 7px 13px;
+                @media screen and (max-width: 991px) {
+                    width: 71%;
+                }
+                @media screen and (max-width: 767px) {
+                    float: none;
+                    display: block;
+                    width: 100%;
+                    max-width: 100%;
+                    margin-top: 10px;
+                }
             }
             .frm_error {
                 .error(#B94A48; 14px; 6px);

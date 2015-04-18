@@ -10913,6 +10913,11 @@ hr {
 .header-space {
   padding-top: 150px;
 }
+@media screen and (max-width: 480px) {
+  .header-space {
+    padding-top: 10px;
+  }
+}
 a {
   color: #787878;
 }
@@ -10967,7 +10972,7 @@ a {
   .header-links {
     width: 100%;
     float: none;
-    height: 85px;
+    height: 70px;
   }
   .header-links .social-links {
     float: right;
@@ -12319,6 +12324,20 @@ h5.un {
 .frm_forms .rest-of-form .form-field.frm_left_container input {
   float: right;
   padding: 7px 13px;
+}
+@media screen and (max-width: 991px) {
+  .frm_forms .rest-of-form .form-field.frm_left_container input {
+    width: 71%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .frm_forms .rest-of-form .form-field.frm_left_container input {
+    float: none;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
+  }
 }
 .frm_forms .rest-of-form .form-field .frm_error {
   color: #b94a48;
