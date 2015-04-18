@@ -7,9 +7,11 @@ get_header(); ?>
 	
 	global $post;
 
-	$response = Film\Video::get($post->ID);
+	$response = Film\Video::get_article($post->ID);
 	
-	
+	// print_r($response);
+	// exit;
+
 	?>
 	
 	<!--
@@ -20,7 +22,7 @@ get_header(); ?>
          poster="<?php// echo $response['featured_image'];?>"
          loop
          controls
-         data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php// echo $response['videourl'] ;?>" }'>
+         data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php//// echo $response['videourl'] ;?>" }'>
 
       <p>
         Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
@@ -29,11 +31,11 @@ get_header(); ?>
 	-->
 	
 	
-	<img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">
+	 <img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">  
 	
 	
 	<div id="movie-header" class="movie-header">
-		<div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div>
+		 <!-- <div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div> -->
 	
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
@@ -73,10 +75,10 @@ get_header(); ?>
 					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
 					            </li>
 					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
 					            </li>
 					            <li class="social-pin">
-					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php //echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
 					            </li>
 					          </ul>
 							  -->
