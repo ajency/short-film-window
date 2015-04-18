@@ -12246,7 +12246,15 @@ h5.un {
 .with_frm_style label.frm_primary_label,
 .with_frm_style.frm_login_form label {
   font-family: 'Roboto';
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 100;
+}
+.frm_forms.with_frm_style .frm_submit {
+  text-align: center;
+  padding-bottom: 15px;
+}
+.frm_forms.with_frm_style .frm_submit input[type=submit] {
+  font-family: 'Roboto';
 }
 .frm_forms {
   margin-top: -23px;
@@ -12255,16 +12263,17 @@ h5.un {
   background: #444847;
   text-align: right;
   padding: 25px;
+  position: relative;
 }
 .frm_forms .highlight-first .form-field {
   margin-bottom: 0;
 }
 .frm_forms .highlight-first .frm_left_container label.frm_primary_label {
+  font-family: 'Roboto';
   float: none;
   color: #fff;
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 18px;
 }
 .frm_forms .highlight-first select {
   display: inline-block;
@@ -12272,15 +12281,56 @@ h5.un {
   box-shadow: 0 0 0 2px #444847, 0 0 0 3px #fff;
   max-width: 200px;
 }
+.frm_forms .highlight-first .frm_error {
+  color: #dd807e;
+  position: absolute;
+  right: 22px;
+  bottom: 3px;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
 .frm_forms .rest-of-form {
   padding: 25px;
+}
+.frm_forms .rest-of-form .form-field {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.frm_forms .rest-of-form .form-field:after {
+  content: '';
+  clear: both;
+  width: 100%;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
 }
 .frm_forms .rest-of-form .form-field *,
 .frm_forms .rest-of-form .form-field.frm_left_container label.frm_primary_label {
   display: inline-block;
+  font-style: italic;
+  color: #4d4d4d;
+  padding: 2px 0;
 }
 .frm_forms .rest-of-form .form-field.frm_left_container label.frm_primary_label {
   padding-right: 15px;
+}
+.frm_forms .rest-of-form .form-field.frm_left_container input {
+  float: right;
+  padding: 7px 13px;
+}
+.frm_forms .rest-of-form .form-field .frm_error {
+  color: #b94a48;
+  position: absolute;
+  right: 14px;
+  bottom: 6px;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+.frm_forms .rest-of-form .form-field textarea {
+  margin-top: 10px;
+  padding: 7px 13px;
 }
 h2.page-title {
   text-transform: uppercase;

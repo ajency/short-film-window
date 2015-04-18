@@ -1,6 +1,16 @@
 //For all the Formidable Forms
+.error(@clr: #B94A48; @rt: 10px; @btm: 6px) {
+    color: @clr;
+    position: absolute;
+    right: @rt;
+    bottom: @btm;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
 .with_frm_style .frm_left_container label.frm_primary_label {width: auto;}
-.with_frm_style label.frm_primary_label, .with_frm_style.frm_login_form label {font-family: 'Roboto'; font-size: 14px;}
+.with_frm_style label.frm_primary_label, .with_frm_style.frm_login_form label {font-family: 'Roboto'; font-size: 18px; font-weight: 100;}
+.frm_forms.with_frm_style .frm_submit {text-align: center; padding-bottom: 15px;}
+.frm_forms.with_frm_style .frm_submit input[type=submit] {font-family: 'Roboto';}
 
 .frm_forms {
     margin-top: -23px;
@@ -8,13 +18,14 @@
         background: #444847;
         text-align: right;
         padding: 25px;
+        position: relative;
         .form-field {margin-bottom: 0;}
         .frm_left_container label.frm_primary_label {
+            font-family: 'Roboto'; 
             float: none;
             color: #fff;
             font-weight: 500;
             text-transform: uppercase;
-            font-size: 18px;
         }
         select {
             display: inline-block;
@@ -22,15 +33,42 @@
             box-shadow: 0 0 0 2px #444847, 0 0 0 3px #fff;
             max-width: 200px;
         }
+        .frm_error {
+            .error(#DD807E; 22px; 3px);
+        }
     }
     .rest-of-form {
         padding: 25px;
         .form-field {
-            *, &.frm_left_container label.frm_primary_label {display: inline-block;}
+            margin-top: 10px;
+            margin-bottom: 30px;
+            position: relative;
+            &:after {
+                content: '';
+                clear: both;
+                width: 100%;
+                height: 0;
+                padding: 0;
+                margin: 0;
+                display: block;
+            }
+            *, &.frm_left_container label.frm_primary_label {
+                display: inline-block; font-style: italic; color: @gray-darker; padding: 2px 0;
+            }
             &.frm_left_container label.frm_primary_label {
                 padding-right: 15px;
             }
-            
+            &.frm_left_container input {
+                float: right;
+                padding: 7px 13px;
+            }
+            .frm_error {
+                .error(#B94A48; 14px; 6px);
+            }
+            textarea {
+                margin-top: 10px;
+                padding: 7px 13px;
+            }
         }
         
     }
