@@ -94,162 +94,137 @@ Template Name: articles_template
 				-->
                 <div class="spacer-40"></div><div class="loader"></div>
 				<div class="all_posts">
-					<?php 
- 					
+				
+				<?php 
+								
 					$args = array(
-						'orderby'           => 'post_date',
-						'order'             => 'DESC',
-						'posts_per_page'   	=> 12,
-						'offset'           	=> 0,
+								'orderby'           => 'post_date',
+								'order'             => 'DESC',
+								'posts_per_page'   	=> 12,
+								'offset'           	=> 0,
 
 
 					);
 
 					//$response = Film\Video::get_many_articles($args);
 					$response = Article_post\Article::get_many_articles($args);
-				
+			
 					if(count($response) > 0)
-					{ 
-						$gridreposnse = generate_grid_response($response);
-
-						foreach ($gridreposnse as $key => $value)
-						{
-							foreach ($value as $k => $val) 
-							{
-								$value[$k]['class'] = '';
-		  
-								if($val['slug'] == "")
-								{
-										
-									$value[$k]['class'] = 'hidden';
-								}
-           
-							}
-                         
-							?>
-									<!--
-										///////////////////////////////////////////  deleted grid layout
-									-->
-            <?php
-						} // end foreach ($gridreposnse as $key => $value)
-        
-				foreach ($response as $key => $value)
-				{
-				 
-            ?>
-                <div class="row listlayout">
-                    
-					<div class="col-md-5">
-                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
-                    </div>
-                    
-					<div class="col-md-7">
-                        <div class="row">
-                            
-							<div class="col-md-8">
-                                <h4 class="m-t-0">
-                                	
-									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-                                		<?php echo $value['title'];?>
-                                	</a>
-									
-									<!--
-                                	<small><em>By <?php// echo ucfirst($value['director']);?></em></small>
-									-->
-                                </h4>
-                            </div>
-                            
-							<div class="col-md-4">
+					{ 										
+						foreach ($response as $key => $value)
+						{						 
+				?>
+							<div class="row listlayout">
 								
-								<div class="social-strip">
-								
-									<?php echo do_shortcode("[ssba]"); ?>
-								
+								<div class="col-md-5">
+									 <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 								</div>
-							
-                                <!--
-								<div class="social-strip">
-                                    <div class="pull-right watchlist-add"> 
-                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-                                    </div>
-                                    <div class="pull-right like-action">
-                                        <span class="m-l-5 m-r-5">|</span> <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
-                                    </div>
-                                    
-									<div class="share-button">
-                                      
-										<div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-                                        <div class="social-networks">
-                                          <ul>
-                                            <li class="social-twitter">
-                                              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-facebook">
-                                            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-pin">
-                                            <a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-                                            </li>
-                                          </ul>
-                                        </div>
-									
-                                    </div>
-									
-                                </div>
-								-->
-                            </div>
-                        </div>
-                        <hr class="m-t-0 m-b-5">
-                       
-					   <div class="row">
-                            <div class="col-xs-8">
-                               
-							   <p><?php echo $value['excerpt'];?></p>
- 
-                            </div>
+								
+								<div class="col-md-7">
+									<div class="row">
+										
+										<div class="col-md-8">
+											<h4 class="m-t-0">
+												
+												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+													<?php echo $value['title'];?>
+												</a>
+												
+												<!--
+												<small><em>By <?php// echo ucfirst($value['director']);?></em></small>
+												-->
+											</h4>
+										</div>
+										
+										<div class="col-md-4">
+											
+											<div class="social-strip">
+											
+												<?php echo do_shortcode("[ssba]"); ?>
+											
+											</div>
+										
+											<!--
+											<div class="social-strip">
+												<div class="pull-right watchlist-add"> 
+													<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
+												</div>
+												<div class="pull-right like-action">
+													<span class="m-l-5 m-r-5">|</span> <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
+												</div>
+												
+												<div class="share-button">
+												  
+													<div class="social-toggle"><i class="fa fa-share"></i> Share</div>
+													<div class="social-networks">
+													  <ul>
+														<li class="social-twitter">
+														  <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
+														</li>
+														<li class="social-facebook">
+														<a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+														</li>
+														<li class="social-pin">
+														<a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+														</li>
+													  </ul>
+													</div>
+												
+												</div>
+												
+											</div>
+											-->
+										</div>
+									</div>
+									<hr class="m-t-0 m-b-5">
+								   
+								   <div class="row">
+										<div class="col-xs-8">
+										   
+										   <p><?php echo $value['excerpt'];?></p>
+			 
+										</div>
 
-                        </div>
-                    
-					</div>	                
-                </div>
-				
-				<!--
-					//////////////////////// deleted couch layout
-              -->
+									</div>
+								
+								</div>	                
+							</div>
 
-                
-        <!-- /container -->
-       
+					<!-- /container -->
+				   
 
-					
-						 <!-- end article -->
-					
-					<?php }
+									 <!-- end article -->
+								
+			<?php   
+						} //end foreach
 
-					}?>
+					} //end if
+			?>
 				</div> 
 
  					<div class="spacer-40"></div>
  					<input type="hidden" name="tracker" id="tracker" value="" / >
-					</div> <div class="text-center">
+			</div> 
+			
+			<div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
-                </div>
-                <div class="spacer-40"></div>
+            </div>
+            <div class="spacer-40"></div>
 
-                <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
-       
-                    
-                <div class="trending">
-                </div>
+			<a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
+   
+				
+			<div class="trending">
+			</div>
 
-                <div class="spacer-40"></div>
-	
-    
-			 <!-- end #content -->
+			<div class="spacer-40"></div>
 
-			<?php get_footer(); ?>
+
+		 <!-- end #content -->
+
+		<?php get_footer(); ?>
 
 <script type="text/javascript">
 
