@@ -281,7 +281,7 @@ window.onload = function() {
 
 
 	
-	
+	/*
     jQuery('.search').live('change',function(e){
         e.preventDefault();
         jQuery('#genre').val("");
@@ -316,7 +316,7 @@ window.onload = function() {
         });
            
     });
-	
+	*/
 	
 	function showLayout(){
 
@@ -428,7 +428,7 @@ window.onload = function() {
 		return grid;
 		}
 
-
+/***
     jQuery('.trending').infinitescroll({
     
         navSelector     : "a#next:last",
@@ -461,7 +461,7 @@ window.onload = function() {
                         
                         
     });
-
+***/
     function generate_data(response)
 	{
 
@@ -560,8 +560,10 @@ window.onload = function() {
                     
 
     }
-function loadslick(){
-    jQuery('.slider1').slick({
+	
+	function loadslick(){
+    
+		jQuery('.slider1').slick({
             // mobileFirst: true,
             infinite: true,
             slidesToShow: 3,
@@ -580,7 +582,7 @@ function loadslick(){
                 }
               ]
         });
-}
+    }
 }
 
 </script>
