@@ -25,11 +25,17 @@ class Article_API
             // array( array( $this, 'get_video'), WP_JSON_Server::READABLE)
             
         // );
+	
+	
+        // $routes['/articles/(?P<id>\d+)'] = array(
+            // array( array( $this, 'get_article'), WP_JSON_Server::READABLE)
+            
+        // );		
 		
-        $routes['/articles/(?P<id>\d+)'] = array(
+		$routes['/article/(?P<id>\d+)'] = array(
             array( array( $this, 'get_article'), WP_JSON_Server::READABLE)
             
-        );		
+        );	
 		
         // $routes['/videos'] = array(
             // array( array( $this, 'get_many'), WP_JSON_Server::READABLE)
