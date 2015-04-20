@@ -117,7 +117,13 @@ Template Name: articles_template
 							<div class="row listlayout">
 								
 								<div class="col-md-5">
-									 <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+								
+									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+									
+										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+								
+									</a>
+								
 								</div>
 								
 								<div class="col-md-7">
@@ -127,22 +133,26 @@ Template Name: articles_template
 											<h4 class="m-t-0">
 												
 												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-													<?php echo $value['title'];?>
+													
+													<?php echo $value['title']; ?>
+												
 												</a>
 												
-												<!--
-												<small><em>By <?php// echo ucfirst($value['director']);?></em></small>
-												-->
+												
+												<small><em>By <?php echo ucfirst($value['director']);?></em></small>
+												
 											</h4>
 										</div>
 										
 										<div class="col-md-4">
 											
+											<!--
 											<div class="social-strip">
 											
-												<?php echo do_shortcode("[ssba]"); ?>
+												<?php// echo do_shortcode("[ssba]"); ?>
 											
 											</div>
+											-->
 										
 											<!--
 											<div class="social-strip">
@@ -179,7 +189,9 @@ Template Name: articles_template
 									<hr class="m-t-0 m-b-5">
 								   
 								   <div class="row">
+									
 										<div class="col-xs-8">
+										   <p><?php echo $value['post_date'];?></p>
 										   
 										   <p><?php echo $value['excerpt'];?></p>
 			 
@@ -482,9 +494,10 @@ window.onload = function() {
                                 +'<h4 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a></h4>'
                             +'</div>'
                             +'<div class="col-md-4">'
-                                 +'<div class="social-strip">'
+                                 //+'<div class="social-strip">'
 										
-								 +'</div>'
+								 //+'</div>'
+								 
                                     // +'<div class="pull-right watchlist-add">' 
                                         // +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
                                     // +'</div>'
