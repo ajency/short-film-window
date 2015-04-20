@@ -11734,8 +11734,93 @@ h5.brand,
 h6.brand {
   color: #af152f;
 }
+.play_movie_big {
+  display: block;
+  font-size: 40px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2);
+  width: 137px;
+  height: 89px;
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 43%;
+  transform: translateX(-50%);
+  z-index: 1;
+  background: url(../img/play.png) center center no-repeat;
+}
+.play_movie_big:hover {
+  color: #fff;
+}
+.infocus h4 {
+  color: #af152f;
+}
 .movie-header {
   position: relative;
+  /*.img-fi-he {
+//        width: @headimgwi;
+//        height: @headhe - 126px;
+        //play buton
+        .play_movie_big {
+            display: block;
+            font-size: 40px;
+            color: #fff;
+            background: rgba(0,0,0,0.2);
+            width: 75px;
+            height: 75px;
+            line-height: 71px;
+            padding-left: 7px;
+            text-align: center;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            right: 0;
+            top: 44%;
+            transform: translateX(-50%);
+        }
+        //image fade to black
+        &:before, &:after {
+            content: '';
+            width: 150px;
+            height: @headhe - @reduction;
+            position: absolute;
+            bottom: 0;
+        }
+        &:before {
+            left: 0;
+            .grad(left, right, rgba(0,0,0,1), rgba(0,0,0,0));
+        }
+        &:after {
+            right: 0;
+            .grad(right, left, rgba(0,0,0,1), rgba(0,0,0,0));
+        }
+        @media screen and (max-width: 992px) {
+            width: 100%;
+            height: auto;
+            &:before, &:after {display: none}
+        }
+        @media screen and (max-width: 767px) {
+            height: auto;
+            position: relative;
+            padding-top: 179px;
+        }
+        @media screen and (max-width: 480px) {
+            padding-top: 0;
+        }
+        padding-top: @reduction;
+        position: relative;
+        display: inline-block;
+        img {
+            width: auto;
+            height: @headhe - @reduction;
+            @media screen and (max-width: 992px) {
+                width: 100%;
+//                height: @headhe - 100px;
+                height: auto;
+            }
+        }
+    }*/
 }
 .movie-header .overlay {
   /* transition */
@@ -11743,91 +11828,6 @@ h6.brand {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
-}
-.movie-header .img-fi-he {
-  padding-top: 138px;
-  position: relative;
-  display: inline-block;
-}
-.movie-header .img-fi-he .play_movie_big {
-  display: block;
-  font-size: 40px;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.2);
-  width: 75px;
-  height: 75px;
-  line-height: 71px;
-  padding-left: 7px;
-  text-align: center;
-  border: 2px solid #fff;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  right: 0;
-  top: 44%;
-  transform: translateX(-50%);
-}
-.movie-header .img-fi-he:before,
-.movie-header .img-fi-he:after {
-  content: '';
-  width: 150px;
-  height: 438px;
-  position: absolute;
-  bottom: 0;
-}
-.movie-header .img-fi-he:before {
-  left: 0;
-  background: -webkit-linear-gradient(left, #000000, rgba(0, 0, 0, 0));
-  /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(right, #000000, rgba(0, 0, 0, 0));
-  /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(right, #000000, rgba(0, 0, 0, 0));
-  /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to right, #000000, rgba(0, 0, 0, 0));
-  /* Standard syntax */
-}
-.movie-header .img-fi-he:after {
-  right: 0;
-  background: -webkit-linear-gradient(right, #000000, rgba(0, 0, 0, 0));
-  /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(left, #000000, rgba(0, 0, 0, 0));
-  /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(left, #000000, rgba(0, 0, 0, 0));
-  /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to left, #000000, rgba(0, 0, 0, 0));
-  /* Standard syntax */
-}
-@media screen and (max-width: 992px) {
-  .movie-header .img-fi-he {
-    width: 100%;
-    height: auto;
-  }
-  .movie-header .img-fi-he:before,
-  .movie-header .img-fi-he:after {
-    display: none;
-  }
-}
-@media screen and (max-width: 767px) {
-  .movie-header .img-fi-he {
-    height: auto;
-    position: relative;
-    padding-top: 179px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .movie-header .img-fi-he {
-    padding-top: 0;
-  }
-}
-.movie-header .img-fi-he img {
-  width: auto;
-  height: 438px;
-}
-@media screen and (max-width: 992px) {
-  .movie-header .img-fi-he img {
-    width: 100%;
-    height: auto;
-  }
 }
 .without-vid {
   height: 576px;
@@ -12157,6 +12157,22 @@ h6.brand {
   .vid-next {
     top: 15%;
   }
+}
+.readmore_dn,
+.readmore_up {
+  font-size: 48px;
+  text-align: center;
+  display: block;
+  height: 85px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+}
+.readmore_dn {
+  background-image: url(../img/downarrow.png);
+}
+.readmore_up {
+  background-image: url(../img/uparrow.png);
 }
 .listlayout,
 .couchlayout {
