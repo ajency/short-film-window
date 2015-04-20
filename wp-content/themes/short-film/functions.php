@@ -6,8 +6,9 @@ require_once (get_template_directory().'/api/class.video.api.php');
 require_once (get_template_directory().'/functions/functions.php');
 require_once (get_template_directory().'/functions/post-like.php');
 
-
-//code added by Surekha///
+//code added by Nivedita///
+require_once (get_template_directory().'/classes/class.article.php');
+require_once (get_template_directory().'/api/class.article.api.php');
 
 
 

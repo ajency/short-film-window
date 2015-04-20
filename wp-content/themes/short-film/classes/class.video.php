@@ -75,6 +75,7 @@ class Video
 
 	}
 	
+/*	
 	public function get_article($post_id)
 	{
 		
@@ -150,7 +151,7 @@ class Video
 		}
 
 	}
-
+*/
 	public function get_many($args)
 	{
 		global $post;
@@ -209,6 +210,7 @@ class Video
 
 	}
 	
+/*
 	public function get_many_articles($args)
 	{
 		global $post;
@@ -273,7 +275,8 @@ class Video
 			
 		return $post_response;
 
-	}	
+	}
+*/	
 	
 	/*
 	public function get_the_post_info($post_id)

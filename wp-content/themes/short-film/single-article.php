@@ -7,7 +7,8 @@ get_header(); ?>
 	
 	global $post;
 
-	$response = Film\Video::get_article($post->ID);
+	//$response = Film\Video::get_article($post->ID);
+	$response = Article_post\Article::get_article($post->ID);
 	
 	// print_r($response);
 	// exit;
