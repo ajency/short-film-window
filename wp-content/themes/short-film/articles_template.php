@@ -127,16 +127,16 @@ Template Name: articles_template
 							}
                          
 							?>
-					<!--
-						///////////////////////////////////////////  deleted grid layout
-					-->
+									<!--
+										///////////////////////////////////////////  deleted grid layout
+									-->
             <?php
-        } // end foreach ($gridreposnse as $key => $value)
+						} // end foreach ($gridreposnse as $key => $value)
         
-        foreach ($response as $key => $value)
-		{
+				foreach ($response as $key => $value)
+				{
 				 
-                ?>
+            ?>
                 <div class="row listlayout">
                     
 					<div class="col-md-5">
@@ -148,9 +148,11 @@ Template Name: articles_template
                             
 							<div class="col-md-8">
                                 <h4 class="m-t-0">
-                                	<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+                                	
+									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 		<?php echo $value['title'];?>
                                 	</a>
+									
 									<!--
                                 	<small><em>By <?php// echo ucfirst($value['director']);?></em></small>
 									-->
