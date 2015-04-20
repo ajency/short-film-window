@@ -32,7 +32,11 @@ get_header(); ?>
 	
 	<div id="movie-header" class="movie-header">
 	
-	
+        <!--remove this anchor tag to hide the play btn-->
+	    <a href="#" class="play_movie_big">
+<!--            <i class="fa fa-play"></i>-->
+        </a>
+                
 		<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
 
 		</div>
@@ -211,7 +215,7 @@ get_header(); ?>
 	    <div class="spacer-40"></div>
 	    <div class="row">
 	        <div class="col-md-12">
-	            <h3>SIMILAR MOVIES WE PICKED FOR YOU</h3>
+	            <h3 class="brand">SIMILAR MOVIES WE PICKED FOR YOU</h3>
 	            <hr>
 	                <div class="row">
 					
@@ -233,7 +237,7 @@ get_header(); ?>
 
 	    <div class="spacer-40"></div>
 
-	    <h4>WHAT ARE PEOPLE SAYING</h4>
+	    <h4 class="brand">WHAT ARE PEOPLE SAYING</h4>
 	    <hr class="m-t-0">
 
 	    <!-- <ul class="p-l-0">
@@ -326,8 +330,8 @@ jQuery('.img-content').readmore({
 speed: 100,
 collapsedHeight: 200,
 heightMargin: 16,
-moreLink: '<a href="#">Read More</a>',
-lessLink: '<a href="#">Close</a>',
+moreLink: '<a href="#" class="readmore_dn"></a>',
+lessLink: '<a href="#" class="readmore_up"></a>',
 embedCSS: true,
 blockCSS: 'display: block; width: 100%;',
 startOpen: false,
