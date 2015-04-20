@@ -428,7 +428,7 @@ window.onload = function() {
 		return grid;
 		}
 
-/***
+/* --
     jQuery('.trending').infinitescroll({
     
         navSelector     : "a#next:last",
@@ -461,7 +461,7 @@ window.onload = function() {
                         
                         
     });
-***/
+-- */
     function generate_data(response)
 	{
 
