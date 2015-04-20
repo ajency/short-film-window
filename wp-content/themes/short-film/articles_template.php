@@ -61,32 +61,37 @@ Template Name: articles_template
 					</div>
                 </div>
 
-                <hr class="m-t-0">
-                
+               
+			   <hr class="m-t-0">
+				
+					
                 <div class="row">
                     <div class="col-md-5">
 	
                     </div>
+						
+				
                     <div class="col-md-4 col-md-offset-3">
-
+						
+						
                         <div class="row">
-                           
-						   <div class="col-xs-4">
-                                <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
+                          
+							<div class="col-xs-4 text-center">
+                               
+							   <a href="#" id="listoption"  class="option"title="List">
+									<!-- <i class="fa fa-th-list fa-3x"></i>  -->
+							   </a>
+							   
                             </div>
-							
-                            <div class="col-xs-4 text-center">
-                                <a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
-                            </div>
-                            <div class="col-xs-4 text-right">
-                                <a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
-                            </div>
+
                         </div>
+					
                     </div>
+					
                 </div>
-
+				<!--
                 <hr>
-
+				-->
                 <div class="spacer-40"></div><div class="loader"></div>
 				<div class="all_posts">
 					<?php 
@@ -99,9 +104,9 @@ Template Name: articles_template
 
 
 					);
-					
-					//$response = Film\Video::get_many($args);
-					$response = Film\Video::get_many_articles($args);
+
+					//$response = Film\Video::get_many_articles($args);
+					$response = Article_post\Article::get_many_articles($args);
 				
 					if(count($response) > 0)
 					{ 
@@ -153,6 +158,13 @@ Template Name: articles_template
                             </div>
                             
 							<div class="col-md-4">
+								
+								<div class="social-strip">
+								
+									<?php echo do_shortcode("[ssba]"); ?>
+								
+								</div>
+							
                                 <!--
 								<div class="social-strip">
                                     <div class="pull-right watchlist-add"> 
@@ -240,9 +252,9 @@ Template Name: articles_template
 <script type="text/javascript">
 
 window.onload = function() {
-	jQuery('#tracker').val('gridoption');
+	jQuery('#tracker').val('listoption');
 	
-	jQuery('#gridoption').children().addClass('text-primary');
+	jQuery('#listoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
 	
@@ -341,7 +353,8 @@ window.onload = function() {
 		
 		jQuery.ajax({
 				type : 'GET',
-				url : SITEURL+'/wp-json/videos',
+				//url : SITEURL+'/wp-json/videos',
+				url : SITEURL+'/wp-json/articles',
 				data : data,
 				success:function(response)
 				{
@@ -492,7 +505,9 @@ window.onload = function() {
                                 +'<h4 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a></h4>'
                             +'</div>'
                             +'<div class="col-md-4">'
-                                // +'<div class="social-strip">'
+                                 +'<div class="social-strip">'
+										
+								 +'</div>'
                                     // +'<div class="pull-right watchlist-add">' 
                                         // +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
                                     // +'</div>'
