@@ -150,8 +150,7 @@ get_header(); ?>
 							<?php 
 								
 								related_posts(); 
-								
-								//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
+									//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
 							
 							?>
 						</div>
@@ -162,11 +161,12 @@ get_header(); ?>
 
 	    <div class="spacer-40"></div>
 
-
+		<!--
 	    <div class="text-center">
 	        <a href="" class="btn btn-primary btn-lg">Watch more awesome films</a>
 	    </div>
-	        
+	    --> 
+		 
 	</div>
     
     <?php endwhile; ?>			

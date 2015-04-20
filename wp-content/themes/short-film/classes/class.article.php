@@ -12,7 +12,7 @@ class Article
 		
 		//wordpress fn to get single post
 		$post  = get_post($post_id); 
-
+		
 		
 		if(!is_null($post))
 		{
@@ -45,13 +45,14 @@ class Article
 				'id'			=> $post->ID ,
 				'slug'			=> $post->post_name,
 				'title'			=> $post->post_title,
+				'post_date'			=> get_the_date(),
 				//'type'			=> get_post_meta( $post->ID , 'type',true ),
 				//'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
 				//'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
 				//'content'		=> get_the_content('Read more'),
 				'content'		=> $post->post_content,
-				//'excerpt'		=> get_the_excerpt(),
-				'excerpt'		=> $post->post_excerpt,
+				'excerpt'		=> get_the_excerpt(),
+				//'excerpt'		=> $post->post_excerpt,
 				'director'		=> $name,
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
@@ -125,6 +126,7 @@ class Article
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],
+					'post_date'				=> $post_detail['post_date'],
 					//'duration'			=> $post_detail['duration'],
 					//'region'			=> $post_detail['region'],
 					'director'			=> $post_detail['director'],
