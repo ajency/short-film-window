@@ -158,8 +158,8 @@ get_header(); ?>
 						</div>
 
 					</div>
-	        </div>
-	    </div>
+				</div>
+			</div>
 
 	    <div class="spacer-40"></div>
 

@@ -223,8 +223,33 @@ Template Name: articles_template
                     <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
             </div>
-            <div class="spacer-40"></div>
+            
+			<div class="spacer-40"></div>
 
+			<div class="popular">
+			
+				<div class="row">
+                    <div class="col-md-6">
+                        <h2>POPULAR ARTICLES</h2>
+                    </div>	
+                </div>
+			
+				<hr class="m-t-0">
+				
+				<div class="row">
+					
+					<div class="col-md-12">
+					
+						These are popular articles
+					
+					</div>
+				
+				</div>
+			
+			</div>			
+			
+			
+			<div class="spacer-40"></div>		
 			<a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
    
 				
@@ -245,6 +270,7 @@ window.onload = function() {
 	
 	jQuery('#listoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
+	count=count-1;
     jQuery('#offset').val(count);
 	
 
@@ -338,7 +364,6 @@ window.onload = function() {
 		
 		data = '&posts_per_page='+posts_per_page+'&offset='+offset;
 
-		//????????????????????????????????????????????? url?
 		
 		jQuery.ajax({
 				type : 'GET',
@@ -486,47 +511,58 @@ window.onload = function() {
 			{
                 html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
-                          +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
-                     +'</div>'
+						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+						+'</a>'
+					 +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
                             +'<div class="col-md-8">'
-                                +'<h4 class="m-t-0"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a></h4>'
+                                +'<h4 class="m-t-0">'
+									
+									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+								
+									+'<small><em> By '+value.director+'</em></small>'
+								
+								+'</h4>'
                             +'</div>'
                             +'<div class="col-md-4">'
-                                 //+'<div class="social-strip">'
+							/*
+                                 +'<div class="social-strip">'
 										
-								 //+'</div>'
 								 
-                                    // +'<div class="pull-right watchlist-add">' 
-                                        // +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
-                                    // +'</div>'
-                                    // +'<div class="pull-right like-action">'
-                                        // +'<span class="m-l-5 m-r-5">|</span> '+value.post_like_count+' <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>'
-                                    // +'</div>'
-                                    // +'<div class="share-button">'
-                                        // +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
-                                        // +'<div class="social-networks">'
-                                          // +'<ul>'
-                                            // +'<li class="social-twitter">'
-                                              // +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
-                                            // +'</li>'
-                                            // +'<li class="social-facebook">'
-                                            // +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
-                                            // +'</li>'
-                                            // +'<li class="social-pin">'
-                                            // +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
-                                            // +'</li>'
-                                          // +'</ul>'
-                                        // +'</div>'
-                                    // +'</div>'
-                                // +'</div>'
+								 
+                                    +'<div class="pull-right watchlist-add">' 
+                                        +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                    +'</div>'
+                                    +'<div class="pull-right like-action">'
+                                        +'<span class="m-l-5 m-r-5">|</span> '+value.post_like_count+' <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>'
+                                    +'</div>'
+                                    +'<div class="share-button">'
+                                        +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
+                                        +'<div class="social-networks">'
+                                          +'<ul>'
+                                            +'<li class="social-twitter">'
+                                              +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-facebook">'
+                                            +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-pin">'
+                                            +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
+                                            +'</li>'
+                                          +'</ul>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+							*/
                             +'</div>'
                         +'</div>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
-                                 +'<p>'+value.excerpt+'</p>'
+									+'<p>'+value.post_date+'</p>'
+									+'<p>'+value.excerpt+'</p>'
                              +'</div>'
                              // +'<div class="col-xs-4 text-right">'
                                  // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
