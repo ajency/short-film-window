@@ -1372,12 +1372,9 @@ function shortfilm_menu()
 	
 	add_action( 'init', 'create_custom_post_article' );
 
-	
+/*	
 	// function new_excerpt_more($more) 
 	// {
-
-
-		
 		// global $post;
 
 		//echo "hiii  ";
@@ -1389,9 +1386,14 @@ function shortfilm_menu()
    // }
 
    // add_filter('excerpt_more', 'new_excerpt_more',10);
+*/
 
+function change_excerpt_length( $length ) 
+{
+	return 100;
+}
 
-	
+add_filter( 'excerpt_length', 'change_excerpt_length', 999 );	
 	
 	
 	

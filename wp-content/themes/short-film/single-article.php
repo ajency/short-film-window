@@ -97,8 +97,10 @@ get_header(); ?>
 			<hr class="m-t-0 m-b-5">
 			<div class="row">
 			    <div class="col-xs-9">
-			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
+			        
 			        <h5 class="m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
+					
+					<h6 class="m-t-0"><small><em><?php echo $response['post_date']; ?></em></small></h6>
 
 			    </div>
 				
