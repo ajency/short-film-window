@@ -12396,6 +12396,11 @@ h2.page-title {
   overflow: hidden;
   display: block;
 }
+@media screen and (max-width: 991px) {
+  .article_row .article_fi {
+    margin-bottom: 10px;
+  }
+}
 .article_single .article_s_img {
   max-height: 600px;
   overflow: hidden;
@@ -12429,4 +12434,7 @@ h2.page-title {
 }
 .article_s_cont .alignleft {
   float: left;
+}
+.pop_posts h6 {
+  text-transform: uppercase;
 }
