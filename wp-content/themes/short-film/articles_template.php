@@ -159,8 +159,13 @@ Template Name: articles_template
 									
 										<div class="col-xs-12">
 										   <p class="article_meta">
-										       <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
-										       <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>								   
+										       
+											   <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+										       
+											   <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>		
+
+												<span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>
+											   
 										   </p>
 										   
 										   <p class="article_cont">
@@ -515,6 +520,7 @@ window.onload = function() {
 									+'<p class="article_meta">'
                                         +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
+										+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
                                     +'</p>'
                                     +'<p class="article_cont">'
                                         +value.excerpt
