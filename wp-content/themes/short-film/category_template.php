@@ -569,6 +569,7 @@ window.onload = function() {
 	
 	jQuery('#gridoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
+	count=count-1;
     jQuery('#offset').val(count);
 	
 	jQuery('#genre').live('change',function(e){
