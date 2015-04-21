@@ -159,8 +159,13 @@ Template Name: articles_template
 									
 										<div class="col-xs-12">
 										   <p class="article_meta">
-										       <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
-										       <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>								   
+										       
+											   <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+										       
+											   <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>		
+
+												<span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>
+											   
 										   </p>
 										   
 										   <p class="article_cont">
@@ -229,44 +234,27 @@ Template Name: articles_template
 							foreach ($populararticles as $populararticle)
 							{									
 						?>									
-								<div class="col-xs-4">
-									
-									<div>
-										
+								<div class="col-sm-4">									
+									<div class="pop_posts">
 										<div class="focus-img">
-											
 											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
-											
 												<img src="<?php echo $populararticle['featured_image'];?>">
-											
 											</a>
-										
 										</div>
 										
 										<div>
-											
 											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
-													
-													<?php echo $populararticle['title']; ?>
-												
+								                <h6><?php echo $populararticle['title']; ?></h6>
 											</a>
-											
 											<p>	<?php echo $populararticle['excerpt']; ?>	</p>
-											
 											<div>
-												
 												<p class="pull-left"><small><?php echo $populararticle['post_date'];?></small></p>
-												
 												<p class="pull-right">
-													
 													<span><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
-													
 													<!--
 													<span><i class="fa fa-eye"></i> <?php echo $populararticle['no_of_views'];?> </span>
 													-->
-												
 												</p>
-											
 											</div>
 											
 											<div class="clearfix"></div>
@@ -291,14 +279,14 @@ Template Name: articles_template
 			</div>			
 			
 			
-			<div class="spacer-40"></div>		
+			<div class="spacer-40 hidden"></div>		
 			<a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
    
 				
-			<div class="trending">
+			<div class="trending hidden">
 			</div>
 
-			<div class="spacer-40"></div>
+			<div class="spacer-40 hidden"></div>
 
 
 		 <!-- end #content -->
@@ -308,6 +296,18 @@ Template Name: articles_template
 <script type="text/javascript">
 
 window.onload = function() {
+        function setlesshe() {
+            jQuery('.article_row').each(function() {
+                //console.log($(this).find('.col-md-7').height());
+                if (jQuery(window).width() < 992) {
+                    jQuery(this).find('.col-md-5 .article_fi').css('height', '300px');
+                    //jQuery(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
+                } else {
+                    jQuery(this).find('.col-md-5 .article_fi').css('height', jQuery(this).find('.col-md-7').height());
+                    //jQuery(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
+                }
+            });
+        }
 	jQuery('#tracker').val('listoption');
 	
 	jQuery('#listoption').children().addClass('text-primary');
@@ -382,6 +382,7 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
 		}
+        setlesshe();
 	}
 
 	function get_all_posts()
@@ -519,6 +520,7 @@ window.onload = function() {
 									+'<p class="article_meta">'
                                         +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
+										+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
                                     +'</p>'
                                     +'<p class="article_cont">'
                                         +value.excerpt
@@ -534,8 +536,9 @@ window.onload = function() {
 				 ////deleted html for couchdata here
 				 
             });
-                        jQuery('.all_posts').html(html);
+                    jQuery('.all_posts').html(html);
                         showLayout();
+                        
                     }
                     else
                     {
