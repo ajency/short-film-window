@@ -1390,17 +1390,56 @@ function shortfilm_menu()
 
 function change_excerpt_length( $length ) 
 {
-	return 100;
+	return 40;
 }
 
 add_filter( 'excerpt_length', 'change_excerpt_length', 999 );	
 	
 	
 	
+/*	
+function get_the_popular_articles()
+{
+global $wpdb;
+	//echo "	inside get_the_popular_articles		";
+
+	$populararticles = $wpdb->get_results( 
+		"
+		SELECT post_id 
+		FROM $wpdb->postmeta
+		WHERE meta_key  = '_post_like_count' 
+		ORDER BY meta_value
+		DESC LIMIT 3
+		
+		", ARRAY_A
+	);
+
+	//print_r($populararticles);
+	
+	//return $populararticles;
+	
+	//print_r($populararticles);
+
+} //end function
+
+
+add_action('init','get_the_popular_articles');	
+*/	
+	
+
 	
 	
+
+function get_popular_articles($args)
+{
+	$query = new WP_Query($args);
+	$response = array();
 	
-	
-	
-	
-	
+    while ( $query->have_posts() )
+	{
+		$query->the_post();
+		$response[] = Article_post\Article::get_article($query->post->ID);		
+	}
+
+	return $response;
+}	

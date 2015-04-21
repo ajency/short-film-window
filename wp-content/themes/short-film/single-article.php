@@ -32,10 +32,13 @@ get_header(); ?>
 	-->
 	
 	
-	 <img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">  
+	 
 	
 	
-	<div id="movie-header" class="movie-header">
+	<div id="movie-header" class="movie-header article_single">
+        <div class="article_s_img">
+             <img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">  
+        </div>
 		 <!-- <div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div> -->
 	
 		<div class="vid-previous"></div>
@@ -43,23 +46,25 @@ get_header(); ?>
 
 		<div class="container movie-info">
 			<div class="row">
-				<div class="col-md-7">
-					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
+				<div class="col-md-12">
+					<h3 class="article_title">
+					    <?php echo ucfirst($response['title']); ?>
+					    <small><em>by <?php echo ucfirst($response['director']);?></em></small>
+				    </h3>
+				    <p class="pull-right goup"><i class="fa fa-clock-o"></i><?php echo $response['post_date']; ?></p>
 				</div>
+            </div>
+            <div class="row">
 				<div class="col-md-5">
-					<div class="social-strip">
+					<div class="">
 
+<!--
 					    <div class="pull-right like-action">
-					        <span class="m-l-5 m-r-5">|</span> <?php echo getPostLikeLink( get_the_ID() ) ; ?> <span class="m-l-5 m-r-5">|</span>
+					        <span class="m-l-5 m-r-5">|</span> <span class="m-l-5 m-r-5">|</span>
 					    </div>
+-->
 															
-						<div class="pull-right share-button">
 						
-								<?php///ssba_activate(); ?>
-								
-								<?php echo do_shortcode("[ssba]"); ?>
-							
-						</div>
 									
 					<!--
 					    <div class="share-button">
@@ -94,38 +99,51 @@ get_header(); ?>
 			
 
 			
-			<hr class="m-t-0 m-b-5">
+<!--			<hr class="m-t-0 m-b-5">-->
+<!--
 			<div class="row">
 			    <div class="col-xs-9">
 			        
-			        <h5 class="m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
+			        <h5 class="m-t-0 m-b-0"><small><em> </em></small></h5>
 					
-					<h6 class="m-t-0"><small><em><?php echo $response['post_date']; ?></em></small></h6>
+					<h6 class="m-t-0"><small><em></em></small></h6>
 
 			    </div>
 				
 						
 		
 				
+
 			    <div class="col-xs-3 text-right">
-			        <div class="small views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></div>
+			        <div class="small views"></div>
 			    </div>
+
 			</div>
+-->
 		</div>
 		<div class="overlay"></div>
 	</div>
 
 	<input type="hidden" name="noofviews" id="noofviews" value="0" / >
 	<input type="hidden" name="post_id" id="post_id" value="<?php echo $response["id"];?>" / >
-	<div class="spacer-40"></div>
-	<div class="container">
+<!--	<div class="spacer-40"></div>-->
+	<div class="container article_s_cont">
 
 		<div class="clearfix"></div>
 		 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/<?php echo $post->ID ;?>"></a>
        
-	    <div class="spacer-50"></div>
+<!--	    <div class="spacer-50"></div>-->
 	    
 		<div class="description">
+		    <div class="article_s_links">
+		        <span class="art_likes"><?php echo getPostLikeLink( get_the_ID() ) ; ?> </span>
+		        <span class="art_views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></span>
+		        
+		        <div class="pull-right soc-ico">
+				    <?php///ssba_activate(); ?>
+					<?php echo do_shortcode("[ssba]"); ?>
+				</div>
+		    </div>
 			
 			<?php  
 				

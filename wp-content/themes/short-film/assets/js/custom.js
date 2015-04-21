@@ -53,6 +53,20 @@
         $(document).on('click', '.social-toggle', function() {
           $(this).next().toggleClass('open-menu');
         });
+        
+        //same height article page temporary solution
+        function setlesshe() {
+            $('.article_row').each(function() {
+                console.log($(this).find('.col-md-7').height());
+                $(this).find('.col-md-5 .article_fi').css('height', $(this).find('.col-md-7').height());
+            });
+        }
+        if ($('div').hasClass('article_row')) {
+            setlesshe();
+        }
+        $(window).resize(function() {
+            setlesshe();
+        });
 
     });
 

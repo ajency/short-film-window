@@ -7,41 +7,8 @@ Template Name: articles_template
 
 <?php get_header(); ?>
 
-        <!--Navigation--> 
-			<!-- <div id="content" class="clearfix row">
-			
-				<div id="main" class="col-sm-8 clearfix" role="main">
-				 -->
-					<!-- <!-- <div class="page-header">
-					<?php if (is_category()) { ?>
-						<h1 class="archive_title h2">
-							<span><?php _e("Posts Categorized:", "wpbootstrap"); ?></span> <?php single_cat_title(); ?>
-						</h1>
-					<?php } elseif (is_tag()) { ?> 
-						<h1 class="archive_title h2">
-							<span><?php _e("Posts Tagged:", "wpbootstrap"); ?></span> <?php single_tag_title(); ?>
-						</h1>
-					<?php } elseif (is_author()) { ?>
-						<h1 class="archive_title h2">
-							<span><?php _e("Posts By:", "wpbootstrap"); ?></span> <?php get_the_author_meta('display_name'); ?>
-						</h1>
-					<?php } elseif (is_day()) { ?>
-						<h1 class="archive_title h2">
-							<span><?php _e("Daily Archives:", "wpbootstrap"); ?></span> <?php the_time('l, F j, Y'); ?>
-						</h1>
-					<?php } elseif (is_month()) { ?>
-					    <h1 class="archive_title h2">
-					    	<span><?php _e("Monthly Archives:", "wpbootstrap"); ?></span> <?php the_time('F Y'); ?>
-					    </h1>
-					<?php } elseif (is_year()) { ?>
-					    <h1 class="archive_title h2">
-					    	<span><?php _e("Yearly Archives:", "wpbootstrap"); ?></span> <?php the_time('Y'); ?>
-					    </h1>
-					<?php } ?>
-					</div> --> 
 
-				
-        
+      
         <!--Content-->
         <div class="container header-space">
             <div class="content-wrapper">
@@ -77,11 +44,11 @@ Template Name: articles_template
                         <div class="row">
                           
 							<div class="col-xs-4 text-center">
-                               
+                               <!--
 							   <a href="#" id="listoption"  class="option"title="List">
-									<!-- <i class="fa fa-th-list fa-3x"></i>  -->
+									 <i class="fa fa-th-list fa-3x"></i>  
 							   </a>
-							   
+							   -->
                             </div>
 
                         </div>
@@ -105,8 +72,7 @@ Template Name: articles_template
 
 
 					);
-
-					//$response = Film\Video::get_many_articles($args);
+				
 					$response = Article_post\Article::get_many_articles($args);
 			
 					if(count($response) > 0)
@@ -114,11 +80,11 @@ Template Name: articles_template
 						foreach ($response as $key => $value)
 						{						 
 				?>
-							<div class="row listlayout">
+							<div class="row listlayout article_row">
 								
 								<div class="col-md-5">
 								
-									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+									<a class="content-bottom article_fi" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 									
 										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 								
@@ -129,22 +95,23 @@ Template Name: articles_template
 								<div class="col-md-7">
 									<div class="row">
 										
-										<div class="col-md-8">
+										<!--when hadding share icons change this to col-md-8 and remove class 'hidden' from col-md-4-->
+										<div class="col-md-12">
 											<h4 class="m-t-0">
 												
-												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 													
 													<?php echo $value['title']; ?>
 												
 												</a>
 												
 												
-												<small><em>By <?php echo ucfirst($value['director']);?></em></small>
+<!--												<small><em>By </em></small>-->
 												
 											</h4>
 										</div>
 										
-										<div class="col-md-4">
+										<div class="col-md-4 hidden">
 											
 											<!--
 											<div class="social-strip">
@@ -190,10 +157,15 @@ Template Name: articles_template
 								   
 								   <div class="row">
 									
-										<div class="col-xs-8">
-										   <p><?php echo $value['post_date'];?></p>
+										<div class="col-xs-12">
+										   <p class="article_meta">
+										       <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+										       <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>								   
+										   </p>
 										   
-										   <p><?php echo $value['excerpt'];?></p>
+										   <p class="article_cont">
+										       <?php echo $value['excerpt'];?>
+										   </p>
 			 
 										</div>
 
@@ -240,8 +212,78 @@ Template Name: articles_template
 					
 					<div class="col-md-12">
 					
-						These are popular articles
-					
+						<?php
+
+							$args = array(
+										'posts_per_page'    => 3,
+										'order'             => 'DESC',
+										'orderby'           => 'meta_value_num',
+										'meta_key'          => '_post_like_count',
+										'post_type'         => 'article'
+									);
+		
+
+							$populararticles = get_popular_articles($args);
+						
+							
+							foreach ($populararticles as $populararticle)
+							{									
+						?>									
+								<div class="col-xs-4">
+									
+									<div>
+										
+										<div class="focus-img">
+											
+											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
+											
+												<img src="<?php echo $populararticle['featured_image'];?>">
+											
+											</a>
+										
+										</div>
+										
+										<div>
+											
+											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
+													
+													<?php echo $populararticle['title']; ?>
+												
+											</a>
+											
+											<p>	<?php echo $populararticle['excerpt']; ?>	</p>
+											
+											<div>
+												
+												<p class="pull-left"><small><?php echo $populararticle['post_date'];?></small></p>
+												
+												<p class="pull-right">
+													
+													<span><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
+													
+													<!--
+													<span><i class="fa fa-eye"></i> <?php echo $populararticle['no_of_views'];?> </span>
+													-->
+												
+												</p>
+											
+											</div>
+											
+											<div class="clearfix"></div>
+											
+											<hr class="m-t-0">
+										
+										</div>
+									
+									</div>
+																	
+								</div>
+								
+						<?php
+									
+							} //end foreach							
+						?>
+
 					</div>
 				
 				</div>
@@ -283,18 +325,6 @@ window.onload = function() {
 		get_all_posts();
 		
 	});
-
-	jQuery('.option').live('click',function(e){
-		e.preventDefault();
-		jQuery('#gridoption').children().removeClass('text-primary');
-		// jQuery('#gridoption').children().nextAll().removeClass('text-primary');
-		jQuery('#tracker').val(e.currentTarget.id);
-		showLayout();
-		
-		
-	});
-
-
 	
 	/*
     jQuery('.search').live('change',function(e){
@@ -386,63 +416,9 @@ window.onload = function() {
 	}
 	showLayout();
 
-	function generate_grid_reponse(response)
-	{
 
 		
-		var grid ={};
-		var multiple = [6,6];
-		var k = 0 ;
-		grid[k] = {};
-		var j = 0;	
-		var image  = SITEURL+'wp-content/themes/short-film/assets/img/placeholder.jpg';
-		for (var i= 0; i < multiple[k]; i++) { 
-
-			if(response[j] == undefined){
-				grid[k][i] = {
-                    'id'            : "",
-					'slug'			: "",
-					'title'			: "",
-					//'type'			: "",
-					//'tagline'		: "",
-					//'videourl'  	: "",
-					'excerpt'		: "",
-					'director'		: "",
-					'next_post'		: "",
-					'prev_post'		: "",
-					'comments'		: "",
-					//'categories'	: [],
-					//'duration'		: 0,
-					//'region'		: [],
-					'tags'			: "",
-					'featured_image':image,
-					'user_like_count'	: "",
-                    'post_like_count' : 0,
-                    'no_of_views'    : 0
-
-				};
-
-			}
-			else
-				grid[k][i] = response[j];
-			
-			if(i == 5 && response.length > multiple[k])
-			{
-
-				k = k + 1;
-				i = -1 ;
-                if(multiple.hasOwnProperty(k))
-                    grid[k] = {};
-			}
-            j = j + 1;
-				
-		}
-		
-		console.log(grid);
-		return grid;
-		}
-
-/* --
+/* 
     jQuery('.trending').infinitescroll({
     
         navSelector     : "a#next:last",
@@ -475,7 +451,7 @@ window.onload = function() {
                         
                         
     });
--- */
+ */
     function generate_data(response)
 	{
 
@@ -483,50 +459,29 @@ window.onload = function() {
         html = jQuery('.all_posts').html()
 
         if(response.length>0)
-                    {
-                        grid = generate_grid_reponse(response);
-
-                        jQuery.each(grid,function(index,value){
-
-                            jQuery.each(value,function(index,val){
-                                value[index]['class'] = '';
-                                
-                                
-                                if(val['slug'] == "")
-                                {
-                                    
-                                    value[index]['class'] = 'hidden';
-                                }
-
-                                    
-                            });
-                            
-  ////////////////////////////// deleted html data created here
-
-
-                        });
-
-            
+        {
+					//// deleted html data created here
+									
             jQuery.each(response,function(index,value)
 			{
-                html += '<div class="row listlayout">'
+                html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+						+'<a class="content-bottom article_fi" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
-                            +'<div class="col-md-8">'
+                            +'<div class="col-md-12">'
                                 +'<h4 class="m-t-0">'
 									
-									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 								
-									+'<small><em> By '+value.director+'</em></small>'
+									//+'<small><em> By '+value.director+'</em></small>'
 								
 								+'</h4>'
                             +'</div>'
-                            +'<div class="col-md-4">'
+                            +'<div class="col-md-4 hidden">'
 							/*
                                  +'<div class="social-strip">'
 										
@@ -560,9 +515,14 @@ window.onload = function() {
                         +'</div>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
-                             +'<div class="col-xs-8">'
-									+'<p>'+value.post_date+'</p>'
-									+'<p>'+value.excerpt+'</p>'
+                             +'<div class="col-xs-12">'
+									+'<p class="article_meta">'
+                                        +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
+                                    +'</p>'
+                                    +'<p class="article_cont">'
+                                        +value.excerpt
+                                    +'</p>'
                              +'</div>'
                              // +'<div class="col-xs-4 text-right">'
                                  // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
@@ -571,7 +531,7 @@ window.onload = function() {
                      +'</div>'
                  +'</div>';
 
-				 ///////////////////////deleted html for couchdata here
+				 ////deleted html for couchdata here
 				 
             });
                         jQuery('.all_posts').html(html);
@@ -587,6 +547,7 @@ window.onload = function() {
 
     }
 	
+   /*	
 	function loadslick(){
     
 		jQuery('.slider1').slick({
@@ -609,6 +570,8 @@ window.onload = function() {
               ]
         });
     }
+   */	
+	
 }
 
 </script>
