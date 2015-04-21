@@ -12370,3 +12370,63 @@ h5.un {
 h2.page-title {
   text-transform: uppercase;
 }
+.article_row .article_title {
+  text-transform: uppercase;
+  display: block;
+  color: #af152f;
+}
+.article_row .article_title:hover {
+  text-decoration: none;
+  color: #787878;
+}
+.article_row .article_meta {
+  margin-top: 5px;
+  color: #bbb;
+}
+.article_row .article_meta span {
+  margin-right: 15px;
+}
+.article_row .article_meta span i {
+  margin-right: 5px;
+}
+.article_row .article_cont {
+  margin-top: 10px;
+}
+.article_row .article_fi {
+  overflow: hidden;
+  display: block;
+}
+.article_single .article_s_img {
+  max-height: 600px;
+  overflow: hidden;
+}
+.article_single .article_title {
+  width: 75%;
+}
+.article_single .goup {
+  margin-top: -35px;
+  color: #ccc;
+}
+.article_single .goup i {
+  margin-right: 10px;
+}
+.article_s_cont {
+  padding-top: 15px;
+}
+.article_s_cont .article_s_links {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.article_s_cont .article_s_links span {
+  margin-right: 20px;
+}
+.article_s_cont .article_s_links i {
+  margin-right: 10px;
+  color: #787878;
+}
+.article_s_cont .alignright {
+  float: right;
+}
+.article_s_cont .alignleft {
+  float: left;
+}

@@ -80,11 +80,11 @@ Template Name: articles_template
 						foreach ($response as $key => $value)
 						{						 
 				?>
-							<div class="row listlayout">
+							<div class="row listlayout article_row">
 								
 								<div class="col-md-5">
 								
-									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+									<a class="content-bottom article_fi" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 									
 										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 								
@@ -95,22 +95,23 @@ Template Name: articles_template
 								<div class="col-md-7">
 									<div class="row">
 										
-										<div class="col-md-8">
+										<!--when hadding share icons change this to col-md-8 and remove class 'hidden' from col-md-4-->
+										<div class="col-md-12">
 											<h4 class="m-t-0">
 												
-												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 													
 													<?php echo $value['title']; ?>
 												
 												</a>
 												
 												
-												<small><em>By <?php echo ucfirst($value['director']);?></em></small>
+<!--												<small><em>By </em></small>-->
 												
 											</h4>
 										</div>
 										
-										<div class="col-md-4">
+										<div class="col-md-4 hidden">
 											
 											<!--
 											<div class="social-strip">
@@ -156,10 +157,15 @@ Template Name: articles_template
 								   
 								   <div class="row">
 									
-										<div class="col-xs-8">
-										   <p><?php echo $value['post_date'];?></p>
+										<div class="col-xs-12">
+										   <p class="article_meta">
+										       <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+										       <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>								   
+										   </p>
 										   
-										   <p><?php echo $value['excerpt'];?></p>
+										   <p class="article_cont">
+										       <?php echo $value['excerpt'];?>
+										   </p>
 			 
 										</div>
 
@@ -458,24 +464,24 @@ window.onload = function() {
 									
             jQuery.each(response,function(index,value)
 			{
-                html += '<div class="row listlayout">'
+                html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+						+'<a class="content-bottom article_fi" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
-                            +'<div class="col-md-8">'
+                            +'<div class="col-md-12">'
                                 +'<h4 class="m-t-0">'
 									
-									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 								
-									+'<small><em> By '+value.director+'</em></small>'
+									//+'<small><em> By '+value.director+'</em></small>'
 								
 								+'</h4>'
                             +'</div>'
-                            +'<div class="col-md-4">'
+                            +'<div class="col-md-4 hidden">'
 							/*
                                  +'<div class="social-strip">'
 										
@@ -509,9 +515,14 @@ window.onload = function() {
                         +'</div>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
-                             +'<div class="col-xs-8">'
-									+'<p>'+value.post_date+'</p>'
-									+'<p>'+value.excerpt+'</p>'
+                             +'<div class="col-xs-12">'
+									+'<p class="article_meta">'
+                                        +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
+                                    +'</p>'
+                                    +'<p class="article_cont">'
+                                        +value.excerpt
+                                    +'</p>'
                              +'</div>'
                              // +'<div class="col-xs-4 text-right">'
                                  // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
