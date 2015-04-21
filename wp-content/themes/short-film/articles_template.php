@@ -279,14 +279,14 @@ Template Name: articles_template
 			</div>			
 			
 			
-			<div class="spacer-40"></div>		
+			<div class="spacer-40 hidden"></div>		
 			<a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
    
 				
-			<div class="trending">
+			<div class="trending hidden">
 			</div>
 
-			<div class="spacer-40"></div>
+			<div class="spacer-40 hidden"></div>
 
 
 		 <!-- end #content -->
@@ -300,11 +300,11 @@ window.onload = function() {
             jQuery('.article_row').each(function() {
                 //console.log($(this).find('.col-md-7').height());
                 if (jQuery(window).width() < 992) {
-                    jQuery('.article_row').find('.col-md-5 .article_fi').css('height', '300px');
-                    jQuery('.article_row').find('.col-md-5 .article_fi').css('height', '300px').css('width', 'auto');
+                    jQuery(this).find('.col-md-5 .article_fi').css('height', '300px');
+                    //jQuery(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
                 } else {
                     jQuery(this).find('.col-md-5 .article_fi').css('height', jQuery(this).find('.col-md-7').height());
-                    jQuery('.article_row').find('.col-md-5 .article_fi').css('height', 'auto').css('width', '100%');
+                    //jQuery(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
                 }
             });
         }
