@@ -1028,10 +1028,6 @@ function save_meta_box_data( $post_id,$post ) {
 
       if($post->post_status == 'auto-draft')
         return;
-      
-        
-
-    
 
         // If this is an autosave, our form has not been submitted, so we don't want to do anything.
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -1177,23 +1173,19 @@ function shortfilm_menu()
 		include('shortfilm_menu_page.php');
 	}
 
-//// ------------------------------------------------------------------------------------------
-	 
 	
 	add_action('wp_ajax_populate_posts', 'fill_posts');
+	add_action('wp_ajax_nopriv_populate_posts', 'fill_posts');
 	 
 	function fill_posts()
 	{		
-		 //$cat_id = $_POST['cat_id'];
+		
 		$cat_id = $_REQUEST['cat_id'];
 		 
 		
 	    $args1 = array('category' => $cat_id);
 
 		$myposts = get_posts($args1);
-	   
-	   // print_r($myposts);
-	   // exit;
 
 			foreach($myposts as $element)
 			{
@@ -1206,15 +1198,13 @@ function shortfilm_menu()
 			echo $option;
 	 
 			die();
-	}//end function
+	}
 	
-
-// *********************************************** 
 
 
 	add_action('wp_ajax_save_homepage_video', 'add_homepage_video');
+	add_action('wp_ajax_nopriv_save_homepage_video', 'add_homepage_video');
 	
-
 	function add_homepage_video()
 	{
 		$cat_id = $_POST['cat_id'];
@@ -1223,9 +1213,7 @@ function shortfilm_menu()
 		if(update_option('homepage_video',$post_id))
 		{
 			$response = Film\Video::get($post_id);
-			
-			//echo "Updation of Home Page Video Successful";
-			
+					
 			wp_send_json($response);
 			
 		}
@@ -1239,52 +1227,35 @@ function shortfilm_menu()
 
 
 	add_action('wp_ajax_show_default_staffpick_post', 'get_default_staffpick_post');
+	add_action('wp_ajax_nopriv_show_default_staffpick_post', 'get_default_staffpick_post');
 
 	function get_default_staffpick_post()
-	{
-		
+	{				
 		$args = array( 'numberposts' => '1' );
 		$recent_posts = wp_get_recent_posts( $args );
-		
-		//---------
-		// echo "recent post!!";
-		// print_r($recent_posts);
-		// exit;
-		//-----------
-		
+
 		$recent_post_id = $recent_posts[0]["ID"];
 		
-		//$response = Film\Video::get_the_post_info($recent_post_id);
 		$response = Film\Video::get($recent_post_id);
 	
-
 		if (is_wp_error($response))
 		{
 		   echo false;
 		}
 		else
 		{
-		   wp_send_json($response);
-
-		}
-			
-
-
-		//die();
-		
-	}  // end func get_default_staffpick_post
-
+			wp_send_json($response);
+		}	
+	}  
 
 	
 	add_action('wp_ajax_show_staffpick_category_post', 'get_staffpick_category_post');
+	add_action('wp_ajax_nopriv_show_staffpick_category_post', 'get_staffpick_category_post');
 
 	function get_staffpick_category_post($postid)
-	{
-
-		//$response = Film\Video::get_the_post_info($recent_post_id);
+	{	
 		$response = Film\Video::get($postid);
 	
-
 		if (is_wp_error($response))
 		{
 		   echo false;
@@ -1292,12 +1263,8 @@ function shortfilm_menu()
 		else
 		{
 		   wp_send_json($response);
-
 		}
-
-		//die();
-		
-	}  // end func get_staffpick_category_post
+	} 
 	
 	
 	function get_pairs_category_post()
@@ -1336,9 +1303,8 @@ function shortfilm_menu()
 		{
 		   return $response;
 		}
-	
-		
-	}  // end func get_pairs_category_post
+			
+	}  
 
 
 	function create_custom_post_article() 
@@ -1372,21 +1338,6 @@ function shortfilm_menu()
 	
 	add_action( 'init', 'create_custom_post_article' );
 
-/*	
-	// function new_excerpt_more($more) 
-	// {
-		// global $post;
-
-		//echo "hiii  ";
-
-
-		// return '… <a href="'. get_permalink($post->ID) . '">' . 'Read More &raquo;' . '</a>';
-		//return "read more.";
-
-   // }
-
-   // add_filter('excerpt_more', 'new_excerpt_more',10);
-*/
 
 function change_excerpt_length( $length ) 
 {
@@ -1394,40 +1345,6 @@ function change_excerpt_length( $length )
 }
 
 add_filter( 'excerpt_length', 'change_excerpt_length', 999 );	
-	
-	
-	
-/*	
-function get_the_popular_articles()
-{
-global $wpdb;
-	//echo "	inside get_the_popular_articles		";
-
-	$populararticles = $wpdb->get_results( 
-		"
-		SELECT post_id 
-		FROM $wpdb->postmeta
-		WHERE meta_key  = '_post_like_count' 
-		ORDER BY meta_value
-		DESC LIMIT 3
-		
-		", ARRAY_A
-	);
-
-	//print_r($populararticles);
-	
-	//return $populararticles;
-	
-	//print_r($populararticles);
-
-} //end function
-
-
-add_action('init','get_the_popular_articles');	
-*/	
-	
-
-	
 	
 
 function get_popular_articles($args)

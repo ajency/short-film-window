@@ -593,41 +593,38 @@ Template Name: Homepage
 	jQuery(document).ready(function($) {
 		
 
-		jQuery('.staffpick-display-section').text("Loading data...");
+		jQuery('.staffpick-display-section').text("Loading data...");	
 		
 		jQuery.ajax({
 		
 			type : 'GET',
 			url : ajaxurl,
+
 			data:{
 				action : 'show_default_staffpick_post'
 			},
 			success:function(response)
-			{	
+			{									
 				generate_data(response);
 				
-				console.log("Success");
+				console.log(" Success default staffpick ");
 								
 			},
 			error:function(response)
 			{
-				console.log("Error");
+				console.log(" Error ");
 			}
 
         });
 		
 		
 		$('.staffpick-category').click(function(event){
-	
-			
-			//var cat_id = $('#catSelect').val();
-			
+							
 			event.preventDefault();
 			var postid = $(event.target).attr('data-post-id');
 			
 			console.log(postid);
-			
-	
+				
 			// make ajax request
 			$.ajax({
 			
@@ -636,8 +633,8 @@ Template Name: Homepage
 				success:function(response)
 				{			
                     generate_data(response);
-					console.log("Success");	
-					console.log(response);						
+					console.log("Success staffpick-category");	
+											
 				},
 				error:function(error)
 				{
@@ -646,8 +643,6 @@ Template Name: Homepage
 			
 			});
 		});
-	//================================================================================
-	
 		
 	function generate_data(response)
 	{		
@@ -722,11 +717,8 @@ Template Name: Homepage
 			jQuery('.staffpick-display-section').html(html);
 		}
 		
-
     } // end of generate_data
-		
-		
-
+				
 	
 	});  // end of document.ready function
 
