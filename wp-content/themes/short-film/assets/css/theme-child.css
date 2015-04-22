@@ -11738,6 +11738,13 @@ h5.brand,
 h6.brand {
   color: #af152f;
 }
+.staffpick-display-section .video-js {
+  width: 100%;
+  height: auto;
+}
+.share-button2 {
+  margin-top: 30px;
+}
 .play_movie_big {
   display: block;
   font-size: 40px;
