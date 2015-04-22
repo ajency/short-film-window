@@ -11742,6 +11742,12 @@ h6.brand {
   width: 100%;
   height: auto;
 }
+.staffpick-display-section .role-settings .text-right div {
+  font-size: 16px;
+}
+.staffpick-display-section .role-settings .text-right i {
+  margin-left: 7px;
+}
 .share-button2 {
   margin-top: 30px;
 }
