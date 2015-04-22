@@ -656,21 +656,21 @@ Template Name: Homepage
 			html+=
 					'<div class="inside-script">'
 					
-								// +'<video id="bg-video" '
-									// +'class="video-js vjs-default-skin" '
-									// +'height="auto"'
-									// +'width="auto" '
-									// +'poster="'+response.featured_image+' " '
-									// +'loop'
-									// +'controls'
-									// +'data-setup={ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src":" '+ response.videourl+' "}">'
+								+'<video id="bg-video" '
+									+'class="video-js vjs-default-skin" '
+									+'height="auto" '
+									+'width="auto" '
+									+'poster="'+response.featured_image+'" '
+									+'loop'
+									+'controls'
+									+'data-setup={ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src":" '+ response.videourl+'"}">'
 
-								  // +'<p>Your browser doesnot support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example'
-								  // +'</p>'
-								// +'</video>'
+								  +'<p>Your browser doesnot support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example'
+								  +'</p>'
+								+'</video>'
 					
 					
-							+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+							//+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
 							
 							+'<div class="role-settings">'
 								+'<div class="row">'
