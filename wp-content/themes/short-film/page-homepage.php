@@ -112,10 +112,10 @@ Template Name: Homepage
 	<?php
 
 		$response = get_noteworthy_videos ();
-		
-		//print_r($response);						
-		//print_r($response[0]['title'] );
 
+		// response[0],response[1],response[2] = 3 recent videos
+		// response[3],response[4],response[5] = 3 popular videos
+		
 		if(count($response) > 0)
 		{ 
 			$gridreposnse = generate_grid_response($response);
