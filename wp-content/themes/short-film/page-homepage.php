@@ -414,7 +414,7 @@ Template Name: Homepage
                                 <img src="https://placeimg.com/260/150/tech" class="img-responsive">
                             </div>
                             <div>
-                                <a href="#"><h6>THE ARTICLE</h6></a>
+                                <a href="#"><h6>THE ARTICLE1</h6></a>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse architecto placeat saepe delectus voluptatem facere</p>
                                 <div>
                                     <p class="pull-left"><small>January 29, 2015</small></p>
@@ -432,7 +432,7 @@ Template Name: Homepage
                                 <img src="https://placeimg.com/260/150/nature" class="img-responsive">
                             </div>
                             <div>
-                                <a href="#"><h6>THE ARTICLE</h6></a>
+                                <a href="#"><h6>THE ARTICLE2</h6></a>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum nesciunt iste dolore voluptatem fugiat ratione</p>
                                 <div>
                                     <p class="pull-left"><small>January 29, 2015</small></p>
@@ -450,7 +450,7 @@ Template Name: Homepage
                                 <img src="https://placeimg.com/260/150/people" class="img-responsive">
                             </div>
                             <div>
-                                <a href="#"><h6>THE ARTICLE</h6></a>
+                                <a href="#"><h6>THE ARTICLE3</h6></a>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod inventore animi similique voluptas maiores corrupti sit</p>
                                 <div>
                                     <p class="pull-left"><small>January 29, 2015</small></p>
@@ -467,7 +467,7 @@ Template Name: Homepage
                                 <img src="https://placeimg.com/260/150/nature" class="img-responsive">
                             </div>
                             <div>
-                                <a href="#"><h6>THE ARTICLE</h6></a>
+                                <a href="#"><h6>THE ARTICLE4</h6></a>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam praesentium quaerat veniam laudantium, quas vel, eaque</p>
                                 <div>
                                     <p class="pull-left"><small>January 29, 2015</small></p>
