@@ -208,9 +208,7 @@ function generate_grid_response($response){
 		$j++;	
 	}
 	
-
 	return $grid;
-
 
 }
 
@@ -287,3 +285,92 @@ function get_sorted_posts($args){
 	return $response;
 
 }
+
+
+// to get noteworthy videos
+
+function get_noteworthy_videos()
+{
+		global $post;
+		
+		$post_response = array();
+
+		//to get 3 most recent posts
+		
+		
+		$params = array( 'numberposts' => '3' );
+		
+		$recent_posts = wp_get_recent_posts( $params );
+
+			
+		foreach ($recent_posts as $recent_post)
+		{			
+			$post_detail = Film\Video::get($recent_post['ID']);
+
+			$post_response[] = array(
+					'slug'				=> $post_detail['slug'],
+					'featured_image'	=> $post_detail['featured_image'],
+					'title'				=> $post_detail['title'],
+					'duration'			=> $post_detail['duration'],
+					'region'			=> $post_detail['region'],
+					'director'			=> $post_detail['director'],
+					'categories'		=> $post_detail['categories'],
+					'excerpt'			=> $post_detail['excerpt'],
+					'post_like_count'	=> $post_detail['post_like_count'],
+					'no_of_views'		=> $post_detail['no_of_views'],
+					//'post_date'			=> $post_detail['post_date']
+					'post_date'			=> get_the_date()
+
+				);
+			
+		}
+		
+		//to get popular videos
+			
+		$args = array(
+			'posts_per_page'    => 3,
+			'order'             => 'DESC',
+			'orderby'           => 'meta_value_num',
+			'meta_key'          => '_post_like_count',
+			'post_type'         => 'post'
+		);
+		
+		$query = new WP_Query($args);
+
+		while ( $query->have_posts() )
+		{
+			$query->the_post();
+
+			$post_info = Film\Video::get($query->post->ID);			
+			
+			$post_response[] = array(
+				
+				'slug'				=> $post_info['slug'],
+				'featured_image'	=> $post_info['featured_image'],
+				'title'				=> $post_info['title'],
+				'duration'			=> $post_info['duration'],
+				'region'			=> $post_info['region'],
+				'director'			=> $post_info['director'],
+				'categories'		=> $post_info['categories'],
+				'excerpt'			=> $post_info['excerpt'],
+				'post_like_count'	=> $post_info['post_like_count'],
+				'no_of_views'		=> $post_info['no_of_views'],
+				//'post_date'			=> $post_info['post_date']
+				'post_date'			=> get_the_date()
+
+			);
+
+		}
+
+		return $post_response;
+
+} // end get_noteworthy_videos
+
+
+
+
+
+
+
+
+

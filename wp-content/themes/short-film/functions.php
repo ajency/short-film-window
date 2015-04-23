@@ -1360,3 +1360,5 @@ function get_popular_articles($args)
 
 	return $response;
 }	
+
+
