@@ -90,52 +90,73 @@ Template Name: Homepage
                     </div>
                 </div>
 
-                <div class="spacer-50"></div>
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="">
-                            <h2 class="brand">NEW AND NOTEWORTHY</h2>
-                        </div>
+    <div class="spacer-50"></div>
+    <div class="row">
+		<div class="col-md-9">
+            <div class="">
+                <h2 class="brand">NEW AND NOTEWORTHY</h2>
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <div class="form-group m-t-20">
-                        	<form action="" class="search_menu">
-                                <input type="text" class="form-control search" placeholder="Search">
-                                <i class="fa fa-reorder"></i>
-                        	</form>
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div class="form-group m-t-20">
+                    <form action="" class="search_menu">
+                        <input type="text" class="form-control search" placeholder="Search">
+                            <i class="fa fa-reorder"></i>
+                    </form>
                 </div>
-                <hr class="m-t-0">
-                <div class="row">
+            </div>
+    </div>
+                
+	<hr class="m-t-0">
+
+	<?php
+
+		$response = get_noteworthy_videos ();
+		
+		//print_r($response);						
+		//print_r($response[0]['title'] );
+
+		if(count($response) > 0)
+		{ 
+			$gridreposnse = generate_grid_response($response);
+				
+			foreach ($gridreposnse as $key => $value)
+			{
+	?>				
+				<div class="row">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="https://placeimg.com/600/900/sepia">
+                                    <img src="<?php echo $value[0]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
-                                    <div class="grid-meta">REGION / 1.7 MIN</div>
-                                    <div class="grid-meta">HORROR</div>
-                                    <div class="grid-meta">DIR. LOREM IPSUM</div>
+                                    <div class="grid-title"><?php echo $value[0]['title'];?></div>
+                                   
+								   <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
+								   
+                                    <div class="grid-meta"><?php echo implode(',',$value[0]['categories']);?></div>
+									
+                                    <div class="grid-meta <?php echo $value[0]['class'] ;?>">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
+									 
                                 </div>
                                 <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
+                                    <div class="grid-title"><?php echo $value[0]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
+												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
+													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												</div>
+												<div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
+													<div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+													<div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
+														<i class="fa fa-thumbs-up"></i></div>
+												</div>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="pull-right text-right m-t-10">
-                                                    This is a short film about Animation of a small girl and her newly found infatuation.
+                                                   <?php echo $value[0]['excerpt'];?>
                                                 </div>
                                             </div>
                                         </div>
@@ -145,32 +166,37 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="https://placeimg.com/600/900/sepia">
+                                    <img src="<?php echo $value[1]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
-                                    <div class="grid-meta">REGION / 1.7 MIN</div>
-                                    <div class="grid-meta">HORROR</div>
-                                    <div class="grid-meta">DIR. LOREM IPSUM</div>
+                                    <div class="grid-title"><?php echo $value[1]['title'];?></div>
+                                    
+									<div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
+									
+                                    <div class="grid-meta"><?php echo implode(',',$value[1]['categories']);?></div>
+									
+                                    <div class="grid-meta <?php echo $value[1]['class'] ;?>">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
+									
                                 </div>
                                 <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
+                                    <div class="grid-title"><?php echo $value[1]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
-                                                <div class="pull-left text-center m-t-10">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
+												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
+													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												</div>
+												<div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
+													<div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
+													<div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?>
+														<i class="fa fa-thumbs-up"></i></div>
+												</div>
                                             </div>
                                             <div class="col-sm-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
-                                                    This is a short film about Animation of a small girl and her newly found infatuation.
+                                                    <?php echo $value[1]['excerpt'];?>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,32 +206,37 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="https://placeimg.com/600/900/sepia">
+                                    <img src="<?php echo $value[2]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
-                                    <div class="grid-meta">REGION / 1.7 MIN</div>
-                                    <div class="grid-meta">HORROR</div>
-                                    <div class="grid-meta">DIR. LOREM IPSUM</div>
+                                    <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                    
+									<div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
+									
+                                    <div class="grid-meta"><?php echo implode(',',$value[2]['categories']);?></div>
+									
+                                    <div class="grid-meta <?php echo $value[2]['class'] ;?>">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
+									
                                 </div>
                                 <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
+                                    <div class="grid-title"><?php echo $value[2]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
-                                                <div class="pull-left text-center m-t-10">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
+												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
+													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												</div>
+												<div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
+													<div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
+													<div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?>
+														<i class="fa fa-thumbs-up"></i></div>
+												</div>
                                             </div>
                                             <div class="col-sm-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
-                                                    This is a short film about Animation of a small girl and her newly found infatuation.
+                                                    <?php echo $value[2]['excerpt'];?>
                                                 </div>
                                             </div>
                                         </div>
@@ -217,32 +248,37 @@ Template Name: Homepage
                     </div>
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="https://placeimg.com/600/900/sepia">
+                                    <img src="<?php echo $value[3]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
-                                    <div class="grid-meta">REGION / 1.7 MIN</div>
-                                    <div class="grid-meta">HORROR</div>
-                                    <div class="grid-meta">DIR. LOREM IPSUM</div>
+                                    <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                   
+								   <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
+								   
+                                    <div class="grid-meta"><?php echo implode(',',$value[3]['categories']);?></div>
+									
+                                   <div class="grid-meta <?php echo $value[3]['class'] ;?>">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
+								   
                                 </div>
                                 <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
+                                    <div class="grid-title"><?php echo $value[3]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
-                                                <div class="pull-left text-center m-t-10">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
+												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
+													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												</div>
+												<div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
+													<div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
+													<div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?>
+														<i class="fa fa-thumbs-up"></i></div>
+												</div>
                                             </div>
                                             <div class="col-sm-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
-                                                    This is a short film about Animation of a small girl and her newly found infatuation.
+                                                   <?php echo $value[3]['excerpt'];?>
                                                 </div>
                                             </div>
                                         </div>
@@ -252,32 +288,37 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="https://placeimg.com/600/900/sepia">
+                                    <img src="<?php echo $value[4]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
-                                    <div class="grid-meta">REGION / 1.7 MIN</div>
-                                    <div class="grid-meta">HORROR</div>
-                                    <div class="grid-meta">DIR. LOREM IPSUM</div>
+                                    <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                   
+								   <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
+								   								   
+                                    <div class="grid-meta"><?php echo implode(',',$value[4]['categories']);?></div>
+									
+                                  <div class="grid-meta <?php echo $value[4]['class'] ;?>">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
+								  
                                 </div>
                                 <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
+                                    <div class="grid-title"><?php echo $value[4]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
-                                                <div class="pull-left text-center m-t-10">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
+												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
+													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												</div>
+												<div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
+													<div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
+													<div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?>
+														<i class="fa fa-thumbs-up"></i></div>
+												</div>
                                             </div>
                                             <div class="col-sm-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
-                                                    This is a short film about Animation of a small girl and her newly found infatuation.
+                                                    <?php echo $value[4]['excerpt'];?>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,32 +328,37 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="#">
+                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="https://placeimg.com/600/900/sepia">
+                                    <img src="<?php echo $value[5]['featured_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
-                                    <div class="grid-meta">REGION / 1.7 MIN</div>
-                                    <div class="grid-meta">HORROR</div>
-                                    <div class="grid-meta">DIR. LOREM IPSUM</div>
+                                    <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                    
+									<div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
+									
+                                    <div class="grid-meta"><?php echo implode(',',$value[5]['categories']);?></div>
+									
+                                     <div class="grid-meta <?php echo $value[5]['class'] ;?>">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
+									 
                                 </div>
                                 <div class="grid-text-wrap hover-text">
-                                    <div class="grid-title">HELLO WORLD LONG</div>
+                                    <div class="grid-title"><?php echo $value[5]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
                                             <div class="col-sm-4">
-                                                <div class="pull-left text-center m-t-10">
-                                                    <i class="fa fa-binoculars fa-2x"></i><br>Watchlist
-                                                </div>
-                                                <div class="iconexp_sp pull-left p-l-10 m-t-10">
-                                                    <div>199 <i class="fa fa-eye"></i></div>
-                                                    <div>75 <i class="fa fa-thumbs-up"></i></div>
-                                                </div>
+												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
+													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												</div>
+												<div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
+													<div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
+													<div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?>
+														<i class="fa fa-thumbs-up"></i></div>
+												</div>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="pull-right text-right m-t-10">
-                                                    This is a short film about Animation of a small girl and her newly found infatuation.
+                                                    <?php echo $value[5]['excerpt'];?>
                                                 </div>
                                             </div>
                                         </div>
@@ -323,10 +369,22 @@ Template Name: Homepage
                         </div>                            
                     </div>                    
                 </div>
+				
+	<?php
+	
+			} //end foreach
+			
+		} //end if	
+	
+	?>			
+				
                 <div class="row">
                     <div class="col-md-12 text-center">
                     <h6>
-                        <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>
+                      <!--  <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>  -->
+						
+						<a target="_blank" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS </a>
+						
                     </h6>
                     </div>
                 </div>
