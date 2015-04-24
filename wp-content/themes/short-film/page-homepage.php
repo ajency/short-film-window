@@ -407,39 +407,38 @@ Template Name: Homepage
                 </div>
                 
 <hr class="m-t-0"> 
-			
-	<?php
+		
+<?php
 				
-		$recentarticles = get_recent_articles();
+	$recentarticles = get_recent_articles();
 
-		if(count($response) > 0)
-		{ 	
+	if(count($recentarticles) > 0)
+	{ 	
+?>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="slider1 regular-slider arrows-top">
+					<?php
 
-	?>
-						
-			<div class="row">
-				<div class="col-md-12">
-				
-					<!-- -->
-				
-						<div class="slider1 regular-slider arrows-top">
-							 
+						foreach($recentarticles as $recentarticle)
+						{
+					?>
 							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticles[0]['slug'];?>">
+								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 									
 									<div class="focus-img">
-										<img src="<?php echo $recentarticles[0]['featured_image'] ;?>" class="img-responsive">
+										<img src="<?php echo $recentarticle['featured_image'] ;?>" class="img-responsive">
 									</div>
 									<div>
-										<h6><?php echo $recentarticles[0]['title']; ?></h6>
+										<h6><?php echo $recentarticle['title']; ?></h6>
 								</a>		
-										<p><?php echo $recentarticles[0]['excerpt']; ?></p>
+										<p><?php echo $recentarticle['excerpt']; ?></p>
 										<div>
-											<p class="pull-left"><small><?php echo $recentarticles[0]['post_date']; ?></small></p>
+											<p class="pull-left"><small><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticles[0]['post_like_count']; ?> </span>
+												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticle['post_like_count']; ?> </span>
 												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticles[0]['no_of_views']; ?> </span>
+												<span><i class="fa fa-eye"></i> <?php echo $recentarticle['no_of_views']; ?> </span>
 												-->
 											</p>
 										</div>
@@ -448,141 +447,20 @@ Template Name: Homepage
 									</div>
 								
 							</div>
-							  
-							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticles[1]['slug'];?>">
-									
-									<div class="focus-img">
-										<img src="<?php echo $recentarticles[1]['featured_image'] ;?>" class="img-responsive">
-									</div>
-									<div>
-										<h6><?php echo $recentarticles[1]['title']; ?></h6>
-								</a>
-										<p><?php echo $recentarticles[1]['excerpt']; ?></p>
-										<div>
-											<p class="pull-left"><small><?php echo $recentarticles[1]['post_date']; ?></small></p>
-											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticles[1]['post_like_count']; ?> </span>
-												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticles[1]['no_of_views']; ?> </span>
-												-->
-												
-											</p>
-										</div>
-										<div class="clearfix"></div>
-										<hr class="m-t-0">
-									</div>
-							    
-							</div>
-							
-							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticles[2]['slug'];?>">
-									
-									<div class="focus-img">
-										<img src="<?php echo $recentarticles[2]['featured_image'] ;?>" class="img-responsive">
-									</div>
-									<div>
-										<h6><?php echo $recentarticles[2]['title']; ?></h6>
-								</a>	
-										<p><?php echo $recentarticles[2]['excerpt']; ?></p>
-										<div>
-											<p class="pull-left"><small><?php echo $recentarticles[2]['post_date']; ?></small></p>
-											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticles[2]['post_like_count']; ?> </span>
-												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticles[2]['no_of_views']; ?> </span>
-												-->
-											</p>
-										</div>
-										<div class="clearfix"></div><hr class="m-t-0">
-									</div>
-								
-							</div>
-							
-							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticles[3]['slug'];?>">
-									
-									<div class="focus-img">
-										<img src="<?php echo $recentarticles[3]['featured_image'] ;?>" class="img-responsive">
-									</div>
-									<div>
-										<h6><?php echo $recentarticles[3]['title']; ?></h6>
-								</a>		
-										<p><?php echo $recentarticles[3]['excerpt']; ?></p>
-										<div>
-											<p class="pull-left"><small><?php echo $recentarticles[3]['post_date']; ?></small></p>
-											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticles[3]['post_like_count']; ?> </span>
-												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticles[3]['no_of_views']; ?> </span>
-												-->
-											</p>
-										</div>
-										<div class="clearfix"></div>
-										<hr class="m-t-0">
-									</div>
-								
-							</div>
-								
-							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticles[4]['slug'];?>">
-								
-									<div class="focus-img">
-										<img src="<?php echo $recentarticles[4]['featured_image'] ;?>" class="img-responsive">
-									</div>
-									<div>
-										<h6><?php echo $recentarticles[4]['title']; ?></h6>
-								</a>		
-										<p><?php echo $recentarticles[4]['excerpt']; ?></p>
-										<div>
-											<p class="pull-left"><small><?php echo $recentarticles[4]['post_date']; ?></small></p>
-											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticles[4]['post_like_count']; ?> </span>
-												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticles[4]['no_of_views']; ?> </span>
-												-->
-											</p>
-										</div>
-										<div class="clearfix"></div>
-										<hr class="m-t-0">
-									</div>
-								
-							</div>
+					<?php	
+						}
 
-							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticles[5]['slug'];?>">
-								
-									<div class="focus-img">
-										<img src="<?php echo $recentarticles[5]['featured_image'] ;?>" class="img-responsive">
-									</div>
-									<div>
-										<h6><?php echo $recentarticles[5]['title']; ?></h6>
-								</a>		
-										<p><?php echo $recentarticles[5]['excerpt']; ?></p>
-										<div>
-											<p class="pull-left"><small><?php echo $recentarticles[5]['post_date']; ?></small></p>
-											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticles[5]['post_like_count']; ?> </span>
-												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticles[5]['no_of_views']; ?> </span>
-												-->
-											</p>
-										</div>
-										<div class="clearfix"></div>
-										<hr class="m-t-0">
-									</div>
-								
-							</div>							
-								
-							</div>
+					?>
 				</div>
 			</div>
-				
-	<?php
+		</div>
 
-		} //end if	
+				
+<?php
+
+	} //end if	
 	
-	?>
+?>
 	
 
                 <div class="spacer-50"></div>
