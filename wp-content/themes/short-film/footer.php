@@ -9,6 +9,7 @@
 		        <div class="row">
 		            <div class="col-md-8">
 		            	<?php wp_bootstrap_footer_links(); // Adjust using Menus in Wordpress Admin ?>
+<!--
 		                <div class="row">
 		                    <div class="col-sm-3 col-xs-6">
 		                        <p><a href="#">MOVIES</a></p>
@@ -27,6 +28,7 @@
 		                        <p><a href="#">BE AN AMBASSADOR</a></p>
 		                    </div>
 		                </div>
+-->
 		            </div>
 		            <div class="col-md-4">
 		            	<div class="row">

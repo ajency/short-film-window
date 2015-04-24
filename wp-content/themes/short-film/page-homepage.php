@@ -101,7 +101,7 @@ Template Name: Homepage
                 <div class="form-group m-t-20">
                     <form action="" class="search_menu">
                         <input type="text" class="form-control search" placeholder="Search">
-                            <i class="fa fa-reorder"></i>
+                            <i class="fa fa-search"></i>
                     </form>
                 </div>
             </div>
@@ -400,7 +400,7 @@ Template Name: Homepage
                         <div class="form-group m-t-20">
                         	<form action="" class="search_menu">
                                 <input type="text" class="form-control search" placeholder="Search">
-                                <i class="fa fa-reorder"></i>
+                                <i class="fa fa-search"></i>
                         	</form>
                         </div>
                     </div>

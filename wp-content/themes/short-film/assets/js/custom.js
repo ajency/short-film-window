@@ -76,6 +76,29 @@
                 setlesshe();
             }
         });
+        function checkhenwiss() {
+            //check if height is greater than width
+            $('.slick-slider .slide-cont').each(function() {
+                console.log('H: ' + $(this).find('img').height() + '\nW: ' + $(this).find('img').width());
+                if ($(this).find('img').height() <= $(this).height()) {
+                    $(this).find('img').css({
+                        'height': $(this).height(),
+                        'width': 'auto'
+                    });
+                } else {
+                    $(this).find('img').css({
+                        'height': 'auto',
+                        'width': '100%'
+                    });
+                }
+            });
+        }
+        //slick slider images height issue
+        if ($('div').hasClass('slick-slider')) {
+            $(window).load(function() {
+                checkhenwiss();
+            });
+        }
 
     });
 

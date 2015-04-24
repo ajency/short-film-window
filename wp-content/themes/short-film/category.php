@@ -423,12 +423,12 @@
                             <div class="col-xs-8 cont">
                                 <p><?php echo $value['excerpt'];?></p>
                                 <h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
+                                <h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
                                 <p class="categories">
                                     <span class="label label-greydark">
                                         <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
                                     </span>
                                 </p>
-                                <h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
                             </div>
                             <?php echo $value['permalink']; ?>
                             <div class="col-xs-4 text-right list-info-btns">
@@ -1199,12 +1199,12 @@ window.onload = function() {
                             + '<div class="col-xs-8 cont">'
                                 + '<p>'+value.excerpt+'</p>'
                                 + '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
+                                + '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
                                 + '<p class="categories">'
                                     + '<span class="label label-greydark">'
                                         + value.categories.join('</span><span class="label label-greydark">')
                                     + '</span>'
                                 + '</p>'
-                                + '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
                             + '</div>'
                             + '<div class="col-xs-4 text-right list-info-btns">'
                                 + '<div class="soc-ic o nh">'
