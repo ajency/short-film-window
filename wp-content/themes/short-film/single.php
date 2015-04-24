@@ -33,10 +33,11 @@ get_header(); ?>
 	<div id="movie-header" class="movie-header">
 	
         <!--remove this anchor tag to hide the play btn-->
-	    <a href="#" class="play_movie_big">
-<!--            <i class="fa fa-play"></i>-->
+		
+	   <a href="#" class="play_movie_big">
+
         </a>
-                
+             
 		<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
 
 		</div>
