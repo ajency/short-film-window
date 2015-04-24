@@ -104,16 +104,18 @@
                                 </select>
                             </div>
                         </form>
-                        <div class="row">
-                            <div class="col-xs-3 col-xs-offset-3">
+                        <div class="row opts">
+                            <div class="col-md-12">
+<!--                            <div class="col-xs-3 col-xs-offset-3">-->
                                 <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
-                            </div>
-                            <div class="col-xs-3 text-center">
+<!--                            </div>-->
+<!--                            <div class="col-xs-3 text-center">-->
                                 <a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
-                            </div>
-                            <div class="col-xs-3 text-right">
+<!--                            </div>-->
+<!--                            <div class="col-xs-3 text-right">-->
                                 <a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
-                            </div>
+<!--                            </div>-->
+                           </div>
                         </div>
                     </div>
                 </div>
@@ -176,7 +178,7 @@
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[0]['title'];?></div>
                                         <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
-                                        <div class="grid-meta"><?php echo implode(',',$value[0]['categories']);?></div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[0]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[0]['class'] ;?>">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
 
 
@@ -214,7 +216,7 @@
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[1]['title'];?></div>
                                         <div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
-                                        <div class="grid-meta"><?php echo implode(',',$value[1]['categories']);?></div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[1]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[1]['class'] ;?>">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
 
                                     </div>
@@ -251,7 +253,7 @@
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[2]['title'];?></div>
                                         <div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
-                                        <div class="grid-meta"><?php echo implode(',',$value[2]['categories']);?></div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[2]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[2]['class'] ;?>">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
                                     </div>
                                     <div class="grid-text-wrap hover-text">
@@ -266,10 +268,10 @@
                                                         <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="pull-right text-right m-t-10">
-                                                          <?php echo $value[2]['excerpt'];?>  
-                                                        </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[2]['excerpt'];?>  
                                                     </div>
                                                 </div>
                                             </div>
@@ -289,7 +291,7 @@
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[3]['title'];?></div>
                                         <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
-                                        <div class="grid-meta"><?php echo implode(',',$value[3]['categories']);?></div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[3]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[3]['class'] ;?>">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
                                     </div>
                                     <div class="grid-text-wrap hover-text">
@@ -304,10 +306,10 @@
                                                         <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="pull-right text-right m-t-10">
-                                                          <?php echo $value[3]['excerpt'];?>  
-                                                        </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[3]['excerpt'];?>  
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,7 +326,7 @@
                                     <div class="grid-text-wrap">
                                          <div class="grid-title"><?php echo $value[4]['title'];?></div>
                                         <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
-                                        <div class="grid-meta"><?php echo implode(',',$value[4]['categories']);?></div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[4]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[4]['class'] ;?>">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
                                     </div>
                                     <div class="grid-text-wrap hover-text">
@@ -339,10 +341,10 @@
                                                         <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="pull-right text-right m-t-10">
-                                                          <?php echo $value[4]['excerpt'];?>  
-                                                        </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[4]['excerpt'];?>  
                                                     </div>
                                                 </div>
                                             </div>
@@ -359,7 +361,7 @@
                                     <div class="grid-text-wrap">
                                          <div class="grid-title"><?php echo $value[5]['title'];?></div>
                                         <div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
-                                        <div class="grid-meta"><?php echo implode(',',$value[5]['categories']);?></div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[5]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[5]['class'] ;?>">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
                                     </div>
                                     <div class="grid-text-wrap hover-text">
@@ -374,10 +376,10 @@
                                                         <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
                                                         <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
-                                                    <div class="col-sm-8">
-                                                        <div class="pull-right text-right m-t-10">
-                                                          <?php echo $value[5]['excerpt'];?>  
-                                                        </div>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[5]['excerpt'];?>  
                                                     </div>
                                                 </div>
                                             </div>
@@ -563,7 +565,7 @@
                     <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
                 </div>
-                <div class="spacer-40"></div>
+                <div class="spacer-40 hideinsmall"></div>
 
                 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
        
@@ -571,7 +573,7 @@
                 <div class="trending">
                 </div>
 
-                <div class="spacer-40"></div>
+                <div class="spacer-40 hideinsmall"></div>
 
                 <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=awardwinning"></a>
        
@@ -579,7 +581,7 @@
                 <div class="awardwinning">
                 </div>
 
-                <div class="spacer-40"></div>
+                <div class="spacer-40 hideinsmall"></div>
 
                 <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=indian"></a>
        
@@ -957,7 +959,7 @@ window.onload = function() {
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[0]['title']+'</div>'
                                     +'<div class="grid-meta '+value[0]['class']+'">'+value[0]['region'].join(',')+'/'+value[0]['duration']+'MIN</div>'
-                                    +'<div class="grid-meta">'+value[0]['categories'].join(',')+'</div>'
+                                    +'<div class="grid-meta">'+value[0]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[0]['class']+'">DIR.'+value[0]['director'].toUpperCase()+'</div>'
 
                                 +'</div>'
@@ -993,7 +995,7 @@ window.onload = function() {
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[1]['title']+'</div>'
                                     +'<div class="grid-meta '+value[1]['class']+'">'+value[1]['region'].join(',')+'/'+value[1]['duration']+'MIN</div>'
-                                     +'<div class="grid-meta">'+value[1]['categories'].join(',')+'</div>'
+                                     +'<div class="grid-meta">'+value[1]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[1]['class']+'">DIR.'+value[1]['director'].toUpperCase()+'</div>'
 
                                +' </div>'
@@ -1029,7 +1031,7 @@ window.onload = function() {
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[2]['title']+'</div>'
                                    +' <div class="grid-meta '+value[2]['class']+'">'+value[2]['region'].join(',')+'/'+value[2]['duration']+'MIN</div>'
-                                     +'<div class="grid-meta">'+value[2]['categories'].join(',')+'</div>'
+                                     +'<div class="grid-meta">'+value[2]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[2]['class']+'">DIR.'+value[2]['director'].toUpperCase()+'</div>'
 
                                 +'</div>'
@@ -1067,7 +1069,7 @@ window.onload = function() {
                                +' <div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[3]['title']+'</div>'
                                    +' <div class="grid-meta '+value[3]['class']+'">'+value[3]['region'].join(',')+'/'+value[3]['duration']+'MIN</div>'
-                                    +'<div class="grid-meta">'+value[3]['categories'].join(',')+'</div>'
+                                    +'<div class="grid-meta">'+value[3]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[3]['class']+'">DIR.'+value[3]['director'].toUpperCase()+'</div>'
 
                                +' </div>'
@@ -1103,7 +1105,7 @@ window.onload = function() {
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[4]['title']+'</div>'
                                    +' <div class="grid-meta '+value[4]['class']+'">'+value[4]['region'].join(',')+'/'+value[4]['duration']+'MIN</div>'
-                                    +'<div class="grid-meta ">'+value[4]['categories'].join(',')+'</div>'
+                                    +'<div class="grid-meta ">'+value[4]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[4]['class']+'">DIR.'+value[4]['director'].toUpperCase()+'</div>'
                                 +'</div>'
                                +' <div class="grid-text-wrap hover-text">'
@@ -1138,7 +1140,7 @@ window.onload = function() {
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[5]['title']+'</div>'
                                    +' <div class="grid-meta '+value[5]['class']+'">'+value[5]['region'].join(',')+'/'+value[5]['duration']+'MIN</div>'
-                                    +'<div class="grid-meta">'+value[5]['categories'].join(',')+'</div>'
+                                    +'<div class="grid-meta">'+value[5]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[5]['class']+'">DIR.'+value[5]['director'].toUpperCase()+'</div>'
                                +' </div>'
                                +' <div class="grid-text-wrap hover-text">'

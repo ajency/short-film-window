@@ -463,10 +463,10 @@ Template Name: Homepage
 ?>
 	
 
-                <div class="spacer-50"></div>
+                <div class="spacer-50 hideinsmall"></div>
                 <div class="row ge">
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <h3 class="brand"><small><em>SORT BY</em></small> GENRE</h3>
+                        <h3 class="brand"><small><em>EXPLORE BY</em></small> GENRE</h3>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-6">
                          <div class="pull-right">
@@ -512,7 +512,7 @@ Template Name: Homepage
                     </div>
                 </div>
 
-                <div class="spacer-50"></div>
+                <div class="spacer-50 hideinsmall"></div>
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>

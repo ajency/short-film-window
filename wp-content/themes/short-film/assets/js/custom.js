@@ -26,6 +26,12 @@
             slidesToShow: 4,
             responsive: [
                 {
+                    breakpoint: 991,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                },
+                {
                   breakpoint: 767,
                   settings: {
                     slidesToShow: 2
@@ -93,12 +99,41 @@
                 }
             });
         }
-        //slick slider images height issue
-        if ($('div').hasClass('slick-slider')) {
-            $(window).load(function() {
-                checkhenwiss();
-            });
+        function setimagenn() {
+//            if ($('div').hasClass('grid-box')) {
+                $('.grid-box').each(function() {
+                    console.log(
+                        'grid-box: ' + $(this).height() +
+                        '\nimg: ' + $(this).find('.grid-image').find('img').height() +
+                        '\n---------------------------------------------------------'
+                    );
+                    //console.log($(this).find('.grid-image').find('img').height() <= $(this).height());
+                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
+                        $(this).find('.grid-image').find('img').css({
+                            'height': $(this).height() + 55,
+                            'width': 'auto'
+                        });
+                    } else  {
+                        $(this).find('.grid-image').find('img').css({
+                            'height': 'auto',
+                            'width': '100%'
+                        });
+                    }
+                });
+//            }
         }
+        //setimagenn();
+        //slick slider images height issue
+            $(window).resize(function() {
+                setimagenn();
+            });
+            $(window).load(function() {
+                if ($('div').hasClass('slick-slider')) {
+                    checkhenwiss();
+                }
+                setimagenn();
+            });
+        
 
     });
 
