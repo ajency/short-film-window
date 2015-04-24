@@ -1362,3 +1362,39 @@ function get_popular_articles($args)
 }	
 
 
+function get_recent_articles()
+{
+	$params = array( 
+				'numberposts' => 6,
+				'order' => 'DESC',
+				'post_type'   => 'article'
+	);
+	
+	$recent_posts = wp_get_recent_posts( $params );
+		
+	foreach ($recent_posts as $recent_post)
+	{			
+		$post_detail = Article_post\Article::get_article($recent_post['ID']);
+
+		$post_response[] = array(
+				'slug'				=> $post_detail['slug'],
+				'featured_image'	=> $post_detail['featured_image'],
+				'title'				=> $post_detail['title'],
+				'duration'			=> $post_detail['duration'],
+				'region'			=> $post_detail['region'],
+				'director'			=> $post_detail['director'],
+				'categories'		=> $post_detail['categories'],
+				'excerpt'			=> $post_detail['excerpt'],
+				'post_like_count'	=> $post_detail['post_like_count'],
+				'no_of_views'		=> $post_detail['no_of_views'],
+				////'post_date'			=> $post_detail['post_date']
+				'post_date'			=> get_the_date()
+
+			);
+		
+	}
+		
+	return $post_response;	
+	
+} // end get_recent_articles()
+
