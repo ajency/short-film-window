@@ -737,6 +737,7 @@ window.onload = function() {
 
 	function get_all_posts(){
 
+        jQuery('.all_posts').html('');
 		genre = jQuery('#genre').val();
 		language = jQuery('#language').val();
 		posts_per_page = 12;
@@ -775,7 +776,7 @@ window.onload = function() {
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;	
-		var image  = SITEURL+'wp-content/themes/short-film/assets/img/placeholder.jpg';
+		var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
 		for (var i= 0; i < multiple[k]; i++) { 
 
 			if(response[j] == undefined){

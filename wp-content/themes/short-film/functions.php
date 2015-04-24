@@ -1341,7 +1341,7 @@ function shortfilm_menu()
 
 function change_excerpt_length( $length ) 
 {
-	return 40;
+	return 20;
 }
 
 add_filter( 'excerpt_length', 'change_excerpt_length', 999 );	
