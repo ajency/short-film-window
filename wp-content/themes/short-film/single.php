@@ -9,17 +9,12 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 	
-	
-	// $youtubeUrl =  explode("?v=", $response['videourl']);
-	// $youtubeUrlid =  $youtubeUrl[1];
-	// $embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid;
-	
+	$embedurl = get_embed_url($response['videourl']);
 	
 	?>
-	<!--
-		<iframe width="560" height="315" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
-	-->
-		
+	
+	
+	<!--	
 		<video id="bg-video"
 			 class="video-js vjs-default-skin"
 			 height="auto"
@@ -33,38 +28,38 @@ get_header(); ?>
 				Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
 			  </p>
 		</video>
-
+	-->
 		
 
 	<!-- <div id="movie-header" class="movie-header without-vid">  -->
 	
 	<div id="movie-header" class="movie-header">
 	
-        <!--remove this anchor tag to hide the play btn-->
+		<div class="show-featured-image">
+			
+			<div class="play-video">
+				
+				<iframe width="560" height="315" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
+			
+			</div>
 		
+		</div>
+	
+	
+        <!--remove this anchor tag to hide the play btn-->		
 	<!--	
 	   <a href="#" class="play_movie_big">
 
        </a>
 	-->	
-	
-		 
-		<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
-
-		</div>
-	
-
-		<!-- <div id="home-video">
-				  <img src="http://video-js.zencoder.com/oceans-clip.png" class="img-responsive" data-video="https://www.youtube.com/embed/aVgeJ5eqlSM?rel=0&amp;controls=0&amp;showinfo=0" title="Play Video" />
-				  <span class="play-button"></span>
-			</div> -->
+			 
+		
+			<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
+			</div>
 		
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
-		
-		<!--<div><img src="https://placeimg.com/1000/404/people" class="img-responsive width-full"></div>
-		<div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
-		
+
 		<div class="container movie-info">
 			<div class="row">
 				<div class="col-md-7">
@@ -189,25 +184,10 @@ get_header(); ?>
 	        <div class="img-content">
 				
 				<?php 
-				
-					//echo $response['content'];
-			
-				
+
 					$postcontent = $response['content'];
-					
-					
-					
+
 					echo $postcontent;
-					
-					
-					//----------
-					
-					//$postexcerpt = $response['excerpt'];
-					
-					// $postexcerpt = get_the_excerpt();
-					
-					// echo $postexcerpt;
-					
 					
 				?>
 				
@@ -221,8 +201,6 @@ get_header(); ?>
 	    <div class="infocus">
 	    
 </div>
-
-
 	    
 	    <div class="spacer-40"></div>
 	    <div class="row">
@@ -235,8 +213,7 @@ get_header(); ?>
 						<div class="col-md-12">
 							<?php 
 								
-								related_posts(); 
-								
+								related_posts(); 								
 								//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
 							
 							?>

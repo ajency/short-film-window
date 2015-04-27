@@ -1398,3 +1398,33 @@ function get_recent_articles()
 	
 } // end get_recent_articles()
 
+
+
+function get_embed_url($videourl)
+{
+	$youtubeUrl =  explode("?v=", $videourl);
+		
+	if($youtubeUrl[1])
+	{
+		$youtubeUrlid =  $youtubeUrl[1];
+	}	
+	else
+	{
+		$youtubeUrl =  explode("/embed/", $videourl);
+
+		$youtubeUrlid =  $youtubeUrl[1];
+	}
+	
+	$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid;
+	
+	
+	return $embedurl;
+		
+}	
+
+
+
+
+
+
+
