@@ -30,9 +30,9 @@ get_header(); ?>
 		</video>
 	-->
 	
-<div class="video-section">	
+<div class="video-section vid_if" style="position: relative;">	
 				
-		<div class="show-featured-image" style=" position: relative">
+		<div class="show-featured-image vid_if" style=" position: relative">
 
 			<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
 
@@ -424,6 +424,9 @@ afterToggle: function(){}
 		
 		event.preventDefault();
 		generate_video();
+        height = window.innerHeight ? window.innerHeight : $(window).height();
+        jQuery('.vid_if ').css('height', height);
+        jQuery('.video-section').addClass('ontop');
 		
 	});					  
 	
@@ -448,6 +451,11 @@ afterToggle: function(){}
 		console.log(html);
 		
     } // end of generate_video	
+    
+    //onclick of playing video
+    jQuery(document).on('click', 'iframe.vid_if', function() {
+        jQuery('.video-section').toggleClass('ontop');
+    });
 					  
 } //end onload
 
