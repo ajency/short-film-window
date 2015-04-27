@@ -10899,7 +10899,7 @@ body {
 }
 .wrapper {
   min-height: 100%;
-  margin-bottom: -160px;
+  margin-bottom: 0;
 }
 .footer-push {
   height: 160px;
@@ -12235,6 +12235,10 @@ h6.brand {
 .readmore_up {
   background-image: url(../img/uparrow.png);
 }
+.vid_if {
+  width: 100%;
+  height: 768px;
+}
 .listlayout,
 .couchlayout {
   padding-bottom: 30px;
@@ -12321,6 +12325,9 @@ h5.un {
 }
 .listlayout img {
   margin-bottom: 10px;
+}
+.slick-slider .content-bottom .focus-img img {
+  max-width: auto !important;
 }
 .with_frm_style .frm_left_container label.frm_primary_label {
   width: auto;
