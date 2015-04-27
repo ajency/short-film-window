@@ -42,6 +42,7 @@ Template Name: Homepage
 													<h3>HELLO WORLD <small><em>by Director</em></small></h3>
 												</div>        
 											</div>
+								</a>			
 											<div class="col-md-3">
 												<div class="pull-right">
 												
@@ -65,7 +66,7 @@ Template Name: Homepage
 											</div>
 										</div>
 									</div>
-								</a>
+								
 							</div>		
 							-->
 						</div>
@@ -709,14 +710,15 @@ Template Name: Homepage
 								// +'</video>'
 					
 							+'<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/'+response.slug+'">'
-							+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
-							
-							+'<div class="role-settings">'
-								+'<div class="row">'
-									+'<div class="col-md-9">'
-										+'<div class="pull-left">'
-											+'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
-										+'</div>'
+								+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+								
+								+'<div class="role-settings">'
+									+'<div class="row">'
+										+'<div class="col-md-9">'
+											+'<div class="pull-left">'
+												+'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
+											+'</div>'
+							+'</a>'			
 									+'</div>'
 									+'<div class="col-md-3">'
 										+'<div class="pull-right">'
@@ -739,8 +741,7 @@ Template Name: Homepage
 										+'<div>Watchlist <i class="fa fa-binoculars"></i></div>'
 									+'</div>'
 								+'</div>'
-							+'</div>'
-						+'</a>'	
+							+'</div>'						
 					+'</div>'		
 		
 			;
