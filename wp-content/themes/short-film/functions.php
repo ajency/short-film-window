@@ -1415,7 +1415,7 @@ function get_embed_url($videourl)
 		$youtubeUrlid =  $youtubeUrl[1];
 	}
 	
-	$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid.'?rel=0&autoplay=1';
+	$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid.'?autoplay=1';
 	
 	
 	return $embedurl;
