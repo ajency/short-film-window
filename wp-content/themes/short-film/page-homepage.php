@@ -32,38 +32,40 @@ Template Name: Homepage
 						<div class="staffpick-display-section">
 							<!--
 							<div class="inside-script">
-								<img src="<?php //echo get_template_directory_uri(); ?>/assets/img/video_placeholder.jpg" alt="" class="img-responsive width-full">
-								
-								<div class="role-settings">
-									<div class="row">
-										<div class="col-md-9">
-											<div class="pull-left">
-												<h3>HELLO WORLD <small><em>by Director</em></small></h3>
-											</div>        
-										</div>
-										<div class="col-md-3">
-											<div class="pull-right">
-											
-												<div class="pull-right share-button">													
-													<?php //echo do_shortcode("[ssba]"); ?>							
+								<a>
+									<img src="<?php //echo get_template_directory_uri(); ?>/assets/img/video_placeholder.jpg" alt="" class="img-responsive width-full">
+									
+									<div class="role-settings">
+										<div class="row">
+											<div class="col-md-9">
+												<div class="pull-left">
+													<h3>HELLO WORLD <small><em>by Director</em></small></h3>
+												</div>        
+											</div>
+											<div class="col-md-3">
+												<div class="pull-right">
+												
+													<div class="pull-right share-button">													
+														<?php //echo do_shortcode("[ssba]"); ?>							
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-									<hr class="m-t-0 m-b-5">
-									<div class="row">
-										<div class="col-xs-6">
-											<h5 class="m-t-0 m-b-0"><small><em>Tag line</em></small></h5>
-											<h5 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h5>
-											<h5 class="m-t-0 m-b-0"><small><em>Horror</em></small></h5>
+										<hr class="m-t-0 m-b-5">
+										<div class="row">
+											<div class="col-xs-6">
+												<h5 class="m-t-0 m-b-0"><small><em>Tag line</em></small></h5>
+												<h5 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h5>
+												<h5 class="m-t-0 m-b-0"><small><em>Horror</em></small></h5>
+											</div>
+											<div class="col-xs-6 text-right">
+												<div>199 <i class="fa fa-eye"></i></div>
+												<div>75 <i class="fa fa-thumbs-up"></i></div>
+												<div>Watchlist <i class="fa fa-binoculars"></i></div>
+											</div>
 										</div>
-										<div class="col-xs-6 text-right">
-											<div>199 <i class="fa fa-eye"></i></div>
-											<div>75 <i class="fa fa-thumbs-up"></i></div>
-											<div>Watchlist <i class="fa fa-binoculars"></i></div>
-										</div>
 									</div>
-								</div>
+								</a>
 							</div>		
 							-->
 						</div>
@@ -693,21 +695,21 @@ Template Name: Homepage
 			html+=
 					'<div class="inside-script">'
 					
-								+'<video id="bg-video" '
-									+'class="video-js vjs-default-skin" '
-									+'height="auto" '
-									+'width="auto" '
-									+'poster="'+response.featured_image+'" '
-									+'loop'
-									+'controls'
-									+'data-setup={ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src":" '+ response.videourl+'"}">'
+								// +'<video id="bg-video" '
+									// +'class="video-js vjs-default-skin" '
+									// +'height="auto" '
+									// +'width="auto" '
+									// +'poster="'+response.featured_image+'" '
+									// +'loop'
+									// +'controls'
+									// +'data-setup={ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src":" '+ response.videourl+'"}">'
 
-								  +'<p>Your browser doesnot support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example'
-								  +'</p>'
-								+'</video>'
+								  // +'<p>Your browser doesnot support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example'
+								  // +'</p>'
+								// +'</video>'
 					
-					
-							//+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+							+'<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/'+response.slug+'">'
+							+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
 							
 							+'<div class="role-settings">'
 								+'<div class="row">'
@@ -738,6 +740,7 @@ Template Name: Homepage
 									+'</div>'
 								+'</div>'
 							+'</div>'
+						+'</a>'	
 					+'</div>'		
 		
 			;
