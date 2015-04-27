@@ -29,34 +29,37 @@ get_header(); ?>
 			  </p>
 		</video>
 	-->
-		
+	
+<div class="video-section">	
+				
+		<div class="show-featured-image" style=" position: relative">
 
+			<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
+
+					
+			<a href="#" class="play_movie_big">
+			</a>
+			
+		</div>	
+			
+	<!--	
+		<div class="play-video">
+			
+			<iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
+
+		</div>
+	-->
+	
+</div>
+		
 	<!-- <div id="movie-header" class="movie-header without-vid">  -->
 	
 	<div id="movie-header" class="movie-header">
-	
-		<div class="show-featured-image">
-			
-			<div class="play-video">
-				
-				<iframe width="560" height="315" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
-			
-			</div>
 		
-		</div>
-	
-	
-        <!--remove this anchor tag to hide the play btn-->		
-	<!--	
-	   <a href="#" class="play_movie_big">
-
-       </a>
-	-->	
-			 
-		
-			<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
-			</div>
-		
+<!--			
+	<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
+	</div>
+-->
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
 
@@ -137,11 +140,11 @@ get_header(); ?>
 			        ?>
 			        <h6 class="m-t-0 m-b-0"><small><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$region_array) ;?></small></h6>
 			        <p class="categories m-t-10 m-b-0">
-<!--                        <small>-->
+
                             <span class="label label-greydark">
                                 <?php echo implode('</span><span class="label label-greydark">', $cat_array); ?>
                             </span>
-<!--                        </small>-->
+
                     </p>
 			    </div>
 				
@@ -154,9 +157,9 @@ get_header(); ?>
                             <?php  echo $response['no_of_views'] ;?> <i class="fa fa-eye"></i>
                         </div>
                         <div class="like-action">
-                            <!--<span class="m-l-5 m-r-5">|</span>-->
+                            
                             <?php echo getPostLikeLink( get_the_ID() ) ; ?>
-                            <!--<span class="m-l-5 m-r-5">|</span>-->
+                           
                         </div>
                         <div class="watchlist-add">
                             <a href="#">Add to Watchlist <i class="fa fa-binoculars"></i></a>
@@ -178,8 +181,6 @@ get_header(); ?>
 	<input type="hidden" name="post_id" id="post_id" value="<?php echo $response["id"];?>" / >
 	<div class="spacer-40"></div>
 	<div class="container">
-
-	    
 	      
 	        <div class="img-content">
 				
@@ -416,8 +417,39 @@ afterToggle: function(){}
 						
 				      });
 
-}
 
+	jQuery('.play_movie_big').click(function(event){
+						
+		console.log("in script");
+		
+		event.preventDefault();
+		generate_video();
+		
+	});					  
+	
+
+	function generate_video()
+	{		
+		jQuery('.video-section').html("")
+       
+	    html = jQuery('.video-section').html()
+
+			html+=
+					'<div class="play-video">'
+					
+						+'<iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>'
+						
+					+'</div>'		
+		
+			;
+		
+			jQuery('.video-section').html(html);
+		
+		console.log(html);
+		
+    } // end of generate_video	
+					  
+} //end onload
 
 
 </script>
