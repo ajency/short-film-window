@@ -178,8 +178,6 @@ get_header(); ?>
 	<input type="hidden" name="post_id" id="post_id" value="<?php echo $response["id"];?>" / >
 	<div class="spacer-40"></div>
 	<div class="container">
-
-	    
 	      
 	        <div class="img-content">
 				
@@ -416,8 +414,51 @@ afterToggle: function(){}
 						
 				      });
 
-}
 
+	$('.show-featured-image').click(function(event){
+						
+		// make ajax request
+		$.ajax({
+		
+			type : 'GET',
+			
+			//url : SITEURL+'/wp-json/videos/'+postid,
+			
+			success:function(response)
+			{			
+				generate_video();
+				console.log("Success");
+							
+			},
+			error:function(error)
+			{
+				console.log("Error");	
+			} 
+		
+		});
+	});					  
+	
+
+	function generate_video()
+	{		
+		jQuery('.show-featured-image').html("")
+       
+	    html = jQuery('.show-featured-image').html()
+
+			html+=
+					'<div class="play-video">'
+					
+						+'<iframe width="560" height="315" src="' + $embedurl + '" frameborder="0" allowfullscreen></iframe>'
+		
+					+'</div>'		
+		
+			;
+		
+			jQuery('.show-featured-image').html(html);
+		
+    } // end of generate_video	
+					  
+} //end onload
 
 
 </script>
