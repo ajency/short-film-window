@@ -188,7 +188,8 @@ get_header(); ?>
 
 					$postcontent = $response['content'];
 
-					echo $postcontent;
+					//echo $postcontent;
+					echo wpautop( $postcontent );
 					
 				?>
 				
