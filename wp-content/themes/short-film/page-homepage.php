@@ -471,7 +471,8 @@ Template Name: Homepage
                     <div class="col-md-6 col-sm-6 col-xs-6">
                         <h3 class="brand"><small><em>EXPLORE BY</em></small> GENRE</h3>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-6">
+                    <!--					
+					<div class="col-md-6 col-sm-6 col-xs-6">
                          <div class="pull-right">
                             <div class="btn-group genre-dd">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -486,6 +487,7 @@ Template Name: Homepage
                             </div>
                         </div> 
                     </div>
+					-->
                 </div>
                 <hr class="m-t-0"> 
                 <div class="row">
