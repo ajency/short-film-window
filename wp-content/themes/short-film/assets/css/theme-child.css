@@ -11758,12 +11758,14 @@ h6.brand {
   margin-top: 30px;
 }
 .play_movie_big {
+  content: '';
   display: block;
   font-size: 40px;
   color: #fff;
   background: rgba(0, 0, 0, 0.2);
   width: 137px;
   height: 89px;
+  opacity: 0.5;
   position: absolute;
   left: 50%;
   right: 0;
@@ -11771,12 +11773,47 @@ h6.brand {
   transform: translateX(-50%);
   z-index: 1;
   background: url(../img/play.png) center center no-repeat;
+  transition: all 0.5s;
 }
 .play_movie_big:hover {
   color: #fff;
 }
+.play_movie_big:hover {
+  background: url(../img/play_red.png) center center no-repeat;
+  opacity: 1;
+}
+@media screen and (max-width: 767px) {
+  .play_movie_big {
+    top: 37%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .play_movie_big {
+    top: 11%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .hideinsmall {
+    display: none;
+  }
+}
 .infocus h4 {
   color: #af152f;
+}
+.infocus h5 {
+  line-height: 1.4em;
+}
+.infocus a {
+  text-decoration: none;
+}
+.infocus a:hover,
+.infocus a:focus {
+  text-decoration: none;
+}
+@media screen and (max-width: 992px) {
+  .infocus h5 {
+    margin-top: 15px;
+  }
 }
 .movie-header {
   position: relative;
@@ -12393,6 +12430,13 @@ h5.un {
 }
 h2.page-title {
   text-transform: uppercase;
+}
+.opts {
+  text-align: right;
+}
+.opts .option {
+  display: inline-block;
+  margin-left: 15px;
 }
 .article_row .article_title {
   text-transform: uppercase;
