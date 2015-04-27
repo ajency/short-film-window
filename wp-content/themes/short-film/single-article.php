@@ -149,7 +149,8 @@ get_header(); ?>
 			
 			<?php  
 				
-				echo $response['content'] ;
+				//echo $response['content'] ;
+				echo wpautop( $response['content'] );
 			?>
 			
 		</div>
