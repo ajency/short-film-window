@@ -39,8 +39,8 @@ get_header(); ?>
 			
 			<div class="play-video">
 				
-				<iframe width="560" height="315" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
-			
+				<iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
+
 			</div>
 		
 		</div>
@@ -54,7 +54,7 @@ get_header(); ?>
 	-->	
 			 
 		
-			<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
+<!--			<div class="video-js-responsive-container vjs-hd" id="vjs-hd">-->
 			</div>
 		
 		<div class="vid-previous"></div>

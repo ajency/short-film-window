@@ -129,6 +129,8 @@
                 /*if ($('div').hasClass('slick-slider')) {
                     checkhenwiss();
                 }*/
+                height = window.innerHeight ? window.innerHeight : $(window).height();
+                $('.vid_if ').css('height', height);
             });
             $(window).load(function() {
                 if ($('div').hasClass('slick-slider')) {
@@ -136,7 +138,8 @@
                 }
                 setimagenn();
             });
-        
+        height = window.innerHeight ? window.innerHeight : $(window).height();
+        $('.vid_if ').css('height', height);
 
     });
 
