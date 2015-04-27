@@ -1231,7 +1231,10 @@ function shortfilm_menu()
 
 	function get_default_staffpick_post()
 	{				
-		$args = array( 'numberposts' => '1' );
+		$args = array( 
+			'numberposts' => '1',
+			'post_status' => 'publish'
+			);
 		$recent_posts = wp_get_recent_posts( $args );
 
 		$recent_post_id = $recent_posts[0]["ID"];
@@ -1280,7 +1283,11 @@ function shortfilm_menu()
 		
 		foreach ( $categories as $category )
 		{
-			$args_post = array( 'numberposts' => '1', 'category' => $category->term_id);
+			$args_post = array( 
+				'numberposts' => '1',
+				'category' => $category->term_id,
+				'post_status' => 'publish'
+				);
 			
 			$recent_posts = wp_get_recent_posts( $args_post );
 			
@@ -1367,7 +1374,8 @@ function get_recent_articles()
 	$params = array( 
 				'numberposts' => 6,
 				'order' => 'DESC',
-				'post_type'   => 'article'
+				'post_type'   => 'article',
+				'post_status' => 'publish'
 	);
 	
 	$recent_posts = wp_get_recent_posts( $params );

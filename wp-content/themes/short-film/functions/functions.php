@@ -298,7 +298,10 @@ function get_noteworthy_videos()
 		//to get 3 most recent posts
 		
 		
-		$params = array( 'numberposts' => 3 );
+		$params = array(
+		'numberposts' => 3,
+		'post_status' => 'publish'	
+		);
 		
 		$recent_posts = wp_get_recent_posts( $params );
 
