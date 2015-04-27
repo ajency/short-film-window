@@ -10,8 +10,16 @@ get_header(); ?>
 	$response = Film\Video::get($post->ID);
 	
 	
-	?>
+	// $youtubeUrl =  explode("?v=", $response['videourl']);
+	// $youtubeUrlid =  $youtubeUrl[1];
+	// $embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid;
 	
+	
+	?>
+	<!--
+		<iframe width="560" height="315" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
+	-->
+		
 		<video id="bg-video"
 			 class="video-js vjs-default-skin"
 			 height="auto"
@@ -25,7 +33,7 @@ get_header(); ?>
 				Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
 			  </p>
 		</video>
-	
+
 		
 
 	<!-- <div id="movie-header" class="movie-header without-vid">  -->
@@ -34,10 +42,13 @@ get_header(); ?>
 	
         <!--remove this anchor tag to hide the play btn-->
 		
+	<!--	
 	   <a href="#" class="play_movie_big">
 
-        </a>
-             
+       </a>
+	-->	
+	
+		 
 		<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
 
 		</div>
