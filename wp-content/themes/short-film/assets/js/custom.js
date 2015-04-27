@@ -84,7 +84,7 @@
         });
         function checkhenwiss() {
             //check if height is greater than width
-            $('.slick-slider .slide-cont').each(function() {
+            $('.slick-slider .slide-cont, .slick-slider .focus-img').each(function() {
                 console.log('H: ' + $(this).find('img').height() + '\nW: ' + $(this).find('img').width());
                 if ($(this).find('img').height() <= $(this).height()) {
                     $(this).find('img').css({
@@ -126,6 +126,9 @@
         //slick slider images height issue
             $(window).resize(function() {
                 setimagenn();
+                /*if ($('div').hasClass('slick-slider')) {
+                    checkhenwiss();
+                }*/
             });
             $(window).load(function() {
                 if ($('div').hasClass('slick-slider')) {
