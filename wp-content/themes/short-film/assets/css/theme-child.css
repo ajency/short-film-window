@@ -11754,8 +11754,19 @@ h6.brand {
 .staffpick-display-section .role-settings .text-right i {
   margin-left: 7px;
 }
-.share-button2 {
-  margin-top: 30px;
+.posrel .col-md-2 {
+  position: static;
+  min-height: 45px;
+}
+.posrel .share-button2 {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+@media screen and (max-width: 991px) {
+  .posrel .share-button2 {
+    position: relative;
+  }
 }
 .play_movie_big {
   content: '';
@@ -11958,10 +11969,23 @@ h6.brand {
   font-size: 18px;
   margin-left: 10px;
   float: right;
+  color: #ccc;
 }
 .movie-info .info-ico .like-action {
   display: block;
   float: none;
+}
+.movie-info .info-ico a.liked:hover {
+  color: #af152f;
+}
+.movie-info .info-ico .post-like.liked .fa {
+  color: #ccc;
+}
+.movie-info .info-ico a.post-like.liked:hover .fa {
+  color: #fe4665;
+}
+.movie-info .info-ico a:hover i {
+  color: #fe4665;
 }
 .movie-info .social-strip {
   bottom: 7px;
@@ -12450,6 +12474,69 @@ h2.page-title {
 .opts .option {
   display: inline-block;
   margin-left: 15px;
+}
+.posrel {
+  position: relative;
+}
+a.content-bottom,
+.article_row h4 a.article_title,
+a.exp_all,
+a.def_link,
+a.content-bottom h6,
+.article_row h4 a.article_title h6,
+a.exp_all h6,
+a.def_link h6,
+a.content-bottom h3,
+.article_row h4 a.article_title h3,
+a.exp_all h3,
+a.def_link h3 {
+  color: #af152f;
+}
+a.content-bottom:hover,
+.article_row h4 a.article_title:hover,
+a.exp_all:hover,
+a.def_link:hover,
+a.content-bottom h6:hover,
+.article_row h4 a.article_title h6:hover,
+a.exp_all h6:hover,
+a.def_link h6:hover,
+a.content-bottom h3:hover,
+.article_row h4 a.article_title h3:hover,
+a.exp_all h3:hover,
+a.def_link h3:hover {
+  color: #fe4665;
+  text-decoration: none;
+}
+a.content-bottom:focus,
+.article_row h4 a.article_title:focus,
+a.exp_all:focus,
+a.def_link:focus,
+a.content-bottom h6:focus,
+.article_row h4 a.article_title h6:focus,
+a.exp_all h6:focus,
+a.def_link h6:focus,
+a.content-bottom h3:focus,
+.article_row h4 a.article_title h3:focus,
+a.exp_all h3:focus,
+a.def_link h3:focus {
+  text-decoration: none;
+}
+a.def_link {
+  color: #cccccc;
+}
+.grid-meta .p-l-10.pull-left {
+  text-align: right;
+}
+.grid-meta .p-l-10.pull-left div {
+  margin-bottom: 5px;
+}
+.grid-meta .p-l-10.pull-left i {
+  margin-left: 5px;
+}
+.trending h3,
+.awardwinning h3,
+.indian h3 {
+  color: #af152f;
 }
 .article_row .article_title {
   text-transform: uppercase;

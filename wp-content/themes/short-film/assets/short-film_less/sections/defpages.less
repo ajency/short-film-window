@@ -8,3 +8,37 @@ h2.page-title {text-transform: uppercase;}
         margin-left: 15px;
     }
 }
+
+.posrel {position: relative;}
+
+a.content-bottom, .article_row h4 a.article_title,
+a.exp_all, a.def_link {
+    &, h6, h3 {
+        color: @brand-primary;
+        &:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            text-decoration: none;
+        }
+        &:focus {text-decoration: none;}
+    }
+}
+a.def_link {color: #cccccc;}
+
+.grid-meta {
+    .p-l-10.pull-left {
+        text-align: right;
+//        margin-top: 0;
+        div {
+            margin-bottom: 5px;
+        }
+        i {
+            margin-left: 5px;
+        }
+    }
+}
+
+.trending, .awardwinning, .indian {
+    h3 {
+        color: @brand-primary;
+    }
+}

@@ -63,12 +63,12 @@ get_header(); ?>
 		<div class="vid-next"></div>
 
 		<div class="container movie-info">
-			<div class="row">
-				<div class="col-md-7">
+			<div class="row posrel">
+				<div class="col-md-10">
 					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
 				</div>
-				<div class="col-md-5">
-					<div class="social-strip soc-ico">
+				<div class="col-md-2">
+					<div class="socia l-strip soc-ico share-button2">
                         <?php echo do_shortcode("[ssba]"); ?>
 <!--
                         <div class="soc-ico">
@@ -122,7 +122,7 @@ get_header(); ?>
 			        	foreach ($response['region'] as $value) {
 			        			$id = get_term_by( 'name', $value, 'region');
 			        			$category_link = get_term_link( $id );
-			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" title="Region Name">'.$value.'</a>';
+			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" class="def_link" title="Region Name">'.$value.'</a>';
 			        			array_push($region_array, $link);
 			        	}
 			        	if(count($region_array) == 0)

@@ -48,7 +48,7 @@
                             <form action="" class="search_menu">
                                 <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
-                                    <i class="fa fa-reorder"></i>
+                                    <i class="fa fa-search"></i>
                                 </div>
                             </form>
                         </div>

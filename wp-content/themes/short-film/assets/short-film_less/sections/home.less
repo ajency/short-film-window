@@ -186,6 +186,21 @@ h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primar
         }
     }
 }
-.share-button2 {
-      margin-top: 30px;
+//.share-button2 {
+//      margin-top: 30px;
+//}
+
+.posrel {
+    .col-md-2 { position: static; min-height: 45px;}
+    .share-button2 {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        display: block;
+    }
+    @media screen and (max-width: 991px) {
+        .share-button2 {
+            position: relative;
+        }
+    }
 }
