@@ -123,6 +123,7 @@ class Article
 			
    
 			$post_response[] = array(
+					'id'				=> $post->ID ,
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],
