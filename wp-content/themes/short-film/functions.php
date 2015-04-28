@@ -1451,7 +1451,7 @@ function get_embed_url($postid,$videourl)
 
 
 
-	// get and show share buttons
+	// get and show share buttons... similar to function in plugin
 	function show_share_buttons_for_post($atts = '') {
 	
 		// globals
