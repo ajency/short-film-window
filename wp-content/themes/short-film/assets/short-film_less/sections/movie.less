@@ -177,8 +177,14 @@
             font-size: 18px;
             margin-left: 10px;
             float: right;
+            color: #ccc;
         }
         .like-action {display: block; float: none;}
+        a.liked:hover {color: @brand-primary;}
+        .post-like.liked .fa {color: #ccc;}
+        a.post-like.liked:hover .fa {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        a:hover i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        .watchlist-add {margin-top: 4px;]
     }
     .social-strip {  bottom: 7px; position: relative;}
     //.sco-ico not required for the time being

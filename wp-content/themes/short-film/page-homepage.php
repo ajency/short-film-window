@@ -386,7 +386,7 @@ Template Name: Homepage
                     <h6>
                       <!--  <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>  -->
 						
-						<a target="_blank" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS </a>
+						<a class="exp_all" target="_blank" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>
 						
                     </h6>
                     </div>
@@ -715,29 +715,29 @@ Template Name: Homepage
 								+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
 								
 								+'<div class="role-settings">'
-									+'<div class="row">'
-										+'<div class="col-md-9">'
+									+'<div class="row posrel">'
+										+'<div class="col-md-10">'
 											+'<div class="pull-left">'
 												+'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
 											+'</div>'
 							+'</a>'			
 									+'</div>'
-									+'<div class="col-md-3">'
-										+'<div class="pull-right">'
+									+'<div class="col-md-2">'
+										+'<div class="">'
 										
-											+'<div class="pull-right share-button2">'						
+											+'<div class="share-button2 soc-ico">'						
 											+'</div>'
 										+'</div>'
 									+'</div>'
 								+'</div>'
 								+'<hr class="m-t-0 m-b-5">'
 								+'<div class="row">'
-									+'<div class="col-xs-6">'
+									+'<div class="col-md-10 col-xs-8">'
 										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.tagline+'</em></small></h5>'
 										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region[0]+' </em></small></h5>'
 										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.categories[0]+'</em></small></h5>'
 									+'</div>'
-									+'<div class="col-xs-6 text-right">'
+									+'<div class="col-md-2 col-xs-4 text-right">'
 										+'<div>'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 										+'<div>'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
 										+'<div>Watchlist <i class="fa fa-binoculars"></i></div>'

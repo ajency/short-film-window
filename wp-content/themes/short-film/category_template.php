@@ -52,9 +52,10 @@ Template Name: category_template
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
-                            <form action="" class="">
+                            <form action="" class="search_menu">
                                 <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
+                                    <i class="fa fa-search"></i>
                                 </div>
                             </form>
                         </div>
@@ -63,9 +64,9 @@ Template Name: category_template
 
                 <hr class="m-t-0">
                 
-                <div class="row">
+                <div class="row pushin">
                     <div class="col-md-5">
-                		<h5>FILTER BY</h5>
+                		<h5 class="un">FILTER BY</h5>
                         <form action="" class="form-horizontal">
                             <div class="form-group">
                                 <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
@@ -98,10 +99,11 @@ Template Name: category_template
                             </div>
                         </form>
                     </div>
-                    <div class="col-md-4 col-md-offset-3">
-                    	 <h5>SORT BY</h5>
-                        <form action="" class="">
-                            <div class="form-group">
+                    <div class="col-md-4 col-md-offset-3 padd-68">
+<!--                    	 <h5>SORT BY</h5>-->
+                        <form action="" class="form-group row form-horizontal">
+                           <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
+                            <div class="col-md-9">
                                 <select name="sort" id="sort">
                                     <option value="1">Freshness</option>
                                     <option value="2">Popularity</option>
@@ -109,15 +111,17 @@ Template Name: category_template
                                 </select>
                             </div>
                         </form>
-                        <div class="row">
-                            <div class="col-xs-4">
+                        <div class="row opts">
+                            <div class="col-md-12">
+<!--                            <div class="col-xs-4">-->
                                 <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
-                            </div>
-                            <div class="col-xs-4 text-center">
+<!--                            </div>-->
+<!--                            <div class="col-xs-4 text-center">-->
                                 <a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
-                            </div>
-                            <div class="col-xs-4 text-right">
+<!--                            </div>-->
+<!--                            <div class="col-xs-4 text-right">-->
                                 <a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
+<!--                            </div>-->
                             </div>
                         </div>
                     </div>
