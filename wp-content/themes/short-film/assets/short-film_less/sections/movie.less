@@ -184,7 +184,7 @@
         .post-like.liked .fa {color: #ccc;}
         a.post-like.liked:hover .fa {color: saturate(lighten(@brand-primary, 25%), 20%);}
         a:hover i {color: saturate(lighten(@brand-primary, 25%), 20%);}
-        .watchlist-add {margin-top: 4px;]
+        .watchlist-add {margin-top: 4px;}
     }
     .social-strip {  bottom: 7px; position: relative;}
     //.sco-ico not required for the time being
@@ -364,6 +364,11 @@
 //in focus
 .infocus {
     .pull-right span i {margin-right: 4px; margin-left: 10px;}
+    .col-md-5 {
+        max-height: 250px;
+        overflow: hidden;
+        img {width: 100%;}
+    }
 }
 
 
@@ -584,4 +589,6 @@
 .show-featured-image {
     overflow: hidden;
 }
-.ontop {z-index: 5;}
+.ontop {
+    z-index: 5;
+}
