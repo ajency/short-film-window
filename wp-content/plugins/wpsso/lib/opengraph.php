@@ -146,6 +146,10 @@ if ( ! class_exists( 'WpssoOpengraph' ) ) {
 				// default for everything else is 'website'
 				} else $og['og:type'] = 'website';
 
+				// echo " ***  ";
+				// print_r($this->p->cf['lca'].'_og_type');
+				
+
 				$og['og:type'] = apply_filters( $this->p->cf['lca'].'_og_type', $og['og:type'], $use_post );
 			}
 

@@ -64,11 +64,11 @@
         function setlesshe() {
             $('.article_row').each(function() {
                 console.log($(this).find('.col-md-7').height());
-                
-                if ($(window).width() < 992) {
+                console.log($(window).width());
+                if (window.outerWidth < 991) {
                     $(this).find('.col-md-5 .article_fi').css('height', 'auto');
                     //$(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
-                } else {
+                } else if (window.outerWidth > 991) {
                     $(this).find('.col-md-5 .article_fi').css('height', $(this).find('.col-md-7').height());
                     //$(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
                 }

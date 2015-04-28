@@ -56,9 +56,7 @@ Template Name: articles_template
                     </div>
 					
                 </div>
-				<!--
-                <hr>
-				-->
+				
                 <div class="spacer-40"></div><div class="loader"></div>
 				<div class="all_posts">
 				
@@ -70,10 +68,11 @@ Template Name: articles_template
 								'posts_per_page'   	=> 12,
 								'offset'           	=> 0,
 
-
 					);
 				
 					$response = Article_post\Article::get_many_articles($args);
+					
+					
 			
 					if(count($response) > 0)
 					{ 										
@@ -96,7 +95,7 @@ Template Name: articles_template
 									<div class="row">
 										
 										<!--when hadding share icons change this to col-md-8 and remove class 'hidden' from col-md-4-->
-										<div class="col-md-12">
+										<div class="col-md-8">
 											<h4 class="m-t-0">
 												
 												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -111,15 +110,17 @@ Template Name: articles_template
 											</h4>
 										</div>
 										
-										<div class="col-md-4 hidden">
+										<div class="col-md-4">
 											
-											<!--
+											
 											<div class="social-strip">
 											
 												<?php// echo do_shortcode("[ssba]"); ?>
+												
+												<?php echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
 											
 											</div>
-											-->
+											
 										
 											<!--
 											<div class="social-strip">
@@ -474,7 +475,7 @@ window.onload = function() {
 					 +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
-                            +'<div class="col-md-12">'
+                            +'<div class="col-md-8">'
                                 +'<h4 class="m-t-0">'
 									
 									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
@@ -483,12 +484,17 @@ window.onload = function() {
 								
 								+'</h4>'
                             +'</div>'
-                            +'<div class="col-md-4 hidden">'
+                            +'<div class="col-md-4">'
+								
+								+'<div class="social-strip">'
+											
+									<?php echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+											
+								+'</div>'
+							
 							/*
                                  +'<div class="social-strip">'
-										
-								 
-								 
+																		 								 
                                     +'<div class="pull-right watchlist-add">' 
                                         +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
                                     +'</div>'
@@ -513,7 +519,8 @@ window.onload = function() {
                                     +'</div>'
                                 +'</div>'
 							*/
-                            +'</div>'
+                            
+							+'</div>'
                         +'</div>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'

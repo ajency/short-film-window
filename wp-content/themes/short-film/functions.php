@@ -1451,6 +1451,201 @@ function get_embed_url($postid,$videourl)
 
 
 
+	// get and show share buttons
+	function show_share_buttons_for_post($atts = '') {
+	
+		// globals
+		//global $post;
+		
+		//print_r($atts);
+		
+		$post=get_post($atts['post_id']);
+		
+		
+		
+		// variables
+		$htmlContent = $content;
+		$htmlShareButtons = '';
+		$strIsWhatFunction = '';
+		$pattern = get_shortcode_regex();
+
+		// ssba_hide shortcode is in the post content and instance is not called by shortcode ssba
+		if (preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches )
+			&& array_key_exists( 2, $matches )
+			&& in_array('ssba_hide', $matches[2]) 
+			&& $booShortCode == FALSE) {
+			
+			// exit the function returning the content without the buttons
+			return $content;
+		}
+	
+		// get sbba settings
+		$arrSettings = get_ssba_settings();
+
+		// placement on pages/posts/categories/archives/homepage
+		if ((!is_home() && !is_front_page() && is_page() && $arrSettings['ssba_pages'] == 'Y') || (is_single() && $arrSettings['ssba_posts'] == 'Y') || (is_category() && $arrSettings['ssba_cats_archs'] == 'Y') || (is_archive() && $arrSettings['ssba_cats_archs'] == 'Y') || ( (is_home() || is_front_page() ) && $arrSettings['ssba_homepage'] == 'Y') || $booShortCode == TRUE) {
+
+					
+			// if not shortcode
+			if (isset($atts['widget']) && $atts['widget'] == 'Y')
+				// use widget share text
+				$strShareText = $arrSettings['ssba_widget_text'];
+			else 								
+				// use normal share text
+				$strShareText = $arrSettings['ssba_share_text'];
+
+			// post id
+			$intPostID = get_the_ID();
+				
+			// if post type is download (EDD clashes)
+			if(get_post_type($intPostID) == "download") {
+
+				// check for and remove added text
+				preg_match_all("/>(.*?)>/", $strPageTitle, $matches);
+				$title =  $matches[0][0];
+				$title = ltrim($title, '>');
+				$title = rtrim ($title, '</span>');
+				$strPageTitle = $title;	
+			}
+						
+			// ssba div
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder ('.SSBA_VERSION.') simplesharebuttons.com --><div class="ssba">';
+			
+			// center if set so
+			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
+			
+			// add custom text if set and set to placement above or left
+			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'above' || $arrSettings['ssba_text_placement'] == 'left')) {
+			
+				// check if user has left share link box checked
+				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
+				
+					// share text with link
+					$htmlShareButtons .= '<a href="https://simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
+				}
+				
+				// just display the share text
+				else { 
+					
+					// share text
+					$htmlShareButtons .= $strShareText;
+				}
+				// add a line break if set to above
+				($arrSettings['ssba_text_placement'] == 'above' ? $htmlShareButtons .= '<br/>' : NULL);
+			}
+			
+			// if running standard
+			if ($booShortCode == FALSE) {
+			
+				// use wordpress functions for page/post details
+				$urlCurrentPage = get_permalink($post->ID);
+				$strPageTitle = get_the_title($post->ID);
+				
+			} else { // using shortcode
+
+					// set page URL and title as set by user or get if needed
+					$urlCurrentPage = (isset($atts['url']) ? $atts['url'] : ssba_current_url());
+					$strPageTitle = (isset($atts['title']) ? $atts['title'] : get_the_title());
+			}	
+			
+			// the buttons!
+			$htmlShareButtons.= get_share_buttons($arrSettings, $urlCurrentPage, $strPageTitle, $intPostID);
+			
+			// add custom text if set and set to placement right or below
+			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'right' || $arrSettings['ssba_text_placement'] =='below')) {
+			
+				// add a line break if set to above
+				($arrSettings['ssba_text_placement'] == 'below' ? $htmlShareButtons .= '<br/>' : NULL);
+				
+				// check if user has left share link box checked
+				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
+				
+					// share text with link
+					$htmlShareButtons .= '<a href="https://simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
+				}
+				
+				// just display the share text
+				else { 
+					
+					// share text
+					$htmlShareButtons .= $strShareText;
+				}
+			}
+			
+			// close center if set
+			$htmlShareButtons.= '</div>';
+			$htmlShareButtons.= '</div>';
+			
+			// if not using shortcode
+			if ($booShortCode == FALSE) {
+			
+				// switch for placement of ssba
+				switch ($arrSettings['ssba_before_or_after']) {
+				
+					case 'before': // before the content
+					$htmlContent = $htmlShareButtons . $content;
+					break;
+					
+					case 'after': // after the content
+					$htmlContent = $content . $htmlShareButtons;
+					break;
+					
+					case 'both': // before and after the content
+					$htmlContent = $htmlShareButtons . $content . $htmlShareButtons;
+					break;
+				}
+			}
+			
+			// if using shortcode
+			else {
+			
+				// just return buttons
+				$htmlContent = $htmlShareButtons;
+			}
+		}
+		
+		// return content and share buttons
+		return $htmlContent;
+	}
+
+add_shortcode( 'ssba_post', 'show_share_buttons_for_post' );
+
+/*
+
+function get_post_type_for_WPSSO($og_type, $use_post) {
+     
+	 //global $post;
+	 
+	 $post = $use_post;
+	 
+	 print_r($post);
+	 exit;
+
+     if ($post->post_type == 'post') {
+          
+		  return "video.movie";
+     }
+	 else
+		return $og_type;
+    
+}
+add_filter( 'wpsso_og_type', 'get_post_type_for_WPSSO' );  
+		
+		//// C:\xampp\htdocs\shortfilm\wp-content\plugins\wpsso\lib\opengraph.php - line 150
+		
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
