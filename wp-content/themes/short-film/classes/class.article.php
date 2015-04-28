@@ -80,7 +80,7 @@ class Article
 
 	}  //end function get_article
 	
-	
+	//make the function static?
 	public function get_many_articles($args)
 	{
 		global $post;
