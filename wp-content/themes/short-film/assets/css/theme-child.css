@@ -12043,6 +12043,9 @@ h6.brand {
 .soc-ico a.ssba_pinterest_share:after {
   content: '\f0d2';
 }
+.soc-ico a.ssba_google_share:after {
+  content: '\f0d5';
+}
 .soc-ico a.ssba_facebook_share {
   color: #3b5998;
 }
@@ -12051,6 +12054,9 @@ h6.brand {
 }
 .soc-ico a.ssba_pinterest_share {
   color: #bb0000;
+}
+.soc-ico a.ssba_google_share:after {
+  color: #d6492f;
 }
 .soc-ico.nh {
   margin-top: 10px;
