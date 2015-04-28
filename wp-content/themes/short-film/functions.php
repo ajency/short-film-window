@@ -1408,24 +1408,43 @@ function get_recent_articles()
 
 
 
-function get_embed_url($videourl)
+function get_embed_url($postid,$videourl)
 {
-	$youtubeUrl =  explode("?v=", $videourl);
-		
-	if($youtubeUrl[1])
-	{
-		$youtubeUrlid =  $youtubeUrl[1];
-	}	
-	else
-	{
-		$youtubeUrl =  explode("/embed/", $videourl);
 
-		$youtubeUrlid =  $youtubeUrl[1];
+	$videotype = get_post_meta( $postid , 'type', true );
+		
+	//if youtube video
+	if ($videotype == "youtube")
+	{		
+		$youtubeUrl =  explode("?v=", $videourl);
+				
+		if($youtubeUrl[1])  //if not embed link		
+		{
+			$youtubeUrlid =  $youtubeUrl[1];
+		}	
+		else  //if embed link
+		{	
+			$youtubeUrl =  explode("/embed/", $videourl);
+
+			$youtubeUrlid =  $youtubeUrl[1];
+
+		}
+	
+		$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid.'?autoplay=1';
+		
 	}
 	
-	$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid.'?autoplay=1';
-	
-	
+	//if vimeo video
+	else if ($videotype == "vimeo")
+	{
+		$vimeoUrl =  explode("vimeo.com/", $videourl);
+
+		$vimeoUrlUrlid =  $vimeoUrl[1];
+		
+		$embedurl =  'https://vimeo.com/'.$vimeoUrlUrlid;
+		
+	}
+
 	return $embedurl;
 		
 }	

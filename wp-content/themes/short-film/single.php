@@ -9,7 +9,7 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 	
-	$embedurl = get_embed_url($response['videourl']);
+	$embedurl = get_embed_url($response['id'],$response['videourl']);
 	
 	?>
 	
@@ -52,8 +52,7 @@ get_header(); ?>
 	
 </div>
 		
-	<!-- <div id="movie-header" class="movie-header without-vid">  -->
-	
+
 	<div id="movie-header" class="movie-header">
 		
 <!--			
