@@ -77,8 +77,10 @@ Template Name: articles_template
 					if(count($response) > 0)
 					{ 										
 						foreach ($response as $key => $value)
-						{						 
-				?>
+						{		
+							// echo $value['id'];	
+							// echo "***";	
+				?>			
 							<div class="row listlayout article_row">
 								
 								<div class="col-md-5">
@@ -117,7 +119,11 @@ Template Name: articles_template
 											
 												<?php// echo do_shortcode("[ssba]"); ?>
 												
-												<?php echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+												<?php// echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+												
+												<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+												
+												
 											
 											</div>
 											
@@ -389,7 +395,8 @@ window.onload = function() {
 
 	function get_all_posts()
 	{
-
+		console.log(" inside get_all_posts ");
+		
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
 		
@@ -406,6 +413,10 @@ window.onload = function() {
 				success:function(response)
 				{
                     generate_data(response);
+					
+					console.log(" inside get_all_posts success ");
+					console.log(response);
+					
 					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
                     jQuery('#offset').val(count);
 	
@@ -413,6 +424,7 @@ window.onload = function() {
 				error:function(error){
 					jQuery('.loader').text("")
 					jQuery('.all_posts').html('No Posts found');
+					console.log(" inside get_all_posts error ");
 					
 				} 
 			})
@@ -487,8 +499,26 @@ window.onload = function() {
                             +'<div class="col-md-4">'
 								
 								+'<div class="social-strip">'
+																		
+									//+'<p>'+value.id+'</p>'
 											
-									<?php echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+										+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+										
+										//+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+										
+										
+										
+										//	<?php// echo do_shortcode('[ssba url="'+link +'"]'); ?>
+											
+											
+											//<?php // echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+								
+										
+											//<?php echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+											
+											//<?php echo do_shortcode("[ssba_post post_id='220']"); ?>
+											
+										
 											
 								+'</div>'
 							
@@ -540,14 +570,23 @@ window.onload = function() {
                          +'</div>'
                      +'</div>'
                  +'</div>';
+				 
+				//jQuery('.all_posts').find(".social-strip").html("<?php echo addslashes (do_shortcode("[ssba_post post_id='".$value['id']."']")); ?>"); 
 
 				 ////deleted html for couchdata here
 				 
             });
                     jQuery('.all_posts').html(html);
+					
+					
+					///// displays share icons on load more bot url is wrong it shares id of last article only
+					
+					//jQuery('.all_posts').find(".social-strip").html("<?php echo addslashes (do_shortcode("[ssba_post post_id='".$value['id']."']")); ?>");
+					
                         showLayout();
                         
-                    }
+    
+	}
                     else
                     {
                         jQuery('.all_posts').html("");

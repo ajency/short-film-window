@@ -869,7 +869,7 @@ return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
 
 }
 
-add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
+//add_filter('get_the_excerpt', 'wp_trim_all_excerpt');
 
 
 
@@ -1407,6 +1407,53 @@ function get_recent_articles()
 } // end get_recent_articles()
 
 
+function get_recent_videos()
+{
+	$params = array( 
+				'numberposts' => 3,
+				'order' => 'DESC',
+				'post_type'   => 'post',
+				'post_status' => 'publish'
+	);
+	
+	$recent_posts = wp_get_recent_posts( $params );
+	
+	// print_r($recent_posts);
+	// exit;
+		
+	foreach ($recent_posts as $recent_post)
+	{			
+		$post_detail = Film\Video::get($recent_post['ID']);
+		
+		print_r($post_detail);
+		echo "****";
+		
+		$post_response[] = array(
+				'id'				=> $post_detail['id'],
+				'slug'				=> $post_detail['slug'],
+				'featured_image'	=> $post_detail['featured_image'],
+				'title'				=> $post_detail['title'],
+				'duration'			=> $post_detail['duration'],
+				'region'			=> $post_detail['region'],
+				'director'			=> $post_detail['director'],
+				'categories'		=> $post_detail['categories'],
+				'excerpt'			=> $post_detail['excerpt'],
+				'post_like_count'	=> $post_detail['post_like_count'],
+				'no_of_views'		=> $post_detail['no_of_views'],
+				////'post_date'			=> $post_detail['post_date']
+				'post_date'			=> get_the_date()
+
+			);
+		
+	}
+
+	// print_r($post_response);	
+	// exit;
+	
+	return $post_response;	
+	
+} // end get_recent_articles()
+
 
 function get_embed_url($postid,$videourl)
 {
@@ -1450,7 +1497,183 @@ function get_embed_url($postid,$videourl)
 }	
 
 
+	// get and show share buttons... similar to function in plugin
+	function show_share_buttons_for_post($atts = '') {
+	
+			
+		$content="";
+		$booShortCode = TRUE;
+		
+		// globals
+		//global $post;
+		
+		//print_r($atts);
+		
+		
+		$post=get_post($atts['post_id']);
+		
+		//print_r($post);
+		
+	
+		
+		// variables
+		$htmlContent = $content;
+		$htmlShareButtons = '';
+		$strIsWhatFunction = '';
+		$pattern = get_shortcode_regex();
 
+		
+	
+		// get sbba settings
+		$arrSettings = get_ssba_settings();
+
+		// placement on pages/posts/categories/archives/homepage
+		if ((!is_home() && !is_front_page() && is_page() && $arrSettings['ssba_pages'] == 'Y') || (is_single() && $arrSettings['ssba_posts'] == 'Y') || (is_category() && $arrSettings['ssba_cats_archs'] == 'Y') || (is_archive() && $arrSettings['ssba_cats_archs'] == 'Y') || ( (is_home() || is_front_page() ) && $arrSettings['ssba_homepage'] == 'Y') || $booShortCode == TRUE) {
+
+			// print_r($post);
+			// exit;
+			
+			// if not shortcode
+			if (isset($atts['widget']) && $atts['widget'] == 'Y')
+				// use widget share text
+				$strShareText = $arrSettings['ssba_widget_text'];
+			else 								
+				// use normal share text
+				$strShareText = $arrSettings['ssba_share_text'];
+
+				//-----------------------------------------------------------------------
+				
+			// post id
+			$intPostID = get_the_ID();
+			//$intPostID = $post->ID;
+			
+			//echo $intPostID;
+				
+			// if post type is download (EDD clashes)
+			if(get_post_type($intPostID) == "download") {
+
+				// check for and remove added text
+				preg_match_all("/>(.*?)>/", $strPageTitle, $matches);
+				$title =  $matches[0][0];
+				$title = ltrim($title, '>');
+				$title = rtrim ($title, '</span>');
+				$strPageTitle = $title;	
+			}
+						
+			// ssba div
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder ('.SSBA_VERSION.') simplesharebuttons.com --><div class="ssba">';
+			
+			// center if set so
+			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
+			
+			// add custom text if set and set to placement above or left
+			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'above' || $arrSettings['ssba_text_placement'] == 'left')) {
+			
+				// check if user has left share link box checked
+				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
+				
+					// share text with link
+					$htmlShareButtons .= '<a href="https://simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
+				}
+				
+				// just display the share text
+				else { 
+					
+					// share text
+					$htmlShareButtons .= $strShareText;
+				}
+				// add a line break if set to above
+				($arrSettings['ssba_text_placement'] == 'above' ? $htmlShareButtons .= '<br/>' : NULL);
+			}
+			
+			// if running standard
+			if ($booShortCode == FALSE) {
+			
+				// use wordpress functions for page/post details
+				$urlCurrentPage = get_permalink($post->ID);
+				$strPageTitle = get_the_title($post->ID);
+				
+			} else { // using shortcode
+
+					// set page URL and title as set by user or get if needed
+					$urlCurrentPage = (isset($atts['url']) ? $atts['url'] : ssba_current_url());
+					$strPageTitle = (isset($atts['title']) ? $atts['title'] : get_the_title());
+			}	
+			
+			// the buttons!
+			$htmlShareButtons.= get_share_buttons($arrSettings, $urlCurrentPage, $strPageTitle, $intPostID);
+			
+			// add custom text if set and set to placement right or below
+			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'right' || $arrSettings['ssba_text_placement'] =='below')) {
+			
+				// add a line break if set to above
+				($arrSettings['ssba_text_placement'] == 'below' ? $htmlShareButtons .= '<br/>' : NULL);
+				
+				// check if user has left share link box checked
+				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
+				
+					// share text with link
+					$htmlShareButtons .= '<a href="https://simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
+				}
+				
+				// just display the share text
+				else { 
+					
+					// share text
+					$htmlShareButtons .= $strShareText;
+				}
+			}
+			
+			// close center if set
+			$htmlShareButtons.= '</div>';
+			$htmlShareButtons.= '</div>';
+			
+			// if not using shortcode
+			if ($booShortCode == FALSE) {
+			
+				// switch for placement of ssba
+				switch ($arrSettings['ssba_before_or_after']) {
+				
+					case 'before': // before the content
+					$htmlContent = $htmlShareButtons . $content;
+					break;
+					
+					case 'after': // after the content
+					$htmlContent = $content . $htmlShareButtons;
+					break;
+					
+					case 'both': // before and after the content
+					$htmlContent = $htmlShareButtons . $content . $htmlShareButtons;
+					break;
+				}
+			}
+			
+			// if using shortcode
+			else {
+			
+				// just return buttons
+				$htmlContent = $htmlShareButtons;
+			}
+		}
+		
+		// return content and share buttons
+		return $htmlContent;
+	}
+
+add_shortcode( 'ssba_post', 'show_share_buttons_for_post' );
+
+
+
+
+
+
+
+
+
+
+//////////
+
+/*
 	// get and show share buttons... similar to function in plugin
 	function show_share_buttons_for_post($atts = '') {
 	
@@ -1609,6 +1832,11 @@ function get_embed_url($postid,$videourl)
 	}
 
 add_shortcode( 'ssba_post', 'show_share_buttons_for_post' );
+
+*/
+
+
+
 
 /*
 

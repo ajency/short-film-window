@@ -4,7 +4,7 @@ namespace Film;
 class Video
 {
 
-	public function get($post_id){
+	public static function get($post_id){
 
 		global $post;
 
@@ -18,6 +18,9 @@ class Video
 			
 			//prev post
 			$prev_post = retrieve_previous_post();
+			
+			//print_r($prev_post);
+			
 			$prev_post = $prev_post == 0 ? 0 : $prev_post->post_name;
 
 			//next post
@@ -75,7 +78,7 @@ class Video
 
 	}
 	
-	public function get_many($args)
+	public static function get_many($args)
 	{
 		global $post;
 
