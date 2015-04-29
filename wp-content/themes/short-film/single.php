@@ -30,27 +30,23 @@ get_header(); ?>
 		</video>
 	-->
 	
-<div class="video-section vid_if" style="position: relative;">	
-				
-		<div class="show-featured-image vid_if" style=" position: relative">
-
-			<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
-
-					
-			<a href="#" class="play_movie_big">
-			</a>
-			
-		</div>	
-			
-	<!--	
-		<div class="play-video">
-			
-			<iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
-
-		</div>
-	-->
-	
-</div>
+    <div class="posrel">
+        
+        <div class="vid-previous"></div>
+		<div class="vid-next"></div>
+       
+        <div class="video-section vid_if" style="position: relative;">
+            <div class="show-featured-image vid_if" style=" position: relative">
+                <img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
+                <a href="#" class="play_movie_big"></a>
+            </div>	
+            <!--	
+                <div class="play-video">
+                    <iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
+                </div>
+            -->
+        </div>
+    </div>
 		
 
 	<div id="movie-header" class="movie-header">
@@ -59,9 +55,7 @@ get_header(); ?>
 	<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
 	</div>
 -->
-		<div class="vid-previous"></div>
-		<div class="vid-next"></div>
-
+		
 		<div class="container movie-info">
 			<div class="row posrel">
 				<div class="col-md-10">
