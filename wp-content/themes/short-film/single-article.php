@@ -19,8 +19,10 @@ get_header(); ?>
         </div>
 		 <!-- <div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div> -->
 	
+		<!--
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
+		-->
 
 		<div class="container movie-info">
 			<div class="row">
@@ -109,24 +111,73 @@ get_header(); ?>
 		</div>
 		
 	    <div class="spacer-40"></div>
-	    <div class="row">
-	        <div class="col-md-12">
-	            <h3>SOME MOVIES WE PICKED FOR YOU</h3>
-	            <hr>
-	                <div class="row">
-											
-						<div class="col-md-12">
-							<?php 
-								
-								related_posts(); 
-									//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
-							
-							?>
-						</div>
+	    
+		<div class="recent-movies">
+		
+			<div class="row">
+				<div class="col-md-6">
+					<h2>SOME MOVIES WE PICKED FOR YOU</h2>
+				</div>	
+            </div>
+			
+			<hr class="m-t-0">
+			
+			<div class="row">
+				<div class="col-md-12">
+																
+					<?php
 
-					</div>
+						$recentvideos = get_recent_videos();
+						
+						//print_r($recentvideos);
+						
+						
+						foreach ($recentvideos as $recentvideo)
+						{		
+							
+					?>									
+							<div class="col-sm-4">									
+								<div class="rec_posts">
+									<div class="focus-img">
+										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+											<img src="<?php echo $recentvideo['featured_image'];?>">
+										</a>
+									</div>
+									
+									<div>
+										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+											<h6><?php echo $recentvideo['title']; ?></h6>
+										</a>
+										<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
+										<div>
+											<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
+											<p class="pull-right">
+												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
+												<!--
+												<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
+												-->
+											</p>
+										</div>
+										
+										<div class="clearfix"></div>
+										
+										<hr class="m-t-0">
+									
+									</div>
+								
+								</div>
+																
+							</div>
+							
+					<?php
+								
+						} //end foreach							
+					?>			
+							
 				</div>
 			</div>
+		
+		</div>	
 
 	    <div class="spacer-40"></div>
 
@@ -164,6 +215,7 @@ get_header(); ?>
 window.onload = function() {
 
 	jQuery('#noofviews').val();
+/*	
 	prev = "<?php echo $response['prev_post'];?>";
 
 	if(parseInt(prev) == 0)
@@ -201,7 +253,7 @@ window.onload = function() {
 
 		window.location.href = SITEURL+'/'+"<?php echo $response['next_post'];?>";
 	});
-
+*/
 
 }
 

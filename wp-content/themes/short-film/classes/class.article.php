@@ -4,7 +4,7 @@ namespace Article_post;
 class Article
 {
 
-	public function get_article($post_id)
+	public static function get_article($post_id)
 	{
 		
 		global $post;
@@ -17,6 +17,7 @@ class Article
 		if(!is_null($post))
 		{
 			
+		/*
 			//prev post
 			$prev_post = retrieve_previous_post();
 			$prev_post = $prev_post == 0 ? 0 : $prev_post->post_name;
@@ -24,7 +25,8 @@ class Article
 			//next post
 			$next_post = retrieve_next_post();
 			$next_post = $next_post == 0 ? 0 : $next_post->post_name;
-
+		*/
+			
 			//get author name
 			$name = (!get_user_details($post->post_author)) ? "" :
 						 get_user_meta(get_user_details($post->post_author)->ID,'first_name' , true).' '.
@@ -54,8 +56,8 @@ class Article
 				'excerpt'		=> get_the_excerpt(),
 				//'excerpt'		=> $post->post_excerpt,
 				'director'		=> $name,
-				'next_post'		=> $next_post,
-				'prev_post'		=> $prev_post,
+				//'next_post'		=> $next_post,
+				//'prev_post'		=> $prev_post,
 				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
 				//'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
 				//'duration'		=> get_post_meta( $post->ID , 'duration',true ) != false?
@@ -81,7 +83,7 @@ class Article
 	}  //end function get_article
 	
 	//make the function static?
-	public function get_many_articles($args)
+	public static function get_many_articles($args)
 	{
 		global $post;
 
@@ -97,8 +99,8 @@ class Article
 					//'meta_key'				=> $meta_key,
 					//'meta_value'			=> $args['language'],
 					'posts_per_page'   		=> $args['posts_per_page'],
-					'offset'           		=> $args['offset'],
-					'exclude'				=> $args['exclude']
+					'offset'           		=> $args['offset']
+					//'exclude'				=> $args['exclude']
 
 	
 				);
