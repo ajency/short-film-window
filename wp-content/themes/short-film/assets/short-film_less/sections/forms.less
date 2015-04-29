@@ -7,16 +7,20 @@
     font-family: 'Roboto';
     font-weight: 500;
 }
+.frm_style_formidable-style.with_frm_style .frm_left_container label.frm_primary_label,
 .with_frm_style .frm_left_container label.frm_primary_label {width: auto;}
 .frm_style_formidable-style.with_frm_style label.frm_primary_label,
-.frm_style_formidable-style.with_frm_style.frm_login_form label.frm_primary_label
+.frm_style_formidable-style.with_frm_style.frm_login_form label.frm_primary_label,
+.with_frm_style label.frm_primary_label,
+.with_frm_style.frm_login_form label.frm_primary_label
 {font-family: 'Roboto'; font-size: 18px; font-weight: 100;}
 .frm_forms.with_frm_style .frm_submit {text-align: center; padding-bottom: 15px;}
 .frm_forms.with_frm_style .frm_submit input[type=submit] {font-family: 'Roboto';}
 
 //.frm_style_formidable-style.with_frm_style label.frm_primary_label {}
 
-.frm_forms.frm_style_formidable-style.with_frm_style {
+.frm_forms.frm_style_formidable-style.with_frm_style,
+.frm_forms.with_frm_style{
     margin-top: -23px;
     .highlight-first {
         background: #444847;
@@ -63,6 +67,8 @@
                 padding-right: 15px;
             }
             &.frm_left_container input {
+                width: 75%;
+                max-width: none;
                 float: right;
                 padding: 7px 13px;
                 @media screen and (max-width: 991px) {
