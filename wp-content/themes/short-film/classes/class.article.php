@@ -50,7 +50,7 @@ class Article
 			}
 			else
 			{		
-				$excerpt= show_excerpt(20,$post->post_content);
+				$excerpt= show_excerpt(200,$post->post_content);
 			}	
 
 
