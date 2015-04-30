@@ -9,6 +9,7 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 	
+	
 	$embedurl = get_embed_url($response['id'],$response['videourl']);
 	
 	?>
@@ -152,6 +153,9 @@ get_header(); ?>
                         <div class="like-action">
                             
                             <?php echo getPostLikeLink( get_the_ID() ) ; ?>
+							
+							<?php// echo getPostLikeLink( $response['id'] ) ; ?>
+							
                            
                         </div>
                         <div class="watchlist-add">

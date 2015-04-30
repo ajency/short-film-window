@@ -7,7 +7,7 @@ class Article
 	public static function get_article($post_id)
 	{
 		
-		global $post;
+		//global $post;
 
 		
 		//wordpress fn to get single post
@@ -42,33 +42,37 @@ class Article
 			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
         	'/assets/img/placeholder.jpg';
 
+			//check if the post has an excerpt.if it has then use the post_excerpt else use the post_content & generate excerpt of length 20 by calling the function show_excerpt() defined in functions.php
+			
+			if($post->post_excerpt)			
+			{	
+				$excerpt= $post->post_excerpt;	
+			}
+			else
+			{		
+				$excerpt= show_excerpt(20,$post->post_content);
+			}	
+
+
 			//assign the required details
 			$response = array(
-				'id'			=> $post->ID ,
-				'slug'			=> $post->post_name,
-				'title'			=> $post->post_title,
+				'id'				=> $post->ID ,
+				'slug'				=> $post->post_name,
+				'title'				=> $post->post_title,
 				'post_date'			=> get_the_date(),
-				//'type'			=> get_post_meta( $post->ID , 'type',true ),
-				//'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
-				//'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
-				//'content'		=> get_the_content('Read more'),
-				'content'		=> $post->post_content,
-				'excerpt'		=> get_the_excerpt(),
-				//'excerpt'		=> $post->post_excerpt,
-				'director'		=> $name,
+				//'content'			=> get_the_content('Read more'),
+				'content'			=> $post->post_content,
+				'excerpt'			=> $excerpt,
+				'director'			=> $name,
 				//'next_post'		=> $next_post,
 				//'prev_post'		=> $prev_post,
-				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
-				//'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
-				//'duration'		=> get_post_meta( $post->ID , 'duration',true ) != false?
-				//					get_post_meta( $post->ID , 'duration',true ) : 0,
-				//'region'		=> get_custom_taxonomy_terms($post->ID),
-				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
-				'featured_image'			=> $image,
+				'comments'			=> count(get_comments(array('post_id' => $post->ID))),
+				'tags'				=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
+				'featured_image'	=> $image,
 				'user_like_count'	=> $post_user_like,
-				'post_like_count' => get_post_meta( $post->ID, "_post_like_count", true ) != false ?
+				'post_like_count'   => get_post_meta( $post->ID, "_post_like_count", true ) != false ?
 									get_post_meta( $post->ID, "_post_like_count", true ) : 0,
-				'no_of_views'	=> get_post_meta( $post->ID, "no_of_views", true ) != false ?
+				'no_of_views'		=> get_post_meta( $post->ID, "no_of_views", true ) != false ?
 									get_post_meta( $post->ID, "no_of_views", true ) : 0
 
 			);
@@ -82,7 +86,7 @@ class Article
 
 	}  //end function get_article
 	
-	//make the function static?
+
 	public static function get_many_articles($args)
 	{
 		global $post;
@@ -92,12 +96,8 @@ class Article
 		$params = array(
 					'orderby'          		=> 'post_date',
 					'order'            		=> 'DESC',
-					//'post_type' 	   		=> 'post',
 					'post_type' 	   		=> 'article',
 					'post_status'      		=> 'publish',
-					//'category'		  	 	=> $args['genre'],
-					//'meta_key'				=> $meta_key,
-					//'meta_value'			=> $args['language'],
 					'posts_per_page'   		=> $args['posts_per_page'],
 					'offset'           		=> $args['offset']
 					//'exclude'				=> $args['exclude']
@@ -119,8 +119,7 @@ class Article
 			// $image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
 			//      	'/img/placeholder.jpg';
 
-			
-			//$post_detail = self::get($post->ID);
+
 			$post_detail = self::get_article($post->ID);
 			
    
@@ -130,10 +129,7 @@ class Article
 					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],
 					'post_date'				=> $post_detail['post_date'],
-					//'duration'			=> $post_detail['duration'],
-					//'region'			=> $post_detail['region'],
 					'director'			=> $post_detail['director'],
-					//'categories'		=> $post_detail['categories'],
 					'excerpt'			=> $post_detail['excerpt'],
 					'content'			=> $post_detail['content'],
 					'post_like_count'	=> $post_detail['post_like_count'],

@@ -6,13 +6,12 @@ class Video
 
 	public static function get($post_id){
 
-		global $post;
+		//global $post;
 
 		
 		//wordpress fn to get single post
-		$post  = get_post($post_id); 
-
-
+		$post  = get_post($post_id); 	
+		
 		if(!is_null($post))
 		{
 			
@@ -42,6 +41,18 @@ class Video
 			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
         	'/assets/img/placeholder.jpg';
 
+			//check if the post has an excerpt.if it has then use the post_excerpt else use the post_content & generate excerpt of length 20 by calling the function show_excerpt() defined in functions.php
+			
+			if($post->post_excerpt)			
+			{	
+				$excerpt= $post->post_excerpt;	
+			}
+			else
+			{		
+				$excerpt= show_excerpt(20,$post->post_content);
+			}	
+			
+			
 			//assign the required details
 			$response = array(
 				'id'			=> $post->ID ,
@@ -50,8 +61,10 @@ class Video
 				'type'			=> get_post_meta( $post->ID , 'type',true ),
 				'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
 				'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
-				'content'		=> get_the_content('Read more'),
-				'excerpt'		=> get_the_excerpt(),
+				//'content'		=> get_the_content('Read more'),
+				'content'		=> $post->post_content,
+				//'excerpt'			=> get_the_excerpt(),
+				'excerpt'		=> $excerpt,				
 				'director'		=> $name,
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
@@ -69,6 +82,8 @@ class Video
 									get_post_meta( $post->ID, "no_of_views", true ) : 0
 
 			);
+
+			
 			return $response;
 		}
 		else
@@ -80,7 +95,7 @@ class Video
 	
 	public static function get_many($args)
 	{
-		global $post;
+		//global $post;
 
 		$meta_key = $args['language']!="" ? 'language' : '';
 
@@ -95,7 +110,6 @@ class Video
 					'posts_per_page'   		=> $args['posts_per_page'],
 					'offset'           		=> $args['offset'],
 					'exclude'				=> $args['exclude']
-
 	
 				);
 
@@ -114,6 +128,7 @@ class Video
    //      	'/img/placeholder.jpg';
 
 			$post_response[] = array(
+					//'id'				=> $post_detail['id'],
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],
@@ -124,10 +139,7 @@ class Video
 					'excerpt'			=> $post_detail['excerpt'],
 					'post_like_count'	=> $post_detail['post_like_count'],
 					'no_of_views'		=> $post_detail['no_of_views']
-				
-				
-				
-				
+							
 				);
 			
 		}

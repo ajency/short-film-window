@@ -8,6 +8,7 @@ get_header(); ?>
 	global $post;
 
 	$response = Article_post\Article::get_article($post->ID);
+	
 
 	?>
 	
@@ -115,7 +116,7 @@ get_header(); ?>
 		<div class="recent-movies">
 		
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<h2>SOME MOVIES WE PICKED FOR YOU</h2>
 				</div>	
             </div>
@@ -128,12 +129,10 @@ get_header(); ?>
 					<?php
 
 						$recentvideos = get_recent_videos();
-						
-						//print_r($recentvideos);
-						
-						
+											
 						foreach ($recentvideos as $recentvideo)
 						{		
+							
 							
 					?>									
 							<div class="col-sm-4">									
@@ -148,6 +147,9 @@ get_header(); ?>
 										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 											<h6><?php echo $recentvideo['title']; ?></h6>
 										</a>
+										
+										<small><em> by <?php echo $recentvideo['director']; ?></em></small>
+										
 										<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
 										<div>
 											<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
