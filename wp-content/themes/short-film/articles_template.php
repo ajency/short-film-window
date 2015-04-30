@@ -237,7 +237,7 @@ Template Name: articles_template
 		
 
 							$populararticles = get_popular_articles($args);
-						
+														
 							
 							foreach ($populararticles as $populararticle)
 							{									
@@ -254,6 +254,9 @@ Template Name: articles_template
 											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 								                <h6><?php echo $populararticle['title']; ?></h6>
 											</a>
+											
+											<small><em> by <?php echo $populararticle['director']; ?></em></small>
+											
 											<p>	<?php echo $populararticle['excerpt']; ?>	</p>
 											<div>
 												<p class="pull-left"><small><?php echo $populararticle['post_date'];?></small></p>
