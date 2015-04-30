@@ -1721,7 +1721,24 @@ add_filter( 'wpsso_og_type', 'get_post_type_for_WPSSO' );
 
 
 
+add_action('template_redirect', 'increment_article_number_of_views');
 
+function increment_article_number_of_views()
+{
+	global $post;
+	
+	$type = $post->post_type;
+
+	if($type == 'article')
+	{
+		$old_count = get_post_meta( $post->ID, "no_of_views", true);
+					
+		update_post_meta( $post->ID, "no_of_views", $old_count+1);
+		
+		//echo get_post_meta( $post->ID, "_post_like_count", true);
+	}
+		
+}
 
 
 
