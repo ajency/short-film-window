@@ -578,8 +578,9 @@ window.onload = function() {
                         jQuery('.all_posts').html("");
                         html += "<div>No posts found.</div>";
                         jQuery('.all_posts').html(html);
+						jQuery('.load_more').hide()
                     }
-                    
+                   
 
     }
 	

@@ -150,6 +150,7 @@ get_header(); ?>
                         <div class="views">
                             <?php  echo $response['no_of_views'] ;?> <i class="fa fa-eye"></i>
                         </div>
+						
                         <div class="like-action">
                             
                             <?php echo getPostLikeLink( get_the_ID() ) ; ?>
@@ -158,6 +159,7 @@ get_header(); ?>
 							
                            
                         </div>
+						
                         <div class="watchlist-add">
                             <a href="#">Add to Watchlist <i class="fa fa-binoculars"></i></a>
                         </div>
