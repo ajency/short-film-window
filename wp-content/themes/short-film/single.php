@@ -418,7 +418,7 @@ afterToggle: function(){}
 
 	jQuery('.play_movie_big').click(function(event){
 						
-		console.log("in script");
+		//console.log("in script");
 		
 		event.preventDefault();
 		generate_video();

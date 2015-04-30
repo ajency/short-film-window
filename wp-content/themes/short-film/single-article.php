@@ -94,9 +94,9 @@ get_header(); ?>
 		    <div class="article_s_links">
 		        
 				<span class="art_likes"><?php echo getPostLikeLink( get_the_ID() ) ; ?> </span>
-		        <!--
+		        
 				<span class="art_views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></span>
-		        -->
+		       
 		        <div class="pull-right soc-ico">
 				    <?php///ssba_activate(); ?>
 					<?php echo do_shortcode("[ssba]"); ?>
