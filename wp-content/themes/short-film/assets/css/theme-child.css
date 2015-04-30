@@ -12584,6 +12584,12 @@ a.def_link {
 .grid-meta .p-l-10.pull-left i {
   margin-left: 5px;
 }
+.grid-meta a.content-bottom {
+  color: #fff;
+}
+.grid-meta a.content-bottom:hover {
+  color: #fff;
+}
 .trending h3,
 .awardwinning h3,
 .indian h3 {
