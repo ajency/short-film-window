@@ -12298,6 +12298,10 @@ h6.brand {
 .ontop {
   z-index: 5;
 }
+.page-template-category_template .listlayout > .col-md-5 {
+  max-height: 251px;
+  overflow: hidden;
+}
 .listlayout,
 .couchlayout {
   padding-bottom: 30px;
