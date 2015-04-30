@@ -49,7 +49,7 @@ class Video
 			}
 			else
 			{		
-				$excerpt= show_excerpt(50,$post->post_content);
+				$excerpt= show_excerpt(200,$post->post_content);
 			}	
 			
 			
