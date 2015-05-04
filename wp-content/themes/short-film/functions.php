@@ -1488,7 +1488,9 @@ function get_embed_url($postid,$videourl)
 
 		$vimeoUrlUrlid =  $vimeoUrl[1];
 		
-		$embedurl =  'https://vimeo.com/'.$vimeoUrlUrlid;
+		//$embedurl =  'https://vimeo.com/'.$vimeoUrlUrlid;
+		
+		$embedurl =  '//player.vimeo.com/video/'.$vimeoUrlUrlid.'?autoplay=1';
 		
 	}
 
