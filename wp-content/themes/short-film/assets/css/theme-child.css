@@ -12602,6 +12602,7 @@ a.def_link {
 .article_row .article_title {
   text-transform: uppercase;
   display: block;
+  line-height: 1.2;
   color: #af152f;
 }
 .article_row .article_title:hover {
@@ -12624,10 +12625,40 @@ a.def_link {
 .article_row .article_fi {
   overflow: hidden;
   display: block;
+  position: relative;
 }
 @media screen and (max-width: 991px) {
   .article_row .article_fi {
     margin-bottom: 10px;
+    height: auto !important;
+    max-height: 300px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .article_row .article_fi img {
+    width: 100%;
+  }
+}
+.article_row .col-xs-8 .soc-ico,
+.article_row .col-xs-4 .soc-ico {
+  bottom: 0;
+}
+@media screen and (max-width: 560px) {
+  .article_row .col-xs-8,
+  .article_row .col-xs-4 {
+    display: block;
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+  .article_row .col-xs-8 .ssba div,
+  .article_row .col-xs-4 .ssba div {
+    text-align: center !important;
+  }
+}
+@media screen and (max-width: 560px) {
+  .article_row h4 {
+    text-align: center;
   }
 }
 .article_single .article_s_img {
@@ -12666,4 +12697,13 @@ a.def_link {
 }
 .pop_posts h6 {
   text-transform: uppercase;
+}
+.pop_posts .pop_auth {
+  margin-bottom: 5px;
+}
+@media screen and (max-width: 767px) {
+  .pop_posts h6 {
+    font-size: 18px;
+    line-height: 1.2;
+  }
 }

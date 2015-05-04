@@ -128,7 +128,7 @@ class Video
    //      	'/img/placeholder.jpg';
 
 			$post_response[] = array(
-					//'id'				=> $post_detail['id'],
+					'id'				=> $post_detail['id'],
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],

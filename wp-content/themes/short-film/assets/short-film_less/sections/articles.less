@@ -4,6 +4,7 @@
     .article_title {
         text-transform: uppercase;
         display: block;
+        line-height: 1.2;
         color: @brand-primary;
         &:hover {
             text-decoration: none;
@@ -25,9 +26,39 @@
 //        max-height: 220px;
         overflow: hidden;
         display: block;
+        position: relative;
         @media screen and (max-width: 991px) {
             margin-bottom: 10px;
+            height: auto !important;
+            max-height: 300px;
         }
+//        @media screen and (max-width: 680px) {
+//            height: 300px !important;
+//        }
+        img {
+            @media screen and (max-width: 991px) {
+//                position: absolute;
+//                left: 0;
+//                top: 0;
+                width: 100%;
+//                max-width: none;
+//                height: 150%;
+            }
+        }
+    }
+    
+    .col-xs-8, .col-xs-4 {
+        .soc-ico {bottom: 0;}
+        @media screen and (max-width: 560px) {
+            display: block;
+            float: none;
+            width: 100%;
+            text-align: center;
+            .ssba div {text-align: center !important;}
+        }
+    }
+    @media screen and (max-width: 560px) {
+        h4 {text-align: center;}
     }
 }
 .article_single {
@@ -59,4 +90,10 @@
 }
 .pop_posts {
     h6 {text-transform: uppercase;}
+    .pop_auth {
+        margin-bottom: 5px;
+    }
+    @media screen and (max-width: 767px) {
+        h6 {font-size: 18px; line-height: 1.2}
+    }
 }

@@ -15,7 +15,7 @@ Template Name: articles_template
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h2>IN FOCUS</h2>
+                        <h2>IN FOCUS <small><em>Interviews and Discussions</em></small></h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
@@ -97,7 +97,7 @@ Template Name: articles_template
 									<div class="row">
 										
 										<!--when hadding share icons change this to col-md-8 and remove class 'hidden' from col-md-4-->
-										<div class="col-md-8">
+										<div class="col-md-12">
 											<h4 class="m-t-0">
 												
 												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -112,20 +112,22 @@ Template Name: articles_template
 											</h4>
 										</div>
 										
-										<div class="col-md-4">
+										<div class="col-md-4 hidden">
 											
 											
+<!--
 											<div class="social-strip">
 											
 												<?php// echo do_shortcode("[ssba]"); ?>
 												
 												<?php// echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
 												
-												<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+												<?php //echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 												
 												
 											
 											</div>
+-->
 											
 										
 											<!--
@@ -163,28 +165,27 @@ Template Name: articles_template
 									<hr class="m-t-0 m-b-5">
 								   
 								   <div class="row">
-									
-										<div class="col-xs-12">
-										   <p class="article_meta">
-										       
-											   <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
-										       
-											   <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>		
-												
-												<!--
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>
-											   -->
-										   </p>
-										   
-										   <p class="article_cont">
-										       <?php echo $value['excerpt'];?>
-										   </p>
-			 
-										</div>
-
-									</div>
-								
-								</div>	                
+										<div class="col-xs-8">
+                                            <p class="article_meta">
+                                                <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+                                                <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>
+                                                <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="social-strip soc-ico pull-r ight">
+												<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+											</div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="article_cont">
+                                                <?php echo $value['excerpt'];?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>	                
 							</div>
 
 					<!-- /container -->
@@ -255,7 +256,7 @@ Template Name: articles_template
 								                <h6><?php echo $populararticle['title']; ?></h6>
 											</a>
 											
-											<small><em> by <?php echo $populararticle['director']; ?></em></small>
+											<p class="pop_auth"><small><em> by <?php echo $populararticle['director']; ?></em></small></p>
 											
 											<p>	<?php echo $populararticle['excerpt']; ?>	</p>
 											<div>
@@ -501,15 +502,7 @@ window.onload = function() {
                             +'</div>'
                             +'<div class="col-md-4">'
 								
-								+'<div class="social-strip">'
-																		
-									//+'<p>'+value.id+'</p>'
-											
-										+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
-																						
-										
-											
-								+'</div>'
+								
 							
 							/*
                                  +'<div class="social-strip">'
@@ -543,19 +536,34 @@ window.onload = function() {
                         +'</div>'
                          +'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
-                             +'<div class="col-xs-12">'
+                             +'<div class="col-xs-8">'
 									+'<p class="article_meta">'
                                         +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
 										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
                                     +'</p>'
-                                    +'<p class="article_cont">'
-                                        +value.excerpt
-                                    +'</p>'
+                             +'</div>'
+                             +'<div class="col-xs-4">'
+                                +'<div class="social-strip soc-ico">'
+																		
+									//+'<p>'+value.id+'</p>'
+											
+										+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+																						
+										
+											
+								+'</div>'
                              +'</div>'
                              // +'<div class="col-xs-4 text-right">'
                                  // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
                              // +'</div>'
+                         +'</div>'
+                         +'<div class="row">'
+                             +'<div class="col-md-12">'
+                                +'<p class="article_cont">'
+                                    +value.excerpt
+                                +'</p>'
+                             +'</div>'
                          +'</div>'
                      +'</div>'
                  +'</div>';
