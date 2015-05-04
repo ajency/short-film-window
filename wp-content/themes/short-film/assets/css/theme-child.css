@@ -12768,4 +12768,8 @@ a.def_link {
     font-size: 18px;
     line-height: 1.2;
   }
+  .pop_posts .grid-box.grid-full,
+  .recent-movies .grid-box.grid-full {
+    height: 200px;
+  }
 }
