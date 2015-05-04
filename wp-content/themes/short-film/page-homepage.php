@@ -386,7 +386,7 @@ Template Name: Homepage
                     <h6>
                       <!--  <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>  -->
 						
-						<a class="exp_all" target="_blank" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>
+						<a class="exp_all" target="_blank" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down hidden"></i></a>
 						
                     </h6>
                     </div>
