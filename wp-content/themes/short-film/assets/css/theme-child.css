@@ -12716,9 +12716,20 @@ a.def_link {
 .article_single .article_title {
   width: 75%;
 }
+@media screen and (max-width: 767px) {
+  .article_single .article_title {
+    width: 100%;
+  }
+}
 .article_single .goup {
   margin-top: -35px;
   color: #ccc;
+}
+@media screen and (max-width: 767px) {
+  .article_single .goup {
+    margin-top: 0;
+    float: none !important;
+  }
 }
 .article_single .goup i {
   margin-right: 10px;
@@ -12743,14 +12754,17 @@ a.def_link {
 .article_s_cont .alignleft {
   float: left;
 }
-.pop_posts h6 {
+.pop_posts h6,
+.recent-movies h6 {
   text-transform: uppercase;
 }
-.pop_posts .pop_auth {
+.pop_posts .pop_auth,
+.recent-movies .pop_auth {
   margin-bottom: 5px;
 }
 @media screen and (max-width: 767px) {
-  .pop_posts h6 {
+  .pop_posts h6,
+  .recent-movies h6 {
     font-size: 18px;
     line-height: 1.2;
   }
