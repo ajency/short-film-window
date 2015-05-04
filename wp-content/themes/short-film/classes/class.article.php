@@ -13,6 +13,8 @@ class Article
 		//wordpress fn to get single post
 		$post  = get_post($post_id); 
 		
+	
+		
 		
 		if(!is_null($post))
 		{
@@ -64,6 +66,7 @@ class Article
 				'content'			=> $post->post_content,
 				'excerpt'			=> $excerpt,
 				'director'			=> $name,
+				'directorid'		=> $post->post_author,
 				//'next_post'		=> $next_post,
 				//'prev_post'		=> $prev_post,
 				'comments'			=> count(get_comments(array('post_id' => $post->ID))),
@@ -76,7 +79,7 @@ class Article
 									get_post_meta( $post->ID, "no_of_views", true ) : 0
 
 			);
-
+			
 			return $response;
 		}
 		else

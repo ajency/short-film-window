@@ -30,7 +30,7 @@ get_header(); ?>
 				<div class="col-md-12">
 					<h3 class="article_title">
 					    <?php echo ucfirst($response['title']); ?>
-					    <small><em>by <?php echo ucfirst($response['director']);?></em></small>
+					    <small><em>by <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a></em></small>
 				    </h3>
 				    <p class="pull-right goup"><i class="fa fa-clock-o"></i><?php echo $response['post_date']; ?></p>
 				</div>
