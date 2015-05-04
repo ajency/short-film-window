@@ -138,37 +138,79 @@ get_header(); ?>
 							
 					?>									
 							<div class="col-sm-4">									
-								<div class="rec_posts">
-									<div class="focus-img">
-										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
-											<img src="<?php echo $recentvideo['featured_image'];?>">
-										</a>
-									</div>
+								<div class="grid-box grid-full content-align-bottom">
 									
-									<div>
-										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
-											<h6><?php echo $recentvideo['title']; ?></h6>
-										</a>
+									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 										
-										<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
-										
-										<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
-										<div>
-											<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
-											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
-												<!--
-												<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
-												-->
-											</p>
+										<div class="grid-image">
+											<img src="<?php echo $recentvideo['featured_image'];?>">
+										</div>
+	
+										<div class="grid-text-wrap">
+											
+											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
+										   
+										   <div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>
+										   
+											<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>
+											
+											<div class="grid-meta?>">DIR.<?php echo  ucfirst($recentvideo['director']);?></div>
+											 
 										</div>
 										
-										<div class="clearfix"></div>
-										
-										<hr class="m-t-0">
-									
-									</div>
-								
+										<div class="grid-text-wrap hover-text">
+											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
+											<div class="grid-meta">
+												<div class="row">
+													<div class="col-sm-4">
+
+														<div class="pull-left p-l-10 m-t-10">
+															<div>
+																<?php echo $recentvideo['no_of_views'];?>
+																<i class="fa fa-eye"></i>
+															</div>
+															<div>
+																<?php echo $recentvideo['post_like_count'];?>
+																<i class="fa fa-thumbs-up"></i>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-8">
+														<div class="pull-right text-right m-t-10">
+														   <?php echo $recentvideo['excerpt'];?>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+																					
+											<!--
+											<div>
+												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+													<h6><?php echo $recentvideo['title']; ?></h6>
+												</a>
+												
+												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
+												
+												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
+												<div>
+													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
+													<p class="pull-right">
+														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
+														
+														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
+														
+													</p>
+												</div>
+												
+												<div class="clearfix"></div>
+												
+												<hr class="m-t-0">
+											
+											</div>
+											-->
+										<div class="overlay-vertical"></div>
+									</a>
 								</div>
 																
 							</div>
