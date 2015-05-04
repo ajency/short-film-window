@@ -12046,6 +12046,30 @@ h6.brand {
 .soc-ico a.ssba_google_share:after {
   content: '\f0d5';
 }
+.soc-ico a.ssba_diggit_share:after {
+  content: '\f1a6';
+}
+.soc-ico a.ssba_email_share:after {
+  content: '\f003';
+}
+.soc-ico a.ssba_linkedin_share:after {
+  content: '\f0e1';
+}
+.soc-ico a.ssba_print:after {
+  content: '\f02f';
+}
+.soc-ico a.ssba_reddit_share:after {
+  content: '\f1a1';
+}
+.soc-ico a.ssba_stumbleupon_share:after {
+  content: '\f1a4';
+}
+.soc-ico a.ssba_vk_share:after {
+  content: '\f189';
+}
+.soc-ico a.ssba_tumblr_share:after {
+  content: '\f173';
+}
 .soc-ico a.ssba_facebook_share {
   color: #3b5998;
 }
@@ -12055,8 +12079,32 @@ h6.brand {
 .soc-ico a.ssba_pinterest_share {
   color: #bb0000;
 }
-.soc-ico a.ssba_google_share:after {
+.soc-ico a.ssba_google_share {
   color: #d6492f;
+}
+.soc-ico a.ssba_diggit_share {
+  color: #2169A8;
+}
+.soc-ico a.ssba_email_share {
+  color: #ccc;
+}
+.soc-ico a.ssba_linkedin_share {
+  color: #0274B3;
+}
+.soc-ico a.ssba_print {
+  color: #ccc;
+}
+.soc-ico a.ssba_reddit_share {
+  color: #FF4500;
+}
+.soc-ico a.ssba_stumbleupon_share {
+  color: #EB4823;
+}
+.soc-ico a.ssba_vk_share {
+  color: #4C75A3;
+}
+.soc-ico a.ssba_tumblr_share {
+  color: #34465D;
 }
 .soc-ico.nh {
   margin-top: 10px;
