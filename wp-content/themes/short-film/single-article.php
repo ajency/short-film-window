@@ -150,7 +150,7 @@ get_header(); ?>
 											<h6><?php echo $recentvideo['title']; ?></h6>
 										</a>
 										
-										<small><em> by <?php echo $recentvideo['director']; ?></em></small>
+										<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
 										
 										<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
 										<div>
