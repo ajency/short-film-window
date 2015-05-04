@@ -1741,7 +1741,27 @@ function increment_article_number_of_views()
 }
 
 
+add_action( 'wp_ajax_increase_video_number_of_views', 'increment_video_number_of_views' );
+add_action( 'wp_ajax_nopriv_increase_video_number_of_views', 'increment_video_number_of_views' );
 
+function increment_video_number_of_views()
+{
+	
+	$video_id= $_POST['video_id'];   //ajax data
+	
+	$post = get_post($video_id);
+	
+	
+	$old_count = get_post_meta( $post->ID, "no_of_views", true);
+				
+	update_post_meta( $post->ID, "no_of_views", $old_count+1);
+	
+	//echo get_post_meta( $post->ID, "no_of_views", true);
+	
+	
+	wp_die();
+		
+}
 
 
 

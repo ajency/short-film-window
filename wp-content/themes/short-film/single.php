@@ -9,6 +9,7 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 	
+	//$video_id = $response['id'];
 	
 	$embedurl = get_embed_url($response['id'],$response['videourl']);
 	
@@ -38,8 +39,10 @@ get_header(); ?>
        
         <div class="video-section vid_if" style="position: relative;">
             <div class="show-featured-image vid_if" style=" position: relative">
-                <img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
-                <a href="#" class="play_movie_big"></a>
+                
+				<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
+                
+				<a href="#" class="play_movie_big" data-id ="<?php echo $response['id'] ; ?>"> </a>
             </div>	
             <!--	
                 <div class="play-video">
@@ -422,9 +425,38 @@ afterToggle: function(){}
 						
 		//console.log("in script");
 		
+		var video_id = jQuery(this).attr("data-id");
+		
 		event.preventDefault();
+		
+		
+		jQuery.ajax({
+		
+			type : 'POST',
+			url : ajaxurl,
+
+			data:{
+			
+				//video_id: '<?php echo $video_id; ?>',
+				video_id: video_id,
+				action : 'increase_video_number_of_views'
+		
+			},
+			success:function(response)
+			{												
+				console.log(response);
+								
+			},
+			error:function(response)
+			{
+				console.log(" Error ");
+			}
+
+        });
+	
 		generate_video();
-        height = window.innerHeight ? window.innerHeight : $(window).height();
+        
+		height = window.innerHeight ? window.innerHeight : $(window).height();
         jQuery('.vid_if ').css('height', height);
         jQuery('.video-section').addClass('ontop');
 		
