@@ -68,10 +68,17 @@
     }
     .article_title {
         width: 75%;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
     }
     .goup {
         margin-top: -35px;
         color: #ccc;
+        @media screen and (max-width: 767px) {
+            margin-top: 0;
+            float: none !important;
+        }
         i {
             margin-right: 10px;
         }
@@ -88,7 +95,7 @@
     .alignright {float: right;}
     .alignleft {float: left;}
 }
-.pop_posts {
+.pop_posts, .recent-movies {
     h6 {text-transform: uppercase;}
     .pop_auth {
         margin-bottom: 5px;
