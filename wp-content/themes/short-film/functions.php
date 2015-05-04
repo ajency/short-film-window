@@ -647,7 +647,7 @@ function add_custom_scripts() {
     wp_register_script( 'custom_js', get_template_directory_uri() . '/assets/js/custom.js', '', false, true );
     wp_enqueue_script( 'custom_js' );
 
-    wp_register_script( 'like_js', get_template_directory_uri(). '/assets/js/post-like.min.js');
+    wp_register_script( 'like_js', get_template_directory_uri(). '/assets/js/post-like.js');
     wp_enqueue_script( 'like_js' );
 
      wp_register_script( 'scroll_js', get_template_directory_uri(). '/assets/js/jquery.infinitescroll.min.js');
