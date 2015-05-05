@@ -30,9 +30,9 @@
 		                </div>
 -->
 		            </div>
-		            <div class="col-md-4">
+		            <div class="col-md-4 break-cols">
 		            	<div class="row">
-		            		<div class="col-sm-5 col-md-12">
+		            		<div class="col-xs-5 col-md-12">
 		            			<div class="row">
 			                        <label for="" class="col-sm-4 text-right">FOLLOW US</label>
 			                        <div class="col-sm-8">
@@ -56,7 +56,7 @@
 			                        </div>
 		                        </div>
 	                        </div>
-	                        <div class="col-sm-7 col-md-12">
+	                        <div class="col-xs-7 col-md-12">
 				                <form action="" class="form-horizontal">
 				                    <div class="form-group has-feedback">
 				                        <label for="" class="col-sm-5 col-md-4 text-right">SUBSCRIBE</label>

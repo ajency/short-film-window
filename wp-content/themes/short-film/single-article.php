@@ -137,7 +137,7 @@ get_header(); ?>
 							
 							
 					?>									
-							<div class="col-sm-4">									
+							<div class="col-xs-4">									
 								<div class="grid-box grid-full content-align-bottom">
 									
 									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
@@ -162,7 +162,7 @@ get_header(); ?>
 											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
 											<div class="grid-meta">
 												<div class="row">
-													<div class="col-sm-4">
+													<div class="col-xs-4">
 
 														<div class="pull-left p-l-10 m-t-10">
 															<div>
@@ -175,7 +175,7 @@ get_header(); ?>
 															</div>
 														</div>
 													</div>
-													<div class="col-sm-8">
+													<div class="col-xs-8">
 														<div class="pull-right text-right m-t-10">
 														   <?php echo $recentvideo['excerpt'];?>
 														</div>

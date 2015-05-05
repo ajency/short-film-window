@@ -63,7 +63,7 @@ get_header(); ?>
 		<div class="container movie-info">
 			<div class="row posrel">
 				<div class="col-md-10">
-					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
+					<h3 class="pull -left"><?php echo ucfirst($response['title']); ?></h3>
 				</div>
 				<div class="col-md-2">
 					<div class="socia l-strip soc-ico share-button2">
