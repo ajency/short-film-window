@@ -88,17 +88,17 @@
             //check if height is greater than width
             $('.slick-slider .slide-cont, .slick-slider .focus-img').each(function() {
                 console.log('H: ' + $(this).find('img').height() + '\nW: ' + $(this).find('img').width());
-                if ($(this).find('img').height() <= $(this).height()) {
-                    $(this).find('img').css({
-                        'height': $(this).height(),
-                        'width': 'auto'
-                    });
-                } else {
-                    $(this).find('img').css({
-                        'height': 'auto',
-                        'width': '100%'
-                    });
-                }
+//                if ($(this).find('img').height() <= $(this).height()) {
+//                    $(this).find('img').css({
+//                        'height': $(this).height(),
+//                        'width': 'auto'
+//                    });
+//                } else {
+//                    $(this).find('img').css({
+//                        'height': 'auto',
+//                        'width': '100%'
+//                    });
+//                }
             });
         }
         function setimagenn() {
@@ -110,21 +110,21 @@
                         '\n---------------------------------------------------------'
                     );
                     //console.log($(this).find('.grid-image').find('img').height() <= $(this).height());
-                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
-                        $(this).find('.grid-image').find('img').css({
-                            'height': $(this).height() + 55,
-                            'width': 'auto'
-                        });
-                    } else  {
-                        $(this).find('.grid-image').find('img').css({
-                            'height': 'auto',
-                            'width': '100%'
-                        });
-                    }
+//                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
+//                        $(this).find('.grid-image').find('img').css({
+//                            'height': $(this).height() + 55,
+//                            'width': 'auto'
+//                        });
+//                    } else  {
+//                        $(this).find('.grid-image').find('img').css({
+//                            'height': 'auto',
+//                            'width': '100%'
+//                        });
+//                    }
                 });
 //            }
         }
-        //setimagenn();
+        setimagenn();
         //slick slider images height issue
             $(window).resize(function() {
                 setimagenn();
@@ -132,7 +132,12 @@
                     checkhenwiss();
                 }*/
                 height = window.innerHeight ? window.innerHeight : $(window).height();
-                $('.vid_if ').css('height', height);
+                width = window.outerWidth ? window.outerWidth : $(window).width();
+                if (width < 480) {
+                    $('.vid_if ').css('height', height - 156);
+                } else {
+                    $('.vid_if ').css('height', height);
+                }
             });
             $(window).load(function() {
                 if ($('div').hasClass('slick-slider')) {
@@ -141,7 +146,12 @@
                 setimagenn();
             });
         height = window.innerHeight ? window.innerHeight : $(window).height();
-        $('.vid_if ').css('height', height);
+        width = window.outerWidth ? window.outerWidth : $(window).width();
+        if (width < 480) {
+            $('.vid_if ').css('height', height - 156);
+        } else {
+            $('.vid_if ').css('height', height);
+        }
 
     });
 

@@ -63,7 +63,7 @@ get_header(); ?>
 		<div class="container movie-info">
 			<div class="row posrel">
 				<div class="col-md-10">
-					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
+					<h3 class="pull -left"><?php echo ucfirst($response['title']); ?></h3>
 				</div>
 				<div class="col-md-2">
 					<div class="socia l-strip soc-ico share-button2">
@@ -113,11 +113,16 @@ get_header(); ?>
 			<div class="row">
 			    <div class="col-xs-9">
 			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
-			        <h5 class="director m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>
-			        <?php
+			       
+				 <!--  <h5 class="director m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>  -->
+				 
+				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
+				    
+					<?php
 			        	$region_array = array();
 			        	$cat_array = array();
-			        	foreach ($response['region'] as $value) {
+			        	
+						foreach ($response['region'] as $value) {
 			        			$id = get_term_by( 'name', $value, 'region');
 			        			$category_link = get_term_link( $id );
 			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" class="def_link" title="Region Name">'.$value.'</a>';
@@ -150,7 +155,7 @@ get_header(); ?>
 				
 			    <div class="col-xs-3 text-right">
                     <div class="info-ico">
-                        <div class="views">
+                        <div class="views" title="Views">
                             <?php  echo $response['no_of_views'] ;?> <i class="fa fa-eye"></i>
                         </div>
 						

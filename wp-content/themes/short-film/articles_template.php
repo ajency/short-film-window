@@ -19,9 +19,10 @@ Template Name: articles_template
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
-                            <form action="" class="">
+                            <form action="" class="search_menu">
                                 <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
+                                    <i class="fa fa-search"></i>
                                 </div>
                             </form>
                         </div>
@@ -162,14 +163,20 @@ Template Name: articles_template
 											-->
 										</div>
 									</div>
-									<hr class="m-t-0 m-b-5">
+<!--									<hr class="m-t-0 m-b-5">-->
 								   
 								   <div class="row">
 										<div class="col-xs-8">
                                             <p class="article_meta">
                                                 <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
                                                 <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>
-                                                <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
+                                               
+											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
+												
+												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
+			
+												<span class="art_views"><i class="fa fa-eye"></i><?php  echo $value['no_of_views'] ;?></span>
+												
                                             </p>
                                         </div>
                                         <div class="col-xs-4">
@@ -406,8 +413,8 @@ window.onload = function() {
 		
 		// data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 		
-		data = '&posts_per_page='+posts_per_page+'&offset='+offset;
-
+		//data = '&posts_per_page='+posts_per_page+'&offset='+offset;
+		data = 'posts_per_page='+posts_per_page+'&offset='+offset;
 		
 		jQuery.ajax({
 				type : 'GET',
@@ -476,6 +483,8 @@ window.onload = function() {
 
         jQuery('.loader').text("")
         html = jQuery('.all_posts').html()
+		
+		
 
         if(response.length>0)
         {
@@ -534,14 +543,20 @@ window.onload = function() {
                             
 							+'</div>'
                         +'</div>'
-                         +'<hr class="m-t-0 m-b-5">'
+                         //+'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
 									+'<p class="article_meta">'
                                         +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
 										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
+										
+										+'<span class="art_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
+										
+										+'<span class="art_views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'
+										
                                     +'</p>'
+																	
                              +'</div>'
                              +'<div class="col-xs-4">'
                                 +'<div class="social-strip soc-ico">'
@@ -620,6 +635,6 @@ window.onload = function() {
     }
    */	
 	
-}
+} //end onload
 
 </script>

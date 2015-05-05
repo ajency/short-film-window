@@ -19,7 +19,7 @@
     position: absolute;
     left: 50%;
     right: 0;
-    top: 43%;
+    top: 38%; //was 43%
     transform: translateX(-50%);
     z-index: 1;
     &:hover {color: #fff;}
@@ -30,10 +30,10 @@
         opacity: 1;
     }
     @media screen and (max-width: 767px) {
-        top: 37%;
+        top: 49%;
     }
     @media screen and (max-width: 480px) {
-        top: 11%;
+        top: 32%;
     }
 }
 @media screen and (max-width: 991px) {
@@ -153,6 +153,11 @@
             color: @gray-light;
         }
     }
+    h3 {line-height: 1.3;}
+    h6 small {font-size: 16px; line-height: 22px;}
+    @media screen and (max-width: 992px) {
+        h6 small {margin-top: 5px; display: block;}
+    }
     & + .overlay{
         position: absolute;
         height: 225px; //was 30%
@@ -180,10 +185,23 @@
             color: #ccc;
         }
         .like-action {display: block; float: none;}
-        a.liked:hover {color: @brand-primary;}
-        .post-like.liked .fa {color: #ccc;}
-        a.post-like.liked:hover .fa {color: saturate(lighten(@brand-primary, 25%), 20%);}
-        a:hover i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        
+        a.post-like.liked {
+            color: #797979;
+            i {color: #797979; transition: all 0.5s;}
+            &:hover {
+                color: #aaa;
+                text-decoration: none;
+                i {color: #aaa;}
+            }
+        }
+        a.post-like:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            text-decoration: none;
+            i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        }
+        a.post-like:focus, a.post-like:active {text-decoration: none;}
+        //a:hover i {color: saturate(lighten(@brand-primary, 25%), 20%);}
         .watchlist-add {margin-top: 4px;}
     }
     .social-strip {  bottom: 7px; position: relative;}
@@ -194,6 +212,16 @@
         float: none;
         width: 100%;
     }
+    .watchlist-add a {
+        color: #ccc;
+        &:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        }
+    }
+}
+#icon-gear {
+    float: none;
 }
 .soc-ico {
         text-align: right;
@@ -425,6 +453,7 @@
                 padding-left: 10px;
                 margin-left: 12px;
                 margin-right: 0;
+                margin-top: 0;
             }
         }
     }
@@ -669,14 +698,17 @@
 }
 .show-featured-image {
     overflow: hidden;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        max-width: none;
+        width: auto;
+        height: auto;
+    }
 }
 .ontop {
     z-index: 5;
-}
-
-.page-template-category_template .listlayout {
-    & > .col-md-5 {
-        max-height: 251px;
-        overflow: hidden;
-    }
 }

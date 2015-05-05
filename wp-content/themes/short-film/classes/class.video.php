@@ -66,6 +66,7 @@ class Video
 				//'excerpt'			=> get_the_excerpt(),
 				'excerpt'		=> $excerpt,				
 				'director'		=> $name,
+				'directorid'	=> $post->post_author,
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
 				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
