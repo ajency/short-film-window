@@ -90,7 +90,28 @@
         font-size: 20px;
         margin-bottom: 15px;
         span {margin-right: 20px;}
-        i {margin-right: 10px; color: #787878;}
+        a.post-like {
+            color: @brand-primary;
+            &:hover {
+                color: saturate(lighten(@brand-primary, 25%), 20%);
+                i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+            }
+            &:active, &:focus {text-decoration: none;}
+            i {
+                margin-right: 10px;
+                color: @brand-primary;
+                transition: all 0.5s;
+            }
+        }
+        a.liked {
+            color: #ccc;
+            i {color: #ccc;}
+            &:hover {
+                color: #aaa;
+                i {color: #aaa;}
+            }
+        }
+        i {margin-right: 10px;}
     }
     .alignright {float: right;}
     .alignleft {float: left;}

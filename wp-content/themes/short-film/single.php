@@ -63,7 +63,7 @@ get_header(); ?>
 		<div class="container movie-info">
 			<div class="row posrel">
 				<div class="col-md-10">
-					<h3 class="pull-left"><?php echo ucfirst($response['title']); ?></h3>
+					<h3 class="pull -left"><?php echo ucfirst($response['title']); ?></h3>
 				</div>
 				<div class="col-md-2">
 					<div class="socia l-strip soc-ico share-button2">
@@ -155,7 +155,7 @@ get_header(); ?>
 				
 			    <div class="col-xs-3 text-right">
                     <div class="info-ico">
-                        <div class="views">
+                        <div class="views" title="Views">
                             <?php  echo $response['no_of_views'] ;?> <i class="fa fa-eye"></i>
                         </div>
 						

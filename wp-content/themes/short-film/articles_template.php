@@ -19,9 +19,10 @@ Template Name: articles_template
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
-                            <form action="" class="">
+                            <form action="" class="search_menu">
                                 <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
+                                    <i class="fa fa-search"></i>
                                 </div>
                             </form>
                         </div>
@@ -162,7 +163,7 @@ Template Name: articles_template
 											-->
 										</div>
 									</div>
-									<hr class="m-t-0 m-b-5">
+<!--									<hr class="m-t-0 m-b-5">-->
 								   
 								   <div class="row">
 										<div class="col-xs-8">
@@ -542,7 +543,7 @@ window.onload = function() {
                             
 							+'</div>'
                         +'</div>'
-                         +'<hr class="m-t-0 m-b-5">'
+                         //+'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
 									+'<p class="article_meta">'
