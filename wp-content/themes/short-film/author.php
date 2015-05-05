@@ -1,101 +1,396 @@
 <?php get_header(); ?>
 			
-			<div id="content" class="clearfix row">
+	<div id="content">
 			
-				<div id="main" class="col-sm-8 clearfix" role="main">
+		<div id="main">
 				
-					<div class="page-header">
-						<h1 class="archive_title h2">
-							
-							<!-- <span><?php _e("Posts By:", "wpbootstrap"); ?></span> -->
-							
-							<?php 
-								// If google profile field is filled out on author profile, link the author's page to their google+ profile page
-								$curauth = (get_query_var('author_name')) ? get_user_by('slug', get_query_var('author_name')) : get_userdata(get_query_var('author'));
+			<?php
+				
+				$queried_object = get_queried_object();
+				
+				//print_r($queried_object);
+				
+				
+				$author_id	= $queried_object->ID;
+					
+									
+				$response_posts = get_posts_by_author($author_id);
+				
+				//print_r($response_posts);
+					
 								
-								// echo "hii";
-								// print_r($curauth);
-								 // print_r($curauth->ID);
-								  // print_r($curauth->display_name);
-								
-								$google_profile = get_the_author_meta( 'google_profile', $curauth->ID );
-								
-								if ( $google_profile ) 
-								{
-									echo '<a href="' . esc_url( $google_profile ) . '" rel="me">' . $curauth->display_name . '</a>'; 
-							?>
-							<?php 
-								} 
-								else
-								{
-									$author_display_name = get_the_author_meta('display_name', $curauth->ID);
-									echo $author_display_name;  // <-
-								}
-							?>
-						</h1>
+				$author_info = get_author_info($author_id);
+				
+				//print_r($author_info);
+			?>
+				
+				
+			<div class="page-header">
+				
+				
+				<div class="row">
+					<div class="col-md-2">
+							<!-- <img src="<?php echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image -->
+						
+						<!--<img src="<?php echo get_avatar($author_id, 60); ?>">-->
 					</div>
 					
-					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
-					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
+					<div class="col-md-10">
 						
-						<header>
+						<div class="row">
 							
-							<h3 class="h2"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-							
-							<p class="meta"><?php _e("Posted", "wpbootstrap"); ?> <time datetime="<?php echo the_time('Y-m-j'); ?>" pubdate><?php the_time(); ?></time> <?php _e("by", "wpbootstrap"); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e("filed under", "wpbootstrap"); ?> <?php the_category(', '); ?>.</p>
-						
-						</header> <!-- end article header -->
-					
-						<section class="post_content">
-						
-							<?php the_post_thumbnail( 'wpbs-featured' ); ?>
-						
-							<?php the_excerpt(); ?>
-					
-						</section> <!-- end article section -->
-						
-						<footer>
-							
-						</footer> <!-- end article footer -->
-					
-					</article> <!-- end article -->
-					
-					<?php endwhile; ?>	
-					
-					<?php if (function_exists('wp_bootstrap_page_navi')) { // if expirimental feature is active ?>
-						
-						<?php wp_bootstrap_page_navi(); // use the page navi function ?>
+							<div class="col-md-12">
+								<h4 class="m-t-0">
+									<?php echo $author_info['author_name']; ?>
+								</h4>
+							</div>
 
-					<?php } else { // if it is disabled, display regular wp prev & next links ?>
-						<nav class="wp-prev-next">
-							<ul class="clearfix">
-								<li class="prev-link"><?php next_posts_link(_e('&laquo; Older Entries', "wpbootstrap")) ?></li>
-								<li class="next-link"><?php previous_posts_link(_e('Newer Entries &raquo;', "wpbootstrap")) ?></li>
-							</ul>
-						</nav>
-					<?php } ?>
+						</div>
+						
+						<hr class="m-t-0 m-b-5">
+						
+						<div class="row">
+						   
+							<div class="col-xs-8 cont">
 								
-					
-					<?php else : ?>
-					
-					<article id="post-not-found">
-					    <header>
-					    	<h1><?php _e("No Posts Yet", "wpbootstrap"); ?></h1>
-					    </header>
-					    <section class="post_content">
-					    	<p><?php _e("Sorry, What you were looking for is not here.", "wpbootstrap"); ?></p>
-					    </section>
-					    <footer>
-					    </footer>
-					</article>
-					
-					<?php endif; ?>
-			
-				</div> <!-- end #main -->
-    
-				<?php// get_sidebar(); // sidebar 1 ?>
-    
-			</div> <!-- end #content -->
+								<p><?php echo $author_info['author_description'];?></p>
+															
+							</div>
+													
+							<!--<div class="col-xs-4 text-right list-info-btns">-->
+							<div class="col-xs-2 text-right list-info-btns">
+								   
+								<div class="soc-ico nh">
+									   
+									   <?php// echo do_shortcode('[ssba url="' . get_permalink($author_id) . '" title="' . $author_info['author_name'] . '"]'); ?>
+									   
+									   <?php echo do_shortcode('[ssba]'); ?>
+								</div>
+								
+								
+								<div class="lico_c">
+									<!--<div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div> -->
+									
+									<div class="lico like-action">
+
+										<?php echo $author_info['post_user_like'] ;?> <i class="fa fa-thumbs-up"></i>
+	
+									</div>
+								
+								</div>
+								
+							</div>
+						
+							<!--</div>-->
+						
+						
+						</div> 
+					</div>	
+				</div> <!-- end row -->
+				
+			</div> <!-- end #page-header -->
+	
+
+<hr>
+			<div class="container header-space">
+				
+				<div class="all_posts">
+				
+											
+					<?php
+						
+						foreach ($response_posts as $key => $value)
+						{
+						
+					?>
+							<div class="row listlayout">
+								
+								<div class="col-md-5">
+									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+									</a>	
+								</div>
+								
+								<div class="col-md-7">
+									
+									<div class="row">
+										
+										<div class="col-md-12">
+											<h4 class="m-t-0">
+												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+													<?php echo $value['title'];?>
+												</a>
+												 <small><em> By <?php echo ucfirst($value['director']);?></em></small> 
+											</h4>
+										</div>
+
+									</div>
+									
+									<hr class="m-t-0 m-b-5">
+									
+									<div class="row">
+									   
+										<div class="col-xs-8 cont">
+										
+											<p><?php echo $value['excerpt'];?></p>
+																		
+											<h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['categories']);?></h6>
+																				
+											<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['region']);?></h6>
+											
+											<h6 class="m-t-0 m-b-0"><?php echo $value['duration'];?> Minutes</h6>
+											
+											<h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
+
+										</div>
+															
+										<div class="col-xs-4 text-right list-info-btns">
+											   
+											<div class="soc-ico nh">
+												   
+												   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+											</div>
+											
+											
+											<div class="lico_c">
+												<div class="lico small">
+													
+													<?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i>
+												
+												</div>
+												
+												<div class="lico like-action">
+				
+													<!--<?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+														<?php echo getPostLikeLink($value['id']) ; ?>
+												</div>
+												
+											</div>
+											
+										</div>
+									
+									</div>
+									
+									
+								</div> 
+														
+								
+							</div>
+								
+								
+				<?php 
+						} //end foreach
+				?>
+
+					</div> 
+			</div>
+
+		
+		</div> <!-- end #main -->
+		
+		<div class="text-center">
+			<input type="hidden" name="offset" id="offset" value="0" />
+			<a href="#" class="btn btn-primary load_more">Load More...</a>
+        </div>
+   
+	</div> <!-- end #content -->
 
 <?php get_footer(); ?>
+
+
+
+<script type="text/javascript">
+
+	window.onload = function() 
+	{
+
+		count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response_posts) ;?>");
+		count=count-1;
+		jQuery('#offset').val(count);
+		
+		jQuery('.load_more').live('click',function(e){
+
+			//jQuery('.loader').text("Loading data...")
+
+			e.preventDefault();
+			
+			get_all_posts();
+		
+		});
+
+		function get_all_posts()
+		{
+			console.log(" inside get_all_posts ");
+			
+			posts_per_page = 12;
+			offset = jQuery('#offset').val();
+
+			
+			jQuery.ajax({
+
+					type : 'POST',
+
+					url : ajaxurl,
+					
+					data:
+					{
+						offset:offset,
+						author_id: <?php echo $author_id; ?>,						
+						action : 'fetch_posts_by_author'
+				
+					},	
+					//dataType: 'json',
+					
+					success:function(response)
+					{
+						
+						console.log(" inside get_all_posts success ");
+						//console.log(response);
+											
+						generate_data(response);
+												
+						count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
+						jQuery('#offset').val(count);
+						console.log(count);
+		
+					},
+					error:function(error)
+					{
+						//jQuery('.loader').text("")
+						jQuery('.all_posts').html('No Posts found');
+						console.log(" inside get_all_posts error ");
+						
+					} 
+			});
+			
+
+			
+		}
+
+		
+		function generate_data(response)
+		{
+			console.log(" inside generate_data ");
+		
+			html = jQuery('.all_posts').html();
+
+			if(response.length>0)
+			{
+										
+				jQuery.each(response,function(index,value)
+				{
+					console.log(" inside jQuery ");
+					html += '<div class="row listlayout">'
+								
+								+'<div class="col-md-5">'
+									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+									+'</a>'
+								+'</div>'
+								
+								+'<div class="col-md-7">'
+									
+									+'<div class="row">'
+										
+										+'<div class="col-md-12">'
+											+'<h4 class="m-t-0">'
+												+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+												 +'<small><em> By '+value.director+'</em></small>'
+											+'</h4>'
+										+'</div>'
+
+									+'</div>'
+									
+									+'<hr class="m-t-0 m-b-5">'
+									
+									+'<div class="row">'
+									   
+										+'<div class="col-xs-8 cont">'
+																				
+											+'<p>'+value.excerpt+'</p>'																																			
+											+ '<h6 class="m-t-30 m-b-0">'+value.categories.join(',')+'</h6>'
+											
+											+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'</h6>'											
+											
+											+'<h6 class="m-t-0 m-b-0">'+value.duration+' Minutes</h6>'											
+											
+											+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+											
+										+'</div>'
+															
+										+'<div class="col-xs-4 text-right list-info-btns">'
+											   
+											+'<div class="soc-ico nh">'
+												   
+												+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+											
+											+'</div>'
+											
+											
+											+'<div class="lico_c">'
+												+'<div class="lico small">'+value.no_of_views+'<i class="fa fa-eye"></i></div>'
+												+'<div class="lico like-action">'
+																													
+													+'<a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> '
+												
+												+'</div>'
+												
+											+'</div>'
+											
+										+'</div>'
+									
+									+'</div>'
+									
+									
+								+'</div> '
+														
+								
+							+'</div>;'
+					 
+				
+					 
+				});
+				
+				jQuery('.all_posts').html(html);
+	
+			} //end if
+			
+			else
+			{
+				jQuery('.all_posts').html("");
+				html += "<div>No posts found.</div>";
+				jQuery('.all_posts').html(html);
+				jQuery('.load_more').hide()
+			}
+		   
+		} //end generate_data
+			
+
+	} //end onload
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

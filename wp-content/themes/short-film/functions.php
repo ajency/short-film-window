@@ -1766,8 +1766,141 @@ function increment_video_number_of_views()
 }
 
 
+function get_posts_by_author($author_id)
+{
+		/*
+				
+			$args = array(
+				'posts_per_page' => 100,
+				'post_type' => 'blog'
+			);
+			query_posts($args);
+			if ( have_posts() ) : while ( have_posts() ) : the_post();
+			
+		*/
+
+			
+	$args = array(
+        'post_author' 		=> $author_id,
+        'orderby'          	=> 'post_date',
+		'order'            	=> 'DESC',
+		'posts_per_page' 	=> 12,
+		//'post_type' 	   	=> $post_type,
+		'post_status'      	=> 'publish'
+					
+      );
+
+	
+	$query = new WP_Query($args);
+
+	$response = array();
+	
+	while ($query->have_posts()) 
+	{
+		
+		$query->the_post();
+		
+		$response[] = Film\Video::get($query->post->ID);
+		
+	}
+
+	//print_r($response);
+	
+	return $response;
+
+}
 
 
+add_action( 'wp_ajax_fetch_posts_by_author', 'get_more_posts_by_author' );
+add_action( 'wp_ajax_nopriv_fetch_posts_by_author', 'get_more_posts_by_author' );
+
+
+function get_more_posts_by_author()
+{
+	
+		$author_id= $_POST['author_id']; 
+		
+	
+	  
+		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
+						$_REQUEST['offset'] : 0;
+		
+		if($offset != 0)
+			$offset = intval($offset) +  1;
+	
+		$args = array(
+					
+					'post_author' 		=> $author_id,
+					'orderby'           => 'post_date',
+					'order'             => 'DESC',
+					'posts_per_page'   	=> 12,
+					'post_status'      	=> 'publish',
+					'offset'           	=> $offset
+
+		);
+	  
+	  ////
+	
+	$query = new WP_Query($args);
+
+	$response = array();
+	
+	while ($query->have_posts()) 
+	{
+	
+		
+		$query->the_post();
+		
+		$response[] = Film\Video::get($query->post->ID);
+		
+	}
+
+	//print_r($response);
+	
+	//return $response;
+	 wp_send_json($response);
+	
+	//exit;
+	//wp_die();
+	
+}
+
+function get_author_info($author_id)
+{
+			
+	//get author name
+	$name = (!get_user_details($author_id)) ? "" :
+				 get_user_meta(get_user_details($author_id)->ID,'first_name' , true).' '.
+				 get_user_meta(get_user_details($author_id)->ID,'last_name' , true);
+	
+	if($name == " ")
+		$name = get_user_details($author_id)->data->display_name;
+		
+	$author_description = get_user_meta(get_user_details($author_id)->ID,'description' , true);
+
+	$post_user_like = (!get_user_details($author_id)) ? "" :get_user_details($author_id)->data->user_like_count;
+		
+	// echo " ** ";
+	// echo $name;
+	// echo " ** ";
+	// echo $post_user_like;
+	
+	$author_info = array( 
+			
+			'author_id'			 => $author_id,
+			'author_name'		 => $name,
+			'author_description' => $author_description,
+			'post_user_like' 	 => $post_user_like
+	);
+	
+	// echo " ** ";
+	// print_r($author_info);
+	// echo " ** ";
+	
+	return $author_info;
+	
+			
+}
 
 
 
