@@ -427,7 +427,7 @@ Template Name: category_template
 						</div>
                     <!--  </div>  -->
 						
-						<hr class="m-t-0 m-b-5">
+<!--						<hr class="m-t-0 m-b-5">-->
                     
 						<div class="row">
                            
@@ -494,7 +494,7 @@ Template Name: category_template
 						
                         </div>
                     </div>
-                    <hr class="m-t-0 m-b-5">
+                    <hr class="m-t-0 m-b-5 vern">
                     <div class="row main-ex">
                         <div class="col-xs-9 cont">
                             <p><em><?php echo $value['excerpt'];?></em></p>
@@ -528,10 +528,10 @@ Template Name: category_template
                 
                     </div>
                     
-                    <hr class="m-t-20 m-b-20">
+<!--                    <hr class="m-t-20 m-b-20">-->
                     
-                    <div class="spacer-20"></div>
-                    <p><em><?php echo $value['excerpt'];?></em></p>                    
+<!--                    <div class="spacer-20"></div>-->
+                    <p class="cou_exc"><em><?php echo $value['excerpt'];?></em></p>                    
 	            </div>
               
              
@@ -1185,7 +1185,7 @@ html += '<div class="row listlayout">'
 					+ '</h4>'
 				+ '</div>'
 			+ '</div>'
-			+ '<hr class="m-t-0 m-b-5">'
+			//+ '<hr class="m-t-0 m-b-5">'
 			+ '<div class="row">'
 				+ '<div class="col-xs-8 cont">'
 					+ '<p>'+value.excerpt+'</p>'
@@ -1240,7 +1240,7 @@ html += '<div class="couchlayout">'
 				+ '</div>'
 			
 		+ '</div>'
-		+ '<hr class="m-t-0 m-b-5">'
+		+ '<hr class="m-t-0 m-b-5 vern">'
 		+ '<div class="row main-ex">'
 			+ '<div class="col-xs-9 cont">'
 				+ '<p><em>'+value.excerpt+'</em></p>'
@@ -1267,9 +1267,9 @@ html += '<div class="couchlayout">'
 				+ '</div>'
 			+ '</div>'
 		+ '</div>'
-		+ '<hr class="m-t-20 m-b-20">'
+		//+ '<hr class="m-t-20 m-b-20">'
 		+ '<div class="spacer-20"></div>'
-		+ '<p><em>'+value.excerpt+'</em></p>'
+		+ '<p class="cou_exc"><em>'+value.excerpt+'</em></p>'
 	+ '</div>';
 
 

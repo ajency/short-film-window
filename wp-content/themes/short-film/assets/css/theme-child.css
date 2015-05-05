@@ -11232,7 +11232,7 @@ a {
   font-size: 85%;
 }
 .grid-box.content-align-bottom .grid-text-wrap.hover-text {
-  text-align: left;
+  text-align: right;
   bottom: -50px;
   opacity: 0;
 }
@@ -11274,6 +11274,25 @@ a {
 }
 .grid-box.playlist-box:nth-child(4n) {
   margin-right: 1.6%;
+}
+.grid-box .grid-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  transform: translateY(0);
+  overflow: hidden;
+}
+.grid-box .grid-image img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: auto;
+  min-width: 100%;
+  min-height: 100%;
 }
 @media (min-width: 767px) {
   .multi-grid:nth-child(odd) {
@@ -11987,17 +12006,30 @@ h6.brand {
   display: block;
   float: none;
 }
-.movie-info .info-ico a.liked:hover {
-  color: #af152f;
+.movie-info .info-ico a.post-like.liked {
+  color: #797979;
 }
-.movie-info .info-ico .post-like.liked .fa {
-  color: #ccc;
+.movie-info .info-ico a.post-like.liked i {
+  color: #797979;
+  transition: all 0.5s;
 }
-.movie-info .info-ico a.post-like.liked:hover .fa {
+.movie-info .info-ico a.post-like.liked:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+.movie-info .info-ico a.post-like.liked:hover i {
+  color: #aaa;
+}
+.movie-info .info-ico a.post-like:hover {
+  color: #fe4665;
+  text-decoration: none;
+}
+.movie-info .info-ico a.post-like:hover i {
   color: #fe4665;
 }
-.movie-info .info-ico a:hover i {
-  color: #fe4665;
+.movie-info .info-ico a.post-like:focus,
+.movie-info .info-ico a.post-like:active {
+  text-decoration: none;
 }
 .movie-info .info-ico .watchlist-add {
   margin-top: 4px;
@@ -12010,6 +12042,9 @@ h6.brand {
   display: block;
   float: none;
   width: 100%;
+}
+#icon-gear {
+  float: none;
 }
 .soc-ico {
   text-align: right;
@@ -12353,7 +12388,6 @@ h6.brand {
 .listlayout,
 .couchlayout {
   padding-bottom: 30px;
-  border-bottom: 1px solid #cccccc;
   margin-bottom: 40px;
 }
 .listlayout:last-child,
@@ -12647,6 +12681,13 @@ a.def_link {
 .indian h3 {
   color: #af152f;
 }
+hr.vern {
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+.cou_exc {
+  font-size: 16px;
+}
 .article_row .article_title {
   text-transform: uppercase;
   display: block;
@@ -12744,9 +12785,38 @@ a.def_link {
 .article_s_cont .article_s_links span {
   margin-right: 20px;
 }
+.article_s_cont .article_s_links a.post-like {
+  color: #af152f;
+}
+.article_s_cont .article_s_links a.post-like:hover {
+  color: #fe4665;
+}
+.article_s_cont .article_s_links a.post-like:hover i {
+  color: #fe4665;
+}
+.article_s_cont .article_s_links a.post-like:active,
+.article_s_cont .article_s_links a.post-like:focus {
+  text-decoration: none;
+}
+.article_s_cont .article_s_links a.post-like i {
+  margin-right: 10px;
+  color: #af152f;
+  transition: all 0.5s;
+}
+.article_s_cont .article_s_links a.liked {
+  color: #ccc;
+}
+.article_s_cont .article_s_links a.liked i {
+  color: #ccc;
+}
+.article_s_cont .article_s_links a.liked:hover {
+  color: #aaa;
+}
+.article_s_cont .article_s_links a.liked:hover i {
+  color: #aaa;
+}
 .article_s_cont .article_s_links i {
   margin-right: 10px;
-  color: #787878;
 }
 .article_s_cont .alignright {
   float: right;

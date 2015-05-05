@@ -162,7 +162,7 @@ Template Name: articles_template
 											-->
 										</div>
 									</div>
-									<hr class="m-t-0 m-b-5">
+<!--									<hr class="m-t-0 m-b-5">-->
 								   
 								   <div class="row">
 										<div class="col-xs-8">
@@ -534,7 +534,7 @@ window.onload = function() {
                             
 							+'</div>'
                         +'</div>'
-                         +'<hr class="m-t-0 m-b-5">'
+                         //+'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
 									+'<p class="article_meta">'

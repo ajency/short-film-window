@@ -110,21 +110,21 @@
                         '\n---------------------------------------------------------'
                     );
                     //console.log($(this).find('.grid-image').find('img').height() <= $(this).height());
-                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
-                        $(this).find('.grid-image').find('img').css({
-                            'height': $(this).height() + 55,
-                            'width': 'auto'
-                        });
-                    } else  {
-                        $(this).find('.grid-image').find('img').css({
-                            'height': 'auto',
-                            'width': '100%'
-                        });
-                    }
+//                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
+//                        $(this).find('.grid-image').find('img').css({
+//                            'height': $(this).height() + 55,
+//                            'width': 'auto'
+//                        });
+//                    } else  {
+//                        $(this).find('.grid-image').find('img').css({
+//                            'height': 'auto',
+//                            'width': '100%'
+//                        });
+//                    }
                 });
 //            }
         }
-        //setimagenn();
+        setimagenn();
         //slick slider images height issue
             $(window).resize(function() {
                 setimagenn();

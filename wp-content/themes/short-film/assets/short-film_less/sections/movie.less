@@ -180,10 +180,23 @@
             color: #ccc;
         }
         .like-action {display: block; float: none;}
-        a.liked:hover {color: @brand-primary;}
-        .post-like.liked .fa {color: #ccc;}
-        a.post-like.liked:hover .fa {color: saturate(lighten(@brand-primary, 25%), 20%);}
-        a:hover i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        
+        a.post-like.liked {
+            color: #797979;
+            i {color: #797979; transition: all 0.5s;}
+            &:hover {
+                color: #aaa;
+                text-decoration: none;
+                i {color: #aaa;}
+            }
+        }
+        a.post-like:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            text-decoration: none;
+            i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        }
+        a.post-like:focus, a.post-like:active {text-decoration: none;}
+        //a:hover i {color: saturate(lighten(@brand-primary, 25%), 20%);}
         .watchlist-add {margin-top: 4px;}
     }
     .social-strip {  bottom: 7px; position: relative;}
@@ -194,6 +207,9 @@
         float: none;
         width: 100%;
     }
+}
+#icon-gear {
+    float: none;
 }
 .soc-ico {
         text-align: right;

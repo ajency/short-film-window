@@ -150,7 +150,7 @@ get_header(); ?>
 				
 			    <div class="col-xs-3 text-right">
                     <div class="info-ico">
-                        <div class="views">
+                        <div class="views" title="Views">
                             <?php  echo $response['no_of_views'] ;?> <i class="fa fa-eye"></i>
                         </div>
 						
