@@ -490,9 +490,9 @@ window.onload = function() {
 
         jQuery('.loader').text("")
        
-	  // html = jQuery('.all_posts').html()
+	    html = jQuery('.all_posts').html()
 		
-		html="";
+		//html="";
 		
 
         if(response.length>0)
@@ -619,14 +619,14 @@ window.onload = function() {
                         showLayout();
                         
     
-	}
-                    else
-                    {
-                        jQuery('.all_posts').html("");
-                        html += "<div>No posts found.</div>";
-                        jQuery('.all_posts').html(html);
-						jQuery('.load_more').hide()
-                    }
+		}
+		else
+		{
+			jQuery('.all_posts').html("");
+			html += "<div>No posts found.</div>";
+			jQuery('.all_posts').html(html);
+			jQuery('.load_more').hide()
+		}
                    
 
     }
