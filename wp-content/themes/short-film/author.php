@@ -30,13 +30,17 @@
 		<div class="page-header">
 										
 				<div class="row">
+				
+					<!--
 					<div class="col-md-2">
-							<!-- <img src="<?php echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image -->
+							 <img src="<?php// echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image 
 						
-						<!--<img src="<?php echo get_avatar($author_id, 60); ?>">-->
+						<img src="<?php echo get_avatar($author_id, 60); ?>">
 					</div>
+					-->
 					
-					<div class="col-md-10">
+					
+					<div class="col-md-12"> <!-- <div class="col-md-10"> -->
 						
 						<div class="row">
 							
