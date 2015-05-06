@@ -488,9 +488,9 @@
 			console.log(" inside generate_data ");
 			
 					
-			//html = jQuery('.all_posts').html();
+			html = jQuery('.all_posts').html();
 			
-			html="";
+			//html="";
 
 			if(response.length>0)
 			{
@@ -592,9 +592,9 @@
 			console.log(" inside generate_data_art ");
 			
 					
-			//html = jQuery('.all_articles').html();
+			html = jQuery('.all_articles').html();
 			
-			html="";
+			//html="";
 
 			if(response.length>0)
 			{
