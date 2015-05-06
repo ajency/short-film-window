@@ -74,7 +74,6 @@ Template Name: articles_template
 					$response = Article_post\Article::get_many_articles($args);
 					
 					
-			
 					if(count($response) > 0)
 					{ 										
 						foreach ($response as $key => $value)
@@ -169,8 +168,9 @@ Template Name: articles_template
 										<div class="col-xs-8">
                                             <p class="article_meta">
                                                 <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
-                                                <span class="author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?></span>
                                                
+											   <span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>
+											                                                 
 											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
 												
 												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
@@ -434,7 +434,7 @@ window.onload = function() {
 				},
 				error:function(error){
 					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
+					jQuery('.all_posts').html('No Articles found');
 					console.log(" inside get_all_posts error ");
 					
 				} 
@@ -482,8 +482,10 @@ window.onload = function() {
 	{
 
         jQuery('.loader').text("")
-        html = jQuery('.all_posts').html()
+       
+	  // html = jQuery('.all_posts').html()
 		
+		html="";
 		
 
         if(response.length>0)
@@ -548,9 +550,21 @@ window.onload = function() {
                              +'<div class="col-xs-8">'
 									+'<p class="article_meta">'
                                         +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
-								        +'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
-										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
+								        
+										//+'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
 										
+										+'<span class="author"><i class="fa fa-user"></i>'
+											
+											+'<a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'">' + value.director + '</a>'
+										
+										+'</span>'
+										
+										
+										//+'<span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
+										
+										
+										
+										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'										
 										+'<span class="art_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
 										
 										+'<span class="art_views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'

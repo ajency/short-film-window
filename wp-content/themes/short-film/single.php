@@ -116,7 +116,7 @@ get_header(); ?>
 			       
 				 <!--  <h5 class="director m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>  -->
 				 
-				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
+				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a target="_blank" href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
 				    
 					<?php
 			        	$region_array = array();
