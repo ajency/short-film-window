@@ -330,8 +330,15 @@ window.onload = function() {
 	jQuery('#tracker').val('listoption');
 	
 	jQuery('#listoption').children().addClass('text-primary');
+  
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
 	count=count-1;
+	
+	if(count == 0)
+	{
+		count=1;
+	}
+	
     jQuery('#offset').val(count);
 	
 

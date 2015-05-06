@@ -587,8 +587,15 @@ window.onload = function() {
 	jQuery('#tracker').val('gridoption');
 	
 	jQuery('#gridoption').children().addClass('text-primary');
+   
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
 	count=count-1;
+	
+	// if(count == 0)
+	// {
+		// count=1;
+	// }
+	
     jQuery('#offset').val(count);
 	
 	jQuery('#genre').live('change',function(e){
