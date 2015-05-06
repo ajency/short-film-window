@@ -44,6 +44,14 @@ class Article
 			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
         	'/assets/img/placeholder.jpg';
 
+			
+			$directorid = $post->post_author;
+				
+			
+			$director_nicename = get_the_author_meta( 'user_nicename', $directorid );
+			
+		
+			
 			//check if the post has an excerpt.if it has then use the post_excerpt else use the post_content & generate excerpt of length 20 by calling the function show_excerpt() defined in functions.php
 			
 			if($post->post_excerpt)			
@@ -66,7 +74,8 @@ class Article
 				'content'			=> $post->post_content,
 				'excerpt'			=> $excerpt,
 				'director'			=> $name,
-				'directorid'		=> $post->post_author,
+				'directorid'		=> $directorid,
+				'director_nicename'	=> $director_nicename,
 				//'next_post'		=> $next_post,
 				//'prev_post'		=> $prev_post,
 				'comments'			=> count(get_comments(array('post_id' => $post->ID))),
@@ -124,15 +133,17 @@ class Article
 
 
 			$post_detail = self::get_article($post->ID);
-			
+							
    
 			$post_response[] = array(
 					'id'				=> $post->ID ,
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
 					'title'				=> $post_detail['title'],
-					'post_date'				=> $post_detail['post_date'],
+					'post_date'			=> $post_detail['post_date'],
 					'director'			=> $post_detail['director'],
+					'directorid'  	    => $post_detail['directorid'],
+					'director_nicename' => $post_detail['director_nicename'],
 					'excerpt'			=> $post_detail['excerpt'],
 					'content'			=> $post_detail['content'],
 					'post_like_count'	=> $post_detail['post_like_count'],

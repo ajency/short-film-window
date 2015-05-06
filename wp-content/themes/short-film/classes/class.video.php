@@ -41,6 +41,13 @@ class Video
 			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
         	'/assets/img/placeholder.jpg';
 
+			
+			$directorid = $post->post_author;
+			
+			$director_nicename = get_the_author_meta( 'user_nicename', $directorid );
+			
+	
+			
 			//check if the post has an excerpt.if it has then use the post_excerpt else use the post_content & generate excerpt of length 20 by calling the function show_excerpt() defined in functions.php
 			
 			if($post->post_excerpt)			
@@ -58,6 +65,7 @@ class Video
 				'id'			=> $post->ID ,
 				'slug'			=> $post->post_name,
 				'title'			=> $post->post_title,
+				'post_date'		=> get_the_date(),
 				'type'			=> get_post_meta( $post->ID , 'type',true ),
 				'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
 				'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
@@ -66,7 +74,8 @@ class Video
 				//'excerpt'			=> get_the_excerpt(),
 				'excerpt'		=> $excerpt,				
 				'director'		=> $name,
-				'directorid'	=> $post->post_author,
+				'directorid'	=> $directorid,
+				'director_nicename'	=> $director_nicename,
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
 				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
@@ -136,6 +145,8 @@ class Video
 					'duration'			=> $post_detail['duration'],
 					'region'			=> $post_detail['region'],
 					'director'			=> $post_detail['director'],
+					'directorid'  	    => $post_detail['directorid'],
+					'director_nicename' => $post_detail['director_nicename'],
 					'categories'		=> $post_detail['categories'],
 					'excerpt'			=> $post_detail['excerpt'],
 					'post_like_count'	=> $post_detail['post_like_count'],
@@ -145,6 +156,7 @@ class Video
 			
 		}
 
+		
 		return $post_response;
 
 	}
