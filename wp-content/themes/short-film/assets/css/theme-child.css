@@ -12926,6 +12926,10 @@ hr.vern {
 .movie-info h5.director a:focus {
   text-decoration: none;
 }
+hr.border-btm {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
 .article_row .article_title {
   text-transform: uppercase;
   display: block;
@@ -13080,4 +13084,67 @@ hr.vern {
   .recent-movies .grid-box.grid-full {
     height: 200px;
   }
+}
+h4.auth_name {
+  text-transform: uppercase;
+}
+.heading.sec_head h4 {
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  padding-top: 0;
+}
+.heading.sec_head h4 span {
+  text-transform: capitalize;
+  font-style: italic;
+  color: #919191;
+}
+/*.author_page */
+.listlayout .article_meta .author a {
+  color: #af152f;
+  text-decoration: none;
+}
+.listlayout .article_meta .author a:hover {
+  text-decoration: none;
+  color: #fe4665;
+}
+.listlayout .article_meta .author a:active,
+.listlayout .article_meta .author a:focus {
+  text-decoration: none;
+  color: #af152f;
+}
+.listlayout a.post-like {
+  color: #af152f;
+}
+.listlayout a.post-like:hover {
+  color: #fe4665;
+}
+.listlayout a.post-like:hover i {
+  color: #fe4665;
+}
+.listlayout a.post-like:active,
+.listlayout a.post-like:focus {
+  text-decoration: none;
+}
+.listlayout a.post-like i {
+  margin-right: 5px;
+  color: #af152f;
+  transition: all 0.5s;
+}
+.listlayout .lico a.post-like i {
+  margin-right: 10px;
+}
+.listlayout a.liked {
+  color: #ccc;
+}
+.listlayout a.liked i {
+  color: #ccc;
+}
+.listlayout a.liked:hover {
+  color: #aaa;
+}
+.listlayout a.liked:hover i {
+  color: #aaa;
+}
+.listlayout i {
+  margin-right: 10px;
 }

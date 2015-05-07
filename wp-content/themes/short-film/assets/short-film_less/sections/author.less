@@ -1,0 +1,61 @@
+h4.auth_name {
+    text-transform: uppercase;
+}
+.heading.sec_head {
+    h4 {
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        padding-top: 0;
+        span {
+            text-transform: capitalize;
+            font-style: italic;
+            color: #919191;
+        }
+    }
+}
+
+/*.author_page */.listlayout {
+    .article_meta {
+        .author {
+            a {
+                color: @brand-primary;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: none;
+                    color: saturate(lighten(@brand-primary, 25%), 20%);
+                }
+                &:active, &:focus {
+                    text-decoration: none;
+                    color: @brand-primary;
+                }
+            }
+        }
+    }
+    a.post-like {
+            color: @brand-primary;
+            &:hover {
+                color: saturate(lighten(@brand-primary, 25%), 20%);
+                i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+            }
+            &:active, &:focus {text-decoration: none;}
+            i {
+                margin-right: 5px;
+                color: @brand-primary;
+                transition: all 0.5s;
+            }
+        }
+    .lico {
+        a.post-like i {
+            margin-right: 10px;
+        }
+    }
+        a.liked {
+            color: #ccc;
+            i {color: #ccc;}
+            &:hover {
+                color: #aaa;
+                i {color: #aaa;}
+            }
+        }
+        i {margin-right: 10px;}
+}

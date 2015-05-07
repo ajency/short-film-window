@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 			
-	<div id="content">
-			
-		<div id="main">
+	<!--Content-->
+    <div class="container header-space author_page">
+        <div class="content-wrapper">
 				
 			<?php
 				
@@ -27,25 +27,27 @@
 			?>
 				
 				
-		<div class="page-header">
-										
+<!--		<div class="page-header">-->
+            <!--this row contains author info-->
 				<div class="row">
 				
-					<!--
-					<div class="col-md-2">
+					
+<!--
+					<div class="col-md-4">
 							 <img src="<?php// echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image 
 						
 						<img src="<?php echo get_avatar($author_id, 60); ?>">
 					</div>
-					-->
+-->
 					
 					
-					<div class="col-md-12"> <!-- <div class="col-md-10"> -->
+					
+					<div class="col-md-12"> <!-- <div class="col-md-8"> -->
 						
 						<div class="row">
 							
 							<div class="col-md-12">
-								<h4 class="m-t-0">
+								<h4 class="m-t-0 auth_name">
 									<?php echo $author_info['author_name']; ?>
 								</h4>
 							</div>
@@ -59,11 +61,11 @@
 							<div class="col-xs-8 cont">
 								
 								<p><?php echo $author_info['author_description'];?></p>
-															
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet velit vel lectus viverra tristique. Donec aliquet ipsum nec massa porttitor, ac hendrerit tortor tincidunt. Nam tristique vitae diam nec convallis. Morbi eros purus, malesuada in nibh id, pharetra interdum massa. Donec vel tempus sem. Nunc aliquam erat nisi, at accumsan risus mollis ut. Quisque in consequat lorem, quis scelerisque quam.</p>
 							</div>
 													
 							<!--<div class="col-xs-4 text-right list-info-btns">-->
-							<div class="col-xs-2 text-right list-info-btns">
+							<div class="col-xs-4 text-right list-info-btns">
 								   
 								<div class="soc-ico nh">
 									   
@@ -93,23 +95,28 @@
 						
 						</div> 
 					</div>	
+					
+                    <div class="col-md-12">
+                        <hr class="border-btm">
+                    </div>
 				</div> <!-- end row -->
 											
-		</div> <!-- end #page-header -->
+<!--		</div>--> <!-- end #page-header -->
 	
 
-<hr>
-	<div class="container header-space">
+<!--<hr>-->
+        
+	        <div class="row listlayout pushin">
 	
-		<?php 
-			if(count($response_posts) > 0)
-			{
-		?>
+                <?php 
+                    if(count($response_posts) > 0)
+                    {
+                ?>
 				
-				<div class="show_posts">
+				<div class="show_posts col-md-12">
 				
-					<div class="heading">
-						<h4> Videos by <?php echo $author_info['author_name']; ?> </h4>
+					<div class="heading sec_head">
+						<h4> Videos by <span><?php echo $author_info['author_name']; ?></span> </h4>
 					</div>
 					
 					<div class="all_posts">
@@ -137,29 +144,33 @@
 													<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 														<?php echo $value['title'];?>
 													</a>
-													 <small><em> By <?php echo ucfirst($value['director']);?></em></small> 
+<!--													 <small><em> By <?php //echo ucfirst($value['director']);?></em></small> -->
 												</h4>
 											</div>
 
 										</div>
 										
-										<hr class="m-t-0 m-b-5">
+<!--										<hr class="m-t-0 m-b-5">-->
 										
 										<div class="row">
 										   
 											<div class="col-xs-8 cont">
 											
 												<p><?php echo $value['excerpt'];?></p>
-																			
-												<h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['categories']);?></h6>
+												
 																					
-												<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['region']);?></h6>
+												<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
 												
-												<h6 class="m-t-0 m-b-0"><?php echo $value['duration'];?> Minutes</h6>
+<!--												<h6 class="m-t-0 m-b-0"></h6>-->
 												
-												<h6 class="m-t-0 m-b-0">Director: <?php echo ucfirst($value['director']);?></h6>
+												<h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
 												
-												<span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+<!--												<span class="date"><i class="fa fa-clock-o"></i> <?php //echo $value['post_date'];?></span>-->
+                                                <p class="categories">
+                                                    <span class="label label-greydark">
+                                                        <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+                                                    </span>
+                                                </p>
 
 											</div>
 																
@@ -208,6 +219,7 @@
 						<a href="#" class="btn btn-primary load_more">Load More Videos...</a>
 					</div>
 	
+                    <hr class="border-btm m-t-35">
 				</div> <!-- end #show_posts -->
 		<?php
 			
@@ -215,17 +227,17 @@
 		
 		?>
 	
-	<hr>
+<!--	<hr>-->
 
 		<?php 
 			if(count($response_articles) > 0)
 			{
 		?>
 				
-				<div class="show_articles">
+				<div class="show_articles col-md-12">
 				
-					<div class="heading">
-						<h4> Articles by <?php echo $author_info['author_name']; ?> </h4>
+					<div class="heading sec_head">
+						<h4> Articles by <span><?php echo $author_info['author_name']; ?></span> </h4>
 					</div>
 					
 					<div class="all_articles">
@@ -236,75 +248,119 @@
 							{
 							
 						?>
-								<div class="row listlayout">
+								<div class="row listlayout article_row">
+								
+								<div class="col-md-5">
+								
+									<a class="content-bottom article_fi" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 									
-									<div class="col-md-5">
-										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-											<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
-										</a>	
-									</div>
-									
-									<div class="col-md-7">
-										
-										<div class="row">
-											
-											<div class="col-md-12">
-												<h4 class="m-t-0">
-													<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-														<?php echo $value['title'];?>
-													</a>
-													 <small><em> By <?php echo ucfirst($value['director']);?></em></small> 
-												</h4>
-											</div>
-
-										</div>
-										
-										<hr class="m-t-0 m-b-5">
-										
-										<div class="row">
-										   
-											<div class="col-xs-8 cont">
-											
-												<p><?php echo $value['excerpt'];?></p>
-																																									
-												<h6 class="m-t-0 m-b-0">Author: <?php echo ucfirst($value['director']);?></h6>
-												
-												<span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
-
-											</div>
-																
-											<div class="col-xs-4 text-right list-info-btns">
-												   
-												<div class="soc-ico nh">
-													   
-													   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
-												</div>
-												
-												
-												<div class="lico_c">
-													<div class="lico small">
-														
-														<?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i>
-													
-													</div>
-													
-													<div class="lico like-action">
-					
-														<!--<?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
-															<?php echo getPostLikeLink($value['id']) ; ?>
-													</div>
-													
-												</div>
-												
-											</div>
-										
-										</div>
-										
-										
-									</div> 
-															
-									
+										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+								
+									</a>
+								
 								</div>
+								
+								<div class="col-md-7">
+									<div class="row">
+										
+										<!--when hadding share icons change this to col-md-8 and remove class 'hidden' from col-md-4-->
+										<div class="col-md-12">
+											<h4 class="m-t-0">
+												
+												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+													
+													<?php echo $value['title']; ?>
+												
+												</a>
+												
+												
+<!--												<small><em>By </em></small>-->
+												
+											</h4>
+										</div>
+										
+										<div class="col-md-4 hidden">
+											
+											
+<!--
+											<div class="social-strip">
+											
+												<?php// echo do_shortcode("[ssba]"); ?>
+												
+												<?php// echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+												
+												<?php //echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+												
+												
+											
+											</div>
+-->
+											
+										
+											<!--
+											<div class="social-strip">
+												<div class="pull-right watchlist-add"> 
+													<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
+												</div>
+												<div class="pull-right like-action">
+													<span class="m-l-5 m-r-5">|</span> <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
+												</div>
+												
+												<div class="share-button">
+												  
+													<div class="social-toggle"><i class="fa fa-share"></i> Share</div>
+													<div class="social-networks">
+													  <ul>
+														<li class="social-twitter">
+														  <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
+														</li>
+														<li class="social-facebook">
+														<a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+														</li>
+														<li class="social-pin">
+														<a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+														</li>
+													  </ul>
+													</div>
+												
+												</div>
+												
+											</div>
+											-->
+										</div>
+									</div>
+<!--									<hr class="m-t-0 m-b-5">-->
+								   
+								   <div class="row">
+										<div class="col-xs-8">
+                                            <p class="article_meta">
+                                                <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+                                               
+											   <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
+											                                                 
+											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
+												
+												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
+			
+												<span class="art_views" title="Views"><i class="fa fa-eye"></i><?php  echo $value['no_of_views'] ;?></span>
+												
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <div class="social-strip soc-ico pull-r ight">
+												<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+											</div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p class="article_cont">
+                                                <?php echo $value['excerpt'];?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>	                
+							</div>
 									
 									
 					<?php 
@@ -329,12 +385,9 @@
 	
 			
 	</div> <!-- end #container header-space -->
-		
-		</div> <!-- end #main -->
-		
-
-   
-	</div> <!-- end #content -->
+        
+		</div> <!-- end content-wrapper -->
+    </div> <!-- end container header-space -->
 
 <?php get_footer(); ?>
 
@@ -513,28 +566,33 @@
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
 												+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
-												 +'<small><em> By '+value.director+'</em></small>'
+												 //+'<small><em> By '+value.director+'</em></small>'
 											+'</h4>'
 										+'</div>'
 
 									+'</div>'
 									
-									+'<hr class="m-t-0 m-b-5">'
+									//+'<hr class="m-t-0 m-b-5">'
 									
 									+'<div class="row">'
 									   
 										+'<div class="col-xs-8 cont">'
 																				
-											+'<p>'+value.excerpt+'</p>'																																			
-											+ '<h6 class="m-t-30 m-b-0">'+value.categories.join(',')+'</h6>'
+											+'<p>'+value.excerpt+'</p>'														
 											
-											+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'</h6>'											
+											+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'\/'+value.duration+' Minutes</h6>'											
 											
-											+'<h6 class="m-t-0 m-b-0">'+value.duration+' Minutes</h6>'											
+											//+'<h6 class="m-t-0 m-b-0">'+value.duration+' Minutes</h6>'											
 											
-											+'<h6 class="m-t-0 m-b-0">Director: '+value.director+'</h6>'
+											+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+                    
+                                            + '<p class="categories">'
+                                                + '<span class="label label-greydark">'
+                                                    + value.categories.join('</span><span class="label label-greydark">')
+                                                + '</span>'
+                                            + '</p>'
 											
-											+'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+											//+'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 											
 										+'</div>'
 															
@@ -603,68 +661,108 @@
 				{
 					console.log(" inside jQuery of generate_data_art ");
 					
-					html += '<div class="row listlayout">'
-								
-								+'<div class="col-md-5">'
-									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
-										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
-									+'</a>'
-								+'</div>'
-								
-								+'<div class="col-md-7">'
+					html += '<div class="row listlayout article_row">'
+                     +'<div class="col-md-5">'
+						+'<a class="content-bottom article_fi" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+						+'</a>'
+					 +'</div>'
+                     +'<div class="col-md-7">'
+                        +'<div class="row">'
+                            +'<div class="col-md-12">'
+                                +'<h4 class="m-t-0">'
 									
-									+'<div class="row">'
+									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+								
+									//+'<small><em> By '+value.director+'</em></small>'
+								
+								+'</h4>'
+                            +'</div>'
+                            +'<div class="col-md-4">'
+								
+								
+							
+							/*
+                                 +'<div class="social-strip">'
+																		 								 
+                                    +'<div class="pull-right watchlist-add">' 
+                                        +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                    +'</div>'
+                                    +'<div class="pull-right like-action">'
+                                        +'<span class="m-l-5 m-r-5">|</span> '+value.post_like_count+' <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>'
+                                    +'</div>'
+                                    +'<div class="share-button">'
+                                        +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
+                                        +'<div class="social-networks">'
+                                          +'<ul>'
+                                            +'<li class="social-twitter">'
+                                              +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-facebook">'
+                                            +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
+                                            +'</li>'
+                                            +'<li class="social-pin">'
+                                            +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
+                                            +'</li>'
+                                          +'</ul>'
+                                        +'</div>'
+                                    +'</div>'
+                                +'</div>'
+							*/
+                            
+							+'</div>'
+                        +'</div>'
+                         //+'<hr class="m-t-0 m-b-5">'
+                         +'<div class="row">'
+                             +'<div class="col-xs-8">'
+									+'<p class="article_meta">'
+                                        +'<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+								        
+										//+'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
 										
-										+'<div class="col-md-12">'
-											+'<h4 class="m-t-0">'
-												+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
-												 +'<small><em> By '+value.director+'</em></small>'
-											+'</h4>'
-										+'</div>'
-
-									+'</div>'
-									
-									+'<hr class="m-t-0 m-b-5">'
-									
-									+'<div class="row">'
-									   
-										+'<div class="col-xs-8 cont">'
-																				
-											+'<p>'+value.excerpt+'</p>'																																										
-											+'<h6 class="m-t-0 m-b-0">Author: '+value.director+'</h6>'
+										+'<span class="author">'
 											
-											+'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+											+'<a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
+										
+										+'</span>'
+										
+										
+										//+'<span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
+										
+										
+										
+										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'										
+										+'<span class="art_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
+										
+										+'<span class="art_views" title="Views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'
+										
+                                    +'</p>'
+																	
+                             +'</div>'
+                             +'<div class="col-xs-4">'
+                                +'<div class="social-strip soc-ico">'
+																		
+									//+'<p>'+value.id+'</p>'
 											
-										+'</div>'
-															
-										+'<div class="col-xs-4 text-right list-info-btns">'
-											   
-											+'<div class="soc-ico nh">'
-												   
-												+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+										+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+																						
+										
 											
-											+'</div>'
-											
-											
-											+'<div class="lico_c">'
-												+'<div class="lico small">'+value.no_of_views+'<i class="fa fa-eye"></i></div>'
-												+'<div class="lico like-action">'
-																													
-													+'<a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> '
-												
-												+'</div>'
-												
-											+'</div>'
-											
-										+'</div>'
-									
-									+'</div>'
-									
-									
-								+'</div> '
-														
-								
-							+'</div>;'
+								+'</div>'
+                             +'</div>'
+                             // +'<div class="col-xs-4 text-right">'
+                                 // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
+                             // +'</div>'
+                         +'</div>'
+                         +'<div class="row">'
+                             +'<div class="col-md-12">'
+                                +'<p class="article_cont">'
+                                    +value.excerpt
+                                +'</p>'
+                             +'</div>'
+                         +'</div>'
+                     +'</div>'
+                 +'</div>';
 					 									 
 				});
 				
