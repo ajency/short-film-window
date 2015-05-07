@@ -58,3 +58,21 @@ hr.vern {
     border-top: 1px solid #ccc;
 }
 .cou_exc {font-size: 16px;}
+
+.movie-info h5.director {
+    a {
+        font-style: italic;
+        &:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            text-decoration: none;
+        }
+        &:active, &:focus {
+            text-decoration: none;
+        }
+    }
+}
+
+hr.border-btm {
+    border:0;
+    border-bottom: 1px solid #ccc;
+}
