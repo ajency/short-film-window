@@ -17,8 +17,6 @@
 				$response_posts = get_posts_by_author($author_id);
 				
 				$response_articles = get_articles_by_author($author_id);
-				
-				//print_r($response_articles);
 					
 								
 				$author_info = get_author_info($author_id);
