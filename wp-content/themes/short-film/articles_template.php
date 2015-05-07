@@ -167,15 +167,15 @@ Template Name: articles_template
 								   <div class="row">
 										<div class="col-xs-8">
                                             <p class="article_meta">
-                                                <span class="date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+                                                <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
                                                
-											   <span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>
+											   <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
 											                                                 
 											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
 												
 												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
 			
-												<span class="art_views"><i class="fa fa-eye"></i><?php  echo $value['no_of_views'] ;?></span>
+												<span class="art_views" title="Likes"><i class="fa fa-eye"></i><?php  echo $value['no_of_views'] ;?></span>
 												
                                             </p>
                                         </div>
@@ -509,7 +509,7 @@ window.onload = function() {
 					 +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
-                            +'<div class="col-md-8">'
+                            +'<div class="col-md-12">'
                                 +'<h4 class="m-t-0">'
 									
 									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
@@ -556,13 +556,13 @@ window.onload = function() {
                          +'<div class="row">'
                              +'<div class="col-xs-8">'
 									+'<p class="article_meta">'
-                                        +'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+                                        +'<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 								        
 										//+'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
 										
-										+'<span class="author"><i class="fa fa-user"></i>'
+										+'<span class="author">'
 											
-											+'<a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'">' + value.director + '</a>'
+											+'<a target="_blank" title="Author" href="'+SITEURL+'/author/'+value.director_nicename+'"><i class="fa fa-user"></i>' + value.director + '</a>'
 										
 										+'</span>'
 										
@@ -574,7 +574,7 @@ window.onload = function() {
 										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'										
 										+'<span class="art_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
 										
-										+'<span class="art_views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'
+										+'<span class="art_views" title="Views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'
 										
                                     +'</p>'
 																	
