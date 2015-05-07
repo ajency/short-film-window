@@ -16,6 +16,7 @@
         color: #bbb;
         span {
             margin-right: 15px;
+            white-space: nowrap;
             i {margin-right: 5px;}
         }
     }
@@ -47,7 +48,8 @@
         }
     }
     
-    .col-xs-8, .col-xs-4 {
+    .col-xs-8, .col-xs-4,
+    .col-xs-9, .col-xs-3 {
         .soc-ico {bottom: 0;}
         @media screen and (max-width: 560px) {
             display: block;
@@ -59,6 +61,17 @@
     }
     @media screen and (max-width: 560px) {
         h4 {text-align: center;}
+    }
+    @media screen and (max-width: 480px) {
+        .article_meta span {
+            white-space: normal;
+            display: block;
+            margin-right: 0;
+            &.art_likes, &.art_views {
+                display: inline-block;
+            }
+            &.art_likes {margin-right: 15px;}
+        }
     }
 }
 .article_single {

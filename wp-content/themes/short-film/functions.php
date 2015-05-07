@@ -1972,6 +1972,9 @@ function get_author_info($author_id)
 		
 	$author_nicename = get_the_author_meta( 'user_nicename', $author_id );
 	
+	$no_of_videos_by_author = count_user_posts( $author_id , "post"  );
+	
+	$no_of_articles_by_author = count_user_posts( $author_id , "article"  );
 	
 		
 	// echo " ** ";
@@ -1981,12 +1984,15 @@ function get_author_info($author_id)
 	
 	$author_info = array( 
 			
-			'author_id'			 => $author_id,
-			'author_name'		 => $name,
-			'author_description' => $author_description,
-			'post_user_like' 	 => $post_user_like,
-			'author_link'		 => $author_link,
-			'author_nicename'	 => $author_nicename
+			'author_id'				 => $author_id,
+			'author_name'		 	 => $name,
+			'author_description'	 => $author_description,
+			'post_user_like' 	 	 => $post_user_like,
+			'author_link'		 	 => $author_link,
+			'author_nicename'	 	 => $author_nicename,
+			'no_of_videos_by_author' => $no_of_videos_by_author,
+			'no_of_articles_by_author' => $no_of_articles_by_author
+			
 	);
 	
 	// echo " ** ";
