@@ -30,17 +30,25 @@
 				<div class="row">
 				
 					
-<!--
-					<div class="col-md-4">
-							 <img src="<?php// echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image 
+
+					<div class="col-md-2">
+							
+							<!-- <img src="<?php//// echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image  -->
+							 
+							 
+							<!-- <img src="<?php// echo get_avatar( get_the_author_meta($author_id), 60); ?>"> -->
+
+							<?php echo get_avatar( get_the_author_meta($author_id), 150);?>	
+							 							 
+							 
+							<!-- <img src="<?php// echo get_avatar($author_id, 60); ?>"> -->
 						
-						<img src="<?php echo get_avatar($author_id, 60); ?>">
 					</div>
--->
+
 					
 					
 					
-					<div class="col-md-12"> <!-- <div class="col-md-8"> -->
+					<div class="col-md-10"> <!-- <div class="col-md-8"> -->
 						
 						<div class="row">
 							
@@ -58,8 +66,15 @@
 						   
 							<div class="col-xs-8 cont">
 								
-								<p><?php echo $author_info['author_description'];?></p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet velit vel lectus viverra tristique. Donec aliquet ipsum nec massa porttitor, ac hendrerit tortor tincidunt. Nam tristique vitae diam nec convallis. Morbi eros purus, malesuada in nibh id, pharetra interdum massa. Donec vel tempus sem. Nunc aliquam erat nisi, at accumsan risus mollis ut. Quisque in consequat lorem, quis scelerisque quam.</p>
+								<div>
+									<p><?php echo $author_info['author_description'];?></p>
+								</div>	
+								
+								<div>
+									<p>No of Films:	<?php echo $author_info['no_of_videos_by_author'];?> <p>
+									
+								</div>	
+														
 							</div>
 													
 							<!--<div class="col-xs-4 text-right list-info-btns">-->
