@@ -330,7 +330,7 @@
 <!--									<hr class="m-t-0 m-b-5">-->
 								   
 								   <div class="row">
-										<div class="col-xs-8">
+										<div class="col-xs-9">
                                             <p class="article_meta">
                                                 <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
                                                
@@ -344,7 +344,7 @@
 												
                                             </p>
                                         </div>
-                                        <div class="col-xs-4">
+                                        <div class="col-xs-3">
                                             <div class="social-strip soc-ico pull-r ight">
 												<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 											</div>
@@ -712,7 +712,7 @@
                         +'</div>'
                          //+'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
-                             +'<div class="col-xs-8">'
+                             +'<div class="col-xs-9">'
 									+'<p class="article_meta">'
                                         +'<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
 								        
@@ -737,7 +737,7 @@
                                     +'</p>'
 																	
                              +'</div>'
-                             +'<div class="col-xs-4">'
+                             +'<div class="col-xs-3">'
                                 +'<div class="social-strip soc-ico">'
 																		
 									//+'<p>'+value.id+'</p>'
