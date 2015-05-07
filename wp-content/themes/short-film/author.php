@@ -347,10 +347,22 @@
 
 		count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response_posts) ;?>");
 		count=count-1;
+		
+		if(count == 0)
+		{
+			count=1;
+		}
+		
 		jQuery('#offset').val(count);
 		
 		count_art = parseInt(jQuery('#offset_art').val()) + parseInt("<?php echo count($response_articles) ;?>");
 		count_art=count_art-1;
+		
+		if(count_art == 0)
+		{
+			count_art=1;
+		}
+		
 		jQuery('#offset_art').val(count_art);
 		
 		jQuery('.load_more').live('click',function(e){
@@ -476,9 +488,9 @@
 			console.log(" inside generate_data ");
 			
 					
-			//html = jQuery('.all_posts').html();
+			html = jQuery('.all_posts').html();
 			
-			html="";
+			//html="";
 
 			if(response.length>0)
 			{
@@ -580,9 +592,9 @@
 			console.log(" inside generate_data_art ");
 			
 					
-			//html = jQuery('.all_articles').html();
+			html = jQuery('.all_articles').html();
 			
-			html="";
+			//html="";
 
 			if(response.length>0)
 			{
