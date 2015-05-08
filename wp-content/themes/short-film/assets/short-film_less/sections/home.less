@@ -22,8 +22,13 @@
 			&.active{
 				border-color: @brand-primary;
 				a{
-					color: @gray-darker;
+					color: @brand-primary;
 				}
+                &:hover {
+                    a {
+                        color: saturate(lighten(@brand-primary, 25%), 20%);
+                    }
+                }
 			}
 		}
 	}

@@ -660,13 +660,15 @@ Template Name: Homepage
 
         });
 		
-		
+        //addclass to first one (this week's premiere) by default
+		$('.movie-cat ul li').eq(0).addClass('active');
+        
 		$('.staffpick-category').click(function(event){
 							
 			event.preventDefault();
 			
-			$('.staffpick-category').removeClass('active')   
-			$(this).addClass('active');
+			$('.movie-cat ul li').removeClass('active')   
+			$(this).parent().addClass('active');
 			
 			var postid = $(event.target).attr('data-post-id');
 			
