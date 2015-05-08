@@ -663,6 +663,10 @@ Template Name: Homepage
 		$('.staffpick-category').click(function(event){
 							
 			event.preventDefault();
+			
+			$('.staffpick-category').removeClass('active')   
+			$(this).addClass('active');
+			
 			var postid = $(event.target).attr('data-post-id');
 			
 			console.log(postid);
