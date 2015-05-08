@@ -52,12 +52,16 @@ Template Name: category_template
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
-                            <form action="" class="search_menu">
-                                <div class="form-group">
+                            
+							<!-- <form action="" class="search_menu"> -->
+                               
+							   <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
                                     <i class="fa fa-search"></i>
                                 </div>
-                            </form>
+								
+                            <!-- </form> -->
+							
                         </div>
 					</div>
                 </div>

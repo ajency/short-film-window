@@ -244,7 +244,6 @@ function get_posts_filter($args){
         'author'			=> $author
     	);
 
-
 	    
 		$query = new WP_Query($params);
 	    while ( $query->have_posts() ) {
@@ -253,9 +252,7 @@ function get_posts_filter($args){
 			
 		}
 	}
-
 	
-
    return $response;
 
 }
