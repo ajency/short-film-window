@@ -72,6 +72,7 @@ Template Name: Homepage
 						</div>
 						
                     </div>
+					
                     <div class="col-sm-3">
                         <nav class="movie-cat visible-sm visible-md visible-lg">
                             <ul>
