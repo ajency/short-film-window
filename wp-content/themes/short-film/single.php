@@ -9,9 +9,10 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 	
+	
 	//$video_id = $response['id'];
 	
-	$embedurl = get_embed_url($response['id'],$response['videourl']);
+	//$embedurl = get_embed_url($response['id'],$response['videourl']);
 	
 	?>
 	
@@ -46,7 +47,7 @@ get_header(); ?>
             </div>	
             <!--	
                 <div class="play-video">
-                    <iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>
                 </div>
             -->
         </div>
@@ -477,7 +478,7 @@ afterToggle: function(){}
 			html+=
 					'<div class="play-video">'
 					
-						+'<iframe class="vid_if" src="<?php echo $embedurl ;?>" frameborder="0" allowfullscreen></iframe>'
+						+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 						
 					+'</div>'		
 		

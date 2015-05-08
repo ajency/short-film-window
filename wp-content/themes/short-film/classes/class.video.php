@@ -4,13 +4,15 @@ namespace Film;
 class Video
 {
 
-	public static function get($post_id){
+	public static function get($post_id)
+	{
 
 		//global $post;
 
 		
 		//wordpress fn to get single post
 		$post  = get_post($post_id); 	
+				
 		
 		if(!is_null($post))
 		{
@@ -46,6 +48,10 @@ class Video
 			
 			$director_nicename = get_the_author_meta( 'user_nicename', $directorid );
 			
+			$videourl = get_post_meta( $post->ID , 'videourl',true );
+			
+			$embedurl = get_embed_url($post->ID,$videourl);
+			
 	
 			
 			//check if the post has an excerpt.if it has then use the post_excerpt else use the post_content & generate excerpt of length 20 by calling the function show_excerpt() defined in functions.php
@@ -69,6 +75,7 @@ class Video
 				'type'			=> get_post_meta( $post->ID , 'type',true ),
 				'tagline'		=> get_post_meta( $post->ID , 'tagline',true ),
 				'videourl'  	=> get_post_meta( $post->ID , 'videourl',true ),
+				'embedurl'		=> $embedurl,
 				//'content'		=> get_the_content('Read more'),
 				'content'		=> $post->post_content,
 				//'excerpt'			=> get_the_excerpt(),

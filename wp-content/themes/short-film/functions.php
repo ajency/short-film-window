@@ -1234,12 +1234,14 @@ function shortfilm_menu()
 		$args = array( 
 			'numberposts' => '1',
 			'post_status' => 'publish'
-			);
+		);
+		
 		$recent_posts = wp_get_recent_posts( $args );
 
 		$recent_post_id = $recent_posts[0]["ID"];
 		
 		$response = Film\Video::get($recent_post_id);
+		
 	
 		if (is_wp_error($response))
 		{
@@ -1257,8 +1259,10 @@ function shortfilm_menu()
 
 	function get_staffpick_category_post($postid)
 	{	
+		//echo "inside get_staffpick_category_post()";
+		
 		$response = Film\Video::get($postid);
-	
+			
 		if (is_wp_error($response))
 		{
 		   echo false;
@@ -1976,6 +1980,8 @@ function get_author_info($author_id)
 	
 	$no_of_articles_by_author = count_user_posts( $author_id , "article"  );
 	
+	$author_email = get_the_author_meta( 'user_email', $author_id );
+	
 		
 	// echo " ** ";
 	// echo $name;
@@ -1984,14 +1990,15 @@ function get_author_info($author_id)
 	
 	$author_info = array( 
 			
-			'author_id'				 => $author_id,
-			'author_name'		 	 => $name,
-			'author_description'	 => $author_description,
-			'post_user_like' 	 	 => $post_user_like,
-			'author_link'		 	 => $author_link,
-			'author_nicename'	 	 => $author_nicename,
-			'no_of_videos_by_author' => $no_of_videos_by_author,
-			'no_of_articles_by_author' => $no_of_articles_by_author
+			'author_id'				   => $author_id,
+			'author_name'		 	   => $name,
+			'author_description'	   => $author_description,
+			'post_user_like' 	 	   => $post_user_like,
+			'author_link'		 	   => $author_link,
+			'author_nicename'	 	   => $author_nicename,
+			'no_of_videos_by_author'   => $no_of_videos_by_author,
+			'no_of_articles_by_author' => $no_of_articles_by_author,
+			'author_email'	 	  	   => $author_email
 			
 	);
 	

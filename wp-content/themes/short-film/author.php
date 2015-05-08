@@ -34,14 +34,22 @@
 					<div class="col-md-2">
 							
 							<!-- <img src="<?php//// echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image  -->
+							
+							<?php//  echo get_avatar( get_the_author_meta('ID'), 150);?>
 							 
-							 
+							
 							<!-- <img src="<?php// echo get_avatar( get_the_author_meta($author_id), 60); ?>"> -->
 
-							<?php echo get_avatar( get_the_author_meta($author_id), 150);?>	
-							 							 
+							<?php // echo get_avatar( get_the_author_meta($author_id), 150);?>	
+							
+							
+							<!-- <img src="<?php// echo get_avatar($author_id, 60); ?>"> -->	
+							<?php// echo get_avatar( $author_id, 150 ); ?>
+							 	
+							
+							<?php echo get_avatar( $author_info['author_email'], 150 ); ?>
 							 
-							<!-- <img src="<?php// echo get_avatar($author_id, 60); ?>"> -->
+							
 						
 					</div>
 
@@ -87,6 +95,13 @@
 									   <?php echo do_shortcode('[ssba url="' . $author_info['author_link'] . '" title="' . $author_info['author_name'] . '"]'); ?>
 									   
 									   <?php// echo do_shortcode('[ssba]'); ?>
+									  
+									  <?php //echo "hii";?>
+									  
+									  <?php// echo aal_author_likes($author_id);			//imp  ?>  
+									   
+									    <?php//// echo getAuthorLikeLink( $author_id ); ?>
+									   
 								</div>
 								
 								

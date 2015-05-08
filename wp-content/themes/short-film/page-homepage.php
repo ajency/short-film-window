@@ -692,35 +692,30 @@ Template Name: Homepage
 		jQuery('.staffpick-display-section').html("")
        
 	   html = jQuery('.staffpick-display-section').html()
+	   console.log("in generate_data ");
 		console.log(response);
 		if(response)
 		{
 			html+=
 					'<div class="inside-script">'
-					
-								// +'<video id="bg-video" '
-									// +'class="video-js vjs-default-skin" '
-									// +'height="auto" '
-									// +'width="auto" '
-									// +'poster="'+response.featured_image+'" '
-									// +'loop'
-									// +'controls'
-									// +'data-setup={ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src":" '+ response.videourl+'"}">'
-
-								  // +'<p>Your browser doesnot support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example'
-								  // +'</p>'
-								// +'</video>'
-					
-							+'<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/'+response.slug+'">'
-								+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
-								
+																		
+								+'<div class="video-section vid_if">'
+									+'<div class="show-featured-image vid_if">'
+										
+										+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+										
+										+'<a href="#" class="play_movie_big" data-id ="'+response.id+'" data-embedurl="'+response.embedurl+'"> </a>'
+										
+									+'</div>'
+								+'</div>'	
+							
 								+'<div class="role-settings">'
 									+'<div class="row posrel">'
 										+'<div class="col-md-10">'
 											+'<div class="pull-lef t">'
 												+'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
 											+'</div>'
-							+'</a>'			
+																				
 									+'</div>'
 									+'<div class="col-md-2">'
 										+'<div class="">'
@@ -761,6 +756,82 @@ Template Name: Homepage
 		}
 		
     } // end of generate_data
+	
+	
+	jQuery('.play_movie_big').live('click',function(event){
+		
+		event.preventDefault();
+			
+		console.log("in play_movie_big click event");
+		
+		var video_id = jQuery(this).attr("data-id");
+		var embedurl = jQuery(this).attr("data-embedurl");
+		
+		//event.preventDefault();
+		
+		
+		jQuery.ajax({
+		
+			type : 'POST',
+			url : ajaxurl,
+
+			data:{
+			
+				//video_id: '<?php echo $video_id; ?>',
+				video_id: video_id,
+				action : 'increase_video_number_of_views'
+		
+			},
+			success:function(responsedata)
+			{												
+				console.log(responsedata);
+								
+			},
+			error:function(responsedata)
+			{
+				console.log(" Error ");
+			}
+
+        });
+	
+		generate_video(embedurl);
+        
+		height = window.innerHeight ? window.innerHeight : $(window).height();
+        jQuery('.vid_if ').css('height', height);
+        jQuery('.video-section').addClass('ontop');
+		
+	});		
+	
+	function generate_video(embedurl)
+	{		
+		console.log("in generate_video() ");
+		
+		jQuery('.video-section').html("")
+       
+	    html = jQuery('.video-section').html()
+
+			html+=
+					'<div class="play-video">'
+					
+						//+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
+						
+						+'<iframe class="vid_if" src="'+embedurl+'" frameborder="0" allowfullscreen></iframe>'
+						
+					+'</div>';
+		
+			jQuery('.video-section').html(html);
+		
+		console.log(html);
+		
+    } // end of generate_video	
+    
+    //onclick of playing video
+	
+	//jQuery('.iframe.vid_if').live('click',function()
+    
+	jQuery(document).on('click', 'iframe.vid_if', function() {
+        jQuery('.video-section').toggleClass('ontop');
+    });
 				
 	
 	});  // end of document.ready function
