@@ -125,7 +125,8 @@
                 <div class="spacer-40"></div><div class="loader"></div><div class="all_posts">
                 <?php $queried_object = get_queried_object();
 				
-				//print_r($queried_object);
+				echo "hiii  ";
+				print_r($queried_object);
  					
  				$args = array(
 					'orderby'           => 'post_date',
@@ -673,8 +674,7 @@ window.onload = function() {
     });
 
     jQuery('.search').live('change',function(e){
-       
-   	    e.preventDefault();
+        e.preventDefault();
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
@@ -697,7 +697,9 @@ window.onload = function() {
                                     myarr.push(value['id']);  
                                     
                                 }
-                                                                                               
+                                
+                                    
+                           
                     });
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);

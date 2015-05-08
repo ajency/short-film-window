@@ -62,10 +62,16 @@ class Video_API
 
 		
 		$response = Film\Video::get($id);
-
+		
+		
+		
+		// $embedurl = get_embed_url($response['id'],$response['videourl']);
+		
+		// $response['embedurl'] = $embedurl;
 		
 
-		if (is_wp_error($response)){
+		if (is_wp_error($response))
+		{
             $response = new WP_JSON_Response( $response );
             $response->set_status(404);
         }

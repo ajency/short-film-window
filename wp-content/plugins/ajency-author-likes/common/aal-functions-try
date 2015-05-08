@@ -1,0 +1,172 @@
+<?php
+
+add_action( 'wp_enqueue_scripts', 'register_aal_script' );
+function register_aal_script() {
+  global $woocommerce;
+
+    wp_enqueue_style( 'aal-style', AAL_URL.'assets/css/aal-style.css' );
+       
+    $data = array(
+      'ajaxurl'=>admin_url('admin-ajax.php'),
+       );
+       wp_enqueue_script('aal_script', AAL_URL.'assets/js/aal-script.js', array('jquery'), '', true);
+       wp_localize_script( 'aal_script', 'aal', $data );
+}
+
+
+
+
+function aal_author_likes($author_id){
+echo '<div class="aal-box"><a class="aal-like" data-author="'.$author_id.'" style="color:#000;"> <i class="fa fa-thumbs-up"></i> LIKE </a><span class="author-like-count" data-author="'.$author_id.'">'.get_user_meta($author_id, '_author_likes', true).'</span></div>';
+}
+
+
+
+add_action( 'wp_ajax_aal_like', 'aal_get_author_likes' );
+add_action( 'wp_ajax_nopriv_aal_like', 'aal_get_author_likes' );
+
+function aal_get_author_likes()
+{
+$author_id = $_POST['author_id'];
+
+$likes = get_user_meta($author_id, '_author_likes', true);
+if($likes == ''){
+$final_like = 1;
+}else{
+$final_like = $likes+1;
+}
+
+update_user_meta($author_id, '_author_likes', $final_like);
+echo get_user_meta($author_id, '_author_likes', true);
+
+wp_die();	
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+add_action( 'wp_ajax_nopriv_jm-author-like', 'jm_author_like' );
+add_action( 'wp_ajax_jm-author-like', 'jm_author_like' );
+
+function jm_author_like() 
+{
+	$nonce = $_POST['nonce'];
+    if ( ! wp_verify_nonce( $nonce, 'ajax-nonce' ) )
+        die ( 'Nope!' );
+	
+	if ( isset( $_POST['jm_author_like'] ) ) 
+	{
+	
+		$author_id = $_POST['author_id']; // author_id
+		$author_like_count = get_post_meta( $author_id, "_author_like_count", true ); // author like count
+		
+		if ( function_exists ( 'wp_cache_post_change' ) ) 
+		{ // invalidate WP Super Cache if exists
+			$GLOBALS["super_cache_enabled"]=1;
+			wp_cache_post_change( $author_id );
+		}
+		
+		if ( is_user_logged_in() ) 
+		{ // user is logged in
+			$user_id_new = get_current_user_id(); // current user
+			$meta_AUTHORS = get_user_option( "_liked_authors", $user_id  ); // author ids from user meta
+			$meta_USERS_new = get_user_meta( $author_id, "_user_liked_new" ); // user ids from user meta
+			
+			$liked_AUTHORS = NULL; // setup array variable
+			$liked_USERS_new = NULL; // setup array variable
+			
+			if ( count( $meta_AUTHORS ) != 0 ) { // meta exists, set up values
+				$liked_AUTHORS = $meta_AUTHORS;
+			}
+			
+			if ( !is_array( $liked_AUTHORS ) ) // make array just in case
+				$liked_AUTHORS = array();
+				
+			if ( count( $meta_USERS ) != 0 ) { // meta exists, set up values
+				$liked_USERS_new = $meta_USERS_new[0];
+			}		
+
+			if ( !is_array( $liked_USERS_new ) ) // make array just in case
+				$liked_USERS_new = array();
+				
+			$liked_AUTHORS['author-'.$author_id] = $author_id; // Add author_id to user meta array
+			$liked_USERS_new['user_new-'.$user_id_new] = $user_id_new; // add user id to user meta array
+			$user_likes_new = count( $liked_AUTHORS ); // count user likes
+	
+			if ( !AlreadyLikedAuthor( $author_id ) ) 
+			{ // like the author
+				update_user_meta( $author_id, "_user_liked_new", $liked_USERS_new ); // Add user ID to user meta
+				update_user_meta( $author_id, "_author_like_count", ++$author_like_count ); // +1 count post meta
+				update_user_option( $user_id, "_liked_authors", $liked_AUTHORS ); // Add post ID to user meta
+				update_user_option( $user_id, "_user_like_count_new", $user_likes_new ); // +1 count user meta
+				echo $post_like_count; // update count on front end
+
+			} else { // unlike the post
+				$pid_key = array_search( $post_id, $liked_POSTS ); // find the key
+				$uid_key = array_search( $user_id, $liked_USERS ); // find the key
+				unset( $liked_POSTS[$pid_key] ); // remove from array
+				unset( $liked_USERS[$uid_key] ); // remove from array
+				$user_likes = count( $liked_POSTS ); // recount user likes
+				update_post_meta( $post_id, "_user_liked", $liked_USERS ); // Remove user ID from post meta
+				update_post_meta($post_id, "_post_like_count", --$post_like_count ); // -1 count post meta
+				update_user_option( $user_id, "_liked_posts", $liked_POSTS ); // Remove post ID from user meta			
+				update_user_option( $user_id, "_user_like_count", $user_likes ); // -1 count user meta
+				echo "already".$post_like_count; // update count on front end
+				
+			}
+			
+		} else { // user is not logged in (anonymous)
+			$ip = $_SERVER['REMOTE_ADDR']; // user IP address
+			$meta_IPS = get_post_meta( $post_id, "_user_IP" ); // stored IP addresses
+			$liked_IPS = NULL; // set up array variable
+			
+			if ( count( $meta_IPS ) != 0 ) { // meta exists, set up values
+				$liked_IPS = $meta_IPS[0];
+			}
+	
+			if ( !is_array( $liked_IPS ) ) // make array just in case
+				$liked_IPS = array();
+				
+			if ( !in_array( $ip, $liked_IPS ) ) // if IP not in array
+				$liked_IPS['ip-'.$ip] = $ip; // add IP to array
+			
+			if ( !AlreadyLiked( $post_id ) ) { // like the post
+				update_post_meta( $post_id, "_user_IP", $liked_IPS ); // Add user IP to post meta
+				update_post_meta( $post_id, "_post_like_count", ++$post_like_count ); // +1 count post meta
+				echo $post_like_count; // update count on front end
+				
+			} else { // unlike the post
+				$ip_key = array_search( $ip, $liked_IPS ); // find the key
+				unset( $liked_IPS[$ip_key] ); // remove from array
+				update_post_meta( $post_id, "_user_IP", $liked_IPS ); // Remove user IP from post meta
+				update_post_meta( $post_id, "_post_like_count", --$post_like_count ); // -1 count post meta
+				echo "already".$post_like_count; // update count on front end
+				
+			}
+		}
+	}
+	
+	exit;
+}
+
+function getAuthorLikeLink( $author_id ) 
+{
+	$like_count = get_post_meta( $author_id, "_author_likes", true ); // get author likes
+	$count = ( empty( $like_count ) || $like_count == "0" ) ? 'Like' : esc_attr( $like_count );
+	if ( AlreadyLiked( $author_id ) ) 
+	{
+		$class = esc_attr( ' liked' );
+		$title = esc_attr( 'Unlike' );
+		$heart = '<i id="icon-like" class="fa fa-thumbs-up"></i>';
+	} 
+	else 
+	{
+		$class = esc_attr( '' );
+		$title = esc_attr( 'Like' );
+		$heart = '<i id="icon-unlike" class="fa fa-thumbs-o-up"></i>';
+	}
+	
+	$output = '<a href="#" class="author-like'.$class.'" data-author_id="'.$author_id.'" title="'.$title.'">'.$heart.'&nbsp;'.$count.'</a>';
+	return $output;
+}
