@@ -699,8 +699,8 @@ Template Name: Homepage
 			html+=
 					'<div class="inside-script">'
 																		
-								+'<div class="video-section vid_if">'
-									+'<div class="show-featured-image vid_if">'
+								+'<div class="video-section vid_if sp_inside_vid">'
+									+'<div class="show-featured-image vid_if posrel">'
 										
 										+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
 										
@@ -761,7 +761,7 @@ Template Name: Homepage
 	jQuery('.play_movie_big').live('click',function(event){
 		
 		event.preventDefault();
-			
+        sf_height = jQuery(this).parent().height();
 		console.log("in play_movie_big click event");
 		
 		var video_id = jQuery(this).attr("data-id");
@@ -796,8 +796,8 @@ Template Name: Homepage
 	
 		generate_video(embedurl);
         
-		height = window.innerHeight ? window.innerHeight : $(window).height();
-        jQuery('.vid_if ').css('height', height);
+		//height = window.innerHeight ? window.innerHeight : $(window).height();
+        jQuery('.vid_if ').css('height', sf_height);
         jQuery('.video-section').addClass('ontop');
 		
 	});		

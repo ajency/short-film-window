@@ -133,10 +133,12 @@
                 }*/
                 height = window.innerHeight ? window.innerHeight : $(window).height();
                 width = window.outerWidth ? window.outerWidth : $(window).width();
-                if (width < 480) {
-                    $('.vid_if ').css('height', height - 156);
-                } else {
-                    $('.vid_if ').css('height', height);
+                if (!($('body').hasClass('home'))) {
+                    if (width < 480) {
+                        $('.vid_if ').css('height', height - 156);
+                    } else {
+                        $('.vid_if ').css('height', height);
+                    }
                 }
             });
             $(window).load(function() {
@@ -147,10 +149,12 @@
             });
         height = window.innerHeight ? window.innerHeight : $(window).height();
         width = window.outerWidth ? window.outerWidth : $(window).width();
-        if (width < 480) {
-            $('.vid_if ').css('height', height - 156);
-        } else {
-            $('.vid_if ').css('height', height);
+        if (!($('body').hasClass('home'))) {
+            if (width < 480) {
+                $('.vid_if ').css('height', height - 156);
+            } else {
+                $('.vid_if ').css('height', height);
+            }
         }
 
     });
