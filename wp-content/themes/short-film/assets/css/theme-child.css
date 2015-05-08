@@ -11686,7 +11686,10 @@ a {
   border-color: #af152f;
 }
 .movie-cat ul li.active a {
-  color: #4d4d4d;
+  color: #af152f;
+}
+.movie-cat ul li.active:hover a {
+  color: #fe4665;
 }
 /* In Focus */
 .focus-img {
