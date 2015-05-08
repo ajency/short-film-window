@@ -182,6 +182,16 @@
 h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primary;}
 
 .staffpick-display-section, .listlayout, .couchlayout {
+    //video fi and iframe
+    .sp_inside_vid {
+        height: auto;
+        .show-featured-image {
+            max-height: 475px;
+            @media screen and (max-width: 991px) {
+                max-height: 385px;
+            }
+        }
+    }
     .video-js {
         width: 100%;
         height: auto;

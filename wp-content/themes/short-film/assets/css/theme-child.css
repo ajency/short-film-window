@@ -11839,6 +11839,23 @@ h5.brand,
 h6.brand {
   color: #af152f;
 }
+.staffpick-display-section .sp_inside_vid,
+.listlayout .sp_inside_vid,
+.couchlayout .sp_inside_vid {
+  height: auto;
+}
+.staffpick-display-section .sp_inside_vid .show-featured-image,
+.listlayout .sp_inside_vid .show-featured-image,
+.couchlayout .sp_inside_vid .show-featured-image {
+  max-height: 475px;
+}
+@media screen and (max-width: 991px) {
+  .staffpick-display-section .sp_inside_vid .show-featured-image,
+  .listlayout .sp_inside_vid .show-featured-image,
+  .couchlayout .sp_inside_vid .show-featured-image {
+    max-height: 385px;
+  }
+}
 .staffpick-display-section .video-js,
 .listlayout .video-js,
 .couchlayout .video-js {
@@ -13169,5 +13186,3 @@ h4.auth_name {
 .listlayout i {
   margin-right: 10px;
 }
-
-#aal-box a{color:#000 !important;}
