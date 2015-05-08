@@ -45,12 +45,16 @@
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20">
-                            <form action="" class="search_menu">
+                            
+							<!-- <form action="" class="search_menu"> -->
                                 <div class="form-group">
-                                    <input type="text" class="form-control search" value="" placeholder="Search"/>
+                                  
+								  <input type="text" class="form-control search" value="" placeholder="Search"/>
+									
                                     <i class="fa fa-search"></i>
                                 </div>
-                            </form>
+                           <!-- </form>-->
+							
                         </div>
 					</div>
                 </div>
@@ -672,9 +676,14 @@ window.onload = function() {
         
     });
 
+	//jQuery('.search').change(function(e) {
+	
     jQuery('.search').live('change',function(e){
-       
+		      
    	    e.preventDefault();
+		
+		console.log("in search change event..");
+				
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
