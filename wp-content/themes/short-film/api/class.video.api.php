@@ -216,7 +216,8 @@ class Video_API
 
     }
 
-    public function get_posts_filter(){
+    public function get_posts_filter()
+	{
 
 
         $title = isset($_REQUEST['title']) && $_REQUEST['title'] !="" ? 

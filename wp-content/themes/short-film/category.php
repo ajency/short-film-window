@@ -409,7 +409,11 @@
                 ?>
                 <div class="row listlayout">
                     <div class="col-md-5">
-                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+						
+						<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+							<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+						</a>
+						
                     </div>
                     <div class="col-md-7">
                         <div class="row">
@@ -481,8 +485,12 @@
                     </div>	                
                 </div>
 
-	            <div class="couchlayout">	            	
-            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
+	            <div class="couchlayout">
+
+					<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+						<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
+					</a>	
+						
                     <div class="row">
                         <div class="col-sm-10">
                             <h3 class="pull-l eft">
@@ -689,7 +697,8 @@ window.onload = function() {
 
 	//jQuery('.search').change(function(e) {
 	
-    jQuery('.search').live('change',function(e){
+    jQuery('.search').live('change',function(e)
+	{
 		      
    	    e.preventDefault();
 		
@@ -698,17 +707,21 @@ window.onload = function() {
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
-        data = 'title='+jQuery(e.target).val();
-        jQuery.ajax({
+        
+		data = 'title='+jQuery(e.target).val();
+        
+		jQuery.ajax({
                 type : 'GET',
                 url : SITEURL+'/wp-json/filters',
                 data : data,
-                success:function(response){
+                success:function(response)
+				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
                     jQuery('.all_posts').html("")
                      myarr = [];
-                    jQuery.each(response,function(index,value){
+                    jQuery.each(response,function(index,value)
+					{
                            
                             console.log(value);
                            
@@ -1204,7 +1217,9 @@ window.onload = function() {
 
                 html += '<div class="row listlayout">'
                     + '<div class="col-md-5">'
-                         + '<img src="'+value.featured_image+'" class="img-responsive width-full">'
+						+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+							+ '<img src="'+value.featured_image+'" class="img-responsive width-full">'
+						+'</a>'	
                     + '</div>'
                     + '<div class="col-md-7">'
                         + '<div class="row">'
@@ -1260,8 +1275,10 @@ window.onload = function() {
 
 
                 html += '<div class="couchlayout">'
-            		+ '<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
-                    
+					
+					+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'					
+						+ '<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+                    +'</a>'
 					+ '<div class="row">'
                         
 						+ '<div class="col-sm-10">'
