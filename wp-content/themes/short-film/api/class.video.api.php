@@ -92,6 +92,13 @@ class Video_API
 
 		$genre = isset($_REQUEST['genre']) && $_REQUEST['genre'] !="" ? 
 						$_REQUEST['genre'] : "";
+						
+		$taxonomy = isset($_REQUEST['taxonomy']) && $_REQUEST['taxonomy'] !="" ? 
+						$_REQUEST['taxonomy'] : "";		
+
+		$region = isset($_REQUEST['region']) && $_REQUEST['region'] !="" ? 
+						$_REQUEST['region'] : "";							
+						
 		$language = isset($_REQUEST['language']) && $_REQUEST['language'] !="" ? 
 						$_REQUEST['language'] : "";
 
@@ -110,6 +117,8 @@ class Video_API
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
 					'genre'		    	=> $genre,
+					'taxonomy'		    => $taxonomy,
+					'region'		    => $region,
 					'language'			=> $language,
 					'posts_per_page'   	=> $posts_per_page,
 					'offset'           	=> $offset,

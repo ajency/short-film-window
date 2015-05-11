@@ -123,7 +123,8 @@ get_header(); ?>
 			        	$region_array = array();
 			        	$cat_array = array();
 			        	
-						foreach ($response['region'] as $value) {
+						foreach ($response['region'] as $value) 
+						{
 			        			$id = get_term_by( 'name', $value, 'region');
 			        			$category_link = get_term_link( $id );
 			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" class="def_link" title="Region Name">'.$value.'</a>';
@@ -131,8 +132,10 @@ get_header(); ?>
 			        	}
 			        	if(count($region_array) == 0)
 			        		$region_array = array(0 => 'No regions');
+						
 						$temp = array();
-			        	foreach ($response['categories'] as $value) {
+			        	foreach ($response['categories'] as $value) 
+						{
 			        			$category_id = get_cat_ID( $value );
 			        			$category_link = get_category_link( $category_id );
 								array_push($temp, $category_link);
