@@ -116,23 +116,58 @@ class Video
 
 		$meta_key = $args['language']!="" ? 'language' : '';
 
-		$params = array(
-					'orderby'          		=> 'post_date',
-					'order'            		=> 'DESC',
-					'post_type' 	   		=> 'post',
-					'post_status'      		=> 'publish',
-					'category'		  	 	=> $args['genre'],
-					'meta_key'				=> $meta_key,
-					'meta_value'			=> $args['language'],
-					'posts_per_page'   		=> $args['posts_per_page'],
-					'offset'           		=> $args['offset'],
-					'exclude'				=> $args['exclude']
-	
-				);
+		if($args['taxonomy'])  // for taxonomy template - to query posts of a particular region (taxonomy)
+		{
+					
+			$params = array(
+						'orderby'          		=> 'post_date',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'category'		  	 	=> $args['genre'],							
+						//'region'		  	 	=> $args['region'],						
+						'meta_key'				=> $meta_key,
+						'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						'tax_query' => array(
+											array(
+											  'taxonomy' => $args['taxonomy'],
+											  'field' => 'term_id',
+											  'terms' => $args['region'] 
+											 
+											)
+										)
+		
+					);
+		}
+		else
+		{
+						
+			$params = array(
+						'orderby'          		=> 'post_date',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'category'		  	 	=> $args['genre'],							
+						//'region'		  	 	=> $args['region'],						
+						'meta_key'				=> $meta_key,
+						'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude']
+				
+		
+					);
+		}
+
 
 		
 		#get all posts
 		$posts_array = get_posts($params); 
+
 
 		$post_response = array();
 		foreach ($posts_array as $key => $post) {
@@ -163,7 +198,7 @@ class Video
 			
 		}
 
-		
+
 		return $post_response;
 
 	}

@@ -142,6 +142,8 @@ Template Name: category_template
 			'orderby'           => 'post_date',
 			'order'             => 'DESC',
 			'genre'		    	=> '',
+			'region'		    => '',
+			'taxonomy'			=> '',
 			'language'			=> '',
 			'posts_per_page'   	=> 12,
 			'offset'           	=> 0,
@@ -460,9 +462,11 @@ Template Name: category_template
 								<div class="lico_c">
 									<div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div>
 									<div class="lico like-action">
-	<!--                                        <span class="m-l-5 m-r-5">|</span>-->
-										<?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i>
-	<!--                                        <span class="m-l-5 m-r-5">|</span>-->
+									
+										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
+
+										<!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+	
 									</div>
 									<div class="lico watchlist-add"> 
 										<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
@@ -518,9 +522,10 @@ Template Name: category_template
                                     <div class="lico small"><?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
                                     
                                     <div class="lico like-action">
-											<!--    <span class="m-l-5 m-r-5">|</span>-->
-                                        <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i>
-											<!--    <span class="m-l-5 m-r-5">|</span>-->
+										
+										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>																				
+                                       <!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+											
                                     </div>
                                     
                                     <div class="lico watchlist-add"> 
@@ -1217,9 +1222,15 @@ html += '<div class="row listlayout">'
 					+ '</div>'	
 					+ '<div class="lico_c">'
 						+ '<div class="lico small">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
+						
 						+ '<div class="lico like-action">'
-						+ value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+							
+							+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
+							
+							//+ value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+							
 						+ '</div>'
+						
 						+ '<div class="lico watchlist-add"> '
 							+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
 						+ '</div>'
@@ -1244,8 +1255,11 @@ html += '<div class="couchlayout">'
 			+ '</div>'
 			
 				+ '<div class="col-sm-2">'
+					
 					+ '<div class="soc-ico nh pull-right" style="margin-top: 35px;">'
+						
 						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+					
 					+ '</div>'	
 				
 				+ '</div>'
@@ -1269,7 +1283,11 @@ html += '<div class="couchlayout">'
 					+ '<div class="lico_c social-strip">'
 						+ '<div class="lico small">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
 						+ '<div class="lico like-action">'
-							+ value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+						
+							+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
+							
+							//+ value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+							
 						+ '</div>'
 						+ '<div class="lico watchlist-add">'
 							+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'

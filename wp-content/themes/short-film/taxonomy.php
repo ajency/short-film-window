@@ -15,11 +15,14 @@
 			<?php
 				
 				$queried_object = get_queried_object();
+								
 				
 				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
-					'region'		    => $queried_object->term_id ,
+					'genre'				=> '',
+					'region'		    => $queried_object->term_id,
+					'taxonomy'			=> $queried_object->taxonomy,
 					'language'			=> '',
 					'posts_per_page'   	=> 12,
 					'offset'           	=> 0
@@ -28,19 +31,8 @@
 				
 				$response_posts = Film\Video::get_many($args);
 				
+				//print_r($response_posts);
 				
-				
-				/*
-					$author_id	= $queried_object->ID;
-					
-									
-					$response_posts = get_posts_by_author($author_id);
-					
-					$response_articles = get_articles_by_author($author_id);
-						
-									
-					$author_info = get_author_info($author_id);
-				*/
 			?>
 				
 				
@@ -54,16 +46,16 @@
 						<div class="show_posts col-md-12">
 						
 							<div class="heading sec_head">
-								<h4> Videos from region: <span><?php echo $author_info['author_name']; ?></span> </h4>
+								<h4> Videos from region: <span><?php echo implode(', ',$response_posts[0]['region']); ?></span> </h4> 
 							</div>
 							
 							<div class="all_posts">
 																		
 								<?php
-									//if(count($response_posts) > 0)
-									foreach ($response_posts as $key => $value)
-									{
 									
+									foreach ($response_posts as $key => $value)									
+									{
+
 								?>
 										<div class="row listlayout">
 											
@@ -150,6 +142,12 @@
 							</div> <!-- end #all_posts -->
 							
 							<div class="text-center">
+								
+								
+								<input type="hidden" name="taxonomy" id="taxonomy" value="<?php echo $queried_object->taxonomy; ?>" /> 
+								
+								<input type="hidden" name="region" id="region" value="<?php echo $queried_object->term_id; ?>" /> 
+							
 								<input type="hidden" name="offset" id="offset" value="0" />
 								<a href="#" class="btn btn-primary load_more">Load More Videos...</a>
 							</div>
@@ -199,53 +197,45 @@
 		});
 		
 
-		function get_all_posts()
-		{
-			console.log(" inside get_all_posts ");
-			
-			//posts_per_page = 12;
-			posts_per_page = 6;
-			offset = jQuery('#offset').val();
+	function get_all_posts()
+	{
 
-			
-			jQuery.ajax({
-
-					type : 'POST',
-
-					url : ajaxurl,
-					
-					data:
-					{
-						offset:offset,
-						author_id: <?php echo $author_id; ?>,						
-						action : 'fetch_posts_by_author'
-				
-					},	
-					//dataType: 'json',
-					
-					success:function(response)
-					{
-						
-						console.log(" inside get_all_posts success ");
-						//console.log(response);
-											
-						generate_data(response);
-												
-						count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
-						jQuery('#offset').val(count);
-						console.log(count);
+		//genre = jQuery('#genre').val();
+	
+		//language = jQuery('#language').val();
 		
-					},
-					error:function(error)
-					{
-						//jQuery('.loader').text("")
-						jQuery('.all_posts').html('No Posts found');
-						console.log(" inside get_all_posts error ");
-						
-					} 
-			});
-						
-		}
+		taxonomy = jQuery('#taxonomy').val();
+		
+		region = jQuery('#region').val();
+		
+		posts_per_page = 12;
+		offset = jQuery('#offset').val();
+		
+		//data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
+		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&region='+region;
+		
+		
+
+		jQuery.ajax({
+				type : 'GET',
+				url : SITEURL+'/wp-json/videos',
+				data : data,
+				success:function(response)
+				{
+	
+                    generate_data(response);
+					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
+                    jQuery('#offset').val(count);
+				
+					
+				},
+				error:function(error){
+					jQuery('.loader').text("")
+					jQuery('.all_posts').html('No Posts found');
+					
+				} 
+			})
+	}
 		
 			
 		function generate_data(response)
@@ -335,7 +325,7 @@
 								+'</div> '
 														
 								
-							+'</div>;'
+							+'</div>'
 					 
 				
 					 
