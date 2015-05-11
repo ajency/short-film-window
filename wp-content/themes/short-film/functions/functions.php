@@ -212,26 +212,35 @@ function generate_grid_response($response){
 
 }
 
-function get_posts_filter($args){
+function get_posts_filter($args)
+{
 
 	global $wpdb;
 
 	$response = array();
 	    
 
-	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+	//$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+	
+	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
 
     $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
 	$user_query = new WP_User_Query($args1);
+	
+
 
 	$author = "";
-	if ( ! empty( $user_query->results ) ) {
+	if ( ! empty( $user_query->results ) ) 
+	{
 
-		foreach ( $user_query->results as $user ) {
+		foreach ( $user_query->results as $user ) 
+		{
 			$author =  $user->id;
 		}
 
 	}
+	
+
 	
 	if(count($postid) != 0 || $author != "")
 	{
@@ -252,10 +261,109 @@ function get_posts_filter($args){
 			
 		}
 	}
+			
+					//////////////////////
+	else
+	{
+		$args_tag=array('tag' => $args['title']);
+		
+		$tag_query = new WP_Query($args_tag);
+		
+		while ( $tag_query->have_posts() ) 
+		{
+			$tag_query->the_post();
+			$response[] = Film\Video::get($tag_query->post->ID);
+			
+		}
+		
+	}
+					////////////////////
+	//print_r($response);	
 	
    return $response;
 
 }
+
+
+function get_articles_filter($args)
+{
+
+	global $wpdb;
+
+	$response = array();
+	    
+
+	//$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+	
+	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
+
+    $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
+	$user_query = new WP_User_Query($args1);
+	
+
+
+	$author = "";
+	if ( ! empty( $user_query->results ) ) 
+	{
+
+		foreach ( $user_query->results as $user ) 
+		{
+			$author =  $user->id;
+		}
+
+	}
+	
+
+	
+	if(count($postid) != 0 || $author != "")
+	{
+		$params = array(
+        'post__in'			=> $postid,
+        'posts_per_page'	=> $args['posts_per_page'],
+        'order' 			=> $args['order'],
+        'orderby'			=> $args['orderby'],
+        'post_type' 		=> 'article',
+        'author'			=> $author
+    	);
+
+	    
+		$query = new WP_Query($params);
+	    while ( $query->have_posts() ) 
+		{
+			$query->the_post();
+			$response[] = Article_post\Article::get_article($query->post->ID);
+			
+		}
+	}
+			
+					//////////////////////
+	else
+	{
+		$args_tag=array(
+					
+				'tag'		=> $args['title'],
+				'post_type' => 'article'
+		);
+		
+		$tag_query = new WP_Query($args_tag);
+		
+		while ( $tag_query->have_posts() ) 
+		{
+			$tag_query->the_post();
+			
+			$response[] = Article_post\Article::get_article($tag_query->post->ID);
+			
+		}
+		
+	}
+					////////////////////
+	//print_r($response);	
+	
+   return $response;
+
+}
+
+
 
 function store_post_views($views,$post_id){
 

@@ -417,7 +417,9 @@ Template Name: category_template
         ?>
                 <div class="row listlayout">
                     <div class="col-md-5">
-                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+						<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+							<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+						</a>	
                     </div>
                     <div class="col-md-7">
                         <div class="row">
@@ -483,8 +485,12 @@ Template Name: category_template
 			<!-- </div> // extra div <-  -->
 
 	            <div class="couchlayout">	            	
-            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
-                    <div class="row">
+            		
+					<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+						<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
+                    </a>
+					
+					<div class="row">
                         <div class="col-sm-10">
                             <h3 class="pull-l eft">
                                 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -671,12 +677,15 @@ window.onload = function() {
     });
 
     jQuery('.search').live('change',function(e){
+		
         e.preventDefault();
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
-        data = 'title='+jQuery(e.target).val();
-        jQuery.ajax({
+        
+		data = 'title='+jQuery(e.target).val();
+        
+		jQuery.ajax({
                 type : 'GET',
                 url : SITEURL+'/wp-json/filters',
                 data : data,
@@ -694,9 +703,7 @@ window.onload = function() {
                                     myarr.push(value['id']);  
                                     
                                 }
-                                
-                                    
-                           
+                          
                     });
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
@@ -733,7 +740,8 @@ window.onload = function() {
 
 	function get_all_posts(){
 
-        jQuery('.all_posts').html('');
+        //-> jQuery('.all_posts').html('');
+		
 		genre = jQuery('#genre').val();
 		language = jQuery('#language').val();
 		posts_per_page = 12;
@@ -1188,7 +1196,9 @@ jQuery.each(response,function(index,value){
 
 html += '<div class="row listlayout">'
 		+ '<div class="col-md-5">'
-			 + '<img src="'+value.featured_image+'" class="img-responsive width-full">'
+			+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+				+ '<img src="'+value.featured_image+'" class="img-responsive width-full">'
+			+'</a>'	
 		+ '</div>'
 		+ '<div class="col-md-7">'
 			+ '<div class="row">'
@@ -1243,7 +1253,11 @@ html += '<div class="row listlayout">'
 
 
 html += '<div class="couchlayout">'
-		+ '<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+
+		+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+			+ '<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+		+'</a>'
+		
 		+ '<div class="row">'
 			+ '<div class="col-sm-10">'
 				+ '<h3 class="pull- left">'

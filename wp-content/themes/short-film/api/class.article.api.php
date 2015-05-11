@@ -32,6 +32,11 @@ class Article_API
             array( array( $this, 'store_post_views'), WP_JSON_Server::CREATABLE)
             
         );
+		
+		$routes['/articlefilters'] = array(
+            array( array( $this, 'get_articles_filter'), WP_JSON_Server::READABLE)
+            
+        );
 	
 
     	return $routes;
@@ -136,6 +141,43 @@ class Article_API
 
 
     }
+	
+	
+    public function get_articles_filter()
+	{
+
+        $title = isset($_REQUEST['title']) && $_REQUEST['title'] !="" ? 
+                        $_REQUEST['title'] : "" ;
+
+        $args = array(
+                    'orderby'           => 'post_date',
+                    'order'             => 'DESC',
+                    'posts_per_page'    => 5,
+                    'offset'            => 0,
+                    'title'             =>  $title
+
+        );
+
+
+        $response = get_articles_filter($args);
+        
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+
+    }	
 
 
 }  //end class

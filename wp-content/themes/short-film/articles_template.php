@@ -356,16 +356,18 @@ window.onload = function() {
 		
 	});
 	
-	/*
+
     jQuery('.search').live('change',function(e){
         e.preventDefault();
-        jQuery('#genre').val("");
-        jQuery('#language').val("");
+        //jQuery('#genre').val("");
+        //jQuery('#language').val("");
         jQuery('#offset').val(0);
-        data = 'title='+jQuery(e.target).val();
-        jQuery.ajax({
+        
+		data = 'title='+jQuery(e.target).val();
+        
+		jQuery.ajax({
                 type : 'GET',
-                url : SITEURL+'/wp-json/filters',
+                url : SITEURL+'/wp-json/articlefilters',
                 data : data,
                 success:function(response){
                     jQuery('#offset').val(0)
@@ -391,7 +393,7 @@ window.onload = function() {
         });
            
     });
-	*/
+	
 	
 	function showLayout(){
 
