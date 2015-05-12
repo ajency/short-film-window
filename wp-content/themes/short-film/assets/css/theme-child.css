@@ -11348,9 +11348,14 @@ a {
   top: 0;
   left: 0;
   z-index: 5;
-  width: auto;
   min-width: 100%;
   min-height: 100%;
+}
+@media screen and (max-width: 991px) {
+  .grid-box .grid-image img {
+    width: auto;
+    height: 100%;
+  }
 }
 @media (min-width: 767px) {
   .multi-grid:nth-child(odd) {
@@ -12596,7 +12601,7 @@ h6.brand {
   min-width: 100%;
   min-height: 100%;
   max-width: none;
-  width: auto;
+  width: 100%;
   height: auto;
 }
 .ontop {
