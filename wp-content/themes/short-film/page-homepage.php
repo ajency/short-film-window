@@ -22,7 +22,7 @@ Template Name: Homepage
             <div class="content-wrapper">
                 <div class="spacer-40"></div>
 
-                <h2 class="brand">STAFF PICKS <small><em>This Week's Premiere</em></small></h2>
+                <h2 class="brand">STAFF PICKS <small><em class="brand_cat_name">This Week's Premiere</em></small></h2>
 
                 <hr class="m-t-0">
 
@@ -76,7 +76,7 @@ Template Name: Homepage
                     <div class="col-sm-3">
                         <nav class="movie-cat visible-sm visible-md visible-lg">
                             <ul>
-							     <li><a href="">THIS WEEK'S PREMIERE</a></li>
+							     <li><a class="staffpick-default" href="#">THIS WEEK'S PREMIERE</a></li>
 							
 							<?php
 							
@@ -84,7 +84,9 @@ Template Name: Homepage
 												
 								foreach ( $pairs as $pair )
 								{								
-									echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
+									// echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
+									
+									echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-cat-name="'.$pair['catname'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
 									
 								}
 							
@@ -662,6 +664,43 @@ Template Name: Homepage
 		
         //addclass to first one (this week's premiere) by default
 		$('.movie-cat ul li').eq(0).addClass('active');
+		
+		$('.staffpick-default').click(function(event){
+		
+			event.preventDefault();
+			
+			$('.movie-cat ul li').removeClass('active');   
+			//$('.staffpick-default').addClass('active');
+			$('.movie-cat ul li').eq(0).addClass('active');	
+			
+			
+			jQuery('.brand_cat_name').html("This Week's Premiere")
+			
+			
+			jQuery.ajax({
+		
+				type : 'GET',
+				url : ajaxurl,
+
+				data:{
+					action : 'show_default_staffpick_post'
+				},
+				success:function(response)
+				{									
+					generate_data(response);
+					
+					console.log(" Success default staffpick ");
+									
+				},
+				error:function(response)
+				{
+					console.log(" Error ");
+				}
+
+			});
+			
+		
+		});
         
 		$('.staffpick-category').click(function(event){
 							
@@ -671,6 +710,12 @@ Template Name: Homepage
 			$(this).parent().addClass('active');
 			
 			var postid = $(event.target).attr('data-post-id');
+			
+			/////
+			var catname = $(event.target).attr('data-cat-name');
+					
+			jQuery('.brand_cat_name').html(catname)
+			////
 			
 			console.log(postid);
 				
@@ -720,7 +765,15 @@ Template Name: Homepage
 									+'<div class="row posrel">'
 										+'<div class="col-md-10">'
 											+'<div class="pull-lef t">'
-												+'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
+												// +'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
+												
+												
+												+'<h3><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by '+response.director+'</em></small></h3>'
+												
+												//+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+												
+											
+											
 											+'</div>'
 																				
 									+'</div>'

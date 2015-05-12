@@ -578,15 +578,19 @@ Template Name: category_template
 	</div>
 
 	<div class="spacer-40"></div>
-
-	<a id="award" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=awardwinning"></a>
+				
+	<!-- <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=awardwinning"></a> -->
+	
+	<a id="award" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=awardwinning"></a>
 		
 	<div class="awardwinning">
 	</div>
 
 	<div class="spacer-40"></div>
 
-	<a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=indian"></a>
+	<!-- <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=indian"></a> -->
+	
+	<a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/regionposts?region=india"></a>
 		
 	<div class="indian">
 	</div>
@@ -844,11 +848,80 @@ window.onload = function() {
 
                 
 
-                html += '<div>'
-                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       +' </div></a>'
-                    +'</div>'
+                // html += '<div>'
+                        // +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
+                           // +' <img src="'+value.featured_image+'" class="img-responsive">'
+                       // +' </div></a>'
+                    // +'</div>'
+					
+					/////////////////////////////////////
+								
+															
+					html +=	'<div class="col-xs-4">'
+								
+								+'<div class="grid-box grid-full content-align-bottom">'
+											
+									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+												
+										+'<div class="grid-image">'
+											+'<img src="'+value.featured_image+'">'
+										+'</div>'
+			
+										+'<div class="grid-text-wrap">'
+											
+											+'<div class="grid-title">'+value.title+'</div>'
+										   
+										   // +'<div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>'										   
+										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
+										   
+										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
+										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
+											
+											+'<div class="grid-meta?>">DIR.'+value.director+'</div>'
+											 
+										+'</div>'
+												
+										+'<div class="grid-text-wrap hover-text">'
+											+'<div class="grid-title">'+value.title+'</div>'
+											+'<div class="grid-meta">'
+												+'<div class="row">'
+													+'<div class="col-xs-4">'
+
+														+'<div class="pull-left p-l-10 m-t-10">'
+															+'<div>'
+																+value.no_of_views																
+																+'<i class="fa fa-eye"></i>'
+															+'</div>'
+															+'<div>'
+																+value.post_like_count																
+																+'<i class="fa fa-thumbs-up"></i>'
+															+'</div>'
+														+'</div>'
+														
+													+'</div>'
+													
+													+'<div class="col-xs-8">'
+														+'<div class="pull-right text-right m-t-10">'
+															+value.excerpt
+														   
+														+'</div>'
+													+'</div>'
+												+'</div>'
+											+'</div>'
+										+'</div>'
+																							
+											
+										+'<div class="overlay-vertical"></div>'
+									+'</a>'
+								+'</div>'
+																			
+							+'</div>';
+								
+					
+					
+					/////////////////////////////////////
+					
+					
 
 
         });
@@ -856,7 +929,7 @@ window.onload = function() {
                
                
                    
-        html +='</div>';
+      //  html +='</div>';
 
         jQuery('.trending').html(html);
         loadslick();
@@ -878,11 +951,76 @@ window.onload = function() {
         jQuery.each(response,function(index,value){
 
                
-                html += '<div>'
-                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       +' </div></a>'
-                    +'</div>'
+                // html += '<div>'
+                        // +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
+                           // +' <img src="'+value.featured_image+'" class="img-responsive">'
+                       // +' </div></a>'
+                    // +'</div>'
+					
+			//////////////////////////////////
+
+																			
+					html +=	'<div class="col-xs-4">'
+								
+								+'<div class="grid-box grid-full content-align-bottom">'
+											
+									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+												
+										+'<div class="grid-image">'
+											+'<img src="'+value.featured_image+'">'
+										+'</div>'
+			
+										+'<div class="grid-text-wrap">'
+											
+											+'<div class="grid-title">'+value.title+'</div>'
+										   
+										   // +'<div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>'										   
+										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
+										   
+										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
+										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
+											
+											+'<div class="grid-meta?>">DIR.'+value.director+'</div>'
+											 
+										+'</div>'
+												
+										+'<div class="grid-text-wrap hover-text">'
+											+'<div class="grid-title">'+value.title+'</div>'
+											+'<div class="grid-meta">'
+												+'<div class="row">'
+													+'<div class="col-xs-4">'
+
+														+'<div class="pull-left p-l-10 m-t-10">'
+															+'<div>'
+																+value.no_of_views																
+																+'<i class="fa fa-eye"></i>'
+															+'</div>'
+															+'<div>'
+																+value.post_like_count																
+																+'<i class="fa fa-thumbs-up"></i>'
+															+'</div>'
+														+'</div>'
+														
+													+'</div>'
+													
+													+'<div class="col-xs-8">'
+														+'<div class="pull-right text-right m-t-10">'
+															+value.excerpt
+														   
+														+'</div>'
+													+'</div>'
+												+'</div>'
+											+'</div>'
+										+'</div>'
+																							
+											
+										+'<div class="overlay-vertical"></div>'
+									+'</a>'
+								+'</div>'
+																			
+							+'</div>';
+			
+			//////////////////////////////////	
 
 
         });
@@ -890,12 +1028,13 @@ window.onload = function() {
                
                
                    
-        html +='</div>';
+       // html +='</div>';
 
         jQuery('.awardwinning').html(html);
           loadslick();               
                         
     });
+	
     jQuery('.indian').infinitescroll({
     
         navSelector     : "a#indian:last",
@@ -910,11 +1049,79 @@ window.onload = function() {
         html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
         jQuery.each(response,function(index,value){
 
-                html += '<div>'
-                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       +' </div></a>'
-                    +'</div>'
+                // html += '<div>'
+                        // +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
+                           // +' <img src="'+value.featured_image+'" class="img-responsive">'
+                       // +' </div></a>'
+                    // +'</div>'
+					
+					
+									/////////////////////////////////////
+								
+															
+					html +=	'<div class="col-xs-4">'
+								
+								+'<div class="grid-box grid-full content-align-bottom">'
+											
+									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+												
+										+'<div class="grid-image">'
+											+'<img src="'+value.featured_image+'">'
+										+'</div>'
+			
+										+'<div class="grid-text-wrap">'
+											
+											+'<div class="grid-title">'+value.title+'</div>'
+										   
+										   // +'<div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>'										   
+										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
+										   
+										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
+										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
+											
+											+'<div class="grid-meta?>">DIR.'+value.director+'</div>'
+											 
+										+'</div>'
+												
+										+'<div class="grid-text-wrap hover-text">'
+											+'<div class="grid-title">'+value.title+'</div>'
+											+'<div class="grid-meta">'
+												+'<div class="row">'
+													+'<div class="col-xs-4">'
+
+														+'<div class="pull-left p-l-10 m-t-10">'
+															+'<div>'
+																+value.no_of_views																
+																+'<i class="fa fa-eye"></i>'
+															+'</div>'
+															+'<div>'
+																+value.post_like_count																
+																+'<i class="fa fa-thumbs-up"></i>'
+															+'</div>'
+														+'</div>'
+														
+													+'</div>'
+													
+													+'<div class="col-xs-8">'
+														+'<div class="pull-right text-right m-t-10">'
+															+value.excerpt
+														   
+														+'</div>'
+													+'</div>'
+												+'</div>'
+											+'</div>'
+										+'</div>'
+																							
+											
+										+'<div class="overlay-vertical"></div>'
+									+'</a>'
+								+'</div>'
+																			
+							+'</div>';
+								
+					
+					
+					/////////////////////////////////////	
 
 
         });
@@ -922,7 +1129,7 @@ window.onload = function() {
                
                
                    
-        html +='</div>';
+        // html +='</div>';
 
         jQuery('.indian').html(html);
         loadslick();
