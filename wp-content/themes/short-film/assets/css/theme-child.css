@@ -11351,10 +11351,16 @@ a {
   min-width: 100%;
   min-height: 100%;
 }
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1199px) {
   .grid-box .grid-image img {
     width: auto;
     height: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
   }
 }
 @media (min-width: 767px) {
@@ -12601,8 +12607,14 @@ h6.brand {
   min-width: 100%;
   min-height: 100%;
   max-width: none;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .ontop {
   z-index: 5;

@@ -705,8 +705,14 @@
         min-width: 100%;
         min-height: 100%;
         max-width: none;
-        width: 100%; //was auto
-        height: auto;
+        width: auto; //was auto
+        height: 100%; //was auto
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
     }
 }
 .ontop {
