@@ -788,9 +788,22 @@ Template Name: Homepage
 								+'<hr class="m-t-0 m-b-5">'
 								+'<div class="row">'
 									+'<div class="col-md-10 col-xs-8">'
+										
 										+'<p class="m-t-0 m-b-0 staff_tag"><em>'+response.tagline+'</em></p>'
-										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region[0]+' </em></small></h5>'
-										+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.categories[0]+'</span></p>'
+										
+										// +'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region[0]+' </em></small></h5>'
+										
+										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region.join(',')+' </em></small></h5>'
+										
+										//+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.categories[0]+'</span></p>'
+										
+										//+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.categories.join(',')+'</span></p>'
+										
+										+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.video_category_links.join('</span><span class="label label-greydark">')+'</span></p>'
+										
+										 
+
+									
 									+'</div>'
 									+'<div class="col-md-2 col-xs-4 text-right meta-ico">'
 										+'<div class="meta-ico-in">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'

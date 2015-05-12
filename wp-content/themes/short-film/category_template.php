@@ -51,7 +51,7 @@ Template Name: category_template
                         <h2>EXPLORE</h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
-						<div class="m-t-20">
+						<div class="m-t-20 search_menu">
                             
 							<!-- <form action="" class="search_menu"> -->
                                
@@ -151,6 +151,8 @@ Template Name: category_template
 		);
 		
 		$response = Film\Video::get_many($args);
+		
+				
 		if(count($response) > 0)
 		{ 
 			$gridreposnse = generate_grid_response($response);
@@ -443,11 +445,23 @@ Template Name: category_template
 								<p><?php echo $value['excerpt'];?></p>
 								<h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
 								<h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
+								
 								<p class="categories">
+									
 									<span class="label label-greydark">
-										<?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+										
+										
+										
+										<?php
+																																
+										    echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
+										
+										?>
+									
 									</span>
+									
 								</p>
+								
 							</div>
 							
 							<?php// echo $value['permalink'];	// <-
@@ -514,11 +528,17 @@ Template Name: category_template
                             <p><em><?php echo $value['excerpt'];?></em></p>
                             
                             <h6 class="m-t-30 m-b-0"><em><?php echo implode(',',$value['region']);?> / <?php echo $value['duration'];?> MIN</em></h6>
-                            <p class="categories">
-                                <span class="label label-greydark">
-                                    <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
-                                </span>
+                            
+							<p class="categories">
+                               
+							   <span class="label label-greydark">
+                                 
+								 <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+                               
+							   </span>
+								
                             </p>
+							
                         </div>
                         
                         <div class="col-xs-4 text-right">
@@ -568,7 +588,7 @@ Template Name: category_template
 	<div class="text-center">
 		<input type="hidden" name="offset" id="offset" value="0" />
 		<input type="hidden" name="searchids" id="searchids" value="0" />
-		<a href="#" class="btn btn-primary load_more">Load More...</a>
+		<a href="#" class="btn btn-primary load_more">Load More</a>
     </div>
     <div class="spacer-40"></div>
 
@@ -1424,17 +1444,24 @@ html += '<div class="row listlayout">'
 					+ '<p>'+value.excerpt+'</p>'
 					+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
 					+ '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+					
 					+ '<p class="categories">'
+						
 						+ '<span class="label label-greydark">'
-							+ value.categories.join('</span><span class="label label-greydark">')
+							
+							// + value.categories.join('</span><span class="label label-greydark">')
+							+ value.video_category_links.join('</span><span class="label label-greydark">')
+						
 						+ '</span>'
+					
 					+ '</p>'
+					
 				+ '</div>'
 				
 				+ '<div class="col-xs-4 text-right list-info-btns">'
-					+ '<div class="soc-ic o nh">'
+					+ '<div class="soc-ico nh">'
 
-						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 						
 					+ '</div>'	
 					+ '<div class="lico_c">'
@@ -1479,7 +1506,7 @@ html += '<div class="couchlayout">'
 					
 					+ '<div class="soc-ico nh pull-right" style="margin-top: 35px;">'
 						
-						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 					
 					+ '</div>'	
 				

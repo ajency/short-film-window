@@ -2007,10 +2007,110 @@ function get_author_info($author_id)
 	// echo " ** ";
 	
 	return $author_info;
+				
+}
+
+/*
+function get_category_links($postid)
+{
+	$response = Film\Video::get($postid);
 	
+
+
+	$cat_array = array();
+	
+	$temp = array();
+	
+	foreach ($response['categories'] as $value) 
+	{
+			$category_id = get_cat_ID( $value );
 			
+			
+			
+			$category_link = get_category_link( $category_id );
+			
+			
+			
+			array_push($temp, $category_link);
+			
+			//$link = '<a href='.esc_url( $category_link ).' target="_blank"  title="Category Name">'.$value.'</a>';
+			
+			$link = '<a href="'.esc_url( $category_link ).'" target="_blank"  title="Category Name">'.$value.'</a>';
+			
+			//print_r($link);
+									
+			array_push($cat_array, $link);
+			
+			
+	}
+
+	//print_r($cat_array);
+
+	return $cat_array;
+	
+}
+*/
+
+function get_video_category_links($categories)
+{
+	
+	
+	$cat_array = array();
+	
+	$temp = array();
+	
+	foreach ($categories as $value) 
+	{
+			
+	
+			$category_id = get_cat_ID( $value );
+			
+						
+			$category_link = get_category_link( $category_id );
+			
+			//echo " # ".$category_link." # ";
+			
+			
+			
+			array_push($temp, $category_link);
+			
+					
+			 $link = '<a href="'.esc_url( $category_link ).'" target="_blank"  title="Category Name">'.$value.'</a>';
+			 
+			
+			// echo " * ";
+			// print_r($link);
+			
+			array_push($cat_array, $link);
+			
+			
+	}
+
+	//print_r($cat_array);
+	
+	return $cat_array;
+	
 }
 
 
+function get_region_links($postid)
+{
+	$response = Film\Video::get($postid);
+	
+	/////////
 
+	$region_array = array();
+	
+							foreach ($response['region'] as $value) 
+						{
+			        			$id = get_term_by( 'name', $value, 'region');
+			        			$category_link = get_term_link( $id );
+			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" class="def_link" title="Region Name">'.$value.'</a>';
+			        			array_push($region_array, $link);
+			        	}
 
+	print_r($cat_array);
+	
+	return $cat_array;
+	
+}

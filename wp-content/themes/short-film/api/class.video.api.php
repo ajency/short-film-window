@@ -110,9 +110,11 @@ class Video_API
 
 		$posts_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] 
 		!= "" ? $_REQUEST['posts_per_page'] : "";
+		
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
 						$_REQUEST['offset'] : 0;
-        $exclude = isset($_REQUEST['exclude']) && $_REQUEST['exclude'] !="" ? 
+        
+		$exclude = isset($_REQUEST['exclude']) && $_REQUEST['exclude'] !="" ? 
                         $_REQUEST['exclude'] : 0;
 
 
@@ -133,10 +135,6 @@ class Video_API
 
 		);
 		
-		// echo " *** taxonomy= ";
-		// echo $taxonomy;
-		// echo " *** region=";
-		// echo $region;
 
 		$response = Film\Video::get_many($args);
 		

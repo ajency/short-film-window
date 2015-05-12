@@ -125,8 +125,8 @@ get_header(); ?>
 			
 			<hr class="m-t-0">
 			
-			<div class="row">
-				<div class="col-md-12">
+			<div class="row sim_mov">
+<!--				<div class="col-md-12">-->
 																
 					<?php
 
@@ -154,7 +154,7 @@ get_header(); ?>
 										   
 											<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>
 											
-											<div class="grid-meta?>">DIR.<?php echo  ucfirst($recentvideo['director']);?></div>
+											<div class="grid-meta">DIR. <?php echo  ucfirst($recentvideo['director']);?></div>
 											 
 										</div>
 										
@@ -220,7 +220,7 @@ get_header(); ?>
 						} //end foreach							
 					?>			
 							
-				</div>
+<!--				</div>-->
 			</div>
 		
 		</div>	
