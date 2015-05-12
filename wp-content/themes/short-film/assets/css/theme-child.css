@@ -10938,6 +10938,13 @@ a {
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
 }
+.header .header-links .links a {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.header .header-links .links a:hover {
+  color: #fff;
+}
 .header .social-links {
   float: left;
 }
@@ -11293,6 +11300,8 @@ a {
   text-align: right;
   bottom: -50px;
   opacity: 0;
+  max-height: 150px;
+  overflow: hidden;
 }
 .grid-box:hover .grid-text-wrap {
   bottom: -50px;
@@ -12863,6 +12872,10 @@ h5.un {
 h2.page-title {
   text-transform: uppercase;
 }
+a:hover,
+a:focus {
+  text-decoration: none;
+}
 @media screen and (max-width: 991px) {
   h3,
   .h3 {
@@ -12966,6 +12979,11 @@ hr.vern {
 hr.border-btm {
   border: 0;
   border-bottom: 1px solid #ccc;
+}
+.load_more {
+  padding: 10px 30px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 .article_row .article_title {
   text-transform: uppercase;
@@ -13142,6 +13160,23 @@ hr.border-btm {
   .recent-movies .grid-box.grid-full {
     height: 200px;
   }
+}
+.sim_mov .grid-box {
+  height: 250px;
+}
+.sim_mov .grid-box.content-align-bottom .grid-text-wrap .grid-meta {
+  font-weight: normal;
+}
+.sim_mov .grid-box.content-align-bottom .grid-text-wrap .grid-meta i {
+  font-size: 17px;
+  margin-bottom: 8px;
+  margin-left: 12px;
+}
+.sim_mov .grid-box.content-align-bottom a {
+  font-weight: normal !important;
+}
+.sim_mov .grid-box.content-align-bottom a.more-link {
+  display: none !important;
 }
 h4.auth_name {
   text-transform: uppercase;
