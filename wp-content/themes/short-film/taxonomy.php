@@ -15,6 +15,10 @@
 			<?php
 				
 				$queried_object = get_queried_object();
+				
+				// echo " *** taxonomy= ".$queried_object->taxonomy;
+				
+				// echo " *** region= ".$queried_object->term_id;
 								
 				
 				$args = array(

@@ -125,14 +125,16 @@ function get_posts_based_tags($tag){
 		$response[] = Film\Video::get($query->post->ID);
 		
 	}
-
-
+	
+	// echo "hi";
+	// print_r($response);
 
 	return $response;
 
 }
 
-function get_posts_based_cats($cat){
+function get_posts_based_cats($cat)
+{
 
 	$args = array(
         'category_name' 			=> $cat,
@@ -160,6 +162,43 @@ function get_posts_based_cats($cat){
 
 }
 
+
+function get_posts_based_regions($region_name)
+{
+			
+		$args = array(
+			//'category_name' => $cat,
+			'posts_per_page' => 3,
+			'orderby'        => 'post_date',
+			'order'          => 'DESC',
+			'post_type' 	 => 'post',
+			'post_status'    => 'publish',
+			
+			'tax_query' 	 => array(
+									array(
+									  'taxonomy' => 'region',									 
+									   'field' => 'name',								 
+									  'terms' => $region_name 									 
+									)
+								)
+				
+      );
+
+	
+	$query = new WP_Query( $args);
+
+	$response = array();
+	while ( $query->have_posts() ) 
+	{
+		$query->the_post();
+		$response[] = Film\Video::get($query->post->ID);
+		
+	}
+		
+
+	return $response;
+
+}
 
 
 function generate_grid_response($response){

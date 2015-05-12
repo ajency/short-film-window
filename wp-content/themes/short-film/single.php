@@ -213,7 +213,7 @@ get_header(); ?>
 	    <div class="spacer-50"></div>
 	    <div class="infocus">
 	    
-</div>
+		</div>
 	    
 	    <div class="spacer-40"></div>
 	    <div class="row">

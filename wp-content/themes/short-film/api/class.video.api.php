@@ -34,6 +34,12 @@ class Video_API
             array( array( $this, 'get_posts_based_cats'), WP_JSON_Server::READABLE)
             
         );
+		
+		$routes['/page2/regionposts'] = array(
+            array( array( $this, 'get_posts_based_regions'), WP_JSON_Server::READABLE)
+            
+        );
+		
         $routes['/filters'] = array(
             array( array( $this, 'get_posts_filter'), WP_JSON_Server::READABLE)
             
@@ -126,6 +132,11 @@ class Video_API
 
 
 		);
+		
+		// echo " *** taxonomy= ";
+		// echo $taxonomy;
+		// echo " *** region=";
+		// echo $region;
 
 		$response = Film\Video::get_many($args);
 		
@@ -187,7 +198,10 @@ class Video_API
             $response->set_status(200);
 
         }
-
+		
+		// echo "hey in video.api get_posts_based_tags ";
+		// print_r($response);
+		
         return $response;
 
 	}
@@ -215,6 +229,35 @@ class Video_API
         return $response;
 
     }
+	
+	
+	public function get_posts_based_regions()
+	{
+
+        //$cat = $_REQUEST['cat'];
+        $region_name = $_REQUEST['region'];
+
+        //$response = get_posts_based_cats($cat);
+        $response = get_posts_based_regions($region_name);
+
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+
+    }
+	
 
     public function get_posts_filter()
 	{
