@@ -11348,9 +11348,20 @@ a {
   top: 0;
   left: 0;
   z-index: 5;
-  width: auto;
   min-width: 100%;
   min-height: 100%;
+}
+@media screen and (max-width: 1199px) {
+  .grid-box .grid-image img {
+    width: auto;
+    height: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 }
 @media (min-width: 767px) {
   .multi-grid:nth-child(odd) {
@@ -12597,7 +12608,13 @@ h6.brand {
   min-height: 100%;
   max-width: none;
   width: auto;
-  height: auto;
+  height: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .ontop {
   z-index: 5;
