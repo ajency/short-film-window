@@ -151,6 +151,8 @@ Template Name: category_template
 		);
 		
 		$response = Film\Video::get_many($args);
+		
+				
 		if(count($response) > 0)
 		{ 
 			$gridreposnse = generate_grid_response($response);
@@ -443,11 +445,23 @@ Template Name: category_template
 								<p><?php echo $value['excerpt'];?></p>
 								<h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
 								<h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
+								
 								<p class="categories">
+									
 									<span class="label label-greydark">
-										<?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+										
+										
+										
+										<?php
+																																
+										    echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
+										
+										?>
+									
 									</span>
+									
 								</p>
+								
 							</div>
 							
 							<?php// echo $value['permalink'];	// <-
@@ -514,11 +528,17 @@ Template Name: category_template
                             <p><em><?php echo $value['excerpt'];?></em></p>
                             
                             <h6 class="m-t-30 m-b-0"><em><?php echo implode(',',$value['region']);?> / <?php echo $value['duration'];?> MIN</em></h6>
-                            <p class="categories">
-                                <span class="label label-greydark">
-                                    <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
-                                </span>
+                            
+							<p class="categories">
+                               
+							   <span class="label label-greydark">
+                                 
+								 <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+                               
+							   </span>
+								
                             </p>
+							
                         </div>
                         
                         <div class="col-xs-4 text-right">
@@ -1424,11 +1444,18 @@ html += '<div class="row listlayout">'
 					+ '<p>'+value.excerpt+'</p>'
 					+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
 					+ '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+					
 					+ '<p class="categories">'
+						
 						+ '<span class="label label-greydark">'
-							+ value.categories.join('</span><span class="label label-greydark">')
+							
+							// + value.categories.join('</span><span class="label label-greydark">')
+							+ value.video_category_links.join('</span><span class="label label-greydark">')
+						
 						+ '</span>'
+					
 					+ '</p>'
+					
 				+ '</div>'
 				
 				+ '<div class="col-xs-4 text-right list-info-btns">'

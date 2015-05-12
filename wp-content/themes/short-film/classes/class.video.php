@@ -65,6 +65,10 @@ class Video
 				$excerpt= show_excerpt(200,$post->post_content);
 			}	
 			
+			$post_categories_array = wp_get_post_categories($post->ID,array( 'fields' => 'names' ));
+			
+			$video_category_links = array();
+			$video_category_links = get_video_category_links($post_categories_array);
 			
 			//assign the required details
 			$response = array(
@@ -86,7 +90,8 @@ class Video
 				'next_post'		=> $next_post,
 				'prev_post'		=> $prev_post,
 				'comments'		=> count(get_comments(array('post_id' => $post->ID))),
-				'categories'	=> wp_get_post_categories($post->ID,array( 'fields' => 'names' )),
+				'categories'	=> $post_categories_array,
+				'video_category_links' => $video_category_links,
 				'duration'		=> get_post_meta( $post->ID , 'duration',true ) != false?
 									get_post_meta( $post->ID , 'duration',true ) : 0,
 				'region'		=> get_custom_taxonomy_terms($post->ID),
@@ -100,6 +105,8 @@ class Video
 
 			);
 
+			// print_r($response);
+			// exit;
 			
 			return $response;
 		}
@@ -190,6 +197,7 @@ class Video
 					'directorid'  	    => $post_detail['directorid'],
 					'director_nicename' => $post_detail['director_nicename'],
 					'categories'		=> $post_detail['categories'],
+					'video_category_links'	=> $post_detail['video_category_links'],
 					'excerpt'			=> $post_detail['excerpt'],
 					'post_like_count'	=> $post_detail['post_like_count'],
 					'no_of_views'		=> $post_detail['no_of_views']
@@ -198,7 +206,7 @@ class Video
 			
 		}
 
-
+		
 		return $post_response;
 
 	}
