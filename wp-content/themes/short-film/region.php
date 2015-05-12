@@ -566,7 +566,7 @@
 					</div> <div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
-                    <a href="#" class="btn btn-primary load_more">Load More...</a>
+                    <a href="#" class="btn btn-primary load_more">Load More</a>
                 </div>
                 <div class="spacer-40 hideinsmall"></div>
 
