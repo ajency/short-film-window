@@ -5,3 +5,22 @@
     background: -moz-linear-gradient(@dir2, @clr1, @clr2); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to @dir2, @clr1 , @clr2); /* Standard syntax */
 }
+
+.centerV() {
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.centerH() {
+    left: 50%;
+    top: 0;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
