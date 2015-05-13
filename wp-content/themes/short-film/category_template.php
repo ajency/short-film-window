@@ -51,7 +51,7 @@ Template Name: category_template
                         <h2>EXPLORE</h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
-						<div class="m-t-20">
+						<div class="m-t-20 search_menu">
                             
 							<!-- <form action="" class="search_menu"> -->
                                

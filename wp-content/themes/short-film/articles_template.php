@@ -18,7 +18,7 @@ Template Name: articles_template
                         <h2>IN FOCUS <small><em>Interviews and Discussions</em></small></h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
-						<div class="m-t-20">
+						<div class="m-t-20 search_menu">
                             
 							<!-- <form action="" class="search_menu"> -->
                                

@@ -1,16 +1,10 @@
 <?php get_header(); ?>
 
-	<div class="row">
-		
-		<h2>REGION</h2>
-		
-	</div>
-
-	<hr class="m-t-0">
-			
+	
 	<!--Content-->
     <div class="container header-space author_page">
         <div class="content-wrapper">
+        
 				
 			<?php
 				
@@ -40,8 +34,31 @@
 			?>
 				
 				
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>REGION: <small><em><?php echo implode(', ',$response_posts[0]['region']); ?></em></small></h2>
+                    </div>
+					<div class="col-md-3 col-md-offset-3 col-sm-12">
+						<div class="m-t-20 search_menu">
+                            
+							<!-- <form action="" class="search_menu"> -->
+                                <div class="form-group">
+                                  
+								  <input type="text" class="form-control search" value="" placeholder="Search"/>
+									
+                                    <i class="fa fa-search"></i>
+                                </div>
+                           <!-- </form>-->
+							
+                        </div>
+					</div>
+                </div>
 
-	        <div class="row listlayout pushin">
+                <hr class="m-t-0">
+                
+                <div class="spacer-40"></div>
+
+	        <div class="row listlayout push in">
 	
 				<?php 
 					if(count($response_posts) > 0)
@@ -49,9 +66,11 @@
 				?>						
 						<div class="show_posts col-md-12">
 						
+<!--
 							<div class="heading sec_head">
 								<h4> Videos from region: <span><?php echo implode(', ',$response_posts[0]['region']); ?></span> </h4> 
 							</div>
+-->
 							
 							<div class="all_posts">
 																		
@@ -153,10 +172,10 @@
 								<input type="hidden" name="region" id="region" value="<?php echo $queried_object->term_id; ?>" /> 
 							
 								<input type="hidden" name="offset" id="offset" value="0" />
-								<a href="#" class="btn btn-primary load_more">Load More Videos...</a>
+								<a href="#" class="btn btn-primary load_more">Load More Videos</a>
 							</div>
 			
-							<hr class="border-btm m-t-35">
+<!--							<hr class="border-btm m-t-35">-->
 						</div> <!-- end #show_posts -->
 				<?php
 					
