@@ -630,6 +630,8 @@ Template Name: category_template
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
 	
+	showLayout();
+	
 	jQuery('#gridoption').children().addClass('text-primary');
    
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");

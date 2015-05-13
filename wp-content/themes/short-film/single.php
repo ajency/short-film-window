@@ -192,6 +192,8 @@ get_header(); ?>
 		<div class="overlay"></div>
 	</div>
 
+	<a href="#" class="stopclass" id="stopid"> STOP </a>
+	
 	<input type="hidden" name="noofviews" id="noofviews" value="0" / >
 	<input type="hidden" name="post_id" id="post_id" value="<?php echo $response["id"];?>" / >
 	<div class="spacer-40"></div>
@@ -489,7 +491,9 @@ afterToggle: function(){}
 			html+=
 					'<div class="play-video">'
 					
-						+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
+						// +'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
+						
+						+'<iframe id="playid" class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 						
 					+'</div>'		
 		
@@ -504,6 +508,23 @@ afterToggle: function(){}
     //onclick of playing video
     jQuery(document).on('click', 'iframe.vid_if', function() {
         jQuery('.video-section').toggleClass('ontop');
+    });
+	
+	
+	//onclick of STOP btn
+    jQuery(document).on('click', '.stopclass', function() {
+        
+		
+		var url = jQuery('#playid').attr('src');
+		
+		//var data-image-url = jQuery('#stopid').attr('data-image-url');
+
+		
+		jQuery('#playid').attr('src', '');
+		//jQuery('#playid').attr('src', 'data-image-url');
+		
+
+		
     });
 					  
 } //end onload
