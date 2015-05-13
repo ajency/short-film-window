@@ -158,7 +158,48 @@
         }
 
     });
-
+    
+    function resizeimgs(tw, obj, i) {
+        var ar = obj.width() / obj.height();
+        console.log('Number: ' + i + '\n-------------------------');
+        console.log('aspectratio ' + ar);
+        console.log('cont-resize ' + tw.width() / tw.height());
+        console.log('END Number: ' + i + '\n-------------------------');
+            
+        if ( (tw.width() / tw.height()) < ar ) {
+            obj
+                .removeClass()
+                .addClass('bgheight');
+        } else {
+            obj
+                .removeClass()
+                .addClass('bgwidth');
+        }
+        if (jQuery('body').hasClass('no-csstransforms')) {
+            obj.css({
+                'top': 0,
+                'left': 0
+            });
+        }
+    }
+    resizeimgs($(window), $('.show-featured-image img'));
+    $(window).load(function() {
+        if ($('div').hasClass('grid-image')) {
+            $('.grid-box .grid-image').each(function(i) {
+                resizeimgs($(this), $(this).find('img'), i);
+            });
+        }
+    });
+    
+    $(window).resize(function() {
+        resizeimgs($(window), $('.show-featured-image img'));
+        if ($('div').hasClass('grid-image')) {
+            $('.grid-box .grid-image').each(function(i) {
+                resizeimgs($(this), $(this).find('img'), i);
+            });
+        }
+    });
+    
     var element = $('.movie-info');
     if(element.length > 0) {
 
