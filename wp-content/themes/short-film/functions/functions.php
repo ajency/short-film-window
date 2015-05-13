@@ -51,29 +51,28 @@ function get_user_details($user_id = 0){
 
 }
 
-function get_custom_taxonomy_terms($post_id){
-
-
-
+function get_custom_taxonomy_terms($post_id)
+{
 	$results = get_the_terms($post_id, 'region');
 
 	$response = array();
 	
-	if(!empty($results) > 0){
-		foreach ($results as $key => $value) {
-
-			$response[] = $value->name;
-		
+	if(!empty($results) > 0)
+	{
+		foreach ($results as $key => $value) 
+		{
+			$response[] = $value->name;		
 		}
 	}
-	
-	
+		
 	return $response;
 
 }
 
-function get_focus_film($id){
 
+function get_focus_film($id)
+{
+/*
 	$args = array(
         'tag' 					=> 'infocus',
         'posts_per_page' 		=> 1,
@@ -97,12 +96,52 @@ function get_focus_film($id){
 		$actual_response[] = $response;
 	}
 
-
-
 	return $actual_response;
+*/
+
+/////////////
+
+	$response = array();
+	//$actual_response = array();
+
+	//if there is a related article stored in DB for the post then the in focus section shud display this particular article else it shud display most recent article 
+	
+	$related_article = get_post_meta( $id , 'related_article', true );
+		
+	if($related_article)
+	{
+		$response = Article_post\Article::get_article($related_article);
+
+	}
+	else
+	{
+		$args = array(
+			'posts_per_page' 		=> 1,
+			'orderby'          		=> 'post_date',
+			'order'            		=> 'DESC',
+			'post_type' 	   		=> 'article',
+			'post_status'      		=> 'publish'						
+		);
+
+	
+		$query = new WP_Query($args);
+		
+		while ( $query->have_posts() ) 
+		{
+			$query->the_post();
+			$response = Article_post\Article::get_article($query->post->ID);
+
+		}
+		
+	}
+	
+
+	//return $actual_response;
+	return $response;
 
 
-}
+} //end get_focus_film()
+
 
 function get_posts_based_tags($tag){
 
