@@ -589,7 +589,8 @@ Template Name: category_template
  	<div class="spacer-40"></div>
  					
 	<input type="hidden" name="tracker" id="tracker" value="" / >
-			<!-- </div> // extra <-  -->
+</div>
+<div class="content-wrapper">
 	<div class="text-center">
 		<input type="hidden" name="offset" id="offset" value="0" />
 		<input type="hidden" name="searchids" id="searchids" value="0" />
@@ -619,7 +620,7 @@ Template Name: category_template
 		
 	<div class="indian">
 	</div>
-    
+</div>
  
 			 <!-- end #content -->
 
@@ -748,6 +749,24 @@ window.onload = function() {
         
     });
 
+    function resizeimgs(tw, obj, i) {
+        var ar = obj.width() / obj.height();
+        console.log('Number: ' + i + '\n-------------------------');
+        console.log('aspectratio ' + ar);
+        console.log('cont-resize ' + tw.width() / tw.height());
+        console.log('END Number: ' + i + '\n-------------------------');
+            
+        if ( (tw.width() / tw.height()) < ar ) {
+            obj
+                .removeClass()
+                .addClass('bgheight');
+        } else {
+            obj
+                .removeClass()
+                .addClass('bgwidth');
+        }
+    }
+    
 	function showLayout(){
 
 		if(jQuery('#tracker').val() == 'gridoption'){
@@ -767,6 +786,9 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
 		}
+        jQuery('.grid-box .grid-image').each(function(i) {
+            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+        });
 	}
 
 	function get_all_posts(){
@@ -870,7 +892,7 @@ window.onload = function() {
         appendCallback  : false, // USE FOR PREPENDING
         // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
     }, function( response ) {
-        html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
 
                 
@@ -974,7 +996,7 @@ window.onload = function() {
         appendCallback  : false, // USE FOR PREPENDING
         // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
     }, function( response ) {
-        html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
 
                
@@ -1073,7 +1095,7 @@ window.onload = function() {
         appendCallback  : false, // USE FOR PREPENDING
         // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
     }, function( response ) {
-        html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
+        html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
 
                 // html += '<div>'
