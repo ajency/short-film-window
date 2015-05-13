@@ -100,8 +100,11 @@ get_header(); ?>
 				<span class="art_views" title="Views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></span>
 		       
 		        <div class="pull-right soc-ico">
-				    <?php///ssba_activate(); ?>
-					<?php echo do_shortcode("[ssba]"); ?>
+				   
+					<?php// echo do_shortcode("[ssba]"); ?>
+					
+					<?php echo do_shortcode('[ssba url="' . get_permalink($response['id']) . '" title="' . get_the_title($response['id']) . '"]'); ?>
+					
 				</div>
 		    </div>
 			

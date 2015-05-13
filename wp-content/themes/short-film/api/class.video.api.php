@@ -155,7 +155,8 @@ class Video_API
         return $response;
 	}
 
-	public function get_focus_film($id){
+	public function get_focus_film($id)
+	{
 
 		
 		$response = get_focus_film($id);

@@ -68,7 +68,11 @@ get_header(); ?>
 				</div>
 				<div class="col-md-2">
 					<div class="socia l-strip soc-ico share-button2">
-                        <?php echo do_shortcode("[ssba]"); ?>
+					
+                        <?php// echo do_shortcode("[ssba]"); ?>
+						
+						 <?php echo do_shortcode('[ssba url="' . get_permalink($response['id']) . '" title="' . get_the_title($response['id']) . '"]'); ?>
+						
 <!--
                         <div class="soc-ico">
                             <a href="#" class="facebook-head"></a>
@@ -144,7 +148,7 @@ get_header(); ?>
 			        	}
 					
 			        ?>
-			        <h6 class="m-t-0 m-b-0"><small><?php echo $response['duration'] ;?> Min / <?php echo implode(',',$region_array) ;?></small></h6>
+			        <h6 class="m-t-0 m-b-0"><small><?php echo $response['duration'] ;?> Min / <?php echo implode(', ',$region_array) ;?></small></h6>
 			        <p class="categories m-t-10 m-b-0">
 
                             <span class="label label-greydark">
@@ -211,8 +215,8 @@ get_header(); ?>
 		 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/<?php echo $post->ID ;?>"></a>
        
 	    <div class="spacer-50"></div>
-	    <div class="infocus">
 	    
+		<div class="infocus">	    
 		</div>
 	    
 	    <div class="spacer-40"></div>
@@ -381,25 +385,23 @@ afterToggle: function(){}
 		// behavior		: 'twitter',
 		appendCallback	: false, // USE FOR PREPENDING
 		// pathParse     	: function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
-    }, function( resp ) {
+    }, function( response ) {
     	
-    	response = resp[0];
+    	//response = resp[0];
 
 
     	html = '<div class="row">'
-    	+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'
+    	//+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'
 	         
 	        +'<div class="col-md-6">'
 	            +'<div class="pull-left">'
-	                +'<h4>IN FOCUS: <small><em>'+response.title+'</em></small></h4>'
+	                +'<h4>IN FOCUS: <small><em><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a></em></small></h4>'
 	            +'</div> '
 	        +'</div>'
 	        +'<div class="col-md-6">'
 	            +'<div class="m-t-30 pull-right">'
-	                 // +'<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>'
-	                 // +'<a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>'
-	                 // +'<a href="#"><i class="fa fa-youtube-square fa-2x"></i></a>'
-					
+	                 
+					+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+response.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+response.slug+'/&amp;media='+response.featured_image+'&amp;description='+response.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+response.slug+'/&amp;text='+response.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+response.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 					
 	            +'</div>'
 	        +'</div>'
@@ -408,20 +410,26 @@ afterToggle: function(){}
 
 	    +'<div class="row">'
 	        +'<div class="col-md-5">'
-	             +'<img src="'+response.featured_image+'" class="img-responsive">'
+				+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'
+					+'<img src="'+response.featured_image+'" class="img-responsive">'
+				+'</a>'	
 	        +'</div>'
 	        +'<div class="col-md-7">'
 	            +'<h5 class="m-t-0">'+response.excerpt+'</h5>'
 	           +' <div>'
 	                +'<p class="pull-left"><small>'+response.post_date+'</small></p>'
 	               +' <p class="pull-right">'
-	                    +'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
-	                    +'<span><i class="fa fa-eye"></i>'+response.no_of_views+'</span>'
-	                +'</p>'
+	                    
+						//+'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
+	                    +'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
+						
+						+'<span><i class="fa fa-eye"></i>'+response.no_of_views+'</span>'
+	                
+					+'</p>'
 	            +'</div>'
 	           +' <div class="clearfix"></div>'
 	        +'</div>'
-	        +'</a>'
+	        //+'</a>'
 	    +'</div>';
 
 	    jQuery('.infocus').html(html);

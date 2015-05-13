@@ -51,7 +51,7 @@ Template Name: category_template
                         <h2>EXPLORE</h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
-						<div class="m-t-20 search_menu">
+						<div class="m-t-20">
                             
 							<!-- <form action="" class="search_menu"> -->
                                
@@ -443,17 +443,16 @@ Template Name: category_template
                            
 							<div class="col-xs-8 cont">
 								<p><?php echo $value['excerpt'];?></p>
-								<h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
-								<h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
+								<h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['video_region_links']);?>/<?php echo $value['duration'];?> MIN</h6>
+								
+								<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
 								
 								<p class="categories">
 									
 									<span class="label label-greydark">
 										
-										
-										
 										<?php
-																																
+																															
 										    echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
 										
 										?>
@@ -510,7 +509,9 @@ Template Name: category_template
                                 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 	<?php echo $value['title'];?>
                                 </a>
-                                <small><em>by <?php echo ucfirst($value['director']);?></em></small>	                                
+                                <small><em>by <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></em></small>
+
+															
                             </h3>
                         </div>
                         <div class="col-sm-2">
@@ -527,14 +528,18 @@ Template Name: category_template
                         <div class="col-xs-8 cont">
                             <p><em><?php echo $value['excerpt'];?></em></p>
                             
-                            <h6 class="m-t-30 m-b-0"><em><?php echo implode(',',$value['region']);?> / <?php echo $value['duration'];?> MIN</em></h6>
+                            <h6 class="m-t-30 m-b-0"><em><?php echo implode(', ',$value['video_region_links']);?> / <?php echo $value['duration'];?> MIN</em></h6>
                             
 							<p class="categories">
                                
 							   <span class="label label-greydark">
                                  
-								 <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
-                               
+								 <?php
+								 
+								 echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
+								 
+								 ?>
+ 							   
 							   </span>
 								
                             </p>
@@ -588,7 +593,7 @@ Template Name: category_template
 	<div class="text-center">
 		<input type="hidden" name="offset" id="offset" value="0" />
 		<input type="hidden" name="searchids" id="searchids" value="0" />
-		<a href="#" class="btn btn-primary load_more">Load More</a>
+		<a href="#" class="btn btn-primary load_more">Load More...</a>
     </div>
     <div class="spacer-40"></div>
 
@@ -1442,8 +1447,11 @@ html += '<div class="row listlayout">'
 			+ '<div class="row">'
 				+ '<div class="col-xs-8 cont">'
 					+ '<p>'+value.excerpt+'</p>'
-					+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
-					+ '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+					// + '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
+					+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</h6>'
+					
+					
+					+'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 					
 					+ '<p class="categories">'
 						
@@ -1459,9 +1467,9 @@ html += '<div class="row listlayout">'
 				+ '</div>'
 				
 				+ '<div class="col-xs-4 text-right list-info-btns">'
-					+ '<div class="soc-ico nh">'
+					+ '<div class="soc-ic o nh">'
 
-						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 						
 					+ '</div>'	
 					+ '<div class="lico_c">'
@@ -1498,7 +1506,10 @@ html += '<div class="couchlayout">'
 					+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 						+ value.title
 					+ '</a>'
-					+ '<small><em>by '+value.director+'</em></small>'    
+				
+					+ '<small><em>by <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'  
+							
+					
 				+ '</h3>'
 			+ '</div>'
 			
@@ -1506,7 +1517,7 @@ html += '<div class="couchlayout">'
 					
 					+ '<div class="soc-ico nh pull-right" style="margin-top: 35px;">'
 						
-						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+						+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 					
 					+ '</div>'	
 				
@@ -1518,10 +1529,13 @@ html += '<div class="couchlayout">'
 			+ '<div class="col-xs-8 cont">'
 				+ '<p><em>'+value.excerpt+'</em></p>'
 				
-				+ '<h6 class="m-t-30 m-b-0"><em>'+value.region.join(', ')+'/'+value.duration+' MIN</em></h6>'
+				// + '<h6 class="m-t-30 m-b-0"><em>'+value.region.join(', ')+'/'+value.duration+' MIN</em></h6>'
+				+ '<h6 class="m-t-30 m-b-0"><em>'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</em></h6>'
 				+ '<p class="categories">'
 					+ '<span class="label label-greydark">'
-						+ value.categories.join('</span><span class="label label-greydark">')
+												
+						+ value.video_category_links.join('</span><span class="label label-greydark">')
+					
 					+ '</span>'
 				+ '</p>'
 			+ '</div>'

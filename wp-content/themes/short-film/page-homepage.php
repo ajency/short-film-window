@@ -768,19 +768,18 @@ Template Name: Homepage
 												// +'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
 												
 												
-												+'<h3><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by '+response.director+'</em></small></h3>'
-												
-												//+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
-												
-											
-											
+												+'<h3><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a target="_blank" title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
+																																																					
 											+'</div>'
 																				
 									+'</div>'
 									+'<div class="col-md-2">'
 										+'<div class="">'
 										
-											+'<div class="share-button2 soc-ico">'						
+											+'<div class="share-button2 soc-ico">'	
+
+												+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+response.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+response.slug+'/&amp;media='+response.featured_image+'&amp;description='+response.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+response.slug+'/&amp;text='+response.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+response.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+											
 											+'</div>'
 										+'</div>'
 									+'</div>'
@@ -793,7 +792,9 @@ Template Name: Homepage
 										
 										// +'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region[0]+' </em></small></h5>'
 										
-										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region.join(',')+' </em></small></h5>'
+										// +'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region.join(',')+' </em></small></h5>'
+										
+										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.video_region_links.join(', ')+' </em></small></h5>'
 										
 										//+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.categories[0]+'</span></p>'
 										
@@ -807,7 +808,10 @@ Template Name: Homepage
 									+'</div>'
 									+'<div class="col-md-2 col-xs-4 text-right meta-ico">'
 										+'<div class="meta-ico-in">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
-										+'<div class="meta-ico-in">'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
+										
+										//+'<div class="meta-ico-in">'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
+										+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
+										
 										+'<div class="meta-ico-in">Watchlist <i class="fa fa-binoculars"></i></div>'
 									+'</div>'
 								+'</div>'
@@ -818,7 +822,7 @@ Template Name: Homepage
 		
 			jQuery('.staffpick-display-section').html(html);
 			
-			jQuery('.staffpick-display-section').find(".share-button2").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
+			//jQuery('.staffpick-display-section').find(".share-button2").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
 			
 		}
 		else
