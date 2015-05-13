@@ -953,7 +953,8 @@ function render_film_tagline( $post ) {
  
 }
 
-function render_film_language( $post ) {
+function render_film_language( $post ) 
+{
 
  
   // Add an nonce field so we can check for it later.
@@ -966,15 +967,82 @@ function render_film_language( $post ) {
   $language = get_post_meta( $post->ID, 'language', true );
 
   ?>
-     <select name="language" id="language">
-        <option value="ENGLISH" <?php if($type == 'ENGLISH') echo 'selected'; ?>>ENGLISH</option>
-        <option value="FRENCH" <?php if($type == 'FRENCH') echo 'selected'; ?>>FRENCH</option>
-           </select>  <?php
+    <select name="language" id="language">
+        <option value="ENGLISH" <?php if($language == 'ENGLISH') echo 'selected'; ?>>ENGLISH</option>
+        <option value="FRENCH" <?php if($language == 'FRENCH') echo 'selected'; ?>>FRENCH</option>
+    </select>  
+
+<?php
+ 
+}
+
+//////////////////
+
+function render_articles_for_post( $post ) 
+{
+ 
+  //// Add an nonce field so we can check for it later.
+  wp_nonce_field( 'articles_for_post_meta_box', 'articles_for_post_nonce' );
+
+ ////
+ 
+ //retrieve list of articles from Database
+ 
+ $args = array(
+ 
+        'orderby'          	=> 'post_date',
+		'order'            	=> 'DESC',
+		'post_type' 	   	=> 'article',
+		'post_status'      	=> 'publish'
+					
+      );
+	
+	$query = new WP_Query($args);
+	
+
+	
+	echo '<select name="related_article" id="related_article">';
+	
+	while ($query->have_posts()) 
+	{
+		
+		$query->the_post();
+		
+		$related_article = get_post_meta( $post->ID, 'related_article', true );
+		
+		if($related_article == get_the_ID())
+		{
+			$selected = "selected";
+		}
+		else
+		{
+			$selected = "";
+		}
+     		
+		echo '<option value="'.get_the_ID().'" '.$selected.'>'.get_the_title().'</option>';      	
+		
+	}
+	
+	echo '</select>' ;
+	
+////
+	
+ /*
+   * Use get_post_meta() to retrieve an existing value
+   * from the database and use the value for the form.
+   */
+   
+  
+
 
  
 }
 
-function adding_custom_meta_boxes( $post ) {
+//////////////////
+
+
+function adding_custom_meta_boxes( $post ) 
+{
     add_meta_box( 
         'film_type',
         __( 'Type' ),
@@ -1019,10 +1087,41 @@ function adding_custom_meta_boxes( $post ) {
         'normal',
         'default'
     );
+	
+	////////////
+	
+	add_meta_box( 
+        'related_article',
+        __( 'related_article' ),
+        'render_articles_for_post',
+        'post',
+        'normal',
+        'default'
+    );
+	
+	////////////
 }
 add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
 
-function save_meta_box_data( $post_id,$post ) {
+
+
+
+
+function save_related_article($post_id,$post)
+{
+
+$related_article = sanitize_text_field( $_POST['related_article'] );
+
+        update_post_meta( $post_id, 'related_article', $related_article );	
+}
+
+add_action( 'save_post', 'save_related_article',10,2 );
+
+
+
+
+function save_meta_box_data( $post_id,$post ) 
+{
 
  
 
@@ -1127,7 +1226,6 @@ function save_meta_box_data( $post_id,$post ) {
         $language = sanitize_text_field( $_POST['language'] );
 
         update_post_meta( $post_id, 'language', $language );
-
 
 
 
@@ -2092,7 +2190,32 @@ function get_video_category_links($categories)
 	
 }
 
+function get_video_region_links($regions)
+{			
+	$region_array = array();
 
+	foreach ($regions as $value) 
+	{
+		// $region_id = get_cat_ID( $value );
+		$region_id = get_term_by( 'name', $value, 'region');
+
+		// $region_link = get_category_link( $region_id );				
+		$region_link = get_term_link( $region_id );				
+
+		// $link = '<a href="'.esc_url( $region_link ).'" target="_blank"  title="Region Name">'.$value.'</a>';
+		$link = '<a href="'.esc_url( $region_link ).'" target="_blank"  title="Region Name">'.$value.'</a>';
+		 
+		array_push($region_array, $link);						
+	}
+
+	if(count($region_array) == 0)
+		$region_array = array(0 => 'No regions');
+	
+	return $region_array;
+			
+}
+////
+/*
 function get_region_links($postid)
 {
 	$response = Film\Video::get($postid);
@@ -2111,6 +2234,6 @@ function get_region_links($postid)
 
 	print_r($cat_array);
 	
-	return $cat_array;
-	
+	return $cat_array;	
 }
+*/

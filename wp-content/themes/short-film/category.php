@@ -44,7 +44,7 @@
                         <h2>EXPLORE</h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
-						<div class="m-t-20 search_menu">
+						<div class="m-t-20">
                             
 							<!-- <form action="" class="search_menu"> -->
                                 <div class="form-group">
@@ -423,7 +423,8 @@
                                 	<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 		<?php echo $value['title'];?>
                                 	</a>
-<!--                                	<small><em>By <?php //echo ucfirst($value['director']);?></em></small>-->
+                                	
+									
                                 </h4>
                             </div>
 
@@ -432,13 +433,22 @@
                         <div class="row">
                             <div class="col-xs-8 cont">
                                 <p><?php echo $value['excerpt'];?></p>
-                                <h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
-                                <h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
-                                <p class="categories">
-                                    <span class="label label-greydark">
-                                        <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
-                                    </span>
+                                <h6 class="m-t-30 m-b-0"><?php echo implode(', ',$value['video_region_links']);?>/<?php echo $value['duration'];?> MIN</h6>
+                                
+								
+								<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
+                               
+							   <p class="categories">                                   
+									<span class="label label-greydark">
+                                        
+										<?php 
+																						
+											echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
+										?>
+                                    
+									</span>
                                 </p>
+								
                             </div>
                             <?php// echo $value['permalink']; ?>
                             <div class="col-xs-4 text-right list-info-btns">
@@ -448,27 +458,9 @@
 								   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 								   
                                 </div>
-								<!--
-                                <div class="share-button hidden">
-                                    <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-                                    
-                                    <div class="social-networks">
-                                        <ul>
-                                            <li class="social-twitter">
-                                                <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-facebook">
-                                                <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-                                            </li>
-                                            <li class="social-pin">
-                                                <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                -->
+
                                 <div class="lico_c">
-                                    <div class="lico small" title="Views"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div>
+                                    <div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div>
                                     <div class="lico like-action">
 									
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
@@ -498,7 +490,9 @@
                                 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 	<?php echo $value['title'];?>
                                 </a>
-                                <small><em>by <?php echo ucfirst($value['director']);?></em></small>	                                
+                               
+								<small><em>by <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></em></small>
+								
                             </h3>
                         </div>
                         <div class="col-sm-2">
@@ -509,24 +503,6 @@
                                <?php// echo do_shortcode("[ssba]"); ?>
                             </div>
                                 
-                            <!--
-							<div class="pull-right share-button hidden">
-                                <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-                                    <div class="social-networks">
-                                      <ul>
-                                        <li class="social-twitter">
-                                          <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-                                        </li>
-                                        <li class="social-facebook">
-                                        <a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-                                        </li>
-                                        <li class="social-pin">
-                                        <a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                            </div>
-							-->
 							
                         </div>
                     </div>
@@ -535,11 +511,16 @@
                         <div class="col-xs-8 cont">
                             <p><em><?php echo $value['excerpt'];?></em></p>
                             
-                            <h6 class="m-t-30 m-b-0"><em><?php echo implode(',',$value['region']);?> / <?php echo $value['duration'];?> MIN</em></h6>
+                            <h6 class="m-t-30 m-b-0"><em><?php echo implode(', ',$value['video_region_links']);?> / <?php echo $value['duration'];?> MIN</em></h6>
                             <p class="categories">
                                 <span class="label label-greydark">
-                                    <?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
-                                </span>
+                                   
+								   <?php 
+								   								   
+								    echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
+								   ?>
+                                
+								</span>
                             </p>
                         </div>
                         
@@ -547,7 +528,7 @@
                             <div class="">
                                 
                                 <div class="lico_c social-strip">
-                                    <div class="lico small" title="Views"><?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                    <div class="lico small"><?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
                                     
                                     <div class="lico like-action">
 
@@ -591,7 +572,7 @@
                 <div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
-                    <a href="#" class="btn btn-primary load_more">Load More</a>
+                    <a href="#" class="btn btn-primary load_more">Load More...</a>
                 </div>
                 <div class="spacer-40 hideinsmall"></div>
 
@@ -1453,34 +1434,40 @@ window.onload = function() {
                                 	+ '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
                                 		+ value.title
                                 	+ '</a>'
-                                	//+ '<small><em>By '+value.director+'</em></small>'
+                                																			  
+									
                                 + '</h4>'
                             + '</div>'
                         + '</div>'
-                        //+ '<hr class="m-t-0 m-b-5">'
+                        + '<hr class="m-t-0 m-b-5">'
                         
 						+ '<div class="row">'
                             
 							+ '<div class="col-xs-8 cont">'
                                 + '<p>'+value.excerpt+'</p>'
-                                + '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
-                                + '<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
-                                + '<p class="categories">'
+                                + '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</h6>'
+                                
+								
+								+'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+								
+								+ '<p class="categories">'
                                     + '<span class="label label-greydark">'
-                                        + value.categories.join('</span><span class="label label-greydark">')
-                                    + '</span>'
+                                       									   
+										+ value.video_category_links.join('</span><span class="label label-greydark">')
+									
+									+ '</span>'
                                 + '</p>'
                             + '</div>'
 							
                             + '<div class="col-xs-4 text-right list-info-btns">'
-                                + '<div class="soc-ico nh">'
+                                + '<div class="soc-ic o nh">'
                                    
-									+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+									+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 									
                                 + '</div>'
 								
                                 + '<div class="lico_c">'
-                                   + '<div class="lico small" title="Views">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
+                                   + '<div class="lico small">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
                                    
 								   + '<div class="lico like-action">'
 										
@@ -1511,7 +1498,9 @@ window.onload = function() {
                                 + '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
                                 	+ value.title
                                 + '</a>'
-                                + '<small><em>by '+value.director+'</em></small>'    
+                                								
+								+ '<small><em>by <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'  
+								
                             + '</h3>'
                         + '</div>'
 						
@@ -1519,7 +1508,7 @@ window.onload = function() {
                             
 							+ '<div class="soc-ico nh pull-right" style="margin-top: 35px;">'
 							
-								+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
+								+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 								
 							+ '</div>'
 							
@@ -1531,11 +1520,13 @@ window.onload = function() {
                         + '<div class="col-xs-8 cont">'
                             + '<p><em>'+value.excerpt+'</em></p>'
                             
-                            + '<h6 class="m-t-30 m-b-0"><em>'+value.region.join(', ')+'/'+value.duration+' MIN</em></h6>'
+                            + '<h6 class="m-t-30 m-b-0"><em>'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</em></h6>'
                             + '<p class="categories">'
                                 + '<span class="label label-greydark">'
-                                    + value.categories.join('</span><span class="label label-greydark">')
-                                + '</span>'
+                                   								   
+									+ value.video_category_links.join('</span><span class="label label-greydark">')
+								
+								+ '</span>'
                             + '</p>'
                         + '</div>'
                         
@@ -1544,7 +1535,7 @@ window.onload = function() {
                                 
 								
 								+ '<div class="lico_c social-strip">'
-                                    + '<div class="lico small" title="Views">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
+                                    + '<div class="lico small">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
                                     
 									+ '<div class="lico like-action">'
                                         

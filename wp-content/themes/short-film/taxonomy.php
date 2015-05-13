@@ -92,14 +92,14 @@
 														<p><?php echo $value['excerpt'];?></p>
 														
 																							
-														<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['region']);?>/<?php echo $value['duration'];?> MIN</h6>
+														<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['video_region_links']);?>/<?php echo $value['duration'];?> MIN</h6>
 														
-															
-														<h6 class="m-t-0 m-b-0">Dir: <?php echo ucfirst($value['director']);?></h6>
+														<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
+														
 																										
 														<p class="categories">
 															<span class="label label-greydark">
-																<?php echo implode('</span><span class="label label-greydark">',$value['categories']);?>
+																<?php echo implode('</span><span class="label label-greydark">',$value['video_category_links']);?>
 															</span>
 														</p>
 
@@ -286,15 +286,18 @@
 																				
 											+'<p>'+value.excerpt+'</p>'														
 											
-											+ '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'\/'+value.duration+' Minutes</h6>'											
+											+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' Minutes</h6>'											
 											
 											//+'<h6 class="m-t-0 m-b-0">'+value.duration+' Minutes</h6>'											
 											
-											+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+											// +'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+											
+											+'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											
                     
                                             + '<p class="categories">'
                                                 + '<span class="label label-greydark">'
-                                                    + value.categories.join('</span><span class="label label-greydark">')
+                                                    + value.video_category_links.join('</span><span class="label label-greydark">')
                                                 + '</span>'
                                             + '</p>'
 											
