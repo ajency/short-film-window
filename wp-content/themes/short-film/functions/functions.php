@@ -290,27 +290,24 @@ function generate_grid_response($response){
 
 }
 
+/*
 function get_posts_filter($args)
 {
-
 	global $wpdb;
 
 	$response = array();
-	    
-
-	//$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+	    	
+	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '%".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
 	
-	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
-
+	// echo "postid for title";
+	// print_r($postid);
+	
     $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
 	$user_query = new WP_User_Query($args1);
 	
-
-
 	$author = "";
 	if ( ! empty( $user_query->results ) ) 
 	{
-
 		foreach ( $user_query->results as $user ) 
 		{
 			$author =  $user->id;
@@ -318,8 +315,8 @@ function get_posts_filter($args)
 
 	}
 	
-
-	
+////////
+		
 	if(count($postid) != 0 || $author != "")
 	{
 		$params = array(
@@ -339,7 +336,7 @@ function get_posts_filter($args)
 			
 		}
 	}
-			
+		
 					//////////////////////
 	else
 	{
@@ -356,7 +353,98 @@ function get_posts_filter($args)
 		
 	}
 					////////////////////
+					
 	//print_r($response);	
+	
+   return $response;
+
+}
+*/
+
+
+
+function get_posts_filter($args)
+{
+	global $wpdb;
+		
+	$searchtext = $args['title'];
+	
+	$response = array();
+	 
+		// 1. searchtext  = post title or post content
+	
+	$query_title = "SELECT ID
+					FROM wp_posts
+					WHERE (post_title LIKE '%".$searchtext."%' OR post_content LIKE '%".$searchtext."%' OR post_excerpt LIKE '%".$searchtext."%') AND post_status = 'publish' AND post_type = 'post'";
+	
+	$postidset = $wpdb->get_col($query_title);
+	
+	//print_r($postidset);
+		
+	if(count($postidset) == 0)   //2. searchtext = authorname
+	{	
+		$query_author = "
+				SELECT ID
+				FROM wp_posts
+				INNER JOIN wp_usermeta ON wp_posts.post_author = wp_usermeta.user_id
+				WHERE (post_status = 'publish') AND (post_type = 'post') AND ((meta_key = 'first_name' AND meta_value LIKE '%".$searchtext."%') OR (meta_key = 'last_name' AND meta_value LIKE '%".$searchtext."%'))";
+
+		 
+		 $postidset = $wpdb->get_col($query_author);	
+		 		 
+	}
+
+	if(count($postidset) != 0)  //retrieve post info based on the post ids fetched above
+	{
+		$params = array(
+        'post__in'			=> $postidset,
+        'posts_per_page'	=> $args['posts_per_page'],
+        'order' 			=> $args['order'],
+        'orderby'			=> $args['orderby'],
+        'post_type' 		=> 'post'
+     
+    	);
+
+	    
+		$query = new WP_Query($params);
+	    while ( $query->have_posts() ) 
+		{
+			$query->the_post();
+			$response[] = Film\Video::get($query->post->ID);
+			
+		}
+	}
+							
+	if(count($postidset) == 0)  //3. searchtext = tag
+	{
+		// $args_tag=array('tag' => $searchtext);
+		
+		// $tag_query = new WP_Query($args_tag);
+		
+		// while ( $tag_query->have_posts() ) 
+		// {
+			// $tag_query->the_post();
+			// $response[] = Film\Video::get($tag_query->post->ID);
+			
+		// }
+		
+		  $myquery['tax_query'] = array(
+			array(
+				'taxonomy' => 'post_tag',
+				'terms' => array($searchtext),
+				'field' => 'name',
+				'operator' => 'LIKE',
+			),
+		);
+		query_posts($myquery);
+		
+	
+		
+	}
+		print_r($myquery);		
+	
+	echo "response = ";				
+	print_r($response);	
 	
    return $response;
 
@@ -373,26 +461,20 @@ function get_articles_filter($args)
 
 	//$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
 	
-	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
+	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '%".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
 
     $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
 	$user_query = new WP_User_Query($args1);
 	
-
-
 	$author = "";
 	if ( ! empty( $user_query->results ) ) 
 	{
-
 		foreach ( $user_query->results as $user ) 
 		{
 			$author =  $user->id;
 		}
-
 	}
-	
 
-	
 	if(count($postid) != 0 || $author != "")
 	{
 		$params = array(

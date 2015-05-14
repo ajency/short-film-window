@@ -720,13 +720,19 @@ window.onload = function() {
                 type : 'GET',
                 url : SITEURL+'/wp-json/filters',
                 data : data,
-                success:function(response){
+                
+				success:function(response)
+				{
+				
+					console.log("inside success ");
+					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value){
                            
+						   
                             console.log(value);
                            
                                 if(value.id != "")
@@ -737,9 +743,13 @@ window.onload = function() {
                           
                     });
                     jQuery('#searchids').val(myarr.join(','));
+															
                     generate_data(response);
+					
                 },
-                error:function(response){
+                error:function(response)
+				{
+					console.log("inside error ");
 
                 }
         });
