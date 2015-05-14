@@ -906,7 +906,7 @@ window.onload = function() {
 
 										    +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
 
-											+'<div class="grid-meta?>">DIR.'+value.director+'</div>'
+											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
 										+'</div>'
 
@@ -1007,7 +1007,7 @@ window.onload = function() {
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
 										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
 
-											+'<div class="grid-meta?>">DIR.'+value.director+'</div>'
+											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
 										+'</div>'
 
@@ -1104,7 +1104,7 @@ window.onload = function() {
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
 										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
 
-											+'<div class="grid-meta?>">DIR.'+value.director+'</div>'
+											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
 										+'</div>'
 
