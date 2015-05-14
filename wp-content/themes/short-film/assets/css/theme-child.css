@@ -12612,6 +12612,12 @@ h6.brand {
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+.home .show-featured-image img {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: 100%;
+}
 .ontop {
   z-index: 5;
 }

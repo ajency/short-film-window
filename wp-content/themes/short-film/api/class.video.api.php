@@ -275,8 +275,11 @@ class Video_API
 
         );
 
-
+		
         $response = get_posts_filter($args);
+		
+			// echo "response = ";				
+		// print_r($response);	
         
 
         if (is_wp_error($response)){
@@ -292,10 +295,10 @@ class Video_API
 
         }
 
+		// echo "JSON response = ";				
+		// print_r($response);	
+		
         return $response;
-
-
-
 
     }
 
