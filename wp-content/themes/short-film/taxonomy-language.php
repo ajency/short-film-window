@@ -7,6 +7,8 @@
 
 
 			<?php
+			
+			echo "hey inside taxonomy-language template !!";
 
 				$queried_object = get_queried_object();
 

@@ -364,6 +364,8 @@ window.onload = function() {
         jQuery('#offset').val(0);
         
 		data = 'title='+jQuery(e.target).val();
+		
+		jQuery('.load_more').hide();
         
 		jQuery.ajax({
                 type : 'GET',
@@ -615,23 +617,24 @@ window.onload = function() {
 				 ////deleted html for couchdata here
 				 
             });
-                    jQuery('.all_posts').html(html);
+            
+			jQuery('.all_posts').html(html);
 					
 					
-					///// displays share icons on load more bot url is wrong it shares id of last article only
-					
-					//jQuery('.all_posts').find(".social-strip").html("<?php echo addslashes (do_shortcode("[ssba_post post_id='".$value['id']."']")); ?>");
-					
-                        showLayout();
+			///// displays share icons on load more bot url is wrong it shares id of last article only
+			
+			//jQuery('.all_posts').find(".social-strip").html("<?php echo addslashes (do_shortcode("[ssba_post post_id='".$value['id']."']")); ?>");
+			
+				showLayout();
                         
     
 		}
 		else
 		{
 			jQuery('.all_posts').html("");
-			html += "<div>No posts found.</div>";
+			html += "<div>No articles found.</div>";
 			jQuery('.all_posts').html(html);
-			jQuery('.load_more').hide()
+			jQuery('.load_more').hide();
 		}
                    
 

@@ -126,7 +126,11 @@ get_header(); ?>
 					<?php
 			        	$region_array = array();
 			        	$cat_array = array();
-			        	
+						
+						////
+						$language_array = array();
+			        	////
+						
 						foreach ($response['region'] as $value) 
 						{
 			        			$id = get_term_by( 'name', $value, 'region');
@@ -136,6 +140,14 @@ get_header(); ?>
 			        	}
 			        	if(count($region_array) == 0)
 			        		$region_array = array(0 => 'No regions');
+							
+					////
+						 ?>
+						
+							 <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6> 
+						
+						<?php
+					////	
 						
 						$temp = array();
 			        	foreach ($response['categories'] as $value) 

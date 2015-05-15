@@ -105,16 +105,22 @@ Template Name: Homepage
             </div>
             <div class="col-md-3 col-sm-12">
                 <div class="form-group m-t-20">
-                    <form action="" class="search_menu">
-                        <input type="text" class="form-control search" placeholder="Search">
-                            <i class="fa fa-search"></i>
-                    </form>
-                </div>
+                   
+				  <!-- <form action="" class="search_menu"> -->
+                       
+					   <input type="text" class="form-control search_nn" placeholder="Search">
+                       <i class="fa fa-search"></i>
+                    
+					<!-- </form> -->
+               
+			   </div>
             </div>
     </div>
                 
 	<hr class="m-t-0">
 
+	<div class="all_posts">
+	
 	<?php
 
 		$response = get_noteworthy_videos ();
@@ -383,7 +389,8 @@ Template Name: Homepage
 		} //end if	
 	
 	?>			
-				
+	</div>	<!-- end all_posts-->	
+	
                 <div class="row">
                     <div class="col-md-12 text-center">
                     <h6>
@@ -404,11 +411,15 @@ Template Name: Homepage
                     </div>
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group m-t-20">
-                        	<form action="" class="search_menu">
-                                <input type="text" class="form-control search" placeholder="Search">
+                        	
+						
+                              <!--
+							  <input type="text" class="form-control search" placeholder="Search">
                                 <i class="fa fa-search"></i>
-                        	</form>
-                        </div>
+                        	
+						      -->
+                        
+						</div>
                     </div>
                 </div>
                 
@@ -909,8 +920,380 @@ Template Name: Homepage
 	jQuery(document).on('click', 'iframe.vid_if', function() {
         jQuery('.video-section').toggleClass('ontop');
     });
+		
+
+	jQuery('.search_nn').live('change',function(e){
+
+        e.preventDefault();
+
+        jQuery('#offset').val(0);
+
+		data = 'title='+jQuery(e.target).val();
+
+		jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/filters',
+                data : data,
+                
+				success:function(response)
+				{
 				
+					console.log("inside success ");
+					console.log(response);
+                    jQuery('#offset').val(0)
+                    jQuery('.loader').text("Loading data...")
+                    jQuery('.all_posts').html("")
+                     myarr = [];
+                    jQuery.each(response,function(index,value){
+
+                            console.log(value);
+
+                                if(value.id != "")
+                                {
+                                    myarr.push(value['id']);
+
+                                }
+
+                    });
+                    jQuery('#searchids').val(myarr.join(','));
+															
+                    generate_data_search_nn(response);
+					
+                },
+                error:function(response)
+				{
+					console.log("inside error ");
+
+                }
+        });
+
+
+
+    });
+
+	function generate_data_search_nn(response)
+	{
+		
+		html = jQuery('.all_posts').html()
+		 
+		if(response.length>0)
+		{
+			
+			grid = generate_grid_reponse(response);
+
+			jQuery.each(grid,function(index,value){
+			
+				jQuery.each(value,function(index,val){
+					value[index]['class'] = '';
+
+
+					if(val['slug'] == "")
+					{
+
+						value[index]['class'] = 'hidden';
+					}
+					if(val['region'].length == 0)
+						val['region'] = ['No regions'];
+
+				});
+				
+				html+='<div class="row gridlayout">'
+
+					+'<div class="col-sm-6 multi-grid">'
+						+' <div class="grid-box grid-full content-align-bottom">'
+						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[0]['slug']+'">'
+
+								+'<div class="grid-image">'
+									+'<img src="'+value[0]['featured_image']+'">'
+								+'</div>'
+
+								+'<div class="grid-text-wrap">'
+									+'<div class="grid-title">'+value[0]['title']+'</div>'
+									+'<div class="grid-meta '+value[0]['class']+'">'+value[0]['region'].join(',')+'/'+value[0]['duration']+'MIN</div>'
+									+'<div class="grid-meta">'+value[0]['categories'].join(', ')+'</div>'
+									+'<div class="grid-meta '+value[0]['class']+'">DIR.'+value[0]['director'].toUpperCase()+'</div>'
+
+								+'</div>'
+
+								+'<div class="grid-text-wrap hover-text">'
+									+'<div class="grid-title">'+value[0]['title']+'</div>'
+									+'<div class="grid-meta">'
+										+'<div class="row">'
+
+											+'<div class="col-xs-4">'
+												+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
+													+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+												+'</div>'
+												+'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
+													+'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
+													+'<div class="'+value[0]['class']+'">'+value[0]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
+												+'</div>'
+											+'</div>'
+
+											+' <div class="col-xs-8">'
+												+'<div class="pull-right text-right m-t-10">'
+													+value[0]['excerpt']
+												+'</div>'
+											+' </div>'
+										+'</div>'
+									+' </div>'
+								+'</div>'
+							+'<div class="overlay-vertical"></div>'
+					   +' </a>'
+					+'</div>'
+					+'<div class="grid-box grid-half content-align-bottom">'
+						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[1]['slug']+'">'
+							+'<div class="grid-image">'
+								+'<img src="'+value[1]['featured_image']+'">'
+							+'</div>'
+							+'<div class="grid-text-wrap">'
+								+'<div class="grid-title">'+value[1]['title']+'</div>'
+								+'<div class="grid-meta '+value[1]['class']+'">'+value[1]['region'].join(',')+'/'+value[1]['duration']+'MIN</div>'
+								 +'<div class="grid-meta">'+value[1]['categories'].join(', ')+'</div>'
+								+'<div class="grid-meta '+value[1]['class']+'">DIR.'+value[1]['director'].toUpperCase()+'</div>'
+
+						   +' </div>'
+							+'<div class="grid-text-wrap hover-text">'
+								+'<div class="grid-title">'+value[1]['title']+'</div>'
+							   +' <div class="grid-meta">'
+									+'<div class="row">'
+									   +' <div class="col-xs-4">'
+											+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
+											   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											+'</div>'
+											+'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
+											   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
+												+'<div class="'+value[1]['class']+'">'+value[1]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
+										   +' </div>'
+										+'</div>'
+									   +' <div class="col-xs-8">'
+										  +'  <div class="pull-right text-right m-t-10">'
+											 +value[1]['excerpt']
+										   +' </div>'
+									   +' </div>'
+									+'</div>'
+								+'</div>'
+							+'</div>'
+							+'<div class="overlay-vertical"></div>'
+						+'</a>'
+					+'</div>'
+					+'<div class="grid-box grid-half content-align-bottom">'
+					   +' <a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[2]['slug']+'">'
+							+'<div class="grid-image">'
+							   +' <img src="'+value[2]['featured_image']+'">'
+						   +' </div>'
+							+'<div class="grid-text-wrap">'
+							   +' <div class="grid-title">'+value[2]['title']+'</div>'
+							   +' <div class="grid-meta '+value[2]['class']+'">'+value[2]['region'].join(',')+'/'+value[2]['duration']+'MIN</div>'
+								 +'<div class="grid-meta">'+value[2]['categories'].join(', ')+'</div>'
+								+'<div class="grid-meta '+value[2]['class']+'">DIR.'+value[2]['director'].toUpperCase()+'</div>'
+
+							+'</div>'
+							+'<div class="grid-text-wrap hover-text">'
+								+'<div class="grid-title">'+value[2]['title']+'</div>'
+								+'<div class="grid-meta">'
+									+'<div class="row">'
+										+'<div class="col-xs-4">'
+											+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
+											   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+										   +' </div>'
+											+'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
+											   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
+												+'<div class="'+value[2]['class']+'">'+value[2]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
+										   +' </div>'
+										+'</div>'
+										+'<div class="col-xs-8">'
+											+'<div class="pull-right text-right m-t-10">'
+											  +value[2]['excerpt']
+											+'</div>'
+									   +' </div>'
+								   +' </div>'
+								+'</div>'
+						   +' </div>'
+						  +'  <div class="overlay-vertical"></div>'
+						+'</a>'
+					+'</div>'
+			   +' </div>'
+				+'<div class="col-sm-6 multi-grid">'
+				   +' <div class="grid-box grid-half content-align-bottom">'
+						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[3]['slug']+'">'
+							+'<div class="grid-image">'
+							   +' <img src="'+value[3]['featured_image']+'">'
+							+'</div>'
+						   +' <div class="grid-text-wrap">'
+							   +' <div class="grid-title">'+value[3]['title']+'</div>'
+							   +' <div class="grid-meta '+value[3]['class']+'">'+value[3]['region'].join(',')+'/'+value[3]['duration']+'MIN</div>'
+								+'<div class="grid-meta">'+value[3]['categories'].join(', ')+'</div>'
+								+'<div class="grid-meta '+value[3]['class']+'">DIR.'+value[3]['director'].toUpperCase()+'</div>'
+
+						   +' </div>'
+						   +' <div class="grid-text-wrap hover-text">'
+							   +' <div class="grid-title">'+value[3]['title']+'</div>'
+								+'<div class="grid-meta">'
+								   +' <div class="row">'
+									   +' <div class="col-xs-4">'
+										   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
+												+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											+'</div>'
+											+'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
+											   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
+											   +' <div class="'+value[3]['class']+'">'+value[3]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
+											+'</div>'
+									   +' </div>'
+										+'<div class="col-xs-8">'
+										   +' <div class="pull-right text-right m-t-10">'
+											 +value[3]['excerpt']
+										   +' </div>'
+										+'</div>'
+								   +' </div>'
+								+'</div>'
+						   +' </div>'
+						   +' <div class="overlay-vertical"></div>'
+					   +' </a>'
+				   +' </div>'
+				   +' <div class="grid-box grid-half content-align-bottom">'
+						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[4]['slug']+'">'
+							+'<div class="grid-image">'
+								+'<img src="'+value[4]['featured_image']+'">'
+							+'</div>'
+							+'<div class="grid-text-wrap">'
+							   +' <div class="grid-title">'+value[4]['title']+'</div>'
+							   +' <div class="grid-meta '+value[4]['class']+'">'+value[4]['region'].join(',')+'/'+value[4]['duration']+'MIN</div>'
+								+'<div class="grid-meta ">'+value[4]['categories'].join(', ')+'</div>'
+								+'<div class="grid-meta '+value[4]['class']+'">DIR.'+value[4]['director'].toUpperCase()+'</div>'
+							+'</div>'
+						   +' <div class="grid-text-wrap hover-text">'
+								+'<div class="grid-title">'+value[4]['title']+'</div>'
+								+'<div class="grid-meta">'
+									+'<div class="row">'
+									   +' <div class="col-xs-4">'
+											+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
+											   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											+'</div>'
+											+'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
+											   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
+											   +' <div class="'+value[4]['class']+'">'+value[4]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
+										   +' </div>'
+									   +' </div>'
+									   +' <div class="col-xs-8">'
+											+'<div class="pull-right text-right m-t-10">'
+											  +value[4]['excerpt']
+											+'</div>'
+										+'</div>'
+								   +' </div>'
+								+'</div>'
+							+'</div>'
+							+'<div class="overlay-vertical"></div>'
+						+'</a>'
+					+'</div>'
+					+'<div class="grid-box grid-full content-align-bottom">'
+						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[5]['slug']+'">'
+							+'<div class="grid-image">'
+								+'<img src="'+value[5]['featured_image']+'">'
+							+'</div>'
+							+'<div class="grid-text-wrap">'
+							   +' <div class="grid-title">'+value[5]['title']+'</div>'
+							   +' <div class="grid-meta '+value[5]['class']+'">'+value[5]['region'].join(',')+'/'+value[5]['duration']+'MIN</div>'
+								+'<div class="grid-meta">'+value[5]['categories'].join(', ')+'</div>'
+								+'<div class="grid-meta '+value[5]['class']+'">DIR.'+value[5]['director'].toUpperCase()+'</div>'
+						   +' </div>'
+						   +' <div class="grid-text-wrap hover-text">'
+								+'<div class="grid-title">'+value[5]['title']+'</div>'
+								+'<div class="grid-meta">'
+								   +' <div class="row">'
+									   +' <div class="col-xs-4">'
+										   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
+												+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											+'</div>'
+										   +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
+											   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
+												+'<div class="'+value[5]['class']+'">'+value[5]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
+											+'</div>'
+										+'</div>'
+									   +' <div class="col-xs-8">'
+										   +' <div class="pull-right text-right m-t-10">'
+											  +value[5]['excerpt']
+											+'</div>'
+										+'</div>'
+								   +' </div>'
+								+'</div>'
+							+'</div>'
+							+'<div class="overlay-vertical"></div>'
+						+'</a>'
+					+'</div> '
+				+'</div></div> ';
+			
+			});	
+			
+			jQuery('.all_posts').html(html);
+			
+		} //end if
+		
+		else
+		{
+			jQuery('.all_posts').html("");
+			html += "<div>No posts found.</div>";
+			jQuery('.all_posts').html(html);
+		}
+		 
+		
+	} //end generate_data_search_nn
 	
+		function generate_grid_reponse(response)
+		{
+			var grid ={};
+			var multiple = [6,6];
+			var k = 0 ;
+			grid[k] = {};
+			var j = 0;
+			var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+			for (var i= 0; i < multiple[k]; i++) {
+
+				if(response[j] == undefined)
+				{
+					grid[k][i] = {
+						'id'            : "",
+						'slug'			: "",
+						'title'			: "",
+						'type'			: "",
+						'tagline'		: "",
+						'videourl'  	: "",
+						'excerpt'		: "",
+						'director'		: "",
+						'next_post'		: "",
+						'prev_post'		: "",
+						'comments'		: "",
+						'categories'	: [],
+						'duration'		: 0,
+						'region'		: [],
+						'tags'			: "",
+						'featured_image':image,
+						'user_like_count'	: "",
+						'post_like_count' : 0,
+						'no_of_views'    : 0
+
+					};
+
+				}
+				else
+					grid[k][i] = response[j];
+
+				if(i == 5 && response.length > multiple[k])
+				{
+
+					k = k + 1;
+					i = -1 ;
+					if(multiple.hasOwnProperty(k))
+						grid[k] = {};
+				}
+				j = j + 1;
+
+			}
+
+			console.log(grid);
+			return grid;
+		}
+			
 	});  // end of document.ready function
 
 </script>

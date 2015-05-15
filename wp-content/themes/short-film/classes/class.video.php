@@ -70,9 +70,14 @@ class Video
 			$video_category_links = get_video_category_links($post_categories_array);
 			
 			
-			$post_regions_array = get_custom_taxonomy_terms($post->ID); //function written to fetch all regions for a post
+			// $post_regions_array = get_custom_taxonomy_terms($post->ID); //function written to fetch all regions for a post
+			$post_regions_array = get_custom_taxonomy_terms_region($post->ID); //function written to fetch all regions for a post
 			$video_region_links = array();
 			$video_region_links = get_video_region_links($post_regions_array);
+			
+			$post_languages_array = get_custom_taxonomy_terms_language($post->ID); //function written to fetch all languages for a post
+			$video_language_links = array();
+			$video_language_links = get_video_language_links($post_languages_array);
 			
 			//assign the required details
 			$response = array(
@@ -100,7 +105,9 @@ class Video
 									get_post_meta( $post->ID , 'duration',true ) : 0,
 				// 'region'		=> get_custom_taxonomy_terms($post->ID),
 				'region'		=> $post_regions_array,
+				'language'		=> $post_languages_array,
 				'video_region_links' => $video_region_links,
+				'video_language_links' => $video_language_links,
 				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
 				'featured_image'			=> $image,
 				'user_like_count'	=> $post_user_like,
@@ -122,12 +129,142 @@ class Video
 		}
 
 	}
+
 	
+	public static function get_many($args)
+	{
+		// echo "in class.video.php  get_many()";
+		// print_r($args);
+	
+		//global $post;
+
+		//$meta_key = $args['language']!="" ? 'language' : '';   //???????????????????????????????
+
+		if($args['taxonomy'] == 'region')  // for taxonomy template - to query posts of a particular region (taxonomy)
+		{
+					
+			$params = array(
+						'orderby'          		=> 'post_date',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'category'		  	 	=> $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						'tax_query' => array(
+											array(
+											  'taxonomy' => $args['taxonomy'],
+											  'field' => 'term_id',
+											  'terms' => $args['region'] 
+											 
+											)
+										)
+		
+					);
+		}
+		else if($args['taxonomy'] == 'language')  // for taxonomy template - to query posts of a particular language (taxonomy)
+		{
+					
+			$params = array(
+						'orderby'          		=> 'post_date',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'category'		  	 	=> $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						'tax_query' => array(
+											array(
+											  'taxonomy' => $args['taxonomy'],
+											  'field' => 'term_id',
+											  'terms' => $args['language'] 
+											 
+											)
+										)
+		
+					);
+		}
+		else
+		{
+						
+			$params = array(
+						'orderby'          		=> 'post_date',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'category'		  	 	=> $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude']
+				
+		
+					);
+		}
+
+
+		
+		#get all posts
+		$posts_array = get_posts($params); 
+
+
+		$post_response = array();
+		foreach ($posts_array as $key => $post) {
+
+			$post_detail = self::get($post->ID);
+
+			// $post_thumbnail_id = get_post_thumbnail_id($post->ID); 
+			// $image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+			// $image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
+   //      	'/img/placeholder.jpg';
+
+			$post_response[] = array(
+					'id'				=> $post_detail['id'],
+					'slug'				=> $post_detail['slug'],
+					'featured_image'	=> $post_detail['featured_image'],
+					'title'				=> $post_detail['title'],
+					'duration'			=> $post_detail['duration'],
+					'region'			=> $post_detail['region'],
+					'language'			=> $post_detail['language'],
+					'director'			=> $post_detail['director'],
+					'directorid'  	    => $post_detail['directorid'],
+					'director_nicename' => $post_detail['director_nicename'],
+					'categories'		=> $post_detail['categories'],
+					'video_category_links'	=> $post_detail['video_category_links'],
+					'video_region_links'	=> $post_detail['video_region_links'],
+					'excerpt'			=> $post_detail['excerpt'],
+					'post_like_count'	=> $post_detail['post_like_count'],
+					'no_of_views'		=> $post_detail['no_of_views']
+							
+				);
+			
+		}
+
+		// print_r($post_response);
+		
+		return $post_response;
+
+	}	
+	
+	
+/*	
 	public static function get_many($args)
 	{
 		//global $post;
 
-		$meta_key = $args['language']!="" ? 'language' : '';
+		$meta_key = $args['language']!="" ? 'language' : '';   //???????????????????????????????
 
 		if($args['taxonomy'])  // for taxonomy template - to query posts of a particular region (taxonomy)
 		{
@@ -217,7 +354,7 @@ class Video
 		return $post_response;
 
 	}
-	
+*/	
 	
 }
 
