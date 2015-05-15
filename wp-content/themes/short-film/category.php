@@ -1439,7 +1439,7 @@ window.onload = function() {
                                 + '</h4>'
                             + '</div>'
                         + '</div>'
-                        + '<hr class="m-t-0 m-b-5">'
+                        //+ '<hr class="m-t-0 m-b-5">'
 
 						+ '<div class="row">'
 
