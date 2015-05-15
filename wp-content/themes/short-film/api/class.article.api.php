@@ -152,7 +152,8 @@ class Article_API
         $args = array(
                     'orderby'           => 'post_date',
                     'order'             => 'DESC',
-                    'posts_per_page'    => 5,
+                    // 'posts_per_page'    => 5,
+                    'posts_per_page'    => 6,
                     'offset'            => 0,
                     'title'             =>  $title
 

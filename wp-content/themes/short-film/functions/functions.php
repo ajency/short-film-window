@@ -51,7 +51,8 @@ function get_user_details($user_id = 0){
 
 }
 
-function get_custom_taxonomy_terms($post_id)
+// function get_custom_taxonomy_terms($post_id)
+function get_custom_taxonomy_terms_region($post_id)
 {
 	$results = get_the_terms($post_id, 'region');
 
@@ -66,7 +67,24 @@ function get_custom_taxonomy_terms($post_id)
 	}
 		
 	return $response;
+}
 
+
+function get_custom_taxonomy_terms_language($post_id)
+{
+	$results = get_the_terms($post_id, 'language');
+
+	$response = array();
+	
+	if(!empty($results) > 0)
+	{
+		foreach ($results as $key => $value) 
+		{
+			$response[] = $value->name;		
+		}
+	}
+		
+	return $response;
 }
 
 
@@ -378,8 +396,7 @@ function get_posts_filter($args)
 					WHERE (post_title LIKE '%".$searchtext."%' OR post_content LIKE '%".$searchtext."%' OR post_excerpt LIKE '%".$searchtext."%') AND post_status = 'publish' AND post_type = 'post'";
 	
 	$postidset = $wpdb->get_col($query_title);
-	
-	//print_r($postidset);
+		
 		
 	if(count($postidset) == 0)   //2. searchtext = authorname
 	{	
@@ -393,6 +410,24 @@ function get_posts_filter($args)
 		 $postidset = $wpdb->get_col($query_author);	
 		 		 
 	}
+	
+	if(count($postidset) == 0)  //3. searchtext = tag
+	{
+		
+		$query_tag = "
+				SELECT wp_posts.ID 
+				FROM wp_posts, wp_terms, wp_term_taxonomy, wp_term_relationships
+				WHERE (wp_posts.ID = wp_term_relationships.object_id) 
+				AND (wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id) 
+				AND (wp_term_taxonomy.term_id = wp_terms.term_id) 
+				AND (wp_posts.post_status = 'publish') 
+				AND (wp_posts.post_type = 'post') 
+				AND (wp_terms.name LIKE '%".$searchtext."%')";
+				
+			 
+		 $postidset = $wpdb->get_col($query_tag);
+		
+	}
 
 	if(count($postidset) != 0)  //retrieve post info based on the post ids fetched above
 	{
@@ -401,7 +436,8 @@ function get_posts_filter($args)
         'posts_per_page'	=> $args['posts_per_page'],
         'order' 			=> $args['order'],
         'orderby'			=> $args['orderby'],
-        'post_type' 		=> 'post'
+        'post_type' 		=> 'post',
+		'post_status' 		=> 'publish'
      
     	);
 
@@ -415,42 +451,11 @@ function get_posts_filter($args)
 		}
 	}
 							
-	if(count($postidset) == 0)  //3. searchtext = tag
-	{
-		// $args_tag=array('tag' => $searchtext);
-		
-		// $tag_query = new WP_Query($args_tag);
-		
-		// while ( $tag_query->have_posts() ) 
-		// {
-			// $tag_query->the_post();
-			// $response[] = Film\Video::get($tag_query->post->ID);
-			
-		// }
-		
-		  $myquery['tax_query'] = array(
-			array(
-				'taxonomy' => 'post_tag',
-				'terms' => array($searchtext),
-				'field' => 'name',
-				'operator' => 'LIKE',
-			),
-		);
-		query_posts($myquery);
-		
-	
-		
-	}
-		print_r($myquery);		
-	
-	echo "response = ";				
-	print_r($response);	
-	
    return $response;
 
 }
 
-
+/*
 function get_articles_filter($args)
 {
 
@@ -522,8 +527,67 @@ function get_articles_filter($args)
    return $response;
 
 }
+*/
 
 
+function get_articles_filter($args)
+{
+
+	global $wpdb;
+		
+	$searchtext = $args['title'];
+	
+	$response = array();
+	 
+		// 1. searchtext  = post title or post content
+	
+	$query_title = "SELECT ID
+					FROM wp_posts
+					WHERE (post_title LIKE '%".$searchtext."%' OR post_content LIKE '%".$searchtext."%' OR post_excerpt LIKE '%".$searchtext."%') AND post_status = 'publish' AND post_type = 'article'";
+	
+	$postidset = $wpdb->get_col($query_title);
+		
+		
+	if(count($postidset) == 0)   //2. searchtext = authorname
+	{	
+		$query_author = "
+				SELECT ID
+				FROM wp_posts
+				INNER JOIN wp_usermeta ON wp_posts.post_author = wp_usermeta.user_id
+				WHERE (post_status = 'publish') AND (post_type = 'article') AND ((meta_key = 'first_name' AND meta_value LIKE '%".$searchtext."%') OR (meta_key = 'last_name' AND meta_value LIKE '%".$searchtext."%'))";
+
+		 
+		 $postidset = $wpdb->get_col($query_author);	
+		 		 
+	}
+	
+
+	if(count($postidset) != 0)  //retrieve post info based on the post ids fetched above
+	{
+		$params = array(
+        'post__in'			=> $postidset,
+        'posts_per_page'	=> $args['posts_per_page'],
+        'order' 			=> $args['order'],
+        'orderby'			=> $args['orderby'],
+        'post_type' 		=> 'article',
+		'post_status' 		=> 'publish'
+     
+    	);
+    
+		$query = new WP_Query($params);
+		
+	    while ( $query->have_posts() ) 
+		{
+			$query->the_post();
+
+			$response[] = Article_post\Article::get_article($query->post->ID);
+			
+		}
+	}
+							
+   return $response;
+
+}
 
 function store_post_views($views,$post_id){
 

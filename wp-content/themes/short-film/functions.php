@@ -845,6 +845,43 @@ function create_region_taxonomy() {
   );
 }
 
+
+add_action( 'init', 'create_language_taxonomy' );
+
+//register a taxonomy//
+function create_language_taxonomy() 
+{
+
+  $labels = array(
+    'name'                       => _x( 'Languages', 'taxonomy general name' ),
+    'singular_name'              => _x( 'Language', 'taxonomy singular name' ),
+    'search_items'               => __( 'Search Languages' ),
+    'popular_items'              => __( 'Popular Languages' ),
+    'all_items'                  => __( 'All Languages' ),
+    'parent_item'                => null,
+    'parent_item_colon'          => null,
+    'edit_item'                  => __( 'Edit Language' ),
+    'update_item'                => __( 'Update Language' ),
+    'add_new_item'               => __( 'Add New Language' ),
+    'new_item_name'              => __( 'New Language Name' ),
+    'separate_items_with_commas' => __( 'Separate Languages with commas' ),
+    'add_or_remove_items'        => __( 'Add or remove Languages' ),
+    'choose_from_most_used'      => __( 'Choose from the most used Languages' ),
+    'not_found'                  => __( 'No Languages found.' ),
+    'menu_name'                  => __( 'Languages' ),
+  );
+  register_taxonomy(
+    'language',
+    'post',
+    array(
+      'labels' => $labels,
+      'rewrite' => array( 'slug' => 'language' ),
+      'hierarchical' => true,
+    )
+  );
+}
+
+
 function wp_trim_all_excerpt($text) {
 
   global $post;
@@ -953,6 +990,8 @@ function render_film_tagline( $post ) {
  
 }
 
+/* //
+
 function render_film_language( $post ) 
 {
 
@@ -960,10 +999,6 @@ function render_film_language( $post )
   // Add an nonce field so we can check for it later.
   wp_nonce_field( 'film_language_meta_box', 'film_language_nonce' );
 
-  /*
-   * Use get_post_meta() to retrieve an existing value
-   * from the database and use the value for the form.
-   */
   $language = get_post_meta( $post->ID, 'language', true );
 
   ?>
@@ -975,6 +1010,9 @@ function render_film_language( $post )
 <?php
  
 }
+
+ //  */
+
 
 //////////////////
 
@@ -1079,6 +1117,7 @@ function adding_custom_meta_boxes( $post )
         'default'
     );
 
+	/*
      add_meta_box( 
         'film_language',
         __( 'language' ),
@@ -1087,6 +1126,8 @@ function adding_custom_meta_boxes( $post )
         'normal',
         'default'
     );
+	
+	*/
 	
 	////////////
 	
@@ -1222,11 +1263,12 @@ function save_meta_box_data( $post_id,$post )
 
         update_post_meta( $post_id, 'tagline', $tagline );
 
+	/*	
            // Sanitize user input.
         $language = sanitize_text_field( $_POST['language'] );
 
         update_post_meta( $post_id, 'language', $language );
-
+	  */
 
 
 }
@@ -2214,6 +2256,29 @@ function get_video_region_links($regions)
 	return $region_array;
 			
 }
+
+function get_video_language_links($languages)
+{			
+	$language_array = array();
+
+	foreach ($languages as $value) 
+	{		
+		$language_id = get_term_by( 'name', $value, 'language');
+			
+		$language_link = get_term_link( $language_id );				
+
+		$link = '<a href="'.esc_url( $language_link ).'" target="_blank"  title="Language Name">'.$value.'</a>';
+		 
+		array_push($language_array, $link);						
+	}
+
+	if(count($language_array) == 0)
+		$language_array = array(0 => 'No languages');
+	
+	return $language_array;
+			
+}
+
 ////
 /*
 function get_region_links($postid)
@@ -2237,3 +2302,29 @@ function get_region_links($postid)
 	return $cat_array;	
 }
 */
+
+
+function get_list_of_all_languages()
+{
+	$args = array(
+		'orderby'           => 'name', 
+		'order'             => 'ASC'
+	); 
+
+	$all_language_list = get_terms('language', $args);
+	
+	//print_r($all_language_list);
+	
+	return $all_language_list;
+
+}
+
+
+
+
+
+
+
+
+
+

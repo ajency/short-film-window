@@ -71,7 +71,8 @@ Template Name: category_template
                 <div class="row pushin">
                     <div class="col-md-5">
                 		<h5 class="un">FILTER BY</h5>
-                        <form action="" class="form-horizontal">
+                        
+						<!-- <form action="" class="form-horizontal"> -->
                             <div class="form-group">
                                 <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
                                 <div class="col-md-9">
@@ -89,24 +90,49 @@ Template Name: category_template
                                     </select>
                                 </div>
                             </div>
-                        </form>
-                        <form action="" class="form-horizontal">
-                            <div class="form-group">
-                                <label for="" class="col-md-3 control-label"><em>Language:</em> </label>
+                      <!--  </form> -->
+                        
+					 <!--	<form action="" class="form-horizontal"> -->
+                           
+						   <div class="form-group">
+                                
+								<?php
+									$all_language_list = get_list_of_all_languages();
+									//print_r($all_language_list);
+									
+								?>
+								
+								<label for="" class="col-md-3 control-label"><em>Language:</em> </label>
                                 <div class="col-md-9">
-                                	<select name="language" id="language">
-                                        <option value="">All</option>
-                                        <option value="ENGLISH">ENGLISH</option>
-                                        <option value="FRENCH">FRENCH</option>
-                                    </select>
-                                </div>
+                                	
+									<select name="language" id="language">
+										
+										<option value="">All</option>
+										
+										<?php
+											foreach ($all_language_list as $lang_value)
+											{
+
+												 echo '<option value="'.$lang_value->term_id.'">'.$lang_value->name.'</option>'; 
+                                        										
+										    }
+										?>
+                                   
+								   </select>
+                               
+							   </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-4 col-md-offset-3 padd-68">
+                        
+					 <!--	</form> -->
+                   
+				   </div>
+                    
+					<div class="col-md-4 col-md-offset-3 padd-68">
 <!--                    	 <h5>SORT BY</h5>-->
-                        <form action="" class="form-group row form-horizontal">
-                           <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
+                        
+					 <!--	<form action="" class="form-group row form-horizontal"> -->
+                           
+						   <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
                             <div class="col-md-9">
                                 <select name="sort" id="sort">
                                     <option value="1">Freshness</option>
@@ -114,8 +140,10 @@ Template Name: category_template
                                     <option value="3">Length</option>
                                 </select>
                             </div>
-                        </form>
-                        <div class="row opts">
+                       
+					    <!-- </form> -->
+                        
+						<div class="row opts">
                             <div class="col-md-12">
 <!--                            <div class="col-xs-4">-->
                                 <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
@@ -629,6 +657,7 @@ Template Name: category_template
 <script type="text/javascript">
 
 window.onload = function() {
+		
 	jQuery('#tracker').val('gridoption');
 
 	showLayout();
@@ -656,10 +685,18 @@ window.onload = function() {
 	});
 
 
-	jQuery('#language').live('change',function(e){
-
-
-		jQuery('#genre').trigger('change');
+	jQuery('#language').live('change',function(e)
+	{
+		//jQuery('#genre').trigger('change');
+		
+		jQuery('#searchids').val("");
+        jQuery('.search').val("");
+		jQuery('#offset').val(0)
+		jQuery('.loader').text("Loading data...")
+		jQuery('.all_posts').html("")
+		//get_all_posts_in_language();
+		get_all_posts();
+		
 	});
 
 	jQuery('.load_more').live('click',function(e){
@@ -716,6 +753,8 @@ window.onload = function() {
         jQuery('#offset').val(0);
 
 		data = 'title='+jQuery(e.target).val();
+		
+		jQuery('.load_more').hide();
 
 		jQuery.ajax({
                 type : 'GET',
@@ -800,7 +839,8 @@ window.onload = function() {
         });
 	}
 
-	function get_all_posts(){
+	function get_all_posts()
+	{
 
         //-> jQuery('.all_posts').html('');
 
@@ -808,7 +848,20 @@ window.onload = function() {
 		language = jQuery('#language').val();
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
-		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
+		
+		// console.log ("get_all_posts language= ");
+		// console.log (language);
+		
+		if(language)
+		{
+			taxonomy = 'language';
+			
+			data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
+		}
+		else
+		{
+			data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
+		}
 
 
 		jQuery.ajax({
@@ -832,6 +885,8 @@ window.onload = function() {
 				}
 			})
 	}
+	
+	
 	showLayout();
 
 	function generate_grid_reponse(response){
@@ -1603,12 +1658,14 @@ html += '<div class="couchlayout">'
 			jQuery('.all_posts').html(html);
 			showLayout();
 		}
-                    else
-                    {
-                        jQuery('.all_posts').html("");
-                        html += "<div>No posts found.</div>";
-                        jQuery('.all_posts').html(html);
-                    }
+		else
+		{
+			jQuery('.all_posts').html("");
+			html += "<div>No videos found.</div>";
+			jQuery('.all_posts').html(html);
+			
+			jQuery('.load_more').hide();
+		}
 
 
     }
@@ -1633,6 +1690,6 @@ function loadslick(){
               ]
         });
 }
-}
+} //end onload
 
 </script>
