@@ -2279,30 +2279,6 @@ function get_video_language_links($languages)
 			
 }
 
-////
-/*
-function get_region_links($postid)
-{
-	$response = Film\Video::get($postid);
-	
-	/////////
-
-	$region_array = array();
-	
-							foreach ($response['region'] as $value) 
-						{
-			        			$id = get_term_by( 'name', $value, 'region');
-			        			$category_link = get_term_link( $id );
-			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" class="def_link" title="Region Name">'.$value.'</a>';
-			        			array_push($region_array, $link);
-			        	}
-
-	print_r($cat_array);
-	
-	return $cat_array;	
-}
-*/
-
 
 function get_list_of_all_languages()
 {
@@ -2319,10 +2295,49 @@ function get_list_of_all_languages()
 
 }
 
+function author_director_rewrite(){
+$GLOBALS['wp_rewrite']->author_base = 'director';
+}
+add_action('init', 'author_director_rewrite');
 
 
 
+////
 
+add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
+
+function custom_image_size_rules($file)
+{
+
+	$img=getimagesize($file['tmp_name']);
+	$minimum = array('width' => '2000');
+	$width= $img[0];
+	$height =$img[1];
+
+	if ($width < $minimum['width'])
+	{
+		 return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
+		//return array("error"=>"Image dimensions are too small. Minimum width is" . $minimum['width'] ."px. Uploaded image width is $width px");
+	}
+
+	return $file; 
+	
+}
+
+/*
+function validate_duration() 
+{
+
+}
+
+add_action( 'admin_head', 'validate_duration' );
+*/
+
+function validate_duration($hook) 
+{
+  wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/assets/js/duration_validation.js', array('jquery') );
+}
+add_action( 'admin_enqueue_scripts', 'validate_duration' );
 
 
 

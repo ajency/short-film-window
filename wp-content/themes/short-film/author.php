@@ -32,24 +32,17 @@
 
 
 					<div class="col-md-2">
-
-							<!-- <img src="<?php//// echo get_avatar( get_the_author_meta('ID'), 60); ?>">  //60 is size is image  -->
-
-							<?php//  echo get_avatar( get_the_author_meta('ID'), 150);?>
-
-
-							<!-- <img src="<?php// echo get_avatar( get_the_author_meta($author_id), 60); ?>"> -->
-
-							<?php // echo get_avatar( get_the_author_meta($author_id), 150);?>
-
-
-							<!-- <img src="<?php// echo get_avatar($author_id, 60); ?>"> -->
-							<?php// echo get_avatar( $author_id, 150 ); ?>
-
-
-							<?php echo get_avatar( $author_info['author_email'], 150 ); ?>
-
-
+					
+						<?php
+							
+							$author_name = $author_info['author_name'];
+						
+							// $avatar = get_author_image_url(); // The function uses get_the_ID() to grab the appropirate user ID for the author image.
+							$image_url = get_author_image_url($author_id); 
+												
+						?>
+						
+							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" />
 
 					</div>
 
@@ -79,8 +72,22 @@
 								</div>
 
 								<div>
-									<p>No of Films:	<?php echo $author_info['no_of_videos_by_author'];?> <p>
-
+									
+									<?php 
+											if($author_info['no_of_videos_by_author']!=0)
+											{
+									?>	
+												<p>No of Films:	<?php echo $author_info['no_of_videos_by_author'];?> <p>
+									<?php 
+											}
+											if($author_info['no_of_articles_by_author']!=0)
+											{										
+									?>	
+												<p>No of Articles:	<?php echo $author_info['no_of_articles_by_author'];?> <p>
+									<?php
+											}
+									?>
+									
 								</div>
 
 							</div>
@@ -620,7 +627,9 @@
 
 											//+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
 
-											+'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											// +'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											
+											 +'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
 

@@ -451,10 +451,9 @@ afterToggle: function(){}
 						
 				      });
 
-
-	jQuery('.play_movie_big').click(function(event){
-						
-		//console.log("in script");
+	
+	//jQuery('.play_movie_big').click(function(event){
+	jQuery('.play_movie_big').live('click',function(event){					
 		
 		var video_id = jQuery(this).attr("data-id");
 		
@@ -524,20 +523,46 @@ afterToggle: function(){}
 	
 	
 	//onclick of STOP btn
+	
+	
     jQuery(document).on('click', '.stopclass', function() {
-        
-		
+       		
 		var url = jQuery('#playid').attr('src');
 		
-		//var data-image-url = jQuery('#stopid').attr('data-image-url');
-
-		
 		jQuery('#playid').attr('src', '');
-		//jQuery('#playid').attr('src', 'data-image-url');
 		
-
-		
+		generate_featured_image();
+		 
+		 //OR
+		 
+		 //jQuery('.play-video').html("");
+								
     });
+	
+	function generate_featured_image()
+	{		
+		// jQuery('.video-section').html("")
+		 jQuery('.show-featured-image').html("")
+       
+	    html = jQuery('.show-featured-image').html()
+
+			html+=  
+					//'<div class="show-featured-image vid_if" style=" position: relative">'
+			
+						'<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
+				
+						+'<a href="#" class="play_movie_big" data-id ="<?php echo $response['id'] ; ?>"> </a>'
+					
+					//+'</div>'
+	
+				;
+		
+			jQuery('.video-section').html(html);
+		
+		console.log(html);
+		
+    } // end of generate_video	
+	
 					  
 } //end onload
 

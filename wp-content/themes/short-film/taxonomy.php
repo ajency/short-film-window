@@ -9,47 +9,90 @@
 			<?php
 
 				$queried_object = get_queried_object();
+				
+				//print_r($queried_object);
 
-				// echo " *** taxonomy= ".$queried_object->taxonomy;
+				$taxonomy = $queried_object->taxonomy;
+				
+				$term_name = $queried_object->name; 
+				
+				//echo " *** taxonomy= ".$queried_object->taxonomy;
+				//echo " *** region/language= ".$queried_object->term_id;
 
-				// echo " *** region= ".$queried_object->term_id;
+				if($taxonomy == "region")
+				{
+					$args = array(
+						'orderby'           => 'post_date',
+						'order'             => 'DESC',
+						'genre'				=> '',
+						'region'		    => $queried_object->term_id,
+						'taxonomy'			=> $queried_object->taxonomy,
+						'language'			=> '',
+						'posts_per_page'   	=> 12,
+						'offset'           	=> 0
 
+					);
+					
+				}
+				else if($taxonomy == "language")
+				{
+					$args = array(
+						'orderby'           => 'post_date',
+						'order'             => 'DESC',
+						'genre'				=> '',
+						'language'		    => $queried_object->term_id,
+						'taxonomy'			=> $queried_object->taxonomy,
+						'region'			=> '',
+						'posts_per_page'   	=> 12,
+						'offset'           	=> 0
 
-				$args = array(
-					'orderby'           => 'post_date',
-					'order'             => 'DESC',
-					'genre'				=> '',
-					'region'		    => $queried_object->term_id,
-					'taxonomy'			=> $queried_object->taxonomy,
-					'language'			=> '',
-					'posts_per_page'   	=> 12,
-					'offset'           	=> 0
-
-				);
+					);
+				}
+				
 				
 			
 				$response_posts = Film\Video::get_many($args);
 
-				//print_r($response_posts);
+				
 
 			?>
 
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h2>REGION: <small><em><?php echo implode(', ',$response_posts[0]['region']); ?></em></small></h2>
-                    </div>
+						
+						<?php
+						
+							if($taxonomy == "region")
+							{
+						?>
+								<!-- <h4>REGION: <small><em><?php echo implode(', ',$response_posts[0]['region']); ?></em></small></h4> -->
+								<h4>REGION: <small><em><?php echo $term_name; ?></em></small></h4>
+						
+						<?php
+							}
+							else if($taxonomy == "language")
+							{
+						?>		
+								<!-- <h4>LANGUAGE: <small><em><?php echo implode(', ',$response_posts[0]['language']); ?></em></small></h4> -->
+								<h4>LANGUAGE: <small><em><?php echo $term_name; ?></em></small></h4>
+						<?php
+						
+							}
+						?>		
+                    
+					</div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
 
-							<!-- <form action="" class="search_menu"> -->
+							<!--
                                 <div class="form-group">
 
 								  <input type="text" class="form-control search" value="" placeholder="Search"/>
 
                                     <i class="fa fa-search"></i>
                                 </div>
-                           <!-- </form>-->
+                            -->
 
                         </div>
 					</div>
@@ -66,12 +109,6 @@
 					{
 				?>
 						<div class="show_posts col-md-12">
-
-<!--
-							<div class="heading sec_head">
-								<h4> Videos from region: <span><?php echo implode(', ',$response_posts[0]['region']); ?></span> </h4>
-							</div>
--->
 
 							<div class="all_posts">
 
