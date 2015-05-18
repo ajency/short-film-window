@@ -528,7 +528,9 @@ afterToggle: function(){}
 	//onclick of STOP btn
 	
 	
-    jQuery(document).on('click', '.stopclass', function() {
+    jQuery(document).on('click', '.stopclass', function(event) {
+	
+		event.preventDefault();
        		
 		var url = jQuery('#playid').attr('src');
 		
