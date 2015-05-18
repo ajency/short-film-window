@@ -572,7 +572,8 @@ afterToggle: function(){}
 		jQuery('.video-section').html("");
 		 //jQuery('.show-featured-image').html("")
        
-	    html = jQuery('.show-featured-image').html();
+	   html= "";
+	    //html = jQuery('.show-featured-image').html();
 
 			// html+= 
 					// '<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
