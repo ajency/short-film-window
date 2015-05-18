@@ -788,10 +788,11 @@ Template Name: Homepage
 			html+=
 					'<div class="inside-script">'
 																		
-								+'<div class="video-section vid_if sp_inside_vid">'
+								+'<div class="video-section vid_if sp_inside_vid" data-staff-id="'+response.id+'" data-staff-img="'+response.featured_image+'" data-staff-embedurl="'+response.embedurl+'">'
+								
 									+'<div class="show-featured-image vid_if posrel">'
 										
-										+'<img src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+										+'<img class="staff-img" src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
 										
 										+'<a href="#" class="play_movie_big" data-id ="'+response.id+'" data-embedurl="'+response.embedurl+'"> </a>'
 										
@@ -1328,8 +1329,9 @@ Template Name: Homepage
 		
 		//jQuery(document).on('click', '.stopclass', function() {
 		
-		jQuery('.stopclass').live('click',function(){
+		jQuery('.stopclass').live('click',function(event){
 		
+			event.preventDefault();
 							
 			var url = jQuery('#playid').attr('src');
 			
@@ -1348,19 +1350,31 @@ Template Name: Homepage
 		
 		function generate_featured_image()
 		{		
-						
-			// jQuery('.video-section').html("")
-			 jQuery('.show-featured-image').html("")
-		   
-			html = jQuery('.show-featured-image').html()
+				//var featured_image = jQuery('.video-section img').attr('src');
+				
+				
+				var staff_featured_image = jQuery('.video-section').attr('data-staff-img');
+				
+				var staff_video_id = jQuery('.video-section').attr('data-staff-id');
+				
+				var staff_embedurl = jQuery('.video-section').attr('data-staff-embedurl');
+				
+		
+			 jQuery('.video-section').html("")
+			// jQuery('.show-featured-image').html("")
+		   html = "";
+			//html = jQuery('.show-featured-image').html()
 
+			
+			
 				html+=  
 						//'<div class="show-featured-image vid_if" style=" position: relative">'
 				
-							'<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
+							'<img src="'+staff_featured_image+'" alt="" class="img-responsive width-full">'
 					
-							+'<a href="#" class="play_movie_big" data-id ="<?php echo $response['id'] ; ?>"> </a>'
-						
+							+'<a href="#" class="play_movie_big" data-id ="'+staff_video_id+'" data-embedurl="'+staff_embedurl+'"> </a>'
+							
+							
 						//+'</div>'
 		
 					;
