@@ -93,7 +93,7 @@ Template Name: articles_template
 								
 								<div class="col-md-5">
 								
-									<a class="content-bottom article_fi" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+									<a class="content-bottom article_fi" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 									
 										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 								
@@ -108,7 +108,7 @@ Template Name: articles_template
 										<div class="col-md-12">
 											<h4 class="m-t-0">
 												
-												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+												<a class="content-bottom article_title" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 													
 													<?php echo $value['title']; ?>
 												
@@ -177,7 +177,7 @@ Template Name: articles_template
                                             <p class="article_meta">
                                                 <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
                                                
-											   <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
+											   <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
 											                                                 
 											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
 												
@@ -261,13 +261,13 @@ Template Name: articles_template
 								<div class="col-sm-4">									
 									<div class="pop_posts">
 										<div class="focus-img">
-											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
+											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 												<img src="<?php echo $populararticle['featured_image'];?>">
 											</a>
 										</div>
 										
 										<div>
-											<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
+											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 								                <h6><?php echo $populararticle['title']; ?></h6>
 											</a>
 											
@@ -487,7 +487,7 @@ window.onload = function() {
                 
 
                 html += '<div>'
-                        +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
+                        +'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
                            +' <img src="'+value.featured_image+'" class="img-responsive">'
                        +' </div></a>'
                     +'</div>'
@@ -521,7 +521,7 @@ window.onload = function() {
 			{
                 html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
-						+'<a class="content-bottom article_fi" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+						+'<a class="content-bottom article_fi" href="'+SITEURL+'/'+value.slug+'">'
 							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
@@ -530,7 +530,7 @@ window.onload = function() {
                             +'<div class="col-md-12">'
                                 +'<h4 class="m-t-0">'
 									
-									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+									+'<a class="content-bottom article_title" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 								
 									//+'<small><em> By '+value.director+'</em></small>'
 								
@@ -580,12 +580,12 @@ window.onload = function() {
 										
 										+'<span class="author">'
 											
-											+'<a target="_blank" title="Author" href="'+SITEURL+'/author/'+value.director_nicename+'"><i class="fa fa-user"></i>' + value.director + '</a>'
+											+'<a title="Author" href="'+SITEURL+'/author/'+value.director_nicename+'"><i class="fa fa-user"></i>' + value.director + '</a>'
 										
 										+'</span>'
 										
 										
-										//+'<span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
+										//+'<span class="author"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
 										
 										
 										

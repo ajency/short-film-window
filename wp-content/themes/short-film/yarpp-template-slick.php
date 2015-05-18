@@ -18,11 +18,15 @@ Author: mitcho (Michael Yoshitaka Erlewine)
 				<?php 
 						$postid = get_the_ID(); 
 						$response = Film\Video::get($postid);
+						//print_r($response);
 				?> 
             
                 <div class="col-xs-4">
                    <div class="grid-box grid-full content-align-bottom">
-                       <a class="content-bottom" target="_blank" href="<?php the_permalink()?>">
+				   
+						<!-- <a class="content-bottom" href="<?php// echo site_url();?>/<?php// echo $response['slug']; ?>"> -->
+						
+                        <a class="content-bottom" target="_blank" href="<?php the_permalink(); ?>"> 					   
                            <div class="grid-image">
                                <?php if (has_post_thumbnail()):
                                    the_post_thumbnail('full');
