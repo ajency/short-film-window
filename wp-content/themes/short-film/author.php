@@ -165,7 +165,7 @@
 								<div class="row listlayout">
 
 									<div class="col-md-5">
-										<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 											<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 										</a>
 									</div>
@@ -176,7 +176,7 @@
 
 											<div class="col-md-12">
 												<h4 class="m-t-0">
-													<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+													<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 														<?php echo $value['title'];?>
 													</a>
 <!--													 <small><em> By <?php //echo ucfirst($value['director']);?></em></small> -->
@@ -197,7 +197,7 @@
 												<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['video_region_links']);?>/<?php echo $value['duration'];?> MIN</h6>
 
 
-												<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
+												<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
 
                                                 <p class="categories">
                                                     <span class="label label-greydark">
@@ -293,7 +293,7 @@
 
 								<div class="col-md-5">
 
-									<a class="content-bottom article_fi" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+									<a class="content-bottom article_fi" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 
 										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 
@@ -308,7 +308,7 @@
 										<div class="col-md-12">
 											<h4 class="m-t-0">
 
-												<a class="content-bottom article_title" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+												<a class="content-bottom article_title" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 
 													<?php echo $value['title']; ?>
 
@@ -377,7 +377,7 @@
                                             <p class="article_meta">
                                                 <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
 
-											   <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
+											   <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
 
 											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
 
@@ -595,7 +595,7 @@
 					html += '<div class="row listlayout">'
 
 								+'<div class="col-md-5">'
-									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 									+'</a>'
 								+'</div>'
@@ -606,7 +606,7 @@
 
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
-												+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 												 //+'<small><em> By '+value.director+'</em></small>'
 											+'</h4>'
 										+'</div>'
@@ -627,9 +627,9 @@
 
 											//+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
 
-											// +'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											// +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 											
-											 +'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											 +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
 
@@ -712,7 +712,7 @@
 
 					html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
-						+'<a class="content-bottom article_fi" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+						+'<a class="content-bottom article_fi" href="'+SITEURL+'/'+value.slug+'">'
 							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
@@ -721,7 +721,7 @@
                             +'<div class="col-md-12">'
                                 +'<h4 class="m-t-0">'
 
-									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+									+'<a class="content-bottom article_title" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 
 									//+'<small><em> By '+value.director+'</em></small>'
 
@@ -771,12 +771,12 @@
 
 										+'<span class="author">'
 
-											+'<a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
+											+'<a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
 
 										+'</span>'
 
 
-										//+'<span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
+										//+'<span class="author"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
 
 
 

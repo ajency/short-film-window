@@ -1,0 +1,73 @@
+.playlist {
+	.playlist_img {
+		width: 100%;
+	}
+	.auth_btm {
+		position: absolute;
+		bottom: 47px;
+		p {
+			margin-bottom: 0;
+			font-size: 16px;
+			span {
+				color: @brand-primary;
+			}
+		}
+	}
+	.disp_btm {
+		position: absolute;
+		bottom: 47px;
+		right: 10px;
+	}
+	.recent-movies h4 {text-transform: uppercase;}
+	@media screen and (max-width: 1199px) {
+		.disp_btm, .auth_btm {
+			position: relative;
+			right: auto;
+			bottom: auto;
+			margin-top: 15px;
+		}
+	}
+	@media screen and (max-width: 991px) {
+		.playlist_img {
+			margin-bottom: 15px;
+		}
+	}
+	@media screen and (max-width: 680px) {
+		.pushin {
+			padding: 0;
+		}
+	}
+	@media screen and (max-width: 680px) {
+		.col-xs-4, .col-xs-8 {
+            float: none;
+            width: 100%;
+        }
+        .meta-ico, .lico_c {
+            margin-top: 10px;
+            text-align: left !important;
+            .meta-ico-in, .lico {
+                display: inline-block;
+                padding-right: 10px;
+                padding-left: 10px;
+                border-right: 1px solid #ccc;
+                &:first-child {
+                    padding-left: 0;
+                }
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+        }
+        .list-info-btns .ssba div {
+            text-align: left !important;
+            a {
+                margin-left: 0;
+                margin-right: 10px;
+            }
+        }
+        .lico_c {
+            .lico {font-size: 14px;}
+            .lico i {font-size: 16px;}
+        }
+	}
+}

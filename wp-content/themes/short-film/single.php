@@ -102,10 +102,10 @@ get_header(); ?>
 					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
 					            </li>
 					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>"><i class="fa fa-facebook-square fa-lg"></i></a>
 					            </li>
 					            <li class="social-pin">
-					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
+					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>"><i class="fa fa-pinterest fa-lg"></i></a>
 					            </li>
 					          </ul>
 							  -->
@@ -127,7 +127,7 @@ get_header(); ?>
 			       
 				 <!--  <h5 class="director m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>  -->
 				 
-				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a target="_blank" href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
+				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
 				    
 					<?php
 			        	$region_array = array();
@@ -141,7 +141,7 @@ get_header(); ?>
 						{
 			        			$id = get_term_by( 'name', $value, 'region');
 			        			$category_link = get_term_link( $id );
-			        			$link = '<a href='.esc_url( $category_link ).' target="_blank" class="def_link" title="Region Name">'.$value.'</a>';
+			        			$link = '<a href='.esc_url( $category_link ).' class="def_link" title="Region Name">'.$value.'</a>';
 			        			array_push($region_array, $link);
 			        	}
 			        	if(count($region_array) == 0)
@@ -161,7 +161,7 @@ get_header(); ?>
 			        			$category_id = get_cat_ID( $value );
 			        			$category_link = get_category_link( $category_id );
 								array_push($temp, $category_link);
-			        			$link = '<a href='.esc_url( $category_link ).' target="_blank"  title="Category Name">'.$value.'</a>';
+			        			$link = '<a href='.esc_url( $category_link ).' title="Category Name">'.$value.'</a>';
 			        			array_push($cat_array, $link);
 			        	}
 					
@@ -414,11 +414,11 @@ afterToggle: function(){}
 
 
     	html = '<div class="row">'
-    	//+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'
+    	//+'<a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'
 	         
 	        +'<div class="col-md-6">'
 	            +'<div class="pull-left">'
-	                +'<h4>IN FOCUS: <small><em><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a></em></small></h4>'
+	                +'<h4>IN FOCUS: <small><em><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a></em></small></h4>'
 	            +'</div> '
 	        +'</div>'
 	        +'<div class="col-md-6">'
@@ -433,7 +433,7 @@ afterToggle: function(){}
 
 	    +'<div class="row">'
 	        +'<div class="col-md-5">'
-				+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'
+				+'<a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'
 					+'<img src="'+response.featured_image+'" class="img-responsive">'
 				+'</a>'	
 	        +'</div>'
