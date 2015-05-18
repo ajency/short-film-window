@@ -66,8 +66,10 @@ Author: mitcho (Michael Yoshitaka Erlewine)
                                    </div>
                                </div>
                            </div>
-                           <div class="overlay-vertical"></div>
-                       </a>
+						</a>   
+						 <a class="overlay-vertical" target="_blank" href="<?php the_permalink(); ?>">
+						 </a>
+                          
                     </div>
                 </div>
             
