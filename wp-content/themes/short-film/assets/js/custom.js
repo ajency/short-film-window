@@ -59,13 +59,24 @@
         $(document).on('click', '.social-toggle', function() {
           $(this).next().toggleClass('open-menu');
         });
-        
+
+        // link click
+        if ($('div').hasClass('grid-box')) {
+            $('.grid-box').each(function() {
+                $link = $(this).find('a.content-bottom').attr('href');
+                $(document).on('click', $(this), function(e) {
+                    e.preventDefault();
+                    window.location = $link;
+                });
+            });
+        }
+
         //same height article page temporary solution
         function setlesshe() {
             $('.article_row').each(function() {
-                
+
                 $(this).find('.col-md-5 .article_fi').css('height', 'auto');
-                
+
                 if (window.outerWidth < 991) {
                     $(this).find('.col-md-5 .article_fi').css('height', 'auto');
                     //$(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
@@ -73,7 +84,7 @@
                     $(this).find('.col-md-5 .article_fi').css('height', $(this).find('.col-md-7').height());
                     //$(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
                 }
-                
+
             });
         }
         if ($('div').hasClass('article_row')) {
@@ -158,14 +169,14 @@
         }
 
     });
-    
+
     function resizeimgs(tw, obj, i) {
         var ar = obj.width() / obj.height();
         console.log('Number: ' + i + '\n-------------------------');
         console.log('aspectratio ' + ar);
         console.log('cont-resize ' + tw.width() / tw.height());
         console.log('END Number: ' + i + '\n-------------------------');
-            
+
         if ( (tw.width() / tw.height()) < ar ) {
             obj
                 .removeClass()
@@ -190,7 +201,7 @@
             });
         }
     });
-    
+
     $(window).resize(function() {
         resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
         if ($('div').hasClass('grid-image')) {
@@ -199,7 +210,7 @@
             });
         }
     });
-    
+
     var element = $('.movie-info');
     if(element.length > 0) {
 
@@ -212,15 +223,15 @@
       });
 
       /* Video response on play */
-      var player_name = _V_('#bg-video'); 
+      var player_name = _V_('#bg-video');
       player_name.on('waiting', function(){
         $('.vjs-poster').css('opacity', '0');
       });
-      player_name.on('play', function(){ 
+      player_name.on('play', function(){
         $('.movie-info').addClass('playing');
         $('.header').addClass('playing');
         $('.movie-header .overlay').css('display', 'none');
-        views = parseInt(jQuery('#noofviews').val()) + 1 ; 
+        views = parseInt(jQuery('#noofviews').val()) + 1 ;
         data = 'views='+views+'&post_id='+jQuery('#post_id').val();
         jQuery.ajax({
                 type : 'POST',
@@ -237,14 +248,14 @@
         });
 
       });
-      player_name.on('pause', function(){ 
+      player_name.on('pause', function(){
         $('.movie-info').removeClass('playing');
         $('.header').removeClass('playing');
         $('.movie-header .overlay').css('display', 'block');
       });
     }
 
-    
+
 })(jQuery);
 
 

@@ -12886,6 +12886,9 @@ a:focus {
 .posrel {
   position: relative;
 }
+.posata {
+  position: static;
+}
 a.content-bottom,
 .article_row h4 a.article_title,
 a.exp_all,
@@ -13271,4 +13274,91 @@ h4.auth_name {
 }
 .listlayout i {
   margin-right: 10px;
+}
+.playlist .playlist_img {
+  width: 100%;
+}
+.playlist .auth_btm {
+  position: absolute;
+  bottom: 47px;
+}
+.playlist .auth_btm p {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+.playlist .auth_btm p span {
+  color: #af152f;
+}
+.playlist .disp_btm {
+  position: absolute;
+  bottom: 47px;
+  right: 10px;
+}
+.playlist .recent-movies h4 {
+  text-transform: uppercase;
+}
+@media screen and (max-width: 1199px) {
+  .playlist .disp_btm,
+  .playlist .auth_btm {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin-top: 15px;
+  }
+}
+@media screen and (max-width: 991px) {
+  .playlist .playlist_img {
+    margin-bottom: 15px;
+  }
+}
+@media screen and (max-width: 680px) {
+  .playlist .pushin {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 680px) {
+  .playlist .col-xs-4,
+  .playlist .col-xs-8 {
+    float: none;
+    width: 100%;
+  }
+  .playlist .meta-ico,
+  .playlist .lico_c {
+    margin-top: 10px;
+    text-align: left !important;
+  }
+  .playlist .meta-ico .meta-ico-in,
+  .playlist .lico_c .meta-ico-in,
+  .playlist .meta-ico .lico,
+  .playlist .lico_c .lico {
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-right: 1px solid #ccc;
+  }
+  .playlist .meta-ico .meta-ico-in:first-child,
+  .playlist .lico_c .meta-ico-in:first-child,
+  .playlist .meta-ico .lico:first-child,
+  .playlist .lico_c .lico:first-child {
+    padding-left: 0;
+  }
+  .playlist .meta-ico .meta-ico-in:last-child,
+  .playlist .lico_c .meta-ico-in:last-child,
+  .playlist .meta-ico .lico:last-child,
+  .playlist .lico_c .lico:last-child {
+    border-right: 0;
+  }
+  .playlist .list-info-btns .ssba div {
+    text-align: left !important;
+  }
+  .playlist .list-info-btns .ssba div a {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+  .playlist .lico_c .lico {
+    font-size: 14px;
+  }
+  .playlist .lico_c .lico i {
+    font-size: 16px;
+  }
 }
