@@ -83,6 +83,11 @@
 			            <a href="#">SEARCH</a>
 			        </div>
 			        <div class="social-links">
+					
+						
+						<?php// echo do_shortcode('[ssba url="' . home_url() . '"]'); ?>
+						
+						
 			            <div class="fb link">
 			                <div class="icon">
 			                    <i class="fa fa-facebook fa-lg fa-fw"></i>
@@ -96,6 +101,8 @@
 			                    <i class="fa fa-twitter fa-lg fa-fw"></i>
 			                </div>
 			            </div>
+					
+						
 			        </div>                
 			    </div>
 			    <div class="logo">

@@ -188,9 +188,12 @@ get_header(); ?>
                            
                         </div>
 						
+						<!--
                         <div class="watchlist-add">
                             <a href="#">Add to Watchlist <i class="fa fa-binoculars"></i></a>
                         </div>
+						-->
+						
 					</div>										
 <!--
 						<div class="pull-right share-button">
@@ -561,7 +564,7 @@ afterToggle: function(){}
 		
 		console.log(html);
 		
-    } // end of generate_video	
+    } // end of generate_featured_image	
 	
 					  
 } //end onload

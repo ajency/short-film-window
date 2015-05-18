@@ -162,6 +162,10 @@ Template Name: category_template
                 <hr>
 
 	<div class="spacer-40"></div><div class="loader"></div>
+	
+	<div class="search-results-message">
+	</div>
+	
 	<div class="all_posts">
 
 		<?php
@@ -209,6 +213,7 @@ Template Name: category_template
                 }
 
 				?>
+				
 
 				<div class="row gridlayout">
 
@@ -231,8 +236,8 @@ Template Name: category_template
 									<div class="grid-meta">
 										<div class="row">
 											<div class="col-xs-4">
-												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class']; ?>">
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
 													<div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -269,7 +274,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
@@ -305,7 +310,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
 													<div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -343,7 +348,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
 													<div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -378,7 +383,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
 													<div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -413,7 +418,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
 													<div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -511,9 +516,11 @@ Template Name: category_template
 										<!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
 
 									</div>
+									<!--
 									<div class="lico watchlist-add">
 										<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
 									</div>
+									-->
 								</div>
 
 							</div>
@@ -586,10 +593,11 @@ Template Name: category_template
                                        <!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
 
                                     </div>
-
+									<!--
                                     <div class="lico watchlist-add">
                                         <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
                                     </div>
+									-->
                                 </div>
                             </div>
                         </div>
@@ -751,6 +759,8 @@ window.onload = function() {
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
+		
+		var title = jQuery(e.target).val();
 
 		data = 'title='+jQuery(e.target).val();
 		
@@ -768,6 +778,9 @@ window.onload = function() {
 					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					jQuery('.search-results-message').html("Search Results for "+title);
+					
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value){
@@ -1302,7 +1315,7 @@ window.onload = function() {
 
 													+'<div class="col-xs-4">'
 														+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-															+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+															//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 														+'</div>'
 														+'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
 															+'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1339,7 +1352,7 @@ window.onload = function() {
 											+'<div class="row">'
 											   +' <div class="col-xs-4">'
 													+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-													   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													  // +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 													+'</div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
 													   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1375,7 +1388,7 @@ window.onload = function() {
 											+'<div class="row">'
 												+'<div class="col-xs-4">'
 													+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-													   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													  // +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 												   +' </div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
 													   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1413,7 +1426,7 @@ window.onload = function() {
 										   +' <div class="row">'
 											   +' <div class="col-xs-4">'
 												   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-														+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+														//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 													+'</div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
 													   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1448,7 +1461,7 @@ window.onload = function() {
 											+'<div class="row">'
 											   +' <div class="col-xs-4">'
 													+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-													   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 													+'</div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
 													   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1483,7 +1496,7 @@ window.onload = function() {
 										   +' <div class="row">'
 											   +' <div class="col-xs-4">'
 												   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-														+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+														//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 													+'</div>'
 												   +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
 													   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1572,7 +1585,7 @@ html += '<div class="row listlayout">'
 						+ '</div>'
 
 						+ '<div class="lico watchlist-add"> '
-							+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+							//+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
 						+ '</div>'
 					+ '</div>'
 
@@ -1640,7 +1653,7 @@ html += '<div class="couchlayout">'
 
 						+ '</div>'
 						+ '<div class="lico watchlist-add">'
-							+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+							//+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
 						+ '</div>'
 					+ '</div>'
 				+ '</div>'

@@ -71,6 +71,8 @@ Template Name: Homepage
 							-->
 						</div>
 						
+						<a href="#" class="stopclass" id="stopid"> STOP </a>
+						
                     </div>
 					
                     <div class="col-sm-3">
@@ -118,6 +120,9 @@ Template Name: Homepage
     </div>
                 
 	<hr class="m-t-0">
+	
+	<div class="search_nn-results-message">
+	</div>
 
 	<div class="all_posts">
 	
@@ -158,7 +163,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
 													<div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -198,7 +203,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
 													<div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -238,7 +243,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
 													<div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -280,7 +285,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
 													<div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -320,7 +325,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
 													<div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -360,7 +365,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-													<i class="fa fa-binoculars fa-2x"></i><br>Watchlist
+													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
 													<div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -480,56 +485,77 @@ Template Name: Homepage
 ?>
 	
 
-                <div class="spacer-50 hideinsmall"></div>
-                <div class="row ge">
-                    <div class="col-md-6 col-sm-6 col-xs-6">
-                        <h3 class="brand"><small><em>EXPLORE BY</em></small> GENRE</h3>
-                    </div>
-                    <!--					
-					<div class="col-md-6 col-sm-6 col-xs-6">
-                         <div class="pull-right">
-                            <div class="btn-group genre-dd">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    Genre <i class="fa fa-angle-double-down"></i>
-                                </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Adventure</a></li>
-                                    <li><a href="#">Fiction</a></li>
-                                    <li><a href="#">Drama</a></li>
-                                </ul>
-                            </div>
-                        </div> 
-                    </div>
-					-->
-                </div>
-                <hr class="m-t-0"> 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="slider1 regular-slider">
+	<div class="spacer-50 hideinsmall"></div>
+	
+	<div class="row ge">
+		<div class="col-md-6 col-sm-6 col-xs-6">
+			<h3 class="brand"><small><em>EXPLORE BY</em></small> GENRE</h3>
+		</div>
+
+	</div>
+	
+	<hr class="m-t-0"> 
+				
+	<?php 
+			
+		$response_cats = get_few_categories();
+		//print_r($response_cats);
+		
+		if(count($response_cats) > 0)
+		{
+	?>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<div class="slider1 regular-slider">
+					
+					<?php
+
+						foreach($response_cats as $cat)
+						{
+							$args_img = array(
+											'cat_id' => $cat['cat_id'],
+											'alt' 	 => $cat['cat_name']
+							);
+							
+					?>						
                             <div>
+							
                                 <div class="focus-img">
-                                    <img src="https://placeimg.com/260/150/tech" class="img-responsive">
+								
+									<a class="content-bottom" target="_blank" href="<?php echo $cat['cat_link'];?>">
+                                    
+										<!-- <img src="<?php// echo cfi_featured_image($cat['cat_id']);?>" class="img-responsive"> -->
+																				
+										
+										<?php
+										
+											echo $cat['cat_name'];
+
+											cfi_featured_image($args_img);
+											 											 											 									 									
+										?>
+									
+									</a>
+									
                                 </div>
+								
                             </div>
-                            <div>
-                                <div class="focus-img">
-                                    <img src="https://placeimg.com/260/150/nature" class="img-responsive">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="focus-img">
-                                    <img src="https://placeimg.com/260/150/people" class="img-responsive">
-                                </div>
-                            </div>
-                            <div>
-                                <div class="focus-img">
-                                    <img src="https://placeimg.com/260/150/nature" class="img-responsive">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+							
+						
+						<?php
+						
+						} //end for
+						
+						?>
+						
+					</div>
+				</div>
+			</div>
+				
+	<?php
+		} //end if	
+	?>		
 
                 <div class="spacer-50 hideinsmall"></div>
                 <div class="row">
@@ -823,7 +849,7 @@ Template Name: Homepage
 										//+'<div class="meta-ico-in">'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
 										+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
 										
-										+'<div class="meta-ico-in">Watchlist <i class="fa fa-binoculars"></i></div>'
+										//+'<div class="meta-ico-in">Watchlist <i class="fa fa-binoculars"></i></div>'
 									+'</div>'
 								+'</div>'
 							+'</div>'						
@@ -839,7 +865,7 @@ Template Name: Homepage
 		else
 		{
 			jQuery('.staffpick-display-section').html("");
-			html += "<div>No posts found.</div>";
+			html += "<div>No videos found.</div>";
 			jQuery('.staffpick-display-section').html(html);
 		}
 		
@@ -903,7 +929,7 @@ Template Name: Homepage
 					
 						//+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 						
-						+'<iframe class="vid_if" src="'+embedurl+'" frameborder="0" allowfullscreen></iframe>'
+						+'<iframe id="playid" class="vid_if" src="'+embedurl+'" frameborder="0" allowfullscreen></iframe>'
 						
 					+'</div>';
 		
@@ -927,6 +953,8 @@ Template Name: Homepage
         e.preventDefault();
 
         jQuery('#offset').val(0);
+		
+		var title = jQuery(e.target).val();
 
 		data = 'title='+jQuery(e.target).val();
 
@@ -942,6 +970,9 @@ Template Name: Homepage
 					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					jQuery('.search_nn-results-message').html("Search Results for "+title);
+					
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value){
@@ -1022,7 +1053,7 @@ Template Name: Homepage
 
 											+'<div class="col-xs-4">'
 												+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-													+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 												+'</div>'
 												+'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
 													+'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1059,7 +1090,7 @@ Template Name: Homepage
 									+'<div class="row">'
 									   +' <div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-											   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
 											   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1095,7 +1126,7 @@ Template Name: Homepage
 									+'<div class="row">'
 										+'<div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-											   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 										   +' </div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
 											   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1133,7 +1164,7 @@ Template Name: Homepage
 								   +' <div class="row">'
 									   +' <div class="col-xs-4">'
 										   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-												+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+												//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
 											   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1168,7 +1199,7 @@ Template Name: Homepage
 									+'<div class="row">'
 									   +' <div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-											   +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
 											   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1203,7 +1234,7 @@ Template Name: Homepage
 								   +' <div class="row">'
 									   +' <div class="col-xs-4">'
 										   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-												+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+												//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
 											+'</div>'
 										   +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
 											   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1232,7 +1263,7 @@ Template Name: Homepage
 		else
 		{
 			jQuery('.all_posts').html("");
-			html += "<div>No posts found.</div>";
+			html += "<div>No videos found.</div>";
 			jQuery('.all_posts').html(html);
 		}
 		 
@@ -1293,6 +1324,54 @@ Template Name: Homepage
 			console.log(grid);
 			return grid;
 		}
+		
+		
+		//jQuery(document).on('click', '.stopclass', function() {
+		
+		jQuery('.stopclass').live('click',function(){
+		
+							
+			var url = jQuery('#playid').attr('src');
+			
+			jQuery('#playid').attr('src', '');
+			
+		
+			
+			generate_featured_image();
+			 
+			 //OR
+			 
+			 //jQuery('.play-video').html("");
+									
+		});		
+		
+		
+		function generate_featured_image()
+		{		
+						
+			// jQuery('.video-section').html("")
+			 jQuery('.show-featured-image').html("")
+		   
+			html = jQuery('.show-featured-image').html()
+
+				html+=  
+						//'<div class="show-featured-image vid_if" style=" position: relative">'
+				
+							'<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
+					
+							+'<a href="#" class="play_movie_big" data-id ="<?php echo $response['id'] ; ?>"> </a>'
+						
+						//+'</div>'
+		
+					;
+			
+				jQuery('.video-section').html(html);
+			
+			console.log(html);
+			
+		} // end of generate_featured_image	
+		
+		
 			
 	});  // end of document.ready function
 

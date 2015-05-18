@@ -33,6 +33,9 @@
 		            <div class="col-md-4 break-cols">
 		            	<div class="row">
 		            		<div class="col-xs-5 col-md-12">
+							
+								<?php// echo do_shortcode('[ssba url="' . home_url() . '"]'); ?>
+							
 		            			<div class="row">
 			                        <label for="" class="col-sm-4 text-right">FOLLOW US</label>
 			                        <div class="col-sm-8">

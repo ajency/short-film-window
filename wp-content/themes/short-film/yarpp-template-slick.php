@@ -14,6 +14,11 @@ Author: mitcho (Michael Yoshitaka Erlewine)
    
     <div class="row sim_mov">
         <?php while (have_posts()) : the_post(); ?>
+		
+				<?php 
+						$postid = get_the_ID(); 
+						$response = Film\Video::get($postid);
+				?> 
             
                 <div class="col-xs-4">
                    <div class="grid-box grid-full content-align-bottom">
@@ -26,32 +31,32 @@ Author: mitcho (Michael Yoshitaka Erlewine)
                                 <?php endif; ?>
                            </div>
                            <div class="grid-text-wrap">
-                               <div class="grid-title"><?php the_title_attribute(); //echo $recentvideo['title'];?></div>
-                               <div class="grid-meta">Region<?php //echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>
-                               <div class="grid-meta">Category<?php //echo implode(',',$recentvideo['categories']);?></div>
-                               <div class="grid-meta">DIR. Director<?php //echo  ucfirst($recentvideo['director']);?></div>
+                               <div class="grid-title"><?php the_title_attribute(); //echo $response['title'];?></div>
+                               <div class="grid-meta"><?php echo implode(', ',$response['region']);?>/<?php echo $response['duration'];?> MIN</div>
+                               <div class="grid-meta"><?php echo implode(', ',$response['categories']);?></div>
+                               <div class="grid-meta">DIR. <?php echo  ucfirst($response['director']);?></div>
                             </div>
                            <div class="grid-text-wrap hover-text">
                                <div class="grid-title">
-                                   <?php the_title_attribute(); //echo $recentvideo['title'];?>
+                                   <?php the_title_attribute(); //echo $response['title'];?>
                                </div>
                                <div class="grid-meta">
                                    <div class="row">
                                        <div class="col-xs-4">
                                            <div class="pull-left p-l-10 m-t-10">
                                                <div>
-                                                   <?php //echo $recentvideo['no_of_views'];?>
+                                                   <?php echo $response['no_of_views'];?>
                                                    <i class="fa fa-eye"></i>
                                                </div>
                                                <div>
-                                                   <?php //echo $recentvideo['post_like_count'];?>
+                                                   <?php echo $response['post_like_count'];?>
                                                    <i class="fa fa-thumbs-up"></i>
                                                </div>
                                            </div>
                                        </div>
                                        <div class="col-xs-8">
                                            <div class="pull-right text-right m-t-10">
-                                               <?php echo get_the_excerpt(); //echo $recentvideo['excerpt'];?>
+                                               <?php echo get_the_excerpt(); //echo $response['excerpt'];?>
                                            </div>
                                        </div>
                                    </div>
