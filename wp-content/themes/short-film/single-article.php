@@ -30,7 +30,7 @@ get_header(); ?>
 				<div class="col-md-12">
 					<h3 class="article_title">
 					    <?php echo ucfirst($response['title']); ?>
-					    <small><em>by <a target="_blank" href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a></em></small>
+					    <small><em>by <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a></em></small>
 				    </h3>
 				    <p class="pull-right goup"><i class="fa fa-clock-o"></i><?php echo $response['post_date']; ?></p>
 				</div>
@@ -60,7 +60,7 @@ get_header(); ?>
 					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
 					            </li>
 					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>"><i class="fa fa-facebook-square fa-lg"></i></a>
 					            </li>
 					            <li class="social-pin">
 					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php //echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
@@ -143,7 +143,7 @@ get_header(); ?>
 							<div class="col-xs-4">									
 								<div class="grid-box grid-full content-align-bottom">
 									
-									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 										
 										<div class="grid-image">
 											<img src="<?php echo $recentvideo['featured_image'];?>">
@@ -189,7 +189,7 @@ get_header(); ?>
 																					
 											<!--
 											<div>
-												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 													<h6><?php echo $recentvideo['title']; ?></h6>
 												</a>
 												

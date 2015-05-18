@@ -143,7 +143,7 @@ Template Name: Homepage
 				<div class="row">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
+                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value[0]['featured_image'] ;?>">
                                 </div>
@@ -183,7 +183,7 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
+                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value[1]['featured_image'] ;?>">
                                 </div>
@@ -223,7 +223,7 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
+                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value[2]['featured_image'] ;?>">
                                 </div>
@@ -265,7 +265,7 @@ Template Name: Homepage
                     </div>
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
+                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value[3]['featured_image'] ;?>">
                                 </div>
@@ -305,7 +305,7 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
+                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value[4]['featured_image'] ;?>">
                                 </div>
@@ -345,7 +345,7 @@ Template Name: Homepage
                             </a>
                         </div>
                         <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
+                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
                                 <div class="grid-image">
                                     <img src="<?php echo $value[5]['featured_image'] ;?>">
                                 </div>
@@ -401,7 +401,7 @@ Template Name: Homepage
                     <h6>
                       <!--  <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>  -->
 						
-						<a class="exp_all" target="_blank" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down hidden"></i></a>
+						<a class="exp_all" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down hidden"></i></a>
 						
                     </h6>
                     </div>
@@ -446,7 +446,7 @@ Template Name: Homepage
 						{
 					?>
 							<div>
-								<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
+								<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 									
 									<div class="focus-img">
 										<img src="<?php echo $recentarticle['featured_image'] ;?>" class="img-responsive">
@@ -523,7 +523,7 @@ Template Name: Homepage
 							
                                 <div class="focus-img">
 								
-									<a class="content-bottom" target="_blank" href="<?php echo $cat['cat_link'];?>">
+									<a class="content-bottom" href="<?php echo $cat['cat_link'];?>">
                                     
 										<!-- <img src="<?php// echo cfi_featured_image($cat['cat_id']);?>" class="img-responsive"> -->
 																				
@@ -806,7 +806,7 @@ Template Name: Homepage
 												// +'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
 												
 												
-												+'<h3><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a target="_blank" title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
+												+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
 																																																					
 											+'</div>'
 																				
@@ -1033,7 +1033,7 @@ Template Name: Homepage
 
 					+'<div class="col-sm-6 multi-grid">'
 						+' <div class="grid-box grid-full content-align-bottom">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[0]['slug']+'">'
+						+'<a class="content-bottom" href="'+SITEURL+'/'+value[0]['slug']+'">'
 
 								+'<div class="grid-image">'
 									+'<img src="'+value[0]['featured_image']+'">'
@@ -1074,7 +1074,7 @@ Template Name: Homepage
 					   +' </a>'
 					+'</div>'
 					+'<div class="grid-box grid-half content-align-bottom">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[1]['slug']+'">'
+						+'<a class="content-bottom" href="'+SITEURL+'/'+value[1]['slug']+'">'
 							+'<div class="grid-image">'
 								+'<img src="'+value[1]['featured_image']+'">'
 							+'</div>'
@@ -1110,7 +1110,7 @@ Template Name: Homepage
 						+'</a>'
 					+'</div>'
 					+'<div class="grid-box grid-half content-align-bottom">'
-					   +' <a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[2]['slug']+'">'
+					   +' <a class="content-bottom" href="'+SITEURL+'/'+value[2]['slug']+'">'
 							+'<div class="grid-image">'
 							   +' <img src="'+value[2]['featured_image']+'">'
 						   +' </div>'
@@ -1148,7 +1148,7 @@ Template Name: Homepage
 			   +' </div>'
 				+'<div class="col-sm-6 multi-grid">'
 				   +' <div class="grid-box grid-half content-align-bottom">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[3]['slug']+'">'
+						+'<a class="content-bottom" href="'+SITEURL+'/'+value[3]['slug']+'">'
 							+'<div class="grid-image">'
 							   +' <img src="'+value[3]['featured_image']+'">'
 							+'</div>'
@@ -1184,7 +1184,7 @@ Template Name: Homepage
 					   +' </a>'
 				   +' </div>'
 				   +' <div class="grid-box grid-half content-align-bottom">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[4]['slug']+'">'
+						+'<a class="content-bottom" href="'+SITEURL+'/'+value[4]['slug']+'">'
 							+'<div class="grid-image">'
 								+'<img src="'+value[4]['featured_image']+'">'
 							+'</div>'
@@ -1219,7 +1219,7 @@ Template Name: Homepage
 						+'</a>'
 					+'</div>'
 					+'<div class="grid-box grid-full content-align-bottom">'
-						+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[5]['slug']+'">'
+						+'<a class="content-bottom" href="'+SITEURL+'/'+value[5]['slug']+'">'
 							+'<div class="grid-image">'
 								+'<img src="'+value[5]['featured_image']+'">'
 							+'</div>'

@@ -121,7 +121,7 @@
 										<div class="row listlayout">
 
 											<div class="col-md-5">
-												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 													<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
 												</a>
 											</div>
@@ -132,7 +132,7 @@
 
 													<div class="col-md-12">
 														<h4 class="m-t-0">
-															<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+															<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 																<?php echo $value['title'];?>
 															</a>
 																<!-- <small><em> By <?php //echo ucfirst($value['director']);?></em></small> -->
@@ -151,7 +151,7 @@
 
 														<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['video_region_links']);?>/<?php echo $value['duration'];?> MIN</h6>
 
-														<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
+														<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
 
 
 														<p class="categories">
@@ -317,7 +317,7 @@
 					html += '<div class="row listlayout">'
 
 								+'<div class="col-md-5">'
-									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
+									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 									+'</a>'
 								+'</div>'
@@ -328,7 +328,7 @@
 
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
-												+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 												 //+'<small><em> By '+value.director+'</em></small>'
 											+'</h4>'
 										+'</div>'
@@ -349,7 +349,7 @@
 
 											// +'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
 
-											+'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
                                             + '<p class="categories">'
