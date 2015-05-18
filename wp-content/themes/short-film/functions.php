@@ -2295,6 +2295,51 @@ function get_list_of_all_languages()
 
 }
 
+
+function get_few_categories()
+{
+	$response = array();
+	
+	$args_cat = array(
+				'orderby'     => 'name',
+				//'orderby'     => 'id',
+				'order'   	  => 'ASC',			
+			    //'order'   	  => 'DESC',			
+				'number'      => '6',
+				'parent'      => 0				
+				
+	); 
+		
+	$categories = get_categories( $args_cat );
+	
+	foreach ( $categories as $category )
+	{		
+		$cat_link = get_category_link( $category->term_id );
+		
+		$response[]=array(
+			
+			'cat_id'      =>  $category->cat_ID,
+			'cat_name'    =>  $category->cat_name,
+			'cat_termid'  =>  $category->term_id,
+			'cat_slug'    =>  $category->slug,
+			'cat_link'	  =>  $cat_link
+
+		);						
+	}		
+
+	if (is_wp_error($response))
+	{
+	   return false;
+	}
+	else
+	{
+		//print_r($response);
+	   return $response;
+	}
+		
+}  
+
+
 function author_director_rewrite(){
 $GLOBALS['wp_rewrite']->author_base = 'director';
 }

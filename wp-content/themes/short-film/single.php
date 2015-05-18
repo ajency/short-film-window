@@ -38,12 +38,18 @@ get_header(); ?>
         <div class="vid-previous"></div>
 		<div class="vid-next"></div>
        
-        <div class="video-section vid_if" style="position: relative;">
-            <div class="show-featured-image vid_if" style=" position: relative">
+	   <!--
+	    <div class="video-section vid_if" style="position:relative;">
+	    -->
+		
+		<div class="video-section vid_if" data-video-id="<?php echo $response['id']; ?>" data-video-img="<?php echo $response['featured_image']; ?>" data-video-embedurl="<?php echo $response['embedurl'];?>" style="position: relative;">
+		
+			
+            <div class="show-featured-image vid_if" style="position:relative">
                 
 				<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
                 
-				<a href="#" class="play_movie_big" data-id ="<?php echo $response['id'] ; ?>"> </a>
+				<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>
             </div>	
             <!--	
                 <div class="play-video">
@@ -188,9 +194,12 @@ get_header(); ?>
                            
                         </div>
 						
+						<!--
                         <div class="watchlist-add">
                             <a href="#">Add to Watchlist <i class="fa fa-binoculars"></i></a>
                         </div>
+						-->
+						
 					</div>										
 <!--
 						<div class="pull-right share-button">
@@ -525,7 +534,9 @@ afterToggle: function(){}
 	//onclick of STOP btn
 	
 	
-    jQuery(document).on('click', '.stopclass', function() {
+    jQuery(document).on('click', '.stopclass', function(event) {
+	
+		event.preventDefault();
        		
 		var url = jQuery('#playid').attr('src');
 		
@@ -541,27 +552,47 @@ afterToggle: function(){}
 	
 	function generate_featured_image()
 	{		
-		// jQuery('.video-section').html("")
-		 jQuery('.show-featured-image').html("")
-       
-	    html = jQuery('.show-featured-image').html()
-
-			html+=  
-					//'<div class="show-featured-image vid_if" style=" position: relative">'
-			
-						'<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
-				
-						+'<a href="#" class="play_movie_big" data-id ="<?php echo $response['id'] ; ?>"> </a>'
-					
-					//+'</div>'
+		//data-video-img
+								
+		var post_featured_image = jQuery('.video-section').attr('data-video-img');
+		
+		var post_video_id = jQuery('.video-section').attr('data-video-id');
+		
+		var post_embedurl = jQuery('.video-section').attr('data-video-embedurl');
 	
+		
+		
+		// var post_featured_image = <?php echo $response['featured_image']; ?>;
+		
+		// var post_video_id = <?php echo $response['id']; ?>;
+		
+		// var post_embedurl = <?php echo $response['embedurl']; ?>;
+		
+	
+		jQuery('.video-section').html("");
+		 //jQuery('.show-featured-image').html("")
+       
+	    html = jQuery('.show-featured-image').html();
+
+			// html+= 
+					// '<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
+				
+					// +'<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>'					
+				// ;
+				
+				html+=  
+								
+						'<img src="'+post_featured_image+'" alt="" class="img-responsive width-full">'
+				
+						+'<a href="#" class="play_movie_big" data-id="'+post_video_id+'" data-embedurl="'+post_embedurl+'"> </a>'
+					
 				;
 		
 			jQuery('.video-section').html(html);
 		
 		console.log(html);
 		
-    } // end of generate_video	
+    } // end of generate_featured_image	
 	
 					  
 } //end onload

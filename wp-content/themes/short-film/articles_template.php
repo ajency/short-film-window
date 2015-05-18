@@ -63,6 +63,10 @@ Template Name: articles_template
                 </div>
 				
                 <div class="spacer-40"></div><div class="loader"></div>
+				
+				<div class="search-results-message">
+				</div>				
+				
 				<div class="all_posts">
 				
 				<?php 
@@ -362,6 +366,8 @@ window.onload = function() {
         //jQuery('#genre').val("");
         //jQuery('#language').val("");
         jQuery('#offset').val(0);
+		
+		var title = jQuery(e.target).val();
         
 		data = 'title='+jQuery(e.target).val();
 		
@@ -371,9 +377,13 @@ window.onload = function() {
                 type : 'GET',
                 url : SITEURL+'/wp-json/articlefilters',
                 data : data,
-                success:function(response){
+                success:function(response)
+				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					jQuery('.search-results-message').html("Search Results for "+title);
+					
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value){
