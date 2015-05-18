@@ -61,15 +61,16 @@
         });
 
         // link click
-        if ($('div').hasClass('grid-box')) {
-            $('.grid-box').each(function() {
-                $link = $(this).find('a.content-bottom').attr('href');
-                $(document).on('click', $(this), function(e) {
+        // if ($('div').hasClass('grid-box')) {
+        //     $('.grid-box').each(function() {
+
+                $(document).on('click', '.grid-box', function(e) {
                     e.preventDefault();
+                    $link = $(this).find('a.content-bottom').attr('href');
                     window.location = $link;
                 });
-            });
-        }
+        //     });
+        // }
 
         //same height article page temporary solution
         function setlesshe() {
