@@ -221,8 +221,11 @@ Template Name: category_template
 						<div class="grid-box grid-full content-align-bottom">
 							<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
 								<div class="grid-image">
-									<!-- <img src="<?php echo $value[0]['featured_image'] ;?>"> -->
-									<?php echo get_the_post_thumbnail( $value[0]['id'], 'medium' ); ?>
+									 
+									 <!-- <img src="<?php// echo $value[0]['featured_image'] ;?>"> -->
+									
+									<?php echo $value[0]['medium_image']; ?>
+
 								</div>
 								<div class="grid-text-wrap">
 									<div class="grid-title"><?php echo $value[0]['title'];?></div>
@@ -260,8 +263,8 @@ Template Name: category_template
 						<div class="grid-box grid-half content-align-bottom">
 							<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
 								<div class="grid-image">
-									<!-- <img src="<?php echo $value[1]['featured_image'] ;?>">-->
-									<?php echo get_the_post_thumbnail( $value[1]['id'], 'medium' ); ?>
+									 <img src="<?php echo $value[1]['featured_image']; ?>">
+									
 								</div>
 								<div class="grid-text-wrap">
 									<div class="grid-title"><?php echo $value[1]['title'];?></div>
@@ -1300,6 +1303,7 @@ window.onload = function() {
 
 										+'<div class="grid-image">'
 											+'<img src="'+value[0]['featured_image']+'">'
+											//+value[0]['small_image']
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
