@@ -881,6 +881,45 @@ function create_language_taxonomy()
   );
 }
 
+//
+
+add_action( 'init', 'create_playlist_taxonomy' );
+
+//register a taxonomy//
+function create_playlist_taxonomy() 
+{
+
+  $labels = array(
+    'name'                       => _x( 'Playlists', 'taxonomy general name' ),
+    'singular_name'              => _x( 'Playlist', 'taxonomy singular name' ),
+    'search_items'               => __( 'Search Playlists' ),
+    'popular_items'              => __( 'Popular Playlists' ),
+    'all_items'                  => __( 'All Playlists' ),
+    'parent_item'                => null,
+    'parent_item_colon'          => null,
+    'edit_item'                  => __( 'Edit Playlist' ),
+    'update_item'                => __( 'Update Playlist' ),
+    'add_new_item'               => __( 'Add New Playlist' ),
+    'new_item_name'              => __( 'New Playlist Name' ),
+    'separate_items_with_commas' => __( 'Separate Playlists with commas' ),
+    'add_or_remove_items'        => __( 'Add or remove Playlists' ),
+    'choose_from_most_used'      => __( 'Choose from the most used Playlists' ),
+    'not_found'                  => __( 'No Playlists found.' ),
+    'menu_name'                  => __( 'Playlists' ),
+  );
+  register_taxonomy(
+    'playlist',
+    'post',
+    array(
+      'labels' => $labels,
+      'rewrite' => array( 'slug' => 'playlist' ),
+      'hierarchical' => true,
+    )
+  );
+}
+
+
+
 
 function wp_trim_all_excerpt($text) {
 
@@ -1531,6 +1570,9 @@ function get_recent_articles()
 		$post_response[] = array(
 				'slug'				=> $post_detail['slug'],
 				'featured_image'	=> $post_detail['featured_image'],
+				'small_image'	=> $post_detail['small_image'],
+				'medium_image'	=> $post_detail['medium_image'],
+				'large_image'	=> $post_detail['large_image'],
 				'title'				=> $post_detail['title'],
 				//'duration'			=> $post_detail['duration'],
 				//'region'			=> $post_detail['region'],
@@ -1576,6 +1618,9 @@ function get_recent_videos()
 				'id'				=> $post_detail['id'],
 				'slug'				=> $post_detail['slug'],
 				'featured_image'	=> $post_detail['featured_image'],
+				'small_image'	=> $post_detail['small_image'],
+				'medium_image'	=> $post_detail['medium_image'],
+				'large_image'	=> $post_detail['large_image'],
 				'title'				=> $post_detail['title'],
 				'duration'			=> $post_detail['duration'],
 				'region'			=> $post_detail['region'],
@@ -2150,6 +2195,15 @@ function get_author_info($author_id)
 				
 }
 
+function get_playlist_info($playlist_id, $taxonomy)
+{
+			
+	$playlist_info = get_term( $playlist_id, $taxonomy );
+	
+	return $playlist_info;
+				
+}
+
 /*
 function get_category_links($postid)
 {
@@ -2279,6 +2333,28 @@ function get_video_language_links($languages)
 			
 }
 
+function get_video_playlist_links($playlists)
+{			
+	$playlist_array = array();
+
+	foreach ($playlists as $value) 
+	{		
+		$playlist_id = get_term_by( 'name', $value, 'playlist');
+			
+		$playlist_link = get_term_link( $playlist_id );				
+
+		$link = '<a href="'.esc_url( $playlist_link ).'" target="_blank"  title="Playlist Name">'.$value.'</a>';
+		 
+		array_push($playlist_array, $link);						
+	}
+
+	if(count($playlist_array) == 0)
+		$playlist_array = array(0 => 'No playlists');
+	
+	return $playlist_array;
+			
+}
+
 
 function get_list_of_all_languages()
 {
@@ -2292,9 +2368,21 @@ function get_list_of_all_languages()
 	//print_r($all_language_list);
 	
 	return $all_language_list;
-
 }
 
+function get_list_of_all_playlists()
+{
+	$args = array(
+		'orderby'           => 'name', 
+		'order'             => 'ASC'
+	); 
+
+	$all_playlist_list = get_terms('playlist', $args);
+	
+
+	return $all_playlist_list;
+
+}
 
 function get_few_categories()
 {
@@ -2368,6 +2456,31 @@ function custom_image_size_rules($file)
 	return $file; 
 	
 }
+
+/*
+
+	add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
+	
+	function custom_image_size_rules($file)
+	{
+
+		$img=getimagesize($file['tmp_name']);
+		$minimum = array('width' => '2000');
+		$width= $img[0];
+		$height =$img[1];
+
+		if (isset($_REQUEST['post_id']) && isset($_REQUEST['action']) && ($_REQUEST['action'] == 'upload-attachment')){
+
+		if($width < $minimum['width']){
+		return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
+		}
+		}
+
+		return $file; 
+	}
+
+*/
+
 
 /*
 function validate_duration() 

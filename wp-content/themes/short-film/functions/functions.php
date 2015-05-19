@@ -7,7 +7,8 @@ function retrieve_previous_post()
 	
 	$post  = 0 ;
 
-	if(!empty($post_data) || !is_null($post_data)){
+	if(!empty($post_data) || !is_null($post_data))
+	{
 
 		$post = $post_data;
 
@@ -87,6 +88,23 @@ function get_custom_taxonomy_terms_language($post_id)
 	return $response;
 }
 
+
+function get_custom_taxonomy_terms_playlist($post_id)
+{
+	$results = get_the_terms($post_id, 'playlist');
+
+	$response = array();
+	
+	if(!empty($results) > 0)
+	{
+		foreach ($results as $key => $value) 
+		{
+			$response[] = $value->name;		
+		}
+	}
+		
+	return $response;
+}
 
 function get_focus_film($id)
 {
@@ -285,6 +303,9 @@ function generate_grid_response($response){
 				'region'		=> array(0 => ''),
 				'tags'			=> "",
 				'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'small_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'medium_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'large_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
 				'user_like_count'	=> "",
 				'post_like_count' => 0,
 				'no_of_views'	=> 0
@@ -642,6 +663,9 @@ function get_noteworthy_videos()
 			$post_response[] = array(
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
+					'small_image'		=> $post_detail['small_image'],
+					'medium_image'		=> $post_detail['medium_image'],
+					'large_image'		=> $post_detail['large_image'],
 					'title'				=> $post_detail['title'],
 					'duration'			=> $post_detail['duration'],
 					'region'			=> $post_detail['region'],
@@ -679,6 +703,9 @@ function get_noteworthy_videos()
 				
 				'slug'				=> $post_info['slug'],
 				'featured_image'	=> $post_info['featured_image'],
+				'small_image'		=> $post_info['small_image'],
+				'medium_image'		=> $post_info['medium_image'],
+				'large_image'		=> $post_info['large_image'],
 				'title'				=> $post_info['title'],
 				'duration'			=> $post_info['duration'],
 				'region'			=> $post_info['region'],
