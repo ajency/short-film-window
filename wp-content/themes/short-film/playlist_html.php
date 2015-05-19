@@ -217,16 +217,306 @@ Template Name: Playlist HTML
 								</div>
 
 					</div> <!-- end #all_posts -->
+                    <!-- <hr class="border-btm m-t-35"> -->
+				</div> <!-- end #show_posts -->
+			</div> <!-- end #row listlayout -->
 
-					<div class="text-center">
+			<div class="row gridlayout pushin">
+
+				 		<div class="col-sm-6 multi-grid">
+                            <div class="grid-box grid-full content-align-bottom">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
+                                    <div class="grid-image">
+                                        <img src="http://placehold.it/650x550">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title">Title of the Movie<?php //echo $value[0]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[0]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[0]['class'] ;?>">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
+
+
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title">Title of the Movie<?php //echo $value[0]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
+                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                    </div>
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
+                                                        <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
+                                                            <i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[0]['excerpt'];?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
+                                    <div class="grid-image">
+                                        <img src="http://placehold.it/650x550">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title">Title of the Movie<?php //echo $value[1]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[1]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[1]['class'] ;?>">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
+
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title">Title of the Movie<?php //echo $value[1]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
+                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                    </div>
+
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
+                                                        <div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[1]['excerpt'];?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
+                                    <div class="grid-image">
+                                        <img src="http://placehold.it/650x550">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[2]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[2]['class'] ;?>">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[2]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
+                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                    </div>
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
+                                                        <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[2]['excerpt'];?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 multi-grid">
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
+                                    <div class="grid-image">
+                                        <img src="http://placehold.it/650x550">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                        <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[3]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[3]['class'] ;?>">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[3]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
+                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist  -->
+                                                    </div>
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
+                                                        <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[3]['excerpt'];?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-half content-align-bottom">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
+                                    <div class="grid-image">
+                                        <img src="http://placehold.it/650x550">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                         <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[4]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[4]['class'] ;?>">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[4]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
+                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist  -->
+                                                    </div>
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
+                                                        <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[4]['excerpt'];?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                            <div class="grid-box grid-full content-align-bottom">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
+                                    <div class="grid-image">
+                                        <img src="http://placehold.it/650x550">
+                                    </div>
+                                    <div class="grid-text-wrap">
+                                         <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                        <div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
+                                        <div class="grid-meta"><?php echo implode(', ',$value[5]['categories']);?></div>
+                                        <div class="grid-meta <?php echo $value[5]['class'] ;?>">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
+                                    </div>
+                                    <div class="grid-text-wrap hover-text">
+                                        <div class="grid-title"><?php echo $value[5]['title'];?></div>
+                                        <div class="grid-meta">
+                                            <div class="row">
+                                                <div class="col-xs-4">
+                                                    <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
+                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                    </div>
+                                                    <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
+                                                        <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-8">
+                                                    <div class="pull-right text-right m-t-10">
+                                                      <?php echo $value[5]['excerpt'];?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overlay-vertical"></div>
+                                </a>
+                            </div>
+                        </div>
+            </div>
+
+            <div class="couchlayout pushin">
+
+					<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+						<img src="http://placehold.it/1000x450" alt="" class="img-responsive width-full">
+					</a>
+
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3 class="pull-l eft">
+                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
+                                	<?php //echo $value['title'];?>
+                                	Title of the Movie
+                                </a>
+
+								<small><em>by <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author">Director<?php //echo ucfirst($value['director']);?> </a> </span></em></small>
+
+                            </h3>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="soc-ico nh pull-right" style="margin-top: 35px;">
+
+								<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+
+                               <?php// echo do_shortcode("[ssba]"); ?>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <hr class="m-t-0 m-b-5 vern">
+                    <div class="row main-ex">
+                        <div class="col-xs-8 cont">
+                            <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vehicula metus maximus lobortis sagittis. Phasellus porta urna nisl, vel auctor tellus tempor ut. <?php //echo $value['excerpt'];?></em></p>
+
+                            <h6 class="m-t-30 m-b-0"><em><?php echo implode(', ',$value['video_region_links']);?>Region / <?php echo $value['duration'];?>15 MIN</em></h6>
+                            <p class="categories">
+                                <span class="label label-greydark">
+
+								   <?php
+
+								    echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
+								   ?>
+
+								</span>
+                            </p>
+                        </div>
+
+                        <div class="col-xs-4 text-right">
+                            <div class="">
+
+                                <div class="lico_c social-strip">
+                                    <div title="Views" class="lico small">143<?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
+
+                                    <div class="lico like-action">
+										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="cou_exc"><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vehicula metus maximus lobortis sagittis. Phasellus porta urna nisl, vel auctor tellus tempor ut. <?php //echo $value['excerpt'];?></em></p>
+	        </div>
+
+            <div class="row pushin">
+            	<div class="col-md-12">
+            		<div class="text-center">
 						<input type="hidden" name="offset" id="offset" value="0" />
 						<a href="#" class="btn btn-primary load_more">Load More Videos</a>
 					</div>
-
-                    <!-- <hr class="border-btm m-t-35"> -->
-				</div> <!-- end #show_posts -->
-
-			</div> <!-- end #row listlayout -->
+            	</div>
+            </div>
 
 			<div class="recent-movies pushin">
 
