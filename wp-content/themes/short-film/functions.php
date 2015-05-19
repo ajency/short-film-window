@@ -2195,14 +2195,88 @@ function get_author_info($author_id)
 				
 }
 
-function get_playlist_info($playlist_id, $taxonomy)
-{
-			
-	$playlist_info = get_term( $playlist_id, $taxonomy );
+function get_playlist_info($playlist_id, $taxonomy, $image_size)
+{			
 	
+	$playlist_details = get_term( $playlist_id, $taxonomy );
+	
+	//to convert object to array
+	
+	$playlist_name				= $playlist_details->name;
+	$playlist_slug 				= $playlist_details->slug;
+	$playlist_taxonomy  		= $playlist_details->taxonomy;
+	$playlist_description   	= $playlist_details->description;
+	$playlist_object_id   		= $playlist_details->object_id;
+	
+	$no_of_videos_in_playlist   = $playlist_details->count;
+
+	$playlist_link = get_term_link($playlist_id, $taxonomy);		
+
+	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';	
+	
+	$playlist_image = s8_get_taxonomy_image_src($playlist_details, $image_size);
+	
+	$playlist_image_url = $playlist_image['src'];
+		
+
+	$playlist_info = array( 
+			
+			'playlist_id'				    => $playlist_id,
+			'playlist_name'		 	   		=> $playlist_name,
+			'playlist_slug'		 	   		=> $playlist_slug,
+			'playlist_taxonomy'		 	    => $playlist_taxonomy,
+			'playlist_description'	  		=> $playlist_description,			
+			'playlist_object_id'	  		=> $playlist_object_id,			
+			'playlist_link'		 	  		=> $playlist_link,
+			'full_playlist_link'		 	=> $full_playlist_link,			
+			'no_of_videos_in_playlist'      => $no_of_videos_in_playlist,
+			'playlist_image_url'      		=> $playlist_image_url
+				
+	);	
+		
+
+
 	return $playlist_info;
 				
 }
+
+function get_playlist_total_runtime($playlist_id, $taxonomy)
+{
+	$total_runtime = 0;
+	
+	$playlist_details = get_term( $playlist_id, $taxonomy );
+	
+	/////
+
+	$args = array(
+		'orderby'           => 'post_date',
+		'order'             => 'DESC',
+		'genre'				=> '',
+		'playlist'		    => $playlist_id,
+		'taxonomy'			=> $taxonomy,
+		'region'			=> '',
+		'language'			=> '',						
+		'posts_per_page'   	=> 12,
+		'offset'           	=> 0
+
+	);
+					
+	//////////////
+	
+	$response_posts = Film\Video::get_many($args);
+	
+	foreach($response_posts as $response_post)
+	{
+		$total_runtime+=$response_post['duration'];
+		
+		//echo "duration = ".$response_post['duration'];
+	}
+	
+	return $total_runtime;
+		
+
+} //end function
+
 
 /*
 function get_category_links($postid)

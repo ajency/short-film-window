@@ -27,7 +27,7 @@
 
 <!--		<div class="page-header">-->
             <!--this row contains author info-->
-				<div class="row">
+			<div class="row">
 
 
 
@@ -49,7 +49,7 @@
 
 
 
-					<div class="col-md-10"> <!-- <div class="col-md-8"> -->
+					<div class="col-md-10"> 
 
 						<div class="row">
 
@@ -134,7 +134,7 @@
                     <div class="col-md-12">
                         <hr class="border-btm">
                     </div>
-				</div> <!-- end row -->
+			</div> <!-- end row -->
 
 <!--		</div>--> <!-- end #page-header -->
 
