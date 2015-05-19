@@ -100,7 +100,7 @@
         function checkhenwiss() {
             //check if height is greater than width
             $('.slick-slider .slide-cont, .slick-slider .focus-img').each(function() {
-                console.log('H: ' + $(this).find('img').height() + '\nW: ' + $(this).find('img').width());
+                //console.log('H: ' + $(this).find('img').height() + '\nW: ' + $(this).find('img').width());
 //                if ($(this).find('img').height() <= $(this).height()) {
 //                    $(this).find('img').css({
 //                        'height': $(this).height(),
@@ -117,11 +117,11 @@
         function setimagenn() {
 //            if ($('div').hasClass('grid-box')) {
                 $('.grid-box').each(function() {
-                    console.log(
+                    /*console.log(
                         'grid-box: ' + $(this).height() +
                         '\nimg: ' + $(this).find('.grid-image').find('img').height() +
                         '\n---------------------------------------------------------'
-                    );
+                    );*/
                     //console.log($(this).find('.grid-image').find('img').height() <= $(this).height());
 //                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
 //                        $(this).find('.grid-image').find('img').css({
@@ -174,10 +174,10 @@
 
     function resizeimgs(tw, obj, i) {
         var ar = obj.width() / obj.height();
-        console.log('Number: ' + i + '\n-------------------------');
+        /*console.log('Number: ' + i + '\n-------------------------');
         console.log('aspectratio ' + ar);
         console.log('cont-resize ' + tw.width() / tw.height());
-        console.log('END Number: ' + i + '\n-------------------------');
+        console.log('END Number: ' + i + '\n-------------------------');*/
 
         if ( (tw.width() / tw.height()) < ar ) {
             obj
