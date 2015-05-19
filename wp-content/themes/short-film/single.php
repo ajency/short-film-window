@@ -9,6 +9,9 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 	
+	// print_r($response);
+	// exit;
+	
 	
 	//$video_id = $response['id'];
 	
@@ -151,6 +154,8 @@ get_header(); ?>
 						 ?>
 						
 							 <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6> 
+							 
+							  <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_playlist_links']); ?></small></h6> 
 						
 						<?php
 					////	

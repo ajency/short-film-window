@@ -1,4 +1,4 @@
-
+/*
 	jQuery(document).ready(function() {
      jQuery("#duration").live("keyup", function () {
 	   
@@ -9,5 +9,17 @@
 		
 	});
 });
-			
+*/			
 	
+
+jQuery(document).ready(function () { 
+
+	jQuery('#duration').keyup(function() {
+		   var $th = jQuery(this);
+		$th.val( $th.val().replace(/[^0-9]/g, function(){ 
+		alert("Enter only numeric values for duration");
+		return ''; }) );
+		   
+	   });
+
+});

@@ -107,6 +107,9 @@ class Video_API
 						
 		$language = isset($_REQUEST['language']) && $_REQUEST['language'] !="" ? 
 						$_REQUEST['language'] : "";
+						
+		$playlist = isset($_REQUEST['playlist']) && $_REQUEST['playlist'] !="" ? 
+						$_REQUEST['playlist'] : "";						
 
 		$posts_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] 
 		!= "" ? $_REQUEST['posts_per_page'] : "";
@@ -128,6 +131,7 @@ class Video_API
 					'taxonomy'		    => $taxonomy,
 					'region'		    => $region,
 					'language'			=> $language,
+					'playlist'			=> $playlist,
 					'posts_per_page'   	=> $posts_per_page,
 					'offset'           	=> $offset,
                     'exclude'           => $exclude

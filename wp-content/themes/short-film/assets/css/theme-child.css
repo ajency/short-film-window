@@ -13362,3 +13362,120 @@ h4.auth_name {
     font-size: 16px;
   }
 }
+.playlist_list .playlist-grid .p-grid-c {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 30px;
+  overflow: hidden;
+  top: 0;
+  transition: all 0.5s;
+}
+.playlist_list .playlist-grid .p-grid-c a.p-g-all-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.playlist_list .playlist-grid .p-grid-c:hover {
+  top: -5px;
+}
+.playlist_list .playlist-grid .p-grid-c:hover .p-text {
+  visibility: visible;
+  opacity: 1;
+  top: 0;
+}
+.playlist_list .playlist-grid .p-grid-c:hover .p-img-c img {
+  opacity: 0.4;
+}
+.playlist_list .playlist-grid .p-grid-c:hover .p-desc,
+.playlist_list .playlist-grid .p-grid-c:hover .p-btm {
+  visibility: visible;
+  opacity: 1;
+}
+.playlist_list .playlist-grid .p-grid-c:hover .p-btm {
+  bottom: 0;
+}
+.playlist_list .playlist-grid .p-img-c {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+.playlist_list .playlist-grid .p-img-c img {
+  opacity: 1;
+  width: 100%;
+  height: auto;
+  transition: all 0.5s;
+}
+.playlist_list .playlist-grid .p-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 35%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000000), color-stop(35%, rgba(0, 0, 0, 0)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 35%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 35%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 35%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 35%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#00000000', GradientType=0);
+  /* IE6-9 */
+  transition: all 0.5s;
+}
+.playlist_list .playlist-grid .p-head {
+  margin: 0;
+  font-weight: normal;
+  text-align: right;
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: #fff;
+}
+.playlist_list .playlist-grid .p-desc {
+  visibility: hidden;
+  opacity: 0;
+  font-size: 16px;
+  font-style: italic;
+  text-align: right;
+  color: #fff;
+  margin-top: 10px;
+  transition: all 0.5s;
+}
+.playlist_list .playlist-grid .p-btm {
+  visibility: hidden;
+  opacity: 0;
+  font-size: 16px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  padding: 15px;
+  color: #fff;
+  transition: all 0.5s;
+}
+.playlist_list .playlist-grid .p-btm .iconexp_sp {
+  font-size: 16px;
+}
+.playlist_list .playlist-grid .p-btm .p-count {
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+}
+.playlist_list .load_more {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}

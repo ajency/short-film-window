@@ -7,7 +7,8 @@ function retrieve_previous_post()
 	
 	$post  = 0 ;
 
-	if(!empty($post_data) || !is_null($post_data)){
+	if(!empty($post_data) || !is_null($post_data))
+	{
 
 		$post = $post_data;
 
@@ -87,6 +88,23 @@ function get_custom_taxonomy_terms_language($post_id)
 	return $response;
 }
 
+
+function get_custom_taxonomy_terms_playlist($post_id)
+{
+	$results = get_the_terms($post_id, 'playlist');
+
+	$response = array();
+	
+	if(!empty($results) > 0)
+	{
+		foreach ($results as $key => $value) 
+		{
+			$response[] = $value->name;		
+		}
+	}
+		
+	return $response;
+}
 
 function get_focus_film($id)
 {

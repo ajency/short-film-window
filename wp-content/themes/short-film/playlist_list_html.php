@@ -1,431 +1,254 @@
+<?php
+/*
+Template Name: List of Playlist HTML
+*/
+?>
 <?php get_header(); ?>
 
 	<!--Content-->
-    <div class="container header-space author_page">
+    <div class="container header-space playlist_list">
         <div class="content-wrapper">
+			<div class="row posrel">
+				<div class="col-md-12 posata"> <!-- <div class="col-md-8"> -->
 
-			<?php
+					<div class="row">
 
-				$queried_object = get_queried_object();
-
-				//print_r($queried_object);
-
-
-				$author_id	= $queried_object->ID;
-
-
-				$response_posts = get_posts_by_author($author_id);
-
-				$response_articles = get_articles_by_author($author_id);
-
-
-				$author_info = get_author_info($author_id);
-
-				//print_r($author_info);
-			?>
-
-
-<!--		<div class="page-header">-->
-            <!--this row contains author info-->
-			<div class="row">
-
-
-
-					<div class="col-md-2">
-					
-						<?php
-							
-							$author_name = $author_info['author_name'];
-						
-							// $avatar = get_author_image_url(); // The function uses get_the_ID() to grab the appropirate user ID for the author image.
-							$image_url = get_author_image_url($author_id); 
-												
-						?>
-						
-							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" />
+						<div class="col-md-8">
+							<h2 class="auth_name">
+								PLAYLISTS
+							</h2>
+						</div>
+						<div class="col-md-4 m-t-20">
+							<div class="form-group row form-horizontal">
+								<label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
+		                        <div class="col-md-9">
+		                            <select class="" name="sort" id="sort">
+		                                <option value="1">Freshness</option>
+		                                <option value="2">Popularity</option>
+		                                <option value="3">Length</option>
+		                            </select>
+		                        </div>
+	                        </div>
+						</div>
 
 					</div>
 
+					<hr class="m-t-0">
 
-
-
-					<div class="col-md-10"> 
-
-						<div class="row">
-
-							<div class="col-md-12">
-								<h4 class="m-t-0 auth_name">
-									<?php echo $author_info['author_name']; ?>
-								</h4>
-							</div>
-
-						</div>
-
-						<hr class="m-t-0 m-b-5">
-
-						<div class="row">
-
-							<div class="col-xs-8 cont">
-
-								<div>
-									<p><?php echo $author_info['author_description'];?></p>
-								</div>
-
-								<div>
-									
-									<?php 
-											if($author_info['no_of_videos_by_author']!=0)
-											{
-									?>	
-												<p>No of Films:	<?php echo $author_info['no_of_videos_by_author'];?> <p>
-									<?php 
-											}
-											if($author_info['no_of_articles_by_author']!=0)
-											{										
-									?>	
-												<p>No of Articles:	<?php echo $author_info['no_of_articles_by_author'];?> <p>
-									<?php
-											}
-									?>
-									
-								</div>
-
-							</div>
-
-							<!--<div class="col-xs-4 text-right list-info-btns">-->
-							<div class="col-xs-4 text-right list-info-btns">
-
-								<div class="soc-ico nh">
-
-									   <?php// echo do_shortcode('[ssba url="' . get_permalink($author_id) . '" title="' . $author_info['author_name'] . '"]'); ?>
-
-									   <?php echo do_shortcode('[ssba url="' . $author_info['author_link'] . '" title="' . $author_info['author_name'] . '"]'); ?>
-
-									   <?php// echo do_shortcode('[ssba]'); ?>
-
-									  <?php //echo "hii";?>
-
-									  <?php// echo aal_author_likes($author_id);			//imp  ?>
-
-									    <?php//// echo getAuthorLikeLink( $author_id ); ?>
-
-								</div>
-
-
-								<div class="lico_c">
-									<!--<div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div> -->
-
-									<div class="lico like-action">
-
-										<!-- <?php echo $author_info['post_user_like'] ;?> <i class="fa fa-thumbs-up"></i>  -->
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<!--</div>-->
-
-
-						</div>
-					</div>
-
-                    <div class="col-md-12">
-                        <hr class="border-btm">
-                    </div>
+				</div>
 			</div> <!-- end row -->
+			<div class="spacer-40"></div>
 
-<!--		</div>--> <!-- end #page-header -->
+			<!-- Playlist Grid -->
+			<div class="playlist-grid">
+				<div class="row pushin">
+					<div class="col-md-4 col-sm-6">
 
+						<div class="p-grid-c">
+							<span class="p-img-c">
+								<img src="http://lorempixel.com/450/450" alt="">
+							</span>
 
-<!--<hr>-->
+							<div class="p-text">
+								<h4 class="p-head">Children's Movies</h4>
+								<p class="p-desc">Donec pharetra turpis auctor sagittis iaculis. Praesent et convallis tellus, ut volutpat eros.</p>
 
-	        <div class="row listlayout pushin">
-
-                <?php
-                    if(count($response_posts) > 0)
-                    {
-                ?>
-
-				<div class="show_posts col-md-12">
-
-					<div class="heading sec_head">
-						<h4> Videos by <span><?php echo $author_info['author_name']; ?></span> </h4>
-					</div>
-
-					<div class="all_posts">
-
-						<?php
-							//if(count($response_posts) > 0)
-							foreach ($response_posts as $key => $value)
-							{
-
-						?>
-								<div class="row listlayout">
-
-									<div class="col-md-5">
-										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-											<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
-										</a>
+								<div class="p-btm">
+									<div class="iconexp_sp pull-left">
+										<div>321<?php //echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+										<div class="<?php echo $value[0]['class'] ;?>">184<?php //echo $value[0]['post_like_count'];?>
+											<i class="fa fa-thumbs-up"></i>
+										</div>
 									</div>
 
-									<div class="col-md-7">
-
-										<div class="row">
-
-											<div class="col-md-12">
-												<h4 class="m-t-0">
-													<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-														<?php echo $value['title'];?>
-													</a>
-<!--													 <small><em> By <?php //echo ucfirst($value['director']);?></em></small> -->
-												</h4>
-											</div>
-
-										</div>
-
-<!--										<hr class="m-t-0 m-b-5">-->
-
-										<div class="row">
-
-											<div class="col-xs-8 cont">
-
-												<p><?php echo $value['excerpt'];?></p>
-
-
-												<h6 class="m-t-0 m-b-0"><?php echo implode(', ',$value['video_region_links']);?>/<?php echo $value['duration'];?> MIN</h6>
-
-
-												<h6 class="m-t-0 m-b-0">Dir: <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><?php echo ucfirst($value['director']);?> </a> </span></h6>
-
-                                                <p class="categories">
-                                                    <span class="label label-greydark">
-
-													   <?php
-
-															echo implode('</span><span class="label label-greydark">',$value['video_category_links']);
-
-														?>
-
-
-
-													</span>
-                                                </p>
-
-											</div>
-
-											<div class="col-xs-4 text-right list-info-btns">
-
-												<div class="soc-ico nh">
-
-													   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
-												</div>
-
-
-												<div class="lico_c">
-													<div title="Views" class="lico small">
-
-														<?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i>
-
-													</div>
-
-													<div class="lico like-action">
-
-														<!--<?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
-															<?php echo getPostLikeLink($value['id']) ; ?>
-													</div>
-
-												</div>
-
-											</div>
-
-										</div>
-
-
+									<div class="pull-right p-count">
+										<p>16 films</p>
 									</div>
-
-
 								</div>
+							</div>
 
+							<a href="#" class="p-g-all-link">&nbsp;</a>
+						</div>
+
+					</div>
+					<div class="col-md-4 col-sm-6">
+
+						<div class="p-grid-c">
+							<span class="p-img-c">
+								<img src="http://lorempixel.com/450/450" alt="">
+							</span>
+
+							<div class="p-text">
+								<h4 class="p-head">Children's Movies</h4>
+								<p class="p-desc">Donec pharetra turpis auctor sagittis iaculis. Praesent et convallis tellus, ut volutpat eros.</p>
+
+								<div class="p-btm">
+									<div class="iconexp_sp pull-left">
+										<div>321<?php //echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+										<div class="<?php echo $value[0]['class'] ;?>">184<?php //echo $value[0]['post_like_count'];?>
+											<i class="fa fa-thumbs-up"></i>
+										</div>
+									</div>
+
+									<div class="pull-right p-count">
+										<p>16 films</p>
+									</div>
+								</div>
+							</div>
+
+							<a href="#" class="p-g-all-link">&nbsp;</a>
+						</div>
+
+					</div>
+					<div class="col-md-4 col-sm-6">
+
+						<div class="p-grid-c">
+							<span class="p-img-c">
+								<img src="http://lorempixel.com/450/450" alt="">
+							</span>
+
+							<div class="p-text">
+								<h4 class="p-head">Children's Movies</h4>
+								<p class="p-desc">Donec pharetra turpis auctor sagittis iaculis. Praesent et convallis tellus, ut volutpat eros.</p>
+
+								<div class="p-btm">
+									<div class="iconexp_sp pull-left">
+										<div>321<?php //echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+										<div class="<?php echo $value[0]['class'] ;?>">184<?php //echo $value[0]['post_like_count'];?>
+											<i class="fa fa-thumbs-up"></i>
+										</div>
+									</div>
+
+									<div class="pull-right p-count">
+										<p>16 films</p>
+									</div>
+								</div>
+							</div>
+
+							<a href="#" class="p-g-all-link">&nbsp;</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Load More btn -->
+            <div class="row pushin">
+            	<div class="col-md-12">
+            		<div class="text-center">
+						<input type="hidden" name="offset" id="offset" value="0" />
+						<a href="#" class="btn btn-primary load_more">Load More Videos</a>
+					</div>
+            	</div>
+            </div>
+
+			<div class="recent-movies pushin">
+
+				<div class="row">
+					<div class="col-md-12">
+						<h4>New and Noteworthy</h4>
+					</div>
+	            </div>
+
+				<hr class="m-t-0">
+
+				<div class="row sim_mov">
 
 					<?php
-							} //end foreach
+
+						$recentvideos = get_recent_videos();
+
+						foreach ($recentvideos as $recentvideo)
+						{
+
+
 					?>
+							<div class="col-xs-4">
+								<div class="grid-box grid-full content-align-bottom">
 
-					</div> <!-- end #all_posts -->
+									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 
-					<div class="text-center">
-						<input type="hidden" name="offset" id="offset" value="0" />
-						<a href="#" class="btn btn-primary load_more">Load More Videos...</a>
-					</div>
-
-                    <hr class="border-btm m-t-35">
-				</div> <!-- end #show_posts -->
-		<?php
-
-			} //end if
-
-		?>
-
-<!--	<hr>-->
-
-		<?php
-			if(count($response_articles) > 0)
-			{
-		?>
-
-				<div class="show_articles col-md-12">
-
-					<div class="heading sec_head">
-						<h4> Articles by <span><?php echo $author_info['author_name']; ?></span> </h4>
-					</div>
-
-					<div class="all_articles">
-
-						<?php
-							//if(count($response_posts) > 0)
-							foreach ($response_articles as $key => $value)
-							{
-
-						?>
-								<div class="row listlayout article_row">
-
-								<div class="col-md-5">
-
-									<a class="content-bottom article_fi" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-
-										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
-
-									</a>
-
-								</div>
-
-								<div class="col-md-7">
-									<div class="row">
-
-										<!--when hadding share icons change this to col-md-8 and remove class 'hidden' from col-md-4-->
-										<div class="col-md-12">
-											<h4 class="m-t-0">
-
-												<a class="content-bottom article_title" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-
-													<?php echo $value['title']; ?>
-
-												</a>
-
-
-<!--												<small><em>By </em></small>-->
-
-											</h4>
+										<div class="grid-image">
+											<img src="<?php echo $recentvideo['featured_image'];?>">
 										</div>
 
-										<div class="col-md-4 hidden">
+										<div class="grid-text-wrap">
 
+											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
 
-<!--
-											<div class="social-strip">
+										   <div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>
 
-												<?php// echo do_shortcode("[ssba]"); ?>
+											<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>
 
-												<?php// echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
+											<div class="grid-meta">DIR. <?php echo  ucfirst($recentvideo['director']);?></div>
 
-												<?php //echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
+										</div>
 
+										<div class="grid-text-wrap hover-text">
+											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
+											<div class="grid-meta">
+												<div class="row">
+													<div class="col-xs-4">
 
-
+														<div class="pull-left p-l-10 m-t-10">
+															<div>
+																<?php echo $recentvideo['no_of_views'];?>
+																<i class="fa fa-eye"></i>
+															</div>
+															<div>
+																<?php echo $recentvideo['post_like_count'];?>
+																<i class="fa fa-thumbs-up"></i>
+															</div>
+														</div>
+													</div>
+													<div class="col-xs-8">
+														<div class="pull-right text-right m-t-10">
+														   <?php echo $recentvideo['excerpt'];?>
+														</div>
+													</div>
+												</div>
 											</div>
--->
-
+										</div>
 
 											<!--
-											<div class="social-strip">
-												<div class="pull-right watchlist-add">
-													<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-												</div>
-												<div class="pull-right like-action">
-													<span class="m-l-5 m-r-5">|</span> <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
+											<div>
+												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+													<h6><?php echo $recentvideo['title']; ?></h6>
+												</a>
+
+												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
+
+												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
+												<div>
+													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
+													<p class="pull-right">
+														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
+
+														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
+
+													</p>
 												</div>
 
-												<div class="share-button">
+												<div class="clearfix"></div>
 
-													<div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-													<div class="social-networks">
-													  <ul>
-														<li class="social-twitter">
-														  <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-														</li>
-														<li class="social-facebook">
-														<a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-														</li>
-														<li class="social-pin">
-														<a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-														</li>
-													  </ul>
-													</div>
-
-												</div>
+												<hr class="m-t-0">
 
 											</div>
 											-->
-										</div>
-									</div>
-<!--									<hr class="m-t-0 m-b-5">-->
+										<div class="overlay-vertical"></div>
+									</a>
+								</div>
 
-								   <div class="row">
-										<div class="col-xs-9">
-                                            <p class="article_meta">
-                                                <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
-
-											   <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
-
-											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
-
-												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
-
-												<span class="art_views" title="Views"><i class="fa fa-eye"></i><?php  echo $value['no_of_views'] ;?></span>
-
-                                            </p>
-                                        </div>
-                                        <div class="col-xs-3">
-                                            <div class="social-strip soc-ico pull-r ight">
-												<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
-											</div>
-                                       </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="article_cont">
-                                                <?php echo $value['excerpt'];?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
 							</div>
 
-
 					<?php
-							} //end foreach
+
+						} //end foreach
 					?>
 
-					</div> <!-- end #all_posts -->
+				</div>
 
-					<div class="text-center">
-						<input type="hidden" name="offset_art" id="offset_art" value="0" />
-						<a href="#" class="btn btn-primary load_more_art">Load More Articles...</a>
-					</div>
-
-				</div> <!-- end #show_articles -->
-		<?php
-
-			} //end if
-
-		?>
-
-
-
-
-	</div> <!-- end #container header-space -->
+			</div> <!--movies end-->
 
 		</div> <!-- end content-wrapper -->
     </div> <!-- end container header-space -->
@@ -595,7 +418,7 @@
 					html += '<div class="row listlayout">'
 
 								+'<div class="col-md-5">'
-									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
+									+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 									+'</a>'
 								+'</div>'
@@ -606,7 +429,7 @@
 
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
-												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+												+'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 												 //+'<small><em> By '+value.director+'</em></small>'
 											+'</h4>'
 										+'</div>'
@@ -627,9 +450,9 @@
 
 											//+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
 
-											// +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
-											
-											 +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+											// +'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+
+											 +'<h6 class="m-t-0 m-b-0">Dir: <a target="_blank" href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
 
@@ -712,7 +535,7 @@
 
 					html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
-						+'<a class="content-bottom article_fi" href="'+SITEURL+'/'+value.slug+'">'
+						+'<a class="content-bottom article_fi" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
 							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
@@ -721,7 +544,7 @@
                             +'<div class="col-md-12">'
                                 +'<h4 class="m-t-0">'
 
-									+'<a class="content-bottom article_title" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
+									+'<a class="content-bottom article_title" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 
 									//+'<small><em> By '+value.director+'</em></small>'
 
@@ -771,12 +594,12 @@
 
 										+'<span class="author">'
 
-											+'<a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
+											+'<a target="_blank" href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
 
 										+'</span>'
 
 
-										//+'<span class="author"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
+										//+'<span class="author"><i class="fa fa-user"></i> <a target="_blank" href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
 
 
 

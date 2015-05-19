@@ -28,6 +28,7 @@
 						'region'		    => $queried_object->term_id,
 						'taxonomy'			=> $queried_object->taxonomy,
 						'language'			=> '',
+						'playlist'			=> '',
 						'posts_per_page'   	=> 12,
 						'offset'           	=> 0
 
@@ -43,6 +44,7 @@
 						'language'		    => $queried_object->term_id,
 						'taxonomy'			=> $queried_object->taxonomy,
 						'region'			=> '',
+						'playlist'			=> '',
 						'posts_per_page'   	=> 12,
 						'offset'           	=> 0
 
