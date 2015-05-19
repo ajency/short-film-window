@@ -145,7 +145,7 @@ Template Name: Homepage
                         <div class="grid-box grid-full content-align-bottom">
                             <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="<?php echo $value[0]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[0]['medium_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[0]['title'];?></div>
@@ -185,7 +185,7 @@ Template Name: Homepage
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="<?php echo $value[1]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[1]['small_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[1]['title'];?></div>
@@ -225,7 +225,7 @@ Template Name: Homepage
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="<?php echo $value[2]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[2]['small_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[2]['title'];?></div>
@@ -267,7 +267,7 @@ Template Name: Homepage
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="<?php echo $value[3]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[3]['small_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[3]['title'];?></div>
@@ -307,7 +307,7 @@ Template Name: Homepage
                         <div class="grid-box grid-half content-align-bottom">
                             <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="<?php echo $value[4]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[4]['small_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[4]['title'];?></div>
@@ -347,7 +347,7 @@ Template Name: Homepage
                         <div class="grid-box grid-full content-align-bottom">
                             <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
                                 <div class="grid-image">
-                                    <img src="<?php echo $value[5]['featured_image'] ;?>">
+                                    <img src="<?php echo $value[5]['medium_image'] ;?>">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[5]['title'];?></div>
@@ -449,7 +449,7 @@ Template Name: Homepage
 								<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 									
 									<div class="focus-img">
-										<img src="<?php echo $recentarticle['featured_image'] ;?>" class="img-responsive">
+										<img src="<?php echo $recentarticle['small_image'] ;?>" class="img-responsive">
 									</div>
 									<div>
 										<h6><?php echo $recentarticle['title']; ?></h6>
@@ -515,7 +515,8 @@ Template Name: Homepage
 						{
 							$args_img = array(
 											'cat_id' => $cat['cat_id'],
-											'alt' 	 => $cat['cat_name']
+											'alt' 	 => $cat['cat_name'],
+											'size'   => 'thumbnail'
 							);
 							
 					?>						
@@ -788,11 +789,11 @@ Template Name: Homepage
 			html+=
 					'<div class="inside-script">'
 																		
-								+'<div class="video-section vid_if sp_inside_vid" data-staff-id="'+response.id+'" data-staff-img="'+response.featured_image+'" data-staff-embedurl="'+response.embedurl+'">'
+								+'<div class="video-section vid_if sp_inside_vid" data-staff-id="'+response.id+'" data-staff-img="'+response.medium_image+'" data-staff-embedurl="'+response.embedurl+'">'
 								
 									+'<div class="show-featured-image vid_if posrel">'
 										
-										+'<img class="staff-img" src=" '+response.featured_image+' " alt="" class="img-responsive width-full">'
+										+'<img class="staff-img" src=" '+response.medium_image+' " alt="" class="img-responsive width-full">'
 										
 										+'<a href="#" class="play_movie_big" data-id ="'+response.id+'" data-embedurl="'+response.embedurl+'"> </a>'
 										
@@ -1036,7 +1037,7 @@ Template Name: Homepage
 						+'<a class="content-bottom" href="'+SITEURL+'/'+value[0]['slug']+'">'
 
 								+'<div class="grid-image">'
-									+'<img src="'+value[0]['featured_image']+'">'
+									+'<img src="'+value[0]['medium_image']+'">'
 								+'</div>'
 
 								+'<div class="grid-text-wrap">'
@@ -1076,7 +1077,7 @@ Template Name: Homepage
 					+'<div class="grid-box grid-half content-align-bottom">'
 						+'<a class="content-bottom" href="'+SITEURL+'/'+value[1]['slug']+'">'
 							+'<div class="grid-image">'
-								+'<img src="'+value[1]['featured_image']+'">'
+								+'<img src="'+value[1]['small_image']+'">'
 							+'</div>'
 							+'<div class="grid-text-wrap">'
 								+'<div class="grid-title">'+value[1]['title']+'</div>'
@@ -1112,7 +1113,7 @@ Template Name: Homepage
 					+'<div class="grid-box grid-half content-align-bottom">'
 					   +' <a class="content-bottom" href="'+SITEURL+'/'+value[2]['slug']+'">'
 							+'<div class="grid-image">'
-							   +' <img src="'+value[2]['featured_image']+'">'
+							   +' <img src="'+value[2]['small_image']+'">'
 						   +' </div>'
 							+'<div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[2]['title']+'</div>'
@@ -1150,7 +1151,7 @@ Template Name: Homepage
 				   +' <div class="grid-box grid-half content-align-bottom">'
 						+'<a class="content-bottom" href="'+SITEURL+'/'+value[3]['slug']+'">'
 							+'<div class="grid-image">'
-							   +' <img src="'+value[3]['featured_image']+'">'
+							   +' <img src="'+value[3]['small_image']+'">'
 							+'</div>'
 						   +' <div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[3]['title']+'</div>'
@@ -1186,7 +1187,7 @@ Template Name: Homepage
 				   +' <div class="grid-box grid-half content-align-bottom">'
 						+'<a class="content-bottom" href="'+SITEURL+'/'+value[4]['slug']+'">'
 							+'<div class="grid-image">'
-								+'<img src="'+value[4]['featured_image']+'">'
+								+'<img src="'+value[4]['small_image']+'">'
 							+'</div>'
 							+'<div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[4]['title']+'</div>'
@@ -1221,7 +1222,7 @@ Template Name: Homepage
 					+'<div class="grid-box grid-full content-align-bottom">'
 						+'<a class="content-bottom" href="'+SITEURL+'/'+value[5]['slug']+'">'
 							+'<div class="grid-image">'
-								+'<img src="'+value[5]['featured_image']+'">'
+								+'<img src="'+value[5]['medium_image']+'">'
 							+'</div>'
 							+'<div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[5]['title']+'</div>'
@@ -1300,6 +1301,9 @@ Template Name: Homepage
 						'region'		: [],
 						'tags'			: "",
 						'featured_image':image,
+						'small_image':image,
+						'medium_image':image,
+						'large_image':image,
 						'user_like_count'	: "",
 						'post_like_count' : 0,
 						'no_of_views'    : 0

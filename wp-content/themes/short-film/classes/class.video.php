@@ -38,10 +38,28 @@ class Video
 				$name = get_user_details($post->post_author)->data->display_name;
 
 			$post_user_like = (!get_user_details($post->post_author)) ? "" :get_user_details($post->post_author)->data->user_like_count;
+			
 			$post_thumbnail_id = get_post_thumbnail_id($post->ID); 
+			
 			$image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'full');
+			
 			$image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
         	'/assets/img/placeholder.jpg';
+			
+			$small_image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'thumbnail');
+			
+			$small_image = is_array( $small_image_details ) && count( $small_image_details ) > 1 ? $small_image_details[ 0 ] : get_template_directory_uri() .
+        	'/assets/img/placeholder.jpg';
+			
+			$medium_image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+			
+			$medium_image = is_array( $medium_image_details ) && count( $medium_image_details ) > 1 ? $medium_image_details[ 0 ] : get_template_directory_uri() .
+        	'/assets/img/placeholder.jpg';	
+
+			$large_image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'large');
+			
+			$large_image = is_array( $large_image_details ) && count( $large_image_details ) > 1 ? $large_image_details[ 0 ] : get_template_directory_uri() .
+        	'/assets/img/placeholder.jpg';			
 
 			
 			$directorid = $post->post_author;
@@ -110,9 +128,12 @@ class Video
 				'video_language_links' => $video_language_links,
 				'tags'			=> wp_get_post_tags( $post->ID, array( 'fields' => 'names' )),
 				'featured_image'			=> $image,
-				'small_image'		=> get_the_post_thumbnail($post->ID, 'thumbnail'),
-				'medium_image'		=> get_the_post_thumbnail($post->ID, 'medium'),
-				'large_image'		=> get_the_post_thumbnail($post->ID, 'large'),
+				// 'small_image'		=> get_the_post_thumbnail($post->ID, 'thumbnail'),
+				'small_image'		=> $small_image,
+				//'medium_image'		=> get_the_post_thumbnail($post->ID, 'medium'),
+				'medium_image'		=> $medium_image,
+				//'large_image'		=> get_the_post_thumbnail($post->ID, 'large'),
+				'large_image'		=> $large_image,
 				'user_like_count'	=> $post_user_like,
 				'post_like_count' => get_post_meta( $post->ID, "_post_like_count", true ) != false ?
 									get_post_meta( $post->ID, "_post_like_count", true ) : 0,
