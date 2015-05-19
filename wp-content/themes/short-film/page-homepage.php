@@ -533,7 +533,7 @@ Template Name: Homepage
 										
 											echo $cat['cat_name'];
 
-											cfi_featured_image($args_img);
+											//cfi_featured_image($args_img);
 											 											 											 									 									
 										?>
 									

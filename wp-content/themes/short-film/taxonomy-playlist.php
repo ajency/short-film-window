@@ -18,9 +18,16 @@
 	// echo " *** playlist_id= ".$queried_object->term_id;
 	
 	
-	 $playlist_info = get_playlist_info($playlist_id, $taxonomy); //##############//
+	 // $playlist_info = get_playlist_info($playlist_id, $taxonomy); 
+	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail'); 
 	 
-	 //print_r($playlist_info);
+	 $total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy); 
+	 
+	 
+	 	 
+	 // print_r($playlist_info);
+	 // exit;
+	 
 ?>		
 
 
@@ -51,6 +58,112 @@
                 <hr class="m-t-0">
 			-->
                 <div class="row pushin">
+				
+			
+					<!--this row contains playlist info-->
+					<div class="row">
+
+							<div class="col-md-2">
+							
+								<?php
+									
+									$playlist_name = $playlist_info['playlist_name'];
+																										
+									 $playlist_image_url = $playlist_info['playlist_image_url']; 
+														
+								?>
+								
+									 <img src="<?php echo $playlist_image_url;?>" alt="Photo of <?php echo $playlist_name;?>" />
+
+							</div>
+
+
+							<div class="col-md-10"> 
+
+								<div class="row">
+
+									<div class="col-md-12">
+										<h4 class="m-t-0 auth_name">
+											<?php echo $playlist_info['playlist_name']; ?>
+										</h4>
+									</div>
+
+								</div>
+
+								<hr class="m-t-0 m-b-5">
+
+								<div class="row">
+
+									<div class="col-xs-8 cont">
+
+										<div>
+											<p><?php echo $playlist_info['playlist_description'];?></p>
+										</div>
+
+										<div>
+											
+											<?php 
+													if($playlist_info['no_of_videos_in_playlist']!=0)
+													{
+											?>	
+														<p>No of Films:	<?php echo $playlist_info['no_of_videos_in_playlist'];?> <p>
+											<?php 
+													}
+																						
+											?>	
+														
+										
+										</div>
+										
+										<div>												
+											<p>Total Runtime: <?php echo $total_runtime;?> </p>
+											
+										</div>
+
+									</div>
+
+									<!--<div class="col-xs-4 text-right list-info-btns">-->
+									<div class="col-xs-4 text-right list-info-btns">
+
+										<div class="soc-ico nh">
+
+											  
+											   <?php echo do_shortcode('[ssba url="' . $playlist_info['playlist_link'] . '" title="' . $playlist_info['playlist_name'] . '"]'); ?>
+
+											   <?php// echo do_shortcode('[ssba]'); ?>
+
+											 
+
+										</div>
+
+
+										<div class="lico_c">
+											<!--<div class="lico small"><?php// echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div> -->
+
+											<div class="lico like-action">
+
+												<!-- <?php// echo $author_info['post_user_like'] ;?> <i class="fa fa-thumbs-up"></i>  -->
+
+											</div>
+
+										</div>
+
+									</div>
+
+									<!--</div>-->
+
+
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<hr class="border-btm">
+							</div>
+					
+
+					</div> <!-- end row -->
+				
+				
                 
 				<!--	
 				   <div class="col-md-5">
@@ -614,34 +727,121 @@
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
                
 			   </div>
-                <div class="spacer-40 hideinsmall"></div>
+           
 
-                <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
-
-
-                <div class="trending">
-                </div>
-
-                <div class="spacer-40 hideinsmall"></div>
-
-                <!-- <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=awardwinning"></a> -->
-
-				<a id="award" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=awardwinning"></a>
-
-
-                <div class="awardwinning">
-                </div>
-
-                <div class="spacer-40 hideinsmall"></div>
-
-                <!-- <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=indian"></a> -->
-
-				<a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/regionposts?region=india"></a>
-
-
-                <div class="indian">
-                </div>
             </div>
+
+
+
+		<div class="recent-movies">
+
+			<div class="row">
+				<div class="col-md-12">
+					<h4>NEW AND NOTEWORTHY</h4>
+				</div>
+            </div>
+
+			<hr class="m-t-0">
+
+			<div class="row sim_mov">
+<!--				<div class="col-md-12">-->
+
+					<?php
+
+						$recentvideos = get_recent_videos();
+
+						foreach ($recentvideos as $recentvideo)
+						{
+
+
+					?>
+							<div class="col-xs-4">
+								<div class="grid-box grid-full content-align-bottom">
+
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+
+										<div class="grid-image">
+											<img src="<?php echo $recentvideo['featured_image'];?>">
+										</div>
+
+										<div class="grid-text-wrap">
+
+											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
+
+										   <div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>
+
+											<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>
+
+											<div class="grid-meta">DIR. <?php echo  ucfirst($recentvideo['director']);?></div>
+
+										</div>
+
+										<div class="grid-text-wrap hover-text">
+											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
+											<div class="grid-meta">
+												<div class="row">
+													<div class="col-xs-4">
+
+														<div class="pull-left p-l-10 m-t-10">
+															<div>
+																<?php echo $recentvideo['no_of_views'];?>
+																<i class="fa fa-eye"></i>
+															</div>
+															<div>
+																<?php echo $recentvideo['post_like_count'];?>
+																<i class="fa fa-thumbs-up"></i>
+															</div>
+														</div>
+													</div>
+													<div class="col-xs-8">
+														<div class="pull-right text-right m-t-10">
+														   <?php echo $recentvideo['excerpt'];?>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+											<!--
+											<div>
+												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+													<h6><?php echo $recentvideo['title']; ?></h6>
+												</a>
+
+												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
+
+												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
+												<div>
+													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
+													<p class="pull-right">
+														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
+
+														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
+
+													</p>
+												</div>
+
+												<div class="clearfix"></div>
+
+												<hr class="m-t-0">
+
+											</div>
+											-->
+										<div class="overlay-vertical"></div>
+									</a>
+								</div>
+
+							</div>
+
+					<?php
+
+						} //end foreach
+					?>
+
+<!--				</div>-->
+			</div>
+
+		</div>
 
 
 
@@ -656,37 +856,13 @@ window.onload = function() {
 	
 	showLayout();
 	
-	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
+	//jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
+	
 	jQuery('#gridoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
 
-	jQuery('#genre').live('change',function(e){
-        jQuery('#searchids').val("");
-        jQuery('.search').val("");
-		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
-		jQuery('.all_posts').html("")
-		get_all_posts();
 
-
-
-	});
-
-
-	jQuery('#language').live('change',function(e)
-	{
-		//jQuery('#genre').trigger('change');
-		
-		jQuery('#searchids').val("");
-        jQuery('.search').val("");
-		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
-		jQuery('.all_posts').html("")
-		//get_all_posts_in_language();
-		get_all_posts();
-		
-	});
 	
 
 	jQuery('.load_more').live('click',function(e){
@@ -710,33 +886,9 @@ window.onload = function() {
 
 	});
 
-    jQuery('#sort').live('change',function(e){
-        e.preventDefault();
-        data = 'sort='+jQuery(e.target).val()
-        jQuery.ajax({
-                type : 'GET',
-                url : SITEURL+'/wp-json/sort',
-                data : data,
-                success:function(response){
-                    jQuery('.loader').text("Loading data...")
-                    jQuery('.all_posts').html("")
-                    generate_data(response);
-
-
-                    },
-                    error:function(response){
-
-                    }
-
-        });
-
-
-
-
-    });
 
 	//jQuery('.search').change(function(e) {
-
+/*
     jQuery('.search').live('change',function(e)
 	{
 
@@ -790,7 +942,7 @@ window.onload = function() {
 
 
     });
-
+*/
     function resizeimgs(tw, obj, i) {
         var ar = obj.width() / obj.height();
         console.log('Number: ' + i + '\n-------------------------');
