@@ -1,25 +1,25 @@
 
-<?php 
+<?php
 get_header(); ?>
 
-	
-	<?php if (have_posts()) : while (have_posts()) : the_post(); 
-	
+
+	<?php if (have_posts()) : while (have_posts()) : the_post();
+
 	global $post;
 
 	$response = Article_post\Article::get_article($post->ID);
-	
+
 
 	?>
-	
 
-	
+
+
 	<div id="movie-header" class="movie-header article_single">
         <div class="article_s_img">
-             <img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">  
+             <img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">
         </div>
 		 <!-- <div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div> -->
-	
+
 		<!--
 		<div class="vid-previous"></div>
 		<div class="vid-next"></div>
@@ -44,14 +44,14 @@ get_header(); ?>
 					        <span class="m-l-5 m-r-5">|</span> <span class="m-l-5 m-r-5">|</span>
 					    </div>
 					-->
-																														
+
 					<!--
 					    <div class="share-button">
 					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
 					        <div class="social-networks">
-							
+
 							<?php///ssba_activate(); ?>
-							
+
 							<?php // echo do_shortcode("[ssba]"); ?>
 					-->
 							  <!--
@@ -67,7 +67,7 @@ get_header(); ?>
 					            </li>
 					          </ul>
 							  -->
-					<!--		  
+					<!--
 					        </div>
 					    </div>
 					-->
@@ -75,7 +75,7 @@ get_header(); ?>
 				</div>
 
 			</div>
-			
+
 		</div>
 		<div class="overlay"></div>
 	</div>
@@ -87,80 +87,80 @@ get_header(); ?>
 
 		<div class="clearfix"></div>
 		 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/<?php echo $post->ID ;?>"></a>
-       
 
-	    
+
+
 		<div class="description">
 		    <div class="article_s_links">
-		        
-				
+
+
 				<span class="art_likes"><?php echo getPostLikeLink( get_the_ID() ) ; ?> </span>
-		        
-				
+
+
 				<span class="art_views" title="Views"><i class="fa fa-eye"></i><?php  echo $response['no_of_views'] ;?></span>
-		       
+
 		        <div class="pull-right soc-ico">
-				   
+
 					<?php// echo do_shortcode("[ssba]"); ?>
-					
+
 					<?php echo do_shortcode('[ssba url="' . get_permalink($response['id']) . '" title="' . get_the_title($response['id']) . '"]'); ?>
-					
+
 				</div>
 		    </div>
-			
-			<?php  
-				
+
+			<?php
+
 				//echo $response['content'] ;
 				echo wpautop( $response['content'] );
 			?>
-			
+
 		</div>
-		
+
 	    <div class="spacer-40"></div>
-	    
+
 		<div class="recent-movies">
-		
+
 			<div class="row">
 				<div class="col-md-12">
-					<h2>SOME MOVIES WE PICKED FOR YOU</h2>
-				</div>	
+					<h4>SOME MOVIES WE PICKED FOR YOU</h4>
+				</div>
             </div>
-			
+
 			<hr class="m-t-0">
-			
+
 			<div class="row sim_mov">
 <!--				<div class="col-md-12">-->
-																
+
 					<?php
 
 						$recentvideos = get_recent_videos();
-											
+
 						foreach ($recentvideos as $recentvideo)
-						{		
-							
-							
-					?>									
-							<div class="col-xs-4">									
+						{
+
+
+					?>
+							<div class="col-xs-4">
 								<div class="grid-box grid-full content-align-bottom">
-									
+
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
-										
+
 										<div class="grid-image">
 											<img src="<?php echo $recentvideo['featured_image'];?>">
 										</div>
-	
+
 										<div class="grid-text-wrap">
-											
+
 											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
-										   
+
 										   <div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>
-										   
+
 											<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>
-											
+
 											<div class="grid-meta">DIR. <?php echo  ucfirst($recentvideo['director']);?></div>
-											 
+
 										</div>
-										
+
 										<div class="grid-text-wrap hover-text">
 											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
 											<div class="grid-meta">
@@ -186,47 +186,47 @@ get_header(); ?>
 												</div>
 											</div>
 										</div>
-																					
+
 											<!--
 											<div>
 												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 													<h6><?php echo $recentvideo['title']; ?></h6>
 												</a>
-												
+
 												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
-												
+
 												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
 												<div>
 													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
 													<p class="pull-right">
 														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
-														
+
 														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
-														
+
 													</p>
 												</div>
-												
+
 												<div class="clearfix"></div>
-												
+
 												<hr class="m-t-0">
-											
+
 											</div>
 											-->
 										<div class="overlay-vertical"></div>
 									</a>
 								</div>
-																
+
 							</div>
-							
+
 					<?php
-								
-						} //end foreach							
-					?>			
-							
+
+						} //end foreach
+					?>
+
 <!--				</div>-->
 			</div>
-		
-		</div>	
+
+		</div>
 
 	    <div class="spacer-40"></div>
 
@@ -234,14 +234,14 @@ get_header(); ?>
 	    <div class="text-center">
 	        <a href="" class="btn btn-primary btn-lg">Watch more awesome films</a>
 	    </div>
-	    --> 
-		 
+	    -->
+
 	</div>
-    
-    <?php endwhile; ?>			
-    
+
+    <?php endwhile; ?>
+
     <?php else : ?>
-    
+
         <article id="post-not-found">
             <header>
             	<h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
@@ -252,7 +252,7 @@ get_header(); ?>
             <footer>
             </footer>
         </article>
-    
+
     <?php endif; ?>
 
 
@@ -264,13 +264,13 @@ get_header(); ?>
 window.onload = function() {
 
 	jQuery('#noofviews').val();
-/*	
+/*
 	prev = "<?php echo $response['prev_post'];?>";
 
 	if(parseInt(prev) == 0)
 	{
 		jQuery('.vid-previous').hide();
-		
+
 	}
 
 	next = "<?php echo $response['next_post'];?>";
@@ -278,9 +278,9 @@ window.onload = function() {
 	if(parseInt(next) == 0)
 	{
 		jQuery('.vid-next').hide();
-		
+
 	}
-	
+
 	jQuery('.vid-previous').click(function(x){
 
 		if(parseInt(prev) == 0)
@@ -293,7 +293,7 @@ window.onload = function() {
 	});
 
 	jQuery('.vid-next').click(function(x){
-		
+
 		if(parseInt(next) == 0)
 		{
 			alert('No next video');

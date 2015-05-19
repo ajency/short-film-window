@@ -285,6 +285,9 @@ function generate_grid_response($response){
 				'region'		=> array(0 => ''),
 				'tags'			=> "",
 				'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'small_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'medium_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'large_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
 				'user_like_count'	=> "",
 				'post_like_count' => 0,
 				'no_of_views'	=> 0
@@ -642,6 +645,9 @@ function get_noteworthy_videos()
 			$post_response[] = array(
 					'slug'				=> $post_detail['slug'],
 					'featured_image'	=> $post_detail['featured_image'],
+					'small_image'		=> $post_detail['small_image'],
+					'medium_image'		=> $post_detail['medium_image'],
+					'large_image'		=> $post_detail['large_image'],
 					'title'				=> $post_detail['title'],
 					'duration'			=> $post_detail['duration'],
 					'region'			=> $post_detail['region'],
@@ -679,6 +685,9 @@ function get_noteworthy_videos()
 				
 				'slug'				=> $post_info['slug'],
 				'featured_image'	=> $post_info['featured_image'],
+				'small_image'		=> $post_info['small_image'],
+				'medium_image'		=> $post_info['medium_image'],
+				'large_image'		=> $post_info['large_image'],
 				'title'				=> $post_info['title'],
 				'duration'			=> $post_info['duration'],
 				'region'			=> $post_info['region'],
