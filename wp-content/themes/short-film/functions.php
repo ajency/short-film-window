@@ -2458,6 +2458,99 @@ function get_list_of_all_playlists()
 
 }
 
+////
+function get_category_info($category_id, $taxonomy, $image_size)
+{			
+	
+	$playlist_details = get_term( $playlist_id, $taxonomy );
+	
+	//to convert object to array
+	
+	$playlist_name				= $playlist_details->name;
+	$playlist_slug 				= $playlist_details->slug;
+	$playlist_taxonomy  		= $playlist_details->taxonomy;
+	$playlist_description   	= $playlist_details->description;
+	$playlist_object_id   		= $playlist_details->object_id;
+	
+	$no_of_videos_in_playlist   = $playlist_details->count;
+
+	$playlist_link = get_term_link($playlist_id, $taxonomy);		
+
+	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';	
+	
+	$playlist_image = s8_get_taxonomy_image_src($playlist_details, $image_size);
+	
+	$playlist_image_url = $playlist_image['src'];
+		
+
+	$playlist_info = array( 
+			
+			'playlist_id'				    => $playlist_id,
+			'playlist_name'		 	   		=> $playlist_name,
+			'playlist_slug'		 	   		=> $playlist_slug,
+			'playlist_taxonomy'		 	    => $playlist_taxonomy,
+			'playlist_description'	  		=> $playlist_description,			
+			'playlist_object_id'	  		=> $playlist_object_id,			
+			'playlist_link'		 	  		=> $playlist_link,
+			'full_playlist_link'		 	=> $full_playlist_link,			
+			'no_of_videos_in_playlist'      => $no_of_videos_in_playlist,
+			'playlist_image_url'      		=> $playlist_image_url
+				
+	);	
+		
+
+
+	return $playlist_info;
+				
+}
+////
+
+function get_few_categories()
+{
+	
+	$cat_indian = get_category_by_slug('indian');
+	
+	// print_r($cat_indian);
+	// exit;
+	
+	$cat_music_video = get_category_by_slug('music-video');
+	
+	$cat_short_doc = get_category_by_slug('short-doc');
+	
+	$cat_thriller = get_category_by_slug('thriller');
+	
+	
+	foreach ( $categories as $category )
+	{		
+			
+		$cat_link = get_category_link( $category->term_id );
+		
+		$response[]=array(
+			
+			'cat_id'      =>  $category->cat_ID,
+			'cat_name'    =>  $category->cat_name,
+			'cat_termid'  =>  $category->term_id,
+			'cat_slug'    =>  $category->slug,
+			'cat_link'	  =>  $cat_link
+
+		);						
+	}		
+
+	if (is_wp_error($response))
+	{
+	   return false;
+	}
+	else
+	{
+		//print_r($response);
+	   return $response;
+	}
+		
+}  
+
+
+////
+/*
 function get_few_categories()
 {
 	$response = array();
@@ -2472,7 +2565,6 @@ function get_few_categories()
 				
 	); 
 		
-	$categories = get_categories( $args_cat );
 	
 	foreach ( $categories as $category )
 	{		
@@ -2500,7 +2592,7 @@ function get_few_categories()
 	}
 		
 }  
-
+*/
 
 function author_director_rewrite(){
 $GLOBALS['wp_rewrite']->author_base = 'director';
@@ -2511,7 +2603,7 @@ add_action('init', 'author_director_rewrite');
 
 ////
 
-add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
+//add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
 
 function custom_image_size_rules($file)
 {
