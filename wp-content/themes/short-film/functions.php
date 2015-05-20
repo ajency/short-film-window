@@ -2635,7 +2635,7 @@ add_action('init', 'author_director_rewrite');
 
 ////
 
-//add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
+add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
 
 function custom_image_size_rules($file)
 {
