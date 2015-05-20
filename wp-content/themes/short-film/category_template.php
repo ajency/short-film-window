@@ -680,10 +680,10 @@ window.onload = function() {
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
 	count=count-1;
 
-	// if(count == 0)
-	// {
-		// count=1;
-	// }
+	if(count == 0)
+	{
+		count=1;
+	}
 
     jQuery('#offset').val(count);
 

@@ -2409,6 +2409,9 @@ function get_video_language_links($languages)
 
 function get_video_playlist_links($playlists)
 {			
+	// print_r($playlists);
+	// exit;
+
 	$playlist_array = array();
 
 	foreach ($playlists as $value) 
@@ -2458,6 +2461,128 @@ function get_list_of_all_playlists()
 
 }
 
+////
+function get_category_info($category_id, $taxonomy, $image_size)
+{			
+	
+	$playlist_details = get_term( $playlist_id, $taxonomy );
+	
+	//to convert object to array
+	
+	$playlist_name				= $playlist_details->name;
+	$playlist_slug 				= $playlist_details->slug;
+	$playlist_taxonomy  		= $playlist_details->taxonomy;
+	$playlist_description   	= $playlist_details->description;
+	$playlist_object_id   		= $playlist_details->object_id;
+	
+	$no_of_videos_in_playlist   = $playlist_details->count;
+
+	$playlist_link = get_term_link($playlist_id, $taxonomy);		
+
+	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';	
+	
+	$playlist_image = s8_get_taxonomy_image_src($playlist_details, $image_size);
+	
+	$playlist_image_url = $playlist_image['src'];
+		
+
+	$playlist_info = array( 
+			
+			'playlist_id'				    => $playlist_id,
+			'playlist_name'		 	   		=> $playlist_name,
+			'playlist_slug'		 	   		=> $playlist_slug,
+			'playlist_taxonomy'		 	    => $playlist_taxonomy,
+			'playlist_description'	  		=> $playlist_description,			
+			'playlist_object_id'	  		=> $playlist_object_id,			
+			'playlist_link'		 	  		=> $playlist_link,
+			'full_playlist_link'		 	=> $full_playlist_link,			
+			'no_of_videos_in_playlist'      => $no_of_videos_in_playlist,
+			'playlist_image_url'      		=> $playlist_image_url
+				
+	);	
+		
+
+
+	return $playlist_info;
+				
+}
+////
+
+function get_few_categories($image_size)
+{
+	//get objects
+	$cat_indian = get_category_by_slug('indian');
+		
+	$cat_music_video = get_category_by_slug('music-video');
+	
+	$cat_short_doc = get_category_by_slug('short-doc');
+	
+	$cat_thriller = get_category_by_slug('thriller');
+	
+	
+	//get image urls
+	$cat_indian_image = s8_get_taxonomy_image_src($cat_indian, $image_size);
+	
+	$cat_indian_image_url = $cat_indian_image['src'];
+	
+	
+	$cat_music_video_image = s8_get_taxonomy_image_src($cat_music_video, $image_size);
+	
+	$cat_music_video_image_url = $cat_music_video_image['src'];
+	
+	
+	$cat_short_doc_image = s8_get_taxonomy_image_src($cat_short_doc, $image_size);
+	
+	$cat_short_doc_image_url = $cat_short_doc_image['src'];
+	
+
+	$cat_thriller_image = s8_get_taxonomy_image_src($cat_thriller, $image_size);
+	
+	$cat_thriller_image_url = $cat_thriller_image['src'];
+	
+	
+	//get links
+	
+	$cat_indian_link = get_category_link( $cat_indian->term_id );
+	
+	$cat_music_video_link = get_category_link( $cat_music_video->term_id );
+	
+	$cat_short_doc_video_link = get_category_link( $cat_short_doc->term_id );
+	
+	$cat_thriller_video_link = get_category_link( $cat_thriller->term_id );
+		
+
+	$response_cats[]=array(
+		
+		'cat_indian_image_url'     	   =>  $cat_indian_image_url,
+		'cat_music_video_image_url'    =>  $cat_music_video_image_url,
+		'cat_short_doc_image_url'  	   =>  $cat_short_doc_image_url,
+		'cat_thriller_image_url'       =>  $cat_thriller_image_url,
+		'cat_indian_link'	  		   =>  $cat_indian_link,
+		'cat_music_video_link'	  	   =>  $cat_music_video_link,
+		'cat_short_doc_video_link'	   =>  $cat_short_doc_video_link,
+		'cat_thriller_video_link'	   =>  $cat_thriller_video_link
+
+	);						
+			
+
+	if (is_wp_error($response_cats))
+	{
+	   return false;
+	}
+	else
+	{
+		// print_r($response_cats);
+		// exit;
+		
+	   return $response_cats;
+	}
+		
+}  
+
+
+////
+/*
 function get_few_categories()
 {
 	$response = array();
@@ -2472,7 +2597,6 @@ function get_few_categories()
 				
 	); 
 		
-	$categories = get_categories( $args_cat );
 	
 	foreach ( $categories as $category )
 	{		
@@ -2500,7 +2624,7 @@ function get_few_categories()
 	}
 		
 }  
-
+*/
 
 function author_director_rewrite(){
 $GLOBALS['wp_rewrite']->author_base = 'director';
@@ -2572,6 +2696,157 @@ function validate_duration($hook)
 add_action( 'admin_enqueue_scripts', 'validate_duration' );
 
 
+/*
+function get_all_playlists() 
+{
+	$all_playlists =  get_terms('playlist', 'orderby=name');
+	
+	$newlist = array();
+			
+	foreach($all_playlists as $playlist)
+	{
+		$list = (array) $playlist;
+		
+		$play_name = $list['name'];
+		
+		$play_id = get_term_by( 'name', $play_name, 'playlist');
+				
+		$play_link = get_term_link( $play_id );				
+
+		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		
+			
+		$newlist[] = array(		
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+						'playlist_link' => $link
+						
+		);
+
+	}
+	
+	// echo "<pre>";
+	// print_r($newlist);
+	// echo "</pre>";
+// 	
+	// exit;
+
+	return $newlist;
+}
+*/
+
+////
+
+function get_all_playlists($image_size) 
+{
+	$all_playlists =  get_terms('playlist', 'orderby=name');
+	
+	$newlist = array();
+			
+	foreach($all_playlists as $playlist)
+	{
+		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
+
+		$playlist_image_url = $playlist_image['src'];
+		
+
+		$list = (array) $playlist;
+		
+		$play_name = $list['name'];
+		
+		$play_id = get_term_by( 'name', $play_name, 'playlist');
+				
+		$play_link = get_term_link( $play_id );				
+
+		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		
+			
+		$newlist[] = array(		
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+						'playlist_link' => $link,
+						'playlist_image_url' => $playlist_image_url
+												
+		);
+
+	}
+	
+	// echo "<pre>";
+	// print_r($newlist);
+	// echo "</pre>";
+	
+	// exit;
+
+	return $newlist;
+}
 
 
+function get_playlists($image_size, $playlists_per_page, $offset) 
+{
+	// echo " offset= ".$offset;
+	
+	$args = array(
+				'orderby'           => 'id', 
+				'order'             => 'ASC',
+				'number'            => $playlists_per_page,
+				'offset'			=> $offset
+			); 
 
+
+////
+	$playlists =  get_terms('playlist', $args);
+	
+	$newlist = array();
+			
+	foreach($playlists as $playlist)
+	{
+		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
+
+		$playlist_image_url = $playlist_image['src'];
+		
+
+		$list = (array) $playlist;
+		
+		$play_name = $list['name'];
+		
+		$play_id = get_term_by( 'name', $play_name, 'playlist');
+				
+		$play_link = get_term_link( $play_id );				
+
+		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		
+			
+		$newlist[] = array(		
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+						// 'playlist_link' => $link,						
+						'playlist_link' => $play_link,						
+						'playlist_image_url' => $playlist_image_url
+												
+		);
+
+	}
+	
+	// echo "<pre>";
+	// print_r($newlist);
+	// echo "</pre>";
+	
+	// exit;
+
+	// echo "in get_playlists function newlist = ";
+	// print_r($newlist);
+	
+	return $newlist;
+}

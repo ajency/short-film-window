@@ -92,6 +92,9 @@ function get_custom_taxonomy_terms_language($post_id)
 function get_custom_taxonomy_terms_playlist($post_id)
 {
 	$results = get_the_terms($post_id, 'playlist');
+	
+	// print_r($results);
+	// exit;
 
 	$response = array();
 	
@@ -276,9 +279,8 @@ function get_posts_based_regions($region_name)
 }
 
 
-function generate_grid_response($response){
-
-	
+function generate_grid_response($response)
+{	
 	$grid = array();
 	$multiple = array(6,6);
 	$k = 0 ;
@@ -328,6 +330,48 @@ function generate_grid_response($response){
 	return $grid;
 
 }
+
+function generate_play_grid_response($playlists)
+{	
+	$grid = array();
+	$multiple = array(9,9);
+	$k = 0 ;
+	
+	$j = 0; 
+	for ($i = 0; $i < $multiple[$k]; $i++) 
+	{ 
+		if($playlists[$j] == "")
+		{
+			$grid[$k][$i] =  array(
+			
+				'playlist_id' 			=> "",
+				'playlist_name' 		=> "",
+				'playlist_slug' 		=> "",
+				'playlist_taxonomy' 	=> "",
+				'playlist_description'  => "",
+				'playlist_count' 	    => "",
+				'playlist_link' 		=> "",
+				'playlist_image_url' 	=> get_template_directory_uri().'/assets/img/placeholder.jpg'
+
+			);
+
+		}
+		else
+			$grid[$k][$i] = $playlists[$j];
+		
+		// if($i == 5 && count($playlists) > $multiple[$k])
+	    if($i == 8 && count($playlists) > $multiple[$k])
+		{
+			$k = $k + 1;
+			$i = -1 ;
+		}
+		$j++;	
+	}
+	
+	return $grid;
+
+}
+
 
 /*
 function get_posts_filter($args)

@@ -1,39 +1,39 @@
 <?php get_header(); ?>
 
 
-<?php 
+<?php
 
 	$queried_object = get_queried_object();
-			
+
 	//print_r($queried_object);
 
 	$taxonomy = $queried_object->taxonomy;
-	
-	$term_name = $queried_object->name; 
-	
+
+	$term_name = $queried_object->name;
+
 	$playlist_id = $queried_object->term_id;
-	
+
 	// echo " *** taxonomy= ".$queried_object->taxonomy;
 	// echo " *** term_name= ".$queried_object->name;
 	// echo " *** playlist_id= ".$queried_object->term_id;
-	
-	
-	 // $playlist_info = get_playlist_info($playlist_id, $taxonomy); 
-	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail'); 
-	 
-	 $total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy); 
-	 
-	 
-	 	 
+
+
+	 // $playlist_info = get_playlist_info($playlist_id, $taxonomy);
+	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
+
+	 $total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
+
+
+
 	 // print_r($playlist_info);
 	 // exit;
-	 
-?>		
+
+?>
 
 
         <!--Content-->
-        <div class="container header-space">
-            <div class="content-wrapper" style="  overflow: visible;">
+        <div class="container header-space playlist">
+            <div class="content-wrapper">
 			<!--
                 <div class="row">
                     <div class="col-md-6">
@@ -42,44 +42,38 @@
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
 
-							
+
                                 <div class="form-group">
 
 								  <input type="text" class="form-control search" value="" placeholder="Search"/>
 
                                     <i class="fa fa-search"></i>
                                 </div>
-                          
+
 
                         </div>
 					</div>
                 </div>
-			
+
                 <hr class="m-t-0">
 			-->
-                <div class="row pushin">
-				
-			
+                <div class="row posrel">
+
 					<!--this row contains playlist info-->
 					<div class="row">
 
-							<div class="col-md-2">
-							
+							<div class="col-md-4">
+
 								<?php
-									
 									$playlist_name = $playlist_info['playlist_name'];
-																										
-									 $playlist_image_url = $playlist_info['playlist_image_url']; 
-														
+									$playlist_image_url = $playlist_info['playlist_image_url'];
 								?>
-								
-									 <img src="<?php echo $playlist_image_url;?>" alt="Photo of <?php echo $playlist_name;?>" />
+								<img src="<?php echo $playlist_image_url;?>" alt="Photo of <?php echo $playlist_name;?>" />
 
 							</div>
 
 
-							<div class="col-md-10"> 
-
+							<div class="col-md-8 posata">
 								<div class="row">
 
 									<div class="col-md-12">
@@ -93,46 +87,34 @@
 								<hr class="m-t-0 m-b-5">
 
 								<div class="row">
-
-									<div class="col-xs-8 cont">
+									<div class="col-xs-8 cont posata">
 
 										<div>
 											<p><?php echo $playlist_info['playlist_description'];?></p>
 										</div>
 
-										<div>
-											
-											<?php 
+										<div class="auth_btm">
+											<?php
 													if($playlist_info['no_of_videos_in_playlist']!=0)
 													{
-											?>	
-														<p>No of Films:	<?php echo $playlist_info['no_of_videos_in_playlist'];?> <p>
-											<?php 
+											?>
+													<p>No of Films:	<span class="co"><?php echo $playlist_info['no_of_videos_in_playlist'];?></span> <p>
+											<?php
 													}
-																						
-											?>	
-														
-										
-										</div>
-										
-										<div>												
-											<p>Total Runtime: <?php echo $total_runtime;?> </p>
-											
-										</div>
 
+											?>
+											<p>Total Runtime: <span class="co"><?php echo $total_runtime;?></span> </p>
+										</div>
 									</div>
 
 									<!--<div class="col-xs-4 text-right list-info-btns">-->
-									<div class="col-xs-4 text-right list-info-btns">
+									<div class="col-xs-4 text-right list-info-btns posata">
 
 										<div class="soc-ico nh">
 
-											  
 											   <?php echo do_shortcode('[ssba url="' . $playlist_info['playlist_link'] . '" title="' . $playlist_info['playlist_name'] . '"]'); ?>
 
 											   <?php// echo do_shortcode('[ssba]'); ?>
-
-											 
 
 										</div>
 
@@ -148,29 +130,40 @@
 
 										</div>
 
-									</div>
+										<div class="row opts disp_btm">
+											<div class="col-md-12">
+												<a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
+
+												<a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
+
+												<a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
+
+										   </div>
+										</div>
+
+									</div> <!-- end list info btns -->
 
 									<!--</div>-->
 
 
-								</div>
-							</div>
+								</div> <!-- row end -->
+							</div> <!-- col-md-8 posata end -->
 
 							<div class="col-md-12">
 								<hr class="border-btm">
 							</div>
-					
+
 
 					</div> <!-- end row -->
-				
-				
-                
-				<!--	
+
+
+
+				<!--
 				   <div class="col-md-5">
                 		<h5 class="un">FILTER BY</h5>
-                       
-					  
-                           
+
+
+
 						   <div class="form-group">
                                 <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
                                 <div class="col-md-9">
@@ -188,44 +181,44 @@
                                     </select>
                                 </div>
                             </div>
-                      
-                        
-						
-                            
+
+
+
+
 						   <div class="form-group">
-                                
+
 								<?php
 									// $all_language_list = get_list_of_all_languages();
 									//print_r($all_language_list);
-									
+
 								?>
-								
+
 								<label for="" class="col-md-3 control-label"><em>Language:</em> </label>
                                 <div class="col-md-9">
-                                	
+
 									<select name="language" id="language">
-										
+
 										<option value="">All</option>
-										
+
 										<?php
 											// foreach ($all_language_list as $lang_value)
 											// {
 
-												 // echo '<option value="'.$lang_value->term_id.'">'.$lang_value->name.'</option>'; 
-                                        										
+												 // echo '<option value="'.$lang_value->term_id.'">'.$lang_value->name.'</option>';
+
 										    // }
 										?>
-                                   
+
 								   </select>
-                               
+
 							   </div>
                             </div>
-							
-                      
-                    
+
+
+
 					</div>
                     <div class="col-md-4 col-md-offset-3 padd-68">
-			  
+
                             <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
                             <div class="col-md-9">
                                 <select class="" name="sort" id="sort">
@@ -234,37 +227,24 @@
                                     <option value="3">Length</option>
                                 </select>
                             </div>
- 
+
                     </div>
 				-->
-				
-					<div class="row opts">
-						<div class="col-md-12">
-							<a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
 
 
-							<a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
 
-
-							<a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
-
-					   </div>
-					</div>
-					
                 </div>
 
-                <hr>
-
                 <div class="spacer-40"></div><div class="loader"></div>
-				
+
 				<div class="search-results-message">
 				</div>
-				
+
                 <div class="all_posts">
-               
+
 			<?php
 					/////////////
-	
+
 
 				if($taxonomy == "playlist")
 				{
@@ -275,24 +255,24 @@
 						'playlist'		    => $queried_object->term_id,
 						'taxonomy'			=> $queried_object->taxonomy,
 						'region'			=> '',
-						'language'			=> '',						
+						'language'			=> '',
 						'posts_per_page'   	=> 12,
 						'offset'           	=> 0
 
 					);
 				}
-			
+
 				//////////////
-				
+
 				$response = Film\Video::get_many($args);
-				
+
 				if(count($response) > 0)
 				{
 					$gridreposnse = generate_grid_response($response);
 
 					foreach ($gridreposnse as $key => $value)
 					{
-						foreach ($value as $k => $val) 
+						foreach ($value as $k => $val)
 						{
 							$value[$k]['class'] = '';
 
@@ -719,15 +699,15 @@
                 <div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
-					
+
 					<input type="hidden" name="taxonomy" id="taxonomy" value="<?php echo $queried_object->taxonomy; ?>" />
 
-					<input type="hidden" name="playlist" id="playlist" value="<?php echo $queried_object->term_id; ?>" />					
-		
+					<input type="hidden" name="playlist" id="playlist" value="<?php echo $queried_object->term_id; ?>" />
+
                     <a href="#" class="btn btn-primary load_more">Load More...</a>
-               
+
 			   </div>
-           
+
 
             </div>
 
@@ -853,17 +833,17 @@
 
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
-	
+
 	showLayout();
-	
+
 	//jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
-	
+
 	jQuery('#gridoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
 
 
-	
+
 
 	jQuery('.load_more').live('click',function(e){
 
@@ -899,11 +879,11 @@ window.onload = function() {
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
-		
+
 		var title = jQuery(e.target).val();
 
 		data = 'title='+jQuery(e.target).val();
-		
+
 		jQuery('.load_more').hide();
 
 		jQuery.ajax({
@@ -914,9 +894,9 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-					
+
 					jQuery('.search-results-message').html("Search Results for "+title);
-					
+
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value)
@@ -997,9 +977,9 @@ window.onload = function() {
 		offset = jQuery('#offset').val();
 
 		//data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		
+
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&playlist='+playlist;
-	
+
 		/////////////
 
 		jQuery.ajax({
@@ -1023,8 +1003,8 @@ window.onload = function() {
 				}
 			})
 	}
-	
-	
+
+
 	showLayout();
 
 	function generate_grid_reponse(response)
@@ -1491,7 +1471,7 @@ window.onload = function() {
                         jQuery('.all_posts').html("");
                         html += "<div>No videos found.</div>";
                         jQuery('.all_posts').html(html);
-						
+
 						jQuery('.load_more').hide();
                     }
 

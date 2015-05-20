@@ -652,8 +652,17 @@ window.onload = function() {
 	
 	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 	jQuery('#gridoption').children().addClass('text-primary');
-    count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
-    jQuery('#offset').val(count);
+   
+   count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
+   
+   count=count-1;
+
+	if(count == 0)
+	{
+		count=1;
+	}   
+	
+	jQuery('#offset').val(count);
 
 	jQuery('#genre').live('change',function(e){
         jQuery('#searchids').val("");
