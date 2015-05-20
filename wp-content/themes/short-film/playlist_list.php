@@ -9,14 +9,14 @@ Template Name: List of Playlists
 <?php
 	
 	$image_size = 'thumbnail';
-	$offset = 0;
+	$offset_value = 0;
 		
 	//$all_playlists = get_all_playlists($image_size);
 	
 	// $no_of_playlists = 9;
 	 $playlists_per_page = 9;
 	
-	$playlists = get_playlists($image_size, $playlists_per_page, $offset);
+	$playlists = get_playlists($image_size, $playlists_per_page, $offset_value);
 	
 	// print_r($playlists);
 	// exit;
@@ -36,8 +36,6 @@ Template Name: List of Playlists
 								PLAYLISTS
 							</h2>
 						</div>
-						
-						<!--
 						<div class="col-md-4 m-t-20">
 							<div class="form-group row form-horizontal">
 								<label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
@@ -50,8 +48,7 @@ Template Name: List of Playlists
 		                        </div>
 	                        </div>
 						</div>
-						-->
-						
+
 					</div>
 
 					<hr class="m-t-0">
@@ -509,10 +506,8 @@ Template Name: List of Playlists
 
 window.onload = function() 
 {
-	//showLayout();
-			
-	
-	//jQuery('#gridoption').children().addClass('text-primary');
+	console.log("onload offset = ");	
+	console.log(jQuery('#offset').val());	
 	
 	count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($playlists); ?>");
 	
@@ -526,6 +521,9 @@ window.onload = function()
 	//console.log(count);
 	
 	jQuery('#offset').val(count);
+	
+	console.log("after assigning offset = ");	
+	console.log(jQuery('#offset').val());	
 
 
 	jQuery('.load_more').live('click',function(e)
@@ -564,69 +562,16 @@ window.onload = function()
 	}
 
 
-/*	function showLayout()
-	{
 
-		if(jQuery('#tracker').val() == 'gridoption'){
-
-			jQuery('.listlayout').hide();
-			jQuery('.couchlayout').hide();
-			jQuery('.gridlayout').show();
-
-		}
-		else if(jQuery('#tracker').val() == 'listoption'){
-			jQuery('.gridlayout').hide();
-			jQuery('.couchlayout').hide();
-			jQuery('.listlayout').show();
-		}
-		else if(jQuery('#tracker').val() == 'couchoption'){
-			jQuery('.gridlayout').hide();
-			jQuery('.listlayout').hide();
-			jQuery('.couchlayout').show();
-		}
-		jQuery('.grid-box .grid-image').each(function(i) {
-			resizeimgs(jQuery(this), jQuery(this).find('img'), i);
-		});
-	}
-*/
-
-/*
-	function get_all_posts()
-	{
-		
-		// posts_per_page = 12;
-		playlists_per_page = 9;
-		offset = jQuery('#offset').val();
-		
-		image_size = 'thumbnail';
-
-		data = 'playlists_per_page='+playlists_per_page+'&offset='+offset+'&image_size='+image_size;
-				
-		jQuery.ajax({
-				type : 'GET',
-				url : SITEURL+'/wp-json/videos',
-				data : data,
-				success:function(response)
-				{
-					generate_data(response);
-					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
-					jQuery('#offset').val(count);
-
-				},
-				error:function(error){
-					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
-
-				}
-			})
-	}
-*/
 	function get_all_playlists()
 	{
 		
 		// posts_per_page = 12;
 		playlists_per_page = 9;
 		offset = jQuery('#offset').val();
+		
+	console.log("in get_all_playlists offset = ");	
+	console.log(jQuery('#offset').val());	
 		
 		image_size = 'thumbnail';
 
