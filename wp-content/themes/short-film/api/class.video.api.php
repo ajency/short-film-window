@@ -52,6 +52,11 @@ class Video_API
             array( array( $this, 'get_sorted_posts'), WP_JSON_Server::READABLE)
             
         );
+		
+        $routes['/playlists'] = array(
+            array( array( $this, 'get_many_playlists'), WP_JSON_Server::READABLE)
+            
+        );		
         
 /*
        $routes['/staffpickspage/(?P<id>\d+)'] = array(
@@ -158,6 +163,59 @@ class Video_API
 
         return $response;
 	}
+	
+	
+	public function get_many_playlists()
+	{
+		//echo "in get_many_playlists api ";
+		
+		$playlists_per_page = isset($_REQUEST['playlists_per_page']) && $_REQUEST['playlists_per_page'] 
+		!= "" ? $_REQUEST['playlists_per_page'] : "";
+		
+		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
+						$_REQUEST['offset'] : 0;
+        
+		if($offset != 0)
+			$offset = intval($offset) +  1;
+			
+		// $image_size = isset($_REQUEST['image_size']) && $_REQUEST['image_size'] 
+		// != "" ? $_REQUEST['image_size'] : "thumbnail";
+		
+		$image_size = isset($_REQUEST['image_size']) && $_REQUEST['image_size'] 
+		!= "" ? $_REQUEST['image_size'] : "";			
+
+		$args = array(
+
+					'image_size'			=> $image_size,
+					'playlists_per_page'   	=> $playlists_per_page,
+					'offset'           		=> $offset
+
+		);
+		
+
+		$response = get_playlists($image_size, $playlists_per_page, $offset); 
+		
+		// echo " in get_many_playlists api response = ";
+		// print_r($response);
+		// exit;
+
+		if (is_wp_error($response))
+		{
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+
+        return $response;
+	}	
+	
 
 	public function get_focus_film($id)
 	{

@@ -2635,7 +2635,7 @@ add_action('init', 'author_director_rewrite');
 
 ////
 
-//add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
+add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
 
 function custom_image_size_rules($file)
 {
@@ -2696,43 +2696,157 @@ function validate_duration($hook)
 add_action( 'admin_enqueue_scripts', 'validate_duration' );
 
 
+/*
 function get_all_playlists() 
 {
-	$all_playlists = get_terms('playlist', 'orderby=name');
+	$all_playlists =  get_terms('playlist', 'orderby=name');
 	
-	//// ////
-	print_r($all_playlists);
-	exit;
-	
-	////////
-	
-	$playlist_array = array();
-
-	foreach ($playlists as $value) 
-	{		
-		$playlist_id = get_term_by( 'name', $value, 'playlist');
+	$newlist = array();
 			
-		$playlist_link = get_term_link( $playlist_id );				
+	foreach($all_playlists as $playlist)
+	{
+		$list = (array) $playlist;
+		
+		$play_name = $list['name'];
+		
+		$play_id = get_term_by( 'name', $play_name, 'playlist');
+				
+		$play_link = get_term_link( $play_id );				
 
-		$link = '<a href="'.esc_url( $playlist_link ).'" target="_blank"  title="Playlist Name">'.$value.'</a>';
-		 
-		array_push($playlist_array, $link);						
+		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		
+			
+		$newlist[] = array(		
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+						'playlist_link' => $link
+						
+		);
+
 	}
+	
+	// echo "<pre>";
+	// print_r($newlist);
+	// echo "</pre>";
+// 	
+	// exit;
 
-	if(count($playlist_array) == 0)
-		$playlist_array = array(0 => 'No playlists');
+	return $newlist;
+}
+*/
+
+////
+
+function get_all_playlists($image_size) 
+{
+	$all_playlists =  get_terms('playlist', 'orderby=name');
 	
-	return $playlist_array;
+	$newlist = array();
+			
+	foreach($all_playlists as $playlist)
+	{
+		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
+
+		$playlist_image_url = $playlist_image['src'];
+		
+
+		$list = (array) $playlist;
+		
+		$play_name = $list['name'];
+		
+		$play_id = get_term_by( 'name', $play_name, 'playlist');
+				
+		$play_link = get_term_link( $play_id );				
+
+		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		
+			
+		$newlist[] = array(		
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+						'playlist_link' => $link,
+						'playlist_image_url' => $playlist_image_url
+												
+		);
+
+	}
 	
-	///////
+	// echo "<pre>";
+	// print_r($newlist);
+	// echo "</pre>";
 	
-	return $all_playlists;
+	// exit;
+
+	return $newlist;
 }
 
 
+function get_playlists($image_size, $playlists_per_page, $offset) 
+{
+	// echo " offset= ".$offset;
+	
+	$args = array(
+				'orderby'           => 'id', 
+				'order'             => 'ASC',
+				'number'            => $playlists_per_page,
+				'offset'			=> $offset
+			); 
 
 
+////
+	$playlists =  get_terms('playlist', $args);
+	
+	$newlist = array();
+			
+	foreach($playlists as $playlist)
+	{
+		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
 
+		$playlist_image_url = $playlist_image['src'];
+		
 
+		$list = (array) $playlist;
+		
+		$play_name = $list['name'];
+		
+		$play_id = get_term_by( 'name', $play_name, 'playlist');
+				
+		$play_link = get_term_link( $play_id );				
 
+		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		
+			
+		$newlist[] = array(		
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+						// 'playlist_link' => $link,						
+						'playlist_link' => $play_link,						
+						'playlist_image_url' => $playlist_image_url
+												
+		);
 
+	}
+	
+	// echo "<pre>";
+	// print_r($newlist);
+	// echo "</pre>";
+	
+	// exit;
+
+	// echo "in get_playlists function newlist = ";
+	// print_r($newlist);
+	
+	return $newlist;
+}

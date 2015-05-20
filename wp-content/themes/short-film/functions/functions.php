@@ -280,9 +280,7 @@ function get_posts_based_regions($region_name)
 
 
 function generate_grid_response($response)
-{
-
-	
+{	
 	$grid = array();
 	$multiple = array(6,6);
 	$k = 0 ;
@@ -333,48 +331,36 @@ function generate_grid_response($response)
 
 }
 
-function generate_grid_response_for_all_playlists($response)
+function generate_play_grid_response($playlists)
 {	
 	$grid = array();
-	$multiple = array(6,6);
+	$multiple = array(9,9);
 	$k = 0 ;
 	
 	$j = 0; 
 	for ($i = 0; $i < $multiple[$k]; $i++) 
 	{ 
-		if($response[$j] == "")
+		if($playlists[$j] == "")
 		{
 			$grid[$k][$i] =  array(
-				'id'			=> "",
-				'slug'			=> "",
-				'title'			=> "",
-				'type'			=> "",
-				'tagline'		=> "",
-				'videourl'  	=> "",
-				'excerpt'		=> "",
-				'director'		=> "",
-				'next_post'		=> "",
-				'prev_post'		=> "",
-				'comments'		=> "",
-				'categories'	=> array(0 => ''),
-				'duration'		=> 0,
-				'region'		=> array(0 => ''),
-				'tags'			=> "",
-				'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'small_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'medium_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'large_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'user_like_count'	=> "",
-				'post_like_count' => 0,
-				'no_of_views'	=> 0
+			
+				'playlist_id' 			=> "",
+				'playlist_name' 		=> "",
+				'playlist_slug' 		=> "",
+				'playlist_taxonomy' 	=> "",
+				'playlist_description'  => "",
+				'playlist_count' 	    => "",
+				'playlist_link' 		=> "",
+				'playlist_image_url' 	=> get_template_directory_uri().'/assets/img/placeholder.jpg'
 
 			);
 
 		}
 		else
-			$grid[$k][$i] = $response[$j];
+			$grid[$k][$i] = $playlists[$j];
 		
-		if($i == 5 && count($response) > $multiple[$k])
+		// if($i == 5 && count($playlists) > $multiple[$k])
+	    if($i == 8 && count($playlists) > $multiple[$k])
 		{
 			$k = $k + 1;
 			$i = -1 ;
