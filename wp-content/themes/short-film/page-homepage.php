@@ -497,10 +497,14 @@ Template Name: Homepage
 	<hr class="m-t-0"> 
 				
 	<?php 
-			
-		$response_cats = get_few_categories();
-		//print_r($response_cats);
 		
+		$image_size = 'thumbnail';
+		
+		$response_cats = get_few_categories($image_size);
+		
+		// print_r($response_cats);
+		// exit;
+			
 		if(count($response_cats) > 0)
 		{
 	?>
@@ -508,47 +512,65 @@ Template Name: Homepage
 			<div class="row">
 				<div class="col-md-12">
 					<div class="slider1 regular-slider">
-					
-					<?php
-
-						foreach($response_cats as $cat)
-						{
-							$args_img = array(
-											'cat_id' => $cat['cat_id'],
-											'alt' 	 => $cat['cat_name'],
-											'size'   => 'thumbnail'
-							);
-							
-					?>						
-                            <div>
-							
-                                <div class="focus-img">
 								
-									<a class="content-bottom" href="<?php echo $cat['cat_link'];?>">
-                                    
-										<!-- <img src="<?php// echo cfi_featured_image($cat['cat_id']);?>" class="img-responsive"> -->
-																				
-										
-										<?php
-										
-											echo $cat['cat_name'];
-
-											//cfi_featured_image($args_img);
-											 											 											 									 									
-										?>
+                            <div> <!-- cat_indian -->							
+                                
+								<div class="focus-img">								
 									
+									<a class="content-bottom" href="<?php echo $response_cats[0]['cat_indian_link'];?>">
+                                   
+										<img src="<?php echo $response_cats[0]['cat_indian_image_url'];?>" alt="Photo of category-Indian" />									
+															
 									</a>
 									
                                 </div>
 								
                             </div>
 							
-						
-						<?php
-						
-						} //end for
-						
-						?>
+							
+							<div> <!-- cat_music_video -->							
+                                
+								<div class="focus-img">								
+									
+									<a class="content-bottom" href="<?php echo $response_cats[0]['cat_music_video_link'];?>">
+                                   
+										<img src="<?php echo $response_cats[0]['cat_music_video_image_url'];?>" alt="Photo of category-Music Video" />									
+															
+									</a>
+									
+								</div>
+								
+                            </div>
+							
+
+							<div> <!-- cat_short_doc -->							
+                                
+								<div class="focus-img">								
+									
+									<a class="content-bottom" href="<?php echo $response_cats[0]['cat_short_doc_video_link'];?>">
+                                   
+										<img src="<?php echo $response_cats[0]['cat_short_doc_image_url'];?>" alt="Photo of category-Short Doc" />									
+															
+									</a>
+									
+								</div>
+								
+                            </div>	
+
+						<div> <!-- cat_thriller -->							
+                                
+							<div class="focus-img">								
+								
+								<a class="content-bottom" href="<?php echo $response_cats[0]['cat_thriller_video_link'];?>">
+							   
+									<img src="<?php echo $response_cats[0]['cat_thriller_image_url'];?>" alt="Photo of category-Thriller" />									
+														
+								</a>
+								
+							</div>
+								
+                        </div>								
+					
 						
 					</div>
 				</div>

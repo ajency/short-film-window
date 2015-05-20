@@ -2409,6 +2409,9 @@ function get_video_language_links($languages)
 
 function get_video_playlist_links($playlists)
 {			
+	// print_r($playlists);
+	// exit;
+
 	$playlist_array = array();
 
 	foreach ($playlists as $value) 
@@ -2505,14 +2508,11 @@ function get_category_info($category_id, $taxonomy, $image_size)
 }
 ////
 
-function get_few_categories()
+function get_few_categories($image_size)
 {
-	
+	//get objects
 	$cat_indian = get_category_by_slug('indian');
-	
-	// print_r($cat_indian);
-	// exit;
-	
+		
 	$cat_music_video = get_category_by_slug('music-video');
 	
 	$cat_short_doc = get_category_by_slug('short-doc');
@@ -2520,30 +2520,62 @@ function get_few_categories()
 	$cat_thriller = get_category_by_slug('thriller');
 	
 	
-	foreach ( $categories as $category )
-	{		
-			
-		$cat_link = get_category_link( $category->term_id );
+	//get image urls
+	$cat_indian_image = s8_get_taxonomy_image_src($cat_indian, $image_size);
+	
+	$cat_indian_image_url = $cat_indian_image['src'];
+	
+	
+	$cat_music_video_image = s8_get_taxonomy_image_src($cat_music_video, $image_size);
+	
+	$cat_music_video_image_url = $cat_music_video_image['src'];
+	
+	
+	$cat_short_doc_image = s8_get_taxonomy_image_src($cat_short_doc, $image_size);
+	
+	$cat_short_doc_image_url = $cat_short_doc_image['src'];
+	
+
+	$cat_thriller_image = s8_get_taxonomy_image_src($cat_thriller, $image_size);
+	
+	$cat_thriller_image_url = $cat_thriller_image['src'];
+	
+	
+	//get links
+	
+	$cat_indian_link = get_category_link( $cat_indian->term_id );
+	
+	$cat_music_video_link = get_category_link( $cat_music_video->term_id );
+	
+	$cat_short_doc_video_link = get_category_link( $cat_short_doc->term_id );
+	
+	$cat_thriller_video_link = get_category_link( $cat_thriller->term_id );
 		
-		$response[]=array(
+
+	$response_cats[]=array(
+		
+		'cat_indian_image_url'     	   =>  $cat_indian_image_url,
+		'cat_music_video_image_url'    =>  $cat_music_video_image_url,
+		'cat_short_doc_image_url'  	   =>  $cat_short_doc_image_url,
+		'cat_thriller_image_url'       =>  $cat_thriller_image_url,
+		'cat_indian_link'	  		   =>  $cat_indian_link,
+		'cat_music_video_link'	  	   =>  $cat_music_video_link,
+		'cat_short_doc_video_link'	   =>  $cat_short_doc_video_link,
+		'cat_thriller_video_link'	   =>  $cat_thriller_video_link
+
+	);						
 			
-			'cat_id'      =>  $category->cat_ID,
-			'cat_name'    =>  $category->cat_name,
-			'cat_termid'  =>  $category->term_id,
-			'cat_slug'    =>  $category->slug,
-			'cat_link'	  =>  $cat_link
 
-		);						
-	}		
-
-	if (is_wp_error($response))
+	if (is_wp_error($response_cats))
 	{
 	   return false;
 	}
 	else
 	{
-		//print_r($response);
-	   return $response;
+		// print_r($response_cats);
+		// exit;
+		
+	   return $response_cats;
 	}
 		
 }  
@@ -2662,6 +2694,43 @@ function validate_duration($hook)
   wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/assets/js/duration_validation.js', array('jquery') );
 }
 add_action( 'admin_enqueue_scripts', 'validate_duration' );
+
+
+function get_all_playlists() 
+{
+	$all_playlists = get_terms('playlist', 'orderby=name');
+	
+	//// ////
+	// print_r($all_playlists);
+	// exit;
+	
+	////////
+	
+	$playlist_array = array();
+
+	foreach ($playlists as $value) 
+	{		
+		$playlist_id = get_term_by( 'name', $value, 'playlist');
+			
+		$playlist_link = get_term_link( $playlist_id );				
+
+		$link = '<a href="'.esc_url( $playlist_link ).'" target="_blank"  title="Playlist Name">'.$value.'</a>';
+		 
+		array_push($playlist_array, $link);						
+	}
+
+	if(count($playlist_array) == 0)
+		$playlist_array = array(0 => 'No playlists');
+	
+	return $playlist_array;
+	
+	///////
+	
+	return $all_playlists;
+}
+
+
+
 
 
 
