@@ -27,29 +27,29 @@
 
 <!--		<div class="page-header">-->
             <!--this row contains author info-->
-			<div class="row">
+			<div class="row posrel">
 
 
 
-					<div class="col-md-2">
-					
+					<div class="col-md-4">
+
 						<?php
-							
+
 							$author_name = $author_info['author_name'];
-						
+
 							// $avatar = get_author_image_url(); // The function uses get_the_ID() to grab the appropirate user ID for the author image.
-							$image_url = get_author_image_url($author_id); 
-												
+							$image_url = get_author_image_url($author_id);
+
 						?>
-						
-							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" />
+
+							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" class="img-responsive" />
 
 					</div>
 
 
 
 
-					<div class="col-md-10"> 
+					<div class="col-md-8 posata">
 
 						<div class="row">
 
@@ -65,35 +65,35 @@
 
 						<div class="row">
 
-							<div class="col-xs-8 cont">
+							<div class="col-xs-8 cont posata">
 
 								<div>
 									<p><?php echo $author_info['author_description'];?></p>
 								</div>
 
-								<div>
-									
-									<?php 
+								<div class="auth_btm">
+
+									<?php
 											if($author_info['no_of_videos_by_author']!=0)
 											{
-									?>	
-												<p>No of Films:	<?php echo $author_info['no_of_videos_by_author'];?> <p>
-									<?php 
+									?>
+												<p>No of Films:	<span class="co"><?php echo $author_info['no_of_videos_by_author'];?></span> <p>
+									<?php
 											}
 											if($author_info['no_of_articles_by_author']!=0)
-											{										
-									?>	
-												<p>No of Articles:	<?php echo $author_info['no_of_articles_by_author'];?> <p>
+											{
+									?>
+												<p>No of Articles:	<span class="co"><?php echo $author_info['no_of_articles_by_author'];?></span> <p>
 									<?php
 											}
 									?>
-									
+
 								</div>
 
 							</div>
 
 							<!--<div class="col-xs-4 text-right list-info-btns">-->
-							<div class="col-xs-4 text-right list-info-btns">
+							<div class="col-xs-4 text-right list-info-btns posata">
 
 								<div class="soc-ico nh">
 
@@ -628,7 +628,7 @@
 											//+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
 
 											// +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
-											
+
 											 +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 

@@ -511,7 +511,7 @@ Template Name: Homepage
 
 			<div class="row">
 				<div class="col-md-12">
-					<div class="slider1 regular-slider">
+					<div class="slider_gen regular-slider">
 
                             <div> <!-- cat_indian -->
 
@@ -868,10 +868,10 @@ Template Name: Homepage
 
 									+'</div>'
 									+'<div class="col-md-2 col-xs-4 text-right meta-ico">'
-										+'<div class="meta-ico-in">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
+										+'<div class="meta-ico-in" title="Views">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 
 										//+'<div class="meta-ico-in">'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
-										+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
+										+'<div class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
 
 										//+'<div class="meta-ico-in">Watchlist <i class="fa fa-binoculars"></i></div>'
 									+'</div>'

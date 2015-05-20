@@ -19,6 +19,25 @@
                 }
               ]
         });
+        $('.slider_gen').slick({
+            // mobileFirst: true,
+            infinite: true,
+            slidesToShow: 4,
+            responsive: [
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1
+                  }
+                }
+              ]
+        });
 
         $('.slider2').slick({
             // mobileFirst: true,
