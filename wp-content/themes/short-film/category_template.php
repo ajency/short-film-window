@@ -222,9 +222,9 @@ Template Name: category_template
 							<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
 								<div class="grid-image">
 									 
-									 <!-- <img src="<?php// echo $value[0]['featured_image'] ;?>"> -->
+									 <img src="<?php echo $value[0]['medium_image'] ;?>"> 
 									
-									<?php echo $value[0]['medium_image']; ?>
+									<?php// echo $value[0]['medium_image']; ?>
 
 								</div>
 								<div class="grid-text-wrap">

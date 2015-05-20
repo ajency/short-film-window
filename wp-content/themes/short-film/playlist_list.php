@@ -36,6 +36,8 @@ Template Name: List of Playlists
 								PLAYLISTS
 							</h2>
 						</div>
+						
+						<!--
 						<div class="col-md-4 m-t-20">
 							<div class="form-group row form-horizontal">
 								<label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
@@ -48,7 +50,8 @@ Template Name: List of Playlists
 		                        </div>
 	                        </div>
 						</div>
-
+						-->
+						
 					</div>
 
 					<hr class="m-t-0">
