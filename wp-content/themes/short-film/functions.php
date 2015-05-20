@@ -2701,8 +2701,8 @@ function get_all_playlists()
 	$all_playlists = get_terms('playlist', 'orderby=name');
 	
 	//// ////
-	// print_r($all_playlists);
-	// exit;
+	print_r($all_playlists);
+	exit;
 	
 	////////
 	
