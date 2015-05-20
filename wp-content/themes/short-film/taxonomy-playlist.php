@@ -130,7 +130,7 @@
 
 										</div>
 
-										<div class="row opts">
+										<div class="row opts disp_btm">
 											<div class="col-md-12">
 												<a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
 
@@ -234,8 +234,6 @@
 
 
                 </div>
-
-                <hr>
 
                 <div class="spacer-40"></div><div class="loader"></div>
 
