@@ -92,6 +92,9 @@ function get_custom_taxonomy_terms_language($post_id)
 function get_custom_taxonomy_terms_playlist($post_id)
 {
 	$results = get_the_terms($post_id, 'playlist');
+	
+	// print_r($results);
+	// exit;
 
 	$response = array();
 	
@@ -276,7 +279,8 @@ function get_posts_based_regions($region_name)
 }
 
 
-function generate_grid_response($response){
+function generate_grid_response($response)
+{
 
 	
 	$grid = array();
@@ -328,6 +332,60 @@ function generate_grid_response($response){
 	return $grid;
 
 }
+
+function generate_grid_response_for_all_playlists($response)
+{	
+	$grid = array();
+	$multiple = array(6,6);
+	$k = 0 ;
+	
+	$j = 0; 
+	for ($i = 0; $i < $multiple[$k]; $i++) 
+	{ 
+		if($response[$j] == "")
+		{
+			$grid[$k][$i] =  array(
+				'id'			=> "",
+				'slug'			=> "",
+				'title'			=> "",
+				'type'			=> "",
+				'tagline'		=> "",
+				'videourl'  	=> "",
+				'excerpt'		=> "",
+				'director'		=> "",
+				'next_post'		=> "",
+				'prev_post'		=> "",
+				'comments'		=> "",
+				'categories'	=> array(0 => ''),
+				'duration'		=> 0,
+				'region'		=> array(0 => ''),
+				'tags'			=> "",
+				'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'small_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'medium_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'large_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'user_like_count'	=> "",
+				'post_like_count' => 0,
+				'no_of_views'	=> 0
+
+			);
+
+		}
+		else
+			$grid[$k][$i] = $response[$j];
+		
+		if($i == 5 && count($response) > $multiple[$k])
+		{
+			$k = $k + 1;
+			$i = -1 ;
+		}
+		$j++;	
+	}
+	
+	return $grid;
+
+}
+
 
 /*
 function get_posts_filter($args)
