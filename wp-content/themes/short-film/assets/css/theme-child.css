@@ -11885,6 +11885,28 @@ h6.brand {
 .listlayout .role-settings .text-right i,
 .couchlayout .role-settings .text-right i {
   margin-left: 7px;
+  float: right;
+  margin-top: 5px;
+}
+.staffpick-display-section .role-settings .text-right .post_likes a,
+.listlayout .role-settings .text-right .post_likes a,
+.couchlayout .role-settings .text-right .post_likes a {
+  color: #af152f;
+}
+.staffpick-display-section .role-settings .text-right .post_likes a i,
+.listlayout .role-settings .text-right .post_likes a i,
+.couchlayout .role-settings .text-right .post_likes a i {
+  color: #af152f;
+}
+.staffpick-display-section .role-settings .text-right .post_likes a:hover,
+.listlayout .role-settings .text-right .post_likes a:hover,
+.couchlayout .role-settings .text-right .post_likes a:hover {
+  color: #fe4665;
+}
+.staffpick-display-section .role-settings .text-right .post_likes a:hover i,
+.listlayout .role-settings .text-right .post_likes a:hover i,
+.couchlayout .role-settings .text-right .post_likes a:hover i {
+  color: #fe4665;
 }
 .staffpick-display-section .staff_tag,
 .listlayout .staff_tag,
@@ -12456,7 +12478,7 @@ h6.brand {
   margin-left: 10px;
 }
 .infocus .col-md-5 {
-  max-height: 250px;
+  max-height: 150px;
   overflow: hidden;
 }
 .infocus .col-md-5 img {
@@ -13275,19 +13297,19 @@ h4.auth_name {
 .listlayout i {
   margin-right: 10px;
 }
-.playlist .playlist_img {
-  width: 100%;
-}
-.playlist .auth_btm {
+.auth_btm {
   position: absolute;
   bottom: 47px;
 }
-.playlist .auth_btm p {
+.auth_btm p {
   margin-bottom: 0;
   font-size: 16px;
 }
-.playlist .auth_btm p span {
+.auth_btm p span {
   color: #af152f;
+}
+.playlist .playlist_img {
+  width: 100%;
 }
 .playlist .disp_btm {
   position: absolute;
