@@ -124,7 +124,7 @@
 
 											<div class="col-md-5">
 												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-													<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+													<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
 												</a>
 											</div>
 
@@ -320,7 +320,7 @@
 
 								+'<div class="col-md-5">'
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+										+'<img src="'+value.medium_image+'" class="img-responsive width-full">'
 									+'</a>'
 								+'</div>'
 

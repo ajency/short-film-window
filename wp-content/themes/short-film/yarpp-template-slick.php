@@ -29,7 +29,7 @@ Author: mitcho (Michael Yoshitaka Erlewine)
                         <a class="content-bottom" target="_blank" href="<?php the_permalink(); ?>"> 					   
                            <div class="grid-image">
                                <?php if (has_post_thumbnail()):
-                                   the_post_thumbnail('full');
+                                   the_post_thumbnail('thumbnail');
                                else:?>
                                    <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/placeholder.jpg" />
                                 <?php endif; ?>

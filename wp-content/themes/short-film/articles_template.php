@@ -95,7 +95,7 @@ Template Name: articles_template
 								
 									<a class="content-bottom article_fi" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 									
-										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+										<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
 								
 									</a>
 								
@@ -262,7 +262,7 @@ Template Name: articles_template
 									<div class="pop_posts">
 										<div class="focus-img">
 											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
-												<img src="<?php echo $populararticle['featured_image'];?>">
+												<img src="<?php echo $populararticle['small_image'];?>">
 											</a>
 										</div>
 										
@@ -522,7 +522,7 @@ window.onload = function() {
                 html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
 						+'<a class="content-bottom article_fi" href="'+SITEURL+'/'+value.slug+'">'
-							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+							+'<img src="'+value.medium_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
                      +'<div class="col-md-7">'

@@ -50,7 +50,7 @@ get_header(); ?>
 			
             <div class="show-featured-image vid_if" style="position:relative">
                 
-				<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">
+				<img src="<?php echo $response['large_image']; ?>" alt="" class="img-responsive width-full">
                 
 				<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>
             </div>	
@@ -439,7 +439,7 @@ afterToggle: function(){}
 	    +'<div class="row">'
 	        +'<div class="col-md-5">'
 				+'<a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'
-					+'<img src="'+response.featured_image+'" class="img-responsive">'
+					+'<img src="'+response.medium_image+'" class="img-responsive">'
 				+'</a>'	
 	        +'</div>'
 	        +'<div class="col-md-7">'

@@ -170,7 +170,7 @@ class Video_API
 		//echo "in get_many_playlists api ";
 		
 		$playlists_per_page = isset($_REQUEST['playlists_per_page']) && $_REQUEST['playlists_per_page'] 
-		!= "" ? $_REQUEST['playlists_per_page'] : "";
+		!= "" ? $_REQUEST['playlists_per_page'] : 0;
 		
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
 						$_REQUEST['offset'] : 0;
@@ -192,7 +192,11 @@ class Video_API
 
 		);
 		
-
+		// echo $image_size." ";
+		// echo $playlists_per_page." ";
+		// echo $offset;
+		// exit;
+		
 		$response = get_playlists($image_size, $playlists_per_page, $offset); 
 		
 		// echo " in get_many_playlists api response = ";
