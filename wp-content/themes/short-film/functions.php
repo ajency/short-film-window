@@ -1690,7 +1690,9 @@ function get_embed_url($postid,$videourl)
 
 function show_excerpt($charlength,$post_matter)
 {
-	$excerpt = $post_matter;
+	
+	// $excerpt = $post_matter;
+	$excerpt = strip_tags($post_matter);
 	
 	$charlength++;
 
