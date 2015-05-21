@@ -2680,15 +2680,6 @@ function custom_image_size_rules($file)
 */
 
 
-/*
-function validate_duration() 
-{
-
-}
-
-add_action( 'admin_head', 'validate_duration' );
-*/
-
 function validate_duration($hook) 
 {
   wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/assets/js/duration_validation.js', array('jquery') );
@@ -2696,54 +2687,9 @@ function validate_duration($hook)
 add_action( 'admin_enqueue_scripts', 'validate_duration' );
 
 
-/*
-function get_all_playlists() 
-{
-	$all_playlists =  get_terms('playlist', 'orderby=name');
-	
-	$newlist = array();
-			
-	foreach($all_playlists as $playlist)
-	{
-		$list = (array) $playlist;
-		
-		$play_name = $list['name'];
-		
-		$play_id = get_term_by( 'name', $play_name, 'playlist');
-				
-		$play_link = get_term_link( $play_id );				
-
-		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
-		
-			
-		$newlist[] = array(		
-						'playlist_id' => $list['term_id'],
-						'playlist_name' => $list['name'],
-						'playlist_slug' => $list['slug'],
-						'playlist_taxonomy' => $list['taxonomy'],
-						'playlist_description' => $list['description'],
-						'playlist_count' => $list['count'],
-						'playlist_link' => $link
-						
-		);
-
-	}
-	
-	// echo "<pre>";
-	// print_r($newlist);
-	// echo "</pre>";
-// 	
-	// exit;
-
-	return $newlist;
-}
-*/
-
-////
-
 function get_all_playlists($image_size) 
 {
-	$all_playlists =  get_terms('playlist', 'orderby=name');
+	$all_playlists =  get_terms('playlist', 'orderby=id', 'order=DESC');
 	
 	$newlist = array();
 			
@@ -2753,7 +2699,6 @@ function get_all_playlists($image_size)
 
 		$playlist_image_url = $playlist_image['src'];
 		
-
 		$list = (array) $playlist;
 		
 		$play_name = $list['name'];
@@ -2762,7 +2707,7 @@ function get_all_playlists($image_size)
 				
 		$play_link = get_term_link( $play_id );				
 
-		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		$link = '<a href="'.esc_url( $play_link ).'" title="Playlist Name">'.$play_name.'</a>';
 		
 			
 		$newlist[] = array(		
@@ -2772,18 +2717,14 @@ function get_all_playlists($image_size)
 						'playlist_taxonomy' => $list['taxonomy'],
 						'playlist_description' => $list['description'],
 						'playlist_count' => $list['count'],
-						'playlist_link' => $link,
+						// 'playlist_link' => $link,
+						'playlist_link' => $play_link,
 						'playlist_image_url' => $playlist_image_url
 												
 		);
 
 	}
 	
-	// echo "<pre>";
-	// print_r($newlist);
-	// echo "</pre>";
-	
-	// exit;
 
 	return $newlist;
 }
@@ -2791,7 +2732,6 @@ function get_all_playlists($image_size)
 
 function get_playlists($image_size, $playlists_per_page, $offset) 
 {
-	// echo " offset= ".$offset;
 	
 	$args = array(
 				'orderby'           => 'id', 
@@ -2800,9 +2740,7 @@ function get_playlists($image_size, $playlists_per_page, $offset)
 				'offset'			=> $offset
 			); 
 
-
-////
-	$playlists =  get_terms('playlist', $args);
+	$playlists =  get_terms(array('playlist'), $args);
 	
 	$newlist = array();
 			
@@ -2821,7 +2759,7 @@ function get_playlists($image_size, $playlists_per_page, $offset)
 				
 		$play_link = get_term_link( $play_id );				
 
-		$link = '<a href="'.esc_url( $play_link ).'" target="_blank"  title="Playlist Name">'.$play_name.'</a>';
+		$link = '<a href="'.esc_url( $play_link ).'" title="Playlist Name">'.$play_name.'</a>';
 		
 			
 		$newlist[] = array(		
@@ -2839,14 +2777,6 @@ function get_playlists($image_size, $playlists_per_page, $offset)
 
 	}
 	
-	// echo "<pre>";
-	// print_r($newlist);
-	// echo "</pre>";
-	
-	// exit;
-
-	// echo "in get_playlists function newlist = ";
-	// print_r($newlist);
 	
 	return $newlist;
 }
