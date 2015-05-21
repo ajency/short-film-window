@@ -13074,6 +13074,10 @@ p.noneLeft {
 .ontop .stopclass {
   display: block;
 }
+.home .ontop .stopclass {
+  top: -10px;
+  right: 3px;
+}
 .article_row .article_title {
   text-transform: uppercase;
   display: block;
@@ -13099,6 +13103,7 @@ p.noneLeft {
   margin-top: 10px;
 }
 .article_row .article_fi {
+  max-height: 208px;
   overflow: hidden;
   display: block;
   position: relative;

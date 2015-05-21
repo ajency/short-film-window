@@ -72,7 +72,7 @@ Template Name: category_template
                     <div class="col-md-5">
                 		<h5 class="un">FILTER BY</h5>
 
-						<!-- <form action="" class="form-horizontal"> -->
+						<div class="form-horizontal">
                             <div class="form-group">
                                 <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
                                 <div class="col-md-9">
@@ -90,9 +90,9 @@ Template Name: category_template
                                     </select>
                                 </div>
                             </div>
-                      <!--  </form> -->
+                       </div>
 
-					 <!--	<form action="" class="form-horizontal"> -->
+					 	<div class="form-horizontal">
 
 						   <div class="form-group">
 
@@ -123,14 +123,14 @@ Template Name: category_template
 							   </div>
                             </div>
 
-					 <!--	</form> -->
+					 	</div>
 
 				   </div>
 
 					<div class="col-md-4 col-md-offset-3 padd-68">
 <!--                    	 <h5>SORT BY</h5>-->
 
-					 <!--	<form action="" class="form-group row form-horizontal"> -->
+					 	<div class="form-group row form-horizontal">
 
 						   <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
                             <div class="col-md-9">
@@ -141,7 +141,7 @@ Template Name: category_template
                                 </select>
                             </div>
 
-					    <!-- </form> -->
+					    </div>
 
 						<div class="row opts">
                             <div class="col-md-12">

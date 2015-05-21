@@ -323,18 +323,7 @@ Template Name: articles_template
 <script type="text/javascript">
 
 window.onload = function() {
-        function setlesshe() {
-            jQuery('.article_row').each(function() {
-                //console.log($(this).find('.col-md-7').height());
-                if (jQuery(window).width() < 992) {
-                    jQuery(this).find('.col-md-5 .article_fi').css('height', '300px');
-                    //jQuery(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
-                } else {
-                    jQuery(this).find('.col-md-5 .article_fi').css('height', jQuery(this).find('.col-md-7').height());
-                    //jQuery(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
-                }
-            });
-        }
+
 	jQuery('#tracker').val('listoption');
 
 	jQuery('#listoption').children().addClass('text-primary');
@@ -426,7 +415,6 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
 		}
-        setlesshe();
 	}
 
 	function get_all_posts()

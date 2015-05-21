@@ -71,7 +71,7 @@ Template Name: Homepage
 							-->
 						</div>
 
-						<a href="#" class="stopclass" id="stopid"> STOP </a>
+
 
                     </div>
 
@@ -975,7 +975,8 @@ Template Name: Homepage
 	    html = jQuery('.video-section').html()
 
 			html+=
-					'<div class="play-video">'
+                    '<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
+					+'<div class="play-video">'
 
 						//+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 

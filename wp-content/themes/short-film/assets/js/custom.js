@@ -104,43 +104,6 @@
           $(this).next().toggleClass('open-menu');
         });
 
-        // link click
-        // if ($('div').hasClass('grid-box')) {
-        //     $('.grid-box').each(function() {
-				/*
-                $(document).on('click', '.grid-box', function(e) {
-                    e.preventDefault();
-                    $link = $(this).find('a.content-bottom').attr('href');
-                    window.location = $link;
-                });
-				*/
-        //     });
-        // }
-
-        //same height article page temporary solution
-        function setlesshe() {
-            $('.article_row').each(function() {
-
-                $(this).find('.col-md-5 .article_fi').css('height', 'auto');
-
-                if (window.outerWidth < 991) {
-                    $(this).find('.col-md-5 .article_fi').css('height', 'auto');
-                    //$(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
-                } else if (window.outerWidth > 991) {
-                    $(this).find('.col-md-5 .article_fi').css('height', $(this).find('.col-md-7').height());
-                    //$(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
-                }
-
-            });
-        }
-        if ($('div').hasClass('article_row')) {
-            setlesshe();
-        }
-        $(window).resize(function() {
-            if ($('div').hasClass('article_row')) {
-                setlesshe();
-            }
-        });
         function checkhenwiss() {
             //check if height is greater than width
             $('.slick-slider .slide-cont, .slick-slider .focus-img').each(function() {
