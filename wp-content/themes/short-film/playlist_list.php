@@ -582,7 +582,7 @@ window.onload = function()
 			playlists_per_page = total_no_of_playlists-offset;
 		}
 
-		image_size = 'thumbnail';
+		var image_size = 'thumbnail';
 
 		data = 'playlists_per_page='+playlists_per_page+'&offset='+offset+'&image_size='+image_size;
 
