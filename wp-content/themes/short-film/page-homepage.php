@@ -71,7 +71,7 @@ Template Name: Homepage
 							-->
 						</div>
 
-						<a href="#" class="stopclass" id="stopid"> STOP </a>
+
 
                     </div>
 
@@ -511,7 +511,7 @@ Template Name: Homepage
 
 			<div class="row">
 				<div class="col-md-12">
-					<div class="slider1 regular-slider">
+					<div class="slider_gen regular-slider">
 
                             <div> <!-- cat_indian -->
 
@@ -584,105 +584,64 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
-                        <hr class="m-t-0">
-                        <div class="slider2 regular-slider cap-show-on-hover">
-                            <div class="slide-cont">
-                                <img src="https://placeimg.com/338/338/tech" class="img-responsive">
-                                <div class="cap-s">
-                                    <h5><a href="#">Playlist Name</a></h5>
-                                    <p>Description with some words to look important</p>
-                                    <div class="sli-foot">
-                                        <div class="pull-l eft numbers">
-                                            <p>415 <i class="fa fa-eye"></i></p>
-                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
-                                        </div>
-                                        <div class="pull-ri ght sm-numbers">
-                                            <span class="number">15</span> Films
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide-cont">
-                                <img src="https://placeimg.com/338/338/nature" class="img-responsive">
-                                <div class="cap-s">
-                                    <h5><a href="#">Playlist Name</a></h5>
-                                    <p>Description with some words to look important</p>
-                                    <div class="sli-foot">
-                                        <div class="pull-l eft numbers">
-                                            <p>415 <i class="fa fa-eye"></i></p>
-                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
-                                        </div>
-                                        <div class="pull-ri ght sm-numbers">
-                                            <span class="number">15</span> Films
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide-cont">
-                                <img src="https://placeimg.com/338/338/people" class="img-responsive">
-                                <div class="cap-s">
-                                    <h5><a href="#">Playlist Name</a></h5>
-                                    <p>Description with some words to look important</p>
-                                    <div class="sli-foot">
-                                        <div class="pull-l eft numbers">
-                                            <p>415 <i class="fa fa-eye"></i></p>
-                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
-                                        </div>
-                                        <div class="pull-ri ght sm-numbers">
-                                            <span class="number">15</span> Films
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide-cont">
-                                <img src="https://placeimg.com/338/338/nature" class="img-responsive">
-                                <div class="cap-s">
-                                    <h5><a href="#">Playlist Name</a></h5>
-                                    <p>Description with some words to look important</p>
-                                    <div class="sli-foot">
-                                        <div class="pull-l eft numbers">
-                                            <p>415 <i class="fa fa-eye"></i></p>
-                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
-                                        </div>
-                                        <div class="pull-ri ght sm-numbers">
-                                            <span class="number">15</span> Films
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide-cont">
-                                <img src="https://placeimg.com/338/338/people" class="img-responsive">
-                                <div class="cap-s">
-                                    <h5><a href="#">Playlist Name</a></h5>
-                                    <p>Description with some words to look important</p>
-                                    <div class="sli-foot">
-                                        <div class="pull-l eft numbers">
-                                            <p>415 <i class="fa fa-eye"></i></p>
-                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
-                                        </div>
-                                        <div class="pull-ri ght sm-numbers">
-                                            <span class="number">15</span> Films
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="slide-cont">
-                                <img src="https://placeimg.com/338/338/nature" class="img-responsive">
-                                <div class="cap-s">
-                                    <h5><a href="#">Playlist Name</a></h5>
-                                    <p>Description with some words to look important</p>
-                                    <div class="sli-foot">
-                                        <div class="pull-l eft numbers">
-                                            <p>415 <i class="fa fa-eye"></i></p>
-                                            <p>402 <i class="fa fa-thumbs-up"></i></p>
-                                        </div>
-                                        <div class="pull-ri ght sm-numbers">
-                                            <span class="number">15</span> Films
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+						<hr class="m-t-0">
+                        
+						<?php
+							$image_size = 'thumbnail';							
+							$all_playlists = get_all_playlists($image_size);
+							
+							if(count($all_playlists) > 0)
+							{
+						?>
+								<div class="slider2 regular-slider cap-show-on-hover">
+									
+									<?php
+
+										foreach($all_playlists as $playlist)
+										{
+									?>
+											<div class="slide-cont">
+											
+												<a href="<?php echo $playlist['playlist_link']; ?>">	
+												
+													<img src="<?php echo $playlist['playlist_image_url']; ?>" class="img-responsive">
+													
+													<div class="cap-s">
+														
+														<h5><?php echo $playlist['playlist_name']; ?></h5>
+														
+														<p><?php echo $playlist['playlist_description']; ?></p>
+														
+														<div class="sli-foot">
+															
+															<!--
+															<div class="pull-left numbers">															
+																<p>415 <i class="fa fa-eye"></i></p>												
+																<p>402 <i class="fa fa-thumbs-up"></i></p>											
+															</div>
+															-->
+															
+															<div class="pull-ri ght sm-numbers">
+																<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
+															</div>
+														
+														</div>
+														
+													</div>
+												</a>	
+											</div>
+									<?php
+										
+										} //end foreach
+									?>
+																			   
+								</div> <!-- end div slider2 -->
+						
+						<?php
+							} //end if
+						?>
+						
                     </div>
                 </div>
 
@@ -697,6 +656,30 @@ Template Name: Homepage
 
 	jQuery(document).ready(function($) {
 
+        //function to resize the staffpick image after the viedo is stopped
+        function resizeimgs(tw, obj, i) {
+            var ar = obj.width() / obj.height();
+            /*console.log('Number: ' + i + '\n-------------------------');
+            console.log('aspectratio ' + ar);
+            console.log('cont-resize ' + tw.width() / tw.height());
+            console.log('END Number: ' + i + '\n-------------------------');*/
+
+            if ( (tw.width() / tw.height()) < ar ) {
+                obj
+                    .removeClass()
+                    .addClass('bgheight');
+            } else {
+                obj
+                    .removeClass()
+                    .addClass('bgwidth');
+            }
+            if (jQuery('body').hasClass('no-csstransforms')) {
+                obj.css({
+                    'top': 0,
+                    'left': 0
+                });
+            }
+        }
 
 		jQuery('.staffpick-display-section').text("Loading data...");
 
@@ -868,10 +851,10 @@ Template Name: Homepage
 
 									+'</div>'
 									+'<div class="col-md-2 col-xs-4 text-right meta-ico">'
-										+'<div class="meta-ico-in">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
+										+'<div class="meta-ico-in" title="Views">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 
 										//+'<div class="meta-ico-in">'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
-										+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
+										+'<div class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
 
 										//+'<div class="meta-ico-in">Watchlist <i class="fa fa-binoculars"></i></div>'
 									+'</div>'
@@ -885,6 +868,8 @@ Template Name: Homepage
 
 			//jQuery('.staffpick-display-section').find(".share-button2").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
 
+            resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+            jQuery('.show-featured-image img').show();
 		}
 		else
 		{
@@ -949,7 +934,8 @@ Template Name: Homepage
 	    html = jQuery('.video-section').html()
 
 			html+=
-					'<div class="play-video">'
+                    '<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
+					+'<div class="play-video">'
 
 						//+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 
@@ -1406,6 +1392,9 @@ Template Name: Homepage
 					;
 
 				jQuery('.video-section').html(html);
+
+                resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+                jQuery('.show-featured-image img').show();
 
 			console.log(html);
 

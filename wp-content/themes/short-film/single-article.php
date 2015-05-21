@@ -16,7 +16,7 @@ get_header(); ?>
 
 	<div id="movie-header" class="movie-header article_single">
         <div class="article_s_img">
-             <img src="<?php echo $response['featured_image'];?>" class="img-responsive width-full">
+             <img src="<?php echo $response['large_image'];?>" class="img-responsive width-full">
         </div>
 		 <!-- <div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div> -->
 
@@ -146,7 +146,7 @@ get_header(); ?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 
 										<div class="grid-image">
-											<img src="<?php echo $recentvideo['featured_image'];?>">
+											<img src="<?php echo $recentvideo['small_image'];?>">
 										</div>
 
 										<div class="grid-text-wrap">

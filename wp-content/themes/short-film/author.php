@@ -27,29 +27,29 @@
 
 <!--		<div class="page-header">-->
             <!--this row contains author info-->
-			<div class="row">
+			<div class="row posrel">
 
 
 
-					<div class="col-md-2">
-					
+					<div class="col-md-4">
+
 						<?php
-							
+
 							$author_name = $author_info['author_name'];
-						
+
 							// $avatar = get_author_image_url(); // The function uses get_the_ID() to grab the appropirate user ID for the author image.
-							$image_url = get_author_image_url($author_id); 
-												
+							$image_url = get_author_image_url($author_id);
+
 						?>
-						
-							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" />
+
+							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" class="img-responsive" />
 
 					</div>
 
 
 
 
-					<div class="col-md-10"> 
+					<div class="col-md-8 posata">
 
 						<div class="row">
 
@@ -65,35 +65,35 @@
 
 						<div class="row">
 
-							<div class="col-xs-8 cont">
+							<div class="col-xs-8 cont posata">
 
 								<div>
 									<p><?php echo $author_info['author_description'];?></p>
 								</div>
 
-								<div>
-									
-									<?php 
+								<div class="auth_btm">
+
+									<?php
 											if($author_info['no_of_videos_by_author']!=0)
 											{
-									?>	
-												<p>No of Films:	<?php echo $author_info['no_of_videos_by_author'];?> <p>
-									<?php 
+									?>
+												<p>No of Films:	<span class="co"><?php echo $author_info['no_of_videos_by_author'];?></span> <p>
+									<?php
 											}
 											if($author_info['no_of_articles_by_author']!=0)
-											{										
-									?>	
-												<p>No of Articles:	<?php echo $author_info['no_of_articles_by_author'];?> <p>
+											{
+									?>
+												<p>No of Articles:	<span class="co"><?php echo $author_info['no_of_articles_by_author'];?></span> <p>
 									<?php
 											}
 									?>
-									
+
 								</div>
 
 							</div>
 
 							<!--<div class="col-xs-4 text-right list-info-btns">-->
-							<div class="col-xs-4 text-right list-info-btns">
+							<div class="col-xs-4 text-right list-info-btns posata">
 
 								<div class="soc-ico nh">
 
@@ -166,7 +166,7 @@
 
 									<div class="col-md-5">
 										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-											<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+											<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
 										</a>
 									</div>
 
@@ -257,7 +257,7 @@
 
 					<div class="text-center">
 						<input type="hidden" name="offset" id="offset" value="0" />
-						<a href="#" class="btn btn-primary load_more">Load More Videos...</a>
+						<a href="#" class="btn btn-primary load_more">Load More Videos</a>
 					</div>
 
                     <hr class="border-btm m-t-35">
@@ -295,7 +295,7 @@
 
 									<a class="content-bottom article_fi" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 
-										<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+										<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
 
 									</a>
 
@@ -412,7 +412,7 @@
 
 					<div class="text-center">
 						<input type="hidden" name="offset_art" id="offset_art" value="0" />
-						<a href="#" class="btn btn-primary load_more_art">Load More Articles...</a>
+						<a href="#" class="btn btn-primary load_more_art">Load More Articles</a>
 					</div>
 
 				</div> <!-- end #show_articles -->
@@ -519,7 +519,7 @@
 					error:function(error)
 					{
 						//jQuery('.loader').text("")
-						jQuery('.all_posts').html('No Posts found');
+						jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 						console.log(" inside get_all_posts error ");
 
 					}
@@ -568,7 +568,7 @@
 					error:function(error)
 					{
 						//jQuery('.loader').text("")
-						jQuery('.all_articles').html('No Articles found');
+						jQuery('.all_articles').html('<p class="noneLeft">No Articles found</p>');
 						console.log(" inside get_all_articles error ");
 
 					}
@@ -596,7 +596,7 @@
 
 								+'<div class="col-md-5">'
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-										+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+										+'<img src="'+value.medium_image+'" class="img-responsive width-full">'
 									+'</a>'
 								+'</div>'
 
@@ -628,7 +628,7 @@
 											//+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
 
 											// +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
-											
+
 											 +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
@@ -685,7 +685,7 @@
 			else
 			{
 				jQuery('.all_posts').html("");
-				html += "<div>No posts found.</div>";
+				html += '<p class="noneLeft">No videos found</p>';
 				jQuery('.all_posts').html(html);
 				jQuery('.load_more').hide()
 			}
@@ -713,7 +713,7 @@
 					html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'
 						+'<a class="content-bottom article_fi" href="'+SITEURL+'/'+value.slug+'">'
-							+'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+							+'<img src="'+value.medium_image+'" class="img-responsive width-full">'
 						+'</a>'
 					 +'</div>'
                      +'<div class="col-md-7">'
@@ -822,7 +822,7 @@
 			else
 			{
 				jQuery('.all_articles').html("");
-				html += "<div>No articles found.</div>";
+				html += '<p class="noneLeft">No articles found</p>';
 				jQuery('.all_articles').html(html);
 				jQuery('.load_more_art').hide()
 			}

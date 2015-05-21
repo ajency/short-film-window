@@ -64,9 +64,9 @@
                 <div class="row pushin">
                     <div class="col-md-5">
                 		<h5 class="un">FILTER BY</h5>
-                       
-					   <!-- <form action="" class="form-horizontal"> -->
-                           
+
+					   <div class="form-horizontal">
+
 						   <div class="form-group">
                                 <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
                                 <div class="col-md-9">
@@ -84,46 +84,46 @@
                                     </select>
                                 </div>
                             </div>
-                       <!-- </form> -->
-                        
-						<!-- <form action="" class="form-horizontal"> -->
-                            
+                       </div>
+
+						<div class="form-horizontal">
+
 						   <div class="form-group">
-                                
+
 								<?php
 									$all_language_list = get_list_of_all_languages();
 									//print_r($all_language_list);
-									
+
 								?>
-								
+
 								<label for="" class="col-md-3 control-label"><em>Language:</em> </label>
                                 <div class="col-md-9">
-                                	
+
 									<select name="language" id="language">
-										
+
 										<option value="">All</option>
-										
+
 										<?php
 											foreach ($all_language_list as $lang_value)
 											{
 
-												 echo '<option value="'.$lang_value->term_id.'">'.$lang_value->name.'</option>'; 
-                                        										
+												 echo '<option value="'.$lang_value->term_id.'">'.$lang_value->name.'</option>';
+
 										    }
 										?>
-                                   
+
 								   </select>
-                               
+
 							   </div>
                             </div>
-							
-                        <!-- </form> -->
-                    
+
+                        </div>
+
 					</div>
                     <div class="col-md-4 col-md-offset-3 padd-68">
 
-                       
-					   <!-- <form action="" class="form-group row form-horizontal">  -->
+
+					   <div class="form-group row form-horizontal">
                             <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
                             <div class="col-md-9">
                                 <select class="" name="sort" id="sort">
@@ -132,8 +132,8 @@
                                     <option value="3">Length</option>
                                 </select>
                             </div>
-                        <!-- </form> -->
-                        
+                        </div>
+
 						<div class="row opts">
                             <div class="col-md-12">
 <!--                            <div class="col-xs-3 col-xs-offset-3">-->
@@ -153,12 +153,12 @@
                 <hr>
 
                 <div class="spacer-40"></div><div class="loader"></div>
-				
+
 				<div class="search-results-message">
 				</div>
-				
+
                 <div class="all_posts">
-                
+
 				<?php $queried_object = get_queried_object();
 
 
@@ -212,7 +212,7 @@
                             <div class="grid-box grid-full content-align-bottom">
                                 <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
                                     <div class="grid-image">
-                                        <img src="<?php echo $value[0]['featured_image'] ;?>">
+                                        <img src="<?php echo $value[0]['medium_image'] ;?>">
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[0]['title'];?></div>
@@ -250,7 +250,7 @@
                             <div class="grid-box grid-half content-align-bottom">
                                 <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
                                     <div class="grid-image">
-                                        <img src="<?php echo $value[1]['featured_image'] ;?>">
+                                        <img src="<?php echo $value[1]['small_image'] ;?>">
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[1]['title'];?></div>
@@ -287,7 +287,7 @@
                             <div class="grid-box grid-half content-align-bottom">
                                 <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
                                     <div class="grid-image">
-                                        <img src="<?php echo $value[2]['featured_image'] ;?>">
+                                        <img src="<?php echo $value[2]['small_image'] ;?>">
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[2]['title'];?></div>
@@ -325,7 +325,7 @@
                             <div class="grid-box grid-half content-align-bottom">
                                 <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
                                     <div class="grid-image">
-                                        <img src="<?php echo $value[3]['featured_image'] ;?>">
+                                        <img src="<?php echo $value[3]['small_image'] ;?>">
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[3]['title'];?></div>
@@ -360,7 +360,7 @@
                             <div class="grid-box grid-half content-align-bottom">
                                 <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
                                     <div class="grid-image">
-                                        <img src="<?php echo $value[4]['featured_image'] ;?>">
+                                        <img src="<?php echo $value[4]['small_image'] ;?>">
                                     </div>
                                     <div class="grid-text-wrap">
                                          <div class="grid-title"><?php echo $value[4]['title'];?></div>
@@ -395,7 +395,7 @@
                             <div class="grid-box grid-full content-align-bottom">
                                 <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
                                     <div class="grid-image">
-                                        <img src="<?php echo $value[5]['featured_image'] ;?>">
+                                        <img src="<?php echo $value[5]['medium_image'] ;?>">
                                     </div>
                                     <div class="grid-text-wrap">
                                          <div class="grid-title"><?php echo $value[5]['title'];?></div>
@@ -443,7 +443,7 @@
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-							<img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+							<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
 						</a>
 
                     </div>
@@ -514,7 +514,7 @@
 	            <div class="couchlayout">
 
 					<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-						<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
+						<img src="<?php echo $value['large_image'];?>" alt="" class="img-responsive width-full">
 					</a>
 
                     <div class="row">
@@ -606,7 +606,7 @@
                 <div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
-                    <a href="#" class="btn btn-primary load_more">Load More...</a>
+                    <a href="#" class="btn btn-primary load_more">Load More</a>
                 </div>
                 <div class="spacer-40 hideinsmall"></div>
 
@@ -647,21 +647,21 @@
 
 window.onload = function() {
 	jQuery('#tracker').val('gridoption');
-	
+
 	showLayout();
-	
+
 	jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 	jQuery('#gridoption').children().addClass('text-primary');
-   
+
    count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
-   
+
    count=count-1;
 
 	if(count == 0)
 	{
 		count=1;
-	}   
-	
+	}
+
 	jQuery('#offset').val(count);
 
 	jQuery('#genre').live('change',function(e){
@@ -680,7 +680,7 @@ window.onload = function() {
 	jQuery('#language').live('change',function(e)
 	{
 		//jQuery('#genre').trigger('change');
-		
+
 		jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
@@ -688,9 +688,9 @@ window.onload = function() {
 		jQuery('.all_posts').html("")
 		//get_all_posts_in_language();
 		get_all_posts();
-		
+
 	});
-	
+
 
 	jQuery('.load_more').live('click',function(e){
 
@@ -750,11 +750,11 @@ window.onload = function() {
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
-		
+
 		var title = jQuery(e.target).val();
 
 		data = 'title='+jQuery(e.target).val();
-		
+
 		jQuery('.load_more').hide();
 
 		jQuery.ajax({
@@ -765,9 +765,9 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-					
+
 					jQuery('.search-results-message').html("Search Results for "+title);
-					
+
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value)
@@ -843,11 +843,11 @@ window.onload = function() {
 		language = jQuery('#language').val();
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
-		
+
 		if(language)
 		{
 			taxonomy = 'language';
-			
+
 			data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 		}
 		else
@@ -855,7 +855,7 @@ window.onload = function() {
 			data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 		}
 
-		
+
 		jQuery.ajax({
 				type : 'GET',
 				url : SITEURL+'/wp-json/videos',
@@ -872,13 +872,13 @@ window.onload = function() {
 				},
 				error:function(error){
 					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
+					jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 
 				}
 			})
 	}
-	
-	
+
+
 	showLayout();
 
 	function generate_grid_reponse(response){
@@ -910,6 +910,9 @@ window.onload = function() {
 					'region'		: [],
 					'tags'			: "",
 					'featured_image': image,
+					'small_image': image,
+					'medium_image': image,
+					'large_image': image,
 					'user_like_count'	: "",
                     'post_like_count' : 0,
                     'no_of_views'    : 0
@@ -970,7 +973,7 @@ window.onload = function() {
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 
 										+'<div class="grid-image">'
-											+'<img src="'+value.featured_image+'">'
+											+'<img src="'+value.small_image+'">'
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1069,7 +1072,7 @@ window.onload = function() {
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 
 										+'<div class="grid-image">'
-											+'<img src="'+value.featured_image+'">'
+											+'<img src="'+value.small_image+'">'
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1166,7 +1169,7 @@ window.onload = function() {
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 
 										+'<div class="grid-image">'
-											+'<img src="'+value.featured_image+'">'
+											+'<img src="'+value.small_image+'">'
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1269,7 +1272,7 @@ window.onload = function() {
                        +' <div class="grid-box grid-full content-align-bottom">'
                             +'<a class="content-bottom" href="'+SITEURL+'/'+value[0]['slug']+'">'
                                 +'<div class="grid-image">'
-                                    +'<img src="'+value[0]['featured_image']+'">'
+                                    +'<img src="'+value[0]['medium_image']+'">'
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[0]['title']+'</div>'
@@ -1305,7 +1308,7 @@ window.onload = function() {
                         +'<div class="grid-box grid-half content-align-bottom">'
                             +'<a class="content-bottom" href="'+SITEURL+'/'+value[1]['slug']+'">'
                                 +'<div class="grid-image">'
-                                    +'<img src="'+value[1]['featured_image']+'">'
+                                    +'<img src="'+value[1]['small_image']+'">'
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[1]['title']+'</div>'
@@ -1341,7 +1344,7 @@ window.onload = function() {
                         +'<div class="grid-box grid-half content-align-bottom">'
                            +' <a class="content-bottom" href="'+SITEURL+'/'+value[2]['slug']+'">'
                                 +'<div class="grid-image">'
-                                   +' <img src="'+value[2]['featured_image']+'">'
+                                   +' <img src="'+value[2]['small_image']+'">'
                                +' </div>'
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[2]['title']+'</div>'
@@ -1379,7 +1382,7 @@ window.onload = function() {
                        +' <div class="grid-box grid-half content-align-bottom">'
                             +'<a class="content-bottom" href="'+SITEURL+'/'+value[3]['slug']+'">'
                                 +'<div class="grid-image">'
-                                   +' <img src="'+value[3]['featured_image']+'">'
+                                   +' <img src="'+value[3]['small_image']+'">'
                                 +'</div>'
                                +' <div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[3]['title']+'</div>'
@@ -1415,7 +1418,7 @@ window.onload = function() {
                        +' <div class="grid-box grid-half content-align-bottom">'
                             +'<a class="content-bottom" href="'+SITEURL+'/'+value[4]['slug']+'">'
                                 +'<div class="grid-image">'
-                                    +'<img src="'+value[4]['featured_image']+'">'
+                                    +'<img src="'+value[4]['small_image']+'">'
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[4]['title']+'</div>'
@@ -1450,7 +1453,7 @@ window.onload = function() {
                         +'<div class="grid-box grid-full content-align-bottom">'
                             +'<a class="content-bottom" href="'+SITEURL+'/'+value[5]['slug']+'">'
                                 +'<div class="grid-image">'
-                                    +'<img src="'+value[5]['featured_image']+'">'
+                                    +'<img src="'+value[5]['medium_image']+'">'
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[5]['title']+'</div>'
@@ -1499,7 +1502,7 @@ window.onload = function() {
                 html += '<div class="row listlayout">'
                     + '<div class="col-md-5">'
 						+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-							+ '<img src="'+value.featured_image+'" class="img-responsive width-full">'
+							+ '<img src="'+value.medium_image+'" class="img-responsive width-full">'
 						+'</a>'
                     + '</div>'
                     + '<div class="col-md-7">'
@@ -1564,7 +1567,7 @@ window.onload = function() {
                 html += '<div class="couchlayout">'
 
 					+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-						+ '<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+						+ '<img src="'+value.large_image+'" alt="" class="img-responsive width-full">'
                     +'</a>'
 					+ '<div class="row">'
 
@@ -1641,9 +1644,9 @@ window.onload = function() {
                     else
                     {
                         jQuery('.all_posts').html("");
-                        html += "<div>No videos found.</div>";
+                        html += '<p class="noneLeft">No videos found</p>';
                         jQuery('.all_posts').html(html);
-						
+
 						jQuery('.load_more').hide();
                     }
 

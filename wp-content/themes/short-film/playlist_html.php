@@ -720,7 +720,7 @@ Template Name: Playlist HTML
 					error:function(error)
 					{
 						//jQuery('.loader').text("")
-						jQuery('.all_posts').html('No Posts found');
+						jQuery('.all_posts').html('<p class="noneLeft">No Playlists found</p>');
 						console.log(" inside get_all_posts error ");
 
 					}
@@ -886,7 +886,7 @@ Template Name: Playlist HTML
 			else
 			{
 				jQuery('.all_posts').html("");
-				html += "<div>No posts found.</div>";
+				html += '<p class="noneLeft">No playlists found</p>';
 				jQuery('.all_posts').html(html);
 				jQuery('.load_more').hide()
 			}
