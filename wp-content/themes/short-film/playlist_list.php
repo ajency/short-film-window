@@ -10,13 +10,13 @@ Template Name: List of Playlists
 
 
 	$total_no_of_playlists = wp_count_terms( 'playlist' );
-	
+
 	// echo $total_no_of_playlists;
 	// exit;
-	
+
 	$image_size = 'thumbnail';
 	$offset_value = 0;
-		
+
 
 	//$all_playlists = get_all_playlists($image_size);
 
@@ -504,12 +504,12 @@ Template Name: List of Playlists
 window.onload = function()
 {
 
-	console.log("onload offset = ");	
-	console.log(jQuery('#offset').val());	
-	
+	console.log("onload offset = ");
+	console.log(jQuery('#offset').val());
+
 	//count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($playlists); ?>");
 	var count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($playlists); ?>");
-	
+
 
 	count=count-1;
 
@@ -521,9 +521,9 @@ window.onload = function()
 	//console.log(count);
 
 	jQuery('#offset').val(count);
-	
-	console.log("after assigning offset = ");	
-	console.log(jQuery('#offset').val());	
+
+	console.log("after assigning offset = ");
+	console.log(jQuery('#offset').val());
 
 
 
@@ -574,9 +574,9 @@ window.onload = function()
 	console.log(jQuery('#offset').val());
 
 			var total_no_of_playlists = jQuery('#total_no_of_playlists').val();
-		
+
 		var playlists_per_page = 9;
-		
+
 		if((total_no_of_playlists-offset)<playlists_per_page)
 		{
 			playlists_per_page = total_no_of_playlists-offset;
@@ -598,7 +598,7 @@ window.onload = function()
 					generate_data(response);
 					// count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
 					var count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
-										
+
 					jQuery('#offset').val(count);
 
 				},
@@ -606,7 +606,7 @@ window.onload = function()
 				{
 					console.log("in error of get_all_playlists ");
 
-					
+
 					jQuery('.all_playlists').html('No Playlists found');
 
 
@@ -978,7 +978,7 @@ window.onload = function()
 			// jQuery('.all_posts').html("");
 			jQuery('.all_playlists').html("");
 
-			html += "<p class="noneLeft">No playlists found</p>";
+			html += '<p class="noneLeft">No playlists found</p>';
 
 			// jQuery('.all_posts').html(html);
 			jQuery('.all_playlists').html(html);
