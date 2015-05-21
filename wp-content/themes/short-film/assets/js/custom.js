@@ -1,9 +1,53 @@
 (function($){
+
+    function resizeimgs(tw, obj, i) {
+        var ar = obj.width() / obj.height();
+        /*console.log('Number: ' + i + '\n-------------------------');
+        console.log('aspectratio ' + ar);
+        console.log('cont-resize ' + tw.width() / tw.height());
+        console.log('END Number: ' + i + '\n-------------------------');*/
+
+        if ( (tw.width() / tw.height()) < ar ) {
+            obj
+                .removeClass()
+                .addClass('bgheight');
+        } else {
+            obj
+                .removeClass()
+                .addClass('bgwidth');
+        }
+        if (jQuery('body').hasClass('no-csstransforms')) {
+            obj.css({
+                'top': 0,
+                'left': 0
+            });
+        }
+    }
+
     jQuery(document).ready(function() {
         jQuery('.slider1').slick({
             // mobileFirst: true,
             infinite: true,
             slidesToShow: 3,
+            responsive: [
+                {
+                  breakpoint: 767,
+                  settings: {
+                    slidesToShow: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    slidesToShow: 1
+                  }
+                }
+              ]
+        });
+        $('.slider_gen').slick({
+            // mobileFirst: true,
+            infinite: true,
+            slidesToShow: 4,
             responsive: [
                 {
                   breakpoint: 767,
@@ -60,43 +104,6 @@
           $(this).next().toggleClass('open-menu');
         });
 
-        // link click
-        // if ($('div').hasClass('grid-box')) {
-        //     $('.grid-box').each(function() {
-				/*
-                $(document).on('click', '.grid-box', function(e) {
-                    e.preventDefault();
-                    $link = $(this).find('a.content-bottom').attr('href');
-                    window.location = $link;
-                });
-				*/
-        //     });
-        // }
-
-        //same height article page temporary solution
-        function setlesshe() {
-            $('.article_row').each(function() {
-
-                $(this).find('.col-md-5 .article_fi').css('height', 'auto');
-
-                if (window.outerWidth < 991) {
-                    $(this).find('.col-md-5 .article_fi').css('height', 'auto');
-                    //$(this).find('.col-md-5 .article_fi img').css('height', '300px').css('width', 'auto');
-                } else if (window.outerWidth > 991) {
-                    $(this).find('.col-md-5 .article_fi').css('height', $(this).find('.col-md-7').height());
-                    //$(this).find('.col-md-5 .article_fi img').css('height', 'auto').css('width', '100%');
-                }
-
-            });
-        }
-        if ($('div').hasClass('article_row')) {
-            setlesshe();
-        }
-        $(window).resize(function() {
-            if ($('div').hasClass('article_row')) {
-                setlesshe();
-            }
-        });
         function checkhenwiss() {
             //check if height is greater than width
             $('.slick-slider .slide-cont, .slick-slider .focus-img').each(function() {
@@ -169,33 +176,10 @@
                 $('.vid_if ').css('height', height);
             }
         }
-
+        $('.show-featured-image img').hide();
+        resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
+        $('.show-featured-image img').show();
     });
-
-    function resizeimgs(tw, obj, i) {
-        var ar = obj.width() / obj.height();
-        /*console.log('Number: ' + i + '\n-------------------------');
-        console.log('aspectratio ' + ar);
-        console.log('cont-resize ' + tw.width() / tw.height());
-        console.log('END Number: ' + i + '\n-------------------------');*/
-
-        if ( (tw.width() / tw.height()) < ar ) {
-            obj
-                .removeClass()
-                .addClass('bgheight');
-        } else {
-            obj
-                .removeClass()
-                .addClass('bgwidth');
-        }
-        if (jQuery('body').hasClass('no-csstransforms')) {
-            obj.css({
-                'top': 0,
-                'left': 0
-            });
-        }
-    }
-    resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
 
     $('.p-grid-c .p-img-c img').hide();
     $('.grid-box .grid-image img').hide();
