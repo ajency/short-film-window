@@ -9,13 +9,13 @@
 			<?php
 
 				$queried_object = get_queried_object();
-				
+
 				//print_r($queried_object);
 
 				$taxonomy = $queried_object->taxonomy;
-				
-				$term_name = $queried_object->name; 
-				
+
+				$term_name = $queried_object->name;
+
 				//echo " *** taxonomy= ".$queried_object->taxonomy;
 				//echo " *** region/language= ".$queried_object->term_id;
 
@@ -33,7 +33,7 @@
 						'offset'           	=> 0
 
 					);
-					
+
 				}
 				else if($taxonomy == "language")
 				{
@@ -50,39 +50,39 @@
 
 					);
 				}
-				
-				
-			
+
+
+
 				$response_posts = Film\Video::get_many($args);
 
-				
+
 
 			?>
 
 
                 <div class="row">
                     <div class="col-md-6">
-						
+
 						<?php
-						
+
 							if($taxonomy == "region")
 							{
 						?>
 								<!-- <h4>REGION: <small><em><?php echo implode(', ',$response_posts[0]['region']); ?></em></small></h4> -->
 								<h4>REGION: <small><em><?php echo $term_name; ?></em></small></h4>
-						
+
 						<?php
 							}
 							else if($taxonomy == "language")
 							{
-						?>		
+						?>
 								<!-- <h4>LANGUAGE: <small><em><?php echo implode(', ',$response_posts[0]['language']); ?></em></small></h4> -->
 								<h4>LANGUAGE: <small><em><?php echo $term_name; ?></em></small></h4>
 						<?php
-						
+
 							}
-						?>		
-                    
+						?>
+
 					</div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
@@ -294,7 +294,7 @@
 				},
 				error:function(error){
 					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
+					jQuery('.all_posts').html('<p class="noneLeft">No Posts found</p>');
 
 				}
 			})
@@ -404,7 +404,7 @@
 			else
 			{
 				jQuery('.all_posts').html("");
-				html += "<div>No posts found.</div>";
+				html += '<p class="noneLeft">No posts found</p>';
 				jQuery('.all_posts').html(html);
 				jQuery('.load_more').hide()
 			}

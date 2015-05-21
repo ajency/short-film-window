@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
-        <!--Navigation--> 
+        <!--Navigation-->
 			<!-- <div id="content" class="clearfix row">
-			
+
 				<div id="main" class="col-xs-8 clearfix" role="main">
 				 -->
 					<!-- <!-- <div class="page-header">
@@ -10,7 +10,7 @@
 						<h1 class="archive_title h2">
 							<span><?php _e("Posts Categorized:", "wpbootstrap"); ?></span> <?php single_cat_title(); ?>
 						</h1>
-					<?php } elseif (is_tag()) { ?> 
+					<?php } elseif (is_tag()) { ?>
 						<h1 class="archive_title h2">
 							<span><?php _e("Posts Tagged:", "wpbootstrap"); ?></span> <?php single_tag_title(); ?>
 						</h1>
@@ -31,10 +31,10 @@
 					    	<span><?php _e("Yearly Archives:", "wpbootstrap"); ?></span> <?php the_time('Y'); ?>
 					    </h1>
 					<?php } ?>
-					</div> --> 
+					</div> -->
 
-				
-        
+
+
         <!--Content-->
         <div class="container header-space">
             <div class="content-wrapper" style="  overflow: visible;">
@@ -56,7 +56,7 @@
                 </div>
 
                 <hr class="m-t-0">
-                
+
                 <div class="row pushin">
                     <div class="col-md-5">
                 		<h5 class="un">FILTER BY</h5>
@@ -66,8 +66,8 @@
                                 <div class="col-md-9">
                                 	<select name="genre" id="genre">
                                         <option value="">All</option>
-                                        <?php 
-										  $categories = get_categories(); 
+                                        <?php
+										  $categories = get_categories();
 										  foreach ($categories as $category) {
 										  	$option = '<option value="'.$category->term_id.'">';
 											$option .= $category->cat_name;
@@ -124,10 +124,10 @@
 
                 <div class="spacer-40"></div><div class="loader"></div><div class="all_posts">
                 <?php $queried_object = get_queried_object();
-				
+
 				echo "hiii  ";
 				print_r($queried_object);
- 					
+
  				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
@@ -140,38 +140,38 @@
 				);
 				$response = Film\Video::get_many($args);
 				if(count($response) > 0)
-					{ 
+					{
 						$gridreposnse = generate_grid_response($response);
-						
+
 						foreach ($gridreposnse as $key => $value){
                             foreach ($value as $k => $val) {
                                 $value[$k]['class'] = '';
-                                
-                                
+
+
                                 if($val['slug'] == "")
                                 {
-                                    
+
                                     $value[$k]['class'] = 'hidden';
                                 }
-                               
+
                                 if(count($val['region']) == 0)
                                 {
-                                    
+
                                     $value[$k]['region'] = array(0 => 'No regions');
                                 }
-                                
+
                                 if(count($val['categories']) == 0)
                                 {
-                                    
+
                                     $value[$k]['categories'] = array(0 => 'No categories');
                                 }
-                                    
+
                             }
-                         
+
                             ?>
 
 					<div class="row gridlayout">
-                    			
+
 				 		<div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-full content-align-bottom">
                                 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
@@ -202,7 +202,7 @@
                                                 </div>
                                                 <div class="col-xs-8">
                                                     <div class="pull-right text-right m-t-10">
-                                                      <?php echo $value[0]['excerpt'];?>  
+                                                      <?php echo $value[0]['excerpt'];?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,7 +239,7 @@
                                                 </div>
                                                 <div class="col-xs-8">
                                                     <div class="pull-right text-right m-t-10">
-                                                      <?php echo $value[1]['excerpt'];?>  
+                                                      <?php echo $value[1]['excerpt'];?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -274,7 +274,7 @@
                                                 </div>
                                                 <div class="col-xs-8">
                                                     <div class="pull-right text-right m-t-10">
-                                                      <?php echo $value[2]['excerpt'];?>  
+                                                      <?php echo $value[2]['excerpt'];?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -312,7 +312,7 @@
                                                 </div>
                                                 <div class="col-xs-8">
                                                     <div class="pull-right text-right m-t-10">
-                                                      <?php echo $value[3]['excerpt'];?>  
+                                                      <?php echo $value[3]['excerpt'];?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -347,7 +347,7 @@
                                                 </div>
                                                 <div class="col-xs-8">
                                                     <div class="pull-right text-right m-t-10">
-                                                      <?php echo $value[4]['excerpt'];?>  
+                                                      <?php echo $value[4]['excerpt'];?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -382,7 +382,7 @@
                                                 </div>
                                                 <div class="col-xs-8">
                                                     <div class="pull-right text-right m-t-10">
-                                                      <?php echo $value[5]['excerpt'];?>  
+                                                      <?php echo $value[5]['excerpt'];?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -390,18 +390,18 @@
                                     </div>
                                     <div class="overlay-vertical"></div>
                                 </a>
-                            </div>                            
-                        </div>                    
-              
+                            </div>
+                        </div>
+
                     </div>
 
             <?php
       }
-        
+
                 	foreach ($response as $key => $value) {
 							if(count($value['region']) == 0)
 								$value['region'] = array(0 => 'No regions added');
-				 
+
                 ?>
                 <div class="row listlayout">
                     <div class="col-md-5">
@@ -419,7 +419,7 @@
                             </div>
 <!--
                             <div class="col-md-4">
-                                
+
                             </div>
 -->
                         </div>
@@ -442,7 +442,7 @@
                                 </div>
                                 <div class="share-button hidden">
                                     <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-                                    
+
                                     <div class="social-networks">
                                         <ul>
                                             <li class="social-twitter">
@@ -457,7 +457,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                
+
                                 <div class="lico_c">
                                     <div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div>
                                     <div class="lico like-action">
@@ -465,17 +465,17 @@
                                         <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i>
 <!--                                        <span class="m-l-5 m-r-5">|</span>-->
                                     </div>
-                                    <div class="lico watchlist-add"> 
+                                    <div class="lico watchlist-add">
                                         <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
-                    </div>	                
+                    </div>
                 </div>
 
-	            <div class="couchlayout">	            	
+	            <div class="couchlayout">
             		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
                     <div class="row">
                         <div class="col-sm-10">
@@ -483,14 +483,14 @@
                                 <a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 	<?php echo $value['title'];?>
                                 </a>
-                                <small><em>by <?php echo ucfirst($value['director']);?></em></small>	                                
+                                <small><em>by <?php echo ucfirst($value['director']);?></em></small>
                             </h3>
                         </div>
                         <div class="col-sm-2">
                             <div class="soc-ico nh pull-right" style="margin-top: 35px;">
                                <?php echo do_shortcode("[ssba]"); ?>
                             </div>
-                                
+
                             <div class="pull-right share-button hidden">
                                 <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
                                     <div class="social-networks">
@@ -513,7 +513,7 @@
                     <div class="row main-ex">
                         <div class="col-xs-8 cont">
                             <p><em><?php echo $value['excerpt'];?></em></p>
-                            
+
                             <h6 class="m-t-30 m-b-0"><em><?php echo implode(',',$value['region']);?> / <?php echo $value['duration'];?> MIN</em></h6>
                             <p class="categories">
                                 <span class="label label-greydark">
@@ -521,45 +521,45 @@
                                 </span>
                             </p>
                         </div>
-                        
+
                         <div class="col-xs-4 text-right">
                             <div class="">
-                                
+
                                 <div class="lico_c social-strip">
                                     <div class="lico small"><?php echo $value['no_of_views'];?><i class="fa fa-eye"></i></div>
-                                    
+
                                     <div class="lico like-action">
 <!--                                        <span class="m-l-5 m-r-5">|</span>-->
                                         <?php echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i>
 <!--                                        <span class="m-l-5 m-r-5">|</span>-->
                                     </div>
-                                    
-                                    <div class="lico watchlist-add"> 
+
+                                    <div class="lico watchlist-add">
                                         <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                
+
                     </div>
-                    
+
 <!--                    <hr class="m-t-20 m-b-20">-->
-                    
+
 <!--                    <div class="spacer-20"></div>-->
-                    <p class="cou_exc"><em><?php echo $value['excerpt'];?></em></p>                    
+                    <p class="cou_exc"><em><?php echo $value['excerpt'];?></em></p>
 	            </div>
-              
 
-                
+
+
         <!-- /container -->
-       
 
-					
+
+
 						 <!-- end article -->
-					
+
 					<?php }
 
-					}?></div> 
+					}?></div>
 
  					<div class="spacer-40"></div>
  					<input type="hidden" name="tracker" id="tracker" value="" / >
@@ -571,30 +571,30 @@
                 <div class="spacer-40 hideinsmall"></div>
 
                 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
-       
-                    
+
+
                 <div class="trending">
                 </div>
 
                 <div class="spacer-40 hideinsmall"></div>
 
                 <a id="award" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=awardwinning"></a>
-       
-                    
+
+
                 <div class="awardwinning">
                 </div>
 
                 <div class="spacer-40 hideinsmall"></div>
 
                 <a id="indian" href="<?php echo site_url() ;?>/wp-json/page2/catposts?cat=indian"></a>
-       
-                    
+
+
                 <div class="indian">
                 </div>
-    
-    
-				
-    
+
+
+
+
 			 <!-- end #content -->
 
 			<?php get_footer(); ?>
@@ -607,7 +607,7 @@ window.onload = function() {
 	jQuery('#gridoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
-	
+
 	jQuery('#genre').live('change',function(e){
         jQuery('#searchids').val("");
         jQuery('.search').val("");
@@ -615,27 +615,27 @@ window.onload = function() {
 		jQuery('.loader').text("Loading data...")
 		jQuery('.all_posts').html("")
 		get_all_posts();
-	    
 
-		
+
+
 	});
 
 
 	jQuery('#language').live('change',function(e){
 
-        
+
 		jQuery('#genre').trigger('change');
 	});
 
 	jQuery('.load_more').live('click',function(e){
 
-		
+
 		jQuery('.loader').text("Loading data...")
 
 		e.preventDefault();
 		get_all_posts();
 
-		
+
 	});
 
 	jQuery('.option').live('click',function(e){
@@ -644,8 +644,8 @@ window.onload = function() {
 		// jQuery('#gridoption').children().nextAll().removeClass('text-primary');
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
-		
-		
+
+
 	});
 
     jQuery('#sort').live('change',function(e){
@@ -667,10 +667,10 @@ window.onload = function() {
                     }
 
         });
-        
-        
-        
-        
+
+
+
+
     });
 
     jQuery('.search').live('change',function(e){
@@ -689,17 +689,17 @@ window.onload = function() {
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value){
-                           
+
                             console.log(value);
-                           
+
                                 if(value.id != "")
                                 {
-                                    myarr.push(value['id']);  
-                                    
+                                    myarr.push(value['id']);
+
                                 }
-                                
-                                    
-                           
+
+
+
                     });
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
@@ -708,9 +708,9 @@ window.onload = function() {
 
                 }
         });
-        
-        
-        
+
+
+
     });
 
 	function showLayout(){
@@ -741,7 +741,7 @@ window.onload = function() {
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
 		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		
+
 
 		jQuery.ajax({
 				type : 'GET',
@@ -749,33 +749,33 @@ window.onload = function() {
 				data : data,
 				success:function(response){
 
-                    
-					
+
+
                     generate_data(response);
 					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
                     jQuery('#offset').val(count);
-				
-					
+
+
 				},
 				error:function(error){
 					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
-					
-				} 
+					jQuery('.all_posts').html('<p class="noneLeft">No Videos found</p>');
+
+				}
 			})
 	}
 	showLayout();
 
 	function generate_grid_reponse(response){
 
-		
+
 		var grid ={};
 		var multiple = [6,6];
 		var k = 0 ;
 		grid[k] = {};
-		var j = 0;	
+		var j = 0;
         var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
-		for (var i= 0; i < multiple[k]; i++) { 
+		for (var i= 0; i < multiple[k]; i++) {
 
 			if(response[j] == undefined){
 				grid[k][i] = {
@@ -804,7 +804,7 @@ window.onload = function() {
 			}
 			else
 				grid[k][i] = response[j];
-			
+
 			if(i == 5 && response.length > multiple[k])
 			{
 
@@ -814,16 +814,16 @@ window.onload = function() {
                     grid[k] = {};
 			}
             j = j + 1;
-				
+
 		}
-		
+
 		console.log(grid);
 		return grid;
 		}
 
 
     jQuery('.trending').infinitescroll({
-    
+
         navSelector     : "a#next:last",
         nextSelector    : "a#next:last",
         itemSelector    : ".trending",
@@ -836,7 +836,7 @@ window.onload = function() {
         html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
         jQuery.each(response,function(index,value){
 
-                
+
 
                 html += '<div>'
                         +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
@@ -846,19 +846,19 @@ window.onload = function() {
 
 
         });
-       
-               
-               
-                   
+
+
+
+
         html +='</div>';
 
         jQuery('.trending').html(html);
         loadslick();
-                        
-                        
+
+
     });
     jQuery('.awardwinning').infinitescroll({
-    
+
         navSelector     : "a#award:last",
         nextSelector    : "a#award:last",
         itemSelector    : ".awardwinning",
@@ -871,7 +871,7 @@ window.onload = function() {
         html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
         jQuery.each(response,function(index,value){
 
-               
+
                 html += '<div>'
                         +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
                            +' <img src="'+value.featured_image+'" class="img-responsive">'
@@ -880,18 +880,18 @@ window.onload = function() {
 
 
         });
-       
-               
-               
-                   
+
+
+
+
         html +='</div>';
 
         jQuery('.awardwinning').html(html);
-          loadslick();               
-                        
+          loadslick();
+
     });
     jQuery('.indian').infinitescroll({
-    
+
         navSelector     : "a#indian:last",
         nextSelector    : "a#indian:last",
         itemSelector    : ".indian",
@@ -912,16 +912,16 @@ window.onload = function() {
 
 
         });
-       
-               
-               
-                   
+
+
+
+
         html +='</div>';
 
         jQuery('.indian').html(html);
         loadslick();
-                        
-                        
+
+
     });
 
 
@@ -938,21 +938,21 @@ window.onload = function() {
 
                             jQuery.each(value,function(index,val){
                                 value[index]['class'] = '';
-                                
-                                
+
+
                                 if(val['slug'] == "")
                                 {
-                                    
+
                                     value[index]['class'] = 'hidden';
                                 }
                                 if(val['region'].length == 0)
                                     val['region'] = ['No regions'];
-                                    
+
                             });
-                            
+
                             html+='<div class="row gridlayout">'
-                                
-                            
+
+
                         +'<div class="col-sm-6 multi-grid">'
                        +' <div class="grid-box grid-full content-align-bottom">'
                             +'<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value[0]['slug']+'">'
@@ -981,7 +981,7 @@ window.onload = function() {
                                             +'</div>'
                                            +' <div class="col-xs-8">'
                                                 +'<div class="pull-right text-right m-t-10">'
-                                                  +value[0]['excerpt'] 
+                                                  +value[0]['excerpt']
                                                 +'</div>'
                                            +' </div>'
                                         +'</div>'
@@ -1017,7 +1017,7 @@ window.onload = function() {
                                             +'</div>'
                                            +' <div class="col-xs-8">'
                                               +'  <div class="pull-right text-right m-t-10">'
-                                                 +value[1]['excerpt']  
+                                                 +value[1]['excerpt']
                                                +' </div>'
                                            +' </div>'
                                         +'</div>'
@@ -1053,7 +1053,7 @@ window.onload = function() {
                                             +'</div>'
                                             +'<div class="col-xs-8">'
                                                 +'<div class="pull-right text-right m-t-10">'
-                                                  +value[2]['excerpt']   
+                                                  +value[2]['excerpt']
                                                 +'</div>'
                                            +' </div>'
                                        +' </div>'
@@ -1169,19 +1169,19 @@ window.onload = function() {
                                 +'</div>'
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
-                        +'</div> '                         
+                        +'</div> '
                     +'</div></div> ';
 
 
                         });
 
-            
+
             jQuery.each(response,function(index,value){
-                            
+
                             if(value.region.length == 0){
                                 value.region = ['No regions added'];
                             }
-                        
+
 
 
                 html += '<div class="row listlayout">'
@@ -1243,7 +1243,7 @@ window.onload = function() {
                         + '</div>'
                     + '</div>'
                 + '</div>';
-                
+
                         /*html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
                           +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
@@ -1255,7 +1255,7 @@ window.onload = function() {
                             +'</div>'
                             +'<div class="col-md-4">'
                                 +'<div class="social-strip">'
-                                    +'<div class="pull-right watchlist-add">' 
+                                    +'<div class="pull-right watchlist-add">'
                                         +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
                                     +'</div>'
                                     +'<div class="pull-right like-action">'
@@ -1303,7 +1303,7 @@ window.onload = function() {
                                 + '<a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'
                                 	+ value.title
                                 + '</a>'
-                                + '<small><em>by '+value.director+'</em></small>'    
+                                + '<small><em>by '+value.director+'</em></small>'
                             + '</h3>'
                         + '</div>'
                         + '<div class="col-sm-2">'
@@ -1329,7 +1329,7 @@ window.onload = function() {
                     + '<div class="row main-ex">'
                         + '<div class="col-xs-8 cont">'
                             + '<p><em>'+value.excerpt+'</em></p>'
-                            
+
                             + '<h6 class="m-t-30 m-b-0"><em>'+value.region.join(', ')+'/'+value.duration+' MIN</em></h6>'
                             + '<p class="categories">'
                                 + '<span class="label label-greydark">'
@@ -1337,7 +1337,7 @@ window.onload = function() {
                                 + '</span>'
                             + '</p>'
                         + '</div>'
-                        
+
                         + '<div class="col-xs-4 text-right">'
                             + '<div class="">'
                                 + '<div class="lico_c social-strip">'
@@ -1356,9 +1356,9 @@ window.onload = function() {
                     + '<div class="spacer-20"></div>'
                     + '<p><em>'+value.excerpt+'</em></p>'
 	            + '</div>';
-                
-                
-                
+
+
+
 
 
 
@@ -1370,10 +1370,10 @@ window.onload = function() {
                     else
                     {
                         jQuery('.all_posts').html("");
-                        html += "<div>No posts found.</div>";
+                        html += '<p class="noneLeft">No posts found</p>';
                         jQuery('.all_posts').html(html);
                     }
-                    
+
 
     }
 function loadslick(){

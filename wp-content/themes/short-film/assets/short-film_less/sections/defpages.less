@@ -1,3 +1,16 @@
+.show-featured-image {
+    background: #444;
+}
+.show-featured-image img {
+    display: none;
+}
+.no-js .show-featured-image {
+    background: none;
+}
+.no-js .show-featured-image img {
+    display: block;
+}
+
 //General default page styling
 h2.page-title {text-transform: uppercase;}
 a:hover, a:focus {text-decoration: none;}
@@ -89,3 +102,45 @@ hr.border-btm {
 
 .bgwidth { width: 100%; height: auto !important; .centerV() }
 .bgheight { height: 100%; width: auto !important; .centerH() }
+
+p.noneLeft {
+    text-align: center;
+    text-transform: uppercase;
+    display: block;
+    width: 400px;
+    margin: 25px auto;
+    background: #F9F9F9;
+    padding: 15px;
+    color: #C8C8C8;
+    text-shadow: 1px 1px 0 #fff;
+    cursor: default;
+}
+
+.stopclass {
+    position: absolute;
+    display: block;
+    top: 35px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background: red;
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    z-index: 6;
+
+    opacity: 0.5;
+    display: none;
+    transition: opacity 0.5s;
+    &:hover {
+        opacity: 1;
+    }
+}
+.ontop .stopclass {
+    display: block;
+}
+.home .ontop .stopclass {
+    top: -10px;
+    right: 3px;
+}
