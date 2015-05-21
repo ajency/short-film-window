@@ -998,7 +998,7 @@ window.onload = function() {
 				},
 				error:function(error){
 					jQuery('.loader').text("")
-					jQuery('.all_posts').html('No Posts found');
+					jQuery('.all_posts').html('<p class="noneLeft">No Playlists found</p>');
 
 				}
 			})
@@ -1469,7 +1469,7 @@ window.onload = function() {
                     else
                     {
                         jQuery('.all_posts').html("");
-                        html += "<div>No videos found.</div>";
+                        html += '<p class="noneLeft">No videos found.</p>';
                         jQuery('.all_posts').html(html);
 
 						jQuery('.load_more').hide();

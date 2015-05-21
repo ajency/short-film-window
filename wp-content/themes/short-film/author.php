@@ -257,7 +257,7 @@
 
 					<div class="text-center">
 						<input type="hidden" name="offset" id="offset" value="0" />
-						<a href="#" class="btn btn-primary load_more">Load More Videos...</a>
+						<a href="#" class="btn btn-primary load_more">Load More Videos</a>
 					</div>
 
                     <hr class="border-btm m-t-35">
@@ -412,7 +412,7 @@
 
 					<div class="text-center">
 						<input type="hidden" name="offset_art" id="offset_art" value="0" />
-						<a href="#" class="btn btn-primary load_more_art">Load More Articles...</a>
+						<a href="#" class="btn btn-primary load_more_art">Load More Articles</a>
 					</div>
 
 				</div> <!-- end #show_articles -->
@@ -519,7 +519,7 @@
 					error:function(error)
 					{
 						//jQuery('.loader').text("")
-						jQuery('.all_posts').html('No Posts found');
+						jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 						console.log(" inside get_all_posts error ");
 
 					}
@@ -568,7 +568,7 @@
 					error:function(error)
 					{
 						//jQuery('.loader').text("")
-						jQuery('.all_articles').html('No Articles found');
+						jQuery('.all_articles').html('<p class="noneLeft">No Articles found</p>');
 						console.log(" inside get_all_articles error ");
 
 					}
@@ -685,7 +685,7 @@
 			else
 			{
 				jQuery('.all_posts').html("");
-				html += "<div>No posts found.</div>";
+				html += '<p class="noneLeft">No videos found</p>';
 				jQuery('.all_posts').html(html);
 				jQuery('.load_more').hide()
 			}
@@ -822,7 +822,7 @@
 			else
 			{
 				jQuery('.all_articles').html("");
-				html += "<div>No articles found.</div>";
+				html += '<p class="noneLeft">No articles found</p>';
 				jQuery('.all_articles').html(html);
 				jQuery('.load_more_art').hide()
 			}

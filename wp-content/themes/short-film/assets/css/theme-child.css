@@ -13026,6 +13026,18 @@ hr.border-btm {
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
 }
+p.noneLeft {
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+  width: 400px;
+  margin: 25px auto;
+  background: #F9F9F9;
+  padding: 15px;
+  color: #C8C8C8;
+  text-shadow: 1px 1px 0 #fff;
+  cursor: default;
+}
 .article_row .article_title {
   text-transform: uppercase;
   display: block;
