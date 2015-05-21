@@ -546,10 +546,10 @@ window.onload = function()
 	function resizeimgs(tw, obj, i)
 	{
 		var ar = obj.width() / obj.height();
-		console.log('Number: ' + i + '\n-------------------------');
-		console.log('aspectratio ' + ar);
-		console.log('cont-resize ' + tw.width() / tw.height());
-		console.log('END Number: ' + i + '\n-------------------------');
+		// console.log('Number: ' + i + '\n-------------------------');
+		// console.log('aspectratio ' + ar);
+		// console.log('cont-resize ' + tw.width() / tw.height());
+		// console.log('END Number: ' + i + '\n-------------------------');
 
 		if ( (tw.width() / tw.height()) < ar ) {
 			obj
@@ -600,6 +600,10 @@ window.onload = function()
 					var count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
 
 					jQuery('#offset').val(count);
+					jQuery('.p-grid-c .p-img-c').each(function(i) {
+			            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+			            jQuery(this).find('img').show();
+			        });
 
 				},
 				error:function(error)
@@ -612,6 +616,7 @@ window.onload = function()
 
 				}
 			})
+
 	}
 
 	//showLayout();
