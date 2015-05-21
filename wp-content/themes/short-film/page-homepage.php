@@ -588,17 +588,19 @@ Template Name: Homepage
 						<hr class="m-t-0">
                         
 						<?php
-							$image_size = 'thumbnail';							
-							$all_playlists = get_all_playlists($image_size);
+							$image_size = 'thumbnail';		
+							$playlists_per_page = 8;
 							
-							if(count($all_playlists) > 0)
+							$playlists = get_recent_playlists($image_size, $playlists_per_page);
+							
+							if(count($playlists) > 0)
 							{
 						?>
 								<div class="slider2 regular-slider cap-show-on-hover">
 									
 									<?php
 
-										foreach($all_playlists as $playlist)
+										foreach($playlists as $playlist)
 										{
 									?>
 											<div class="slide-cont">

@@ -403,7 +403,6 @@ Template Name: List of Playlists
 						foreach ($recentvideos as $recentvideo)
 						{
 
-
 					?>
 							<div class="col-xs-4">
 								<div class="grid-box grid-full content-align-bottom">

@@ -584,7 +584,7 @@
 <!--                    <hr class="m-t-20 m-b-20">-->
 
 <!--                    <div class="spacer-20"></div>-->
-                    <p class="cou_exc"><em><?php echo $value['excerpt'];?></em></p>
+                  
 	            </div>
 
 
