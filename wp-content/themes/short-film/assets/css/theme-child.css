@@ -12642,6 +12642,7 @@ h6.brand {
 }
 .ontop {
   z-index: 5;
+  background: rgba(0, 0, 0, 0.8);
 }
 .listlayout,
 .couchlayout {
@@ -12885,6 +12886,18 @@ h5.un {
   margin-top: 10px;
   padding: 7px 13px;
 }
+.show-featured-image {
+  background: #444;
+}
+.show-featured-image img {
+  display: none;
+}
+.no-js .show-featured-image {
+  background: none;
+}
+.no-js .show-featured-image img {
+  display: block;
+}
 h2.page-title {
   text-transform: uppercase;
 }
@@ -13037,6 +13050,29 @@ p.noneLeft {
   color: #C8C8C8;
   text-shadow: 1px 1px 0 #fff;
   cursor: default;
+}
+.stopclass {
+  position: absolute;
+  display: block;
+  top: 35px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  z-index: 6;
+  opacity: 0.5;
+  display: none;
+  transition: opacity 0.5s;
+}
+.stopclass:hover {
+  opacity: 1;
+}
+.ontop .stopclass {
+  display: block;
 }
 .article_row .article_title {
   text-transform: uppercase;

@@ -1,4 +1,29 @@
 (function($){
+
+    function resizeimgs(tw, obj, i) {
+        var ar = obj.width() / obj.height();
+        /*console.log('Number: ' + i + '\n-------------------------');
+        console.log('aspectratio ' + ar);
+        console.log('cont-resize ' + tw.width() / tw.height());
+        console.log('END Number: ' + i + '\n-------------------------');*/
+
+        if ( (tw.width() / tw.height()) < ar ) {
+            obj
+                .removeClass()
+                .addClass('bgheight');
+        } else {
+            obj
+                .removeClass()
+                .addClass('bgwidth');
+        }
+        if (jQuery('body').hasClass('no-csstransforms')) {
+            obj.css({
+                'top': 0,
+                'left': 0
+            });
+        }
+    }
+
     jQuery(document).ready(function() {
         jQuery('.slider1').slick({
             // mobileFirst: true,
@@ -188,33 +213,10 @@
                 $('.vid_if ').css('height', height);
             }
         }
-
+        $('.show-featured-image img').hide();
+        resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
+        $('.show-featured-image img').show();
     });
-
-    function resizeimgs(tw, obj, i) {
-        var ar = obj.width() / obj.height();
-        /*console.log('Number: ' + i + '\n-------------------------');
-        console.log('aspectratio ' + ar);
-        console.log('cont-resize ' + tw.width() / tw.height());
-        console.log('END Number: ' + i + '\n-------------------------');*/
-
-        if ( (tw.width() / tw.height()) < ar ) {
-            obj
-                .removeClass()
-                .addClass('bgheight');
-        } else {
-            obj
-                .removeClass()
-                .addClass('bgwidth');
-        }
-        if (jQuery('body').hasClass('no-csstransforms')) {
-            obj.css({
-                'top': 0,
-                'left': 0
-            });
-        }
-    }
-    resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
 
     $('.p-grid-c .p-img-c img').hide();
     $('.grid-box .grid-image img').hide();

@@ -46,7 +46,7 @@ get_header(); ?>
 	    -->
 
 		<div class="video-section vid_if" data-video-id="<?php echo $response['id']; ?>" data-video-img="<?php echo $response['featured_image']; ?>" data-video-embedurl="<?php echo $response['embedurl'];?>" style="position: relative;">
-
+			<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>
 
             <div class="show-featured-image vid_if" style="position:relative">
 
@@ -218,7 +218,7 @@ get_header(); ?>
 		<div class="overlay"></div>
 	</div>
 
-	<a href="#" class="stopclass" id="stopid"> STOP </a>
+
 
 	<input type="hidden" name="noofviews" id="noofviews" value="0" / >
 	<input type="hidden" name="post_id" id="post_id" value="<?php echo $response["id"];?>" / >
@@ -339,6 +339,31 @@ get_header(); ?>
 
 
 <script type="text/javascript">
+
+//function to resize the staffpick image after the viedo is stopped
+        function resizeimgs(tw, obj, i) {
+            var ar = obj.width() / obj.height();
+            /*console.log('Number: ' + i + '\n-------------------------');
+            console.log('aspectratio ' + ar);
+            console.log('cont-resize ' + tw.width() / tw.height());
+            console.log('END Number: ' + i + '\n-------------------------');*/
+
+            if ( (tw.width() / tw.height()) < ar ) {
+                obj
+                    .removeClass()
+                    .addClass('bgheight');
+            } else {
+                obj
+                    .removeClass()
+                    .addClass('bgwidth');
+            }
+            if (jQuery('body').hasClass('no-csstransforms')) {
+                obj.css({
+                    'top': 0,
+                    'left': 0
+                });
+            }
+        }
 
 window.onload = function() {
 
@@ -514,7 +539,8 @@ afterToggle: function(){}
 	    html = jQuery('.video-section').html()
 
 			html+=
-					'<div class="play-video">'
+					'<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
+					+'<div class="play-video">'
 
 						// +'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 
@@ -546,6 +572,7 @@ afterToggle: function(){}
 		var url = jQuery('#playid').attr('src');
 
 		jQuery('#playid').attr('src', '');
+		jQuery('.video-section').removeClass('ontop');
 
 		generate_featured_image();
 
@@ -573,7 +600,7 @@ afterToggle: function(){}
 
 		// var post_embedurl = <?php echo $response['embedurl']; ?>;
 
-
+		height = window.innerHeight ? window.innerHeight : jQuery(window).height();
 		jQuery('.video-section').html("");
 		 //jQuery('.show-featured-image').html("")
 
@@ -587,14 +614,16 @@ afterToggle: function(){}
 				// ;
 
 				html+=
-
-						'<img src="'+post_featured_image+'" alt="" class="img-responsive width-full">'
-
-						+'<a href="#" class="play_movie_big" data-id="'+post_video_id+'" data-embedurl="'+post_embedurl+'"> </a>'
+						'<div class="show-featured-image vid_if" style="position: relative; height:' + height + 'px;">'
+						+'<img src="'+post_featured_image+'" alt="" class="img-responsive width-full">'
+						+'<a href="#" class="play_movie_big" data-id="'+post_video_id+'" data-embedurl="'+post_embedurl+'"> </a></div>'
 
 				;
 
 			jQuery('.video-section').html(html);
+
+			resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+			jQuery('.show-featured-image img').show();
 
 		console.log(html);
 

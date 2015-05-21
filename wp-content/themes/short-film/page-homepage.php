@@ -697,6 +697,30 @@ Template Name: Homepage
 
 	jQuery(document).ready(function($) {
 
+        //function to resize the staffpick image after the viedo is stopped
+        function resizeimgs(tw, obj, i) {
+            var ar = obj.width() / obj.height();
+            /*console.log('Number: ' + i + '\n-------------------------');
+            console.log('aspectratio ' + ar);
+            console.log('cont-resize ' + tw.width() / tw.height());
+            console.log('END Number: ' + i + '\n-------------------------');*/
+
+            if ( (tw.width() / tw.height()) < ar ) {
+                obj
+                    .removeClass()
+                    .addClass('bgheight');
+            } else {
+                obj
+                    .removeClass()
+                    .addClass('bgwidth');
+            }
+            if (jQuery('body').hasClass('no-csstransforms')) {
+                obj.css({
+                    'top': 0,
+                    'left': 0
+                });
+            }
+        }
 
 		jQuery('.staffpick-display-section').text("Loading data...");
 
@@ -885,6 +909,8 @@ Template Name: Homepage
 
 			//jQuery('.staffpick-display-section').find(".share-button2").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
 
+            resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+            jQuery('.show-featured-image img').show();
 		}
 		else
 		{
@@ -1406,6 +1432,9 @@ Template Name: Homepage
 					;
 
 				jQuery('.video-section').html(html);
+
+                resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+                jQuery('.show-featured-image img').show();
 
 			console.log(html);
 
