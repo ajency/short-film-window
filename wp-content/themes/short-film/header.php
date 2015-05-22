@@ -97,7 +97,7 @@
 			            <span>|</span>
 			            <a href="#">SEARCH</a>
 			        </div>
-			        <div class="social-links">
+			        <div class="social-links"> 
 					
 						
 						<?php// echo do_shortcode('[ssba url="' . home_url() . '"]'); ?>
@@ -111,32 +111,36 @@
 			            </div>
 						-->
 						
-						<div class="fb-like" data-href="https://www.facebook.com/mysfwpage" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
 						
 			           
 					   <div class="clearfix"></div>
-			           
-					   <div class="twitter link">
-			                <!--	
+			           <!-- 
+					   <div class="twitter link">			               	
 							<div class="action"><a href="#"><small>Follow</small></a></div>
 			                <div class="icon">
 			                    <i class="fa fa-twitter fa-lg fa-fw"></i>
-			                </div>
-							-->
-							
-							<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
-
-							
+			                </div>										
 					  </div>
-					
+						-->
+						
 						
 			        </div>                
 			    </div>
 			    <div class="logo">
 			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" class="img-responsive">
 			    </div>
-			    <div class="clearfix"></div>
-
+				
+				
+				<div class="fb-like" data-href="https://www.facebook.com/mysfwpage" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+				
+				<div class="twitter link">	
+					<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+				</div>
+				
+			
+				<div class="clearfix"></div>
+				
+				
 			<div class="sub-header">
                 <div class="navbar navbar-default navbar-fi xed-top">
 					<div class="container">
