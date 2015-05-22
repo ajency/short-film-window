@@ -40,21 +40,40 @@
 			                        <label for="" class="col-sm-4 text-right">FOLLOW US</label>
 			                        <div class="col-sm-8">
 			                            <div class="social-links">
-			                                <div class="fb link">
-			                                    <div class="icon">
+			                               
+										    <div class="fb link">
+			                                   <!--
+											   <div class="icon">
 			                                        <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
 			                                    </div>
+												-->
+												<div class="fb-follow" data-href="https://www.facebook.com/pages/My_sfw_fb_page/980939678591959?ref=aymt_homepage_panel" data-colorscheme="light" data-layout="button" data-show-faces="false">
+												</div>
+												
 			                                </div>
+											
+											
 			                                <div class="twitter link">
-			                                    <div class="icon">
+			                                   <!--
+											   <div class="icon">
 			                                        <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
 			                                    </div>
+												-->
+												<div class="twitter link">	
+													<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+												</div>
 			                                </div>
+											
+											
 			                                <div class="youtube link">
+												<!--
 			                                    <div class="icon">
 			                                        <a href="#"><i class="fa fa-youtube-play fa-fw"></i></a>
 			                                    </div>
+												-->
+												<div class="g-ytsubscribe" data-channel="GoogleDevelopers" data-layout="default" data-count="hidden"></div>
 			                                </div>
+																						
 			                            </div>
 			                        </div>
 		                        </div>
