@@ -1461,7 +1461,7 @@ window.onload = function() {
                     + '</div>'
                     + '<hr class="m-t-20 m-b-20">'
                     + '<div class="spacer-20"></div>'
-                    + '<p><em>'+value.excerpt+'</em></p>'
+                    //+ '<p><em>'+value.excerpt+'</em></p>'
 	            + '</div>';
 
 

@@ -1671,7 +1671,7 @@ html += '<div class="couchlayout">'
 		+ '</div>'
 		//+ '<hr class="m-t-20 m-b-20">'
 		+ '<div class="spacer-20"></div>'
-		+ '<p class="cou_exc"><em>'+value.excerpt+'</em></p>'
+		//+ '<p class="cou_exc"><em>'+value.excerpt+'</em></p>'
 	+ '</div>';
 
 
