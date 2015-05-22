@@ -439,7 +439,7 @@
 								$value['region'] = array(0 => 'No regions added');
 
                 ?>
-                <div class="row listlayout">
+                <div class="row listlayout" style="display: none;">
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -511,7 +511,7 @@
                     </div>
                 </div>
 
-	            <div class="couchlayout">
+	            <div class="couchlayout" style="display: none;">
 
 					<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 						<img src="<?php echo $value['large_image'];?>" alt="" class="img-responsive width-full">
