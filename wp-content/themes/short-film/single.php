@@ -473,6 +473,7 @@ afterToggle: function(){}
 	            +'<p class="m-t-0">'+response.excerpt+'</p>'
 	           +' <div>'
 	                +'<p class="pull-left"><small title="Publishd Date">'+response.post_date+'</small></p>'
+					+'<p class="pull-left">Dir: <small title="director">'+response.director+'</small></p>'
 	               +' <p class="pull-right">'
 
 						//+'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'

@@ -240,7 +240,7 @@ class Video_API
             $response->set_status(200);
 
         }
-
+		
         return $response;
 	}
 
