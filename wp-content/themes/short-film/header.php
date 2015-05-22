@@ -41,6 +41,21 @@
 	</head>
 	
 	<body <?php body_class(); ?>>
+	
+	
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=955517544488844";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+	</script>
+
+	
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>	
+	
 		<div class="wrapper" style="position: relative;">
 				
 			<!--<header role="banner">
@@ -87,20 +102,32 @@
 						
 						<?php// echo do_shortcode('[ssba url="' . home_url() . '"]'); ?>
 						
-						
+						<!--
 			            <div class="fb link">
 			                <div class="icon">
 			                    <i class="fa fa-facebook fa-lg fa-fw"></i>
 			                </div>
 			                <div class="action"><a href="#"><small>Like</small></a></div>                        
 			            </div>
-			            <div class="clearfix"></div>
-			            <div class="twitter link">
-			                <div class="action"><a href="#"><small>Follow</small></a></div>
+						-->
+						
+						<div class="fb-like" data-href="https://www.facebook.com/mysfwpage" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+						
+			           
+					   <div class="clearfix"></div>
+			           
+					   <div class="twitter link">
+			                <!--	
+							<div class="action"><a href="#"><small>Follow</small></a></div>
 			                <div class="icon">
 			                    <i class="fa fa-twitter fa-lg fa-fw"></i>
 			                </div>
-			            </div>
+							-->
+							
+							<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+
+							
+					  </div>
 					
 						
 			        </div>                
