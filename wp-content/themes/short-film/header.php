@@ -130,8 +130,14 @@
 			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" class="img-responsive">
 			    </div>
 				
-				
+				<!--
 				<div class="fb-like" data-href="https://www.facebook.com/mysfwpage" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+				-->
+				<!--
+				<div class="fb-like" data-href="https://www.facebook.com/pages/My_sfw_fb_page/980939678591959?ref=aymt_homepage_panel" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+				-->
+				
+				<div class="fb-like" data-href="https://www.facebook.com/pages/My_sfw_fb_page" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
 				
 				<div class="twitter link">	
 					<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
