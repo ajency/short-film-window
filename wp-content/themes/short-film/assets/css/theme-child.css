@@ -12092,6 +12092,39 @@ h6.brand {
 .infocus a:focus {
   text-decoration: none;
 }
+.infocus a.post-like {
+  color: #af152f;
+}
+.infocus a.post-like i.fa {
+  color: #af152f;
+}
+.infocus a.post-like:hover {
+  color: #fe4665;
+}
+.infocus a.post-like:hover i {
+  color: #fe4665;
+}
+.infocus a.post-like:active,
+.infocus a.post-like:focus {
+  text-decoration: none;
+}
+.infocus a.post-like i {
+  margin-right: 10px;
+  color: #af152f;
+  transition: all 0.5s;
+}
+.infocus a.post-like.liked {
+  color: #ccc;
+}
+.infocus a.post-like.liked i.fa {
+  color: #ccc;
+}
+.infocus a.post-like.liked:hover {
+  color: #aaa;
+}
+.infocus a.post-like.liked:hover i {
+  color: #aaa;
+}
 @media screen and (max-width: 992px) {
   .infocus h5 {
     margin-top: 15px;
@@ -12427,6 +12460,9 @@ h6.brand {
   font-weight: normal;
   margin: 5px 5px 5px 0;
   background: #4d4d4d;
+  white-space: normal;
+  margin-bottom: 5px;
+  line-height: 20px;
 }
 .categories .label-greydark:hover {
   background: #af152f;
@@ -12486,7 +12522,7 @@ h6.brand {
 }
 .img-content {
   font-size: 15px;
-  color: #4d4d4d;
+  color: #787878;
 }
 .img-content ol {
   margin-top: 10px;
@@ -12561,6 +12597,9 @@ h6.brand {
   width: 100%;
   max-width: 100%;
 }
+.slider_gen .slick-slide .focus-img {
+  height: 258px;
+}
 .slick-slide div .pull-right span {
   margin-left: 10px;
 }
@@ -12615,7 +12654,7 @@ h6.brand {
 @media (max-width: 480px) {
   .vid-previous,
   .vid-next {
-    top: 15%;
+    top: 34%;
   }
 }
 .readmore_dn,
@@ -12662,6 +12701,23 @@ h6.brand {
 .ontop {
   z-index: 5;
   background: rgba(0, 0, 0, 0.8);
+}
+.adjust_i .pull-left {
+  margin-right: 20px;
+}
+.adjust_i .pull-left i {
+  margin-right: 5px;
+}
+.img-content img {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #F5F5F5;
+}
+.img-content img.alignright {
+  float: right;
+}
+.img-content img.alignleft {
+  float: left;
 }
 .listlayout,
 .couchlayout {
@@ -13097,6 +13153,17 @@ p.noneLeft {
   top: -10px;
   right: 3px;
 }
+.article_meta {
+  margin-top: 5px;
+  color: #bbb;
+}
+.article_meta span {
+  margin-right: 15px;
+  white-space: nowrap;
+}
+.article_meta span i {
+  margin-right: 5px;
+}
 .article_row .article_title {
   text-transform: uppercase;
   display: block;
@@ -13106,17 +13173,6 @@ p.noneLeft {
 .article_row .article_title:hover {
   text-decoration: none;
   color: #787878;
-}
-.article_row .article_meta {
-  margin-top: 5px;
-  color: #bbb;
-}
-.article_row .article_meta span {
-  margin-right: 15px;
-  white-space: nowrap;
-}
-.article_row .article_meta span i {
-  margin-right: 5px;
 }
 .article_row .article_cont {
   margin-top: 10px;
