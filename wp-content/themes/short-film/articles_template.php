@@ -66,6 +66,10 @@ Template Name: articles_template
 
 				<div class="search-results-message">
 				</div>
+				
+				<div class="clear-search-results-section">
+					<a href="#" id="clear-search-results-btn">Clear Search Results</a>				
+				</div>
 
 				<div class="all_posts">
 
@@ -397,6 +401,58 @@ window.onload = function() {
 
     });
 
+
+	jQuery('.fa-search').live('click',function(e){
+
+        e.preventDefault();
+        //jQuery('#genre').val("");
+        //jQuery('#language').val("");
+        jQuery('#offset').val(0);
+
+		var title = jQuery(this).prev().val();
+
+		data = 'title='+jQuery(this).prev().val();
+
+		jQuery('.load_more').hide();
+
+		jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/articlefilters',
+                data : data,
+                success:function(response)
+				{
+                    jQuery('#offset').val(0)
+                    jQuery('.loader').text("Loading data...")
+
+					jQuery('.search-results-message').html("Search Results for "+title);
+
+                    jQuery('.all_posts').html("")
+                     myarr = [];
+                    jQuery.each(response,function(index,value){
+
+                            console.log(value);
+
+                                if(value.id != "")
+                                {
+                                    myarr.push(value['id']);
+                                }
+
+                    });
+                    jQuery('#searchids').val(myarr.join(','));
+                    generate_data(response);
+                },
+                error:function(response){
+
+                }
+        });
+
+    });		
+	
+	jQuery('#clear-search-results-btn').live('click',function(e){
+
+		location.reload();
+
+	});	
 
 	function showLayout(){
 
