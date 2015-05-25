@@ -2584,49 +2584,62 @@ function get_few_categories($image_size)
 
 
 ////
-/*
-function get_few_categories()
+
+function get_some_categories($no_of_categories, $image_size)
 {
-	$response = array();
+	$response_cats = array();
 	
 	$args_cat = array(
-				'orderby'     => 'name',
-				//'orderby'     => 'id',
-				'order'   	  => 'ASC',			
-			    //'order'   	  => 'DESC',			
-				'number'      => '6',
+			
+				'number'      => $no_of_categories,
 				'parent'      => 0				
 				
 	); 
-		
+	
+	$categories = get_categories($args_cat);
+	
 	
 	foreach ( $categories as $category )
 	{		
-		$cat_link = get_category_link( $category->term_id );
+	
+		////get image urls
+		$cat_image = s8_get_taxonomy_image_src($category, $image_size);
 		
-		$response[]=array(
+		$cat_image_url = $cat_image['src'];
+		
+		// //get links	
+		$cat_link = get_category_link( $category->term_id );
+	
+	
+		// $cat_link = get_category_link( $category->term_id );
+		
+		$response_cats[]=array(
 			
-			'cat_id'      =>  $category->cat_ID,
-			'cat_name'    =>  $category->cat_name,
-			'cat_termid'  =>  $category->term_id,
-			'cat_slug'    =>  $category->slug,
-			'cat_link'	  =>  $cat_link
+			'cat_id'     	 	 =>  $category->cat_ID,
+			'cat_name'   		 =>  $category->cat_name,
+			'cat_termid' 		 =>  $category->term_id,
+			'cat_slug'   		 =>  $category->slug,			
+			'cat_count'	 		 =>  $category->category_count,
+			'cat_taxonomy'	 	 =>  $category->taxonomy,
+			'cat_description'	 =>  $category->category_description,
+			'cat_link'	 		 =>  $cat_link,
+			'cat_image_url'	 	 =>  $cat_image_url
+			
 
 		);						
 	}		
 
-	if (is_wp_error($response))
+	if (is_wp_error($response_cats))
 	{
 	   return false;
 	}
 	else
-	{
-		//print_r($response);
-	   return $response;
+	{	
+	   return $response_cats;
 	}
 		
 }  
-*/
+
 
 function author_director_rewrite(){
 $GLOBALS['wp_rewrite']->author_base = 'director';
