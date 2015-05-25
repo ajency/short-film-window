@@ -258,72 +258,74 @@ get_header(); ?>
 
 
 	            <div class="spacer-50 hideinsmall"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
 
-						<hr class="m-t-0">
+	            <div class="container">
+	                <div class="row">
+	                    <div class="col-md-12">
+	                        <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
 
-						<?php
-							$image_size = 'thumbnail';
-							$playlists_per_page = 8;
+							<hr class="m-t-0">
 
-							$playlists = get_recent_playlists($image_size, $playlists_per_page);
+							<?php
+								$image_size = 'thumbnail';
+								$playlists_per_page = 8;
 
-							if(count($playlists) > 0)
-							{
-						?>
-								<div class="slider2 regular-slider cap-show-on-hover">
+								$playlists = get_recent_playlists($image_size, $playlists_per_page);
 
-									<?php
+								if(count($playlists) > 0)
+								{
+							?>
+									<div class="slider2 regular-slider cap-show-on-hover">
 
-										foreach($playlists as $playlist)
-										{
-									?>
-											<div class="slide-cont">
+										<?php
 
-												<a href="<?php echo $playlist['playlist_link']; ?>">
+											foreach($playlists as $playlist)
+											{
+										?>
+												<div class="slide-cont">
 
-													<img src="<?php echo $playlist['playlist_image_url']; ?>" class="img-responsive">
+													<a href="<?php echo $playlist['playlist_link']; ?>">
 
-													<div class="cap-s">
+														<img src="<?php echo $playlist['playlist_image_url']; ?>" class="img-responsive">
 
-														<h5><?php echo $playlist['playlist_name']; ?></h5>
+														<div class="cap-s">
 
-														<p><?php echo $playlist['playlist_description']; ?></p>
+															<h5><?php echo $playlist['playlist_name']; ?></h5>
 
-														<div class="sli-foot">
+															<p><?php echo $playlist['playlist_description']; ?></p>
 
-															<!--
-															<div class="pull-left numbers">
-																<p>415 <i class="fa fa-eye"></i></p>
-																<p>402 <i class="fa fa-thumbs-up"></i></p>
-															</div>
-															-->
+															<div class="sli-foot">
 
-															<div class="pull-ri ght sm-numbers">
-																<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
+																<!--
+																<div class="pull-left numbers">
+																	<p>415 <i class="fa fa-eye"></i></p>
+																	<p>402 <i class="fa fa-thumbs-up"></i></p>
+																</div>
+																-->
+
+																<div class="pull-ri ght sm-numbers">
+																	<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
+																</div>
+
 															</div>
 
 														</div>
+													</a>
+												</div>
+										<?php
 
-													</div>
-												</a>
-											</div>
-									<?php
+											} //end foreach
+										?>
 
-										} //end foreach
-									?>
+									</div> <!-- end div slider2 -->
 
-								</div> <!-- end div slider2 -->
+							<?php
+								} //end if
+							?>
 
-						<?php
-							} //end if
-						?>
-
-                    </div>
+	                    </div>
+	                </div>
                 </div>
-
 
 <?php get_footer(); ?>
 
