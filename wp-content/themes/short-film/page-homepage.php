@@ -124,9 +124,6 @@ Template Name: Homepage
 	<div class="search_nn-results-message">
 	</div>
 	
-	<div class="clear-search-results-section">
-		<a href="#" id="clear-search-results-btn">Clear Search Results</a>
-	</div>
 
 	<div class="all_posts">
 
@@ -1048,8 +1045,11 @@ Template Name: Homepage
 					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search_nn-results-message').html("Search Results for "+title+" "+clear);
 
-					jQuery('.search_nn-results-message').html("Search Results for "+title);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -1102,7 +1102,10 @@ Template Name: Homepage
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
 
-					jQuery('.search_nn-results-message').html("Search Results for "+title);
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search_nn-results-message').html("Search Results for "+title+" "+clear);
+					
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -1541,12 +1544,15 @@ Template Name: Homepage
 		
 		jQuery('.check-slug').live('click',function(event){
 
-			var slug = jQuery('.check-slug').attr('data-slug');
+			
+			var slug = jQuery(event.currentTarget).attr('data-slug');
 			
 			if(slug == "")
 			{
 				event.preventDefault();
-				jQuery('.check-slug').attr('href', '#');
+				
+				jQuery(event.currentTarget).attr('href', '#');
+				//location.reload();
 
 			}
 		

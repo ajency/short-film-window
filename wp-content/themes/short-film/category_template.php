@@ -166,9 +166,6 @@ Template Name: category_template
 	<div class="search-results-message">
 	</div>
 	
-	<div class="clear-search-results-section">	
-		<a href="#" id="clear-search-results-btn">Clear Search Results</a>	
-	</div>
 
 	<div class="all_posts">
 
@@ -877,7 +874,9 @@ window.onload = function() {
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
 
-					jQuery('.search-results-message').html("Search Results for "+title);
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -931,8 +930,11 @@ window.onload = function() {
 					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
 
-					jQuery('.search-results-message').html("Search Results for "+title);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -1866,24 +1868,22 @@ function loadslick(){
         });
 }
 
-/*
+
 	jQuery('.check-slug').live('click',function(event){
 
-		var slug = jQuery('.check-slug').attr('data-slug');
+		var slug = jQuery(event.currentTarget).attr('data-slug');
 		
-		console.log("heyyy slug= ");
-		console.log(slug);
 		
-		if(slug == "")
+		if( slug === '')
 		{
 			event.preventDefault();
-			// jQuery('.check-slug').attr('href', '#');
-			location.reload();
+			jQuery(event.currentTarget).attr('href', '#');
+			//location.reload();
 
 		}
 	
 	});
-*/
+
 
 } //end onload
 

@@ -67,9 +67,6 @@ Template Name: articles_template
 				<div class="search-results-message">
 				</div>
 				
-				<div class="clear-search-results-section">
-					<a href="#" id="clear-search-results-btn">Clear Search Results</a>				
-				</div>
 
 				<div class="all_posts">
 
@@ -376,8 +373,10 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-
-					jQuery('.search-results-message').html("Search Results for "+title);
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -423,8 +422,11 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
 
-					jQuery('.search-results-message').html("Search Results for "+title);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
