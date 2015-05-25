@@ -49,9 +49,9 @@ get_header(); ?>
 			<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>
 
             <div class="show-featured-image vid_if" style="position:relative">
-  
+
 				<img src="<?php echo $response['large_image']; ?>" alt="" class="img-responsive width-full">
-                
+
 
 				<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>
             </div>
@@ -156,7 +156,7 @@ get_header(); ?>
 
 							 <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6>
 
-							
+
 						<?php
 					////
 
@@ -466,14 +466,14 @@ afterToggle: function(){}
 				+'<a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'
 
 					+'<img src="'+response.medium_image+'" class="img-responsive">'
-				+'</a>'	
+				+'</a>'
 
 	        +'</div>'
 	        +'<div class="col-md-7">'
 	            +'<p class="m-t-0">'+response.excerpt+'</p>'
-	           +' <div>'
-	                +'<p class="pull-left"><small title="Publishd Date">'+response.post_date+'</small></p>'
-					+'<p class="pull-left">Dir: <small title="director">'+response.director+'</small></p>'
+	           +' <div class="adjust_i article_meta">'
+	                +'<p class="pull-left" title="Publishd Date"><i class="fa fa-clock-o"></i> '+response.post_date+'</p>'
+					+'<p class="pull-left" title="Author"><i class="fa fa-user"></i> '+response.director+'</p>'
 	               +' <p class="pull-right">'
 
 						//+'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
