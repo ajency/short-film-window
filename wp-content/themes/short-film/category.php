@@ -156,6 +156,7 @@
 
 				<div class="search-results-message">
 				</div>
+			
 
                 <div class="all_posts">
 
@@ -210,7 +211,21 @@
 
 				 		<div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-full content-align-bottom">
-                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
+							<?php
+								if($value[0]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
+							<?php
+								}
+								else
+								{
+							?>		
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+							
                                     <div class="grid-image">
                                         <img src="<?php echo $value[0]['medium_image'] ;?>">
                                     </div>
@@ -248,7 +263,22 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
+                               
+							<?php
+								if($value[1]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
+							<?php
+								}
+								else
+								{
+							?>		
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+							   
                                     <div class="grid-image">
                                         <img src="<?php echo $value[1]['small_image'] ;?>">
                                     </div>
@@ -285,7 +315,22 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
+                               
+							<?php
+								if($value[2]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
+							<?php
+								}
+								else
+								{
+							?>		
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		   
+							   
                                     <div class="grid-image">
                                         <img src="<?php echo $value[2]['small_image'] ;?>">
                                     </div>
@@ -323,7 +368,22 @@
 
                         <div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
+                                
+							<?php
+								if($value[3]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
+							<?php
+								}
+								else
+								{
+							?>		
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+								
                                     <div class="grid-image">
                                         <img src="<?php echo $value[3]['small_image'] ;?>">
                                     </div>
@@ -358,7 +418,22 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
+                               
+							<?php
+								if($value[4]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
+							<?php
+								}
+								else
+								{
+							?>		
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+							   
                                     <div class="grid-image">
                                         <img src="<?php echo $value[4]['small_image'] ;?>">
                                     </div>
@@ -393,7 +468,22 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-full content-align-bottom">
-                                <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
+                               
+							<?php
+								if($value[5]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
+							<?php
+								}
+								else
+								{
+							?>		
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		   
+							   
                                     <div class="grid-image">
                                         <img src="<?php echo $value[5]['medium_image'] ;?>">
                                     </div>
@@ -765,8 +855,11 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
 
-					jQuery('.search-results-message').html("Search Results for "+title);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -790,9 +883,68 @@ window.onload = function() {
                 }
         });
 
-
-
     });
+	
+	jQuery('.fa-search').live('click',function(e){
+
+
+   	    e.preventDefault();
+
+		console.log("in search change event..");
+
+        jQuery('#genre').val("");
+        jQuery('#language').val("");
+        jQuery('#offset').val(0);
+
+		var title = jQuery(this).prev().val();
+
+		data = 'title='+jQuery(this).prev().val();
+
+		jQuery('.load_more').hide();
+
+		jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/filters',
+                data : data,
+                success:function(response)
+				{
+                    jQuery('#offset').val(0)
+                    jQuery('.loader').text("Loading data...")
+
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
+
+                    jQuery('.all_posts').html("")
+                     myarr = [];
+                    jQuery.each(response,function(index,value)
+					{
+
+                            console.log(value);
+
+                                if(value.id != "")
+                                {
+                                    myarr.push(value['id']);
+
+                                }
+
+                    });
+                    jQuery('#searchids').val(myarr.join(','));
+                    generate_data(response);
+                },
+                error:function(response){
+
+                }
+        });
+
+    });	
+	
+	jQuery('#clear-search-results-btn').live('click',function(e){
+
+		location.reload();
+
+	});	
 
     function resizeimgs(tw, obj, i) {
         var ar = obj.width() / obj.height();
@@ -1270,7 +1422,7 @@ window.onload = function() {
 
                         +'<div class="col-sm-6 multi-grid">'
                        +' <div class="grid-box grid-full content-align-bottom">'
-                            +'<a class="content-bottom" href="'+SITEURL+'/'+value[0]['slug']+'">'
+							+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[0]['medium_image']+'">'
                                 +'</div>'
@@ -1306,7 +1458,7 @@ window.onload = function() {
                            +' </a>'
                         +'</div>'
                         +'<div class="grid-box grid-half content-align-bottom">'
-                            +'<a class="content-bottom" href="'+SITEURL+'/'+value[1]['slug']+'">'
+                           +'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[1]['small_image']+'">'
                                 +'</div>'
@@ -1342,7 +1494,7 @@ window.onload = function() {
                             +'</a>'
                         +'</div>'
                         +'<div class="grid-box grid-half content-align-bottom">'
-                           +' <a class="content-bottom" href="'+SITEURL+'/'+value[2]['slug']+'">'
+                          +'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
                                 +'<div class="grid-image">'
                                    +' <img src="'+value[2]['small_image']+'">'
                                +' </div>'
@@ -1380,7 +1532,7 @@ window.onload = function() {
                    +' </div>'
                     +'<div class="col-sm-6 multi-grid">'
                        +' <div class="grid-box grid-half content-align-bottom">'
-                            +'<a class="content-bottom" href="'+SITEURL+'/'+value[3]['slug']+'">'
+                           +'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
                                 +'<div class="grid-image">'
                                    +' <img src="'+value[3]['small_image']+'">'
                                 +'</div>'
@@ -1416,7 +1568,7 @@ window.onload = function() {
                            +' </a>'
                        +' </div>'
                        +' <div class="grid-box grid-half content-align-bottom">'
-                            +'<a class="content-bottom" href="'+SITEURL+'/'+value[4]['slug']+'">'
+                            +'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[4]['small_image']+'">'
                                 +'</div>'
@@ -1451,7 +1603,7 @@ window.onload = function() {
                             +'</a>'
                         +'</div>'
                         +'<div class="grid-box grid-full content-align-bottom">'
-                            +'<a class="content-bottom" href="'+SITEURL+'/'+value[5]['slug']+'">'
+                            +'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
                                 +'<div class="grid-image">'
                                     +'<img src="'+value[5]['medium_image']+'">'
                                 +'</div>'
@@ -1673,6 +1825,28 @@ function loadslick(){
               ]
         });
 }
-}
+
+	jQuery('.check-slug').live('click',function(event){
+
+		var slug = jQuery(event.currentTarget).attr('data-slug');
+		
+		if( slug === '')
+		{
+			event.preventDefault();
+			jQuery(event.currentTarget).attr('href', '#');
+			//location.reload();
+
+		}
+	
+	});
+
+
+
+} //onload
 
 </script>
+
+
+
+
+

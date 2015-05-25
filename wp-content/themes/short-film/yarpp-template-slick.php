@@ -9,24 +9,24 @@ Author: mitcho (Michael Yoshitaka Erlewine)
 
 <?php if (have_posts()):?>
 
-    
-    
-   
+
+
+
     <div class="row sim_mov">
         <?php while (have_posts()) : the_post(); ?>
-		
-				<?php 
-						$postid = get_the_ID(); 
+
+				<?php
+						$postid = get_the_ID();
 						$response = Film\Video::get($postid);
 						//print_r($response);
-				?> 
-            
-                <div class="col-xs-4">
+				?>
+
+                <div class="col-sm-4">
                    <div class="grid-box grid-full content-align-bottom">
-				   
+
 						<!-- <a class="content-bottom" href="<?php// echo site_url();?>/<?php// echo $response['slug']; ?>"> -->
-						
-                        <a class="content-bottom" target="_blank" href="<?php the_permalink(); ?>"> 					   
+
+                        <a class="content-bottom" target="_blank" href="<?php the_permalink(); ?>">
                            <div class="grid-image">
                                <?php if (has_post_thumbnail()):
                                    the_post_thumbnail('thumbnail');
@@ -66,17 +66,17 @@ Author: mitcho (Michael Yoshitaka Erlewine)
                                    </div>
                                </div>
                            </div>
-						</a>   
+						</a>
 						 <a class="overlay-vertical" target="_blank" href="<?php the_permalink(); ?>">
 						 </a>
-                          
+
                     </div>
                 </div>
-            
+
         <?php endwhile; ?>
     </div>
-   
-    
+
+
 
 <?php else: ?>
 <p>No related photos.</p>

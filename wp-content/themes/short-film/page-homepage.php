@@ -123,6 +123,7 @@ Template Name: Homepage
 
 	<div class="search_nn-results-message">
 	</div>
+	
 
 	<div class="all_posts">
 
@@ -143,7 +144,21 @@ Template Name: Homepage
 				<div class="row">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
+							<?php 
+								if($value[0]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
+							<?php 
+								}
+								else
+								{
+							?>
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+									
                                 <div class="grid-image">
                                     <img src="<?php echo $value[0]['medium_image'] ;?>">
                                 </div>
@@ -182,8 +197,25 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
+                       
+					   <div class="grid-box grid-half content-align-bottom">
+
+							<?php 
+								if($value[1]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
+							<?php 
+								}
+								else
+								{
+							?>
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+									
+
                                 <div class="grid-image">
                                     <img src="<?php echo $value[1]['small_image'] ;?>">
                                 </div>
@@ -222,8 +254,25 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
+                       
+					   <div class="grid-box grid-half content-align-bottom">
+
+							<?php 
+								if($value[2]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
+							<?php 
+								}
+								else
+								{
+							?>
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+									
+
                                 <div class="grid-image">
                                     <img src="<?php echo $value[2]['small_image'] ;?>">
                                 </div>
@@ -263,9 +312,27 @@ Template Name: Homepage
                             </a>
                         </div>
                     </div>
-                    <div class="col-sm-6 multi-grid">
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
+                   
+				   <div class="col-sm-6 multi-grid">
+                       
+					   <div class="grid-box grid-half content-align-bottom">
+
+							<?php 
+								if($value[3]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
+							<?php 
+								}
+								else
+								{
+							?>
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+									
+
                                 <div class="grid-image">
                                     <img src="<?php echo $value[3]['small_image'] ;?>">
                                 </div>
@@ -304,8 +371,25 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                        <div class="grid-box grid-half content-align-bottom">
-                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
+                        
+						<div class="grid-box grid-half content-align-bottom">
+ 
+							<?php 
+								if($value[4]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
+							<?php 
+								}
+								else
+								{
+							?>
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+									
+
                                 <div class="grid-image">
                                     <img src="<?php echo $value[4]['small_image'] ;?>">
                                 </div>
@@ -344,8 +428,25 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                        <div class="grid-box grid-full content-align-bottom">
-                            <a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
+                      
+					  <div class="grid-box grid-full content-align-bottom">
+
+								<?php 
+								if($value[5]['slug'])
+								{
+							?>
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
+							<?php 
+								}
+								else
+								{
+							?>
+									<a class="content-bottom" href="#">
+							<?php
+								}
+							?>		
+									
+
                                 <div class="grid-image">
                                     <img src="<?php echo $value[5]['medium_image'] ;?>">
                                 </div>
@@ -944,8 +1045,11 @@ Template Name: Homepage
 					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
+					
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search_nn-results-message').html("Search Results for "+title+" "+clear);
 
-					jQuery('.search_nn-results-message').html("Search Results for "+title);
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -972,9 +1076,69 @@ Template Name: Homepage
                 }
         });
 
-
-
     });
+	
+	
+	jQuery('.fa-search').live('click',function(e){
+
+        e.preventDefault();
+
+        jQuery('#offset').val(0);
+
+		var title = jQuery(this).prev().val();
+
+		data = 'title='+jQuery(this).prev().val();
+
+		jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/filters',
+                data : data,
+
+				success:function(response)
+				{
+
+					console.log("inside success ");
+					console.log(response);
+                    jQuery('#offset').val(0)
+                    jQuery('.loader').text("Loading data...")
+
+					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					
+					jQuery('.search_nn-results-message').html("Search Results for "+title+" "+clear);
+					
+
+                    jQuery('.all_posts').html("")
+                     myarr = [];
+                    jQuery.each(response,function(index,value){
+
+                            console.log(value);
+
+                                if(value.id != "")
+                                {
+                                    myarr.push(value['id']);
+
+                                }
+
+                    });
+                    jQuery('#searchids').val(myarr.join(','));
+
+                    generate_data_search_nn(response);
+
+                },
+                error:function(response)
+				{
+					console.log("inside error ");
+
+                }
+        });
+
+    });		
+	
+	jQuery('#clear-search-results-btn').live('click',function(e){
+
+		location.reload();
+
+	});	
 
 	function generate_data_search_nn(response)
 	{
@@ -1006,8 +1170,9 @@ Template Name: Homepage
 
 					+'<div class="col-sm-6 multi-grid">'
 						+' <div class="grid-box grid-full content-align-bottom">'
-						+'<a class="content-bottom" href="'+SITEURL+'/'+value[0]['slug']+'">'
 
+							+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
+							
 								+'<div class="grid-image">'
 									+'<img src="'+value[0]['medium_image']+'">'
 								+'</div>'
@@ -1047,7 +1212,9 @@ Template Name: Homepage
 					   +' </a>'
 					+'</div>'
 					+'<div class="grid-box grid-half content-align-bottom">'
-						+'<a class="content-bottom" href="'+SITEURL+'/'+value[1]['slug']+'">'
+
+							+'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
+
 							+'<div class="grid-image">'
 								+'<img src="'+value[1]['small_image']+'">'
 							+'</div>'
@@ -1083,7 +1250,10 @@ Template Name: Homepage
 						+'</a>'
 					+'</div>'
 					+'<div class="grid-box grid-half content-align-bottom">'
-					   +' <a class="content-bottom" href="'+SITEURL+'/'+value[2]['slug']+'">'
+					   
+
+							+'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
+					   
 							+'<div class="grid-image">'
 							   +' <img src="'+value[2]['small_image']+'">'
 						   +' </div>'
@@ -1121,7 +1291,9 @@ Template Name: Homepage
 			   +' </div>'
 				+'<div class="col-sm-6 multi-grid">'
 				   +' <div class="grid-box grid-half content-align-bottom">'
-						+'<a class="content-bottom" href="'+SITEURL+'/'+value[3]['slug']+'">'
+
+							+'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
+		
 							+'<div class="grid-image">'
 							   +' <img src="'+value[3]['small_image']+'">'
 							+'</div>'
@@ -1157,7 +1329,10 @@ Template Name: Homepage
 					   +' </a>'
 				   +' </div>'
 				   +' <div class="grid-box grid-half content-align-bottom">'
-						+'<a class="content-bottom" href="'+SITEURL+'/'+value[4]['slug']+'">'
+
+							+'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
+
+						
 							+'<div class="grid-image">'
 								+'<img src="'+value[4]['small_image']+'">'
 							+'</div>'
@@ -1192,7 +1367,9 @@ Template Name: Homepage
 						+'</a>'
 					+'</div>'
 					+'<div class="grid-box grid-full content-align-bottom">'
-						+'<a class="content-bottom" href="'+SITEURL+'/'+value[5]['slug']+'">'
+
+							+'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
+						
 							+'<div class="grid-image">'
 								+'<img src="'+value[5]['medium_image']+'">'
 							+'</div>'
@@ -1363,7 +1540,23 @@ Template Name: Homepage
 			console.log(html);
 
 		} // end of generate_featured_image
+		
+		
+		jQuery('.check-slug').live('click',function(event){
 
+			
+			var slug = jQuery(event.currentTarget).attr('data-slug');
+			
+			if(slug == "")
+			{
+				event.preventDefault();
+				
+				jQuery(event.currentTarget).attr('href', '#');
+				//location.reload();
+
+			}
+		
+		});
 
 
 	});  // end of document.ready function

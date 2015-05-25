@@ -48,6 +48,28 @@
         text-decoration: none;
         &:hover, &:focus {text-decoration: none;}
     }
+    a.post-like {
+        color: @brand-primary;
+        i.fa {color: @brand-primary;}
+        &:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        }
+        &:active, &:focus {text-decoration: none;}
+        i {
+            margin-right: 10px;
+            color: @brand-primary;
+            transition: all 0.5s;
+        }
+    }
+    a.post-like.liked {
+        color: #ccc;
+        i.fa {color: #ccc;}
+        &:hover {
+            color: #aaa;
+            i {color: #aaa;}
+        }
+    }
     @media screen and (max-width: 992px) {
         h5 {margin-top: 15px;}
     }
@@ -410,6 +432,9 @@
             font-weight: normal;
             margin: 5px 5px 5px 0;
             background: @gray-darker;
+            white-space: normal;
+            margin-bottom: 5px;
+            line-height: 20px;
             &:hover {
                 background: @brand-primary;
             }
@@ -465,7 +490,7 @@
 //img-content
 .img-content {
     font-size: 15px;
-    color: @gray-darker;
+    color: #787878;
     ol {margin-top: 10px; margin-bottom: 10px;}
 }
 
@@ -534,6 +559,9 @@
     height: 170px;
     width: 100%;
     max-width: 100%;
+}
+.slider_gen .slick-slide .focus-img {
+    height: 258px;
 }
 .slick-slide div .pull-right span {
     margin-left: 10px;
@@ -609,7 +637,7 @@
      .vid-previous,
     .vid-next
     {
-        top: 15%;
+        top: 34%; //was 15%
     }
 }
 
@@ -724,4 +752,30 @@
 .ontop {
     z-index: 5;
     background: rgba(0,0,0,0.8);
+}
+
+.adjust_i .pull-left {
+    margin-right: 20px;
+    i {
+        margin-right: 5px;
+    }
+}
+
+
+//styling WP content
+.img-content {
+    img {
+        margin: 5px;
+        padding: 5px;
+        border: 1px solid #F5F5F5;
+    }
+    img.alignright {
+        float: right;
+    }
+    img.alignleft {
+        float: left;
+    }
+    p {
+        // margin-bottom: 10px;
+    }
 }
