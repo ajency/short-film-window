@@ -377,78 +377,6 @@ function generate_play_grid_response($playlists)
 function get_posts_filter($args)
 {
 	global $wpdb;
-
-	$response = array();
-	    	
-	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '%".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
-	
-	// echo "postid for title";
-	// print_r($postid);
-	
-    $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
-	$user_query = new WP_User_Query($args1);
-	
-	$author = "";
-	if ( ! empty( $user_query->results ) ) 
-	{
-		foreach ( $user_query->results as $user ) 
-		{
-			$author =  $user->id;
-		}
-
-	}
-	
-////////
-		
-	if(count($postid) != 0 || $author != "")
-	{
-		$params = array(
-        'post__in'			=> $postid,
-        'posts_per_page'	=> $args['posts_per_page'],
-        'order' 			=> $args['order'],
-        'orderby'			=> $args['orderby'],
-        'post_type' 		=> 'post',
-        'author'			=> $author
-    	);
-
-	    
-		$query = new WP_Query($params);
-	    while ( $query->have_posts() ) {
-			$query->the_post();
-			$response[] = Film\Video::get($query->post->ID);
-			
-		}
-	}
-		
-					//////////////////////
-	else
-	{
-		$args_tag=array('tag' => $args['title']);
-		
-		$tag_query = new WP_Query($args_tag);
-		
-		while ( $tag_query->have_posts() ) 
-		{
-			$tag_query->the_post();
-			$response[] = Film\Video::get($tag_query->post->ID);
-			
-		}
-		
-	}
-					////////////////////
-					
-	//print_r($response);	
-	
-   return $response;
-
-}
-*/
-
-
-
-function get_posts_filter($args)
-{
-	global $wpdb;
 		
 	$searchtext = $args['title'];
 	
@@ -519,41 +447,67 @@ function get_posts_filter($args)
    return $response;
 
 }
+*/
 
-/*
-function get_articles_filter($args)
+
+function get_posts_filter($args)
 {
-
 	global $wpdb;
-
+		
+	$searchtext = $args['title'];
+	
 	$response = array();
-	    
-
-	//$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '".$args['title']."%' ");
+	 
+		// 1. searchtext  = post title or post content
 	
-	$postid = $wpdb->get_col("select ID from $wpdb->posts where post_title LIKE '%".$args['title']."%' or post_content LIKE '%".$args['title']."%' or post_excerpt LIKE '%".$args['title']."%' ");
-
-    $args1 = array( 'meta_key' => 'first_name', 'meta_value' => $args['title'] );
-	$user_query = new WP_User_Query($args1);
+	$query_title = "SELECT ID
+					FROM {$wpdb->prefix}posts
+					WHERE (post_title LIKE '%".$searchtext."%' OR post_content LIKE '%".$searchtext."%' OR post_excerpt LIKE '%".$searchtext."%') AND post_status = 'publish' AND post_type = 'post'";
 	
-	$author = "";
-	if ( ! empty( $user_query->results ) ) 
+	$postidset = $wpdb->get_col($query_title);
+		
+		
+	if(count($postidset) == 0)   //2. searchtext = authorname
+	{	
+		$query_author = "
+				SELECT ID
+				FROM {$wpdb->prefix}posts
+				INNER JOIN {$wpdb->prefix}usermeta ON {$wpdb->prefix}posts.post_author = {$wpdb->prefix}usermeta.user_id
+				WHERE (post_status = 'publish') AND (post_type = 'post') AND ((meta_key = 'first_name' AND meta_value LIKE '%".$searchtext."%') OR (meta_key = 'last_name' AND meta_value LIKE '%".$searchtext."%'))";
+
+		 
+		 $postidset = $wpdb->get_col($query_author);	
+		 		 
+	}
+	
+	if(count($postidset) == 0)  //3. searchtext = tag
 	{
-		foreach ( $user_query->results as $user ) 
-		{
-			$author =  $user->id;
-		}
+		
+		$query_tag = "
+				SELECT {$wpdb->prefix}posts.ID 
+				FROM {$wpdb->prefix}posts, {$wpdb->prefix}terms, {$wpdb->prefix}term_taxonomy, {$wpdb->prefix}term_relationships
+				WHERE ({$wpdb->prefix}posts.ID = {$wpdb->prefix}term_relationships.object_id) 
+				AND ({$wpdb->prefix}term_relationships.term_taxonomy_id = {$wpdb->prefix}term_taxonomy.term_taxonomy_id) 
+				AND ({$wpdb->prefix}term_taxonomy.term_id = {$wpdb->prefix}terms.term_id) 
+				AND ({$wpdb->prefix}posts.post_status = 'publish') 
+				AND ({$wpdb->prefix}posts.post_type = 'post') 
+				AND ({$wpdb->prefix}terms.name LIKE '%".$searchtext."%')";
+				
+			 
+		 $postidset = $wpdb->get_col($query_tag);
+		
 	}
 
-	if(count($postid) != 0 || $author != "")
+	if(count($postidset) != 0)  //retrieve post info based on the post ids fetched above
 	{
 		$params = array(
-        'post__in'			=> $postid,
+        'post__in'			=> $postidset,
         'posts_per_page'	=> $args['posts_per_page'],
         'order' 			=> $args['order'],
         'orderby'			=> $args['orderby'],
-        'post_type' 		=> 'article',
-        'author'			=> $author
+        'post_type' 		=> 'post',
+		'post_status' 		=> 'publish'
+     
     	);
 
 	    
@@ -561,38 +515,15 @@ function get_articles_filter($args)
 	    while ( $query->have_posts() ) 
 		{
 			$query->the_post();
-			$response[] = Article_post\Article::get_article($query->post->ID);
+			$response[] = Film\Video::get($query->post->ID);
 			
 		}
 	}
-			
-					//////////////////////
-	else
-	{
-		$args_tag=array(
-					
-				'tag'		=> $args['title'],
-				'post_type' => 'article'
-		);
-		
-		$tag_query = new WP_Query($args_tag);
-		
-		while ( $tag_query->have_posts() ) 
-		{
-			$tag_query->the_post();
-			
-			$response[] = Article_post\Article::get_article($tag_query->post->ID);
-			
-		}
-		
-	}
-					////////////////////
-	//print_r($response);	
-	
+							
    return $response;
 
 }
-*/
+
 
 
 function get_articles_filter($args)
@@ -607,7 +538,7 @@ function get_articles_filter($args)
 		// 1. searchtext  = post title or post content
 	
 	$query_title = "SELECT ID
-					FROM wp_posts
+					FROM {$wpdb->prefix}posts
 					WHERE (post_title LIKE '%".$searchtext."%' OR post_content LIKE '%".$searchtext."%' OR post_excerpt LIKE '%".$searchtext."%') AND post_status = 'publish' AND post_type = 'article'";
 	
 	$postidset = $wpdb->get_col($query_title);
@@ -617,8 +548,8 @@ function get_articles_filter($args)
 	{	
 		$query_author = "
 				SELECT ID
-				FROM wp_posts
-				INNER JOIN wp_usermeta ON wp_posts.post_author = wp_usermeta.user_id
+				FROM {$wpdb->prefix}posts
+				INNER JOIN {$wpdb->prefix}usermeta ON {$wpdb->prefix}posts.post_author = {$wpdb->prefix}usermeta.user_id
 				WHERE (post_status = 'publish') AND (post_type = 'article') AND ((meta_key = 'first_name' AND meta_value LIKE '%".$searchtext."%') OR (meta_key = 'last_name' AND meta_value LIKE '%".$searchtext."%'))";
 
 		 
