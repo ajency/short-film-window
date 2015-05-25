@@ -500,10 +500,11 @@ Template Name: Homepage
 
 		$image_size = 'thumbnail';
 
-		$response_cats = get_few_categories($image_size);
-
-		// print_r($response_cats);
-		// exit;
+		//$response_cats = get_few_categories($image_size);
+		
+		$no_of_categories = 4;
+		
+		$response_cats = get_some_categories($no_of_categories, $image_size);
 
 		if(count($response_cats) > 0)
 		{
@@ -513,65 +514,26 @@ Template Name: Homepage
 				<div class="col-md-12">
 					<div class="slider_gen regular-slider">
 
-                            <div> <!-- cat_indian -->
+						<?php
+							foreach($response_cats as $response_cat)
+							{
+						?>
+								<div> 
 
-								<div class="focus-img">
+									<div class="focus-img">
 
-									<a class="content-bottom" href="<?php echo $response_cats[0]['cat_indian_link'];?>">
+										<a class="content-bottom" href="<?php echo $response_cat['cat_link'];?>">
 
-										<img src="<?php echo $response_cats[0]['cat_indian_image_url'];?>" alt="Photo of category-Indian" />
+											<img src="<?php echo $response_cat['cat_image_url'];?>" alt="Photo of category- <?php echo $response_cat['cat_name']; ?>" />
 
-									</a>
+										</a>
 
-                                </div>
-
-                            </div>
-
-
-							<div> <!-- cat_music_video -->
-
-								<div class="focus-img">
-
-									<a class="content-bottom" href="<?php echo $response_cats[0]['cat_music_video_link'];?>">
-
-										<img src="<?php echo $response_cats[0]['cat_music_video_image_url'];?>" alt="Photo of category-Music Video" />
-
-									</a>
+									</div>
 
 								</div>
-
-                            </div>
-
-
-							<div> <!-- cat_short_doc -->
-
-								<div class="focus-img">
-
-									<a class="content-bottom" href="<?php echo $response_cats[0]['cat_short_doc_video_link'];?>">
-
-										<img src="<?php echo $response_cats[0]['cat_short_doc_image_url'];?>" alt="Photo of category-Short Doc" />
-
-									</a>
-
-								</div>
-
-                            </div>
-
-						<div> <!-- cat_thriller -->
-
-							<div class="focus-img">
-
-								<a class="content-bottom" href="<?php echo $response_cats[0]['cat_thriller_video_link'];?>">
-
-									<img src="<?php echo $response_cats[0]['cat_thriller_image_url'];?>" alt="Photo of category-Thriller" />
-
-								</a>
-
-							</div>
-
-                        </div>
-
-
+						<?php
+							} //end foreach
+						?>
 					</div>
 				</div>
 			</div>
