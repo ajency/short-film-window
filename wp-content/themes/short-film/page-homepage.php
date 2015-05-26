@@ -990,7 +990,7 @@ Template Name: Homepage
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
 
-					jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
+					jQuery('.search_nn-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
 
                     jQuery('.all_posts').html("")
@@ -1054,7 +1054,7 @@ Template Name: Homepage
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
 
-					jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
+					jQuery('.search_nn-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
 
                     jQuery('.all_posts').html("")
