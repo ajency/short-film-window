@@ -144,7 +144,7 @@ Template Name: articles_template
 
 				<div class="row">
                     <div class="col-md-6">
-                        <h2 class="brand">POPULAR ARTICLES</h2>
+                        <h3 class="brand">POPULAR ARTICLES</h3>
                     </div>
                 </div>
 
