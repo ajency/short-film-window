@@ -560,6 +560,7 @@ Template Name: Homepage
 
 		$response_cats = get_some_categories($no_of_categories, $image_size);
 
+
 		if(count($response_cats) > 0)
 		{
 	?>
@@ -581,8 +582,12 @@ Template Name: Homepage
 											<img src="<?php echo $response_cat['cat_image_url'];?>" alt="Photo of category- <?php echo $response_cat['cat_name']; ?>" />
 
 										</a>
+										
 
 									</div>
+									
+										<p><?php echo $response_cat['cat_name']; ?></p>
+											<p><?php echo $response_cat['cat_count']; ?> films</p>
 
 								</div>
 						<?php

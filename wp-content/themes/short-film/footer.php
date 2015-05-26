@@ -47,7 +47,13 @@
 			                                        <a href="#"><i class="fa fa-facebook fa-fw"></i></a>
 			                                    </div>
 												-->
+												
+												<!--
 												<div class="fb-follow" data-href="https://www.facebook.com/pages/My_sfw_fb_page/980939678591959?ref=aymt_homepage_panel" data-colorscheme="light" data-layout="button" data-show-faces="false">
+												</div>
+												-->
+												
+												<div class="fb-follow" data-href="https://www.facebook.com/Shortfilmwindow" data-colorscheme="light" data-layout="button" data-show-faces="false">
 												</div>
 												
 			                                </div>
@@ -59,9 +65,17 @@
 			                                        <a href="#"><i class="fa fa-twitter fa-fw"></i></a>
 			                                    </div>
 												-->
+												
+												<!--
 												<div class="twitter link">	
 													<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
 												</div>
+												-->
+												
+												<div class="twitter link">	
+													<a href="https://twitter.com/shortfilmwindow" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+												</div>
+												
 			                                </div>
 											
 											
