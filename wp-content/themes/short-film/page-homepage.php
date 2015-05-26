@@ -46,7 +46,7 @@ Template Name: Homepage
 
 								foreach ( $pairs as $pair )
 								{
-								
+
 									echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-cat-name="'.$pair['catname'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
 
 								}
@@ -82,7 +82,7 @@ Template Name: Homepage
 
 	<div class="search_nn-results-message">
 	</div>
-	
+
 
 	<div class="all_posts">
 
@@ -103,12 +103,12 @@ Template Name: Homepage
 				<div class="row">
                     <div class="col-sm-6 multi-grid">
                         <div class="grid-box grid-full content-align-bottom">
-							<?php 
+							<?php
 								if($value[0]['slug'])
 								{
 							?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[0]['slug'];?>">
-							<?php 
+							<?php
 								}
 								else
 								{
@@ -116,8 +116,8 @@ Template Name: Homepage
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
                                 <div class="grid-image">
                                     <img src="<?php echo $value[0]['medium_image'] ;?>">
                                 </div>
@@ -137,7 +137,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-													
+
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
 													<div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -156,15 +156,15 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                       
+
 					   <div class="grid-box grid-half content-align-bottom">
 
-							<?php 
+							<?php
 								if($value[1]['slug'])
 								{
 							?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[1]['slug'];?>">
-							<?php 
+							<?php
 								}
 								else
 								{
@@ -172,8 +172,8 @@ Template Name: Homepage
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
 
                                 <div class="grid-image">
                                     <img src="<?php echo $value[1]['small_image'] ;?>">
@@ -194,7 +194,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-													
+
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
 													<div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -213,15 +213,15 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                       
+
 					   <div class="grid-box grid-half content-align-bottom">
 
-							<?php 
+							<?php
 								if($value[2]['slug'])
 								{
 							?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[2]['slug'];?>">
-							<?php 
+							<?php
 								}
 								else
 								{
@@ -229,8 +229,8 @@ Template Name: Homepage
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
 
                                 <div class="grid-image">
                                     <img src="<?php echo $value[2]['small_image'] ;?>">
@@ -251,7 +251,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-													
+
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
 													<div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -271,17 +271,17 @@ Template Name: Homepage
                             </a>
                         </div>
                     </div>
-                   
+
 				   <div class="col-sm-6 multi-grid">
-                       
+
 					   <div class="grid-box grid-half content-align-bottom">
 
-							<?php 
+							<?php
 								if($value[3]['slug'])
 								{
 							?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[3]['slug'];?>">
-							<?php 
+							<?php
 								}
 								else
 								{
@@ -289,8 +289,8 @@ Template Name: Homepage
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
 
                                 <div class="grid-image">
                                     <img src="<?php echo $value[3]['small_image'] ;?>">
@@ -311,7 +311,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-													
+
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
 													<div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -330,15 +330,15 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                        
+
 						<div class="grid-box grid-half content-align-bottom">
- 
-							<?php 
+
+							<?php
 								if($value[4]['slug'])
 								{
 							?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[4]['slug'];?>">
-							<?php 
+							<?php
 								}
 								else
 								{
@@ -346,8 +346,8 @@ Template Name: Homepage
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
 
                                 <div class="grid-image">
                                     <img src="<?php echo $value[4]['small_image'] ;?>">
@@ -368,7 +368,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-													
+
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
 													<div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -387,15 +387,15 @@ Template Name: Homepage
                                 <div class="overlay-vertical"></div>
                             </a>
                         </div>
-                      
+
 					  <div class="grid-box grid-full content-align-bottom">
 
-								<?php 
+								<?php
 								if($value[5]['slug'])
 								{
 							?>
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value[5]['slug'];?>">
-							<?php 
+							<?php
 								}
 								else
 								{
@@ -403,8 +403,8 @@ Template Name: Homepage
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
 
                                 <div class="grid-image">
                                     <img src="<?php echo $value[5]['medium_image'] ;?>">
@@ -425,7 +425,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-												
+
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
 													<div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -459,7 +459,7 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-12 text-center">
                     <h6>
-                     
+
 						<a class="exp_all" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down hidden"></i></a>
 
                     </h6>
@@ -496,7 +496,7 @@ Template Name: Homepage
 					<?php
 
 						foreach($recentarticles as $recentarticle)
-						{ 
+						{
 					?>
 							<div>
 								<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
@@ -512,9 +512,9 @@ Template Name: Homepage
 											<p class="pull-left"><small><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">
 												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticle['post_like_count']; ?> </span>
-												
+
 												<span><i class="fa fa-eye"></i> <?php echo $recentarticle['no_of_views']; ?> </span>
-												
+
 											</p>
 										</div>
 										<div class="clearfix"></div>
@@ -554,7 +554,7 @@ Template Name: Homepage
 		$image_size = 'thumbnail';
 
 		$no_of_categories = 4;
-		
+
 		$response_cats = get_some_categories($no_of_categories, $image_size);
 
 		if(count($response_cats) > 0)
@@ -569,7 +569,7 @@ Template Name: Homepage
 							foreach($response_cats as $response_cat)
 							{
 						?>
-								<div> 
+								<div>
 
 									<div class="focus-img">
 
@@ -597,60 +597,67 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
-                        
+
 						<hr class="m-t-0">
-                        
+
 						<?php
-							$image_size = 'thumbnail';		
+							$image_size = 'thumbnail';
 							$playlists_per_page = 8;
-							
+
 							$playlists = get_recent_playlists($image_size, $playlists_per_page);
-							
+
 							if(count($playlists) > 0)
 							{
 						?>
-								<div class="slider2 regular-slider cap-show-on-hover">
-									
+								<div class="slider2 regular-slider cap-show-on-hover playlist-grid">
+
 									<?php
 
 										foreach($playlists as $playlist)
 										{
 									?>
 											<div class="slide-cont">
-											
-												<a href="<?php echo $playlist['playlist_link']; ?>">	
-												
-													<img src="<?php echo $playlist['playlist_image_url']; ?>" class="img-responsive">
-													
-													<div class="cap-s">
-														
-														<h5><?php echo $playlist['playlist_name']; ?></h5>
-														
-														<p><?php echo $playlist['playlist_description']; ?></p>
-														
-														<div class="sli-foot">
-														
-															
-															<div class="pull-ri ght sm-numbers">
-																<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
+
+												<div class="p-grid-c">
+													<span class="p-img-c">
+														<img src="<?php echo $playlist['playlist_image_url']; ?>" alt="">
+													</span>
+													<div class="p-text">
+														<h5 class="p-head"><?php echo $playlist['playlist_name']; ?></h5>
+														<p class="p-desc"><?php echo $playlist['playlist_description']; ?></p>
+
+														<div class="p-btm">
+
+															<!--
+															<div class="iconexp_sp pull-left">
+																<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+																<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
+																	<i class="fa fa-thumbs-up"></i>
+																</div>
 															</div>
-														
+															-->
+
+															<div class="pull-right p-count">
+																<p><?php echo $playlist['playlist_count']; ?> films</p>
+															</div>
 														</div>
-														
 													</div>
-												</a>	
+													<a href="<?php echo $playlist['playlist_link']; ?>" class="p-g-all-link"> </a>
+												</div>
+
+
 											</div>
 									<?php
-										
+
 										} //end foreach
 									?>
-																			   
+
 								</div> <!-- end div slider2 -->
-						
+
 						<?php
 							} //end if
 						?>
-						
+
                     </div>
                 </div>
 
@@ -669,14 +676,19 @@ Template Name: Homepage
         function resizeimgs(tw, obj, i) {
             var ar = obj.width() / obj.height();
 
+            console.log('AR: '+ar+'\n cont: ' + (tw.width() / tw.height()));
             if ( (tw.width() / tw.height()) < ar ) {
                 obj
                     .removeClass()
                     .addClass('bgheight');
-            } else {
+            } else if ( (tw.width() / tw.height()) > ar ) {
                 obj
                     .removeClass()
                     .addClass('bgwidth');
+            } else {
+            	obj
+                    .removeClass()
+                    .addClass('bgheight');
             }
             if (jQuery('body').hasClass('no-csstransforms')) {
                 obj.css({
@@ -685,6 +697,14 @@ Template Name: Homepage
                 });
             }
         }
+        jQuery('.p-grid-c .p-img-c img').hide();
+        jQuery(window).load(function() {
+        	jQuery('.p-grid-c .p-img-c').each(function(i) {
+
+	            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+	            jQuery(this).find('img').show();
+	        });
+        });
 
 		jQuery('.staffpick-display-section').text("Loading data...");
 
@@ -814,7 +834,7 @@ Template Name: Homepage
 									+'<div class="row posrel">'
 										+'<div class="col-md-10">'
 											+'<div class="pull-lef t">'
-												
+
 												+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
 
 											+'</div>'
@@ -836,7 +856,7 @@ Template Name: Homepage
 									+'<div class="col-md-10 col-xs-8">'
 
 										+'<p class="m-t-0 m-b-0 staff_tag"><em>'+response.tagline+'</em></p>'
-		
+
 										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.video_region_links.join(', ')+' </em></small></h5>'
 
 										+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.video_category_links.join('</span><span class="label label-greydark">')+'</span></p>'
@@ -845,10 +865,10 @@ Template Name: Homepage
 									+'<div class="col-md-2 col-xs-4 text-right meta-ico">'
 										+'<div class="meta-ico-in" title="Views">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 
-										
+
 										+'<div class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
 
-										
+
 									+'</div>'
 								+'</div>'
 							+'</div>'
@@ -888,7 +908,7 @@ Template Name: Homepage
 			url : ajaxurl,
 
 			data:{
-				
+
 				video_id: video_id,
 				action : 'increase_video_number_of_views'
 
@@ -963,10 +983,75 @@ Template Name: Homepage
 					console.log(response);
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-					
-					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
-					
-					jQuery('.search_nn-results-message').html("Search Results for "+title+" "+clear);
+
+					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					var clear = '<i class="fa fa-times"></i>';
+
+					jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
+
+
+                    jQuery('.all_posts').html("")
+                     myarr = [];
+                    jQuery.each(response,function(index,value){
+
+                            console.log(value);
+
+                                if(value.id != "")
+                                {
+                                    myarr.push(value['id']);
+
+                                }
+
+                    });
+                    jQuery('#searchids').val(myarr.join(','));
+
+                    generate_data_search_nn(response);
+
+                    jQuery('.grid-box .grid-image').each(function(i) {
+		                resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+		                jQuery(this).find('img').show();
+		            });
+
+                },
+                error:function(response)
+				{
+					console.log("inside error ");
+
+                }
+        });
+
+
+
+    });
+
+
+	jQuery('.fa-search').live('click',function(e){
+
+        e.preventDefault();
+
+        jQuery('#offset').val(0);
+
+		var title = jQuery(this).prev().val();
+
+		data = 'title='+jQuery(this).prev().val();
+
+		jQuery.ajax({
+                type : 'GET',
+                url : SITEURL+'/wp-json/filters',
+                data : data,
+
+				success:function(response)
+				{
+
+					console.log("inside success ");
+					console.log(response);
+                    jQuery('#offset').val(0)
+                    jQuery('.loader').text("Loading data...")
+
+					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					var clear = '<i class="fa fa-times"></i>';
+
+					jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
 
                     jQuery('.all_posts').html("")
@@ -995,68 +1080,12 @@ Template Name: Homepage
         });
 
     });
-	
-	
-	jQuery('.fa-search').live('click',function(e){
 
-        e.preventDefault();
-
-        jQuery('#offset').val(0);
-
-		var title = jQuery(this).prev().val();
-
-		data = 'title='+jQuery(this).prev().val();
-
-		jQuery.ajax({
-                type : 'GET',
-                url : SITEURL+'/wp-json/filters',
-                data : data,
-
-				success:function(response)
-				{
-
-					console.log("inside success ");
-					console.log(response);
-                    jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
-
-					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
-					
-					jQuery('.search_nn-results-message').html("Search Results for "+title+" "+clear);
-					
-
-                    jQuery('.all_posts').html("")
-                     myarr = [];
-                    jQuery.each(response,function(index,value){
-
-                            console.log(value);
-
-                                if(value.id != "")
-                                {
-                                    myarr.push(value['id']);
-
-                                }
-
-                    });
-                    jQuery('#searchids').val(myarr.join(','));
-
-                    generate_data_search_nn(response);
-
-                },
-                error:function(response)
-				{
-					console.log("inside error ");
-
-                }
-        });
-
-    });		
-	
 	jQuery('#clear-search-results-btn').live('click',function(e){
-
+		e.preventDefault();
 		location.reload();
 
-	});	
+	});
 
 	function generate_data_search_nn(response)
 	{
@@ -1090,7 +1119,7 @@ Template Name: Homepage
 						+' <div class="grid-box grid-full content-align-bottom">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
-							
+
 								+'<div class="grid-image">'
 									+'<img src="'+value[0]['medium_image']+'">'
 								+'</div>'
@@ -1110,7 +1139,7 @@ Template Name: Homepage
 
 											+'<div class="col-xs-4">'
 												+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-													
+
 												+'</div>'
 												+'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
 													+'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1149,7 +1178,7 @@ Template Name: Homepage
 									+'<div class="row">'
 									   +' <div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-											  
+
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
 											   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1168,10 +1197,10 @@ Template Name: Homepage
 						+'</a>'
 					+'</div>'
 					+'<div class="grid-box grid-half content-align-bottom">'
-					   
+
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
-					   
+
 							+'<div class="grid-image">'
 							   +' <img src="'+value[2]['small_image']+'">'
 						   +' </div>'
@@ -1188,7 +1217,7 @@ Template Name: Homepage
 									+'<div class="row">'
 										+'<div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-											   
+
 										   +' </div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
 											   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1211,7 +1240,7 @@ Template Name: Homepage
 				   +' <div class="grid-box grid-half content-align-bottom">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
-		
+
 							+'<div class="grid-image">'
 							   +' <img src="'+value[3]['small_image']+'">'
 							+'</div>'
@@ -1228,7 +1257,7 @@ Template Name: Homepage
 								   +' <div class="row">'
 									   +' <div class="col-xs-4">'
 										   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-												
+
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
 											   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1250,7 +1279,7 @@ Template Name: Homepage
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
 
-						
+
 							+'<div class="grid-image">'
 								+'<img src="'+value[4]['small_image']+'">'
 							+'</div>'
@@ -1266,7 +1295,7 @@ Template Name: Homepage
 									+'<div class="row">'
 									   +' <div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-											  
+
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
 											   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1287,7 +1316,7 @@ Template Name: Homepage
 					+'<div class="grid-box grid-full content-align-bottom">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
-						
+
 							+'<div class="grid-image">'
 								+'<img src="'+value[5]['medium_image']+'">'
 							+'</div>'
@@ -1303,7 +1332,7 @@ Template Name: Homepage
 								   +' <div class="row">'
 									   +' <div class="col-xs-4">'
 										   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-												
+
 											+'</div>'
 										   +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
 											   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1425,9 +1454,9 @@ Template Name: Homepage
 
 
 			 jQuery('.video-section').html("")
-		
+
 		   html = "";
-	
+
 				html+=
 						'<div class="show-featured-image vid_if" style=" position: relative">'
 
@@ -1448,22 +1477,22 @@ Template Name: Homepage
 			console.log(html);
 
 		} // end of generate_featured_image
-		
-		
+
+
 		jQuery('.check-slug').live('click',function(event){
 
-			
+
 			var slug = jQuery(event.currentTarget).attr('data-slug');
-			
+
 			if(slug == "")
 			{
 				event.preventDefault();
-				
+
 				jQuery(event.currentTarget).attr('href', '#');
-				
+
 
 			}
-		
+
 		});
 
 

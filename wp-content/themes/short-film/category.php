@@ -41,19 +41,19 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h2>EXPLORE</h2>
+                        <h2 class="brand">EXPLORE</h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
 
-						
+
                                 <div class="form-group">
 
 								  <input type="text" class="form-control search" value="" placeholder="Search"/>
 
                                     <i class="fa fa-search"></i>
                                 </div>
-                      
+
 
                         </div>
 					</div>
@@ -92,7 +92,7 @@
 
 								<?php
 									$all_language_list = get_list_of_all_languages();
-								
+
 								?>
 
 								<label for="" class="col-md-3 control-label"><em>Language:</em> </label>
@@ -155,7 +155,7 @@
 
 				<div class="search-results-message">
 				</div>
-			
+
 
                 <div class="all_posts">
 
@@ -219,12 +219,12 @@
 								}
 								else
 								{
-							?>		
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[0]['medium_image'] ;?>">
                                     </div>
@@ -242,7 +242,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                     
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
                                                         <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -262,7 +262,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                               
+
 							<?php
 								if($value[1]['slug'])
 								{
@@ -272,12 +272,12 @@
 								}
 								else
 								{
-							?>		
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[1]['small_image'] ;?>">
                                     </div>
@@ -294,7 +294,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-                                                       
+
                                                     </div>
 
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
@@ -314,7 +314,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                               
+
 							<?php
 								if($value[2]['slug'])
 								{
@@ -324,12 +324,12 @@
 								}
 								else
 								{
-							?>		
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		   
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[2]['small_image'] ;?>">
                                     </div>
@@ -345,7 +345,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-                                                     
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
                                                         <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -367,7 +367,7 @@
 
                         <div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-half content-align-bottom">
-                                
+
 							<?php
 								if($value[3]['slug'])
 								{
@@ -377,12 +377,12 @@
 								}
 								else
 								{
-							?>		
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-								
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[3]['small_image'] ;?>">
                                     </div>
@@ -398,7 +398,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-                                                     
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
                                                         <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -417,7 +417,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                               
+
 							<?php
 								if($value[4]['slug'])
 								{
@@ -427,12 +427,12 @@
 								}
 								else
 								{
-							?>		
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[4]['small_image'] ;?>">
                                     </div>
@@ -448,7 +448,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-                                                    
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
                                                         <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -467,7 +467,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-full content-align-bottom">
-                               
+
 							<?php
 								if($value[5]['slug'])
 								{
@@ -477,12 +477,12 @@
 								}
 								else
 								{
-							?>		
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		   
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[5]['medium_image'] ;?>">
                                     </div>
@@ -498,7 +498,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                    
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
                                                         <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -570,10 +570,10 @@
                                 </p>
 
                             </div>
-                          
+
                             <div class="col-xs-4 text-right list-info-btns">
                                 <div class="soc-ico nh">
-                               
+
 
 								   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 
@@ -584,9 +584,9 @@
                                     <div class="lico like-action">
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
-                                      
+
                                     </div>
-								
+
                                 </div>
 
                             </div>
@@ -649,17 +649,17 @@
                                     <div class="lico like-action">
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
-                                    
+
 
                                     </div>
-							
+
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                  
+
 	            </div>
 
 
@@ -756,7 +756,7 @@ window.onload = function() {
 		jQuery('#offset').val(0)
 		jQuery('.loader').text("Loading data...")
 		jQuery('.all_posts').html("")
-	
+
 		get_all_posts();
 
 	});
@@ -776,7 +776,7 @@ window.onload = function() {
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
 		jQuery('#gridoption').children().removeClass('text-primary');
-		
+
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
 
@@ -834,10 +834,11 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-					
-					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
-					
-					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
+
+					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+                    var clear = '<i class="fa fa-times"></i>';
+
+                    jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
 
                     jQuery('.all_posts').html("")
@@ -863,7 +864,7 @@ window.onload = function() {
         });
 
     });
-	
+
 	jQuery('.fa-search').live('click',function(e){
 
 
@@ -890,10 +891,11 @@ window.onload = function() {
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
 
-					
-					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
-					
-					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
+
+					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+                    var clear = '<i class="fa fa-times"></i>';
+
+                    jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -917,13 +919,13 @@ window.onload = function() {
                 }
         });
 
-    });	
-	
-	jQuery('#clear-search-results-btn').live('click',function(e){
+    });
 
+	jQuery('#clear-search-results-btn').live('click',function(e){
+        e.preventDefault();
 		location.reload();
 
-	});	
+	});
 
     function resizeimgs(tw, obj, i) {
         var ar = obj.width() / obj.height();
@@ -1078,9 +1080,9 @@ window.onload = function() {
         itemSelector    : ".trending",
         debug           : true,
         dataType        : 'json',
-       
+
         appendCallback  : false, // USE FOR PREPENDING
-       
+
     }, function( response ) {
         html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
@@ -1160,9 +1162,9 @@ window.onload = function() {
         itemSelector    : ".awardwinning",
         debug           : true,
         dataType        : 'json',
-      
+
         appendCallback  : false, // USE FOR PREPENDING
-      
+
     }, function( response ) {
         html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
@@ -1183,11 +1185,11 @@ window.onload = function() {
 
 											+'<div class="grid-title">'+value.title+'</div>'
 
-										
+
 										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
 
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
-										 
+
 
 											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
@@ -1244,9 +1246,9 @@ window.onload = function() {
         itemSelector    : ".indian",
         debug           : true,
         dataType        : 'json',
-      
+
         appendCallback  : false, // USE FOR PREPENDING
-       
+
     }, function( response ) {
         html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
@@ -1266,11 +1268,11 @@ window.onload = function() {
 
 											+'<div class="grid-title">'+value.title+'</div>'
 
-										
+
 										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
 
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
-									
+
 
 											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
@@ -1371,7 +1373,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                             +'<div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-                                                   
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
                                                     +'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1407,7 +1409,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                            +' <div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-                                                 
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
                                                    +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1443,7 +1445,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                             +'<div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-                                                  
+
                                                +' </div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
                                                    +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1481,7 +1483,7 @@ window.onload = function() {
                                        +' <div class="row">'
                                            +' <div class="col-xs-4">'
                                                +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-                                                   
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
                                                    +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1516,7 +1518,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                            +' <div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-                                                  
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
                                                    +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1551,7 +1553,7 @@ window.onload = function() {
                                        +' <div class="row">'
                                            +' <div class="col-xs-4">'
                                                +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-                                                   
+
                                                 +'</div>'
                                                +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
                                                    +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1601,7 +1603,7 @@ window.onload = function() {
                                 + '</h4>'
                             + '</div>'
                         + '</div>'
-                      
+
 						+ '<div class="row">'
 
 							+ '<div class="col-xs-8 cont">'
@@ -1637,7 +1639,7 @@ window.onload = function() {
 									+ '</div>'
 
 									+ '<div class="lico watchlist-add"> '
-                                    
+
                                     + '</div>'
                                 + '</div>'
                             + '</div>'
@@ -1705,7 +1707,7 @@ window.onload = function() {
                                     + '</div>'
 
                                     + '<div class="lico watchlist-add">'
-                                       
+
                                     + '</div>'
 
                                 + '</div>'
@@ -1716,7 +1718,7 @@ window.onload = function() {
                     + '</div>'
                     + '<hr class="m-t-20 m-b-20">'
                     + '<div class="spacer-20"></div>'
-                   
+
 	            + '</div>';
 
 
@@ -1737,7 +1739,7 @@ window.onload = function() {
     }
 function loadslick(){
     jQuery('.slider1').slick({
-          
+
             infinite: true,
             slidesToShow: 3,
             responsive: [
@@ -1760,14 +1762,14 @@ function loadslick(){
 	jQuery('.check-slug').live('click',function(event){
 
 		var slug = jQuery(event.currentTarget).attr('data-slug');
-		
+
 		if( slug === '')
 		{
 			event.preventDefault();
 			jQuery(event.currentTarget).attr('href', '#');
-		
+
 		}
-	
+
 	});
 
 
