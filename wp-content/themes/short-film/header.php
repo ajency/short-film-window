@@ -20,6 +20,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
+		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
+		
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
@@ -97,7 +99,9 @@
 			<div class="header">
 			    <div class="header-links">
 			        <div class="links">
-			            <a href="#">LOGIN</a>
+			            <!--<a href="#">LOGIN</a>-->
+			           
+ 					    <a href="<?php echo site_url(); ?>/wp-login.php">LOGIN</a>					
 			            <span>|</span>
 			            <a href="#">SEARCH</a>
 			        </div>
