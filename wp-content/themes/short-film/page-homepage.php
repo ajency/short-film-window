@@ -580,14 +580,16 @@ Template Name: Homepage
 										<a class="content-bottom" href="<?php echo $response_cat['cat_link'];?>">
 
 											<img src="<?php echo $response_cat['cat_image_url'];?>" alt="Photo of category- <?php echo $response_cat['cat_name']; ?>" />
-
+											<span class="gen_hov">
+												<i class="cat_name"><?php echo $response_cat['cat_name']; ?></i>
+												<i class="cat_count"><?php echo $response_cat['cat_count']; ?> films</i>
+											</span>
 										</a>
-										
+
 
 									</div>
-									
-										<p><?php echo $response_cat['cat_name']; ?></p>
-											<p><?php echo $response_cat['cat_count']; ?> films</p>
+
+
 
 								</div>
 						<?php
