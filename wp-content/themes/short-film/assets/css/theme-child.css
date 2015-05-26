@@ -11199,8 +11199,9 @@ a {
 .footer .social-links .link {
   position: static;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   font-size: 0;
+  top: 0;
 }
 .footer .social-links .link .icon {
   margin: 0;
@@ -11209,6 +11210,35 @@ a {
 }
 .footer .social-links .link .fa {
   color: #ffffff;
+}
+@media screen and (max-width: 1199px) {
+  .footer .social-links > .fb {
+    width: 20px;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .footer .social-links > .twitter {
+    margin-left: 3px;
+    width: 20px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    -webkit-transform: scale(0.98);
+    -moz-transform: scale(0.98);
+    -o-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  .footer .social-links > .youtube {
+    width: 30px;
+    overflow: hidden;
+    position: relative;
+    -webkit-transform: scale(0.825);
+    -moz-transform: scale(0.825);
+    -o-transform: scale(0.825);
+    -ms-transform: scale(0.825);
+    transform: scale(0.825);
+  }
 }
 .footer .subscribe::-webkit-input-placeholder {
   line-height: 1;
