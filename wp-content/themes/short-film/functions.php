@@ -2012,7 +2012,7 @@ function get_video_category_links($categories)
 			array_push($temp, $category_link);
 
 
-			 $link = '<a href="'.esc_url( $category_link ).'" target="_blank"  title="Category Name">'.$value.'</a>';
+			 $link = '<a href="'.esc_url( $category_link ).'" title="Category Name">'.$value.'</a>';
 
 
 			array_push($cat_array, $link);
@@ -2038,7 +2038,7 @@ function get_video_region_links($regions)
 		$region_link = get_term_link( $region_id );
 
 		// $link = '<a href="'.esc_url( $region_link ).'" target="_blank"  title="Region Name">'.$value.'</a>';
-		$link = '<a href="'.esc_url( $region_link ).'" target="_blank"  title="Region Name">'.$value.'</a>';
+		$link = '<a href="'.esc_url( $region_link ).'" title="Region Name">'.$value.'</a>';
 
 		array_push($region_array, $link);
 	}
@@ -2060,7 +2060,7 @@ function get_video_language_links($languages)
 
 		$language_link = get_term_link( $language_id );
 
-		$link = '<a href="'.esc_url( $language_link ).'" target="_blank"  title="Language Name">'.$value.'</a>';
+		$link = '<a href="'.esc_url( $language_link ).'" title="Language Name">'.$value.'</a>';
 
 		array_push($language_array, $link);
 	}
@@ -2083,7 +2083,7 @@ function get_video_playlist_links($playlists)
 
 		$playlist_link = get_term_link( $playlist_id );
 
-		$link = '<a href="'.esc_url( $playlist_link ).'" target="_blank"  title="Playlist Name">'.$value.'</a>';
+		$link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$value.'</a>';
 
 		array_push($playlist_array, $link);
 	}
