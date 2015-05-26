@@ -209,7 +209,7 @@
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[0]['title'];?></div>
-                                        <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(',',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
+                                        <div class="grid-meta <?php echo $value[0]['class'] ;?>"><?php echo implode(', ',$value[0]['region']);?>/<?php echo $value[0]['duration'];?> MIN</div>
                                         <div class="grid-meta"><?php echo implode(', ',$value[0]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[0]['class'] ;?>">DIR.<?php echo  ucfirst($value[0]['director']);?></div>
 
@@ -224,8 +224,8 @@
                                                    
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                        <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
+                                                        <div><?php echo $value[0]['no_of_views']; ?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[0]['class']; ?>"><?php echo $value[0]['post_like_count'];?>
                                                             <i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
@@ -262,7 +262,7 @@
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[1]['title'];?></div>
-                                        <div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(',',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
+                                        <div class="grid-meta <?php echo $value[1]['class'] ;?>"><?php echo implode(', ',$value[1]['region']);?>/<?php echo $value[1]['duration'];?> MIN</div>
                                         <div class="grid-meta"><?php echo implode(', ',$value[1]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[1]['class'] ;?>">DIR.<?php echo  ucfirst($value[1]['director']);?></div>
 
@@ -314,7 +314,7 @@
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[2]['title'];?></div>
-                                        <div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(',',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
+                                        <div class="grid-meta <?php echo $value[2]['class'] ;?>"><?php echo implode(', ',$value[2]['region']);?>/<?php echo $value[2]['duration'];?> MIN</div>
                                         <div class="grid-meta"><?php echo implode(', ',$value[2]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[2]['class'] ;?>">DIR.<?php echo  ucfirst($value[2]['director']);?></div>
                                     </div>
@@ -367,7 +367,7 @@
                                     </div>
                                     <div class="grid-text-wrap">
                                         <div class="grid-title"><?php echo $value[3]['title'];?></div>
-                                        <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(',',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
+                                        <div class="grid-meta <?php echo $value[3]['class'] ;?>"><?php echo implode(', ',$value[3]['region']);?>/<?php echo $value[3]['duration'];?> MIN</div>
                                         <div class="grid-meta"><?php echo implode(', ',$value[3]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[3]['class'] ;?>">DIR.<?php echo  ucfirst($value[3]['director']);?></div>
                                     </div>
@@ -417,7 +417,7 @@
                                     </div>
                                     <div class="grid-text-wrap">
                                          <div class="grid-title"><?php echo $value[4]['title'];?></div>
-                                        <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(',',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
+                                        <div class="grid-meta <?php echo $value[4]['class'] ;?>"><?php echo implode(', ',$value[4]['region']);?>/<?php echo $value[4]['duration'];?> MIN</div>
                                         <div class="grid-meta"><?php echo implode(', ',$value[4]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[4]['class'] ;?>">DIR.<?php echo  ucfirst($value[4]['director']);?></div>
                                     </div>
@@ -467,7 +467,7 @@
                                     </div>
                                     <div class="grid-text-wrap">
                                          <div class="grid-title"><?php echo $value[5]['title'];?></div>
-                                        <div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(',',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
+                                        <div class="grid-meta <?php echo $value[5]['class'] ;?>"><?php echo implode(', ',$value[5]['region']);?>/<?php echo $value[5]['duration'];?> MIN</div>
                                         <div class="grid-meta"><?php echo implode(', ',$value[5]['categories']);?></div>
                                         <div class="grid-meta <?php echo $value[5]['class'] ;?>">DIR.<?php echo  ucfirst($value[5]['director']);?></div>
                                     </div>
@@ -480,8 +480,8 @@
                                                      
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                        <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
-                                                        <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
+                                                        <div><?php echo $value[5]['no_of_views']; ?><i class="fa fa-eye"></i></div>
+                                                        <div class="<?php echo $value[5]['class']; ?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-8">
@@ -983,7 +983,7 @@ window.onload = function() {
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[0]['title']+'</div>'
-                                    +'<div class="grid-meta '+value[0]['class']+'">'+value[0]['region'].join(',')+'/'+value[0]['duration']+'MIN</div>'
+                                    +'<div class="grid-meta '+value[0]['class']+'">'+value[0]['region'].join(', ')+'/'+value[0]['duration']+'MIN</div>'
                                     +'<div class="grid-meta">'+value[0]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[0]['class']+'">DIR.'+value[0]['director'].toUpperCase()+'</div>'
 
@@ -1019,7 +1019,7 @@ window.onload = function() {
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                     +'<div class="grid-title">'+value[1]['title']+'</div>'
-                                    +'<div class="grid-meta '+value[1]['class']+'">'+value[1]['region'].join(',')+'/'+value[1]['duration']+'MIN</div>'
+                                    +'<div class="grid-meta '+value[1]['class']+'">'+value[1]['region'].join(', ')+'/'+value[1]['duration']+'MIN</div>'
                                      +'<div class="grid-meta">'+value[1]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[1]['class']+'">DIR.'+value[1]['director'].toUpperCase()+'</div>'
 
@@ -1055,7 +1055,7 @@ window.onload = function() {
                                +' </div>'
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[2]['title']+'</div>'
-                                   +' <div class="grid-meta '+value[2]['class']+'">'+value[2]['region'].join(',')+'/'+value[2]['duration']+'MIN</div>'
+                                   +' <div class="grid-meta '+value[2]['class']+'">'+value[2]['region'].join(', ')+'/'+value[2]['duration']+'MIN</div>'
                                      +'<div class="grid-meta">'+value[2]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[2]['class']+'">DIR.'+value[2]['director'].toUpperCase()+'</div>'
 
@@ -1093,7 +1093,7 @@ window.onload = function() {
                                 +'</div>'
                                +' <div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[3]['title']+'</div>'
-                                   +' <div class="grid-meta '+value[3]['class']+'">'+value[3]['region'].join(',')+'/'+value[3]['duration']+'MIN</div>'
+                                   +' <div class="grid-meta '+value[3]['class']+'">'+value[3]['region'].join(', ')+'/'+value[3]['duration']+'MIN</div>'
                                     +'<div class="grid-meta">'+value[3]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[3]['class']+'">DIR.'+value[3]['director'].toUpperCase()+'</div>'
 
@@ -1129,7 +1129,7 @@ window.onload = function() {
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[4]['title']+'</div>'
-                                   +' <div class="grid-meta '+value[4]['class']+'">'+value[4]['region'].join(',')+'/'+value[4]['duration']+'MIN</div>'
+                                   +' <div class="grid-meta '+value[4]['class']+'">'+value[4]['region'].join(', ')+'/'+value[4]['duration']+'MIN</div>'
                                     +'<div class="grid-meta ">'+value[4]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[4]['class']+'">DIR.'+value[4]['director'].toUpperCase()+'</div>'
                                 +'</div>'
@@ -1164,7 +1164,7 @@ window.onload = function() {
                                 +'</div>'
                                 +'<div class="grid-text-wrap">'
                                    +' <div class="grid-title">'+value[5]['title']+'</div>'
-                                   +' <div class="grid-meta '+value[5]['class']+'">'+value[5]['region'].join(',')+'/'+value[5]['duration']+'MIN</div>'
+                                   +' <div class="grid-meta '+value[5]['class']+'">'+value[5]['region'].join(', ')+'/'+value[5]['duration']+'MIN</div>'
                                     +'<div class="grid-meta">'+value[5]['categories'].join(', ')+'</div>'
                                     +'<div class="grid-meta '+value[5]['class']+'">DIR.'+value[5]['director'].toUpperCase()+'</div>'
                                +' </div>'
