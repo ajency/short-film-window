@@ -225,8 +225,7 @@
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
                                                         <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
-                                                            <i class="fa fa-thumbs-up"></i></div>
+                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-8">
