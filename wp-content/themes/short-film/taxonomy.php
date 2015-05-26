@@ -9,15 +9,12 @@
 			<?php
 
 				$queried_object = get_queried_object();
-
-				//print_r($queried_object);
+		
 
 				$taxonomy = $queried_object->taxonomy;
 
 				$term_name = $queried_object->name;
 
-				//echo " *** taxonomy= ".$queried_object->taxonomy;
-				//echo " *** region/language= ".$queried_object->term_id;
 
 				if($taxonomy == "region")
 				{
@@ -67,8 +64,7 @@
 
 							if($taxonomy == "region")
 							{
-						?>
-								<!-- <h4>REGION: <small><em><?php echo implode(', ',$response_posts[0]['region']); ?></em></small></h4> -->
+						?>								
 								<h4>REGION: <small><em><?php echo $term_name; ?></em></small></h4>
 
 						<?php
@@ -76,7 +72,7 @@
 							else if($taxonomy == "language")
 							{
 						?>
-								<!-- <h4>LANGUAGE: <small><em><?php echo implode(', ',$response_posts[0]['language']); ?></em></small></h4> -->
+								
 								<h4>LANGUAGE: <small><em><?php echo $term_name; ?></em></small></h4>
 						<?php
 
@@ -87,14 +83,6 @@
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
 
-							<!--
-                                <div class="form-group">
-
-								  <input type="text" class="form-control search" value="" placeholder="Search"/>
-
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            -->
 
                         </div>
 					</div>
@@ -137,7 +125,7 @@
 															<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 																<?php echo $value['title'];?>
 															</a>
-																<!-- <small><em> By <?php //echo ucfirst($value['director']);?></em></small> -->
+															
 														</h4>
 													</div>
 
@@ -181,7 +169,7 @@
 
 															<div class="lico like-action">
 
-																<!--<?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+																
 																	<?php echo getPostLikeLink($value['id']) ; ?>
 															</div>
 
@@ -215,7 +203,7 @@
 								<a href="#" class="btn btn-primary load_more">Load More Videos</a>
 							</div>
 
-<!--							<hr class="border-btm m-t-35">-->
+
 						</div> <!-- end #show_posts -->
 				<?php
 
@@ -251,8 +239,6 @@
 
 		jQuery('.load_more').live('click',function(e){
 
-			//jQuery('.loader').text("Loading data...")
-
 			e.preventDefault();
 
 			get_all_posts();
@@ -261,12 +247,7 @@
 
 
 	function get_all_posts()
-	{
-
-		//genre = jQuery('#genre').val();
-
-		//language = jQuery('#language').val();
-
+	{	
 		taxonomy = jQuery('#taxonomy').val();
 
 		region = jQuery('#region').val();
@@ -274,7 +255,7 @@
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
 
-		//data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
+		
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&region='+region;
 
 
@@ -308,8 +289,6 @@
 
 			html = jQuery('.all_posts').html();
 
-			//html="";
-
 			if(response.length>0)
 			{
 
@@ -331,13 +310,13 @@
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
 												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
-												 //+'<small><em> By '+value.director+'</em></small>'
+												
 											+'</h4>'
 										+'</div>'
 
 									+'</div>'
 
-									//+'<hr class="m-t-0 m-b-5">'
+									
 
 									+'<div class="row">'
 
@@ -347,9 +326,7 @@
 
 											+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' Minutes</h6>'
 
-											//+'<h6 class="m-t-0 m-b-0">'+value.duration+' Minutes</h6>'
-
-											// +'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
+										
 
 											+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
@@ -360,7 +337,7 @@
                                                 + '</span>'
                                             + '</p>'
 
-											//+'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+											
 
 										+'</div>'
 

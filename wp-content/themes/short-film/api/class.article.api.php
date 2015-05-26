@@ -67,11 +67,6 @@ class Article_API
 	public function get_many_articles()
 	{
 
-		// $genre = isset($_REQUEST['genre']) && $_REQUEST['genre'] !="" ? 
-						// $_REQUEST['genre'] : "";
-		// $language = isset($_REQUEST['language']) && $_REQUEST['language'] !="" ? 
-						// $_REQUEST['language'] : "";
-
 		$posts_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] 
 		!= "" ? $_REQUEST['posts_per_page'] : "";
 		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 

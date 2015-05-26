@@ -11,16 +11,9 @@ Template Name: List of Playlists
 
 	$total_no_of_playlists = wp_count_terms( 'playlist' );
 
-	// echo $total_no_of_playlists;
-	// exit;
-
 	$image_size = 'thumbnail';
 	$offset_value = 0;
 
-
-	//$all_playlists = get_all_playlists($image_size);
-
-	// $no_of_playlists = 9;
 	 $playlists_per_page = 9;
 
 
@@ -35,7 +28,7 @@ Template Name: List of Playlists
     <div class="container header-space playlist_list">
         <div class="content-wrapper">
 			<div class="row posrel">
-				<div class="col-md-12 posata"> <!-- <div class="col-md-8"> -->
+				<div class="col-md-12 posata"> 
 
 					<div class="row">
 
@@ -85,14 +78,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[0]['playlist_count']; ?> films</p>
@@ -117,14 +102,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[1]['playlist_count']; ?> films</p>
@@ -149,14 +126,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[2]['playlist_count']; ?> films</p>
@@ -181,14 +150,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[3]['playlist_count']; ?> films</p>
@@ -213,14 +174,7 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
+
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[4]['playlist_count']; ?> films</p>
@@ -245,14 +199,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[5]['playlist_count']; ?> films</p>
@@ -277,14 +223,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[6]['playlist_count']; ?> films</p>
@@ -309,14 +247,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[7]['playlist_count']; ?> films</p>
@@ -341,14 +271,6 @@ Template Name: List of Playlists
 
 								<div class="p-btm">
 
-									<!--
-									<div class="iconexp_sp pull-left">
-										<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-										<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-											<i class="fa fa-thumbs-up"></i>
-										</div>
-									</div>
-									-->
 
 									<div class="pull-right p-count">
 										<p><?php echo $value[8]['playlist_count']; ?> films</p>
@@ -451,31 +373,7 @@ Template Name: List of Playlists
 											</div>
 										</div>
 
-											<!--
-											<div>
-												<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
-													<h6><?php echo $recentvideo['title']; ?></h6>
-												</a>
 
-												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
-
-												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
-												<div>
-													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
-													<p class="pull-right">
-														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
-
-														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
-
-													</p>
-												</div>
-
-												<div class="clearfix"></div>
-
-												<hr class="m-t-0">
-
-											</div>
-											-->
 										<div class="overlay-vertical"></div>
 									</a>
 								</div>
@@ -505,8 +403,7 @@ window.onload = function()
 
 	console.log("onload offset = ");
 	console.log(jQuery('#offset').val());
-
-	//count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($playlists); ?>");
+	
 	var count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($playlists); ?>");
 
 
@@ -516,8 +413,6 @@ window.onload = function()
 	{
 		count=1;
 	}
-
-	//console.log(count);
 
 	jQuery('#offset').val(count);
 
@@ -535,7 +430,6 @@ window.onload = function()
 		jQuery('.loader').text("Loading data...")
 
 
-		// get_all_posts();
 		 get_all_playlists();
 
 
@@ -545,10 +439,7 @@ window.onload = function()
 	function resizeimgs(tw, obj, i)
 	{
 		var ar = obj.width() / obj.height();
-		// console.log('Number: ' + i + '\n-------------------------');
-		// console.log('aspectratio ' + ar);
-		// console.log('cont-resize ' + tw.width() / tw.height());
-		// console.log('END Number: ' + i + '\n-------------------------');
+
 
 		if ( (tw.width() / tw.height()) < ar ) {
 			obj
@@ -595,7 +486,7 @@ window.onload = function()
 					console.log(response);
 
 					generate_data(response);
-					// count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
+				
 					var count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
 
 					jQuery('#offset').val(count);
@@ -618,13 +509,12 @@ window.onload = function()
 
 	}
 
-	//showLayout();
 
 	function generate_play_grid_response(response)
 	{
 
 		var grid ={};
-		// var multiple = [6,6];
+		
 	    var multiple = [9,9];
 		var k = 0 ;
 		grid[k] = {};
@@ -650,7 +540,7 @@ window.onload = function()
 			else
 				grid[k][i] = response[j];
 
-			// if(i == 5 && response.length > multiple[k])
+		
 			if(i == 8 && response.length > multiple[k])
 			{
 
@@ -676,7 +566,7 @@ window.onload = function()
 
 		if(response.length>0)
 		{
-			// grid = generate_grid_reponse(response);
+			
 			grid = generate_play_grid_response(response);
 
 			jQuery.each(grid,function(index,value){
@@ -699,12 +589,7 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
+										
 
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[0]['playlist_count']+' films</p>'
@@ -729,12 +614,7 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
+										
 
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[1]['playlist_count']+' films</p>'
@@ -759,12 +639,7 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
+										
 
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[2]['playlist_count']+' films</p>'
@@ -789,12 +664,6 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
 
 
 												+'<div class="pull-right p-count">'
@@ -820,15 +689,6 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
-
-
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[4]['playlist_count']+' films</p>'
 												+'</div>'
@@ -852,14 +712,6 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
-
-
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[5]['playlist_count']+' films</p>'
 												+'</div>'
@@ -882,14 +734,6 @@ window.onload = function()
 											+'<p class="p-desc">'+value[6]['playlist_description']+'</p>'
 
 											+'<div class="p-btm">'
-
-
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
 
 
 												+'<div class="pull-right p-count">'
@@ -916,14 +760,6 @@ window.onload = function()
 											+'<div class="p-btm">'
 
 
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
-
-
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[7]['playlist_count']+' films</p>'
 												+'</div>'
@@ -947,15 +783,6 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-
-												// <div class="iconexp_sp pull-left">
-													// <div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-													// <div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
-														// <i class="fa fa-thumbs-up"></i>
-													// </div>
-												// </div>
-
-
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[8]['playlist_count']+' films</p>'
 												+'</div>'
@@ -971,20 +798,18 @@ window.onload = function()
 
 
 			});
-
-			// jQuery('.all_posts').html(html);
+		
 			jQuery('.all_playlists').html(html);
 
-			//showLayout();
 		}
 		else
 		{
-			// jQuery('.all_posts').html("");
+			
 			jQuery('.all_playlists').html("");
 
 			html += '<p class="noneLeft">No playlists found</p>';
 
-			// jQuery('.all_posts').html(html);
+			
 			jQuery('.all_playlists').html(html);
 
 			jQuery('.load_more').hide();
@@ -996,7 +821,7 @@ window.onload = function()
 	function loadslick()
 	{
 		jQuery('.slider1').slick({
-				// mobileFirst: true,
+				
 				infinite: true,
 				slidesToShow: 3,
 				responsive: [

@@ -52,7 +52,7 @@ function get_user_details($user_id = 0){
 
 }
 
-// function get_custom_taxonomy_terms($post_id)
+
 function get_custom_taxonomy_terms_region($post_id)
 {
 	$results = get_the_terms($post_id, 'region');
@@ -92,9 +92,7 @@ function get_custom_taxonomy_terms_language($post_id)
 function get_custom_taxonomy_terms_playlist($post_id)
 {
 	$results = get_the_terms($post_id, 'playlist');
-	
-	// print_r($results);
-	// exit;
+
 
 	$response = array();
 	
@@ -111,34 +109,7 @@ function get_custom_taxonomy_terms_playlist($post_id)
 
 function get_focus_film($id)
 {
-/*
-	$args = array(
-        'tag' 					=> 'infocus',
-        'posts_per_page' 		=> 1,
-        'orderby'          		=> 'post_date',
-		'order'            		=> 'DESC',
-		'post_type' 	   		=> 'post',
-		'post_status'      		=> 'publish',
-					
-      );
 
-	
-	$query = new WP_Query( $args);
-
-	$response = array();
-	$actual_response = array();
-	while ( $query->have_posts() ) {
-		$query->the_post();
-		$response = Film\Video::get($query->post->ID);
-		$response['post_like_count'] = get_post_meta( $query->post->ID, "_post_like_count", true );
-		$response['post_date']	= date('M d, Y',strtotime($query->post->post_date));
-		$actual_response[] = $response;
-	}
-
-	return $actual_response;
-*/
-
-/////////////
 
 	$response = array();
 	//$actual_response = array();
@@ -204,8 +175,6 @@ function get_posts_based_tags($tag){
 		
 	}
 	
-	// echo "hi";
-	// print_r($response);
 
 	return $response;
 
@@ -371,83 +340,6 @@ function generate_play_grid_response($playlists)
 	return $grid;
 
 }
-
-
-/*
-function get_posts_filter($args)
-{
-	global $wpdb;
-		
-	$searchtext = $args['title'];
-	
-	$response = array();
-	 
-		// 1. searchtext  = post title or post content
-	
-	$query_title = "SELECT ID
-					FROM wp_posts
-					WHERE (post_title LIKE '%".$searchtext."%' OR post_content LIKE '%".$searchtext."%' OR post_excerpt LIKE '%".$searchtext."%') AND post_status = 'publish' AND post_type = 'post'";
-	
-	$postidset = $wpdb->get_col($query_title);
-		
-		
-	if(count($postidset) == 0)   //2. searchtext = authorname
-	{	
-		$query_author = "
-				SELECT ID
-				FROM wp_posts
-				INNER JOIN wp_usermeta ON wp_posts.post_author = wp_usermeta.user_id
-				WHERE (post_status = 'publish') AND (post_type = 'post') AND ((meta_key = 'first_name' AND meta_value LIKE '%".$searchtext."%') OR (meta_key = 'last_name' AND meta_value LIKE '%".$searchtext."%'))";
-
-		 
-		 $postidset = $wpdb->get_col($query_author);	
-		 		 
-	}
-	
-	if(count($postidset) == 0)  //3. searchtext = tag
-	{
-		
-		$query_tag = "
-				SELECT wp_posts.ID 
-				FROM wp_posts, wp_terms, wp_term_taxonomy, wp_term_relationships
-				WHERE (wp_posts.ID = wp_term_relationships.object_id) 
-				AND (wp_term_relationships.term_taxonomy_id = wp_term_taxonomy.term_taxonomy_id) 
-				AND (wp_term_taxonomy.term_id = wp_terms.term_id) 
-				AND (wp_posts.post_status = 'publish') 
-				AND (wp_posts.post_type = 'post') 
-				AND (wp_terms.name LIKE '%".$searchtext."%')";
-				
-			 
-		 $postidset = $wpdb->get_col($query_tag);
-		
-	}
-
-	if(count($postidset) != 0)  //retrieve post info based on the post ids fetched above
-	{
-		$params = array(
-        'post__in'			=> $postidset,
-        'posts_per_page'	=> $args['posts_per_page'],
-        'order' 			=> $args['order'],
-        'orderby'			=> $args['orderby'],
-        'post_type' 		=> 'post',
-		'post_status' 		=> 'publish'
-     
-    	);
-
-	    
-		$query = new WP_Query($params);
-	    while ( $query->have_posts() ) 
-		{
-			$query->the_post();
-			$response[] = Film\Video::get($query->post->ID);
-			
-		}
-	}
-							
-   return $response;
-
-}
-*/
 
 
 function get_posts_filter($args)

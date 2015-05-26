@@ -8,7 +8,6 @@ class Article
 	{
 		
 		//global $post;
-
 		
 		//wordpress fn to get single post
 		$post  = get_post($post_id); 
