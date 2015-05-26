@@ -21,7 +21,7 @@
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
-		
+
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
@@ -100,8 +100,8 @@
 			    <div class="header-links">
 			        <div class="links">
 			            <!--<a href="#">LOGIN</a>-->
-			           
- 					    <a href="<?php echo site_url(); ?>/wp-login.php">LOGIN</a>					
+
+ 					    <a href="<?php echo site_url(); ?>/wp-login.php">LOGIN</a>
 			            <span>|</span>
 			            <a href="#">SEARCH</a>
 			        </div>
@@ -174,7 +174,7 @@
 						</div>
 
 						<div class="collapse navbar-collapse navbar-responsive-collapse">
-				            <?php wp_nav_menu(); ?>
+				            <?php wp_bootstrap_main_nav(); ?>
                         </div>
                     </div>
                 </div>
