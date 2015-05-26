@@ -11,10 +11,14 @@
             obj
                 .removeClass()
                 .addClass('bgheight');
-        } else {
+        } else if ( (tw.width() / tw.height()) > ar ) {
             obj
                 .removeClass()
                 .addClass('bgwidth');
+        } else {
+            obj
+                .removeClass()
+                .addClass('bgheight');
         }
         if (jQuery('body').hasClass('no-csstransforms')) {
             obj.css({
