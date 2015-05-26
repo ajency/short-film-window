@@ -8,9 +8,6 @@
 
 				$queried_object = get_queried_object();
 
-				//print_r($queried_object);
-
-
 				$author_id	= $queried_object->ID;
 
 
@@ -20,12 +17,9 @@
 
 
 				$author_info = get_author_info($author_id);
-
-				//print_r($author_info);
+				
 			?>
 
-
-<!--		<div class="page-header">-->
             <!--this row contains author info-->
 			<div class="row posrel">
 
@@ -92,20 +86,16 @@
 
 							</div>
 
-							<!--<div class="col-xs-4 text-right list-info-btns">-->
+						
 							<div class="col-xs-4 text-right list-info-btns posata">
 
 								<div class="soc-ico nh">
 
-									   <?php// echo do_shortcode('[ssba url="' . get_permalink($author_id) . '" title="' . $author_info['author_name'] . '"]'); ?>
+									 
 
 									   <?php echo do_shortcode('[ssba url="' . $author_info['author_link'] . '" title="' . $author_info['author_name'] . '"]'); ?>
-
-									   <?php// echo do_shortcode('[ssba]'); ?>
-
-									  <?php //echo "hii";?>
-
-									  <?php// echo aal_author_likes($author_id);			//imp  ?>
+									 
+									  <?php// echo aal_author_likes($author_id); ?>
 
 									    <?php//// echo getAuthorLikeLink( $author_id ); ?>
 
@@ -113,11 +103,11 @@
 
 
 								<div class="lico_c">
-									<!--<div class="lico small"><?php echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div> -->
+									
 
 									<div class="lico like-action">
 
-										<!-- <?php echo $author_info['post_user_like'] ;?> <i class="fa fa-thumbs-up"></i>  -->
+									
 
 									</div>
 
@@ -125,7 +115,7 @@
 
 							</div>
 
-							<!--</div>-->
+						
 
 
 						</div>
@@ -136,10 +126,7 @@
                     </div>
 			</div> <!-- end row -->
 
-<!--		</div>--> <!-- end #page-header -->
 
-
-<!--<hr>-->
 
 	        <div class="row listlayout pushin">
 
@@ -157,7 +144,7 @@
 					<div class="all_posts">
 
 						<?php
-							//if(count($response_posts) > 0)
+						
 							foreach ($response_posts as $key => $value)
 							{
 
@@ -179,13 +166,13 @@
 													<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 														<?php echo $value['title'];?>
 													</a>
-<!--													 <small><em> By <?php //echo ucfirst($value['director']);?></em></small> -->
+
 												</h4>
 											</div>
 
 										</div>
 
-<!--										<hr class="m-t-0 m-b-5">-->
+
 
 										<div class="row">
 
@@ -231,8 +218,7 @@
 													</div>
 
 													<div class="lico like-action">
-
-														<!--<?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+													
 															<?php echo getPostLikeLink($value['id']) ; ?>
 													</div>
 
@@ -268,7 +254,7 @@
 
 		?>
 
-<!--	<hr>-->
+
 
 		<?php
 			if(count($response_articles) > 0)
@@ -284,7 +270,7 @@
 					<div class="all_articles">
 
 						<?php
-							//if(count($response_posts) > 0)
+							
 							foreach ($response_articles as $key => $value)
 							{
 
@@ -315,7 +301,6 @@
 												</a>
 
 
-<!--												<small><em>By </em></small>-->
 
 											</h4>
 										</div>
@@ -323,54 +308,9 @@
 										<div class="col-md-4 hidden">
 
 
-<!--
-											<div class="social-strip">
-
-												<?php// echo do_shortcode("[ssba]"); ?>
-
-												<?php// echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
-
-												<?php //echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
-
-
-
-											</div>
--->
-
-
-											<!--
-											<div class="social-strip">
-												<div class="pull-right watchlist-add">
-													<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-												</div>
-												<div class="pull-right like-action">
-													<span class="m-l-5 m-r-5">|</span> <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
-												</div>
-
-												<div class="share-button">
-
-													<div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-													<div class="social-networks">
-													  <ul>
-														<li class="social-twitter">
-														  <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-														</li>
-														<li class="social-facebook">
-														<a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-														</li>
-														<li class="social-pin">
-														<a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-														</li>
-													  </ul>
-													</div>
-
-												</div>
-
-											</div>
-											-->
 										</div>
 									</div>
-<!--									<hr class="m-t-0 m-b-5">-->
+
 
 								   <div class="row">
 										<div class="col-xs-9">
@@ -378,8 +318,7 @@
                                                 <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
 
 											   <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
-
-											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
+											 
 
 												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
 
@@ -461,7 +400,6 @@
 
 		jQuery('.load_more').live('click',function(e){
 
-			//jQuery('.loader').text("Loading data...")
 
 			e.preventDefault();
 
@@ -474,7 +412,6 @@
 
 			e.preventDefault();
 
-			//get_all_posts();
 			get_all_articles();
 
 		});
@@ -483,7 +420,6 @@
 		{
 			console.log(" inside get_all_posts ");
 
-			//posts_per_page = 12;
 			posts_per_page = 6;
 			offset = jQuery('#offset').val();
 
@@ -501,14 +437,12 @@
 						action : 'fetch_posts_by_author'
 
 					},
-					//dataType: 'json',
 
 					success:function(response)
 					{
 
 						console.log(" inside get_all_posts success ");
-						//console.log(response);
-
+						
 						generate_data(response);
 
 						count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
@@ -518,7 +452,7 @@
 					},
 					error:function(error)
 					{
-						//jQuery('.loader').text("")
+						
 						jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 						console.log(" inside get_all_posts error ");
 
@@ -531,8 +465,7 @@
 		function get_all_articles()
 		{
 			console.log(" inside get_all_articles ");
-
-			//posts_per_page = 12;
+		
 			posts_per_page = 6;
 			offset_art = jQuery('#offset_art').val();
 
@@ -550,13 +483,12 @@
 						action : 'fetch_articles_by_author'
 
 					},
-					//dataType: 'json',
 
 					success:function(response)
 					{
 
 						console.log(" inside get_all_articles success ");
-						//console.log(response);
+					
 
 						generate_data_art(response);
 
@@ -567,7 +499,7 @@
 					},
 					error:function(error)
 					{
-						//jQuery('.loader').text("")
+						
 						jQuery('.all_articles').html('<p class="noneLeft">No Articles found</p>');
 						console.log(" inside get_all_articles error ");
 
@@ -584,7 +516,6 @@
 
 			html = jQuery('.all_posts').html();
 
-			//html="";
 
 			if(response.length>0)
 			{
@@ -607,14 +538,13 @@
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
 												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
-												 //+'<small><em> By '+value.director+'</em></small>'
+												
 											+'</h4>'
 										+'</div>'
 
 									+'</div>'
 
-									//+'<hr class="m-t-0 m-b-5">'
-
+									
 									+'<div class="row">'
 
 										+'<div class="col-xs-8 cont">'
@@ -622,13 +552,7 @@
 											+'<p>'+value.excerpt+'</p>'
 
 											+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' Minutes</h6>'
-
-											//+'<h6 class="m-t-0 m-b-0">'+value.duration+' Minutes</h6>'
-
-											//+'<h6 class="m-t-0 m-b-0">Dir: '+value.director+'</h6>'
-
-											// +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
-
+									
 											 +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
@@ -640,8 +564,7 @@
 
 												+ '</span>'
                                             + '</p>'
-
-											//+'<span class="date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
+									
 
 										+'</div>'
 
@@ -701,8 +624,6 @@
 
 			html = jQuery('.all_articles').html();
 
-			//html="";
-
 			if(response.length>0)
 			{
 
@@ -723,7 +644,6 @@
 
 									+'<a class="content-bottom article_title" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 
-									//+'<small><em> By '+value.director+'</em></small>'
 
 								+'</h4>'
                             +'</div>'
@@ -731,56 +651,20 @@
 
 
 
-							/*
-                                 +'<div class="social-strip">'
-
-                                    +'<div class="pull-right watchlist-add">'
-                                        +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
-                                    +'</div>'
-                                    +'<div class="pull-right like-action">'
-                                        +'<span class="m-l-5 m-r-5">|</span> '+value.post_like_count+' <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>'
-                                    +'</div>'
-                                    +'<div class="share-button">'
-                                        +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
-                                        +'<div class="social-networks">'
-                                          +'<ul>'
-                                            +'<li class="social-twitter">'
-                                              +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
-                                            +'</li>'
-                                            +'<li class="social-facebook">'
-                                            +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
-                                            +'</li>'
-                                            +'<li class="social-pin">'
-                                            +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
-                                            +'</li>'
-                                          +'</ul>'
-                                        +'</div>'
-                                    +'</div>'
-                                +'</div>'
-							*/
-
 							+'</div>'
                         +'</div>'
-                         //+'<hr class="m-t-0 m-b-5">'
+                        
                          +'<div class="row">'
                              +'<div class="col-xs-9">'
 									+'<p class="article_meta">'
                                         +'<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
-
-										//+'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
-
+									
 										+'<span class="author">'
 
 											+'<a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
 
 										+'</span>'
 
-
-										//+'<span class="author"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
-
-
-
-										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
 										+'<span class="art_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
 
 										+'<span class="art_views" title="Views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'
@@ -790,8 +674,7 @@
                              +'</div>'
                              +'<div class="col-xs-3">'
                                 +'<div class="social-strip soc-ico">'
-
-									//+'<p>'+value.id+'</p>'
+								
 
 										+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 
@@ -799,9 +682,7 @@
 
 								+'</div>'
                              +'</div>'
-                             // +'<div class="col-xs-4 text-right">'
-                                 // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
-                             // +'</div>'
+                           
                          +'</div>'
                          +'<div class="row">'
                              +'<div class="col-md-12">'

@@ -1029,31 +1029,7 @@ function render_film_tagline( $post ) {
  
 }
 
-/* //
 
-function render_film_language( $post ) 
-{
-
- 
-  // Add an nonce field so we can check for it later.
-  wp_nonce_field( 'film_language_meta_box', 'film_language_nonce' );
-
-  $language = get_post_meta( $post->ID, 'language', true );
-
-  ?>
-    <select name="language" id="language">
-        <option value="ENGLISH" <?php if($language == 'ENGLISH') echo 'selected'; ?>>ENGLISH</option>
-        <option value="FRENCH" <?php if($language == 'FRENCH') echo 'selected'; ?>>FRENCH</option>
-    </select>  
-
-<?php
- 
-}
-
- //  */
-
-
-//////////////////
 
 function render_articles_for_post( $post ) 
 {
@@ -1061,7 +1037,6 @@ function render_articles_for_post( $post )
   //// Add an nonce field so we can check for it later.
   wp_nonce_field( 'articles_for_post_meta_box', 'articles_for_post_nonce' );
 
- ////
  
  //retrieve list of articles from Database
  
@@ -1101,21 +1076,15 @@ function render_articles_for_post( $post )
 	}
 	
 	echo '</select>' ;
-	
-////
+
 	
  /*
    * Use get_post_meta() to retrieve an existing value
    * from the database and use the value for the form.
    */
-   
-  
-
 
  
 }
-
-//////////////////
 
 
 function adding_custom_meta_boxes( $post ) 
@@ -1156,20 +1125,7 @@ function adding_custom_meta_boxes( $post )
         'default'
     );
 
-	/*
-     add_meta_box( 
-        'film_language',
-        __( 'language' ),
-        'render_film_language',
-        'post',
-        'normal',
-        'default'
-    );
-	
-	*/
-	
-	////////////
-	
+
 	add_meta_box( 
         'related_article',
         __( 'related_article' ),
@@ -1178,12 +1134,9 @@ function adding_custom_meta_boxes( $post )
         'normal',
         'default'
     );
-	
-	////////////
+
 }
 add_action( 'add_meta_boxes_post', 'adding_custom_meta_boxes' );
-
-
 
 
 
@@ -1203,8 +1156,6 @@ add_action( 'save_post', 'save_related_article',10,2 );
 function save_meta_box_data( $post_id,$post ) 
 {
 
- 
-
       if($post->post_status == 'auto-draft')
         return;
 
@@ -1217,9 +1168,6 @@ function save_meta_box_data( $post_id,$post )
 
           return;
 
-          // if ( ! current_user_can( 'edit_page', $post_id ) ) {
-          //   return;
-          // }
 
         } else {
 
@@ -1301,13 +1249,6 @@ function save_meta_box_data( $post_id,$post )
         $tagline = sanitize_text_field( $_POST['tagline'] );
 
         update_post_meta( $post_id, 'tagline', $tagline );
-
-	/*	
-           // Sanitize user input.
-        $language = sanitize_text_field( $_POST['language'] );
-
-        update_post_meta( $post_id, 'language', $language );
-	  */
 
 
 }
@@ -1438,8 +1379,7 @@ function shortfilm_menu()
 
 	function get_staffpick_category_post($postid)
 	{	
-		//echo "inside get_staffpick_category_post()";
-		
+	
 		$response = Film\Video::get($postid);
 			
 		if (is_wp_error($response))
@@ -1603,16 +1543,12 @@ function get_recent_videos()
 	);
 	
 	$recent_posts = wp_get_recent_posts( $params );
-	
-	// print_r($recent_posts);
-	// exit;
+
 		
 	foreach ($recent_posts as $recent_post)
 	{			
 		$post_detail = Film\Video::get($recent_post['ID']);
-		
-		// print_r($post_detail);
-		// echo "****";
+
 		
 		$post_response[] = array(
 				'id'				=> $post_detail['id'],
@@ -1628,17 +1564,13 @@ function get_recent_videos()
 				'categories'		=> $post_detail['categories'],
 				'excerpt'			=> $post_detail['excerpt'],
 				'post_like_count'	=> $post_detail['post_like_count'],
-				'no_of_views'		=> $post_detail['no_of_views'],
-				////'post_date'			=> $post_detail['post_date']
+				'no_of_views'		=> $post_detail['no_of_views'],				
 				'post_date'			=> get_the_date()
 
 			);
 		
 	}
 
-	// print_r($post_response);	
-	// exit;
-	
 	return $post_response;	
 	
 } // end get_recent_articles()
@@ -1676,9 +1608,7 @@ function get_embed_url($postid,$videourl)
 		$vimeoUrl =  explode("vimeo.com/", $videourl);
 
 		$vimeoUrlUrlid =  $vimeoUrl[1];
-		
-		//$embedurl =  'https://vimeo.com/'.$vimeoUrlUrlid;
-		
+
 		$embedurl =  '//player.vimeo.com/video/'.$vimeoUrlUrlid.'?autoplay=1';
 		
 	}
@@ -1690,8 +1620,7 @@ function get_embed_url($postid,$videourl)
 
 function show_excerpt($charlength,$post_matter)
 {
-	
-	// $excerpt = $post_matter;
+
 	$excerpt = strip_tags($post_matter);
 	
 	$charlength++;
@@ -1709,209 +1638,13 @@ function show_excerpt($charlength,$post_matter)
 		{
 			return $subex;
 		}
-		//echo '[...]';
+
 	} 
 	else
 	{
 		return $excerpt;
 	}
 }
-
-
-/*
-	// get and show share buttons... similar to function in plugin
-	function show_share_buttons_for_post($atts = '') {
-	
-			
-		$content="";
-		$booShortCode = TRUE;
-		
-		// globals
-		//global $post;
-		
-		//print_r($atts);
-		
-		
-		$post=get_post($atts['post_id']);
-		
-		//print_r($post);
-		
-	
-		
-		// variables
-		$htmlContent = $content;
-		$htmlShareButtons = '';
-		$strIsWhatFunction = '';
-		$pattern = get_shortcode_regex();
-
-		
-	
-		// get sbba settings
-		$arrSettings = get_ssba_settings();
-
-		// placement on pages/posts/categories/archives/homepage
-		if ((!is_home() && !is_front_page() && is_page() && $arrSettings['ssba_pages'] == 'Y') || (is_single() && $arrSettings['ssba_posts'] == 'Y') || (is_category() && $arrSettings['ssba_cats_archs'] == 'Y') || (is_archive() && $arrSettings['ssba_cats_archs'] == 'Y') || ( (is_home() || is_front_page() ) && $arrSettings['ssba_homepage'] == 'Y') || $booShortCode == TRUE) {
-
-			// print_r($post);
-			// exit;
-			
-			// if not shortcode
-			if (isset($atts['widget']) && $atts['widget'] == 'Y')
-				// use widget share text
-				$strShareText = $arrSettings['ssba_widget_text'];
-			else 								
-				// use normal share text
-				$strShareText = $arrSettings['ssba_share_text'];
-
-				//-----------------------------------------------------------------------
-				
-			// post id
-			$intPostID = get_the_ID();
-			//$intPostID = $post->ID;
-			
-			//echo $intPostID;
-				
-			// if post type is download (EDD clashes)
-			if(get_post_type($intPostID) == "download") {
-
-				// check for and remove added text
-				preg_match_all("/>(.*?)>/", $strPageTitle, $matches);
-				$title =  $matches[0][0];
-				$title = ltrim($title, '>');
-				$title = rtrim ($title, '</span>');
-				$strPageTitle = $title;	
-			}
-						
-			// ssba div
-			$htmlShareButtons = '<!-- Simple Share Buttons Adder ('.SSBA_VERSION.') simplesharebuttons.com --><div class="ssba">';
-			
-			// center if set so
-			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
-			
-			// add custom text if set and set to placement above or left
-			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'above' || $arrSettings['ssba_text_placement'] == 'left')) {
-			
-				// check if user has left share link box checked
-				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
-				
-					// share text with link
-					$htmlShareButtons .= '<a href="https://simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
-				}
-				
-				// just display the share text
-				else { 
-					
-					// share text
-					$htmlShareButtons .= $strShareText;
-				}
-				// add a line break if set to above
-				($arrSettings['ssba_text_placement'] == 'above' ? $htmlShareButtons .= '<br/>' : NULL);
-			}
-			
-			// if running standard
-			if ($booShortCode == FALSE) {
-			
-				// use wordpress functions for page/post details
-				$urlCurrentPage = get_permalink($post->ID);
-				$strPageTitle = get_the_title($post->ID);
-				
-			} else { // using shortcode
-
-					// set page URL and title as set by user or get if needed
-					$urlCurrentPage = (isset($atts['url']) ? $atts['url'] : ssba_current_url());
-					$strPageTitle = (isset($atts['title']) ? $atts['title'] : get_the_title());
-			}	
-			
-			// the buttons!
-			$htmlShareButtons.= get_share_buttons($arrSettings, $urlCurrentPage, $strPageTitle, $intPostID);
-			
-			// add custom text if set and set to placement right or below
-			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'right' || $arrSettings['ssba_text_placement'] =='below')) {
-			
-				// add a line break if set to above
-				($arrSettings['ssba_text_placement'] == 'below' ? $htmlShareButtons .= '<br/>' : NULL);
-				
-				// check if user has left share link box checked
-				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
-				
-					// share text with link
-					$htmlShareButtons .= '<a href="https://simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
-				}
-				
-				// just display the share text
-				else { 
-					
-					// share text
-					$htmlShareButtons .= $strShareText;
-				}
-			}
-			
-			// close center if set
-			$htmlShareButtons.= '</div>';
-			$htmlShareButtons.= '</div>';
-			
-			// if not using shortcode
-			if ($booShortCode == FALSE) {
-			
-				// switch for placement of ssba
-				switch ($arrSettings['ssba_before_or_after']) {
-				
-					case 'before': // before the content
-					$htmlContent = $htmlShareButtons . $content;
-					break;
-					
-					case 'after': // after the content
-					$htmlContent = $content . $htmlShareButtons;
-					break;
-					
-					case 'both': // before and after the content
-					$htmlContent = $htmlShareButtons . $content . $htmlShareButtons;
-					break;
-				}
-			}
-			
-			// if using shortcode
-			else {
-			
-				// just return buttons
-				$htmlContent = $htmlShareButtons;
-			}
-		}
-		
-		// return content and share buttons
-		return $htmlContent;
-	}
-
-add_shortcode( 'ssba_post', 'show_share_buttons_for_post' );
-
-*/
-
-/*
-
-function get_post_type_for_WPSSO($og_type, $use_post) {
-     
-	 //global $post;
-	 
-	 $post = $use_post;
-	 
-	 print_r($post);
-	 exit;
-
-     if ($post->post_type == 'post') {
-          
-		  return "video.movie";
-     }
-	 else
-		return $og_type;
-    
-}
-add_filter( 'wpsso_og_type', 'get_post_type_for_WPSSO' );  
-		
-		//// C:\xampp\htdocs\shortfilm\wp-content\plugins\wpsso\lib\opengraph.php - line 150
-		
-*/
-
-
 
 
 add_action('template_redirect', 'increment_article_number_of_views');
@@ -1927,8 +1660,7 @@ function increment_article_number_of_views()
 		$old_count = get_post_meta( $post->ID, "no_of_views", true);
 					
 		update_post_meta( $post->ID, "no_of_views", $old_count+1);
-		
-		//echo get_post_meta( $post->ID, "_post_like_count", true);
+				
 	}
 		
 }
@@ -1948,9 +1680,6 @@ function increment_video_number_of_views()
 	$old_count = get_post_meta( $post->ID, "no_of_views", true);
 				
 	update_post_meta( $post->ID, "no_of_views", $old_count+1);
-	
-	//echo get_post_meta( $post->ID, "no_of_views", true);
-	
 	
 	wp_die();
 		
@@ -1983,14 +1712,10 @@ function get_posts_by_author($author_id)
 		$query->the_post();
 		
 		$response[] = Film\Video::get($query->post->ID);
-		
-		// echo "#############";
-		// print_r($response);
+
 		
 	}
 
-	//print_r($response);
-	
 	return $response;
 
 }
@@ -2025,8 +1750,6 @@ function get_articles_by_author($author_id)
 		
 	}
 
-	//print_r($response);
-	
 	return $response;
 
 }
@@ -2079,7 +1802,6 @@ function get_more_posts_by_author()
 		
 	}
 
-	//return $response;
 	 wp_send_json($response);
 
 	
@@ -2119,8 +1841,7 @@ function get_more_articles_by_author()
 
 		);
 	  
-	  ////
-	
+
 	$query = new WP_Query($args);
 
 	$response = array();
@@ -2137,7 +1858,6 @@ function get_more_articles_by_author()
 	}
 
 
-	//return $response;
 	 wp_send_json($response);
 	
 
@@ -2169,11 +1889,6 @@ function get_author_info($author_id)
 	
 	$author_email = get_the_author_meta( 'user_email', $author_id );
 	
-		
-	// echo " ** ";
-	// echo $name;
-	// echo " ** ";
-	// echo $post_user_like;
 	
 	$author_info = array( 
 			
@@ -2188,10 +1903,7 @@ function get_author_info($author_id)
 			'author_email'	 	  	   => $author_email
 			
 	);
-	
-	// echo " ** ";
-	// print_r($author_info);
-	// echo " ** ";
+
 	
 	return $author_info;
 				
@@ -2248,7 +1960,6 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 	
 	$playlist_details = get_term( $playlist_id, $taxonomy );
 	
-	/////
 
 	$args = array(
 		'orderby'           => 'post_date',
@@ -2263,15 +1974,14 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 
 	);
 					
-	//////////////
+	
 	
 	$response_posts = Film\Video::get_many($args);
 	
 	foreach($response_posts as $response_post)
 	{
 		$total_runtime+=$response_post['duration'];
-		
-		//echo "duration = ".$response_post['duration'];
+
 	}
 	
 	return $total_runtime;
@@ -2280,46 +1990,6 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 } //end function
 
 
-/*
-function get_category_links($postid)
-{
-	$response = Film\Video::get($postid);
-	
-
-
-	$cat_array = array();
-	
-	$temp = array();
-	
-	foreach ($response['categories'] as $value) 
-	{
-			$category_id = get_cat_ID( $value );
-			
-			
-			
-			$category_link = get_category_link( $category_id );
-			
-			
-			
-			array_push($temp, $category_link);
-			
-			//$link = '<a href='.esc_url( $category_link ).' target="_blank"  title="Category Name">'.$value.'</a>';
-			
-			$link = '<a href="'.esc_url( $category_link ).'" target="_blank"  title="Category Name">'.$value.'</a>';
-			
-			//print_r($link);
-									
-			array_push($cat_array, $link);
-			
-			
-	}
-
-	//print_r($cat_array);
-
-	return $cat_array;
-	
-}
-*/
 
 function get_video_category_links($categories)
 {
@@ -2338,9 +2008,6 @@ function get_video_category_links($categories)
 						
 			$category_link = get_category_link( $category_id );
 			
-			//echo " # ".$category_link." # ";
-			
-			
 			
 			array_push($temp, $category_link);
 			
@@ -2348,15 +2015,11 @@ function get_video_category_links($categories)
 			 $link = '<a href="'.esc_url( $category_link ).'" target="_blank"  title="Category Name">'.$value.'</a>';
 			 
 			
-			// echo " * ";
-			// print_r($link);
-			
 			array_push($cat_array, $link);
 			
 			
 	}
 
-	//print_r($cat_array);
 	
 	return $cat_array;
 	
@@ -2411,8 +2074,6 @@ function get_video_language_links($languages)
 
 function get_video_playlist_links($playlists)
 {			
-	// print_r($playlists);
-	// exit;
 
 	$playlist_array = array();
 
@@ -2444,8 +2105,7 @@ function get_list_of_all_languages()
 
 	$all_language_list = get_terms('language', $args);
 	
-	//print_r($all_language_list);
-	
+
 	return $all_language_list;
 }
 
@@ -2463,7 +2123,7 @@ function get_list_of_all_playlists()
 
 }
 
-////
+
 function get_category_info($category_id, $taxonomy, $image_size)
 {			
 	
@@ -2508,7 +2168,7 @@ function get_category_info($category_id, $taxonomy, $image_size)
 	return $playlist_info;
 				
 }
-////
+
 
 function get_few_categories($image_size)
 {
@@ -2574,16 +2234,13 @@ function get_few_categories($image_size)
 	}
 	else
 	{
-		// print_r($response_cats);
-		// exit;
+
 		
 	   return $response_cats;
 	}
 		
 }  
 
-
-////
 
 function get_some_categories($no_of_categories, $image_size)
 {
@@ -2648,8 +2305,6 @@ add_action('init', 'author_director_rewrite');
 
 
 
-////
-
 add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
 
 function custom_image_size_rules($file)
@@ -2663,7 +2318,7 @@ function custom_image_size_rules($file)
 	if ($width < $minimum['width'])
 	{
 		 return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
-		//return array("error"=>"Image dimensions are too small. Minimum width is" . $minimum['width'] ."px. Uploaded image width is $width px");
+		
 	}
 
 	return $file; 

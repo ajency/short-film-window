@@ -5,28 +5,16 @@
 
 	$queried_object = get_queried_object();
 
-	//print_r($queried_object);
-
 	$taxonomy = $queried_object->taxonomy;
 
 	$term_name = $queried_object->name;
 
 	$playlist_id = $queried_object->term_id;
 
-	// echo " *** taxonomy= ".$queried_object->taxonomy;
-	// echo " *** term_name= ".$queried_object->name;
-	// echo " *** playlist_id= ".$queried_object->term_id;
 
-
-	 // $playlist_info = get_playlist_info($playlist_id, $taxonomy);
 	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
 
 	 $total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
-
-
-
-	 // print_r($playlist_info);
-	 // exit;
 
 ?>
 
@@ -34,29 +22,7 @@
         <!--Content-->
         <div class="container header-space playlist">
             <div class="content-wrapper">
-			<!--
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>EXPLORE</h2>
-                    </div>
-					<div class="col-md-3 col-md-offset-3 col-sm-12">
-						<div class="m-t-20 search_menu">
 
-
-                                <div class="form-group">
-
-								  <input type="text" class="form-control search" value="" placeholder="Search"/>
-
-                                    <i class="fa fa-search"></i>
-                                </div>
-
-
-                        </div>
-					</div>
-                </div>
-
-                <hr class="m-t-0">
-			-->
                 <div class="row posrel">
 
 					<!--this row contains playlist info-->
@@ -120,12 +86,9 @@
 
 
 										<div class="lico_c">
-											<!--<div class="lico small"><?php// echo $value['no_of_views'];?> <i class="fa fa-eye"></i></div> -->
-
+										
 											<div class="lico like-action">
-
-												<!-- <?php// echo $author_info['post_user_like'] ;?> <i class="fa fa-thumbs-up"></i>  -->
-
+											
 											</div>
 
 										</div>
@@ -143,7 +106,7 @@
 
 									</div> <!-- end list info btns -->
 
-									<!--</div>-->
+								
 
 
 								</div> <!-- row end -->
@@ -157,82 +120,6 @@
 					</div> <!-- end row -->
 
 
-
-				<!--
-				   <div class="col-md-5">
-                		<h5 class="un">FILTER BY</h5>
-
-
-
-						   <div class="form-group">
-                                <label for="" class="col-md-3 control-label"><em>Genre:</em> </label>
-                                <div class="col-md-9">
-                                	<select name="genre" id="genre">
-                                        <option value="">All</option>
-                                        <?php
-										  // $categories = get_categories();
-										  // foreach ($categories as $category) {
-										  	// $option = '<option value="'.$category->term_id.'">';
-											// $option .= $category->cat_name;
-											// $option .= '</option>';
-											// echo $option;
-										  // }
-										 ?>
-                                    </select>
-                                </div>
-                            </div>
-
-
-
-
-						   <div class="form-group">
-
-								<?php
-									// $all_language_list = get_list_of_all_languages();
-									//print_r($all_language_list);
-
-								?>
-
-								<label for="" class="col-md-3 control-label"><em>Language:</em> </label>
-                                <div class="col-md-9">
-
-									<select name="language" id="language">
-
-										<option value="">All</option>
-
-										<?php
-											// foreach ($all_language_list as $lang_value)
-											// {
-
-												 // echo '<option value="'.$lang_value->term_id.'">'.$lang_value->name.'</option>';
-
-										    // }
-										?>
-
-								   </select>
-
-							   </div>
-                            </div>
-
-
-
-					</div>
-                    <div class="col-md-4 col-md-offset-3 padd-68">
-
-                            <label for="" class="col-md-3 control-label"><em>Sort by:</em> </label>
-                            <div class="col-md-9">
-                                <select class="" name="sort" id="sort">
-                                    <option value="1">Freshness</option>
-                                    <option value="2">Popularity</option>
-                                    <option value="3">Length</option>
-                                </select>
-                            </div>
-
-                    </div>
-				-->
-
-
-
                 </div>
 
                 <div class="spacer-40"></div><div class="loader"></div>
@@ -243,9 +130,7 @@
                 <div class="all_posts">
 
 			<?php
-					/////////////
-
-
+				
 				if($taxonomy == "playlist")
 				{
 					$args = array(
@@ -262,7 +147,7 @@
 					);
 				}
 
-				//////////////
+			
 
 				$response = Film\Video::get_many($args);
 
@@ -336,7 +221,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                   
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
                                                         <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -388,7 +273,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                      
                                                     </div>
 
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
@@ -439,7 +324,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                     
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
                                                         <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -492,7 +377,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist  -->
+                                                      
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
                                                         <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -542,7 +427,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist  -->
+                                                      
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
                                                         <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -592,7 +477,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                       <!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+                                                     
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
                                                         <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -664,11 +549,10 @@
                                 </p>
 
                             </div>
-                            <?php// echo $value['permalink']; ?>
+                           
                             <div class="col-xs-4 text-right list-info-btns">
                                 <div class="soc-ico nh">
-                                   <?php// echo do_shortcode("[ssba]"); ?>
-
+                                  
 								   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 
                                 </div>
@@ -679,14 +563,10 @@
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
 
-                                        <!-- <?php // echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+                                      
 
                                     </div>
-									<!--
-                                    <div class="lico watchlist-add">
-                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-                                    </div>
-									-->
+									
                                 </div>
 
                             </div>
@@ -716,7 +596,7 @@
 
 								<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 
-                               <?php// echo do_shortcode("[ssba]"); ?>
+                              
                             </div>
 
 
@@ -750,23 +630,17 @@
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
 
-                                        <!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+                                      
 
                                     </div>
-									<!--
-                                    <div class="lico watchlist-add">
-                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-                                    </div>
-									-->
+									
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-<!--                    <hr class="m-t-20 m-b-20">-->
 
-<!--                    <div class="spacer-20"></div>-->
                   
 	            </div>
 
@@ -814,7 +688,7 @@
 			<hr class="m-t-0">
 
 			<div class="row sim_mov">
-<!--				<div class="col-md-12">-->
+
 
 					<?php
 
@@ -872,31 +746,7 @@
 											</div>
 										</div>
 
-											<!--
-											<div>
-												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
-													<h6><?php echo $recentvideo['title']; ?></h6>
-												</a>
 
-												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
-
-												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
-												<div>
-													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
-													<p class="pull-right">
-														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
-
-														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
-
-													</p>
-												</div>
-
-												<div class="clearfix"></div>
-
-												<hr class="m-t-0">
-
-											</div>
-											-->
 										<div class="overlay-vertical"></div>
 									</a>
 								</div>
@@ -908,7 +758,7 @@
 						} //end foreach
 					?>
 
-<!--				</div>-->
+
 			</div>
 
 		</div>
@@ -926,7 +776,6 @@ window.onload = function() {
 
 	showLayout();
 
-	//jQuery('#genre').val(<?php echo $queried_object->term_id;?>);
 
 	jQuery('#gridoption').children().addClass('text-primary');
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
@@ -949,7 +798,7 @@ window.onload = function() {
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
 		jQuery('#gridoption').children().removeClass('text-primary');
-		// jQuery('#gridoption').children().nextAll().removeClass('text-primary');
+		
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
 
@@ -957,62 +806,6 @@ window.onload = function() {
 	});
 
 
-	//jQuery('.search').change(function(e) {
-/*
-    jQuery('.search').live('change',function(e)
-	{
-
-   	    e.preventDefault();
-
-		console.log("in search change event..");
-
-        jQuery('#genre').val("");
-        jQuery('#language').val("");
-        jQuery('#offset').val(0);
-
-		var title = jQuery(e.target).val();
-
-		data = 'title='+jQuery(e.target).val();
-
-		jQuery('.load_more').hide();
-
-		jQuery.ajax({
-                type : 'GET',
-                url : SITEURL+'/wp-json/filters',
-                data : data,
-                success:function(response)
-				{
-                    jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
-
-					jQuery('.search-results-message').html("Search Results for "+title);
-
-                    jQuery('.all_posts').html("")
-                     myarr = [];
-                    jQuery.each(response,function(index,value)
-					{
-
-                            console.log(value);
-
-                                if(value.id != "")
-                                {
-                                    myarr.push(value['id']);
-
-                                }
-
-                    });
-                    jQuery('#searchids').val(myarr.join(','));
-                    generate_data(response);
-                },
-                error:function(response){
-
-                }
-        });
-
-
-
-    });
-*/
     function resizeimgs(tw, obj, i) {
         var ar = obj.width() / obj.height();
         console.log('Number: ' + i + '\n-------------------------');
@@ -1057,7 +850,6 @@ window.onload = function() {
 
 	function get_all_posts()
 	{
-		/////////////////
 
 		taxonomy = jQuery('#taxonomy').val();
 
@@ -1066,11 +858,8 @@ window.onload = function() {
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
 
-		//data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&playlist='+playlist;
-
-		/////////////
 
 		jQuery.ajax({
 				type : 'GET',
@@ -1205,7 +994,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                             +'<div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-                                                    //+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                   
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
                                                     +'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1241,7 +1030,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                            +' <div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-                                                  // +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                 
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
                                                    +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1277,7 +1066,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                             +'<div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-                                                   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                   
                                                +' </div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
                                                    +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1315,7 +1104,7 @@ window.onload = function() {
                                        +' <div class="row">'
                                            +' <div class="col-xs-4">'
                                                +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-                                                    //+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                    
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
                                                    +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1350,7 +1139,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                            +' <div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-                                                   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                  
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
                                                    +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1385,7 +1174,7 @@ window.onload = function() {
                                        +' <div class="row">'
                                            +' <div class="col-xs-4">'
                                                +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-                                                    //+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+                                                   
                                                 +'</div>'
                                                +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
                                                    +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1435,7 +1224,7 @@ window.onload = function() {
                                 + '</h4>'
                             + '</div>'
                         + '</div>'
-                        //+ '<hr class="m-t-0 m-b-5">'
+                       
 
 						+ '<div class="row">'
 
@@ -1472,7 +1261,7 @@ window.onload = function() {
 									+ '</div>'
 
 									+ '<div class="lico watchlist-add"> '
-                                       // + '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                      
                                     + '</div>'
                                 + '</div>'
                             + '</div>'
@@ -1540,7 +1329,7 @@ window.onload = function() {
                                     + '</div>'
 
                                     + '<div class="lico watchlist-add">'
-                                       // + '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+                                      
                                     + '</div>'
 
                                 + '</div>'
@@ -1551,7 +1340,7 @@ window.onload = function() {
                     + '</div>'
                     + '<hr class="m-t-20 m-b-20">'
                     + '<div class="spacer-20"></div>'
-                    //+ '<p><em>'+value.excerpt+'</em></p>'
+                   
 	            + '</div>';
 
 
@@ -1572,7 +1361,7 @@ window.onload = function() {
     }
 function loadslick(){
     jQuery('.slider1').slick({
-            // mobileFirst: true,
+           
             infinite: true,
             slidesToShow: 3,
             responsive: [
@@ -1601,8 +1390,7 @@ function loadslick(){
 			event.preventDefault();
 			
 			jQuery(event.currentTarget).attr('href', '#');
-			//location.reload();
-
+			
 		}
 	
 	});
