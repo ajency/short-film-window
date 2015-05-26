@@ -11763,6 +11763,48 @@ a {
 .focus-img img {
   width: 100%;
 }
+.slider_gen .focus-img {
+  position: relative;
+}
+.slider_gen .focus-img .gen_hov {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: right;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.slider_gen .focus-img .gen_hov i {
+  display: block;
+  font-style: normal;
+}
+.slider_gen .focus-img .gen_hov .cat_name {
+  font-size: 22.4px;
+  text-decoration: underline;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.slider_gen .focus-img .gen_hov .cat_count {
+  position: absolute;
+  bottom: -35px;
+  right: 10px;
+  transition: all 0.5s;
+}
+.slider_gen .focus-img:hover .gen_hov {
+  visibility: visible;
+  opacity: 1;
+}
+.slider_gen .focus-img:hover .cat_count {
+  bottom: 5px;
+}
 @media (max-width: 767px) {
   .focus-img {
     height: auto;
