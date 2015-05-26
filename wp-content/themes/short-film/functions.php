@@ -2502,3 +2502,20 @@ function get_recent_playlists($image_size, $playlists_per_page)
 		
 	return $newlist;
 }
+
+
+
+// custom admin login logo
+function custom_login_logo() 
+{
+	 echo '<style type="text/css">
+	 h1 a { background-image: url('.get_bloginfo('template_directory').'/images/logo.png) !important;   width: 100% !important; background-size: auto !important;}
+	 </style>';
+}
+add_action('login_head', 'custom_login_logo');
+
+
+
+
+
+
