@@ -15,58 +15,26 @@ Template Name: articles_template
 
                 <div class="row">
                     <div class="col-md-6">
-                        <h2>IN FOCUS <small><em>Interviews and Discussions</em></small></h2>
+                        <h2 class="brand">IN FOCUS <small><em>Interviews and Discussions</em></small></h2>
                     </div>
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
-
-							<!-- <form action="" class="search_menu"> -->
-
-							   <div class="form-group">
-                                    <input type="text" class="form-control search" value="" placeholder="Search"/>
-                                    <i class="fa fa-search"></i>
-                                </div>
-
-                            <!-- </form> -->
-
+							<div class="form-group">
+                                <input type="text" class="form-control search" value="" placeholder="Search"/>
+                                <i class="fa fa-search"></i>
+                            </div>
                         </div>
 					</div>
                 </div>
 
 
-			   <hr class="m-t-0">
-
-
-                <div class="row">
-                    <div class="col-md-5">
-
-                    </div>
-
-
-                    <div class="col-md-4 col-md-offset-3">
-
-
-                        <div class="row">
-
-							<div class="col-xs-4 text-center">
-                               <!--
-							   <a href="#" id="listoption"  class="option"title="List">
-									 <i class="fa fa-th-list fa-3x"></i>
-							   </a>
-							   -->
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+			    <hr class="m-t-0">
 
                 <div class="spacer-40"></div><div class="loader"></div>
 
 				<div class="search-results-message">
 				</div>
-				
+
 
 				<div class="all_posts">
 
@@ -87,8 +55,6 @@ Template Name: articles_template
 					{
 						foreach ($response as $key => $value)
 						{
-							// echo $value['id'];
-							// echo "***";
 				?>
 							<div class="row listlayout article_row">
 
@@ -96,9 +62,9 @@ Template Name: articles_template
 
 									<a class="content-bottom article_fi" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 
-									
+
 										<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
-								
+
 
 									</a>
 
@@ -117,72 +83,16 @@ Template Name: articles_template
 
 												</a>
 
-
-<!--												<small><em>By </em></small>-->
-
 											</h4>
 										</div>
-
-										<div class="col-md-4 hidden">
-
-
-<!--
-											<div class="social-strip">
-
-												<?php// echo do_shortcode("[ssba]"); ?>
-
-												<?php// echo do_shortcode("[ssba_post post_id='".$value['id']."']"); ?>
-
-												<?php //echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
-
-
-
-											</div>
--->
-
-
-											<!--
-											<div class="social-strip">
-												<div class="pull-right watchlist-add">
-													<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-												</div>
-												<div class="pull-right like-action">
-													<span class="m-l-5 m-r-5">|</span> <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>
-												</div>
-
-												<div class="share-button">
-
-													<div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-													<div class="social-networks">
-													  <ul>
-														<li class="social-twitter">
-														  <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-														</li>
-														<li class="social-facebook">
-														<a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-														</li>
-														<li class="social-pin">
-														<a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-														</li>
-													  </ul>
-													</div>
-
-												</div>
-
-											</div>
-											-->
-										</div>
 									</div>
-<!--									<hr class="m-t-0 m-b-5">-->
 
 								   <div class="row">
 										<div class="col-xs-9">
                                             <p class="article_meta">
-                                                <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
+                                            	<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
 
-											   <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
-
-											   <!-- <span><i class="fa fa-thumbs-up"></i> <?php echo $value['post_like_count'];?> </span>-->
+												<span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
 
 												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
 
@@ -234,7 +144,7 @@ Template Name: articles_template
 
 				<div class="row">
                     <div class="col-md-6">
-                        <h2>POPULAR ARTICLES</h2>
+                        <h2 class="brand">POPULAR ARTICLES</h2>
                     </div>
                 </div>
 
@@ -281,9 +191,6 @@ Template Name: articles_template
 												<p class="pull-left"><small><?php echo $populararticle['post_date'];?></small></p>
 												<p class="pull-right">
 													<span><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
-													<!--
-													<span><i class="fa fa-eye"></i> <?php echo $populararticle['no_of_views'];?> </span>
-													-->
 												</p>
 											</div>
 
@@ -355,8 +262,6 @@ window.onload = function() {
 
     jQuery('.search').live('change',function(e){
         e.preventDefault();
-        //jQuery('#genre').val("");
-        //jQuery('#language').val("");
         jQuery('#offset').val(0);
 
 		var title = jQuery(e.target).val();
@@ -373,10 +278,11 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-					
-					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
-					
-					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
+
+					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					var clear = '<i class="fa fa-times"></i>';
+
+					jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
                     jQuery('.all_posts').html("")
                      myarr = [];
@@ -404,8 +310,6 @@ window.onload = function() {
 	jQuery('.fa-search').live('click',function(e){
 
         e.preventDefault();
-        //jQuery('#genre').val("");
-        //jQuery('#language').val("");
         jQuery('#offset').val(0);
 
 		var title = jQuery(this).prev().val();
@@ -422,10 +326,11 @@ window.onload = function() {
 				{
                     jQuery('#offset').val(0)
                     jQuery('.loader').text("Loading data...")
-					
-					var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
-					
-					jQuery('.search-results-message').html("Search Results for "+title+" "+clear);
+
+					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
+					var clear = '<i class="fa fa-times"></i>';
+
+					jQuery('.search-results-message').html('<h5 class="search_ed">Search Results for <span><a href="#" id="clear-search-results-btn" title="Clear Search Results">'+title+clear+'</a></span></h5>');
 
 
                     jQuery('.all_posts').html("")
@@ -448,13 +353,13 @@ window.onload = function() {
                 }
         });
 
-    });		
-	
-	jQuery('#clear-search-results-btn').live('click',function(e){
+    });
 
+	jQuery('#clear-search-results-btn').live('click',function(e){
+		e.preventDefault();
 		location.reload();
 
-	});	
+	});
 
 	function showLayout(){
 
@@ -517,40 +422,6 @@ window.onload = function() {
 
 
 
-/*
-    jQuery('.trending').infinitescroll({
-
-        navSelector     : "a#next:last",
-        nextSelector    : "a#next:last",
-        itemSelector    : ".trending",
-        debug           : true,
-        dataType        : 'json',
-        // behavior     : 'twitter',
-        appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
-    }, function( response ) {
-        html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="slider1 regular-slider">'
-        jQuery.each(response,function(index,value){
-
-
-
-                html += '<div>'
-                        +'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       +' </div></a>'
-                    +'</div>'
-
-
-        });
-
-        html +='</div>';
-
-        jQuery('.trending').html(html);
-        loadslick();
-
-
-    });
- */
     function generate_data(response)
 	{
 
@@ -580,51 +451,13 @@ window.onload = function() {
 
 									+'<a class="content-bottom article_title" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
 
-									//+'<small><em> By '+value.director+'</em></small>'
-
 								+'</h4>'
                             +'</div>'
-                            +'<div class="col-md-4">'
-
-
-
-							/*
-                                 +'<div class="social-strip">'
-
-                                    +'<div class="pull-right watchlist-add">'
-                                        +'<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
-                                    +'</div>'
-                                    +'<div class="pull-right like-action">'
-                                        +'<span class="m-l-5 m-r-5">|</span> '+value.post_like_count+' <i class="fa fa-thumbs-up"></i><span class="m-l-5 m-r-5">|</span>'
-                                    +'</div>'
-                                    +'<div class="share-button">'
-                                        +'<div class="social-toggle"><i class="fa fa-share"></i> Share</div>'
-                                        +'<div class="social-networks">'
-                                          +'<ul>'
-                                            +'<li class="social-twitter">'
-                                              +'<a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>'
-                                            +'</li>'
-                                            +'<li class="social-facebook">'
-                                            +'<a href="http://www.facebook.com/sharer.php?u=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>'
-                                            +'</li>'
-                                            +'<li class="social-pin">'
-                                            +'<a href="http://pinterest.com/pin/create/link/?url=http://<?php echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>'
-                                            +'</li>'
-                                          +'</ul>'
-                                        +'</div>'
-                                    +'</div>'
-                                +'</div>'
-							*/
-
-							+'</div>'
                         +'</div>'
-                         //+'<hr class="m-t-0 m-b-5">'
                          +'<div class="row">'
                              +'<div class="col-xs-9">'
 									+'<p class="article_meta">'
                                         +'<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
-
-										//+'<span class="author"><i class="fa fa-user"></i> '+value.director+'</span>'
 
 										+'<span class="author">'
 
@@ -632,12 +465,6 @@ window.onload = function() {
 
 										+'</span>'
 
-
-										//+'<span class="author"><i class="fa fa-user"></i> <a href="<?php echo get_author_posts_url($value['directorid']); ?>"> <?php echo ucfirst($value['director']);?> </a> </span>'
-
-
-
-										//+'<span><i class="fa fa-thumbs-up"></i>'+value.post_like_count+'</span>'
 										+'<span class="art_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
 
 										+'<span class="art_views" title="Views"><i class="fa fa-eye"></i>'+value.no_of_views+'</span>'
@@ -656,9 +483,6 @@ window.onload = function() {
 
 								+'</div>'
                              +'</div>'
-                             // +'<div class="col-xs-4 text-right">'
-                                 // +'<div class="small m-t-20">'+value.no_of_views+' <i class="fa fa-eye"></i></div>'
-                             // +'</div>'
                          +'</div>'
                          +'<div class="row">'
                              +'<div class="col-md-12">'
@@ -670,18 +494,10 @@ window.onload = function() {
                      +'</div>'
                  +'</div>';
 
-				//jQuery('.all_posts').find(".social-strip").html("<?php echo addslashes (do_shortcode("[ssba_post post_id='".$value['id']."']")); ?>");
-
-				 ////deleted html for couchdata here
 
             });
 
 			jQuery('.all_posts').html(html);
-
-
-			///// displays share icons on load more bot url is wrong it shares id of last article only
-
-			//jQuery('.all_posts').find(".social-strip").html("<?php echo addslashes (do_shortcode("[ssba_post post_id='".$value['id']."']")); ?>");
 
 				showLayout();
 
@@ -698,30 +514,6 @@ window.onload = function() {
 
     }
 
-   /*
-	function loadslick(){
-
-		jQuery('.slider1').slick({
-            // mobileFirst: true,
-            infinite: true,
-            slidesToShow: 3,
-            responsive: [
-                {
-                  breakpoint: 767,
-                  settings: {
-                    slidesToShow: 2
-                  }
-                },
-                {
-                  breakpoint: 480,
-                  settings: {
-                    slidesToShow: 1
-                  }
-                }
-              ]
-        });
-    }
-   */
 
 } //end onload
 

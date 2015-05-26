@@ -13153,6 +13153,38 @@ p.noneLeft {
   top: -10px;
   right: 3px;
 }
+.search_ed {
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #787878;
+}
+.search_ed span a {
+  font-weight: normal;
+  text-transform: none;
+  font-style: italic;
+  background-color: #F5F5F5;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  position: relative;
+  color: #af152f;
+}
+.search_ed span a:hover {
+  background-color: #eee;
+}
+.search_ed span a:hover i {
+  color: #af152f;
+}
+.search_ed span i {
+  color: #ccc;
+  margin-left: 12px;
+  margin-right: 5px;
+  font-size: 18px;
+  /* line-height: 25px; */
+  position: relative;
+  top: -1px;
+}
 .article_meta {
   margin-top: 5px;
   color: #bbb;
