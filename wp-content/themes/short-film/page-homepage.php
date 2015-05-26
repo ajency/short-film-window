@@ -889,7 +889,7 @@ Template Name: Homepage
 		else
 		{
 			jQuery('.staffpick-display-section').html("");
-			html += "<div>No videos found.</div>";
+			html += '<p class="noneLeft">No videos found</p>';
 			jQuery('.staffpick-display-section').html(html);
 		}
 
@@ -1368,7 +1368,7 @@ Template Name: Homepage
 		else
 		{
 			jQuery('.all_posts').html("");
-			html += "<div>No videos found.</div>";
+			html += '<p class="noneLeft">No videos found</p>';
 			jQuery('.all_posts').html(html);
 		}
 
