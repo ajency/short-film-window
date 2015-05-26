@@ -329,7 +329,7 @@ Template Name: List of Playlists
 							<div class="col-sm-4">
 								<div class="grid-box grid-full content-align-bottom">
 
-									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 
 										<div class="grid-image">
 											<img src="<?php echo $recentvideo['small_image'];?>">
