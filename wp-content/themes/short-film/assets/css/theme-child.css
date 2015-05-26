@@ -12083,6 +12083,26 @@ h6.brand {
   position: absolute;
   bottom: 0;
 }
+@media screen and (max-width: 991px) {
+  .infocus_home {
+    height: 265px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .infocus_home {
+    height: 245px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .infocus_home {
+    height: 275px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .infocus_home {
+    height: auto;
+  }
+}
 .play_movie_big {
   content: '';
   display: block;
