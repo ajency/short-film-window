@@ -12975,6 +12975,9 @@ h5.un {
   margin-top: 10px;
   padding: 7px 13px;
 }
+.upp {
+  text-transform: uppercase;
+}
 .show-featured-image {
   background: #444;
 }

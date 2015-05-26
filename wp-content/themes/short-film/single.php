@@ -27,7 +27,7 @@ get_header(); ?>
 
 				<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>
             </div>
-   
+
         </div>
     </div>
 
@@ -57,16 +57,16 @@ get_header(); ?>
 			<div class="row">
 			    <div class="col-xs-9">
 			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
-				
+
 				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
 
 					<?php
 			        	$region_array = array();
 			        	$cat_array = array();
 
-						
+
 						$language_array = array();
-			        	
+
 						foreach ($response['region'] as $value)
 						{
 			        			$id = get_term_by( 'name', $value, 'region');
@@ -77,14 +77,14 @@ get_header(); ?>
 			        	if(count($region_array) == 0)
 			        		$region_array = array(0 => 'No regions');
 
-				
+
 						 ?>
 
 							 <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6>
 
 
 						<?php
-					
+
 
 						$temp = array();
 			        	foreach ($response['categories'] as $value)
@@ -122,7 +122,7 @@ get_header(); ?>
 
                         </div>
 
-						
+
 
 					</div>
 
@@ -145,7 +145,7 @@ get_header(); ?>
 
 					$postcontent = $response['content'];
 
-					
+
 					echo wpautop( $postcontent );
 
 				?>
@@ -168,7 +168,7 @@ get_header(); ?>
 	            <hr>
 	                <div class="row">
 
-						
+
 						<div class="col-md-12">
 							<?php
 
@@ -185,7 +185,7 @@ get_header(); ?>
 
 	    <div class="spacer-40"></div>
 
-	    <h4 class="brand">WHAT ARE PEOPLE SAYING</h4>
+	    <h3 class="brand">WHAT ARE PEOPLE SAYING</h3>
 	    <hr class="m-t-0">
 
 
@@ -225,7 +225,7 @@ get_header(); ?>
 //function to resize the staffpick image after the viedo is stopped
         function resizeimgs(tw, obj, i) {
             var ar = obj.width() / obj.height();
-         
+
 
             if ( (tw.width() / tw.height()) < ar ) {
                 obj
@@ -315,13 +315,13 @@ afterToggle: function(){}
 		debug		 	: true,
 		dataType	 	: 'json',
 		appendCallback	: false, // USE FOR PREPENDING
-		
+
     }, function( response ) {
 
-    	html = '<div class="row">'    
+    	html = '<div class="row">'
 	        +'<div class="col-md-6">'
 	            +'<div class="pull-left">'
-	                +'<h4>IN FOCUS: <small><em><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a></em></small></h4>'
+	                +'<h3 class="brand upp">IN FOCUS: <small><em><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a></em></small></h3>'
 	            +'</div> '
 	        +'</div>'
 	        +'<div class="col-md-6">'
@@ -349,7 +349,7 @@ afterToggle: function(){}
 					+'<p class="pull-left" title="Author"><i class="fa fa-user"></i> '+response.director+'</p>'
 	               +' <p class="pull-right">'
 
-						
+
 	                    +'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
 
 						+'<span title="Views"><i class="fa fa-eye"></i>'+response.no_of_views+'</span>'
@@ -365,7 +365,7 @@ afterToggle: function(){}
 
 
 				      });
-	
+
 	jQuery('.play_movie_big').live('click',function(event){
 
 		var video_id = jQuery(this).attr("data-id");
@@ -379,7 +379,7 @@ afterToggle: function(){}
 			url : ajaxurl,
 
 			data:{
-			
+
 				video_id: video_id,
 				action : 'increase_video_number_of_views'
 
@@ -414,7 +414,7 @@ afterToggle: function(){}
 			html+=
 					'<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
 					+'<div class="play-video">'
-					
+
 						+'<iframe id="playid" class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 
 					+'</div>'
@@ -460,10 +460,10 @@ afterToggle: function(){}
 
 		height = window.innerHeight ? window.innerHeight : jQuery(window).height();
 		jQuery('.video-section').html("");
-		
+
 
 	   html= "";
-	  
+
 
 				html+=
 						'<div class="show-featured-image vid_if" style="position: relative; height:' + height + 'px;">'
