@@ -10,9 +10,7 @@ Template Name: Homepage
 
         <div class="slider3 full-slider">
           <div><img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"></div>
-          <!-- <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div>
-          <div><img src="https://placeimg.com/1000/404/people" class="img-responsive"></div>
-          <div><img src="https://placeimg.com/1000/404/nature" class="img-responsive"></div> -->
+
         </div>
 
         <!-- slider ends -->
@@ -30,45 +28,7 @@ Template Name: Homepage
                     <div class="col-sm-9">
 
 						<div class="staffpick-display-section">
-							<!--
-							<div class="inside-script">
-								<a>
-									<img src="<?php //echo get_template_directory_uri(); ?>/assets/img/video_placeholder.jpg" alt="" class="img-responsive width-full">
 
-									<div class="role-settings">
-										<div class="row">
-											<div class="col-md-9">
-												<div class="pull-left">
-													<h3>HELLO WORLD <small><em>by Director</em></small></h3>
-												</div>
-											</div>
-								</a>
-											<div class="col-md-3">
-												<div class="pull-right">
-
-													<div class="pull-right share-button">
-														<?php //echo do_shortcode("[ssba]"); ?>
-													</div>
-												</div>
-											</div>
-										</div>
-										<hr class="m-t-0 m-b-5">
-										<div class="row">
-											<div class="col-xs-6">
-												<h5 class="m-t-0 m-b-0"><small><em>Tag line</em></small></h5>
-												<h5 class="m-t-0 m-b-0"><small><em>1.7 Min / Region</em></small></h5>
-												<h5 class="m-t-0 m-b-0"><small><em>Horror</em></small></h5>
-											</div>
-											<div class="col-xs-6 text-right">
-												<div>199 <i class="fa fa-eye"></i></div>
-												<div>75 <i class="fa fa-thumbs-up"></i></div>
-												<div>Watchlist <i class="fa fa-binoculars"></i></div>
-											</div>
-										</div>
-									</div>
-
-							</div>
-							-->
 						</div>
 
 
@@ -86,8 +46,7 @@ Template Name: Homepage
 
 								foreach ( $pairs as $pair )
 								{
-									// echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
-
+								
 									echo '<li><a class="staffpick-category" data-cat-id="'.$pair['catid'].'" data-cat-name="'.$pair['catname'].'" data-post-id="'.$pair['postid'].'" href="#">' . $pair['catname'].'</a></li>';
 
 								}
@@ -178,7 +137,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
 													<div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -235,7 +194,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
 													<div><?php echo $value[1]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -292,7 +251,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
 													<div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -352,7 +311,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
 													<div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -409,7 +368,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
 													<div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -466,7 +425,7 @@ Template Name: Homepage
                                         <div class="row">
                                             <div class="col-sm-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+												
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
 													<div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -500,8 +459,7 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-12 text-center">
                     <h6>
-                      <!--  <a href="#">EXPLORE ALL FILMS <i class="fa fa-angle-double-down"></i></a>  -->
-
+                     
 						<a class="exp_all" href="<?php echo site_url();?>/movies">EXPLORE ALL FILMS <i class="fa fa-angle-double-down hidden"></i></a>
 
                     </h6>
@@ -518,12 +476,6 @@ Template Name: Homepage
                     <div class="col-md-3 col-sm-12">
                         <div class="form-group m-t-20">
 
-
-                              <!--
-							  <input type="text" class="form-control search" placeholder="Search">
-                                <i class="fa fa-search"></i>
-
-						      -->
 
 						</div>
                     </div>
@@ -544,7 +496,7 @@ Template Name: Homepage
 					<?php
 
 						foreach($recentarticles as $recentarticle)
-						{
+						{ 
 					?>
 							<div>
 								<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
@@ -560,9 +512,9 @@ Template Name: Homepage
 											<p class="pull-left"><small><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">
 												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticle['post_like_count']; ?> </span>
-												<!--
+												
 												<span><i class="fa fa-eye"></i> <?php echo $recentarticle['no_of_views']; ?> </span>
-												-->
+												
 											</p>
 										</div>
 										<div class="clearfix"></div>
@@ -601,8 +553,6 @@ Template Name: Homepage
 
 		$image_size = 'thumbnail';
 
-		//$response_cats = get_few_categories($image_size);
-		
 		$no_of_categories = 4;
 		
 		$response_cats = get_some_categories($no_of_categories, $image_size);
@@ -679,13 +629,7 @@ Template Name: Homepage
 														<p><?php echo $playlist['playlist_description']; ?></p>
 														
 														<div class="sli-foot">
-															
-															<!--
-															<div class="pull-left numbers">															
-																<p>415 <i class="fa fa-eye"></i></p>												
-																<p>402 <i class="fa fa-thumbs-up"></i></p>											
-															</div>
-															-->
+														
 															
 															<div class="pull-ri ght sm-numbers">
 																<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
@@ -724,10 +668,6 @@ Template Name: Homepage
         //function to resize the staffpick image after the viedo is stopped
         function resizeimgs(tw, obj, i) {
             var ar = obj.width() / obj.height();
-            /*console.log('Number: ' + i + '\n-------------------------');
-            console.log('aspectratio ' + ar);
-            console.log('cont-resize ' + tw.width() / tw.height());
-            console.log('END Number: ' + i + '\n-------------------------');*/
 
             if ( (tw.width() / tw.height()) < ar ) {
                 obj
@@ -874,9 +814,7 @@ Template Name: Homepage
 									+'<div class="row posrel">'
 										+'<div class="col-md-10">'
 											+'<div class="pull-lef t">'
-												// +'<h3>'+response.title+'<small><em> by '+response.director+'</em></small></h3>'
-
-
+												
 												+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
 
 											+'</div>'
@@ -898,30 +836,19 @@ Template Name: Homepage
 									+'<div class="col-md-10 col-xs-8">'
 
 										+'<p class="m-t-0 m-b-0 staff_tag"><em>'+response.tagline+'</em></p>'
-
-										// +'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region[0]+' </em></small></h5>'
-
-										// +'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.region.join(',')+' </em></small></h5>'
-
+		
 										+'<h5 class="m-t-0 m-b-0"><small><em>'+response.duration+' Min / '+response.video_region_links.join(', ')+' </em></small></h5>'
 
-										//+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.categories[0]+'</span></p>'
-
-										//+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.categories.join(',')+'</span></p>'
-
 										+'<p class="categories m-t-0 m-b-0"><span class="label label-greydark">'+response.video_category_links.join('</span><span class="label label-greydark">')+'</span></p>'
-
-
-
 
 									+'</div>'
 									+'<div class="col-md-2 col-xs-4 text-right meta-ico">'
 										+'<div class="meta-ico-in" title="Views">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 
-										//+'<div class="meta-ico-in">'+response.post_like_count+'<i class="fa fa-thumbs-up"></i></div>'
+										
 										+'<div class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
 
-										//+'<div class="meta-ico-in">Watchlist <i class="fa fa-binoculars"></i></div>'
+										
 									+'</div>'
 								+'</div>'
 							+'</div>'
@@ -955,17 +882,13 @@ Template Name: Homepage
 		var video_id = jQuery(this).attr("data-id");
 		var embedurl = jQuery(this).attr("data-embedurl");
 
-		//event.preventDefault();
-
-
 		jQuery.ajax({
 
 			type : 'POST',
 			url : ajaxurl,
 
 			data:{
-
-				//video_id: '<?php echo $video_id; ?>',
+				
 				video_id: video_id,
 				action : 'increase_video_number_of_views'
 
@@ -984,7 +907,6 @@ Template Name: Homepage
 
 		generate_video(embedurl);
 
-		//height = window.innerHeight ? window.innerHeight : $(window).height();
         jQuery('.vid_if ').css('height', sf_height);
         jQuery('.video-section').addClass('ontop');
 
@@ -1002,8 +924,6 @@ Template Name: Homepage
                     '<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
 					+'<div class="play-video">'
 
-						//+'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
-
 						+'<iframe id="playid" class="vid_if" src="'+embedurl+'" frameborder="0" allowfullscreen></iframe>'
 
 					+'</div>';
@@ -1015,8 +935,6 @@ Template Name: Homepage
     } // end of generate_video
 
     //onclick of playing video
-
-	//jQuery('.iframe.vid_if').live('click',function()
 
 	jQuery(document).on('click', 'iframe.vid_if', function() {
         jQuery('.video-section').toggleClass('ontop');
@@ -1192,7 +1110,7 @@ Template Name: Homepage
 
 											+'<div class="col-xs-4">'
 												+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-													//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													
 												+'</div>'
 												+'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
 													+'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1231,7 +1149,7 @@ Template Name: Homepage
 									+'<div class="row">'
 									   +' <div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-											   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											  
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
 											   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1270,7 +1188,7 @@ Template Name: Homepage
 									+'<div class="row">'
 										+'<div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-											   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											   
 										   +' </div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
 											   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1310,7 +1228,7 @@ Template Name: Homepage
 								   +' <div class="row">'
 									   +' <div class="col-xs-4">'
 										   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-												//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+												
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
 											   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1348,7 +1266,7 @@ Template Name: Homepage
 									+'<div class="row">'
 									   +' <div class="col-xs-4">'
 											+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-											   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+											  
 											+'</div>'
 											+'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
 											   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1385,7 +1303,7 @@ Template Name: Homepage
 								   +' <div class="row">'
 									   +' <div class="col-xs-4">'
 										   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-												//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+												
 											+'</div>'
 										   +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
 											   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1480,8 +1398,6 @@ Template Name: Homepage
 		}
 
 
-		//jQuery(document).on('click', '.stopclass', function() {
-
 		jQuery('.stopclass').live('click',function(event){
 
 			event.preventDefault();
@@ -1494,17 +1410,12 @@ Template Name: Homepage
 
 			generate_featured_image();
 
-			 //OR
-
-			 //jQuery('.play-video').html("");
 
 		});
 
 
 		function generate_featured_image()
 		{
-				//var featured_image = jQuery('.video-section img').attr('src');
-
 
 				var staff_featured_image = jQuery('.video-section').attr('data-staff-img');
 
@@ -1514,12 +1425,9 @@ Template Name: Homepage
 
 
 			 jQuery('.video-section').html("")
-			// jQuery('.show-featured-image').html("")
+		
 		   html = "";
-			//html = jQuery('.show-featured-image').html()
-
-
-
+	
 				html+=
 						'<div class="show-featured-image vid_if" style=" position: relative">'
 
@@ -1552,7 +1460,7 @@ Template Name: Homepage
 				event.preventDefault();
 				
 				jQuery(event.currentTarget).attr('href', '#');
-				//location.reload();
+				
 
 			}
 		

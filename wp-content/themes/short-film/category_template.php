@@ -53,14 +53,10 @@ Template Name: category_template
 					<div class="col-md-3 col-md-offset-3 col-sm-12">
 						<div class="m-t-20 search_menu">
 
-							<!-- <form action="" class="search_menu"> -->
-
 							   <div class="form-group">
                                     <input type="text" class="form-control search" value="" placeholder="Search"/>
                                     <i class="fa fa-search"></i>
                                 </div>
-
-                            <!-- </form> -->
 
                         </div>
 					</div>
@@ -98,7 +94,7 @@ Template Name: category_template
 
 								<?php
 									$all_language_list = get_list_of_all_languages();
-									//print_r($all_language_list);
+
 
 								?>
 
@@ -128,7 +124,6 @@ Template Name: category_template
 				   </div>
 
 					<div class="col-md-4 col-md-offset-3 padd-68">
-<!--                    	 <h5>SORT BY</h5>-->
 
 					 	<div class="form-group row form-horizontal">
 
@@ -145,15 +140,15 @@ Template Name: category_template
 
 						<div class="row opts">
                             <div class="col-md-12">
-<!--                            <div class="col-xs-4">-->
+
                                 <a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
-<!--                            </div>-->
-<!--                            <div class="col-xs-4 text-center">-->
+
+
                                 <a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
-<!--                            </div>-->
-<!--                            <div class="col-xs-4 text-right">-->
+
+
                                 <a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
-<!--                            </div>-->
+
                             </div>
                         </div>
                     </div>
@@ -237,8 +232,7 @@ Template Name: category_template
 								<div class="grid-image">
 
 									 <img src="<?php echo $value[0]['medium_image'] ;?>">
-
-									<?php// echo $value[0]['medium_image']; ?>
+								
 
 								</div>
 								<div class="grid-text-wrap">
@@ -255,7 +249,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class']; ?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+												
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
 													<div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -309,7 +303,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
@@ -360,7 +354,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
 													<div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -413,7 +407,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
 													<div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -463,7 +457,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
 													<div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -513,7 +507,7 @@ Template Name: category_template
 										<div class="row">
 											<div class="col-xs-4">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-													<!-- <i class="fa fa-binoculars fa-2x"></i><br>Watchlist -->
+													
 												</div>
 												<div class="pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
 													<div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -558,15 +552,12 @@ Template Name: category_template
                                 	<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
                                 		<?php echo $value['title'];?>
                                 	</a>
-                                	<!-- <small><em>By <?php echo ucfirst($value['director']);?></em></small>  -->
+                              
                                 </h4>
                             </div>
 
 						</div>
-                    <!--  </div>  -->
-
-<!--						<hr class="m-t-0 m-b-5">-->
-
+        
 						<div class="row">
 
 							<div class="col-xs-8 cont">
@@ -591,9 +582,7 @@ Template Name: category_template
 
 							</div>
 
-							<?php// echo $value['permalink'];	// <-
-							?>
-
+						
 							<div class="col-xs-4 text-right list-info-btns">
 
 								<div class="soc-ico nh">
@@ -608,14 +597,10 @@ Template Name: category_template
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
 
-										<!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
+									
 
 									</div>
-									<!--
-									<div class="lico watchlist-add">
-										<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-									</div>
-									-->
+								
 								</div>
 
 							</div>
@@ -625,7 +610,7 @@ Template Name: category_template
 
 				</div>
 
-			<!-- </div> // extra div <-  -->
+		
 
 	            <div class="couchlayout" style="display: none;">
 
@@ -685,24 +670,16 @@ Template Name: category_template
                                     <div class="lico like-action">
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
-                                       <!-- <?php// echo $value['post_like_count'] ;?> <i class="fa fa-thumbs-up"></i> -->
-
+                                    
                                     </div>
-									<!--
-                                    <div class="lico watchlist-add">
-                                        <a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>
-                                    </div>
-									-->
+									
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-<!--                    <hr class="m-t-20 m-b-20">-->
 
-<!--                    <div class="spacer-20"></div>-->
-                
 	            </div>
 
 
@@ -790,14 +767,11 @@ window.onload = function() {
 
 	jQuery('#language').live('change',function(e)
 	{
-		//jQuery('#genre').trigger('change');
-
 		jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
 		jQuery('.loader').text("Loading data...")
 		jQuery('.all_posts').html("")
-		//get_all_posts_in_language();
 		get_all_posts();
 
 	});
@@ -816,7 +790,7 @@ window.onload = function() {
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
 		jQuery('#gridoption').children().removeClass('text-primary');
-		// jQuery('#gridoption').children().nextAll().removeClass('text-primary');
+		
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
 
@@ -1014,15 +988,10 @@ window.onload = function() {
 	function get_all_posts()
 	{
 
-        //-> jQuery('.all_posts').html('');
-
 		genre = jQuery('#genre').val();
 		language = jQuery('#language').val();
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
-
-		// console.log ("get_all_posts language= ");
-		// console.log (language);
 
 		if(language)
 		{
@@ -1127,22 +1096,12 @@ window.onload = function() {
         itemSelector    : ".trending",
         debug           : true,
         dataType        : 'json',
-        // behavior     : 'twitter',
+      
         appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+     
     }, function( response ) {
         html = '<h3>TRENDING</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
-
-
-
-                // html += '<div>'
-                        // +'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           // +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       // +' </div></a>'
-                    // +'</div>'
-
-					/////////////////////////////////////
 
 
 					html +=	'<div class="col-xs-4">'
@@ -1159,11 +1118,9 @@ window.onload = function() {
 
 											+'<div class="grid-title">'+value.title+'</div>'
 
-										   // +'<div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>'
 										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
 
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
-										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
 
 											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
@@ -1206,18 +1163,9 @@ window.onload = function() {
 							+'</div>';
 
 
-
-					/////////////////////////////////////
-
-
-
-
         });
 
 
-
-
-      //  html +='</div>';
 
         jQuery('.trending').html(html);
         loadslick();
@@ -1231,21 +1179,12 @@ window.onload = function() {
         itemSelector    : ".awardwinning",
         debug           : true,
         dataType        : 'json',
-        // behavior     : 'twitter',
+       
         appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+       
     }, function( response ) {
         html = '<h3>AWARD WINNING</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
-
-
-                // html += '<div>'
-                        // +'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           // +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       // +' </div></a>'
-                    // +'</div>'
-
-			//////////////////////////////////
 
 
 					html +=	'<div class="col-xs-4">'
@@ -1262,11 +1201,10 @@ window.onload = function() {
 
 											+'<div class="grid-title">'+value.title+'</div>'
 
-										   // +'<div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>'
 										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
 
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
-										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
+										 
 
 											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
@@ -1308,15 +1246,8 @@ window.onload = function() {
 
 							+'</div>';
 
-			//////////////////////////////////
-
-
         });
 
-
-
-
-       // html +='</div>';
 
         jQuery('.awardwinning').html(html);
           loadslick();
@@ -1330,21 +1261,12 @@ window.onload = function() {
         itemSelector    : ".indian",
         debug           : true,
         dataType        : 'json',
-        // behavior     : 'twitter',
+
         appendCallback  : false, // USE FOR PREPENDING
-        // pathParse        : function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+   
     }, function( response ) {
         html = '<h3>INDIAN</h3><hr class="m-t-0"><div class="row">'
         jQuery.each(response,function(index,value){
-
-                // html += '<div>'
-                        // +'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'"><div class="focus-img">'
-                           // +' <img src="'+value.featured_image+'" class="img-responsive">'
-                       // +' </div></a>'
-                    // +'</div>'
-
-
-									/////////////////////////////////////
 
 
 					html +=	'<div class="col-xs-4">'
@@ -1361,12 +1283,11 @@ window.onload = function() {
 
 											+'<div class="grid-title">'+value.title+'</div>'
 
-										   // +'<div class="grid-meta"><?php echo implode(',',$recentvideo['region']);?>/<?php echo $recentvideo['duration'];?> MIN</div>'
+										
 										   +'<div class="grid-meta">'+value.region.join(',')+'/'+value.duration+' MIN</div>'
 
 										   +'<div class="grid-meta">'+value.categories.join(',')+'</div>'
-										   //+'<div class="grid-meta"><?php echo implode(',',$recentvideo['categories']);?></div>'
-
+										
 											+'<div class="grid-meta">DIR.'+value.director+'</div>'
 
 										+'</div>'
@@ -1408,16 +1329,8 @@ window.onload = function() {
 							+'</div>';
 
 
-
-					/////////////////////////////////////
-
-
         });
 
-
-
-
-        // html +='</div>';
 
         jQuery('.indian').html(html);
         loadslick();
@@ -1461,7 +1374,7 @@ window.onload = function() {
 
 										+'<div class="grid-image">'
 											+'<img src="'+value[0]['medium_image']+'">'
-											//+value[0]['small_image']
+											
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1479,7 +1392,7 @@ window.onload = function() {
 
 													+'<div class="col-xs-4">'
 														+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-															//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+															
 														+'</div>'
 														+'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
 															+'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1516,7 +1429,7 @@ window.onload = function() {
 											+'<div class="row">'
 											   +' <div class="col-xs-4">'
 													+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-													  // +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													 
 													+'</div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
 													   +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1552,7 +1465,7 @@ window.onload = function() {
 											+'<div class="row">'
 												+'<div class="col-xs-4">'
 													+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-													  // +' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													 
 												   +' </div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
 													   +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1590,7 +1503,7 @@ window.onload = function() {
 										   +' <div class="row">'
 											   +' <div class="col-xs-4">'
 												   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-														//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+														
 													+'</div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
 													   +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1625,7 +1538,7 @@ window.onload = function() {
 											+'<div class="row">'
 											   +' <div class="col-xs-4">'
 													+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-													   //+' <i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+													  
 													+'</div>'
 													+'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
 													   +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1660,7 +1573,7 @@ window.onload = function() {
 										   +' <div class="row">'
 											   +' <div class="col-xs-4">'
 												   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-														//+'<i class="fa fa-binoculars fa-2x"></i><br>Watchlist'
+														
 													+'</div>'
 												   +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
 													   +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1704,15 +1617,15 @@ html += '<div class="row listlayout">'
 						+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 							+ value.title
 						+ '</a>'
-						//+ '<small><em>By '+value.director+'</em></small>'
+						
 					+ '</h4>'
 				+ '</div>'
 			+ '</div>'
-			//+ '<hr class="m-t-0 m-b-5">'
+		
 			+ '<div class="row">'
 				+ '<div class="col-xs-8 cont">'
 					+ '<p>'+value.excerpt+'</p>'
-					// + '<h6 class="m-t-30 m-b-0">'+value.region.join(',')+'/'+value.duration+' MIN</h6>'
+				
 					+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</h6>'
 
 
@@ -1722,7 +1635,7 @@ html += '<div class="row listlayout">'
 
 						+ '<span class="label label-greydark">'
 
-							// + value.categories.join('</span><span class="label label-greydark">')
+						
 							+ value.video_category_links.join('</span><span class="label label-greydark">')
 
 						+ '</span>'
@@ -1744,12 +1657,12 @@ html += '<div class="row listlayout">'
 
 							+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
 
-							//+ value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+					
 
 						+ '</div>'
 
 						+ '<div class="lico watchlist-add"> '
-							//+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+						
 						+ '</div>'
 					+ '</div>'
 
@@ -1794,7 +1707,7 @@ html += '<div class="couchlayout">'
 			+ '<div class="col-xs-8 cont">'
 				+ '<p><em>'+value.excerpt+'</em></p>'
 
-				// + '<h6 class="m-t-30 m-b-0"><em>'+value.region.join(', ')+'/'+value.duration+' MIN</em></h6>'
+			
 				+ '<h6 class="m-t-30 m-b-0"><em>'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</em></h6>'
 				+ '<p class="categories">'
 					+ '<span class="label label-greydark">'
@@ -1813,19 +1726,19 @@ html += '<div class="couchlayout">'
 
 							+'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+value.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+value.post_like_count+'</a> </span>'
 
-							//+ value.post_like_count+' <i class="fa fa-thumbs-up"></i>'
+						
 
 						+ '</div>'
 						+ '<div class="lico watchlist-add">'
-							//+ '<a href="#"><i class="fa fa-binoculars"></i> Add to Watchlist </a>'
+							
 						+ '</div>'
 					+ '</div>'
 				+ '</div>'
 			+ '</div>'
 		+ '</div>'
-		//+ '<hr class="m-t-20 m-b-20">'
+	
 		+ '<div class="spacer-20"></div>'
-		//+ '<p class="cou_exc"><em>'+value.excerpt+'</em></p>'
+	
 	+ '</div>';
 
 
@@ -1848,7 +1761,7 @@ html += '<div class="couchlayout">'
     }
 function loadslick(){
     jQuery('.slider1').slick({
-            // mobileFirst: true,
+          
             infinite: true,
             slidesToShow: 3,
             responsive: [
@@ -1878,8 +1791,7 @@ function loadslick(){
 		{
 			event.preventDefault();
 			jQuery(event.currentTarget).attr('href', '#');
-			//location.reload();
-
+			
 		}
 	
 	});
