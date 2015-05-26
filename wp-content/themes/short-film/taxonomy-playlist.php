@@ -86,9 +86,9 @@
 
 
 										<div class="lico_c">
-										
+
 											<div class="lico like-action">
-											
+
 											</div>
 
 										</div>
@@ -106,7 +106,7 @@
 
 									</div> <!-- end list info btns -->
 
-								
+
 
 
 								</div> <!-- row end -->
@@ -130,7 +130,7 @@
                 <div class="all_posts">
 
 			<?php
-				
+
 				if($taxonomy == "playlist")
 				{
 					$args = array(
@@ -147,7 +147,7 @@
 					);
 				}
 
-			
+
 
 				$response = Film\Video::get_many($args);
 
@@ -188,7 +188,7 @@
 
 				 		<div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-full content-align-bottom">
-							
+
 							<?php
 								if($value[0]['slug'])
 								{
@@ -198,12 +198,12 @@
 								}
 								else
 								{
-							?>	
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-									
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[0]['medium_image'] ;?>">
                                     </div>
@@ -221,12 +221,11 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
-                                                   
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[0]['class'] ;?>">
                                                         <div><?php echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
-                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?>
-                                                            <i class="fa fa-thumbs-up"></i></div>
+                                                        <div class="<?php echo $value[0]['class'] ;?>"><?php echo $value[0]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-8">
@@ -241,7 +240,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                               
+
 							<?php
 								if($value[1]['slug'])
 								{
@@ -251,12 +250,12 @@
 								}
 								else
 								{
-							?>	
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[1]['small_image'] ;?>">
                                     </div>
@@ -273,7 +272,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
-                                                      
+
                                                     </div>
 
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[1]['class'] ;?>">
@@ -293,7 +292,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                              
+
 							<?php
 								if($value[2]['slug'])
 								{
@@ -303,12 +302,12 @@
 								}
 								else
 								{
-							?>	
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							  
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[2]['small_image'] ;?>">
                                     </div>
@@ -324,7 +323,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
-                                                     
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[2]['class'] ;?>">
                                                         <div><?php echo $value[2]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -346,7 +345,7 @@
 
                         <div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-half content-align-bottom">
-                               
+
 							<?php
 								if($value[3]['slug'])
 								{
@@ -356,12 +355,12 @@
 								}
 								else
 								{
-							?>	
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[3]['small_image'] ;?>">
                                     </div>
@@ -377,7 +376,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
-                                                      
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[3]['class'] ;?>">
                                                         <div><?php echo $value[3]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -396,7 +395,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-half content-align-bottom">
-                               
+
 							<?php
 								if($value[4]['slug'])
 								{
@@ -406,12 +405,12 @@
 								}
 								else
 								{
-							?>	
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-							   
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[4]['small_image'] ;?>">
                                     </div>
@@ -427,7 +426,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
-                                                      
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[4]['class'] ;?>">
                                                         <div><?php echo $value[4]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -446,7 +445,7 @@
                                 </a>
                             </div>
                             <div class="grid-box grid-full content-align-bottom">
-                                
+
 							<?php
 								if($value[5]['slug'])
 								{
@@ -456,12 +455,12 @@
 								}
 								else
 								{
-							?>	
+							?>
 									<a class="content-bottom" href="#">
 							<?php
 								}
-							?>		
-								
+							?>
+
                                     <div class="grid-image">
                                         <img src="<?php echo $value[5]['medium_image'] ;?>">
                                     </div>
@@ -477,7 +476,7 @@
                                             <div class="row">
                                                 <div class="col-xs-4">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
-                                                     
+
                                                     </div>
                                                     <div class="iconexp_sp pull-left p-l-10 m-t-10 <?php echo $value[5]['class'] ;?>">
                                                         <div><?php echo $value[5]['no_of_views'];?><i class="fa fa-eye"></i></div>
@@ -549,10 +548,10 @@
                                 </p>
 
                             </div>
-                           
+
                             <div class="col-xs-4 text-right list-info-btns">
                                 <div class="soc-ico nh">
-                                  
+
 								   <?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 
                                 </div>
@@ -563,10 +562,10 @@
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
 
-                                      
+
 
                                     </div>
-									
+
                                 </div>
 
                             </div>
@@ -596,7 +595,7 @@
 
 								<?php echo do_shortcode('[ssba url="' . get_permalink($value['id']) . '" title="' . get_the_title($value['id']) . '"]'); ?>
 
-                              
+
                             </div>
 
 
@@ -630,10 +629,10 @@
 
 										<span class="post_likes"> <?php echo getPostLikeLink($value['id']); ?> </span>
 
-                                      
+
 
                                     </div>
-									
+
                                 </div>
                             </div>
                         </div>
@@ -641,7 +640,7 @@
                     </div>
 
 
-                  
+
 	            </div>
 
 
@@ -681,7 +680,7 @@
 
 			<div class="row">
 				<div class="col-md-12">
-					<h4>NEW AND NOTEWORTHY</h4>
+					<h3 class="brand upp">NEW AND NOTEWORTHY</h3>
 				</div>
             </div>
 
@@ -798,7 +797,7 @@ window.onload = function() {
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
 		jQuery('#gridoption').children().removeClass('text-primary');
-		
+
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
 
@@ -994,7 +993,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                             +'<div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
-                                                   
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[0]['class']+'">'
                                                     +'<div>'+value[0]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1030,7 +1029,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                            +' <div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
-                                                 
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[1]['class']+'">'
                                                    +' <div>'+value[1]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1066,7 +1065,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                             +'<div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
-                                                   
+
                                                +' </div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[2]['class']+'">'
                                                    +' <div>'+value[2]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1104,7 +1103,7 @@ window.onload = function() {
                                        +' <div class="row">'
                                            +' <div class="col-xs-4">'
                                                +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
-                                                    
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[3]['class']+'">'
                                                    +' <div>'+value[3]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1139,7 +1138,7 @@ window.onload = function() {
                                         +'<div class="row">'
                                            +' <div class="col-xs-4">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
-                                                  
+
                                                 +'</div>'
                                                 +'<div class="pull-left p-l-10 m-t-10 '+value[4]['class']+'">'
                                                    +' <div>'+value[4]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1174,7 +1173,7 @@ window.onload = function() {
                                        +' <div class="row">'
                                            +' <div class="col-xs-4">'
                                                +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
-                                                   
+
                                                 +'</div>'
                                                +' <div class="pull-left p-l-10 m-t-10 '+value[5]['class']+'">'
                                                    +'<div>'+value[5]['no_of_views']+'<i class="fa fa-eye"></i></div>'
@@ -1224,7 +1223,7 @@ window.onload = function() {
                                 + '</h4>'
                             + '</div>'
                         + '</div>'
-                       
+
 
 						+ '<div class="row">'
 
@@ -1261,7 +1260,7 @@ window.onload = function() {
 									+ '</div>'
 
 									+ '<div class="lico watchlist-add"> '
-                                      
+
                                     + '</div>'
                                 + '</div>'
                             + '</div>'
@@ -1329,7 +1328,7 @@ window.onload = function() {
                                     + '</div>'
 
                                     + '<div class="lico watchlist-add">'
-                                      
+
                                     + '</div>'
 
                                 + '</div>'
@@ -1340,7 +1339,7 @@ window.onload = function() {
                     + '</div>'
                     + '<hr class="m-t-20 m-b-20">'
                     + '<div class="spacer-20"></div>'
-                   
+
 	            + '</div>';
 
 
@@ -1361,7 +1360,7 @@ window.onload = function() {
     }
 function loadslick(){
     jQuery('.slider1').slick({
-           
+
             infinite: true,
             slidesToShow: 3,
             responsive: [
@@ -1382,17 +1381,17 @@ function loadslick(){
 }
 
 	jQuery('.check-slug').live('click',function(event){
-		
+
 		var slug = jQuery(event.currentTarget).attr('data-slug');
-		
+
 		if(slug == "")
 		{
 			event.preventDefault();
-			
+
 			jQuery(event.currentTarget).attr('href', '#');
-			
+
 		}
-	
+
 	});
 
 } //onload

@@ -1011,7 +1011,7 @@ Template Name: Homepage
                     generate_data_search_nn(response);
 
                     jQuery('.grid-box .grid-image').each(function(i) {
-		                resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+		                resizeimgs(jQuery(this), jQuery(this).find('img'));
 		                jQuery(this).find('img').show();
 		            });
 
@@ -1073,6 +1073,10 @@ Template Name: Homepage
                     jQuery('#searchids').val(myarr.join(','));
 
                     generate_data_search_nn(response);
+                    jQuery('.grid-box .grid-image').each(function(i) {
+		                resizeimgs(jQuery(this), jQuery(this).find('img'));
+		                jQuery(this).find('img').show();
+		            });
 
                 },
                 error:function(response)
