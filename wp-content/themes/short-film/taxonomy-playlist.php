@@ -698,7 +698,7 @@
 
 
 					?>
-							<div class="col-xs-4">
+							<div class="col-sm-4">
 								<div class="grid-box grid-full content-align-bottom">
 
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">

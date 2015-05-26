@@ -172,14 +172,14 @@ Template Name: articles_template
 							{
 						?>
 								<div class="col-sm-4">
-									<div class="pop_posts">
+									<div class="pop_posts posrel">
 										<div class="focus-img">
 											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 												<img src="<?php echo $populararticle['small_image'];?>">
 											</a>
 										</div>
 
-										<div>
+										<div class="infocus_home">
 											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 								                <h6><?php echo $populararticle['title']; ?></h6>
 											</a>

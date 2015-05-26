@@ -11199,8 +11199,9 @@ a {
 .footer .social-links .link {
   position: static;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   font-size: 0;
+  top: 0;
 }
 .footer .social-links .link .icon {
   margin: 0;
@@ -11209,6 +11210,35 @@ a {
 }
 .footer .social-links .link .fa {
   color: #ffffff;
+}
+@media screen and (max-width: 1199px) {
+  .footer .social-links > .fb {
+    width: 20px;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .footer .social-links > .twitter {
+    margin-left: 3px;
+    width: 20px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+    -webkit-transform: scale(0.98);
+    -moz-transform: scale(0.98);
+    -o-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+  }
+  .footer .social-links > .youtube {
+    width: 30px;
+    overflow: hidden;
+    position: relative;
+    -webkit-transform: scale(0.825);
+    -moz-transform: scale(0.825);
+    -o-transform: scale(0.825);
+    -ms-transform: scale(0.825);
+    transform: scale(0.825);
+  }
 }
 .footer .subscribe::-webkit-input-placeholder {
   line-height: 1;
@@ -12053,6 +12083,26 @@ h6.brand {
   position: absolute;
   bottom: 0;
 }
+@media screen and (max-width: 991px) {
+  .infocus_home {
+    height: 265px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .infocus_home {
+    height: 245px;
+  }
+}
+@media screen and (max-width: 580px) {
+  .infocus_home {
+    height: 275px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .infocus_home {
+    height: auto;
+  }
+}
 .play_movie_big {
   content: '';
   display: block;
@@ -12623,7 +12673,7 @@ h6.brand {
 .vid-previous,
 .vid-next {
   position: absolute;
-  top: 40%;
+  top: 38%;
   display: block;
   width: 50px;
   height: 100px;
@@ -12660,7 +12710,7 @@ h6.brand {
 @media (max-width: 767px) {
   .vid-previous,
   .vid-next {
-    top: 30%;
+    top: 51%;
     width: 40px;
     height: 60px;
   }
@@ -13104,9 +13154,16 @@ hr.border-btm {
   border: 0;
   border-bottom: 1px solid #ccc;
 }
-.load_more {
+.load_more,
+.btn-primary {
   padding: 10px 30px;
   text-transform: uppercase;
+  background-color: #F2F2F2;
+  color: #af152f;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+}
+.load_more:hover,
+.btn-primary:hover {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 .bgwidth {
