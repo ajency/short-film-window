@@ -187,6 +187,12 @@
 
     $('.p-grid-c .p-img-c img').hide();
     $('.grid-box .grid-image img').hide();
+    if ($('div').hasClass('grid-image')) {
+            $('.grid-box .grid-image').each(function(i) {
+                resizeimgs($(this), $(this).find('img'), i);
+                $(this).find('img').show();
+            });
+        }
     $(window).load(function() {
         if ($('div').hasClass('grid-image')) {
             $('.grid-box .grid-image').each(function(i) {
