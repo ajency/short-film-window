@@ -11766,6 +11766,10 @@ a {
   top: 0;
   padding: 10px;
   color: #787878;
+  cursor: pointer;
+}
+.search_menu i:hover {
+  color: #af152f;
 }
 .slick-slider .slide-cont {
   position: relative;
@@ -13153,6 +13157,38 @@ p.noneLeft {
   top: -10px;
   right: 3px;
 }
+.search_ed {
+  margin-top: 0;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  color: #787878;
+}
+.search_ed span a {
+  font-weight: normal;
+  text-transform: none;
+  font-style: italic;
+  background-color: #F5F5F5;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  position: relative;
+  color: #af152f;
+}
+.search_ed span a:hover {
+  background-color: #eee;
+}
+.search_ed span a:hover i {
+  color: #af152f;
+}
+.search_ed span i {
+  color: #ccc;
+  margin-left: 12px;
+  margin-right: 5px;
+  font-size: 18px;
+  /* line-height: 25px; */
+  position: relative;
+  top: -1px;
+}
 .article_meta {
   margin-top: 5px;
   color: #bbb;
@@ -13512,7 +13548,13 @@ h4.auth_name {
     font-size: 16px;
   }
 }
-.playlist_list .playlist-grid .p-grid-c {
+.playlist-grid.slick-slider .slide-cont {
+  height: 177px;
+}
+.playlist-grid.slick-slider .p-grid-c {
+  height: 177px;
+}
+.playlist-grid .p-grid-c {
   position: relative;
   width: 100%;
   height: 300px;
@@ -13521,7 +13563,7 @@ h4.auth_name {
   top: 0;
   transition: all 0.5s;
 }
-.playlist_list .playlist-grid .p-grid-c a.p-g-all-link {
+.playlist-grid .p-grid-c a.p-g-all-link {
   display: block;
   width: 100%;
   height: 100%;
@@ -13531,26 +13573,26 @@ h4.auth_name {
   right: 0;
   bottom: 0;
 }
-.playlist_list .playlist-grid .p-grid-c:hover {
+.playlist-grid .p-grid-c:hover {
   top: -5px;
 }
-.playlist_list .playlist-grid .p-grid-c:hover .p-text {
+.playlist-grid .p-grid-c:hover .p-text {
   visibility: visible;
   opacity: 1;
   top: 0;
 }
-.playlist_list .playlist-grid .p-grid-c:hover .p-img-c img {
+.playlist-grid .p-grid-c:hover .p-img-c img {
   opacity: 0.4;
 }
-.playlist_list .playlist-grid .p-grid-c:hover .p-desc,
-.playlist_list .playlist-grid .p-grid-c:hover .p-btm {
+.playlist-grid .p-grid-c:hover .p-desc,
+.playlist-grid .p-grid-c:hover .p-btm {
   visibility: visible;
   opacity: 1;
 }
-.playlist_list .playlist-grid .p-grid-c:hover .p-btm {
+.playlist-grid .p-grid-c:hover .p-btm {
   bottom: 0;
 }
-.playlist_list .playlist-grid .p-img-c {
+.playlist-grid .p-img-c {
   position: absolute;
   top: 0;
   left: 0;
@@ -13558,14 +13600,14 @@ h4.auth_name {
   height: 100%;
   background: #000;
 }
-.playlist_list .playlist-grid .p-img-c img {
+.playlist-grid .p-img-c img {
   position: absolute;
   opacity: 1;
   width: 100%;
   height: auto;
   transition: all 0.5s;
 }
-.playlist_list .playlist-grid .p-img-c img.bgheight {
+.playlist-grid .p-img-c img.bgheight {
   height: 100%;
   width: auto !important;
   left: 50%;
@@ -13576,7 +13618,7 @@ h4.auth_name {
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
 }
-.playlist_list .playlist-grid .p-img-c img.bgwidth {
+.playlist-grid .p-img-c img.bgwidth {
   width: 100%;
   height: auto !important;
   top: 50%;
@@ -13587,7 +13629,7 @@ h4.auth_name {
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-.playlist_list .playlist-grid .p-text {
+.playlist-grid .p-text {
   position: absolute;
   top: 0;
   left: 0;
@@ -13610,7 +13652,7 @@ h4.auth_name {
   /* IE6-9 */
   transition: all 0.5s;
 }
-.playlist_list .playlist-grid .p-head {
+.playlist-grid .p-head {
   margin: 0;
   font-weight: normal;
   text-align: right;
@@ -13618,7 +13660,7 @@ h4.auth_name {
   text-decoration: underline;
   color: #fff;
 }
-.playlist_list .playlist-grid .p-desc {
+.playlist-grid .p-desc {
   visibility: hidden;
   opacity: 0;
   font-size: 16px;
@@ -13628,7 +13670,7 @@ h4.auth_name {
   margin-top: 10px;
   transition: all 0.5s;
 }
-.playlist_list .playlist-grid .p-btm {
+.playlist-grid .p-btm {
   visibility: hidden;
   opacity: 0;
   font-size: 16px;
@@ -13640,10 +13682,10 @@ h4.auth_name {
   color: #fff;
   transition: all 0.5s;
 }
-.playlist_list .playlist-grid .p-btm .iconexp_sp {
+.playlist-grid .p-btm .iconexp_sp {
   font-size: 16px;
 }
-.playlist_list .playlist-grid .p-btm .p-count {
+.playlist-grid .p-btm .p-count {
   position: absolute;
   bottom: 0;
   right: 15px;

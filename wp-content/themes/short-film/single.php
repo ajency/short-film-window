@@ -9,41 +9,13 @@ get_header(); ?>
 
 	$response = Film\Video::get($post->ID);
 
-	// print_r($response);
-	// exit;
-
-
-	//$video_id = $response['id'];
-
-	//$embedurl = get_embed_url($response['id'],$response['videourl']);
-
 	?>
 
-
-	<!--
-		<video id="bg-video"
-			 class="video-js vjs-default-skin"
-			 height="auto"
-			 width="auto"
-			 poster="<?php echo $response['featured_image'];?>"
-			 loop
-			 controls
-			 data-setup='{ "techOrder": ["youtube"], "quality":"720p", "playsInline": true, "src": "<?php echo $response['videourl'] ;?>" }'>
-
-			  <p>
-				Your browser doesn't support video. Please <a href="http://browsehappy.com/">upgrade your browser</a> to see the example.
-			  </p>
-		</video>
-	-->
 
     <div class="posrel">
 
         <div class="vid-previous"></div>
 		<div class="vid-next"></div>
-
-	   <!--
-	    <div class="video-section vid_if" style="position:relative;">
-	    -->
 
 		<div class="video-section vid_if" data-video-id="<?php echo $response['id']; ?>" data-video-img="<?php echo $response['featured_image']; ?>" data-video-embedurl="<?php echo $response['embedurl'];?>" style="position: relative;">
 			<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>
@@ -55,21 +27,13 @@ get_header(); ?>
 
 				<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>
             </div>
-            <!--
-                <div class="play-video">
-                    <iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>
-                </div>
-            -->
+   
         </div>
     </div>
 
 
 	<div id="movie-header" class="movie-header">
 
-<!--
-	<div class="video-js-responsive-container vjs-hd" id="vjs-hd">
-	</div>
--->
 
 		<div class="container movie-info">
 			<div class="row posrel">
@@ -83,64 +47,26 @@ get_header(); ?>
 
 						 <?php echo do_shortcode('[ssba url="' . get_permalink($response['id']) . '" title="' . get_the_title($response['id']) . '"]'); ?>
 
-<!--
-                        <div class="soc-ico">
-                            <a href="#" class="facebook-head"></a>
-                            <a href="#" class="facebook-like-head"></a>
-                            <a href="#" class="twitter-head"></a>
-                        </div>
--->
 
-					<!--
-					    <div class="share-button">
-					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-					        <div class="social-networks">
-
-							<?php///ssba_activate(); ?>
-
-							<?php // echo do_shortcode("[ssba]"); ?>
-					-->
-							  <!--
-					          <ul>
-					            <li class="social-twitter">
-					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-					            </li>
-					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>"><i class="fa fa-facebook-square fa-lg"></i></a>
-					            </li>
-					            <li class="social-pin">
-					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php// echo get_permalink(); ?>"><i class="fa fa-pinterest fa-lg"></i></a>
-					            </li>
-					          </ul>
-							  -->
-					<!--
-					        </div>
-					    </div>
-					-->
 					</div>
 				</div>
 
 			</div>
 
-
-
 			<hr class="m-t-0 m-b-5">
 			<div class="row">
 			    <div class="col-xs-9">
 			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
-
-				 <!--  <h5 class="director m-t-0 m-b-0"><small><em>by </em></small><?php echo ucfirst($response['director']);?></h5>  -->
-
+				
 				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
 
 					<?php
 			        	$region_array = array();
 			        	$cat_array = array();
 
-						////
+						
 						$language_array = array();
-			        	////
-
+			        	
 						foreach ($response['region'] as $value)
 						{
 			        			$id = get_term_by( 'name', $value, 'region');
@@ -151,14 +77,14 @@ get_header(); ?>
 			        	if(count($region_array) == 0)
 			        		$region_array = array(0 => 'No regions');
 
-					////
+				
 						 ?>
 
 							 <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6>
 
 
 						<?php
-					////
+					
 
 						$temp = array();
 			        	foreach ($response['categories'] as $value)
@@ -194,24 +120,12 @@ get_header(); ?>
 
                             <?php echo getPostLikeLink( get_the_ID() ) ; ?>
 
-							<?php// echo getPostLikeLink( $response['id'] ) ; ?>
-
-
                         </div>
 
-						<!--
-                        <div class="watchlist-add">
-                            <a href="#">Add to Watchlist <i class="fa fa-binoculars"></i></a>
-                        </div>
-						-->
+						
 
 					</div>
-<!--
-						<div class="pull-right share-button">
-								<?php///ssba_activate(); ?>
-								<?php //echo do_shortcode("[ssba]"); ?>
-						</div>
--->
+
 			    </div>
 			</div>
 		</div>
@@ -231,7 +145,7 @@ get_header(); ?>
 
 					$postcontent = $response['content'];
 
-					//echo $postcontent;
+					
 					echo wpautop( $postcontent );
 
 				?>
@@ -254,7 +168,7 @@ get_header(); ?>
 	            <hr>
 	                <div class="row">
 
-						<!-- <div class="col-sm-4"> -->
+						
 						<div class="col-md-12">
 							<?php
 
@@ -274,41 +188,9 @@ get_header(); ?>
 	    <h4 class="brand">WHAT ARE PEOPLE SAYING</h4>
 	    <hr class="m-t-0">
 
-	    <!-- <ul class="p-l-0">
-	        <li class="post comments-section">
-	        	<div class="user-profile-pic-wrapper">
-	        		<div class="user-profile-pic-normal">
-	        			<img alt="" src="http://erikjohanssonphoto.com/wp-content/uploads/2015/01/walk-a-way-188x188.jpg" class="img-circle img-responsive">
-	        		</div>
-	        	</div>
-	        	<div class="info-wrapper">
-	        		<div class="username">
-	        			<h5 class="m-b-0">
-	        				<a href="#">Amy</a>
-	        			</h5>
-	        		</div>
-	        		<div class="info">
-	        			Crazy Film
-	        		</div>
-	        	</div>
-	        	<div class="clearfix"></div>
-	        </li>
-	    </ul> -->
 
 	    <?php comments_template('',true); ?>
 
-	    <!-- <div class="row">
-	        <form action="" class="form-horizontal">
-	            <div class="form-group">
-	                <label class="col-md-1 col-sm-1">
-	                    <img src="http://erikjohanssonphoto.com/wp-content/uploads/2015/01/dreamwalker-188x188.jpg" class="img-responsive">
-	                </label>
-	                <div class="col-md-11 col-sm-11">
-	                    <textarea name="" id="" class="form-control"></textarea>
-	                </div>
-	            </div>
-	        </form>
-	    </div> -->
 
 	    <div class="text-center">
 
@@ -343,10 +225,7 @@ get_header(); ?>
 //function to resize the staffpick image after the viedo is stopped
         function resizeimgs(tw, obj, i) {
             var ar = obj.width() / obj.height();
-            /*console.log('Number: ' + i + '\n-------------------------');
-            console.log('aspectratio ' + ar);
-            console.log('cont-resize ' + tw.width() / tw.height());
-            console.log('END Number: ' + i + '\n-------------------------');*/
+         
 
             if ( (tw.width() / tw.height()) < ar ) {
                 obj
@@ -435,17 +314,11 @@ afterToggle: function(){}
 		itemSelector 	: ".infocus",
 		debug		 	: true,
 		dataType	 	: 'json',
-		// behavior		: 'twitter',
 		appendCallback	: false, // USE FOR PREPENDING
-		// pathParse     	: function( pathStr, nextPage ){ return pathStr.replace('2', nextPage ); }
+		
     }, function( response ) {
 
-    	//response = resp[0];
-
-
-    	html = '<div class="row">'
-    	//+'<a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'
-
+    	html = '<div class="row">'    
 	        +'<div class="col-md-6">'
 	            +'<div class="pull-left">'
 	                +'<h4>IN FOCUS: <small><em><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a></em></small></h4>'
@@ -476,7 +349,7 @@ afterToggle: function(){}
 					+'<p class="pull-left" title="Author"><i class="fa fa-user"></i> '+response.director+'</p>'
 	               +' <p class="pull-right">'
 
-						//+'<span><i class="fa fa-thumbs-up"></i>'+response.post_like_count+'</span>'
+						
 	                    +'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
 
 						+'<span title="Views"><i class="fa fa-eye"></i>'+response.no_of_views+'</span>'
@@ -492,9 +365,7 @@ afterToggle: function(){}
 
 
 				      });
-
-
-	//jQuery('.play_movie_big').click(function(event){
+	
 	jQuery('.play_movie_big').live('click',function(event){
 
 		var video_id = jQuery(this).attr("data-id");
@@ -508,8 +379,7 @@ afterToggle: function(){}
 			url : ajaxurl,
 
 			data:{
-
-				//video_id: '<?php echo $video_id; ?>',
+			
 				video_id: video_id,
 				action : 'increase_video_number_of_views'
 
@@ -544,9 +414,7 @@ afterToggle: function(){}
 			html+=
 					'<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
 					+'<div class="play-video">'
-
-						// +'<iframe class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
-
+					
 						+'<iframe id="playid" class="vid_if" src="<?php echo $response['embedurl'];?>" frameborder="0" allowfullscreen></iframe>'
 
 					+'</div>'
@@ -567,7 +435,6 @@ afterToggle: function(){}
 
 	//onclick of STOP btn
 
-
     jQuery(document).on('click', '.stopclass', function(event) {
 
 		event.preventDefault();
@@ -579,16 +446,11 @@ afterToggle: function(){}
 
 		generate_featured_image();
 
-		 //OR
-
-		 //jQuery('.play-video').html("");
 
     });
 
 	function generate_featured_image()
 	{
-		//data-video-img
-
 		var post_featured_image = jQuery('.video-section').attr('data-video-img');
 
 		var post_video_id = jQuery('.video-section').attr('data-video-id');
@@ -596,25 +458,12 @@ afterToggle: function(){}
 		var post_embedurl = jQuery('.video-section').attr('data-video-embedurl');
 
 
-
-		// var post_featured_image = <?php echo $response['featured_image']; ?>;
-
-		// var post_video_id = <?php echo $response['id']; ?>;
-
-		// var post_embedurl = <?php echo $response['embedurl']; ?>;
-
 		height = window.innerHeight ? window.innerHeight : jQuery(window).height();
 		jQuery('.video-section').html("");
-		 //jQuery('.show-featured-image').html("")
+		
 
 	   html= "";
-	    //html = jQuery('.show-featured-image').html();
-
-			// html+=
-					// '<img src="<?php echo $response['featured_image']; ?>" alt="" class="img-responsive width-full">'
-
-					// +'<a href="#" class="play_movie_big" data-id="<?php echo $response['id']; ?>" data-embedurl="<?php echo $response['embedurl']; ?>"> </a>'
-				// ;
+	  
 
 				html+=
 						'<div class="show-featured-image vid_if" style="position: relative; height:' + height + 'px;">'

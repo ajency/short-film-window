@@ -74,12 +74,6 @@ class Video_API
 		
 		$response = Film\Video::get($id);
 		
-		
-		
-		// $embedurl = get_embed_url($response['id'],$response['videourl']);
-		
-		// $response['embedurl'] = $embedurl;
-		
 
 		if (is_wp_error($response))
 		{
@@ -167,8 +161,7 @@ class Video_API
 	
 	public function get_many_playlists()
 	{
-		//echo "in get_many_playlists api ";
-		
+
 		$playlists_per_page = isset($_REQUEST['playlists_per_page']) && $_REQUEST['playlists_per_page'] 
 		!= "" ? $_REQUEST['playlists_per_page'] : 0;
 		
@@ -178,8 +171,6 @@ class Video_API
 		if($offset != 0)
 			$offset = intval($offset) +  1;
 			
-		// $image_size = isset($_REQUEST['image_size']) && $_REQUEST['image_size'] 
-		// != "" ? $_REQUEST['image_size'] : "thumbnail";
 		
 		$image_size = isset($_REQUEST['image_size']) && $_REQUEST['image_size'] 
 		!= "" ? $_REQUEST['image_size'] : "";			
@@ -192,16 +183,8 @@ class Video_API
 
 		);
 		
-		// echo $image_size." ";
-		// echo $playlists_per_page." ";
-		// echo $offset;
-		// exit;
 		
 		$response = get_playlists($image_size, $playlists_per_page, $offset); 
-		
-		// echo " in get_many_playlists api response = ";
-		// print_r($response);
-		// exit;
 
 		if (is_wp_error($response))
 		{
@@ -263,10 +246,7 @@ class Video_API
             $response->set_status(200);
 
         }
-		
-		// echo "hey in video.api get_posts_based_tags ";
-		// print_r($response);
-		
+
         return $response;
 
 	}
@@ -299,10 +279,8 @@ class Video_API
 	public function get_posts_based_regions()
 	{
 
-        //$cat = $_REQUEST['cat'];
         $region_name = $_REQUEST['region'];
 
-        //$response = get_posts_based_cats($cat);
         $response = get_posts_based_regions($region_name);
 
 
@@ -345,9 +323,6 @@ class Video_API
 		
         $response = get_posts_filter($args);
 		
-			// echo "response = ";				
-		// print_r($response);	
-        
 
         if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
@@ -362,9 +337,6 @@ class Video_API
 
         }
 
-		// echo "JSON response = ";				
-		// print_r($response);	
-		
         return $response;
 
     }

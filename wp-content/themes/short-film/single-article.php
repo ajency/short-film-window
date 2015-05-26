@@ -18,12 +18,7 @@ get_header(); ?>
         <div class="article_s_img">
              <img src="<?php echo $response['large_image'];?>" class="img-responsive width-full">
         </div>
-		 <!-- <div class="video-js-responsive-container vjs-hd" id="vjs-hd"></div> -->
 
-		<!--
-		<div class="vid-previous"></div>
-		<div class="vid-next"></div>
-		-->
 
 		<div class="container movie-info">
 			<div class="row">
@@ -39,38 +34,6 @@ get_header(); ?>
 				<div class="col-md-5">
 					<div class="">
 
-					<!--
-					    <div class="pull-right like-action">
-					        <span class="m-l-5 m-r-5">|</span> <span class="m-l-5 m-r-5">|</span>
-					    </div>
-					-->
-
-					<!--
-					    <div class="share-button">
-					        <div class="social-toggle"><i class="fa fa-share"></i> Share</div>
-					        <div class="social-networks">
-
-							<?php///ssba_activate(); ?>
-
-							<?php // echo do_shortcode("[ssba]"); ?>
-					-->
-							  <!--
-					          <ul>
-					            <li class="social-twitter">
-					              <a href="https://twitter.com/share"><i class="fa fa-twitter fa-lg"></i></a>
-					            </li>
-					            <li class="social-facebook">
-					            <a href="http://www.facebook.com/sharer.php?u=http://<?php// echo get_permalink(); ?>"><i class="fa fa-facebook-square fa-lg"></i></a>
-					            </li>
-					            <li class="social-pin">
-					            <a href="http://pinterest.com/pin/create/link/?url=http://<?php //echo get_permalink(); ?>" target="_blank"><i class="fa fa-pinterest fa-lg"></i></a>
-					            </li>
-					          </ul>
-							  -->
-					<!--
-					        </div>
-					    </div>
-					-->
 					</div>
 				</div>
 
@@ -110,7 +73,7 @@ get_header(); ?>
 			<div class="img-content">
 				<?php
 
-					//echo $response['content'] ;
+					
 					echo wpautop( $response['content'] );
 				?>
 			</div>
@@ -130,7 +93,7 @@ get_header(); ?>
 			<hr class="m-t-0">
 
 			<div class="row sim_mov">
-<!--				<div class="col-md-12">-->
+
 
 					<?php
 
@@ -188,31 +151,7 @@ get_header(); ?>
 											</div>
 										</div>
 
-											<!--
-											<div>
-												<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
-													<h6><?php echo $recentvideo['title']; ?></h6>
-												</a>
 
-												<p class="pop_auth"><small><em> by <?php echo $recentvideo['director']; ?></em></small></p>
-
-												<p>	<?php echo $recentvideo['excerpt']; ?>	</p>
-												<div>
-													<p class="pull-left"><small><?php echo $recentvideo['post_date'];?></small></p>
-													<p class="pull-right">
-														<span><i class="fa fa-thumbs-up"></i> <?php echo $recentvideo['post_like_count'];?> </span>
-
-														<span><i class="fa fa-eye"></i> <?php echo $recentvideo['no_of_views'];?> </span>
-
-													</p>
-												</div>
-
-												<div class="clearfix"></div>
-
-												<hr class="m-t-0">
-
-											</div>
-											-->
 										<div class="overlay-vertical"></div>
 									</a>
 								</div>
@@ -224,18 +163,14 @@ get_header(); ?>
 						} //end foreach
 					?>
 
-<!--				</div>-->
+
 			</div>
 
 		</div>
 
 	    <div class="spacer-40"></div>
 
-		<!--
-	    <div class="text-center">
-	        <a href="" class="btn btn-primary btn-lg">Watch more awesome films</a>
-	    </div>
-	    -->
+	
 
 	</div>
 
@@ -295,13 +230,7 @@ get_header(); ?>
 															<p><?php echo $playlist['playlist_description']; ?></p>
 
 															<div class="sli-foot">
-
-																<!--
-																<div class="pull-left numbers">
-																	<p>415 <i class="fa fa-eye"></i></p>
-																	<p>402 <i class="fa fa-thumbs-up"></i></p>
-																</div>
-																-->
+															
 
 																<div class="pull-ri ght sm-numbers">
 																	<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
@@ -335,45 +264,7 @@ get_header(); ?>
 window.onload = function() {
 
 	jQuery('#noofviews').val();
-/*
-	prev = "<?php echo $response['prev_post'];?>";
 
-	if(parseInt(prev) == 0)
-	{
-		jQuery('.vid-previous').hide();
-
-	}
-
-	next = "<?php echo $response['next_post'];?>";
-
-	if(parseInt(next) == 0)
-	{
-		jQuery('.vid-next').hide();
-
-	}
-
-	jQuery('.vid-previous').click(function(x){
-
-		if(parseInt(prev) == 0)
-		{
-			alert('No previous video');
-			return false;
-		}
-
-		window.location.href = SITEURL+'/'+"<?php echo $response['prev_post'];?>";
-	});
-
-	jQuery('.vid-next').click(function(x){
-
-		if(parseInt(next) == 0)
-		{
-			alert('No next video');
-			return false;
-		}
-
-		window.location.href = SITEURL+'/'+"<?php echo $response['next_post'];?>";
-	});
-*/
 
 }
 

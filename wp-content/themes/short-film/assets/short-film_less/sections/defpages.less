@@ -145,25 +145,37 @@ p.noneLeft {
     right: 3px;
 }
 
-// a.post-like {
-//     color: @brand-primary;
-//     i.fa {color: @brand-primary;}
-//     &:hover {
-//         color: saturate(lighten(@brand-primary, 25%), 20%);
-//         i {color: saturate(lighten(@brand-primary, 25%), 20%);}
-//     }
-//     &:active, &:focus {text-decoration: none;}
-//     i {
-//         margin-right: 10px;
-//         color: @brand-primary;
-//         transition: all 0.5s;
-//     }
-// }
-// a.post-like.liked {
-//     color: #ccc;
-//     i.fa {color: #ccc;}
-//     &:hover {
-//         color: #aaa;
-//         i {color: #aaa;}
-//     }
-// }
+.search_ed {
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    color: #787878;
+    span {
+        a {
+            font-weight: normal;
+            text-transform: none;
+            font-style: italic;
+            background-color: #F5F5F5;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 6px;
+            position: relative;
+            color: @brand-primary;
+            &:hover {
+                background-color: #eee;
+                i {
+                    color: @brand-primary;
+                }
+            }
+        }
+        i {
+            color: #ccc;
+            margin-left: 12px;
+            margin-right: 5px;
+            font-size: 18px;
+            /* line-height: 25px; */
+            position: relative;
+            top: -1px;
+        }
+    }
+}
