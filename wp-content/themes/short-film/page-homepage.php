@@ -504,16 +504,19 @@ Template Name: Homepage
 									<div class="focus-img">
 										<img src="<?php echo $recentarticle['small_image'] ;?>" class="img-responsive">
 									</div>
-									<div>
-										<h6><?php echo $recentarticle['title']; ?></h6>
 								</a>
+
+									<div class="infocus_home posrel">
+										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
+											<h6><?php echo $recentarticle['title']; ?></h6>
+										</a>
 										<p><?php echo $recentarticle['excerpt']; ?></p>
 										<div>
-											<p class="pull-left"><small><?php echo $recentarticle['post_date']; ?></small></p>
+											<p class="pull-left"><small title="Published Date"><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">
-												<span><i class="fa fa-thumbs-up"></i> <?php echo $recentarticle['post_like_count']; ?> </span>
+												<span title="Likes"><i class="fa fa-thumbs-up"></i> <?php echo $recentarticle['post_like_count']; ?> </span>
 
-												<span><i class="fa fa-eye"></i> <?php echo $recentarticle['no_of_views']; ?> </span>
+												<span title="Views"><i class="fa fa-eye"></i> <?php echo $recentarticle['no_of_views']; ?> </span>
 
 											</p>
 										</div>

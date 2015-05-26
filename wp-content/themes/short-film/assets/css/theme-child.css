@@ -12043,6 +12043,16 @@ h6.brand {
     bottom: 0;
   }
 }
+.infocus_home {
+  height: 200px;
+  padding-bottom: 20px;
+}
+.infocus_home hr {
+  margin-bottom: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
 .play_movie_big {
   content: '';
   display: block;
@@ -13553,6 +13563,9 @@ h4.auth_name {
 }
 .playlist-grid.slick-slider .p-grid-c {
   height: 177px;
+}
+.playlist-grid.slick-slider .p-grid-c:hover {
+  top: 0;
 }
 .playlist-grid .p-grid-c {
   position: relative;
