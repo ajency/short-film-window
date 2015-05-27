@@ -12830,12 +12830,6 @@ h6.brand {
   left: 0;
   max-width: none;
 }
-.home .show-featured-image img {
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: 100%;
-}
 .ontop {
   z-index: 5;
   background: rgba(0, 0, 0, 0.8);

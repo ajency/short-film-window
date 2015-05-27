@@ -125,6 +125,7 @@
                 $('.show-featured-image').css('max-height', height);
             }
         }
+
         $(window).resize(function() {
                 height = window.innerHeight ? window.innerHeight : $(window).height();
                 width = window.outerWidth ? window.outerWidth : $(window).width();
@@ -168,6 +169,9 @@
                 resizeimgs($(this), $(this).find('img'), i);
                 $(this).find('img').show();
             });
+        }
+        if ($('body').hasClass('home')) {
+            $('.show-featured-image').css('height', $('.show-featured-image img').height());
         }
     });
 
