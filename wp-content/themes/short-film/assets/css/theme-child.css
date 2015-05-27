@@ -12362,6 +12362,22 @@ h6.brand {
   font-size: 16px;
   line-height: 22px;
 }
+@media screen and (min-width: 767px) and (max-width: 991px) {
+  .movie-info .in_1,
+  .movie-info .in_2,
+  .movie-info .in_3 {
+    display: inline-block;
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .movie-info .in_1 {
+    padding-left: 0;
+  }
+  .movie-info .in_3 {
+    border-right: 0;
+  }
+}
 @media screen and (max-width: 992px) {
   .movie-info h6 small {
     margin-top: 5px;
@@ -12781,22 +12797,23 @@ h6.brand {
 }
 .vid_if {
   width: 100%;
-  height: 768px;
+  height: auto;
 }
 .show-featured-image {
   overflow: hidden;
 }
+@media screen and (max-width: 767px) {
+  .show-featured-image {
+    height: auto !important;
+  }
+}
 .show-featured-image img {
-  position: absolute;
+  position: relative;
+  width: 100%;
+  height: auto;
   top: 0;
   left: 0;
   max-width: none;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-  -moz-transform: translateX(-50%);
-  -o-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
 }
 .home .show-featured-image img {
   min-width: 100%;
@@ -13073,9 +13090,6 @@ h5.un {
 .show-featured-image {
   background: #444;
 }
-.show-featured-image img {
-  display: none;
-}
 .no-js .show-featured-image {
   background: none;
 }
@@ -13207,6 +13221,14 @@ hr.border-btm {
 .load_more:hover,
 .btn-primary:hover {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.btn-primary.watchmore {
+  background-color: #af152f;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.btn-primary.watchmore:hover {
+  background-color: #811023;
 }
 .bgwidth {
   width: 100%;
