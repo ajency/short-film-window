@@ -890,7 +890,7 @@ Template Name: Homepage
 
 			//jQuery('.staffpick-display-section').find(".share-button2").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
 
-            resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+            //resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
             jQuery('.show-featured-image img').show();
 		}
 		else
@@ -1485,8 +1485,9 @@ Template Name: Homepage
 
 				jQuery('.video-section').html(html);
 
-                resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+                //resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
                 jQuery('.show-featured-image img').show();
+                jQuery('.vid_if ').css('height', 'auto');
 
 			console.log(html);
 

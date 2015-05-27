@@ -31,12 +31,26 @@
 
 							$author_name = $author_info['author_name'];
 
-							// $avatar = get_author_image_url(); // The function uses get_the_ID() to grab the appropirate user ID for the author image.
-							$image_url = get_author_image_url($author_id);
-
+							$image_url = get_author_image_url($author_id);  //plugin function
+							
+							if($image_url)
+							{
+						?>
+								<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" class="img-responsive" />
+						<?php
+							}
+							else
+							{
+								$image_url = get_template_directory_uri().'/assets/img/user.jpg';
+																
+							
 						?>
 
-							<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" class="img-responsive" />
+								<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" class="img-responsive" />
+						
+						<?php
+							}
+						?>	
 
 					</div>
 
