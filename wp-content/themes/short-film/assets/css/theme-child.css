@@ -10929,7 +10929,7 @@ a {
   width: 100%;
   padding: 15px;
   padding-bottom: 1px;
-  z-index: 3;
+  z-index: 6;
   background-color: rgba(0, 0, 0, 0.6);
   -webkit-transform: translate3d(0, 0, 0);
   /* transition */
@@ -11335,6 +11335,12 @@ a {
   right: 0;
   text-align: right;
   opacity: 1;
+  -khtml-opacity: 1;
+  z-index: 6;
+  -webkit-transition: all 300ms;
+  -o-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -ms-transition: all 300ms;
   transition: all 300ms;
 }
 .grid-box.content-align-bottom .grid-text-wrap .grid-title {
@@ -11352,9 +11358,18 @@ a {
   max-height: 150px;
   overflow: hidden;
 }
+.grid-box.content-align-bottom .overlay-vertical {
+  background-image: -webkit-gradient(linear, left top, right bottom, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.5) 100%));
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5));
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5));
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 25%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 5;
+}
 .grid-box:hover .grid-text-wrap {
   bottom: -50px;
   opacity: 0;
+  -khtml-opacity: 0;
 }
 .grid-box:hover .grid-text-wrap.hover-text {
   bottom: 0;
