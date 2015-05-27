@@ -17,10 +17,10 @@ get_header(); ?>
         <div class="vid-previous"></div>
 		<div class="vid-next"></div>
 
-		<div class="video-section vid_if" data-video-id="<?php echo $response['id']; ?>" data-video-img="<?php echo $response['featured_image']; ?>" data-video-embedurl="<?php echo $response['embedurl'];?>" style="position: relative;">
+		<div class="video-section" data-video-id="<?php echo $response['id']; ?>" data-video-img="<?php echo $response['featured_image']; ?>" data-video-embedurl="<?php echo $response['embedurl'];?>" style="position: relative;">
 			<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>
 
-            <div class="show-featured-image vid_if" style="position:relative">
+            <div class="show-featured-image" style="position:relative">
 
 				<img src="<?php echo $response['large_image']; ?>" alt="" class="img-responsive width-full">
 
@@ -58,7 +58,7 @@ get_header(); ?>
 			    <div class="col-xs-9">
 			        <h6 class="m-t-0"><small><em><?php echo $response['tagline']; ?></em></small></h6>
 
-				 <h5 class="director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
+				 <h5 class="in_1 director m-t-0 m-b-0"><small><em>by </em></small> <a href="<?php echo get_author_posts_url($response['directorid']); ?>"><?php echo ucfirst($response['director']);?></a> </h5>
 
 					<?php
 			        	$region_array = array();
@@ -80,7 +80,7 @@ get_header(); ?>
 
 						 ?>
 
-							 <h6 class="m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6>
+							 <h6 class="in_2 m-t-0 m-b-0"><small> <?php echo implode(', ',$response['video_language_links']); ?></small></h6>
 
 
 						<?php
@@ -97,7 +97,7 @@ get_header(); ?>
 			        	}
 
 			        ?>
-			        <h6 class="m-t-0 m-b-0"><small><?php echo $response['duration'] ;?> Min / <?php echo implode(', ',$region_array) ;?></small></h6>
+			        <h6 class="in_3 m-t-0 m-b-0"><small><?php echo $response['duration'] ;?> Min / <?php echo implode(', ',$region_array) ;?></small></h6>
 			        <p class="categories m-t-10 m-b-0">
 
                             <span class="label label-greydark">
@@ -194,7 +194,7 @@ get_header(); ?>
 
 	    <div class="text-center">
 
-	        <a href="<?php echo $temp[0] ?>"  class="btn btn-primary btn-lg">Watch more awesome films</a>
+	        <a href="<?php echo $temp[0] ?>"  class="btn btn-primary btn-lg watchmore">Watch more awesome films</a>
 	    </div>
 
 	</div>
@@ -399,7 +399,9 @@ afterToggle: function(){}
 		generate_video();
 
 		height = window.innerHeight ? window.innerHeight : $(window).height();
-        jQuery('.vid_if ').css('height', height);
+        jQuery('.vid_if ').each(function() {
+        	jQuery(this).css('height', height);
+        });
         jQuery('.video-section').addClass('ontop');
 
 	});
@@ -443,6 +445,9 @@ afterToggle: function(){}
 
 		jQuery('#playid').attr('src', '');
 		jQuery('.video-section').removeClass('ontop');
+		jQuery('.vid_if ').each(function() {
+        	jQuery(this).css('height', height);
+        });
 
 		generate_featured_image();
 
@@ -457,8 +462,13 @@ afterToggle: function(){}
 
 		var post_embedurl = jQuery('.video-section').attr('data-video-embedurl');
 
+		//width = window.innerWidth ? window.innerWidth : jQuery(window).width();
+		//if (width <= 767) {
+			//$height = 'auto';
+		//} else {
+			//$height = (window.innerHeight ? window.innerHeight : jQuery(window).height()) + 'px';
+		//}
 
-		height = window.innerHeight ? window.innerHeight : jQuery(window).height();
 		jQuery('.video-section').html("");
 
 
@@ -466,7 +476,7 @@ afterToggle: function(){}
 
 
 				html+=
-						'<div class="show-featured-image vid_if" style="position: relative; height:' + height + 'px;">'
+						'<div class="show-featured-image" style="position: relative;;">'
 						+'<img src="'+post_featured_image+'" alt="" class="img-responsive width-full">'
 						+'<a href="#" class="play_movie_big" data-id="'+post_video_id+'" data-embedurl="'+post_embedurl+'"> </a></div>'
 
@@ -474,8 +484,11 @@ afterToggle: function(){}
 
 			jQuery('.video-section').html(html);
 
-			resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
-			jQuery('.show-featured-image img').show();
+			height_a = jQuery('.show-featured-image').find(img).height();
+			jQuery('.show-featured-image').css('height', height_a);
+
+			// resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+			// jQuery('.show-featured-image img').show();
 
 		console.log(html);
 
