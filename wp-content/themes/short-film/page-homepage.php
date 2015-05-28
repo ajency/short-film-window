@@ -42,7 +42,9 @@ Template Name: Homepage
 
 							<?php
 
-								$pairs = get_pairs_category_post();
+								$no_of_categories = 16;
+								
+								$pairs = get_pairs_category_post($no_of_categories);
 
 								foreach ( $pairs as $pair )
 								{
