@@ -2304,7 +2304,7 @@ $GLOBALS['wp_rewrite']->author_base = 'director';
 add_action('init', 'author_director_rewrite');
 
 
-
+/*
 add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
 
 function custom_image_size_rules($file)
@@ -2325,8 +2325,10 @@ function custom_image_size_rules($file)
 
 }
 
-/*
+*/
 
+
+/*
 	add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
 
 	function custom_image_size_rules($file)
@@ -2348,7 +2350,6 @@ function custom_image_size_rules($file)
 	}
 
 */
-
 
 function validate_duration($hook)
 {

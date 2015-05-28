@@ -2,6 +2,25 @@
 @headhe: 576px;
 @reduction: 138px;
 
+@media screen and (max-width: 1199px) {
+    .headspace {
+        padding-top: 130px;
+    }
+    .header {
+        background-color: rgba(0, 0, 0, 0.85);
+    }
+}
+@media screen and (max-width: 767px) {
+    .headspace {
+        padding-top: 166px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .headspace {
+        padding-top: 0;
+    }
+}
+
 .play_movie_big {
     content: '';
     display: block;
@@ -29,11 +48,17 @@
         background: url(../img/play_red.png) center center no-repeat;
         opacity: 1;
     }
+    @media screen and (max-width: 1199px) {
+        top: 23%;
+    }
+    @media screen and (max-width: 991px) {
+        top: 14%;
+    }
     @media screen and (max-width: 767px) {
-        top: 49%;
+        top: 38%;
     }
     @media screen and (max-width: 480px) {
-        top: 32%;
+        top: 25%;
     }
 }
 @media screen and (max-width: 991px) {
@@ -642,7 +667,7 @@
     .vid-previous,
     .vid-next
     {
-        top: 51%;
+        top: 63%;
         width: 40px;
         height: 60px;
     }
@@ -741,6 +766,7 @@
 }
 .show-featured-image {
     overflow: hidden;
+    width: 100%;
     @media screen and (max-width: 767px) {
         height: auto !important;
     }
