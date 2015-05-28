@@ -1393,12 +1393,12 @@ function shortfilm_menu()
 	}
 
 
-	function get_pairs_category_post()
+	function get_pairs_category_post($no_of_categories)
 	{
 		$response = array();
 
 		$args_cat = array(
-			'orderby' => 'name',
+			'number'  => $no_of_categories,
 			'parent' => 0
 		);
 
