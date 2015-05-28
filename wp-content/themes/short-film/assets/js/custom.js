@@ -11,10 +11,14 @@
             obj
                 .removeClass()
                 .addClass('bgheight');
-        } else {
+        } else if ( (tw.width() / tw.height()) > ar ) {
             obj
                 .removeClass()
                 .addClass('bgwidth');
+        } else {
+            obj
+                .removeClass()
+                .addClass('bgheight');
         }
         if (jQuery('body').hasClass('no-csstransforms')) {
             obj.css({
@@ -104,85 +108,55 @@
           $(this).next().toggleClass('open-menu');
         });
 
-        function checkhenwiss() {
-            //check if height is greater than width
-            $('.slick-slider .slide-cont, .slick-slider .focus-img').each(function() {
-                //console.log('H: ' + $(this).find('img').height() + '\nW: ' + $(this).find('img').width());
-//                if ($(this).find('img').height() <= $(this).height()) {
-//                    $(this).find('img').css({
-//                        'height': $(this).height(),
-//                        'width': 'auto'
-//                    });
-//                } else {
-//                    $(this).find('img').css({
-//                        'height': 'auto',
-//                        'width': '100%'
-//                    });
-//                }
-            });
-        }
-        function setimagenn() {
-//            if ($('div').hasClass('grid-box')) {
-                $('.grid-box').each(function() {
-                    /*console.log(
-                        'grid-box: ' + $(this).height() +
-                        '\nimg: ' + $(this).find('.grid-image').find('img').height() +
-                        '\n---------------------------------------------------------'
-                    );*/
-                    //console.log($(this).find('.grid-image').find('img').height() <= $(this).height());
-//                    if ($(this).find('.grid-image').find('img').height() <= $(this).height()) {
-//                        $(this).find('.grid-image').find('img').css({
-//                            'height': $(this).height() + 55,
-//                            'width': 'auto'
-//                        });
-//                    } else  {
-//                        $(this).find('.grid-image').find('img').css({
-//                            'height': 'auto',
-//                            'width': '100%'
-//                        });
-//                    }
-                });
-//            }
-        }
-        setimagenn();
-        //slick slider images height issue
-            $(window).resize(function() {
-                setimagenn();
-                /*if ($('div').hasClass('slick-slider')) {
-                    checkhenwiss();
-                }*/
-                height = window.innerHeight ? window.innerHeight : $(window).height();
-                width = window.outerWidth ? window.outerWidth : $(window).width();
-                if (!($('body').hasClass('home'))) {
-                    if (width < 480) {
-                        $('.vid_if ').css('height', height - 156);
-                    } else {
-                        $('.vid_if ').css('height', height);
-                    }
-                }
-            });
-            $(window).load(function() {
-                if ($('div').hasClass('slick-slider')) {
-                    checkhenwiss();
-                }
-                setimagenn();
-            });
+
+
         height = window.innerHeight ? window.innerHeight : $(window).height();
         width = window.outerWidth ? window.outerWidth : $(window).width();
         if (!($('body').hasClass('home'))) {
             if (width < 480) {
-                $('.vid_if ').css('height', height - 156);
+                $('.vid_if ').each(function() {
+                    $(this).css('max-height', height - 156);
+                });
+                $('.show-featured-image').css('max-height', height - 156);
             } else {
-                $('.vid_if ').css('height', height);
+                $('.vid_if ').each(function() {
+                    $(this).css('max-height', height);
+                });
+                $('.show-featured-image').css('max-height', height);
             }
         }
-        $('.show-featured-image img').hide();
-        resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
-        $('.show-featured-image img').show();
+
+        $(window).resize(function() {
+                height = window.innerHeight ? window.innerHeight : $(window).height();
+                width = window.outerWidth ? window.outerWidth : $(window).width();
+                if (!($('body').hasClass('home'))) {
+                    if (width < 480) {
+                $('.vid_if ').each(function() {
+                    $(this).css('max-height', height - 156);
+                    $('.show-featured-image').css('max-height', height - 156);
+                });
+            } else {
+                $('.vid_if ').each(function() {
+                    $(this).css('max-height', height);
+                    $('.show-featured-image').css('max-height', height);
+                });
+            }
+                }
+            });
     });
 
-    $('.p-grid-c .p-img-c img').hide();
-    $('.grid-box .grid-image img').hide();
+    if ($('div').hasClass('grid-image')) {
+            $('.grid-box .grid-image').each(function(i) {
+                resizeimgs($(this), $(this).find('img'), i);
+                $(this).find('img').show();
+            });
+        }
+        if ($('div').hasClass('p-grid-c')) {
+            $('.p-grid-c .p-img-c').each(function(i) {
+                resizeimgs($(this), $(this).find('img'), i);
+                $(this).find('img').show();
+            });
+        }
     $(window).load(function() {
         if ($('div').hasClass('grid-image')) {
             $('.grid-box .grid-image').each(function(i) {
@@ -196,10 +170,12 @@
                 $(this).find('img').show();
             });
         }
+        if ($('body').hasClass('home')) {
+            $('.show-featured-image').css('height', $('.show-featured-image img').height());
+        }
     });
 
     $(window).resize(function() {
-        resizeimgs($('.show-featured-image'), $('.show-featured-image img'));
         if ($('div').hasClass('grid-image')) {
             $('.grid-box .grid-image').each(function(i) {
                 resizeimgs($(this), $(this).find('img'), i);

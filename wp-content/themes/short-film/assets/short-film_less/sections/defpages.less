@@ -1,8 +1,10 @@
+.upp {text-transform: uppercase;}
+
 .show-featured-image {
     background: #444;
 }
 .show-featured-image img {
-    display: none;
+    // display: none;
 }
 .no-js .show-featured-image {
     background: none;
@@ -94,10 +96,23 @@ hr.border-btm {
 
 
 //load more
-.load_more {
+.load_more, .btn-primary {
     padding: 10px 30px;
     text-transform: uppercase;
+    background-color: #F2F2F2;
+    color: @brand-primary;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
+    &:hover {
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    }
+}
+.btn-primary.watchmore {
+    background-color: @brand-primary;
+    color: #fff;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    &:hover {
+        background-color: #811023;
+    }
 }
 
 .bgwidth { width: 100%; height: auto !important; .centerV() }

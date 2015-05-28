@@ -20,6 +20,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
+		<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon.ico" />
+
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
@@ -97,9 +99,11 @@
 			<div class="header">
 			    <div class="header-links">
 			        <div class="links">
-			            <a href="#">LOGIN</a>
-			            <span>|</span>
-			            <a href="#">SEARCH</a>
+			            <!--<a href="#">LOGIN</a>-->
+
+ 					    <a href="<?php echo site_url(); ?>/wp-login.php">LOGIN</a>
+			            <!-- <span>|</span>
+			            <a href="#">SEARCH</a> -->
 			        </div>
 			        <div class="social-links">
 
@@ -112,7 +116,13 @@
 			                    <i class="fa fa-facebook fa-lg fa-fw"></i>
 			                </div>
 			                <div class="action">
+
+								<!--
 			                	<div class="fb-like" data-href="https://www.facebook.com/pages/My_sfw_fb_page/980939678591959?ref=aymt_homepage_panel" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+								-->
+
+								<div class="fb-like" data-href="https://www.facebook.com/Shortfilmwindow" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+
 			                	<!-- <small>Like</small> -->
 			                </div>
 			            </div>
@@ -124,7 +134,11 @@
 
 					   <div class="twitter link">
 							<div class="action">
+								<!--
 								<a href="https://twitter.com/ajency123" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+								-->
+								<a href="https://twitter.com/shortfilmwindow" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow</a>
+
 								<!-- <small>Follow</small> -->
 							</div>
 			                <div class="icon">
@@ -170,7 +184,7 @@
 						</div>
 
 						<div class="collapse navbar-collapse navbar-responsive-collapse">
-				            <?php wp_nav_menu(); ?>
+				            <?php wp_bootstrap_main_nav(); ?>
                         </div>
                     </div>
                 </div>

@@ -73,7 +73,7 @@ get_header(); ?>
 			<div class="img-content">
 				<?php
 
-					
+
 					echo wpautop( $response['content'] );
 				?>
 			</div>
@@ -86,7 +86,7 @@ get_header(); ?>
 
 			<div class="row">
 				<div class="col-md-12">
-					<h4>SOME MOVIES WE PICKED FOR YOU</h4>
+					<h3 class="brand upp">SOME MOVIES WE PICKED FOR YOU</h3>
 				</div>
             </div>
 
@@ -104,7 +104,7 @@ get_header(); ?>
 
 
 					?>
-							<div class="col-xs-4">
+							<div class="col-sm-4">
 								<div class="grid-box grid-full content-align-bottom">
 
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
@@ -170,7 +170,7 @@ get_header(); ?>
 
 	    <div class="spacer-40"></div>
 
-	
+
 
 	</div>
 
@@ -210,7 +210,7 @@ get_header(); ?>
 								if(count($playlists) > 0)
 								{
 							?>
-									<div class="slider2 regular-slider cap-show-on-hover">
+									<div class="slider2 regular-slider cap-show-on-hover playlist-grid">
 
 										<?php
 
@@ -219,28 +219,35 @@ get_header(); ?>
 										?>
 												<div class="slide-cont">
 
-													<a href="<?php echo $playlist['playlist_link']; ?>">
+												<div class="p-grid-c">
+													<span class="p-img-c">
+														<img src="<?php echo $playlist['playlist_image_url']; ?>" alt="">
+													</span>
+													<div class="p-text">
+														<h5 class="p-head"><?php echo $playlist['playlist_name']; ?></h5>
+														<p class="p-desc"><?php echo $playlist['playlist_description']; ?></p>
 
-														<img src="<?php echo $playlist['playlist_image_url']; ?>" class="img-responsive">
+														<div class="p-btm">
 
-														<div class="cap-s">
-
-															<h5><?php echo $playlist['playlist_name']; ?></h5>
-
-															<p><?php echo $playlist['playlist_description']; ?></p>
-
-															<div class="sli-foot">
-															
-
-																<div class="pull-ri ght sm-numbers">
-																	<span class="number"><?php echo $playlist['playlist_count']; ?></span> Films
+															<!--
+															<div class="iconexp_sp pull-left">
+																<div>321<?php ////echo $value[0]['no_of_views'];?><i class="fa fa-eye"></i></div>
+																<div class="<?php// echo $value[0]['class'] ;?>">184<?php ////echo $value[0]['post_like_count'];?>
+																	<i class="fa fa-thumbs-up"></i>
 																</div>
-
 															</div>
+															-->
 
+															<div class="pull-right p-count">
+																<p><?php echo $playlist['playlist_count']; ?> films</p>
+															</div>
 														</div>
-													</a>
+													</div>
+													<a href="<?php echo $playlist['playlist_link']; ?>" class="p-g-all-link"> </a>
 												</div>
+
+
+											</div>
 										<?php
 
 											} //end foreach

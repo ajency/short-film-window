@@ -19,7 +19,7 @@ $locale_file = TEMPLATEPATH . "/languages/$locale.php";
 if ( is_readable( $locale_file ) ) require_once( $locale_file );
 
 // Clean up the WordPress Head
-if( !function_exists( "wp_bootstrap_head_cleanup" ) ) {  
+if( !function_exists( "wp_bootstrap_head_cleanup" ) ) {
   function wp_bootstrap_head_cleanup() {
     // remove header links
     remove_action( 'wp_head', 'feed_links_extra', 3 );                    // Category Feeds
@@ -37,13 +37,13 @@ if( !function_exists( "wp_bootstrap_head_cleanup" ) ) {
 add_action( 'init', 'wp_bootstrap_head_cleanup' );
 
 // remove WP version from RSS
-if( !function_exists( "wp_bootstrap_rss_version" ) ) {  
+if( !function_exists( "wp_bootstrap_rss_version" ) ) {
   function wp_bootstrap_rss_version() { return ''; }
 }
 add_filter( 'the_generator', 'wp_bootstrap_rss_version' );
 
 // Remove the […] in a Read More link
-if( !function_exists( "wp_bootstrap_excerpt_more" ) ) {  
+if( !function_exists( "wp_bootstrap_excerpt_more" ) ) {
   function wp_bootstrap_excerpt_more( $more ) {
     global $post;
     return '...  <a href="'. get_permalink($post->ID) . '" class="more-link" title="Read '.get_the_title($post->ID).'">Read more &raquo;</a>';
@@ -52,7 +52,7 @@ if( !function_exists( "wp_bootstrap_excerpt_more" ) ) {
 add_filter('excerpt_more', 'wp_bootstrap_excerpt_more');
 
 // Add WP 3+ Functions & Theme Support
-if( !function_exists( "wp_bootstrap_theme_support" ) ) {  
+if( !function_exists( "wp_bootstrap_theme_support" ) ) {
   function wp_bootstrap_theme_support() {
     add_theme_support( 'post-thumbnails' );      // wp thumbnails (sizes handled in functions.php)
     set_post_thumbnail_size( 125, 125, true );   // default thumb size
@@ -61,27 +61,27 @@ if( !function_exists( "wp_bootstrap_theme_support" ) ) {
 
     // Add post format support - if these are not needed, comment them out
     add_theme_support( 'post-formats',      // post formats
-      array( 
+      array(
         'aside',   // title less blurb
         'gallery', // gallery of images
         'link',    // quick link to other site
         'image',   // an image
         'quote',   // a quick quote
         'status',  // a Facebook like status update
-        'video',   // video 
+        'video',   // video
         'audio',   // audio
-        'chat'     // chat transcript 
+        'chat'     // chat transcript
       )
-    );  
+    );
 
     add_theme_support( 'menus' );            // wp menus
-    
+
     register_nav_menus(                      // wp3+ menus
-      array( 
+      array(
         'main_nav' => 'The Main Menu',   // main nav in header
         'footer_links' => 'Footer Links' // secondary nav in footer
       )
-    );  
+    );
   }
 }
 // launching this stuff after theme setup
@@ -89,19 +89,19 @@ add_action( 'after_setup_theme','wp_bootstrap_theme_support' );
 
 function wp_bootstrap_main_nav() {
   // Display the WordPress menu if available
-  wp_nav_menu( 
-    array( 
+  wp_nav_menu(
+    array(
       'menu' => 'main_nav', /* menu name */
-      'menu_class' => 'nav navbar-nav',
+      //'menu_class' => 'nav navbar-nav',
       'theme_location' => 'main_nav', /* where in the theme it's assigned */
       'container' => 'false', /* container class */
-      'fallback_cb' => 'wp_bootstrap_main_nav_fallback', /* menu fallback */
-      'walker' => new Bootstrap_walker()
+      'fallback_cb' => 'wp_bootstrap_main_nav_fallback' /* menu fallback */
+      //'walker' => new Bootstrap_walker()
     )
   );
 }
 
-function wp_bootstrap_footer_links() { 
+function wp_bootstrap_footer_links() {
   // Display the WordPress menu if available
   wp_nav_menu(
     array(
@@ -114,13 +114,13 @@ function wp_bootstrap_footer_links() {
 }
 
 // this is the fallback for header menu
-function wp_bootstrap_main_nav_fallback() { 
-  /* you can put a default here if you like */ 
+function wp_bootstrap_main_nav_fallback() {
+  /* you can put a default here if you like */
 }
 
 // this is the fallback for footer menu
-function wp_bootstrap_footer_links_fallback() { 
-  /* you can put a default here if you like */ 
+function wp_bootstrap_footer_links_fallback() {
+  /* you can put a default here if you like */
 }
 
 // Shortcodes
@@ -148,8 +148,8 @@ add_image_size( 'wpbs-featured', 780, 300, true );
 add_image_size( 'wpbs-featured-home', 970, 311, true);
 add_image_size( 'wpbs-featured-carousel', 970, 400, true);
 
-/* 
-to add more sizes, simply copy a line from above 
+/*
+to add more sizes, simply copy a line from above
 and change the dimensions & name. As long as you
 upload a "featured image" as large as the biggest
 set width or height, all the other sizes will be
@@ -158,7 +158,7 @@ auto-cropped.
 To call a different size, simply change the text
 inside the thumbnail function.
 
-For example, to call the 300 x 300 sized image, 
+For example, to call the 300 x 300 sized image,
 we would use the function:
 <?php the_post_thumbnail( 'bones-thumb-300' ); ?>
 for the 600 x 100 image:
@@ -181,7 +181,7 @@ function wp_bootstrap_register_sidebars() {
   	'before_title' => '<h4 class="widgettitle">',
   	'after_title' => '</h4>',
   ));
-    
+
   register_sidebar(array(
   	'id' => 'sidebar2',
   	'name' => 'Homepage Sidebar',
@@ -191,7 +191,7 @@ function wp_bootstrap_register_sidebars() {
   	'before_title' => '<h4 class="widgettitle">',
   	'after_title' => '</h4>',
   ));
-    
+
   register_sidebar(array(
     'id' => 'footer1',
     'name' => 'Footer 1',
@@ -218,27 +218,27 @@ function wp_bootstrap_register_sidebars() {
     'before_title' => '<h4 class="widgettitle">',
     'after_title' => '</h4>',
   ));
-    
-    
-  /* 
+
+
+  /*
   to add more sidebars or widgetized areas, just copy
-  and edit the above sidebar code. In order to call 
+  and edit the above sidebar code. In order to call
   your new sidebar just use the following code:
-  
+
   Just change the name to whatever your new
   sidebar's id is, for example:
-  
+
   To call the sidebar in your template, you can just copy
   the sidebar.php file and rename it to your sidebar's name.
   So using the above example, it would be:
   sidebar-sidebar2.php
-  
+
   */
 } // don't remove this bracket!
 add_action( 'widgets_init', 'wp_bootstrap_register_sidebars' );
 
 /************* COMMENT LAYOUT *********************/
-		
+
 // Comment Layout
 function wp_bootstrap_comments($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
@@ -273,17 +273,17 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 				<div class="col-sm-9 comment-text">
 					<?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
 					<?php edit_comment_link(__('Edit','wpbootstrap'),'<span class="edit-comment btn btn-sm btn-info"><i class="glyphicon-white glyphicon-pencil"></i>','</span>') ?>
-                    
+
                     <?php if ($comment->comment_approved == '0') : ?>
        					<div class="alert-message success">
           				<p><?php _e('Your comment is awaiting moderation.','wpbootstrap') ?></p>
           				</div>
 					<?php endif; ?>
-                    
+
                     <?php comment_text() ?>
-                    
+
                     <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
-                    
+
 					<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
                 </div>
 			</div>
@@ -304,7 +304,7 @@ function list_pings($comment, $args, $depth) {
        $GLOBALS['comment'] = $comment;
 ?>
         <li id="comment-<?php comment_ID(); ?>"><i class="icon icon-share-alt"></i>&nbsp;<?php comment_author_link(); ?>
-<?php 
+<?php
 
 }
 
@@ -386,7 +386,7 @@ function wp_bootstrap_remove_thumbnail_dimensions( $html ) {
 }
 
 // Add the Meta Box to the homepage template
-function wp_bootstrap_add_homepage_meta_box() {  
+function wp_bootstrap_add_homepage_meta_box() {
 	global $post;
 
 	// Only add homepage meta box if template being used is the homepage template
@@ -395,71 +395,71 @@ function wp_bootstrap_add_homepage_meta_box() {
 	$template_file = get_post_meta($post_id,'_wp_page_template',TRUE);
 
 	if ( $template_file == 'page-homepage.php' ){
-	    add_meta_box(  
-	        'homepage_meta_box', // $id  
-	        'Optional Homepage Tagline', // $title  
-	        'wp_bootstrap_show_homepage_meta_box', // $callback  
-	        'page', // $page  
-	        'normal', // $context  
-	        'high'); // $priority  
+	    add_meta_box(
+	        'homepage_meta_box', // $id
+	        'Optional Homepage Tagline', // $title
+	        'wp_bootstrap_show_homepage_meta_box', // $callback
+	        'page', // $page
+	        'normal', // $context
+	        'high'); // $priority
     }
 }
 
 add_action( 'add_meta_boxes', 'wp_bootstrap_add_homepage_meta_box' );
 
-// Field Array  
-$prefix = 'custom_';  
-$custom_meta_fields = array(  
-    array(  
-        'label'=> 'Homepage tagline area',  
-        'desc'  => 'Displayed underneath page title. Only used on homepage template. HTML can be used.',  
-        'id'    => $prefix.'tagline',  
-        'type'  => 'textarea' 
-    )  
-);  
+// Field Array
+$prefix = 'custom_';
+$custom_meta_fields = array(
+    array(
+        'label'=> 'Homepage tagline area',
+        'desc'  => 'Displayed underneath page title. Only used on homepage template. HTML can be used.',
+        'id'    => $prefix.'tagline',
+        'type'  => 'textarea'
+    )
+);
 
-// The Homepage Meta Box Callback  
-function wp_bootstrap_show_homepage_meta_box() {  
+// The Homepage Meta Box Callback
+function wp_bootstrap_show_homepage_meta_box() {
   global $custom_meta_fields, $post;
 
   // Use nonce for verification
   wp_nonce_field( basename( __FILE__ ), 'wpbs_nonce' );
-    
+
   // Begin the field table and loop
   echo '<table class="form-table">';
 
   foreach ( $custom_meta_fields as $field ) {
-      // get value of this field if it exists for this post  
-      $meta = get_post_meta($post->ID, $field['id'], true);  
-      // begin a table row with  
-      echo '<tr> 
-              <th><label for="'.$field['id'].'">'.$field['label'].'</label></th> 
-              <td>';  
-              switch($field['type']) {  
-                  // text  
-                  case 'text':  
-                      echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" /> 
-                          <br /><span class="description">'.$field['desc'].'</span>';  
+      // get value of this field if it exists for this post
+      $meta = get_post_meta($post->ID, $field['id'], true);
+      // begin a table row with
+      echo '<tr>
+              <th><label for="'.$field['id'].'">'.$field['label'].'</label></th>
+              <td>';
+              switch($field['type']) {
+                  // text
+                  case 'text':
+                      echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />
+                          <br /><span class="description">'.$field['desc'].'</span>';
                   break;
-                  
-                  // textarea  
-                  case 'textarea':  
-                      echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="80" rows="4">'.$meta.'</textarea> 
-                          <br /><span class="description">'.$field['desc'].'</span>';  
-                  break;  
-              } //end switch  
-      echo '</td></tr>';  
-  } // end foreach  
-  echo '</table>'; // end table  
-}  
 
-// Save the Data  
-function wp_bootstrap_save_homepage_meta( $post_id ) {  
+                  // textarea
+                  case 'textarea':
+                      echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="80" rows="4">'.$meta.'</textarea>
+                          <br /><span class="description">'.$field['desc'].'</span>';
+                  break;
+              } //end switch
+      echo '</td></tr>';
+  } // end foreach
+  echo '</table>'; // end table
+}
 
-    global $custom_meta_fields;  
-  
-    // verify nonce  
-    if ( !isset( $_POST['wpbs_nonce'] ) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)) )  
+// Save the Data
+function wp_bootstrap_save_homepage_meta( $post_id ) {
+
+    global $custom_meta_fields;
+
+    // verify nonce
+    if ( !isset( $_POST['wpbs_nonce'] ) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)) )
         return $post_id;
 
     // check autosave
@@ -473,8 +473,8 @@ function wp_bootstrap_save_homepage_meta( $post_id ) {
         } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
             return $post_id;
     }
-  
-    // loop through fields and save the data  
+
+    // loop through fields and save the data
     foreach ( $custom_meta_fields as $field ) {
         $old = get_post_meta( $post_id, $field['id'], true );
         $new = $_POST[$field['id']];
@@ -515,19 +515,19 @@ class Bootstrap_walker extends Walker_Nav_Menu{
 
 	 global $wp_query;
 	 $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
-	
+
 	 $class_names = $value = '';
-	
+
 		// If the item has children, add the dropdown class for bootstrap
 		if ( $args->has_children ) {
 			$class_names = "dropdown ";
 		}
-	
+
 		$classes = empty( $object->classes ) ? array() : (array) $object->classes;
-		
+
 		$class_names .= join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $object ) );
 		$class_names = ' class="'. esc_attr( $class_names ) . '"';
-       
+
    	$output .= $indent . '<li id="menu-item-'. $object->ID . '"' . $value . $class_names .'>';
 
    	$attributes  = ! empty( $object->attr_title ) ? ' title="'  . esc_attr( $object->attr_title ) .'"' : '';
@@ -557,19 +557,19 @@ class Bootstrap_walker extends Walker_Nav_Menu{
 
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $object, $depth, $args );
   } // end start_el function
-        
+
   function start_lvl(&$output, $depth = 0, $args = Array()) {
     $indent = str_repeat("\t", $depth);
     $output .= "\n$indent<ul class=\"dropdown-menu\">\n";
   }
-      
+
 	function display_element( $element, &$children_elements, $max_depth, $depth=0, $args, &$output ){
     $id_field = $this->db_fields['id'];
     if ( is_object( $args[0] ) ) {
         $args[0]->has_children = ! empty( $children_elements[$element->$id_field] );
     }
     return parent::display_element( $element, $children_elements, $max_depth, $depth, $args, $output );
-  }        
+  }
 }
 
 add_editor_style('editor-style.css');
@@ -578,7 +578,7 @@ function wp_bootstrap_add_active_class($classes, $item) {
 	if( $item->menu_item_parent == 0 && in_array('current-menu-item', $classes) ) {
     $classes[] = "active";
 	}
-  
+
   return $classes;
 }
 
@@ -586,8 +586,8 @@ function wp_bootstrap_add_active_class($classes, $item) {
 add_filter('nav_menu_css_class', 'wp_bootstrap_add_active_class', 10, 2 );
 
 // enqueue styles
-if( !function_exists("wp_bootstrap_theme_styles") ) {  
-    function wp_bootstrap_theme_styles() { 
+if( !function_exists("wp_bootstrap_theme_styles") ) {
+    function wp_bootstrap_theme_styles() {
         // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
         // wp_register_style( 'wpbs', get_template_directory_uri() . '/library/dist/css/styles.f6413c85.min.css', array(), '1.0', 'all' );
         // wp_enqueue_style( 'wpbs' );
@@ -602,7 +602,7 @@ add_action( 'wp_enqueue_scripts', 'wp_bootstrap_theme_styles' );
 // enqueue custom styles
 function add_custom_scripts() {
 
-    
+
 
     wp_register_style( 'theme_css', get_template_directory_uri(). '/assets/css/theme-child.css');
     wp_enqueue_style( 'theme_css' );
@@ -613,11 +613,11 @@ function add_custom_scripts() {
     wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
     wp_enqueue_script( 'jquery' );
 
-   
+
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
 
-	
+
     wp_register_script( 'slick', get_template_directory_uri() . '/assets/js/slick.min.js', '', false, true );
     wp_enqueue_script( 'slick' );
 
@@ -626,11 +626,11 @@ function add_custom_scripts() {
 
     wp_register_script( 'classie', get_template_directory_uri() . '/assets/js/classie/classie.js', '', false, true );
     wp_enqueue_script( 'classie' );
-	
+
 	////
 	wp_register_script( 'readmore', get_template_directory_uri() . '/assets/js/readmore/readmore.js', array('jquery'),'1.2'  );
     wp_enqueue_script( 'readmore' );
-	
+
 
 
     if( is_single()){
@@ -656,39 +656,39 @@ function add_custom_scripts() {
 
     wp_localize_script( "jquery", "SITEURL", site_url() );
     wp_localize_script( "jquery", "ajaxurl", admin_url( 'admin-ajax.php' ) );
-    
+
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_scripts' );
 
 // enqueue javascript
-if( !function_exists( "wp_bootstrap_theme_js" ) ) {  
+if( !function_exists( "wp_bootstrap_theme_js" ) ) {
   function wp_bootstrap_theme_js(){
 
     if ( !is_admin() ){
-      if ( is_singular() AND comments_open() AND ( get_option( 'thread_comments' ) == 1) ) 
+      if ( is_singular() AND comments_open() AND ( get_option( 'thread_comments' ) == 1) )
         wp_enqueue_script( 'comment-reply' );
     }
 
     // This is the full Bootstrap js distribution file. If you only use a few components that require the js files consider loading them individually instead
-    wp_register_script( 'bootstrap', 
-      get_template_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.js', 
-      array('jquery'), 
+    wp_register_script( 'bootstrap',
+      get_template_directory_uri() . '/bower_components/bootstrap/dist/js/bootstrap.js',
+      array('jquery'),
       '1.2' );
 
-    wp_register_script( 'wpbs-js', 
+    wp_register_script( 'wpbs-js',
       get_template_directory_uri() . '/library/dist/js/scripts.d1e3d952.min.js',
-      array('bootstrap'), 
+      array('bootstrap'),
       '1.2' );
-  
-    wp_register_script( 'modernizr', 
-      get_template_directory_uri() . '/bower_components/modernizer/modernizr.js', 
-      array('jquery'), 
+
+    wp_register_script( 'modernizr',
+      get_template_directory_uri() . '/bower_components/modernizer/modernizr.js',
+      array('jquery'),
       '1.2' );
-  
+
     wp_enqueue_script( 'bootstrap' );
     wp_enqueue_script( 'wpbs-js' );
     wp_enqueue_script( 'modernizr' );
-    
+
   }
 }
 add_action( 'wp_enqueue_scripts', 'wp_bootstrap_theme_js' );
@@ -735,7 +735,7 @@ function wp_bootstrap_related_posts() {
         if($related_posts) {
           foreach ($related_posts as $post) : setup_postdata($post); ?>
               <li class="related_post"><a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></li>
-          <?php endforeach; } 
+          <?php endforeach; }
       else { ?>
             <li class="no_related_post">No Related Posts Yet!</li>
     <?php }
@@ -775,17 +775,17 @@ function wp_bootstrap_page_navi($before = '', $after = '') {
   if($start_page <= 0) {
     $start_page = 1;
   }
-    
+
   echo $before.'<ul class="pagination">'."";
   if ($paged > 1) {
     $first_page_text = "&laquo";
     echo '<li class="prev"><a href="'.get_pagenum_link().'" title="' . __('First','wpbootstrap') . '">'.$first_page_text.'</a></li>';
   }
-    
+
   $prevposts = get_previous_posts_link( __('&larr; Previous','wpbootstrap') );
   if($prevposts) { echo '<li>' . $prevposts  . '</li>'; }
   else { echo '<li class="disabled"><a href="#">' . __('&larr; Previous','wpbootstrap') . '</a></li>'; }
-  
+
   for($i = $start_page; $i  <= $end_page; $i++) {
     if($i == $paged) {
       echo '<li class="active"><a href="#">'.$i.'</a></li>';
@@ -849,7 +849,7 @@ function create_region_taxonomy() {
 add_action( 'init', 'create_language_taxonomy' );
 
 //register a taxonomy//
-function create_language_taxonomy() 
+function create_language_taxonomy()
 {
 
   $labels = array(
@@ -886,7 +886,7 @@ function create_language_taxonomy()
 add_action( 'init', 'create_playlist_taxonomy' );
 
 //register a taxonomy//
-function create_playlist_taxonomy() 
+function create_playlist_taxonomy()
 {
 
   $labels = array(
@@ -924,23 +924,23 @@ function create_playlist_taxonomy()
 function wp_trim_all_excerpt($text) {
 
   global $post;
-  
+
   if ( '' == $text ) {
 
       $text = $post->post_content;
       $text = strip_shortcodes( $text );
-      
-      
+
+
    }
 
 $text = strip_tags($text);
 $excerpt_length = apply_filters('excerpt_length', 20);
-$text = wp_trim_words( $text, $excerpt_length, $excerpt_more ); 
+$text = wp_trim_words( $text, $excerpt_length, $excerpt_more );
 
 
 // $excerpt_more = apply_filters( 'excerpt_more', ' <a href="#">' . 'Read More &raquo;' . '</a>' );
 
-return apply_filters('wp_trim_excerpt', $text, $raw_excerpt); 
+return apply_filters('wp_trim_excerpt', $text, $raw_excerpt);
 
 
 }
@@ -970,12 +970,12 @@ function render_film_type( $post ) {
            </select>
   <?php
 
-  
- 
+
+
 }
 function render_film_videourl( $post ) {
 
- 
+
   // Add an nonce field so we can check for it later.
   wp_nonce_field( 'film_videourl_meta_box', 'film_videourl_nonce' );
 
@@ -989,12 +989,12 @@ function render_film_videourl( $post ) {
     <input type="textbox" name="videourl" id="videourl" value="<?php echo $videourl ;?>" />
   <?php
 
- 
+
 }
 
 function render_film_duration( $post ) {
 
- 
+
   // Add an nonce field so we can check for it later.
   wp_nonce_field( 'film_duration_meta_box', 'film_duration_nonce' );
 
@@ -1008,11 +1008,11 @@ function render_film_duration( $post ) {
     <input type="textbox" name="duration" id="duration" value="<?php echo $duration ;?>" />
   <?php
 
- 
+
 }
 function render_film_tagline( $post ) {
 
- 
+
   // Add an nonce field so we can check for it later.
   wp_nonce_field( 'film_tagline_meta_box', 'film_tagline_nonce' );
 
@@ -1026,42 +1026,42 @@ function render_film_tagline( $post ) {
     <input type="textbox" name="tagline" id="tagline" value="<?php echo $tagline ;?>" />
   <?php
 
- 
+
 }
 
 
 
-function render_articles_for_post( $post ) 
+function render_articles_for_post( $post )
 {
- 
+
   //// Add an nonce field so we can check for it later.
   wp_nonce_field( 'articles_for_post_meta_box', 'articles_for_post_nonce' );
 
- 
+
  //retrieve list of articles from Database
- 
+
  $args = array(
- 
+
         'orderby'          	=> 'post_date',
 		'order'            	=> 'DESC',
 		'post_type' 	   	=> 'article',
 		'post_status'      	=> 'publish'
-					
-      );
-	
-	$query = new WP_Query($args);
-	
 
-	
+      );
+
+	$query = new WP_Query($args);
+
+
+
 	echo '<select name="related_article" id="related_article">';
-	
-	while ($query->have_posts()) 
+
+	while ($query->have_posts())
 	{
-		
+
 		$query->the_post();
-		
+
 		$related_article = get_post_meta( $post->ID, 'related_article', true );
-		
+
 		if($related_article == get_the_ID())
 		{
 			$selected = "selected";
@@ -1070,26 +1070,26 @@ function render_articles_for_post( $post )
 		{
 			$selected = "";
 		}
-     		
-		echo '<option value="'.get_the_ID().'" '.$selected.'>'.get_the_title().'</option>';      	
-		
+
+		echo '<option value="'.get_the_ID().'" '.$selected.'>'.get_the_title().'</option>';
+
 	}
-	
+
 	echo '</select>' ;
 
-	
+
  /*
    * Use get_post_meta() to retrieve an existing value
    * from the database and use the value for the form.
    */
 
- 
+
 }
 
 
-function adding_custom_meta_boxes( $post ) 
+function adding_custom_meta_boxes( $post )
 {
-    add_meta_box( 
+    add_meta_box(
         'film_type',
         __( 'Type' ),
         'render_film_type',
@@ -1098,7 +1098,7 @@ function adding_custom_meta_boxes( $post )
         'default'
     );
 
-    add_meta_box( 
+    add_meta_box(
         'film_videourl',
         __( 'Video URL' ),
         'render_film_videourl',
@@ -1107,7 +1107,7 @@ function adding_custom_meta_boxes( $post )
         'default'
     );
 
-    add_meta_box( 
+    add_meta_box(
         'film_duration',
         __( 'Duration (mins)' ),
         'render_film_duration',
@@ -1116,7 +1116,7 @@ function adding_custom_meta_boxes( $post )
         'default'
     );
 
-     add_meta_box( 
+     add_meta_box(
         'film_tagline',
         __( 'Tagline' ),
         'render_film_tagline',
@@ -1126,7 +1126,7 @@ function adding_custom_meta_boxes( $post )
     );
 
 
-	add_meta_box( 
+	add_meta_box(
         'related_article',
         __( 'related_article' ),
         'render_articles_for_post',
@@ -1145,7 +1145,7 @@ function save_related_article($post_id,$post)
 
 $related_article = sanitize_text_field( $_POST['related_article'] );
 
-        update_post_meta( $post_id, 'related_article', $related_article );	
+        update_post_meta( $post_id, 'related_article', $related_article );
 }
 
 add_action( 'save_post', 'save_related_article',10,2 );
@@ -1153,7 +1153,7 @@ add_action( 'save_post', 'save_related_article',10,2 );
 
 
 
-function save_meta_box_data( $post_id,$post ) 
+function save_meta_box_data( $post_id,$post )
 {
 
       if($post->post_status == 'auto-draft')
@@ -1191,13 +1191,13 @@ function save_meta_box_data( $post_id,$post )
           // Sanitize user input.
         $videourl = sanitize_text_field( $_POST['videourl'] );
 
-       
+
 
 
         if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i",$videourl) && $post->post_status != 'inherit' ) {
-          
 
-       
+
+
           add_settings_error(
               'videourl',
               'Videourl cannot be empty',
@@ -1285,7 +1285,7 @@ function _location_admin_notices() {
 add_action( 'admin_menu', 'shortfilm_menu' );
 function shortfilm_menu()
 	{
-		add_menu_page( 'shortfilm', 'Shortfilm', 'manage_options', 'shortfilm', 'display_shortfilm_menu_page'); 
+		add_menu_page( 'shortfilm', 'Shortfilm', 'manage_options', 'shortfilm', 'display_shortfilm_menu_page');
 	}
 
 	function display_shortfilm_menu_page()
@@ -1293,16 +1293,16 @@ function shortfilm_menu()
 		include('shortfilm_menu_page.php');
 	}
 
-	
+
 	add_action('wp_ajax_populate_posts', 'fill_posts');
 	add_action('wp_ajax_nopriv_populate_posts', 'fill_posts');
-	 
+
 	function fill_posts()
-	{		
-		
+	{
+
 		$cat_id = $_REQUEST['cat_id'];
-		 
-		
+
+
 	    $args1 = array('category' => $cat_id);
 
 		$myposts = get_posts($args1);
@@ -1314,17 +1314,17 @@ function shortfilm_menu()
 
 					$option .= "<option value='".$postid."'>".$posttitle."</option>";
 			}
-		   
+
 			echo $option;
-	 
+
 			die();
 	}
-	
+
 
 
 	add_action('wp_ajax_save_homepage_video', 'add_homepage_video');
 	add_action('wp_ajax_nopriv_save_homepage_video', 'add_homepage_video');
-	
+
 	function add_homepage_video()
 	{
 		$cat_id = $_POST['cat_id'];
@@ -1333,9 +1333,9 @@ function shortfilm_menu()
 		if(update_option('homepage_video',$post_id))
 		{
 			$response = Film\Video::get($post_id);
-					
+
 			wp_send_json($response);
-			
+
 		}
 		else
 		{
@@ -1350,19 +1350,19 @@ function shortfilm_menu()
 	add_action('wp_ajax_nopriv_show_default_staffpick_post', 'get_default_staffpick_post');
 
 	function get_default_staffpick_post()
-	{				
-		$args = array( 
+	{
+		$args = array(
 			'numberposts' => '1',
 			'post_status' => 'publish'
 		);
-		
+
 		$recent_posts = wp_get_recent_posts( $args );
 
 		$recent_post_id = $recent_posts[0]["ID"];
-		
+
 		$response = Film\Video::get($recent_post_id);
-		
-	
+
+
 		if (is_wp_error($response))
 		{
 		   echo false;
@@ -1370,18 +1370,18 @@ function shortfilm_menu()
 		else
 		{
 			wp_send_json($response);
-		}	
-	}  
+		}
+	}
 
-	
+
 	add_action('wp_ajax_show_staffpick_category_post', 'get_staffpick_category_post');
 	add_action('wp_ajax_nopriv_show_staffpick_category_post', 'get_staffpick_category_post');
 
 	function get_staffpick_category_post($postid)
-	{	
-	
+	{
+
 		$response = Film\Video::get($postid);
-			
+
 		if (is_wp_error($response))
 		{
 		   echo false;
@@ -1390,40 +1390,40 @@ function shortfilm_menu()
 		{
 		   wp_send_json($response);
 		}
-	} 
-	
-	
+	}
+
+
 	function get_pairs_category_post()
 	{
 		$response = array();
-		
+
 		$args_cat = array(
 			'orderby' => 'name',
 			'parent' => 0
 		);
-		
+
 		$categories = get_categories( $args_cat );
-		
+
 		foreach ( $categories as $category )
 		{
-			$args_post = array( 
+			$args_post = array(
 				'numberposts' => '1',
 				'category' => $category->term_id,
 				'post_status' => 'publish'
 				);
-			
+
 			$recent_posts = wp_get_recent_posts( $args_post );
-			
+
 			$recent_post_id = $recent_posts[0]["ID"];
-			
+
 			$response[]=array(
-				
+
 				'catid' => $category->term_id,
 				'catname' => $category->name,
 				'postid' => $recent_post_id
-			);	
-						
-		}		
+			);
+
+		}
 
 		if (is_wp_error($response))
 		{
@@ -1433,11 +1433,11 @@ function shortfilm_menu()
 		{
 		   return $response;
 		}
-			
-	}  
+
+	}
 
 
-	function create_custom_post_article() 
+	function create_custom_post_article()
 	{
 		$labels = array(
 			'name'               => _x( 'Articles', 'post type general name' ),
@@ -1450,7 +1450,7 @@ function shortfilm_menu()
 			'view_item'          => __( 'View Article' ),
 			'search_items'       => __( 'Search Article' ),
 			'not_found'          => __( 'No articles found' ),
-			'not_found_in_trash' => __( 'No articles found in the Trash' ), 
+			'not_found_in_trash' => __( 'No articles found in the Trash' ),
 			'parent_item_colon'  => '',
 			'menu_name'          => 'Articles'
 		);
@@ -1463,48 +1463,48 @@ function shortfilm_menu()
 			'has_archive'   => true,
 			'rewrite' => array('slug' => 'article'),
 		);
-		register_post_type( 'article', $args ); 
+		register_post_type( 'article', $args );
 	}
-	
+
 	add_action( 'init', 'create_custom_post_article' );
 
 
-function change_excerpt_length( $length ) 
+function change_excerpt_length( $length )
 {
 	return 20;
 }
 
-add_filter( 'excerpt_length', 'change_excerpt_length', 999 );	
-	
+add_filter( 'excerpt_length', 'change_excerpt_length', 999 );
+
 
 function get_popular_articles($args)
 {
 	$query = new WP_Query($args);
 	$response = array();
-	
+
     while ( $query->have_posts() )
 	{
 		$query->the_post();
-		$response[] = Article_post\Article::get_article($query->post->ID);		
+		$response[] = Article_post\Article::get_article($query->post->ID);
 	}
 
 	return $response;
-}	
+}
 
 
 function get_recent_articles()
 {
-	$params = array( 
+	$params = array(
 				'numberposts' => 6,
 				'order' => 'DESC',
 				'post_type'   => 'article',
 				'post_status' => 'publish'
 	);
-	
+
 	$recent_posts = wp_get_recent_posts( $params );
-		
+
 	foreach ($recent_posts as $recent_post)
-	{			
+	{
 		$post_detail = Article_post\Article::get_article($recent_post['ID']);
 
 		$post_response[] = array(
@@ -1525,31 +1525,31 @@ function get_recent_articles()
 				'post_date'			=> get_the_date()
 
 			);
-		
+
 	}
-		
-	return $post_response;	
-	
+
+	return $post_response;
+
 } // end get_recent_articles()
 
 
 function get_recent_videos()
 {
-	$params = array( 
+	$params = array(
 				'numberposts' => 3,
 				'order' => 'DESC',
 				'post_type'   => 'post',
 				'post_status' => 'publish'
 	);
-	
+
 	$recent_posts = wp_get_recent_posts( $params );
 
-		
+
 	foreach ($recent_posts as $recent_post)
-	{			
+	{
 		$post_detail = Film\Video::get($recent_post['ID']);
 
-		
+
 		$post_response[] = array(
 				'id'				=> $post_detail['id'],
 				'slug'				=> $post_detail['slug'],
@@ -1564,15 +1564,15 @@ function get_recent_videos()
 				'categories'		=> $post_detail['categories'],
 				'excerpt'			=> $post_detail['excerpt'],
 				'post_like_count'	=> $post_detail['post_like_count'],
-				'no_of_views'		=> $post_detail['no_of_views'],				
+				'no_of_views'		=> $post_detail['no_of_views'],
 				'post_date'			=> get_the_date()
 
 			);
-		
+
 	}
 
-	return $post_response;	
-	
+	return $post_response;
+
 } // end get_recent_articles()
 
 
@@ -1580,28 +1580,28 @@ function get_embed_url($postid,$videourl)
 {
 
 	$videotype = get_post_meta( $postid , 'type', true );
-		
+
 	//if youtube video
 	if ($videotype == "youtube")
-	{		
+	{
 		$youtubeUrl =  explode("?v=", $videourl);
-				
-		if($youtubeUrl[1])  //if not embed link		
+
+		if($youtubeUrl[1])  //if not embed link
 		{
 			$youtubeUrlid =  $youtubeUrl[1];
-		}	
+		}
 		else  //if embed link
-		{	
+		{
 			$youtubeUrl =  explode("/embed/", $videourl);
 
 			$youtubeUrlid =  $youtubeUrl[1];
 
 		}
-	
+
 		$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid.'?autoplay=1';
-		
+
 	}
-	
+
 	//if vimeo video
 	else if ($videotype == "vimeo")
 	{
@@ -1610,36 +1610,36 @@ function get_embed_url($postid,$videourl)
 		$vimeoUrlUrlid =  $vimeoUrl[1];
 
 		$embedurl =  '//player.vimeo.com/video/'.$vimeoUrlUrlid.'?autoplay=1';
-		
+
 	}
 
 	return $embedurl;
-		
-}	
+
+}
 
 
 function show_excerpt($charlength,$post_matter)
 {
 
 	$excerpt = strip_tags($post_matter);
-	
+
 	$charlength++;
 
-	if ( mb_strlen( $excerpt ) > $charlength ) 
+	if ( mb_strlen( $excerpt ) > $charlength )
 	{
 		$subex = mb_substr( $excerpt, 0, $charlength - 5 );
 		$exwords = explode( ' ', $subex );
 		$excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
-		if ( $excut < 0 ) 
+		if ( $excut < 0 )
 		{
 			return mb_substr( $subex, 0, $excut );
-		} 
+		}
 		else
 		{
 			return $subex;
 		}
 
-	} 
+	}
 	else
 	{
 		return $excerpt;
@@ -1652,17 +1652,17 @@ add_action('template_redirect', 'increment_article_number_of_views');
 function increment_article_number_of_views()
 {
 	global $post;
-	
+
 	$type = $post->post_type;
 
 	if($type == 'article')
 	{
 		$old_count = get_post_meta( $post->ID, "no_of_views", true);
-					
+
 		update_post_meta( $post->ID, "no_of_views", $old_count+1);
-				
+
 	}
-		
+
 }
 
 
@@ -1671,18 +1671,18 @@ add_action( 'wp_ajax_nopriv_increase_video_number_of_views', 'increment_video_nu
 
 function increment_video_number_of_views()
 {
-	
+
 	$video_id= $_POST['video_id'];   //ajax data
-	
+
 	$post = get_post($video_id);
-	
-	
+
+
 	$old_count = get_post_meta( $post->ID, "no_of_views", true);
-				
+
 	update_post_meta( $post->ID, "no_of_views", $old_count+1);
-	
+
 	wp_die();
-		
+
 }
 
 
@@ -1698,22 +1698,22 @@ function get_posts_by_author($author_id)
 		'posts_per_page' 	=> 6,
 		'post_type' 	   	=> 'post',
 		'post_status'      	=> 'publish'
-					
+
       );
 
-	
+
 	$query = new WP_Query($args);
 
 	$response = array();
-	
-	while ($query->have_posts()) 
+
+	while ($query->have_posts())
 	{
-		
+
 		$query->the_post();
-		
+
 		$response[] = Film\Video::get($query->post->ID);
 
-		
+
 	}
 
 	return $response;
@@ -1723,7 +1723,7 @@ function get_posts_by_author($author_id)
 
 function get_articles_by_author($author_id)
 {
-			
+
 	$args = array(
         //'post_author' 		=> $author_id,
 		'author' 			=> $author_id,
@@ -1733,21 +1733,21 @@ function get_articles_by_author($author_id)
 		'posts_per_page' 	=> 6,
 		'post_type' 	   	=> 'article',
 		'post_status'      	=> 'publish'
-					
+
       );
 
-	
+
 	$query = new WP_Query($args);
 
 	$response = array();
-	
-	while ($query->have_posts()) 
+
+	while ($query->have_posts())
 	{
-		
+
 		$query->the_post();
-						
+
 		$response[] = Article_post\Article::get_article($query->post->ID);
-		
+
 	}
 
 	return $response;
@@ -1761,19 +1761,19 @@ add_action( 'wp_ajax_nopriv_fetch_posts_by_author', 'get_more_posts_by_author' )
 
 function get_more_posts_by_author()
 {
-	
-		$author_id= $_POST['author_id']; 
-		
-	
-	  
-		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
+
+		$author_id= $_POST['author_id'];
+
+
+
+		$offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ?
 						$_REQUEST['offset'] : 0;
-		
+
 		if($offset != 0)
 			$offset = intval($offset) +  1;
-	
+
 		$args = array(
-					
+
 					//'post_author' 		=> $author_id,
 					'author' 			=> $author_id,
 					'orderby'           => 'post_date',
@@ -1785,26 +1785,26 @@ function get_more_posts_by_author()
 					'offset'           	=> $offset
 
 		);
-	  
 
-	
+
+
 	$query = new WP_Query($args);
 
 	$response = array();
-	
-	while ($query->have_posts()) 
+
+	while ($query->have_posts())
 	{
-	
-		
+
+
 		$query->the_post();
-		
+
 		$response[] = Film\Video::get($query->post->ID);
-		
+
 	}
 
 	 wp_send_json($response);
 
-	
+
 }
 
 
@@ -1815,19 +1815,19 @@ add_action( 'wp_ajax_nopriv_fetch_articles_by_author', 'get_more_articles_by_aut
 
 function get_more_articles_by_author()
 {
-	
-		$author_id= $_POST['author_id']; 
-		
-	
-	  
-		$offset_art = isset($_REQUEST['offset_art']) && $_REQUEST['offset_art'] !="" ? 
+
+		$author_id= $_POST['author_id'];
+
+
+
+		$offset_art = isset($_REQUEST['offset_art']) && $_REQUEST['offset_art'] !="" ?
 						$_REQUEST['offset_art'] : 0;
-		
+
 		if($offset_art != 0)
 			$offset_art = intval($offset_art) +  1;
-	
+
 		$args = array(
-					
+
 					//'post_author' 		=> $author_id,
 					'author' 			=> $author_id,
 					'orderby'           => 'post_date',
@@ -1840,58 +1840,58 @@ function get_more_articles_by_author()
 					'offset'           	=> $offset_art
 
 		);
-	  
+
 
 	$query = new WP_Query($args);
 
 	$response = array();
-	
-	while ($query->have_posts()) 
+
+	while ($query->have_posts())
 	{
-	
-		
+
+
 		$query->the_post();
-		
+
 		$response[] = Article_post\Article::get_article($query->post->ID);
-		
-		
+
+
 	}
 
 
 	 wp_send_json($response);
-	
+
 
 }
 
 
 function get_author_info($author_id)
 {
-			
+
 	//get author name
 	$name = (!get_user_details($author_id)) ? "" :
 				 get_user_meta(get_user_details($author_id)->ID,'first_name' , true).' '.
 				 get_user_meta(get_user_details($author_id)->ID,'last_name' , true);
-	
+
 	if($name == " ")
 		$name = get_user_details($author_id)->data->display_name;
-		
+
 	$author_description = get_user_meta(get_user_details($author_id)->ID,'description' , true);
 
 	$post_user_like = (!get_user_details($author_id)) ? "" :get_user_details($author_id)->data->user_like_count;
-	
+
 	$author_link = get_author_posts_url($author_id);
-		
+
 	$author_nicename = get_the_author_meta( 'user_nicename', $author_id );
-	
+
 	$no_of_videos_by_author = count_user_posts( $author_id , "post"  );
-	
+
 	$no_of_articles_by_author = count_user_posts( $author_id , "article"  );
-	
+
 	$author_email = get_the_author_meta( 'user_email', $author_id );
-	
-	
-	$author_info = array( 
-			
+
+
+	$author_info = array(
+
 			'author_id'				   => $author_id,
 			'author_name'		 	   => $name,
 			'author_description'	   => $author_description,
@@ -1901,65 +1901,65 @@ function get_author_info($author_id)
 			'no_of_videos_by_author'   => $no_of_videos_by_author,
 			'no_of_articles_by_author' => $no_of_articles_by_author,
 			'author_email'	 	  	   => $author_email
-			
+
 	);
 
-	
+
 	return $author_info;
-				
+
 }
 
 function get_playlist_info($playlist_id, $taxonomy, $image_size)
-{			
-	
+{
+
 	$playlist_details = get_term( $playlist_id, $taxonomy );
-	
+
 	//to convert object to array
-	
+
 	$playlist_name				= $playlist_details->name;
 	$playlist_slug 				= $playlist_details->slug;
 	$playlist_taxonomy  		= $playlist_details->taxonomy;
 	$playlist_description   	= $playlist_details->description;
 	$playlist_object_id   		= $playlist_details->object_id;
-	
+
 	$no_of_videos_in_playlist   = $playlist_details->count;
 
-	$playlist_link = get_term_link($playlist_id, $taxonomy);		
+	$playlist_link = get_term_link($playlist_id, $taxonomy);
 
-	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';	
-	
+	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';
+
 	$playlist_image = s8_get_taxonomy_image_src($playlist_details, $image_size);
-	
-	$playlist_image_url = $playlist_image['src'];
-		
 
-	$playlist_info = array( 
-			
+	$playlist_image_url = $playlist_image['src'];
+
+
+	$playlist_info = array(
+
 			'playlist_id'				    => $playlist_id,
 			'playlist_name'		 	   		=> $playlist_name,
 			'playlist_slug'		 	   		=> $playlist_slug,
 			'playlist_taxonomy'		 	    => $playlist_taxonomy,
-			'playlist_description'	  		=> $playlist_description,			
-			'playlist_object_id'	  		=> $playlist_object_id,			
+			'playlist_description'	  		=> $playlist_description,
+			'playlist_object_id'	  		=> $playlist_object_id,
 			'playlist_link'		 	  		=> $playlist_link,
-			'full_playlist_link'		 	=> $full_playlist_link,			
+			'full_playlist_link'		 	=> $full_playlist_link,
 			'no_of_videos_in_playlist'      => $no_of_videos_in_playlist,
 			'playlist_image_url'      		=> $playlist_image_url
-				
-	);	
-		
+
+	);
+
 
 
 	return $playlist_info;
-				
+
 }
 
 function get_playlist_total_runtime($playlist_id, $taxonomy)
 {
 	$total_runtime = 0;
-	
+
 	$playlist_details = get_term( $playlist_id, $taxonomy );
-	
+
 
 	$args = array(
 		'orderby'           => 'post_date',
@@ -1968,24 +1968,24 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 		'playlist'		    => $playlist_id,
 		'taxonomy'			=> $taxonomy,
 		'region'			=> '',
-		'language'			=> '',						
+		'language'			=> '',
 		'posts_per_page'   	=> 12,
 		'offset'           	=> 0
 
 	);
-					
-	
-	
+
+
+
 	$response_posts = Film\Video::get_many($args);
-	
+
 	foreach($response_posts as $response_post)
 	{
 		$total_runtime+=$response_post['duration'];
 
 	}
-	
+
 	return $total_runtime;
-		
+
 
 } //end function
 
@@ -1993,118 +1993,118 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 
 function get_video_category_links($categories)
 {
-	
-	
+
+
 	$cat_array = array();
-	
+
 	$temp = array();
-	
-	foreach ($categories as $value) 
+
+	foreach ($categories as $value)
 	{
-			
-	
+
+
 			$category_id = get_cat_ID( $value );
-			
-						
+
+
 			$category_link = get_category_link( $category_id );
-			
-			
+
+
 			array_push($temp, $category_link);
-			
-					
-			 $link = '<a href="'.esc_url( $category_link ).'" target="_blank"  title="Category Name">'.$value.'</a>';
-			 
-			
+
+
+			 $link = '<a href="'.esc_url( $category_link ).'" title="Category Name">'.$value.'</a>';
+
+
 			array_push($cat_array, $link);
-			
-			
+
+
 	}
 
-	
+
 	return $cat_array;
-	
+
 }
 
 function get_video_region_links($regions)
-{			
+{
 	$region_array = array();
 
-	foreach ($regions as $value) 
+	foreach ($regions as $value)
 	{
 		// $region_id = get_cat_ID( $value );
 		$region_id = get_term_by( 'name', $value, 'region');
 
-		// $region_link = get_category_link( $region_id );				
-		$region_link = get_term_link( $region_id );				
+		// $region_link = get_category_link( $region_id );
+		$region_link = get_term_link( $region_id );
 
 		// $link = '<a href="'.esc_url( $region_link ).'" target="_blank"  title="Region Name">'.$value.'</a>';
-		$link = '<a href="'.esc_url( $region_link ).'" target="_blank"  title="Region Name">'.$value.'</a>';
-		 
-		array_push($region_array, $link);						
+		$link = '<a href="'.esc_url( $region_link ).'" title="Region Name">'.$value.'</a>';
+
+		array_push($region_array, $link);
 	}
 
 	if(count($region_array) == 0)
 		$region_array = array(0 => 'No regions');
-	
+
 	return $region_array;
-			
+
 }
 
 function get_video_language_links($languages)
-{			
+{
 	$language_array = array();
 
-	foreach ($languages as $value) 
-	{		
+	foreach ($languages as $value)
+	{
 		$language_id = get_term_by( 'name', $value, 'language');
-			
-		$language_link = get_term_link( $language_id );				
 
-		$link = '<a href="'.esc_url( $language_link ).'" target="_blank"  title="Language Name">'.$value.'</a>';
-		 
-		array_push($language_array, $link);						
+		$language_link = get_term_link( $language_id );
+
+		$link = '<a href="'.esc_url( $language_link ).'" title="Language Name">'.$value.'</a>';
+
+		array_push($language_array, $link);
 	}
 
 	if(count($language_array) == 0)
 		$language_array = array(0 => 'No languages');
-	
+
 	return $language_array;
-			
+
 }
 
 function get_video_playlist_links($playlists)
-{			
+{
 
 	$playlist_array = array();
 
-	foreach ($playlists as $value) 
-	{		
+	foreach ($playlists as $value)
+	{
 		$playlist_id = get_term_by( 'name', $value, 'playlist');
-			
-		$playlist_link = get_term_link( $playlist_id );				
 
-		$link = '<a href="'.esc_url( $playlist_link ).'" target="_blank"  title="Playlist Name">'.$value.'</a>';
-		 
-		array_push($playlist_array, $link);						
+		$playlist_link = get_term_link( $playlist_id );
+
+		$link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$value.'</a>';
+
+		array_push($playlist_array, $link);
 	}
 
 	if(count($playlist_array) == 0)
 		$playlist_array = array(0 => 'No playlists');
-	
+
 	return $playlist_array;
-			
+
 }
 
 
 function get_list_of_all_languages()
 {
 	$args = array(
-		'orderby'           => 'name', 
+		'orderby'           => 'name',
 		'order'             => 'ASC'
-	); 
+	);
 
 	$all_language_list = get_terms('language', $args);
-	
+
 
 	return $all_language_list;
 }
@@ -2112,12 +2112,12 @@ function get_list_of_all_languages()
 function get_list_of_all_playlists()
 {
 	$args = array(
-		'orderby'           => 'name', 
+		'orderby'           => 'name',
 		'order'             => 'ASC'
-	); 
+	);
 
 	$all_playlist_list = get_terms('playlist', $args);
-	
+
 
 	return $all_playlist_list;
 
@@ -2125,48 +2125,48 @@ function get_list_of_all_playlists()
 
 
 function get_category_info($category_id, $taxonomy, $image_size)
-{			
-	
+{
+
 	$playlist_details = get_term( $playlist_id, $taxonomy );
-	
+
 	//to convert object to array
-	
+
 	$playlist_name				= $playlist_details->name;
 	$playlist_slug 				= $playlist_details->slug;
 	$playlist_taxonomy  		= $playlist_details->taxonomy;
 	$playlist_description   	= $playlist_details->description;
 	$playlist_object_id   		= $playlist_details->object_id;
-	
+
 	$no_of_videos_in_playlist   = $playlist_details->count;
 
-	$playlist_link = get_term_link($playlist_id, $taxonomy);		
+	$playlist_link = get_term_link($playlist_id, $taxonomy);
 
-	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';	
-	
+	$full_playlist_link = '<a href="'.esc_url( $playlist_link ).'" title="Playlist Name">'.$playlist_name.'</a>';
+
 	$playlist_image = s8_get_taxonomy_image_src($playlist_details, $image_size);
-	
-	$playlist_image_url = $playlist_image['src'];
-		
 
-	$playlist_info = array( 
-			
+	$playlist_image_url = $playlist_image['src'];
+
+
+	$playlist_info = array(
+
 			'playlist_id'				    => $playlist_id,
 			'playlist_name'		 	   		=> $playlist_name,
 			'playlist_slug'		 	   		=> $playlist_slug,
 			'playlist_taxonomy'		 	    => $playlist_taxonomy,
-			'playlist_description'	  		=> $playlist_description,			
-			'playlist_object_id'	  		=> $playlist_object_id,			
+			'playlist_description'	  		=> $playlist_description,
+			'playlist_object_id'	  		=> $playlist_object_id,
 			'playlist_link'		 	  		=> $playlist_link,
-			'full_playlist_link'		 	=> $full_playlist_link,			
+			'full_playlist_link'		 	=> $full_playlist_link,
 			'no_of_videos_in_playlist'      => $no_of_videos_in_playlist,
 			'playlist_image_url'      		=> $playlist_image_url
-				
-	);	
-		
+
+	);
+
 
 
 	return $playlist_info;
-				
+
 }
 
 
@@ -2174,48 +2174,48 @@ function get_few_categories($image_size)
 {
 	//get objects
 	$cat_indian = get_category_by_slug('indian');
-		
+
 	$cat_music_video = get_category_by_slug('music-video');
-	
+
 	$cat_short_doc = get_category_by_slug('short-doc');
-	
+
 	$cat_thriller = get_category_by_slug('thriller');
-	
-	
+
+
 	//get image urls
 	$cat_indian_image = s8_get_taxonomy_image_src($cat_indian, $image_size);
-	
+
 	$cat_indian_image_url = $cat_indian_image['src'];
-	
-	
+
+
 	$cat_music_video_image = s8_get_taxonomy_image_src($cat_music_video, $image_size);
-	
+
 	$cat_music_video_image_url = $cat_music_video_image['src'];
-	
-	
+
+
 	$cat_short_doc_image = s8_get_taxonomy_image_src($cat_short_doc, $image_size);
-	
+
 	$cat_short_doc_image_url = $cat_short_doc_image['src'];
-	
+
 
 	$cat_thriller_image = s8_get_taxonomy_image_src($cat_thriller, $image_size);
-	
+
 	$cat_thriller_image_url = $cat_thriller_image['src'];
-	
-	
+
+
 	//get links
-	
+
 	$cat_indian_link = get_category_link( $cat_indian->term_id );
-	
+
 	$cat_music_video_link = get_category_link( $cat_music_video->term_id );
-	
+
 	$cat_short_doc_video_link = get_category_link( $cat_short_doc->term_id );
-	
+
 	$cat_thriller_video_link = get_category_link( $cat_thriller->term_id );
-		
+
 
 	$response_cats[]=array(
-		
+
 		'cat_indian_image_url'     	   =>  $cat_indian_image_url,
 		'cat_music_video_image_url'    =>  $cat_music_video_image_url,
 		'cat_short_doc_image_url'  	   =>  $cat_short_doc_image_url,
@@ -2225,8 +2225,8 @@ function get_few_categories($image_size)
 		'cat_short_doc_video_link'	   =>  $cat_short_doc_video_link,
 		'cat_thriller_video_link'	   =>  $cat_thriller_video_link
 
-	);						
-			
+	);
+
 
 	if (is_wp_error($response_cats))
 	{
@@ -2235,67 +2235,67 @@ function get_few_categories($image_size)
 	else
 	{
 
-		
+
 	   return $response_cats;
 	}
-		
-}  
+
+}
 
 
 function get_some_categories($no_of_categories, $image_size)
 {
 	$response_cats = array();
-	
+
 	$args_cat = array(
-			
+
 				'number'      => $no_of_categories,
-				'parent'      => 0				
-				
-	); 
-	
+				'parent'      => 0
+
+	);
+
 	$categories = get_categories($args_cat);
-	
-	
+
+
 	foreach ( $categories as $category )
-	{		
-	
+	{
+
 		////get image urls
 		$cat_image = s8_get_taxonomy_image_src($category, $image_size);
-		
+
 		$cat_image_url = $cat_image['src'];
-		
-		// //get links	
+
+		// //get links
 		$cat_link = get_category_link( $category->term_id );
-	
-	
+
+
 		// $cat_link = get_category_link( $category->term_id );
-		
+
 		$response_cats[]=array(
-			
+
 			'cat_id'     	 	 =>  $category->cat_ID,
 			'cat_name'   		 =>  $category->cat_name,
 			'cat_termid' 		 =>  $category->term_id,
-			'cat_slug'   		 =>  $category->slug,			
+			'cat_slug'   		 =>  $category->slug,
 			'cat_count'	 		 =>  $category->category_count,
 			'cat_taxonomy'	 	 =>  $category->taxonomy,
 			'cat_description'	 =>  $category->category_description,
 			'cat_link'	 		 =>  $cat_link,
 			'cat_image_url'	 	 =>  $cat_image_url
-			
 
-		);						
-	}		
+
+		);
+	}
 
 	if (is_wp_error($response_cats))
 	{
 	   return false;
 	}
 	else
-	{	
+	{
 	   return $response_cats;
 	}
-		
-}  
+
+}
 
 
 function author_director_rewrite(){
@@ -2318,17 +2318,17 @@ function custom_image_size_rules($file)
 	if ($width < $minimum['width'])
 	{
 		 return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
-		
+
 	}
 
-	return $file; 
-	
+	return $file;
+
 }
 
 /*
 
 	add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
-	
+
 	function custom_image_size_rules($file)
 	{
 
@@ -2344,43 +2344,43 @@ function custom_image_size_rules($file)
 		}
 		}
 
-		return $file; 
+		return $file;
 	}
 
 */
 
 
-function validate_duration($hook) 
+function validate_duration($hook)
 {
   wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/assets/js/duration_validation.js', array('jquery') );
 }
 add_action( 'admin_enqueue_scripts', 'validate_duration' );
 
 
-function get_all_playlists($image_size) 
+function get_all_playlists($image_size)
 {
 	$all_playlists =  get_terms('playlist', 'orderby=id', 'order=DESC');
-	
+
 	$newlist = array();
-			
+
 	foreach($all_playlists as $playlist)
 	{
 		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
 
 		$playlist_image_url = $playlist_image['src'];
-		
+
 		$list = (array) $playlist;
-		
+
 		$play_name = $list['name'];
-		
+
 		$play_id = get_term_by( 'name', $play_name, 'playlist');
-				
-		$play_link = get_term_link( $play_id );				
+
+		$play_link = get_term_link( $play_id );
 
 		$link = '<a href="'.esc_url( $play_link ).'" title="Playlist Name">'.$play_name.'</a>';
-		
-			
-		$newlist[] = array(		
+
+
+		$newlist[] = array(
 						'playlist_id' => $list['term_id'],
 						'playlist_name' => $list['name'],
 						'playlist_slug' => $list['slug'],
@@ -2390,115 +2390,132 @@ function get_all_playlists($image_size)
 						// 'playlist_link' => $link,
 						'playlist_link' => $play_link,
 						'playlist_image_url' => $playlist_image_url
-												
+
 		);
 
 	}
-	
+
 
 	return $newlist;
 }
 
 
-function get_playlists($image_size, $playlists_per_page, $offset) 
-{	
+function get_playlists($image_size, $playlists_per_page, $offset)
+{
 	$args = array(
-				'orderby'           => 'id', 
+				'orderby'           => 'id',
 				'order'             => 'ASC',
 				'number'            => $playlists_per_page,
 				'offset'			=> $offset
-			); 
+			);
 
-			
+
 	$playlists =  get_terms(array('playlist'), $args);
-	
+
 	$newlist = array();
-			
+
 	foreach($playlists as $playlist)
 	{
 		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
 
 		$playlist_image_url = $playlist_image['src'];
-		
+
 
 		$list = (array) $playlist;
-		
+
 		$play_name = $list['name'];
-		
+
 		$play_id = get_term_by( 'name', $play_name, 'playlist');
-				
-		$play_link = get_term_link( $play_id );				
+
+		$play_link = get_term_link( $play_id );
 
 		$link = '<a href="'.esc_url( $play_link ).'" title="Playlist Name">'.$play_name.'</a>';
-		
-			
-		$newlist[] = array(		
+
+
+		$newlist[] = array(
 						'playlist_id' => $list['term_id'],
 						'playlist_name' => $list['name'],
 						'playlist_slug' => $list['slug'],
 						'playlist_taxonomy' => $list['taxonomy'],
 						'playlist_description' => $list['description'],
 						'playlist_count' => $list['count'],
-						// 'playlist_link' => $link,						
-						'playlist_link' => $play_link,						
+						// 'playlist_link' => $link,
+						'playlist_link' => $play_link,
 						'playlist_image_url' => $playlist_image_url
-												
+
 		);
 
 	}
-	
-	
+
+
 	return $newlist;
 }
 
 
 
-function get_recent_playlists($image_size, $playlists_per_page) 
-{	
+function get_recent_playlists($image_size, $playlists_per_page)
+{
 	$args = array(
-				'orderby'           => 'id', 
+				'orderby'           => 'id',
 				'order'             => 'DESC',
 				'number'            => $playlists_per_page
-				
-			); 
 
-			
+			);
+
+
 	$playlists =  get_terms(array('playlist'), $args);
-	
+
 	$newlist = array();
-			
+
 	foreach($playlists as $playlist)
 	{
 		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
 
 		$playlist_image_url = $playlist_image['src'];
-		
+
 
 		$list = (array) $playlist;
-		
+
 		$play_name = $list['name'];
-		
+
 		$play_id = get_term_by( 'name', $play_name, 'playlist');
-				
-		$play_link = get_term_link( $play_id );				
+
+		$play_link = get_term_link( $play_id );
 
 		$link = '<a href="'.esc_url( $play_link ).'" title="Playlist Name">'.$play_name.'</a>';
-		
-			
-		$newlist[] = array(		
+
+
+		$newlist[] = array(
 						'playlist_id' => $list['term_id'],
 						'playlist_name' => $list['name'],
 						'playlist_slug' => $list['slug'],
 						'playlist_taxonomy' => $list['taxonomy'],
 						'playlist_description' => $list['description'],
 						'playlist_count' => $list['count'],
-						// 'playlist_link' => $link,						
-						'playlist_link' => $play_link,						
+						// 'playlist_link' => $link,
+						'playlist_link' => $play_link,
 						'playlist_image_url' => $playlist_image_url
-												
+
 		);
 
 	}
-		
+
 	return $newlist;
 }
+
+
+
+// custom admin login logo
+function custom_login_logo()
+{
+	 echo '<style type="text/css">
+	 h1 a { background-image: url('.get_bloginfo('template_directory').'/images/logo.png) !important;   width: 100% !important; background-size: auto !important;}
+	 </style>';
+}
+add_action('login_head', 'custom_login_logo');
+
+
+
+
+
+

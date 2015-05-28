@@ -560,6 +560,7 @@ Template Name: Homepage
 
 		$response_cats = get_some_categories($no_of_categories, $image_size);
 
+
 		if(count($response_cats) > 0)
 		{
 	?>
@@ -579,10 +580,16 @@ Template Name: Homepage
 										<a class="content-bottom" href="<?php echo $response_cat['cat_link'];?>">
 
 											<img src="<?php echo $response_cat['cat_image_url'];?>" alt="Photo of category- <?php echo $response_cat['cat_name']; ?>" />
-
+											<span class="gen_hov">
+												<i class="cat_name"><?php echo $response_cat['cat_name']; ?></i>
+												<i class="cat_count"><?php echo $response_cat['cat_count']; ?> films</i>
+											</span>
 										</a>
 
+
 									</div>
+
+
 
 								</div>
 						<?php
@@ -883,13 +890,13 @@ Template Name: Homepage
 
 			//jQuery('.staffpick-display-section').find(".share-button2").html("<?php echo addslashes (do_shortcode("[ssba]")); ?>");
 
-            resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+            //resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
             jQuery('.show-featured-image img').show();
 		}
 		else
 		{
 			jQuery('.staffpick-display-section').html("");
-			html += "<div>No videos found.</div>";
+			html += '<p class="noneLeft">No videos found</p>';
 			jQuery('.staffpick-display-section').html(html);
 		}
 
@@ -1011,7 +1018,7 @@ Template Name: Homepage
                     generate_data_search_nn(response);
 
                     jQuery('.grid-box .grid-image').each(function(i) {
-		                resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+		                resizeimgs(jQuery(this), jQuery(this).find('img'));
 		                jQuery(this).find('img').show();
 		            });
 
@@ -1073,6 +1080,10 @@ Template Name: Homepage
                     jQuery('#searchids').val(myarr.join(','));
 
                     generate_data_search_nn(response);
+                    jQuery('.grid-box .grid-image').each(function(i) {
+		                resizeimgs(jQuery(this), jQuery(this).find('img'));
+		                jQuery(this).find('img').show();
+		            });
 
                 },
                 error:function(response)
@@ -1364,7 +1375,7 @@ Template Name: Homepage
 		else
 		{
 			jQuery('.all_posts').html("");
-			html += "<div>No videos found.</div>";
+			html += '<p class="noneLeft">No videos found</p>';
 			jQuery('.all_posts').html(html);
 		}
 
@@ -1474,8 +1485,9 @@ Template Name: Homepage
 
 				jQuery('.video-section').html(html);
 
-                resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
+                //resizeimgs(jQuery('.show-featured-image'), jQuery('.show-featured-image img'));
                 jQuery('.show-featured-image img').show();
+                jQuery('.vid_if ').css('height', 'auto');
 
 			console.log(html);
 

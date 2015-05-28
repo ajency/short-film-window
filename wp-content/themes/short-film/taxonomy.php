@@ -9,7 +9,7 @@
 			<?php
 
 				$queried_object = get_queried_object();
-		
+
 
 				$taxonomy = $queried_object->taxonomy;
 
@@ -64,16 +64,16 @@
 
 							if($taxonomy == "region")
 							{
-						?>								
-								<h4>REGION: <small><em><?php echo $term_name; ?></em></small></h4>
+						?>
+								<h2 class="brand">REGION: <small><em><?php echo $term_name; ?></em></small></h2>
 
 						<?php
 							}
 							else if($taxonomy == "language")
 							{
 						?>
-								
-								<h4>LANGUAGE: <small><em><?php echo $term_name; ?></em></small></h4>
+
+								<h2 class="brand">LANGUAGE: <small><em><?php echo $term_name; ?></em></small></h2>
 						<?php
 
 							}
@@ -125,7 +125,7 @@
 															<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
 																<?php echo $value['title'];?>
 															</a>
-															
+
 														</h4>
 													</div>
 
@@ -169,7 +169,7 @@
 
 															<div class="lico like-action">
 
-																
+
 																	<?php echo getPostLikeLink($value['id']) ; ?>
 															</div>
 
@@ -247,7 +247,7 @@
 
 
 	function get_all_posts()
-	{	
+	{
 		taxonomy = jQuery('#taxonomy').val();
 
 		region = jQuery('#region').val();
@@ -255,7 +255,7 @@
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
 
-		
+
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&region='+region;
 
 
@@ -310,13 +310,13 @@
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
 												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
-												
+
 											+'</h4>'
 										+'</div>'
 
 									+'</div>'
 
-									
+
 
 									+'<div class="row">'
 
@@ -326,7 +326,7 @@
 
 											+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' Minutes</h6>'
 
-										
+
 
 											+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
@@ -337,7 +337,7 @@
                                                 + '</span>'
                                             + '</p>'
 
-											
+
 
 										+'</div>'
 

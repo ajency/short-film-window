@@ -28,12 +28,12 @@ Template Name: List of Playlists
     <div class="container header-space playlist_list">
         <div class="content-wrapper">
 			<div class="row posrel">
-				<div class="col-md-12 posata"> 
+				<div class="col-md-12 posata">
 
 					<div class="row">
 
 						<div class="col-md-8">
-							<h2 class="auth_name">
+							<h2 class="brand auth_name">
 								PLAYLISTS
 							</h2>
 						</div>
@@ -310,7 +310,7 @@ Template Name: List of Playlists
 
 				<div class="row">
 					<div class="col-md-12">
-						<h4>New and Noteworthy</h4>
+						<h3 class="upp brand">New and Noteworthy</h3>
 					</div>
 	            </div>
 
@@ -326,10 +326,10 @@ Template Name: List of Playlists
 						{
 
 					?>
-							<div class="col-xs-4">
+							<div class="col-sm-4">
 								<div class="grid-box grid-full content-align-bottom">
 
-									<a class="content-bottom" target="_blank" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
+									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 
 										<div class="grid-image">
 											<img src="<?php echo $recentvideo['small_image'];?>">
@@ -403,7 +403,7 @@ window.onload = function()
 
 	console.log("onload offset = ");
 	console.log(jQuery('#offset').val());
-	
+
 	var count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($playlists); ?>");
 
 
@@ -486,7 +486,7 @@ window.onload = function()
 					console.log(response);
 
 					generate_data(response);
-				
+
 					var count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
 
 					jQuery('#offset').val(count);
@@ -514,7 +514,7 @@ window.onload = function()
 	{
 
 		var grid ={};
-		
+
 	    var multiple = [9,9];
 		var k = 0 ;
 		grid[k] = {};
@@ -540,7 +540,7 @@ window.onload = function()
 			else
 				grid[k][i] = response[j];
 
-		
+
 			if(i == 8 && response.length > multiple[k])
 			{
 
@@ -566,7 +566,7 @@ window.onload = function()
 
 		if(response.length>0)
 		{
-			
+
 			grid = generate_play_grid_response(response);
 
 			jQuery.each(grid,function(index,value){
@@ -589,7 +589,7 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-										
+
 
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[0]['playlist_count']+' films</p>'
@@ -614,7 +614,7 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-										
+
 
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[1]['playlist_count']+' films</p>'
@@ -639,7 +639,7 @@ window.onload = function()
 
 											+'<div class="p-btm">'
 
-										
+
 
 												+'<div class="pull-right p-count">'
 													+'<p>'+value[2]['playlist_count']+' films</p>'
@@ -798,18 +798,18 @@ window.onload = function()
 
 
 			});
-		
+
 			jQuery('.all_playlists').html(html);
 
 		}
 		else
 		{
-			
+
 			jQuery('.all_playlists').html("");
 
 			html += '<p class="noneLeft">No playlists found</p>';
 
-			
+
 			jQuery('.all_playlists').html(html);
 
 			jQuery('.load_more').hide();
@@ -821,7 +821,7 @@ window.onload = function()
 	function loadslick()
 	{
 		jQuery('.slider1').slick({
-				
+
 				infinite: true,
 				slidesToShow: 3,
 				responsive: [

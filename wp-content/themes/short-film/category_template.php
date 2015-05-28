@@ -984,6 +984,7 @@ window.onload = function() {
 		}
         jQuery('.grid-box .grid-image').each(function(i) {
             resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+            jQuery(this).find('img').show();
         });
 	}
 
@@ -1018,7 +1019,10 @@ window.onload = function() {
                     generate_data(response);
 					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
                     jQuery('#offset').val(count);
-
+			        jQuery('.grid-box .grid-image').each(function(i) {
+			            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
+			            jQuery(this).find('img').show();
+			        });
 
 				},
 				error:function(error){
