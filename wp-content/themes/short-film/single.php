@@ -12,7 +12,7 @@ get_header(); ?>
 	?>
 
 
-    <div class="posrel">
+    <div class="posrel headspace">
 
         <div class="vid-previous"></div>
 		<div class="vid-next"></div>

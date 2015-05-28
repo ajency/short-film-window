@@ -43,7 +43,7 @@ Template Name: Homepage
 							<?php
 
 								$no_of_categories = 16;
-								
+
 								$pairs = get_pairs_category_post($no_of_categories);
 
 								foreach ( $pairs as $pair )
@@ -1019,10 +1019,6 @@ Template Name: Homepage
 
                     generate_data_search_nn(response);
 
-                    jQuery('.grid-box .grid-image').each(function(i) {
-		                resizeimgs(jQuery(this), jQuery(this).find('img'));
-		                jQuery(this).find('img').show();
-		            });
 
                 },
                 error:function(response)
@@ -1032,7 +1028,10 @@ Template Name: Homepage
                 }
         });
 
-
+		jQuery('.grid-box .grid-image').each(function(i) {
+		    resizeimgs(jQuery(this), jQuery(this).find('img'));
+		    jQuery(this).find('img').show();
+		});
 
     });
 
@@ -1082,10 +1081,6 @@ Template Name: Homepage
                     jQuery('#searchids').val(myarr.join(','));
 
                     generate_data_search_nn(response);
-                    jQuery('.grid-box .grid-image').each(function(i) {
-		                resizeimgs(jQuery(this), jQuery(this).find('img'));
-		                jQuery(this).find('img').show();
-		            });
 
                 },
                 error:function(response)
@@ -1094,6 +1089,11 @@ Template Name: Homepage
 
                 }
         });
+
+		jQuery('.grid-box .grid-image').each(function(i) {
+		    resizeimgs(jQuery(this), jQuery(this).find('img'));
+			jQuery(this).find('img').show();
+		});
 
     });
 

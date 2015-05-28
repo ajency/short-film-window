@@ -11030,6 +11030,7 @@ a {
   }
   .navbar-collapse {
     background: rgba(0, 0, 0, 0.8);
+    margin-top: 6px;
   }
   .sub-header .navbar-default .menu li {
     display: block;
@@ -12160,6 +12161,24 @@ h6.brand {
     height: auto;
   }
 }
+@media screen and (max-width: 1199px) {
+  .headspace {
+    padding-top: 130px;
+  }
+  .header {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+}
+@media screen and (max-width: 767px) {
+  .headspace {
+    padding-top: 166px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .headspace {
+    padding-top: 0;
+  }
+}
 .play_movie_big {
   content: '';
   display: block;
@@ -12185,14 +12204,24 @@ h6.brand {
   background: url(../img/play_red.png) center center no-repeat;
   opacity: 1;
 }
+@media screen and (max-width: 1199px) {
+  .play_movie_big {
+    top: 23%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .play_movie_big {
+    top: 14%;
+  }
+}
 @media screen and (max-width: 767px) {
   .play_movie_big {
-    top: 49%;
+    top: 38%;
   }
 }
 @media screen and (max-width: 480px) {
   .play_movie_big {
-    top: 32%;
+    top: 25%;
   }
 }
 @media screen and (max-width: 991px) {
@@ -12783,7 +12812,7 @@ h6.brand {
 @media (max-width: 767px) {
   .vid-previous,
   .vid-next {
-    top: 51%;
+    top: 63%;
     width: 40px;
     height: 60px;
   }
@@ -12816,6 +12845,7 @@ h6.brand {
 }
 .show-featured-image {
   overflow: hidden;
+  width: 100%;
 }
 @media screen and (max-width: 767px) {
   .show-featured-image {
@@ -13231,10 +13261,17 @@ hr.border-btm {
 .btn-primary:hover {
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
+.load_more:active,
+.btn-primary:active,
+.load_more:focus,
+.btn-primary:focus {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
 .btn-primary.watchmore {
   background-color: #af152f;
   color: #fff;
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  white-space: normal;
 }
 .btn-primary.watchmore:hover {
   background-color: #811023;
@@ -13419,6 +13456,7 @@ p.noneLeft {
 .article_single .article_s_img {
   max-height: 600px;
   overflow: hidden;
+  width: 100%;
 }
 .article_single .article_title {
   width: 75%;
