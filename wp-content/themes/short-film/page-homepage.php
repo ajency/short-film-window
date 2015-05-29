@@ -688,7 +688,7 @@ Template Name: Homepage
         function resizeimgs(tw, obj, i) {
             var ar = obj.width() / obj.height();
 
-            console.log('AR: '+ar+'\n cont: ' + (tw.width() / tw.height()));
+            //console.log('AR: '+ar+'\n cont: ' + (tw.width() / tw.height()));
             if ( (tw.width() / tw.height()) < ar ) {
                 obj
                     .removeClass()
@@ -1018,7 +1018,19 @@ Template Name: Homepage
                     jQuery('#searchids').val(myarr.join(','));
 
                     generate_data_search_nn(response);
-
+                    //testing img size
+					var tt = setInterval(checkgridsize(), 1000);
+					var count = 1;
+					function checkgridsize() {
+						if (count==10) {
+							clearInterval(tt);
+						} else {
+							jQuery(window).trigger('resize');
+							count++;
+							console.log(typeof(count));
+							console.log(count);
+						}
+					}
 
                 },
                 error:function(response)
@@ -1027,21 +1039,6 @@ Template Name: Homepage
 
                 }
         });
-
-		//testing img size
-		jQuery('.grid-box .grid-image').each(function(i) {
-			$(this).find('img').on('load', function() {
-				if (this.complete) {
-					console.log(i + ' Yay!');
-					resizeimgs(jQuery(this), jQuery(this).find('img'));
-		    		jQuery(this).find('img').show();
-				} else {
-					console.log(i + ' Nay!');
-				}
-			});
-			resizeimgs(jQuery(this), jQuery(this).find('img'));
-			jQuery(this).find('img').show();
-		});
 
     });
 
@@ -1091,6 +1088,19 @@ Template Name: Homepage
                     jQuery('#searchids').val(myarr.join(','));
 
                     generate_data_search_nn(response);
+                    //testing img size
+					var tt = setInterval(checkgridsize(), 1000);
+					var count = 1;
+					function checkgridsize() {
+						if (count==10) {
+							clearInterval(tt);
+						} else {
+							jQuery(window).trigger('resize');
+							count++;
+							console.log(typeof(count));
+							console.log(count);
+						}
+					}
 
                 },
                 error:function(response)
@@ -1101,19 +1111,16 @@ Template Name: Homepage
         });
 
 		//testing img size
-		jQuery('.grid-box .grid-image').each(function(i) {
-			$(this).find('img').on('load', function() {
-				if (this.complete) {
-					console.log(i + ' Yay!');
-					resizeimgs(jQuery(this), jQuery(this).find('img'));
-		    		jQuery(this).find('img').show();
-				} else {
-					console.log(i + ' Nay!');
-				}
-			});
-			resizeimgs(jQuery(this), jQuery(this).find('img'));
-			jQuery(this).find('img').show();
-		});
+		var tt = setInterval(checkgridsize(), 0);
+		var count = 1;
+		function checkgridsize() {
+			if (count==10000) {
+				clearInterval(tt);
+			} else {
+				jQuery(window).trigger('resize');
+				count++;
+			}
+		}
 
     });
 

@@ -862,6 +862,17 @@ window.onload = function() {
 
                 }
         });
+        //testing img size
+        var tt = setInterval(checkgridsize(), 1000);
+        var count = 1;
+        function checkgridsize() {
+            if (count==10) {
+                clearInterval(tt);
+            } else {
+                jQuery(window).trigger('resize');
+                count++;
+            }
+        }
 
     });
 
@@ -918,6 +929,17 @@ window.onload = function() {
 
                 }
         });
+        //testing img size
+        var tt = setInterval(checkgridsize(), 1000);
+        var count = 1;
+        function checkgridsize() {
+            if (count==10) {
+                clearInterval(tt);
+            } else {
+                jQuery(window).trigger('resize');
+                count++;
+            }
+        }
 
     });
 
@@ -1000,10 +1022,17 @@ window.onload = function() {
                     generate_data(response);
 					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
                     jQuery('#offset').val(count);
-                    jQuery('.grid-box .grid-image').each(function(i) {
-                        resizeimgs(jQuery(this), jQuery(this).find('img'), i);
-                        jQuery(this).find('img').show();
-                    });
+                    //testing img size
+                    var tt = setInterval(checkgridsize(), 1000);
+                    var count = 1;
+                    function checkgridsize() {
+                        if (count==10) {
+                            clearInterval(tt);
+                        } else {
+                            jQuery(window).trigger('resize');
+                            count++;
+                        }
+                    }
 
 
 				},

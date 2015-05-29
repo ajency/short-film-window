@@ -871,6 +871,17 @@ window.onload = function() {
                     generate_data(response);
 					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
                     jQuery('#offset').val(count);
+                    //testing img size
+			        var tt = setInterval(checkgridsize(), 1000);
+			        var count = 1;
+			        function checkgridsize() {
+			            if (count==10) {
+			                clearInterval(tt);
+			            } else {
+			                jQuery(window).trigger('resize');
+			                count++;
+			            }
+			        }
 
 
 				},
