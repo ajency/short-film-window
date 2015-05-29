@@ -11415,6 +11415,9 @@ a {
   top: 0;
   transform: translateY(0);
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .grid-box .grid-image img {
   position: absolute;
@@ -11450,12 +11453,6 @@ a {
     margin-left: 1%;
     margin-right: 0;
   }
-}
-.grid-half .vid-meta {
-  width: 100%;
-}
-.grid-half .vid-desc {
-  display: none;
 }
 @media (max-width: 767px) {
   h1,
@@ -11736,6 +11733,10 @@ a {
   margin-right: 20px;
 }
 /* Sections */
+#land_vid {
+  width: 100%;
+  height: auto;
+}
 .movie-cat ul {
   list-style-type: none;
   margin: 0;
@@ -13768,6 +13769,9 @@ h4.auth_name {
   opacity: 1;
   top: 0;
 }
+.playlist-grid .p-grid-c:hover .p-img-c:after {
+  opacity: 0.6;
+}
 .playlist-grid .p-grid-c:hover .p-img-c img {
   opacity: 0.4;
 }
@@ -13785,7 +13789,23 @@ h4.auth_name {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #000;
+  background-color: #000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.playlist-grid .p-img-c:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: #000;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
 }
 .playlist-grid .p-img-c img {
   position: absolute;

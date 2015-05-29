@@ -145,12 +145,12 @@
             });
     });
 
-    if ($('div').hasClass('grid-image')) {
-            $('.grid-box .grid-image').each(function(i) {
-                resizeimgs($(this), $(this).find('img'), i);
-                $(this).find('img').show();
-            });
-        }
+        // if ($('div').hasClass('grid-image')) {
+        //     $('.grid-box .grid-image').each(function(i) {
+        //         resizeimgs($(this), $(this).find('img'), i);
+        //         $(this).find('img').show();
+        //     });
+        // }
         if ($('div').hasClass('p-grid-c')) {
             $('.p-grid-c .p-img-c').each(function(i) {
                 resizeimgs($(this), $(this).find('img'), i);
@@ -158,12 +158,12 @@
             });
         }
     $(window).load(function() {
-        if ($('div').hasClass('grid-image')) {
-            $('.grid-box .grid-image').each(function(i) {
-                resizeimgs($(this), $(this).find('img'), i);
-                $(this).find('img').show();
-            });
-        }
+        // if ($('div').hasClass('grid-image')) {
+        //     $('.grid-box .grid-image').each(function(i) {
+        //         resizeimgs($(this), $(this).find('img'), i);
+        //         $(this).find('img').show();
+        //     });
+        // }
         if ($('div').hasClass('p-grid-c')) {
             $('.p-grid-c .p-img-c').each(function(i) {
                 resizeimgs($(this), $(this).find('img'), i);
@@ -176,11 +176,11 @@
     });
 
     $(window).resize(function() {
-        if ($('div').hasClass('grid-image')) {
-            $('.grid-box .grid-image').each(function(i) {
-                resizeimgs($(this), $(this).find('img'), i);
-            });
-        }
+        // if ($('div').hasClass('grid-image')) {
+        //     $('.grid-box .grid-image').each(function(i) {
+        //         resizeimgs($(this), $(this).find('img'), i);
+        //     });
+        // }
     });
 
     var element = $('.movie-info');

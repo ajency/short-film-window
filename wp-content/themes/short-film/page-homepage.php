@@ -9,7 +9,15 @@ Template Name: Homepage
 			<!-- slider -->
 
         <div class="slider3 full-slider">
-          <div><img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"></div>
+        	<div>
+          		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
+          		<video autoplay id="land_vid" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
+				  <source src="<?php echo get_template_directory_uri(); ?>/assets/LandingVideo.mov" type="video/mov">
+				  <!-- <source src="somevideo.mp4" type="video/mp4"> -->
+				  I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+				  <!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
+				</video>
+         	</div>
 
         </div>
 
@@ -120,8 +128,8 @@ Template Name: Homepage
 								}
 							?>
 
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[0]['medium_image'] ;?>">
+                                <div class="grid-image" style="background-image: url('<?php echo $value[0]['medium_image'] ;?>');">
+                                    <!-- <img src="<?php echo $value[0]['medium_image'] ;?>"> -->
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[0]['title'];?></div>
@@ -177,8 +185,7 @@ Template Name: Homepage
 							?>
 
 
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[1]['small_image'] ;?>">
+                                <div class="grid-image" style="background-image: url('<?php echo $value[1]['medium_image'] ;?>');">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[1]['title'];?></div>
@@ -194,7 +201,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[1]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4 vid-meta">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
 
 												</div>
@@ -234,8 +241,7 @@ Template Name: Homepage
 							?>
 
 
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[2]['small_image'] ;?>">
+                                <div class="grid-image" style="background-image: url('<?php echo $value[2]['medium_image'] ;?>');">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[2]['title'];?></div>
@@ -251,7 +257,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[2]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4 vid-meta">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
 
 												</div>
@@ -294,8 +300,7 @@ Template Name: Homepage
 							?>
 
 
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[3]['small_image'] ;?>">
+                                <div class="grid-image" style="background-image: url('<?php echo $value[3]['medium_image'] ;?>');">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[3]['title'];?></div>
@@ -311,7 +316,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[3]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4 vid-meta">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
 
 												</div>
@@ -351,8 +356,7 @@ Template Name: Homepage
 							?>
 
 
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[4]['small_image'] ;?>">
+                                <div class="grid-image" style="background-image: url('<?php echo $value[4]['medium_image'] ;?>');">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[4]['title'];?></div>
@@ -368,7 +372,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[4]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4 vid-meta">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
 
 												</div>
@@ -408,8 +412,7 @@ Template Name: Homepage
 							?>
 
 
-                                <div class="grid-image">
-                                    <img src="<?php echo $value[5]['medium_image'] ;?>">
+                                <div class="grid-image" style="background-image: url('<?php echo $value[5]['medium_image'] ;?>');">
                                 </div>
                                 <div class="grid-text-wrap">
                                     <div class="grid-title"><?php echo $value[5]['title'];?></div>
@@ -631,8 +634,8 @@ Template Name: Homepage
 											<div class="slide-cont">
 
 												<div class="p-grid-c">
-													<span class="p-img-c">
-														<img src="<?php echo $playlist['playlist_image_url']; ?>" alt="">
+													<span class="p-img-c" style="background-image: url(<?php echo $playlist['playlist_image_url']; ?>);">
+														<!-- <img src="<?php echo $playlist['playlist_image_url']; ?>" alt=""> -->
 													</span>
 													<div class="p-text">
 														<h5 class="p-head"><?php echo $playlist['playlist_name']; ?></h5>
@@ -709,14 +712,6 @@ Template Name: Homepage
                 });
             }
         }
-        jQuery('.p-grid-c .p-img-c img').hide();
-        jQuery(window).load(function() {
-        	jQuery('.p-grid-c .p-img-c').each(function(i) {
-
-	            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
-	            jQuery(this).find('img').show();
-	        });
-        });
 
 		jQuery('.staffpick-display-section').text("Loading data...");
 
@@ -1018,19 +1013,6 @@ Template Name: Homepage
                     jQuery('#searchids').val(myarr.join(','));
 
                     generate_data_search_nn(response);
-                    //testing img size
-					var tt = setInterval(checkgridsize(), 1000);
-					var count = 1;
-					function checkgridsize() {
-						if (count==10) {
-							clearInterval(tt);
-						} else {
-							jQuery(window).trigger('resize');
-							count++;
-							console.log(typeof(count));
-							console.log(count);
-						}
-					}
 
                 },
                 error:function(response)
@@ -1109,19 +1091,6 @@ Template Name: Homepage
 
                 }
         });
-
-		//testing img size
-		var tt = setInterval(checkgridsize(), 0);
-		var count = 1;
-		function checkgridsize() {
-			if (count==10000) {
-				clearInterval(tt);
-			} else {
-				jQuery(window).trigger('resize');
-				count++;
-			}
-		}
-
     });
 
 	jQuery('#clear-search-results-btn').live('click',function(e){
@@ -1163,8 +1132,8 @@ Template Name: Homepage
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
 
-								+'<div class="grid-image">'
-									+'<img src="'+value[0]['medium_image']+'">'
+								+'<div class="grid-image" style="background-image: url('+value[0]['medium_image']+');">'
+									//+'<img src="'+value[0]['medium_image']+'">'
 								+'</div>'
 
 								+'<div class="grid-text-wrap">'
@@ -1205,8 +1174,7 @@ Template Name: Homepage
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
 
-							+'<div class="grid-image">'
-								+'<img src="'+value[1]['small_image']+'">'
+							+'<div class="grid-image" style="background-image: url('+value[1]['medium_image']+');">'
 							+'</div>'
 							+'<div class="grid-text-wrap">'
 								+'<div class="grid-title">'+value[1]['title']+'</div>'
@@ -1244,8 +1212,7 @@ Template Name: Homepage
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
 
-							+'<div class="grid-image">'
-							   +' <img src="'+value[2]['small_image']+'">'
+							+'<div class="grid-image" style="background-image: url('+value[2]['medium_image']+');">'
 						   +' </div>'
 							+'<div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[2]['title']+'</div>'
@@ -1284,8 +1251,7 @@ Template Name: Homepage
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
 
-							+'<div class="grid-image">'
-							   +' <img src="'+value[3]['small_image']+'">'
+							+'<div class="grid-image" style="background-image: url('+value[3]['medium_image']+');">'
 							+'</div>'
 						   +' <div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[3]['title']+'</div>'
@@ -1323,8 +1289,7 @@ Template Name: Homepage
 							+'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
 
 
-							+'<div class="grid-image">'
-								+'<img src="'+value[4]['small_image']+'">'
+							+'<div class="grid-image" style="background-image: url('+value[4]['medium_image']+');">'
 							+'</div>'
 							+'<div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[4]['title']+'</div>'
@@ -1360,8 +1325,7 @@ Template Name: Homepage
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
 
-							+'<div class="grid-image">'
-								+'<img src="'+value[5]['medium_image']+'">'
+							+'<div class="grid-image" style="background-image: url('+value[5]['medium_image']+');">'
 							+'</div>'
 							+'<div class="grid-text-wrap">'
 							   +' <div class="grid-title">'+value[5]['title']+'</div>'
