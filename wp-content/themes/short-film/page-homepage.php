@@ -1028,9 +1028,19 @@ Template Name: Homepage
                 }
         });
 
+		//testing img size
 		jQuery('.grid-box .grid-image').each(function(i) {
-		    resizeimgs(jQuery(this), jQuery(this).find('img'));
-		    jQuery(this).find('img').show();
+			$(this).find('img').on('load', function() {
+				if (this.complete) {
+					console.log(i + ' Yay!');
+					resizeimgs(jQuery(this), jQuery(this).find('img'));
+		    		jQuery(this).find('img').show();
+				} else {
+					console.log(i + ' Nay!');
+				}
+			});
+			resizeimgs(jQuery(this), jQuery(this).find('img'));
+			jQuery(this).find('img').show();
 		});
 
     });
@@ -1090,8 +1100,18 @@ Template Name: Homepage
                 }
         });
 
+		//testing img size
 		jQuery('.grid-box .grid-image').each(function(i) {
-		    resizeimgs(jQuery(this), jQuery(this).find('img'));
+			$(this).find('img').on('load', function() {
+				if (this.complete) {
+					console.log(i + ' Yay!');
+					resizeimgs(jQuery(this), jQuery(this).find('img'));
+		    		jQuery(this).find('img').show();
+				} else {
+					console.log(i + ' Nay!');
+				}
+			});
+			resizeimgs(jQuery(this), jQuery(this).find('img'));
 			jQuery(this).find('img').show();
 		});
 
