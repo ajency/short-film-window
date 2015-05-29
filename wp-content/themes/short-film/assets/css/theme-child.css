@@ -12861,7 +12861,7 @@ h6.brand {
   max-width: none;
 }
 .ontop {
-  z-index: 5;
+  z-index: 10;
   background: rgba(0, 0, 0, 0.8);
 }
 .adjust_i .pull-left {
@@ -13042,6 +13042,8 @@ h5.un {
   padding: 9px 12px;
   box-shadow: 0 0 0 2px #444847, 0 0 0 3px #fff;
   max-width: 208px;
+  height: auto;
+  font-size: 13px;
 }
 .frm_forms.frm_style_formidable-style.with_frm_style .highlight-first .frm_error,
 .frm_forms.with_frm_style .highlight-first .frm_error {
@@ -13092,6 +13094,7 @@ h5.un {
   max-width: none;
   float: right;
   padding: 12px 13px;
+  height: auto;
 }
 @media screen and (max-width: 991px) {
   .frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form .form-field.frm_left_container input,
