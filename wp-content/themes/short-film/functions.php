@@ -2351,6 +2351,35 @@ function custom_image_size_rules($file)
 
 */
 
+////
+
+	//add_action( 'save_post', 'check_featured_image_size', 100 );
+
+	function check_featured_image_size()
+	{	
+		$post_id = $GLOBALS['post']->ID;
+
+		if ( has_post_thumbnail( $post_id ) )
+		{
+			// $img=getimagesize($file['tmp_name']);
+			$img = get_the_post_thumbnail($post_id);
+			
+			$minimum = array('width' => '2000');
+			$width= $img[0];
+			$height =$img[1];
+			
+			if($width < $minimum['width'])
+			{
+				return array("error"=>"Image dimensions are too small. Minimum width should be {$minimum['width']}px. Uploaded image width is $width px");
+			}
+			
+			return $img;
+		}
+
+	}
+
+////
+
 function validate_duration($hook)
 {
   wp_enqueue_script( 'custom_script', get_template_directory_uri() . '/assets/js/duration_validation.js', array('jquery') );
