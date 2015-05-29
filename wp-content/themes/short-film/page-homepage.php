@@ -11,14 +11,15 @@ Template Name: Homepage
         <div class="slider3 full-slider">
         	<div>
           		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
-          		<video autoplay id="land_vid" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/LandingVideo.mov" type="video/mov">
-				  <!-- <source src="somevideo.mp4" type="video/mp4"> -->
+          		<video id="land_vid" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
+				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
+				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
+				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
 				  I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+				  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
 				  <!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
 				</video>
          	</div>
-
         </div>
 
         <!-- slider ends -->
@@ -684,8 +685,13 @@ Template Name: Homepage
 
 
 <script type="text/javascript">
+	document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
 
 	jQuery(document).ready(function($) {
+
+		// $('#land_vid').on('load', function() {
+		// 	this.play();
+		// });
 
         //function to resize the staffpick image after the viedo is stopped
         function resizeimgs(tw, obj, i) {
