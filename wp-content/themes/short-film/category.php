@@ -240,7 +240,7 @@
                                         <div class="grid-title"><?php echo $value[0]['title'];?></div>
                                         <div class="grid-meta">
                                             <div class="row">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4 vid-meta">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
 
                                                     </div>
@@ -250,7 +250,7 @@
                                                             <i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8">
+                                                <div class="col-xs-8 vid-desc">
                                                     <div class="pull-right text-right m-t-10">
                                                       <?php echo $value[0]['excerpt'];?>
                                                     </div>
@@ -291,7 +291,7 @@
                                         <div class="grid-title"><?php echo $value[1]['title'];?></div>
                                         <div class="grid-meta">
                                             <div class="row">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4 vid-meta">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
 
                                                     </div>
@@ -301,7 +301,7 @@
                                                         <div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8">
+                                                <div class="col-xs-8 vid-desc">
                                                     <div class="pull-right text-right m-t-10">
                                                       <?php echo $value[1]['excerpt'];?>
                                                     </div>
@@ -341,7 +341,7 @@
                                         <div class="grid-title"><?php echo $value[2]['title'];?></div>
                                         <div class="grid-meta">
                                             <div class="row">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4 vid-meta">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
 
                                                     </div>
@@ -350,7 +350,7 @@
                                                         <div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8">
+                                                <div class="col-xs-8 vid-desc">
                                                     <div class="pull-right text-right m-t-10">
                                                       <?php echo $value[2]['excerpt'];?>
                                                     </div>
@@ -393,7 +393,7 @@
                                         <div class="grid-title"><?php echo $value[3]['title'];?></div>
                                         <div class="grid-meta">
                                             <div class="row">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4 vid-meta">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
 
                                                     </div>
@@ -402,7 +402,7 @@
                                                         <div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8">
+                                                <div class="col-xs-8 vid-desc">
                                                     <div class="pull-right text-right m-t-10">
                                                       <?php echo $value[3]['excerpt'];?>
                                                     </div>
@@ -442,7 +442,7 @@
                                         <div class="grid-title"><?php echo $value[4]['title'];?></div>
                                         <div class="grid-meta">
                                             <div class="row">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4 vid-meta">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
 
                                                     </div>
@@ -451,7 +451,7 @@
                                                         <div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8">
+                                                <div class="col-xs-8 vid-desc">
                                                     <div class="pull-right text-right m-t-10">
                                                       <?php echo $value[4]['excerpt'];?>
                                                     </div>
@@ -491,7 +491,7 @@
                                         <div class="grid-title"><?php echo $value[5]['title'];?></div>
                                         <div class="grid-meta">
                                             <div class="row">
-                                                <div class="col-xs-4">
+                                                <div class="col-xs-4 vid-meta">
                                                     <div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
 
                                                     </div>
@@ -500,7 +500,7 @@
                                                         <div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-8">
+                                                <div class="col-xs-8 vid-desc">
                                                     <div class="pull-right text-right m-t-10">
                                                       <?php echo $value[5]['excerpt'];?>
                                                     </div>
@@ -1138,7 +1138,7 @@ window.onload = function() {
 											+'<div class="grid-title">'+value.title+'</div>'
 											+'<div class="grid-meta">'
 												+'<div class="row">'
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 
 														+'<div class="pull-left p-l-10 m-t-10">'
 															+'<div>'
@@ -1153,7 +1153,7 @@ window.onload = function() {
 
 													+'</div>'
 
-													+'<div class="col-xs-8">'
+													+'<div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value.excerpt
 
@@ -1222,7 +1222,7 @@ window.onload = function() {
 											+'<div class="grid-title">'+value.title+'</div>'
 											+'<div class="grid-meta">'
 												+'<div class="row">'
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 
 														+'<div class="pull-left p-l-10 m-t-10">'
 															+'<div>'
@@ -1237,7 +1237,7 @@ window.onload = function() {
 
 													+'</div>'
 
-													+'<div class="col-xs-8">'
+													+'<div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value.excerpt
 
@@ -1304,7 +1304,7 @@ window.onload = function() {
 											+'<div class="grid-title">'+value.title+'</div>'
 											+'<div class="grid-meta">'
 												+'<div class="row">'
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 
 														+'<div class="pull-left p-l-10 m-t-10">'
 															+'<div>'
@@ -1319,7 +1319,7 @@ window.onload = function() {
 
 													+'</div>'
 
-													+'<div class="col-xs-8">'
+													+'<div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value.excerpt
 
@@ -1392,7 +1392,7 @@ window.onload = function() {
                                     +'<div class="grid-title">'+value[0]['title']+'</div>'
                                     +'<div class="grid-meta">'
                                         +'<div class="row">'
-                                            +'<div class="col-xs-4">'
+                                            +'<div class="col-xs-4 vid-meta">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
 
                                                 +'</div>'
@@ -1401,7 +1401,7 @@ window.onload = function() {
                                                     +'<div class="'+value[0]['class']+'">'+value[0]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                 +'</div>'
                                             +'</div>'
-                                           +' <div class="col-xs-8">'
+                                           +' <div class="col-xs-8 vid-desc">'
                                                 +'<div class="pull-right text-right m-t-10">'
                                                   +value[0]['excerpt']
                                                 +'</div>'
@@ -1427,7 +1427,7 @@ window.onload = function() {
                                     +'<div class="grid-title">'+value[1]['title']+'</div>'
                                    +' <div class="grid-meta">'
                                         +'<div class="row">'
-                                           +' <div class="col-xs-4">'
+                                           +' <div class="col-xs-4 vid-meta">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
 
                                                 +'</div>'
@@ -1436,7 +1436,7 @@ window.onload = function() {
                                                     +'<div class="'+value[1]['class']+'">'+value[1]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                +' </div>'
                                             +'</div>'
-                                           +' <div class="col-xs-8">'
+                                           +' <div class="col-xs-8 vid-desc">'
                                               +'  <div class="pull-right text-right m-t-10">'
                                                  +value[1]['excerpt']
                                                +' </div>'
@@ -1462,7 +1462,7 @@ window.onload = function() {
                                     +'<div class="grid-title">'+value[2]['title']+'</div>'
                                     +'<div class="grid-meta">'
                                         +'<div class="row">'
-                                            +'<div class="col-xs-4">'
+                                            +'<div class="col-xs-4 vid-meta">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
 
                                                +' </div>'
@@ -1471,7 +1471,7 @@ window.onload = function() {
                                                     +'<div class="'+value[2]['class']+'">'+value[2]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                +' </div>'
                                             +'</div>'
-                                            +'<div class="col-xs-8">'
+                                            +'<div class="col-xs-8 vid-desc">'
                                                 +'<div class="pull-right text-right m-t-10">'
                                                   +value[2]['excerpt']
                                                 +'</div>'
@@ -1499,7 +1499,7 @@ window.onload = function() {
                                    +' <div class="grid-title">'+value[3]['title']+'</div>'
                                     +'<div class="grid-meta">'
                                        +' <div class="row">'
-                                           +' <div class="col-xs-4">'
+                                           +' <div class="col-xs-4 vid-meta">'
                                                +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
 
                                                 +'</div>'
@@ -1508,7 +1508,7 @@ window.onload = function() {
                                                    +' <div class="'+value[3]['class']+'">'+value[3]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                 +'</div>'
                                            +' </div>'
-                                            +'<div class="col-xs-8">'
+                                            +'<div class="col-xs-8 vid-desc">'
                                                +' <div class="pull-right text-right m-t-10">'
                                                  +value[3]['excerpt']
                                                +' </div>'
@@ -1533,7 +1533,7 @@ window.onload = function() {
                                     +'<div class="grid-title">'+value[4]['title']+'</div>'
                                     +'<div class="grid-meta">'
                                         +'<div class="row">'
-                                           +' <div class="col-xs-4">'
+                                           +' <div class="col-xs-4 vid-meta">'
                                                 +'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
 
                                                 +'</div>'
@@ -1542,7 +1542,7 @@ window.onload = function() {
                                                    +' <div class="'+value[4]['class']+'">'+value[4]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                +' </div>'
                                            +' </div>'
-                                           +' <div class="col-xs-8">'
+                                           +' <div class="col-xs-8 vid-desc">'
                                                 +'<div class="pull-right text-right m-t-10">'
                                                   +value[4]['excerpt']
                                                 +'</div>'
@@ -1567,7 +1567,7 @@ window.onload = function() {
                                     +'<div class="grid-title">'+value[5]['title']+'</div>'
                                     +'<div class="grid-meta">'
                                        +' <div class="row">'
-                                           +' <div class="col-xs-4">'
+                                           +' <div class="col-xs-4 vid-meta">'
                                                +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
 
                                                 +'</div>'
@@ -1576,7 +1576,7 @@ window.onload = function() {
                                                     +'<div class="'+value[5]['class']+'">'+value[5]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
                                                 +'</div>'
                                             +'</div>'
-                                           +' <div class="col-xs-8">'
+                                           +' <div class="col-xs-8 vid-desc">'
                                                +' <div class="pull-right text-right m-t-10">'
                                                   +value[5]['excerpt']
                                                 +'</div>'

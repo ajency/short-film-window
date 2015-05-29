@@ -685,7 +685,9 @@ Template Name: Homepage
 
 
 <script type="text/javascript">
+
 	document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
+
 
 	jQuery(document).ready(function($) {
 
@@ -1155,7 +1157,7 @@ Template Name: Homepage
 									+'<div class="grid-meta">'
 										+'<div class="row">'
 
-											+'<div class="col-xs-4">'
+											+'<div class="col-xs-4 vid-meta">'
 												+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
 
 												+'</div>'
@@ -1165,7 +1167,7 @@ Template Name: Homepage
 												+'</div>'
 											+'</div>'
 
-											+' <div class="col-xs-8">'
+											+' <div class="col-xs-8 vid-desc">'
 												+'<div class="pull-right text-right m-t-10">'
 													+value[0]['excerpt']
 												+'</div>'
@@ -1193,7 +1195,7 @@ Template Name: Homepage
 								+'<div class="grid-title">'+value[1]['title']+'</div>'
 							   +' <div class="grid-meta">'
 									+'<div class="row">'
-									   +' <div class="col-xs-4">'
+									   +' <div class="col-xs-4 vid-meta">'
 											+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
 
 											+'</div>'
@@ -1202,7 +1204,7 @@ Template Name: Homepage
 												+'<div class="'+value[1]['class']+'">'+value[1]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 										   +' </div>'
 										+'</div>'
-									   +' <div class="col-xs-8">'
+									   +' <div class="col-xs-8 vid-desc">'
 										  +'  <div class="pull-right text-right m-t-10">'
 											 +value[1]['excerpt']
 										   +' </div>'
@@ -1231,7 +1233,7 @@ Template Name: Homepage
 								+'<div class="grid-title">'+value[2]['title']+'</div>'
 								+'<div class="grid-meta">'
 									+'<div class="row">'
-										+'<div class="col-xs-4">'
+										+'<div class="col-xs-4 vid-meta">'
 											+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
 
 										   +' </div>'
@@ -1240,7 +1242,7 @@ Template Name: Homepage
 												+'<div class="'+value[2]['class']+'">'+value[2]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 										   +' </div>'
 										+'</div>'
-										+'<div class="col-xs-8">'
+										+'<div class="col-xs-8 vid-desc">'
 											+'<div class="pull-right text-right m-t-10">'
 											  +value[2]['excerpt']
 											+'</div>'
@@ -1270,7 +1272,7 @@ Template Name: Homepage
 							   +' <div class="grid-title">'+value[3]['title']+'</div>'
 								+'<div class="grid-meta">'
 								   +' <div class="row">'
-									   +' <div class="col-xs-4">'
+									   +' <div class="col-xs-4 vid-meta">'
 										   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
 
 											+'</div>'
@@ -1279,7 +1281,7 @@ Template Name: Homepage
 											   +' <div class="'+value[3]['class']+'">'+value[3]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 											+'</div>'
 									   +' </div>'
-										+'<div class="col-xs-8">'
+										+'<div class="col-xs-8 vid-desc">'
 										   +' <div class="pull-right text-right m-t-10">'
 											 +value[3]['excerpt']
 										   +' </div>'
@@ -1307,7 +1309,7 @@ Template Name: Homepage
 								+'<div class="grid-title">'+value[4]['title']+'</div>'
 								+'<div class="grid-meta">'
 									+'<div class="row">'
-									   +' <div class="col-xs-4">'
+									   +' <div class="col-xs-4 vid-meta">'
 											+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
 
 											+'</div>'
@@ -1316,7 +1318,7 @@ Template Name: Homepage
 											   +' <div class="'+value[4]['class']+'">'+value[4]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 										   +' </div>'
 									   +' </div>'
-									   +' <div class="col-xs-8">'
+									   +' <div class="col-xs-8 vid-desc">'
 											+'<div class="pull-right text-right m-t-10">'
 											  +value[4]['excerpt']
 											+'</div>'
@@ -1343,7 +1345,7 @@ Template Name: Homepage
 								+'<div class="grid-title">'+value[5]['title']+'</div>'
 								+'<div class="grid-meta">'
 								   +' <div class="row">'
-									   +' <div class="col-xs-4">'
+									   +' <div class="col-xs-4 vid-meta">'
 										   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
 
 											+'</div>'
@@ -1352,7 +1354,7 @@ Template Name: Homepage
 												+'<div class="'+value[5]['class']+'">'+value[5]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 											+'</div>'
 										+'</div>'
-									   +' <div class="col-xs-8">'
+									   +' <div class="col-xs-8 vid-desc">'
 										   +' <div class="pull-right text-right m-t-10">'
 											  +value[5]['excerpt']
 											+'</div>'
