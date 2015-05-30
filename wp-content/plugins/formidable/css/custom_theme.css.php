@@ -260,15 +260,19 @@ a.frm_save_draft{
 
 .with_frm_style .frm_radio input[type=radio]{
     border-radius:10px;
+	-webkit-appearance:radio;
 }
 
 .with_frm_style .frm_checkbox input[type=checkbox]{
     border-radius:0;
+	-webkit-appearance:checkbox;
 }
 
 .with_frm_style .frm_radio input[type=radio],
 .with_frm_style .frm_checkbox input[type=checkbox]{
     margin-right:5px;
+	width:auto;
+	border:none;
 }
 
 .with_frm_style :invalid,
@@ -522,7 +526,7 @@ ul.frm_pagination > li.active a{
     width:14.28%;
     vertical-align:top;
     padding:0 !important;
-    color:#<?php echo $defaults['text_color'] ?>;
+    color:#<?php echo esc_attr( $defaults['text_color'] ) ?>;
     font-size:12px;
 }
 
@@ -1104,6 +1108,10 @@ table.frmcal-calendar .frmcal-today .frmcal_date{
     margin-right:0;
 }
 
+.with_frm_style .frm_other_input.frm_other_full{
+	margin-top:10px;
+}
+
 .with_frm_style .frm_repeat_sec{
     margin-bottom:20px;
     margin-top:20px;
@@ -1491,7 +1499,7 @@ html[xmlns] .frm_clearfix{
 .with_frm_style .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
     margin:1px 0;
     padding:0;
-    height:25px
+    height:25px;
     outline:0;
     border:0 !important;
     background:transparent !important;

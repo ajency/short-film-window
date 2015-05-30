@@ -1,6 +1,9 @@
 <?php
 
 class FrmEntriesListHelper extends FrmListHelper {
+	protected $column_name;
+	protected $item;
+	protected $field;
 
 	public function prepare_items() {
         global $wpdb, $per_page;
@@ -32,7 +35,7 @@ class FrmEntriesListHelper extends FrmListHelper {
         $orderby = isset( $_REQUEST['orderby'] ) ? sanitize_title( $_REQUEST['orderby'] ) : $default_orderby;
         if ( strpos($orderby, 'meta') !== false ) {
             $order_field_type = FrmField::get_type( str_replace( 'meta_', '', $orderby ) );
-            $orderby .= in_array( $order_field_type, array( 'number', 'scale') ) ? ' +0 ' : '';
+			$orderby .= in_array( $order_field_type, array( 'number', 'scale' ) ) ? ' +0 ' : '';
         }
 
 		$order = isset( $_REQUEST['order'] ) ? sanitize_title( $_REQUEST['order'] ) : $default_order;
@@ -67,70 +70,7 @@ class FrmEntriesListHelper extends FrmListHelper {
 	}
 
 	public function search_box( $text, $input_id ) {
-    	if ( ! $this->has_items() && ! isset( $_REQUEST['s'] ) ) {
-    		return;
-    	}
-
-        if ( isset($this->params['form']) ) {
-            $form = FrmForm::getOne($this->params['form']);
-        } else {
-			$form = FrmForm::get_published_forms( array(), 1 );
-        }
-
-        if ( $form ) {
-            $field_list = FrmField::getAll( array( 'fi.form_id' => $form->id, 'fi.type not' => FrmFieldsHelper::no_save_fields() ), 'field_order');
-        }
-
-        $fid = isset($_REQUEST['fid']) ? esc_attr( stripslashes( $_REQUEST['fid'] ) ) : '';
-    	$input_id = $input_id . '-search-input';
-        $search_str = isset($_REQUEST['s']) ? esc_attr( stripslashes( $_REQUEST['s'] ) ) : '';
-
-        foreach ( array( 'orderby', 'order') as $get_var ) {
-        	if ( ! empty( $_REQUEST[ $get_var ] ) ) {
-        		echo '<input type="hidden" name="'. esc_attr( $get_var ) .'" value="' . esc_attr( $_REQUEST[ $get_var ] ) . '" />';
-        	}
-        }
-
-?>
-<div class="search-box frm_sidebar">
-    <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ) ?>"><?php echo esc_attr( $text ); ?>:</label>
-    <input type="text" id="<?php echo esc_attr( $input_id ) ?>" name="s" value="<?php echo esc_attr( $search_str ); ?>" />
-    <?php
-	if ( isset( $field_list ) && ! empty( $field_list ) ) { ?>
-    <select name="fid" class="hide-if-js">
-        <option value="">&mdash; <?php _e( 'All Fields', 'formidable' ) ?> &mdash;</option>
-        <option value="created_at" <?php selected($fid, 'created_at') ?>><?php _e( 'Entry creation date', 'formidable' ) ?></option>
-        <option value="id" <?php selected($fid, 'id') ?>><?php _e( 'Entry ID', 'formidable' ) ?></option>
-        <?php foreach ( $field_list as $f ) { ?>
-        <option value="<?php echo ($f->type == 'user_id') ? 'user_id' : $f->id ?>" <?php selected($fid, $f->id) ?>><?php echo FrmAppHelper::truncate($f->name, 30);  ?></option>
-        <?php } ?>
-    </select>
-
-    <div class="button dropdown hide-if-no-js">
-        <a href="#" id="frm-fid-search" class="frm-dropdown-toggle" data-toggle="dropdown"><?php _e( 'Search', 'formidable' ) ?> <b class="caret"></b></a>
-        <ul class="frm-dropdown-menu pull-right" id="frm-fid-search-menu" role="menu" aria-labelledby="frm-fid-search">
-            <li><a href="#" id="fid-">&mdash; <?php _e( 'All Fields', 'formidable' ) ?> &mdash;</a></li>
-            <li><a href="#" id="fid-created_at"><?php _e( 'Entry creation date', 'formidable' ) ?></a></li>
-            <li><a href="#" id="fid-id"><?php _e( 'Entry ID', 'formidable' ) ?></a></li>
-    	    <?php
-			foreach ( $field_list as $f ) { ?>
-            <li><a href="#" id="fid-<?php echo ($f->type == 'user_id') ? 'user_id' : $f->id ?>"><?php echo FrmAppHelper::truncate($f->name, 30); ?></a></li>
-    	    <?php
-    	        unset($f);
-    	    } ?>
-        </ul>
-    </div>
-    <?php submit_button( $text, 'button hide-if-js', false, false, array( 'id' => 'search-submit') );
-    } else {
-        submit_button( $text, 'button', false, false, array( 'id' => 'search-submit') );
-		if ( ! empty( $search_str ) ) { ?>
-	<a href="<?php echo esc_url( admin_url( 'admin.php?page=formidable-entries&frm_action=list&form=' . $form->id ) ) ?>"><?php _e( 'Reset', 'formidable' ) ?></a>
-    <?php
-		}
-    } ?>
-
-</div>
-<?php
+		// Searching is a pro feature
 	}
 
 	public function single_row( $item, $style = '' ) {
@@ -155,7 +95,7 @@ class FrmEntriesListHelper extends FrmListHelper {
 
 			if ( in_array( $column_name, $hidden ) ) {
 				$class .= ' frm_hidden';
-			} else if ( ! $action_col && ! in_array($column_name, array( 'cb', 'id', 'form_id', 'post_id')) ) {
+			} else if ( ! $action_col && ! in_array( $column_name, array( 'cb', 'id', 'form_id', 'post_id' ) ) ) {
 			    $action_col = $column_name;
             }
 
@@ -163,6 +103,7 @@ class FrmEntriesListHelper extends FrmListHelper {
             unset($class);
 
             $col_name = preg_replace('/^('. $this->params['form'] .'_)/', '', $column_name);
+			$this->column_name = $col_name;
 
 			switch ( $col_name ) {
 				case 'cb':
@@ -196,36 +137,10 @@ class FrmEntriesListHelper extends FrmListHelper {
 				    $val = $user->user_login;
 				    break;
 				default:
-    				if ( strpos($col_name, 'frmsep_') === 0 ) {
-    				    $sep_val = true;
-    				    $col_name = str_replace('frmsep_', '', $col_name);
-    				} else {
-    				    $sep_val = false;
-    				}
-
-    				if ( strpos($col_name, '-_-') ) {
-    				    list($col_name, $embedded_field_id) = explode('-_-', $col_name);
-    				}
-
-    				$col = FrmField::getOne($col_name);
-
-                    $atts = array(
-                        'type' => $col->type, 'truncate' => true,
-                        'post_id' => $item->post_id, 'entry_id' => $item->id,
-                        'embedded_field_id' => 0,
-                    );
-
-                    if ( $sep_val ) {
-                        $atts['saved_value'] = true;
-                    }
-
-    				if ( isset($embedded_field_id) ) {
-                        $atts['embedded_field_id'] = $embedded_field_id;
-    				    unset($embedded_field_id);
-    				}
-
-                    $val = FrmEntriesHelper::prepare_display_value($item, $col, $atts);
-
+					$val = apply_filters( 'frm_entries_' . $col_name . '_column', false, compact( 'item' ) );
+					if ( $val === false ) {
+						$this->get_column_value( $item, $val );
+					}
 				break;
 			}
 
@@ -261,4 +176,37 @@ class FrmEntriesListHelper extends FrmListHelper {
         $actions = apply_filters('frm_row_actions', $actions, $item);
     }
 
+	private function get_column_value( $item, &$val ) {
+		$col_name = $this->column_name;
+
+		if ( strpos( $col_name, 'frmsep_' ) === 0 ) {
+			$sep_val = true;
+			$col_name = str_replace( 'frmsep_', '', $col_name );
+		} else {
+			$sep_val = false;
+		}
+
+		if ( strpos( $col_name, '-_-' ) ) {
+			list( $col_name, $embedded_field_id ) = explode( '-_-', $col_name );
+		}
+
+		$field = FrmField::getOne( $col_name );
+
+		$atts = array(
+			'type' => $field->type, 'truncate' => true,
+			'post_id' => $item->post_id, 'entry_id' => $item->id,
+			'embedded_field_id' => 0,
+		);
+
+		if ( $sep_val ) {
+			$atts['saved_value'] = true;
+		}
+
+		if ( isset( $embedded_field_id ) ) {
+			$atts['embedded_field_id'] = $embedded_field_id;
+			unset( $embedded_field_id );
+		}
+
+		$val = FrmEntriesHelper::prepare_display_value( $item, $field, $atts );
+	}
 }

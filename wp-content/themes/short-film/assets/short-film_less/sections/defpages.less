@@ -105,11 +105,15 @@ hr.border-btm {
     &:hover {
         text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
     }
+    &:active, &:focus {
+        text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    }
 }
 .btn-primary.watchmore {
     background-color: @brand-primary;
     color: #fff;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    white-space: normal;
     &:hover {
         background-color: #811023;
     }
@@ -192,5 +196,30 @@ p.noneLeft {
             position: relative;
             top: -1px;
         }
+    }
+}
+
+
+.col-md-4 {
+    img.img-responsive {
+        max-width: none;
+        width: 100%;
+        @media screen and (max-width: 767px) {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.contact-map {
+    margin-left: 25px;
+    float: right;
+    width: 100%;
+    max-width: 550px;
+    @media screen and (max-width: 991px) {
+        width: 100%;
+        max-width: none;
+        float: none;
+        margin-left: 0;
+        margin-bottom: 15px;
     }
 }

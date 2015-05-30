@@ -64,6 +64,7 @@ class FrmEntriesHelper {
 
             $opt_defaults = FrmFieldsHelper::get_default_field_opts($field_array['type'], $field, true);
             $opt_defaults['required_indicator'] = '';
+			$opt_defaults['original_type'] = $field->type;
 
 			foreach ( $opt_defaults as $opt => $default_opt ) {
                 $field_array[ $opt ] = ( isset( $field->field_options[ $opt ] ) && $field->field_options[ $opt ] != '' ) ? $field->field_options[ $opt ] : $default_opt;
@@ -151,7 +152,7 @@ class FrmEntriesHelper {
 			return $frm_vars['current_form'];
 		}
 
-        $form_id = (int) FrmAppHelper::get_param('form', $form_id);
+		$form_id = FrmAppHelper::get_param('form', $form_id, 'get', 'absint' );
         return self::set_current_form($form_id);
     }
 
@@ -174,7 +175,7 @@ class FrmEntriesHelper {
     }
 
     public static function fill_entry_values($atts, $f, array &$values) {
-        if ( FrmFieldsHelper::is_no_save_field($f->type) ) {
+		if ( FrmFieldsHelper::is_no_save_field( $f->type ) ) {
             return;
         }
 
@@ -198,7 +199,7 @@ class FrmEntriesHelper {
                     $p_val = FrmProEntryMetaHelper::get_post_value($atts['entry']->post_id, $f->field_options['post_field'], $f->field_options['custom_field'], array(
                         'truncate' => (($f->field_options['post_field'] == 'post_category') ? true : false),
                         'form_id' => $atts['entry']->form_id, 'field' => $f, 'type' => $f->type,
-                        'exclude_cat' => (isset($f->field_options['exclude_cat']) ? $f->field_options['exclude_cat'] : 0)
+						'exclude_cat' => ( isset( $f->field_options['exclude_cat'] ) ? $f->field_options['exclude_cat'] : 0 ),
                     ));
                     if ( $p_val != '' ) {
                         $atts['entry']->metas[ $f->id ] = $p_val;
@@ -215,19 +216,18 @@ class FrmEntriesHelper {
 						self::flatten_multi_file_upload( $val, $f );
                         $atts['entry']->metas[ $f->id ] = $val;
                     }
+				} else {
+					$val = '';
+					FrmProEntriesHelper::get_dynamic_list_values( $f, $atts['entry'], $val );
+					$atts['entry']->metas[ $f->id ] = $val;
                 }
             }
         }
 
-		// Don't include blank values
-		if ( ! $atts['include_blank'] && isset( $atts['entry']->metas[ $f->id ] ) && FrmAppHelper::is_empty_value( $atts['entry']->metas[ $f->id ] ) ) {
-			return;
-		}
-
         $val = '';
         if ( $atts['entry'] ) {
             $prev_val = maybe_unserialize( $atts['entry']->metas[ $f->id ] );
-            $meta = array( 'item_id' => $atts['id'], 'field_id' => $f->id, 'meta_value' => $prev_val, 'field_type' => $f->type);
+			$meta = array( 'item_id' => $atts['id'], 'field_id' => $f->id, 'meta_value' => $prev_val, 'field_type' => $f->type );
 
             //This filter applies to the default-message shortcode and frm-show-entry shortcode only
             if ( isset($atts['filter']) && $atts['filter'] == false ) {
@@ -236,6 +236,11 @@ class FrmEntriesHelper {
                 $val = apply_filters('frm_email_value', $prev_val, (object) $meta, $atts['entry']);
             }
         }
+
+		// Don't include blank values
+		if ( ! $atts['include_blank'] && FrmAppHelper::is_empty_value( $val ) ) {
+			return;
+		}
 
         self::textarea_display_value( $val, $f->type, $atts['plain_text'] );
 
@@ -266,7 +271,7 @@ class FrmEntriesHelper {
      */
     public static function textarea_display_value( &$value, $type, $plain_text ) {
         if ( $type == 'textarea' && ! $plain_text ) {
-            $value = str_replace( array("\r\n", "\r", "\n"), ' <br/>', $value);
+			$value = str_replace( array( "\r\n", "\r", "\n" ), ' <br/>', $value );
         }
     }
 
@@ -275,35 +280,48 @@ class FrmEntriesHelper {
             return;
         }
 
-        if ( isset($atts['entry']->description) ) {
-            $data = maybe_unserialize($atts['entry']->description);
-        } else if ( $atts['default_email'] ) {
-            $atts['entry']->ip = '[ip]';
-            $data = array(
-                'browser' => '[browser]',
-                'referrer' => '[referrer]',
-            );
-        } else {
-            $data = array(
-                'browser' => '',
-                'referrer' => '',
-            );
-        }
+		$data  = self::get_entry_description_data( $atts );
+
+		if ( $atts['default_email'] ) {
+			$atts['entry']->ip = '[ip]';
+		}
 
         if ( $atts['format'] != 'text' ) {
             $values['ip'] = $atts['entry']->ip;
             $values['browser'] = self::get_browser($data['browser']);
             $values['referrer'] = $data['referrer'];
         } else {
-            //$content .= "\r\n\r\n" . __( 'User Information', 'formidable' ) ."\r\n";
-            $values['ip'] = array( 'label' => __( 'IP Address', 'formidable' ), 'val' => $atts['entry']->ip);
+			$values['ip'] = array( 'label' => __( 'IP Address', 'formidable' ), 'val' => $atts['entry']->ip );
             $values['browser'] = array(
                 'label' => __( 'User-Agent (Browser/OS)', 'formidable' ),
                 'val' => self::get_browser($data['browser']),
             );
-            $values['referrer'] = array( 'label' => __( 'Referrer', 'formidable' ), 'val' => $data['referrer']);
+			$values['referrer'] = array( 'label' => __( 'Referrer', 'formidable' ), 'val' => $data['referrer'] );
         }
     }
+
+	/**
+	 * @param array $atts - include (object) entry, (boolean) default_email
+	 * @since 2.0.8
+	 */
+	public static function get_entry_description_data( $atts ) {
+		$default_data = array(
+			'browser' => '',
+			'referrer' => '',
+		);
+		$data = $default_data;
+
+		if ( isset( $atts['entry']->description ) ) {
+			$data = maybe_unserialize( $atts['entry']->description );
+		} else if ( $atts['default_email'] ) {
+			$data = array(
+				'browser'  => '[browser]',
+				'referrer' => '[referrer]',
+			);
+		}
+
+		return array_merge( $default_data, $data );
+	}
 
     public static function convert_entry_to_content($values, $atts, array &$content) {
 
@@ -354,6 +372,7 @@ class FrmEntriesHelper {
                 $content[] = '<tr'. ( $odd ? $atts['bg_color'] : $bg_color_alt ) .'>';
             }
 
+			$value['val'] = str_replace( "\r\n", '<br/>', $value['val'] );
             if ( 'rtl' == $atts['direction'] ) {
                 $content[] = '<td '. $row_style .'>'. $value['val'] .'</td><th '. $row_style .'>'. $value['label'] . '</th>';
             } else {
@@ -405,7 +424,7 @@ class FrmEntriesHelper {
     public static function prepare_display_value($entry, $field, $atts) {
 		$field_value = isset( $entry->metas[ $field->id ] ) ? $entry->metas[ $field->id ] : false;
         if ( FrmAppHelper::pro_is_installed() ) {
-		    FrmProEntriesHelper::get_dfe_values($field, $entry, $field_value);
+			FrmProEntriesHelper::get_dynamic_list_values( $field, $entry, $field_value );
         }
 
         if ( $field->form_id == $entry->form_id || empty($atts['embedded_field_id']) ) {
@@ -417,14 +436,13 @@ class FrmEntriesHelper {
 
 	    if ( strpos($atts['embedded_field_id'], 'form') === 0 ) {
             //this is a repeating section
-            $child_entries = FrmEntry::getAll( array( 'it.parent_item_id' => $entry->id) );
+			$child_entries = FrmEntry::getAll( array( 'it.parent_item_id' => $entry->id ) );
         } else {
             // get all values for this field
 	        $child_values = isset( $entry->metas[ $atts['embedded_field_id'] ] ) ? $entry->metas[ $atts['embedded_field_id'] ] : false;
 
             if ( $child_values ) {
 	            $child_entries = FrmEntry::getAll( array( 'it.id' => (array) $child_values ) );
-	            //$atts['post_id']
 	        }
 	    }
 
@@ -450,6 +468,7 @@ class FrmEntriesHelper {
         }
 
         $val = implode(', ', (array) $field_value );
+		$val = wp_kses_post( $val );
 
         return $val;
     }
@@ -464,6 +483,7 @@ class FrmEntriesHelper {
             'type' => '', 'html' => false, 'show_filename' => true,
             'truncate' => false, 'sep' => ', ', 'post_id' => 0,
             'form_id' => $field->form_id, 'field' => $field, 'keepjs' => 0,
+			'return_array' => false,
         );
 
         $atts = wp_parse_args( $atts, $defaults );
@@ -509,13 +529,17 @@ class FrmEntriesHelper {
 
         if ( ! empty($new_value) ) {
             $value = $new_value;
-        } else if ( is_array($value) && $atts['type'] != 'file' ) {
+        } else if ( is_array($value) && $atts['type'] != 'file' && ! $atts['return_array'] ) {
             $value = implode($atts['sep'], $value);
         }
 
         if ( $atts['truncate'] && $atts['type'] != 'image' ) {
             $value = FrmAppHelper::truncate($value, 50);
         }
+
+		if ( ! $atts['keepjs'] && ! is_array( $value ) ) {
+			$value = wp_kses_post( $value );
+		}
 
         return apply_filters('frm_display_value', $value, $field, $atts);
     }
@@ -631,13 +655,20 @@ class FrmEntriesHelper {
             // Multi-select dropdown
             if ( is_array( $value ) ) {
                 $o_key = array_search( $field->options[ $other_key ], $value );
-                if ( $o_key ) {
-                    // Modify original value so key is preserved
-                    $value[ $other_key ] = $value[ $o_key ];
-                    unset( $value[ $o_key ] );
-                    $args['temp_value'] = $value;
-                    $value[ $other_key ] = reset( $other_vals );
-                }
+
+				if ( $o_key !== false ) {
+					// Modify the original value so other key will be preserved
+					$value[ $other_key ] = $value[ $o_key ];
+
+					// By default, the array keys will be numeric for multi-select dropdowns
+					// If going backwards and forwards between pages, the array key will match the other key
+					if ( $o_key != $other_key ) {
+						unset( $value[ $o_key ] );
+					}
+
+					$args['temp_value'] = $value;
+					$value[ $other_key ] = reset( $other_vals );
+				}
             } else if ( $field->options[ $other_key ] == $value ) {
                 $value = $other_vals;
             }
@@ -675,21 +706,23 @@ class FrmEntriesHelper {
         $platform = __( 'Unknown', 'formidable' );
         $ub = '';
 
-        //First get the platform?
-        if ( preg_match('/linux/i', $u_agent) ) {
-            $platform = 'Linux';
-        } else if ( preg_match('/macintosh|mac os x/i', $u_agent) ) {
-            $platform = 'Mac';
-        } else if ( preg_match('/windows|win32/i', $u_agent) ) {
-            $platform = 'Windows';
-        }
+		// Get the operating system
+		if ( preg_match('/windows|win32/i', $u_agent) ) {
+			$platform = 'Windows';
+		} else if ( preg_match('/android/i', $u_agent) ) {
+			$platform = 'Android';
+		} else if ( preg_match('/linux/i', $u_agent) ) {
+			$platform = 'Linux';
+		} else if ( preg_match('/macintosh|mac os x/i', $u_agent) ) {
+			$platform = 'OS X';
+		}
 
 		$agent_options = array(
-			'Firefox' => 'Mozilla Firefox',
 			'Chrome' => 'Google Chrome',
 			'Safari' => 'Apple Safari',
 			'Opera' => 'Opera',
 			'Netscape' => 'Netscape',
+			'Firefox' => 'Mozilla Firefox',
 		);
 
         // Next get the name of the useragent yes seperately and for good reason
@@ -707,7 +740,7 @@ class FrmEntriesHelper {
 		}
 
         // finally get the correct version number
-        $known = array( 'Version', $ub, 'other');
+		$known = array( 'Version', $ub, 'other' );
         $pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
         preg_match_all($pattern, $u_agent, $matches); // get the matching numbers
 
@@ -726,7 +759,7 @@ class FrmEntriesHelper {
         }
 
         // check if we have a number
-        if ( $version == '') {
+		if ( $version == '' ) {
             $version = '?';
         }
 

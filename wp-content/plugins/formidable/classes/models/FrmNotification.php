@@ -1,7 +1,7 @@
 <?php
 
-class FrmNotification{
-    public function __construct(){
+class FrmNotification {
+	public function __construct() {
         if ( ! defined('ABSPATH') ) {
             die('You are not allowed to call this page directly.');
         }
@@ -9,7 +9,7 @@ class FrmNotification{
     }
 
     public static function trigger_email($action, $entry, $form) {
-        if ( defined('WP_IMPORTING') ) {
+		if ( defined( 'WP_IMPORTING' ) && WP_IMPORTING  ) {
             return;
         }
 
@@ -49,23 +49,23 @@ class FrmNotification{
         //Filter and prepare the email fields
         foreach ( $filter_fields as $f ) {
             //Don't allow empty From
-            if  ( $f == 'from' && empty($notification[$f]) ) {
-                $notification[$f] = '[admin_email]';
-            } else if ( in_array($f, array( 'email_to', 'cc', 'bcc', 'reply_to', 'from')) ) {
+			if ( $f == 'from' && empty( $notification[ $f ] ) ) {
+				$notification[ $f ] = '[admin_email]';
+			} else if ( in_array( $f, array( 'email_to', 'cc', 'bcc', 'reply_to', 'from' ) ) ) {
 				//Remove brackets
                 //Add a space in case there isn't one
-                $notification[$f] = str_replace('<', ' ', $notification[$f]);
-                $notification[$f] = str_replace( array( '"', '>'), '', $notification[$f]);
+				$notification[ $f ] = str_replace( '<', ' ', $notification[ $f ] );
+				$notification[ $f ] = str_replace( array( '"', '>' ), '', $notification[ $f ] );
 
                 //Switch userID shortcode to email address
-                if ( strpos($notification[$f], '[' . $user_id_field . ']' ) !== false || strpos($notification[$f], '[' . $user_id_key . ']' ) !== false ) {
-                    $user_data = get_userdata($entry->metas[$user_id_field]);
+				if ( strpos( $notification[ $f ], '[' . $user_id_field . ']' ) !== false || strpos( $notification[ $f ], '[' . $user_id_key . ']' ) !== false ) {
+					$user_data = get_userdata( $entry->metas[ $user_id_field ] );
                     $user_email = $user_data->user_email;
 					$notification[ $f ] = str_replace( array( '[' . $user_id_field . ']', '[' . $user_id_key . ']' ), $user_email, $notification[ $f ] );
                 }
             }
 
-            $notification[$f] = FrmFieldsHelper::basic_replace_shortcodes($notification[$f], $form, $entry);
+			$notification[ $f ] = FrmFieldsHelper::basic_replace_shortcodes( $notification[ $f ], $form, $entry );
         }
 
         //Put recipients, cc, and bcc into an array if they aren't empty
@@ -127,7 +127,7 @@ class FrmNotification{
                     'email_key' => $email_key,
                 ) );
 
-                unset($to_emails[$email_key]);
+				unset( $to_emails[ $email_key ] );
             }
         }
 
@@ -199,13 +199,13 @@ class FrmNotification{
 
         foreach ( $filter_fields as $f ) {
             // If empty, just skip it
-            if ( empty($atts[$f]) ) {
+			if ( empty( $atts[ $f ] ) ) {
                 continue;
             }
 
             // to_email, cc, and bcc can be an array
-            if ( is_array($atts[$f]) ) {
-                foreach ( $atts[$f] as $key => $val ) {
+			if ( is_array( $atts[ $f ] ) ) {
+				foreach ( $atts[ $f ] as $key => $val ) {
                     self::format_single_field( $atts, $f, $val, $key );
                     unset( $key, $val );
                 }
@@ -213,7 +213,7 @@ class FrmNotification{
                 continue;
             }
 
-            self::format_single_field( $atts, $f, $atts[$f] );
+			self::format_single_field( $atts, $f, $atts[ $f ] );
         }
 
         // If reply-to isn't set, make it match the from settings
@@ -242,7 +242,7 @@ class FrmNotification{
         if ( is_email($val) ) {
             // add sender's name if not included in $from
             if ( $f == 'from' ) {
-                $part_2 = $atts[$f];
+				$part_2 = $atts[ $f ];
                 $part_1  = $atts['from_name'] ? $atts['from_name'] : wp_specialchars_decode( FrmAppHelper::site_name(), ENT_QUOTES );
             } else {
                 return;
@@ -261,10 +261,10 @@ class FrmNotification{
             } else {
 				// In case someone just puts a name in any other email field
                 if ( false !== $key ) {
-                    unset( $atts[$f][$key] );
+					unset( $atts[ $f ][ $key ] );
                     return;
                 }
-                $atts[$f] = '';
+				$atts[ $f ] = '';
                 return;
             }
         }
@@ -272,7 +272,7 @@ class FrmNotification{
 		// if sending the email from a yahoo address, change it to the WordPress default
 		if ( $f == 'from' && strpos( $part_2, '@yahoo.com' ) ) {
 			// Get the site domain and get rid of www.
-			$sitename = strtolower( wp_strip_all_tags( $_SERVER['SERVER_NAME'] ) );
+			$sitename = strtolower( FrmAppHelper::get_server_value( 'SERVER_NAME' ) );
 			if ( substr( $sitename, 0, 4 ) == 'www.' ) {
 				$sitename = substr( $sitename, 4 );
 			}
@@ -285,10 +285,10 @@ class FrmNotification{
 
         // If value is an array
         if ( false !== $key ) {
-            $atts[$f][$key] = $final_val;
+			$atts[ $f ][ $key ] = $final_val;
             return;
         }
-        $atts[$f] = $final_val;
+		$atts[ $f ] = $final_val;
     }
 
     public static function send_email($atts) {
@@ -315,7 +315,7 @@ class FrmNotification{
         $header[]       = 'From: ' . $atts['from'];
 
         //Allow for cc and bcc arrays
-        $array_fields = array( 'CC' => $atts['cc'], 'BCC' => $atts['bcc']);
+		$array_fields = array( 'CC' => $atts['cc'], 'BCC' => $atts['bcc'] );
 		$cc = array( 'CC' => array(), 'BCC' => array() );
         foreach ( $array_fields as $key => $a_field ) {
             if ( empty($a_field) ) {
@@ -374,11 +374,11 @@ class FrmNotification{
         do_action('frm_notification', $recipient, $atts['subject'], $message);
 
         if ( $sent ) {
-            $sent_to = array_merge( (array)$atts['to_email'], (array) $atts['cc'], (array) $atts['bcc']);
+			$sent_to = array_merge( (array) $atts['to_email'], (array) $atts['cc'], (array) $atts['bcc'] );
             $sent_to = array_filter( $sent_to );
             if ( apply_filters('frm_echo_emails', false) ) {
                 $temp = str_replace('<', '&lt;', $sent_to);
-                echo implode(', ', (array) $temp);
+				echo ' ' . FrmAppHelper::kses( implode(', ', (array) $temp ) );
             }
             return $sent_to;
         }

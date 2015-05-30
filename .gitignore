@@ -1,5 +1,8 @@
 wp-config.php
-wp-content/themes/short-film/bower_components
 .htaccess
 wp-content/uploads
+<<<<<<< HEAD
 wp-content/plugins/formidable
+=======
+wp-content/plugins/formidable
+>>>>>>> 11a9a1fd4d7ca47f1fda86a9b06116db95d3f319

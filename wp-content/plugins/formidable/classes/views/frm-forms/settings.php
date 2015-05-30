@@ -21,14 +21,14 @@
     <input type="hidden" name="frm_action" value="update_settings" />
 
         <div class="meta-box-sortables">
-        <div class="categorydiv postbox">
+        <div class="categorydiv postbox" id="frm-categorydiv">
         <h3 class="hndle"><span><?php echo __( 'Form Settings', 'formidable' ) ?></span></h3>
         <div class="inside frm-help-tabs">
         <div id="contextual-help-back"></div>
         <div id="contextual-help-columns">
         <div class="contextual-help-tabs">
         <ul class="frm-category-tabs frm-form-setting-tabs">
-            <?php $a = isset($_GET['t']) ? $_GET['t'] : 'advanced_settings'; ?>
+			<?php $a = FrmAppHelper::simple_get( 't', 'sanitize_title', 'advanced_settings' ); ?>
         	<li <?php echo ($a == 'advanced_settings') ? 'class="tabs active"' : '' ?>><a href="#advanced_settings"><?php _e( 'General', 'formidable' ) ?></a></li>
         	<li <?php echo ($a == 'email_settings') ? 'class="tabs active"' : '' ?>><a href="#email_settings"><?php _e( 'Form Actions', 'formidable' ); ?></a></li>
             <li <?php echo ($a == 'html_settings') ? 'class="tabs active"' : '' ?>><a href="#html_settings"><?php _e( 'Customize HTML', 'formidable' ) ?></a></li>
@@ -55,7 +55,7 @@
                                 <option value="redirect" <?php selected($values['success_action'], 'redirect');
                                 ?>><?php _e( 'Redirect to URL', 'formidable' ) ?></option>
                                 <option value="page" <?php selected($values['success_action'], 'page');
-                                ?>><?php _e( 'Show Page Content', 'formidable' )?></option>
+								?>><?php _e( 'Show Page Content', 'formidable' ) ?></option>
                             <?php } else { ?>
                             <option value="redirect" disabled="disabled" <?php selected($values['success_action'], 'redirect');
                             ?>><?php _e( 'Redirect to URL', 'formidable' ); echo ' '. __( '(Pro feature)', 'formidable' ); ?></option>
@@ -72,7 +72,7 @@
 							} ?>" placeholder="http://example.com" />
                         </span>
 
-                        <?php if ( FrmAppHelper::pro_is_installed() ){ ?>
+						<?php if ( FrmAppHelper::pro_is_installed() ) { ?>
                         <span class="success_action_page_box success_action_box<?php echo ($values['success_action'] == 'page') ? '' : ' frm_hidden'; ?>">
                             <label><?php _e( 'Use Content from Page', 'formidable' ) ?></label>
                             <?php FrmAppHelper::wp_pages_dropdown( 'options[success_page_id]', $values['success_page_id'] ) ?>
@@ -82,7 +82,7 @@
                 </tr>
                 <tr class="frm_show_form_opt success_action_message_box success_action_box<?php echo ($values['success_action'] == 'message') ? '' : ' frm_hidden'; ?>">
                     <td colspan="2">
-                        <label for="show_form"><input type="checkbox" name="options[show_form]" id="show_form" value="1" <?php checked($values['show_form'], 1) ?> /> <?php _e( 'Show the form with the confirmation message', 'formidable' )?></label>
+						<label for="show_form"><input type="checkbox" name="options[show_form]" id="show_form" value="1" <?php checked( $values['show_form'], 1 ) ?> /> <?php _e( 'Show the form with the confirmation message', 'formidable' ) ?></label>
                     </td>
                 </tr>
                 <tr>
@@ -94,8 +94,8 @@
                     <td colspan="2"><?php _e( 'Use Akismet to check entries for spam for', 'formidable' ) ?>
                         <select name="options[akismet]">
                             <option value=""><?php _e( 'no one', 'formidable' ) ?></option>
-                            <option value="1" <?php selected($values['akismet'], 1)?>><?php _e( 'everyone', 'formidable' ) ?></option>
-                            <option value="logged" <?php selected($values['akismet'], 'logged')?>><?php _e( 'visitors who are not logged in', 'formidable' ) ?></option>
+							<option value="1" <?php selected( $values['akismet'], 1 ) ?>><?php _e( 'everyone', 'formidable' ) ?></option>
+							<option value="logged" <?php selected( $values['akismet'], 'logged' ) ?>><?php _e( 'visitors who are not logged in', 'formidable' ) ?></option>
                         </select>
                     </td>
                 </tr>
@@ -132,11 +132,11 @@
                 <tr>
                     <td class="frm_left_label"><label for="custom_style"><?php _e( 'Style Template', 'formidable' ) ?></label></td>
                     <td><select name="options[custom_style]" id="custom_style">
-                        <option value="1" <?php selected($values['custom_style'], 1) ?>><?php _e( 'Always use default', 'formidable' )?></option>
+						<option value="1" <?php selected( $values['custom_style'], 1 ) ?>><?php _e( 'Always use default', 'formidable' ) ?></option>
                         <?php foreach ( $styles as $s ) { ?>
                         <option value="<?php echo esc_attr( $s->ID ) ?>" <?php selected( $s->ID, $values['custom_style'] ) ?>><?php echo esc_html( $s->post_title . ( empty( $s->menu_order ) ? '' : ' ('. __( 'default', 'formidable' ) .')' ) ) ?></option>
                         <?php } ?>
-                        <option value="0" <?php selected($values['custom_style'], 0); selected($values['custom_style'], '') ?>><?php _e( 'Do not use Formidable styling', 'formidable' )?></option>
+						<option value="0" <?php selected( $values['custom_style'], 0 ); selected( $values['custom_style'], '' ) ?>><?php _e( 'Do not use Formidable styling', 'formidable' ) ?></option>
                     </select></td>
                 </tr>
                 <tr>
@@ -226,9 +226,9 @@
 		<?php foreach ( $sections as $sec_name => $section ) { ?>
             <div id="<?php echo esc_attr( $sec_name ) ?>_settings" class="tabs-panel <?php echo ($a == $sec_name .'_settings') ? ' frm_block' : ' frm_hidden'; ?>"><?php
 			if ( isset( $section['class'] ) ) {
-                call_user_func( array($section['class'], $section['function']), $values);
+				call_user_func( array( $section['class'], $section['function'] ), $values );
 			} else {
-                call_user_func((isset($section['function']) ? $section['function'] : $section), $values);
+				call_user_func( ( isset( $section['function'] ) ? $section['function'] : $section ), $values );
             } ?>
             </div>
         <?php } ?>

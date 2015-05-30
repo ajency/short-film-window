@@ -18,7 +18,7 @@ class FrmEntry {
 
         $new_values = array(
             'item_key'  => FrmAppHelper::get_unique_key($values['item_key'], $wpdb->prefix .'frm_items', 'item_key'),
-            'name'      => isset($values['name']) ? $values['name'] : $values['item_key'],
+			'name'      => FrmAppHelper::truncate( ( isset( $values['name'] ) ? $values['name'] : $values['item_key'] ), 255, 1, '' ),
             'ip'        => FrmAppHelper::get_ip_address(),
             'is_draft'  => ( ( isset($values['frm_saving_draft']) && $values['frm_saving_draft'] == 1 ) ||  ( isset($values['is_draft']) && $values['is_draft'] == 1) ) ? 1 : 0,
             'form_id'   => isset($values['form_id']) ? (int) $values['form_id']: null,
@@ -78,6 +78,8 @@ class FrmEntry {
             FrmEntryMeta::update_entry_metas($entry_id, $values['item_meta']);
         }
 
+		self::clear_cache();
+
 		// this is a child entry
 		$is_child = isset( $values['parent_form_id'] ) && isset( $values['parent_nonce'] ) && ! empty( $values['parent_form_id'] ) && wp_verify_nonce( $values['parent_nonce'], 'parent' );
 
@@ -108,7 +110,7 @@ class FrmEntry {
 
         global $wpdb;
 
-        $entry_exists = FrmDb::get_col( $wpdb->prefix .'frm_items', $check_val, 'id', array( 'order_by' => 'created_at DESC') );
+		$entry_exists = FrmDb::get_col( $wpdb->prefix . 'frm_items', $check_val, 'id', array( 'order_by' => 'created_at DESC' ) );
 
         if ( ! $entry_exists || empty($entry_exists) || ! isset($values['item_meta']) ) {
             return false;
@@ -122,7 +124,7 @@ class FrmEntry {
             $metas = FrmEntryMeta::get_entry_meta_info($entry_exist);
             $field_metas = array();
             foreach ( $metas as $meta ) {
-                $field_metas[$meta->field_id] = $meta->meta_value;
+				$field_metas[ $meta->field_id ] = $meta->meta_value;
             }
 
             // If prev entry is empty and current entry is not, they are not duplicates
@@ -174,8 +176,9 @@ class FrmEntry {
         $frm_vars['saved_entries'][] = (int) $entry_id;
 
         FrmEntryMeta::duplicate_entry_metas($id, $entry_id);
+		self::clear_cache();
 
-        do_action('frm_after_duplicate_entry', $entry_id, $new_values['form_id'], array( 'old_id' => $id));
+		do_action( 'frm_after_duplicate_entry', $entry_id, $new_values['form_id'], array( 'old_id' => $id ) );
         return $entry_id;
     }
 
@@ -217,8 +220,7 @@ class FrmEntry {
         $query_results = $wpdb->update( $wpdb->prefix .'frm_items', $new_values, compact('id') );
 
         if ( $query_results ) {
-            wp_cache_delete( $id .'_nometa', 'frm_entry');
-            wp_cache_delete( $id, 'frm_entry');
+			self::clear_cache();
         }
 
         if ( ! isset( $frm_vars['saved_entries'] ) ) {
@@ -235,7 +237,7 @@ class FrmEntry {
         return $query_results;
     }
 
-    public static function &destroy( $id ){
+	public static function &destroy( $id ) {
         global $wpdb;
         $id = (int) $id;
 
@@ -247,22 +249,36 @@ class FrmEntry {
 
         do_action('frm_before_destroy_entry', $id, $entry);
 
-        wp_cache_delete( $id .'_nometa', 'frm_entry');
-        wp_cache_delete( $id, 'frm_entry');
         $wpdb->query( $wpdb->prepare('DELETE FROM ' . $wpdb->prefix .'frm_item_metas WHERE item_id=%d', $id) );
         $result = $wpdb->query( $wpdb->prepare('DELETE FROM ' . $wpdb->prefix .'frm_items WHERE id=%d', $id) );
+
+		self::clear_cache();
+
         return $result;
     }
 
-    public static function &update_form( $id, $value, $form_id ){
+	public static function &update_form( $id, $value, $form_id ) {
         global $wpdb;
         $form_id = isset($value) ? $form_id : null;
-        $result = $wpdb->update( $wpdb->prefix .'frm_items', array( 'form_id' => $form_id), array( 'id' => $id ) );
+		$result = $wpdb->update( $wpdb->prefix . 'frm_items', array( 'form_id' => $form_id ), array( 'id' => $id ) );
 		if ( $result ) {
-            wp_cache_delete( $id, 'frm_entry');
+			self::clear_cache();
 		}
         return $result;
     }
+
+	/**
+	 * Clear entry caching
+	 * Called when an entry is changed
+	 *
+	 * @since 2.0.5
+	 */
+	public static function clear_cache() {
+		FrmAppHelper::cache_delete_group( 'frm_entry' );
+		FrmAppHelper::cache_delete_group( 'frm_item' );
+		FrmAppHelper::cache_delete_group( 'frm_entry_meta' );
+		FrmAppHelper::cache_delete_group( 'frm_item_meta' );
+	}
 
     public static function getOne( $id, $meta = false) {
         global $wpdb;
@@ -296,14 +312,14 @@ class FrmEntry {
         }
 
         global $wpdb;
-        $metas = FrmDb::get_results( $wpdb->prefix .'frm_item_metas m LEFT JOIN '. $wpdb->prefix .'frm_fields f ON m.field_id=f.id', array( 'item_id' => $entry->id, 'field_id !' => 0), 'field_id, meta_value, field_key, item_id' );
+		$metas = FrmDb::get_results( $wpdb->prefix . 'frm_item_metas m LEFT JOIN ' . $wpdb->prefix . 'frm_fields f ON m.field_id=f.id', array( 'item_id' => $entry->id, 'field_id !' => 0 ), 'field_id, meta_value, field_key, item_id' );
 
         $entry->metas = array();
 
 		$include_key = apply_filters( 'frm_include_meta_keys', false );
         foreach ( $metas as $meta_val ) {
             if ( $meta_val->item_id == $entry->id ) {
-                $entry->metas[$meta_val->field_id] = maybe_unserialize($meta_val->meta_value);
+				$entry->metas[ $meta_val->field_id ] = maybe_unserialize( $meta_val->meta_value );
 				if ( $include_key ) {
 					$entry->metas[ $meta_val->field_key ] = $entry->metas[ $meta_val->field_id ];
 				}
@@ -311,11 +327,11 @@ class FrmEntry {
             }
 
             // include sub entries in an array
-            if ( ! isset( $entry_metas[$meta_val->field_id]) ) {
-                $entry->metas[$meta_val->field_id] = array();
+			if ( ! isset( $entry_metas[ $meta_val->field_id ] ) ) {
+				$entry->metas[ $meta_val->field_id ] = array();
             }
 
-            $entry->metas[$meta_val->field_id][] = maybe_unserialize($meta_val->meta_value);
+			$entry->metas[ $meta_val->field_id ][] = maybe_unserialize( $meta_val->meta_value );
 
             unset($meta_val);
         }
@@ -329,7 +345,7 @@ class FrmEntry {
     /**
      * @param string $id
      */
-    public static function &exists( $id ){
+	public static function &exists( $id ) {
         global $wpdb;
 
         if ( FrmAppHelper::check_cache( $id, 'frm_entry' ) ) {
@@ -349,7 +365,7 @@ class FrmEntry {
     }
 
     public static function getAll( $where, $order_by = '', $limit = '', $meta = false, $inc_form = true ) {
-        global $wpdb;
+		global $wpdb;
 
         $limit = FrmAppHelper::esc_limit($limit);
 
@@ -378,7 +394,9 @@ class FrmEntry {
             $entries = $wpdb->get_results($query, OBJECT_K);
             unset($query);
 
-            wp_cache_set($cache_key, $entries, 'frm_entry', 300);
+			if ( ! FrmAppHelper::prevent_caching() ) {
+				wp_cache_set( $cache_key, $entries, 'frm_entry', 300 );
+			}
         }
 
         if ( ! $meta || ! $entries ) {
@@ -387,7 +405,7 @@ class FrmEntry {
         unset($meta);
 
         if ( ! is_array( $where ) && preg_match('/^it\.form_id=\d+$/', $where) ) {
-            $where = array( 'it.form_id' => substr($where, 11));
+			$where = array( 'it.form_id' => substr( $where, 11 ) );
         }
 
         $meta_where = array( 'field_id !' => 0 );
@@ -411,18 +429,20 @@ class FrmEntry {
             }
 
             if ( ! isset( $entries[ $meta_val->item_id ]->metas ) ) {
-                $entries[$meta_val->item_id]->metas = array();
+				$entries[ $meta_val->item_id ]->metas = array();
             }
 
-            $entries[$meta_val->item_id]->metas[$meta_val->field_id] = maybe_unserialize($meta_val->meta_value);
+			$entries[ $meta_val->item_id ]->metas[ $meta_val->field_id ] = maybe_unserialize( $meta_val->meta_value );
 
             unset($m_key, $meta_val);
         }
 
-        foreach ( $entries as $entry ) {
-            wp_cache_set( $entry->id, $entry, 'frm_entry');
-            unset($entry);
-        }
+		if ( ! FrmAppHelper::prevent_caching() ) {
+			foreach ( $entries as $entry ) {
+				wp_cache_set( $entry->id, $entry, 'frm_entry' );
+				unset( $entry );
+			}
+		}
 
         return stripslashes_deep($entries);
     }
@@ -468,7 +488,7 @@ class FrmEntry {
             return $errors;
         }
 
-        if ( FrmAppHelper::is_admin() && is_user_logged_in() && ( ! isset( $values['frm_submit_entry_'. $values['form_id'] ] ) || ! wp_verify_nonce($values['frm_submit_entry_'. $values['form_id']], 'frm_submit_entry_nonce') ) ) {
+		if ( FrmAppHelper::is_admin() && is_user_logged_in() && ( ! isset( $values[ 'frm_submit_entry_' . $values['form_id'] ] ) || ! wp_verify_nonce( $values[ 'frm_submit_entry_' . $values['form_id'] ], 'frm_submit_entry_nonce' ) ) ) {
             $errors['form'] = __( 'You do not have permission to do that', 'formidable' );
         }
 
@@ -536,7 +556,7 @@ class FrmEntry {
         $args = wp_parse_args( $args, $defaults );
 
         if ( empty($args['parent_field_id']) ) {
-            $value = isset($values['item_meta'][$args['id']]) ? $values['item_meta'][$args['id']] : '';
+			$value = isset( $values['item_meta'][ $args['id'] ] ) ? $values['item_meta'][ $args['id'] ] : '';
         } else {
             // value is from a nested form
             $value = $values;
@@ -549,15 +569,15 @@ class FrmEntry {
             $value = '';
         }
 
-        // Check for an array with only one value
-        // Don't reset values in "Other" fields because array keys need to be preserved
-        if ( is_array($value) && count( $value ) == 1 && $args['other'] !== true ) {
-            $value = reset($value);
-        }
+		// Check for an array with only one value
+		// Don't reset values in "Other" fields because array keys need to be preserved
+		if ( is_array($value) && count( $value ) == 1 && $args['other'] !== true ) {
+			$value = reset($value);
+		}
 
         if ( $posted_field->required == '1' && ! is_array( $value ) && trim( $value ) == '' ) {
             $frm_settings = FrmAppHelper::get_settings();
-            $errors['field'. $args['id']] = ( ! isset( $posted_field->field_options['blank'] ) || $posted_field->field_options['blank'] == '') ? $frm_settings->blank_msg : $posted_field->field_options['blank'];
+			$errors[ 'field' . $args['id'] ] = ( ! isset( $posted_field->field_options['blank'] ) || $posted_field->field_options['blank'] == '' ) ? $frm_settings->blank_msg : $posted_field->field_options['blank'];
         } else if ( $posted_field->type == 'text' && ! isset( $_POST['name'] ) ) {
             $_POST['name'] = $value;
         }
@@ -573,7 +593,7 @@ class FrmEntry {
     }
 
     public static function validate_url_field(&$errors, $field, &$value, $args) {
-        if ( $value == '' || ! in_array($field->type, array( 'website', 'url', 'image')) ) {
+		if ( $value == '' || ! in_array( $field->type, array( 'website', 'url', 'image' ) ) ) {
             return;
         }
 
@@ -586,7 +606,7 @@ class FrmEntry {
 
         //validate the url format
         if ( ! preg_match('/^http(s)?:\/\/([\da-z\.-]+)\.([\da-z\.-]+)/i', $value) ) {
-            $errors['field'. $args['id']] = FrmFieldsHelper::get_error_msg($field, 'invalid');
+			$errors[ 'field' . $args['id'] ] = FrmFieldsHelper::get_error_msg( $field, 'invalid' );
         }
     }
 
@@ -597,7 +617,7 @@ class FrmEntry {
 
         //validate the email format
         if ( ! is_email($value) ) {
-            $errors['field'. $args['id']] = FrmFieldsHelper::get_error_msg($field, 'invalid');
+			$errors[ 'field' . $args['id'] ] = FrmFieldsHelper::get_error_msg( $field, 'invalid' );
         }
     }
 
@@ -616,7 +636,7 @@ class FrmEntry {
             // If captcha is missing, check if it was already verified
 			if ( ! isset( $_POST['recaptcha_checked'] ) || ! wp_verify_nonce( $_POST['recaptcha_checked'], 'frm_ajax' ) ) {
                 // There was no captcha submitted
-                $errors['field'. $args['id']] = __( 'The captcha is missing from this form', 'formidable' );
+				$errors[ 'field' . $args['id'] ] = __( 'The captcha is missing from this form', 'formidable' );
             }
             return;
         }
@@ -633,7 +653,7 @@ class FrmEntry {
 
         if ( isset( $response['success'] ) && ! $response['success'] ) {
             // What happens when the CAPTCHA was entered incorrectly
-            $errors['field'. $args['id']] = ( ! isset($field->field_options['invalid']) || $field->field_options['invalid'] == '' ) ? $frm_settings->re_msg : $field->field_options['invalid'];
+			$errors[ 'field' . $args['id'] ] = ( ! isset( $field->field_options['invalid'] ) || $field->field_options['invalid'] == '' ) ? $frm_settings->re_msg : $field->field_options['invalid'];
         }
     }
 
@@ -739,8 +759,8 @@ class FrmEntry {
     private  static function parse_akismet_array( &$datas, $content ) {
         $datas['blog'] = FrmAppHelper::site_url();
         $datas['user_ip'] = preg_replace( '/[^0-9., ]/', '', FrmAppHelper::get_ip_address() );
-        $datas['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
-        $datas['referrer'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : false;
+		$datas['user_agent'] = FrmAppHelper::get_server_value( 'HTTP_USER_AGENT' );
+		$datas['referrer'] = isset( $_SERVER['HTTP_REFERER'] ) ? FrmAppHelper::get_server_value( 'HTTP_REFERER' ) : false;
         $datas['comment_type'] = 'formidable';
         $datas['comment_content'] = $content;
 
@@ -749,10 +769,10 @@ class FrmEntry {
         }
 
         foreach ( $_SERVER as $key => $value ) {
-            if ( ! in_array($key, array( 'HTTP_COOKIE', 'HTTP_COOKIE2', 'PHP_AUTH_PW')) && is_string($value) ) {
-                $datas[$key] = $value;
+			if ( ! in_array( $key, array( 'HTTP_COOKIE', 'HTTP_COOKIE2', 'PHP_AUTH_PW' ) ) && is_string( $value ) ) {
+				$datas[ $key ] = wp_strip_all_tags( $value );
             } else {
-                $datas[$key] = '';
+				$datas[ $key ] = '';
             }
 
             unset($key, $value);

@@ -16,7 +16,7 @@ class FrmFormActionsHelper {
             return $action_controls->get_all( $form_id, $limit );
         }
 
-		$args = self::action_args( $form_id );
+		$args = self::action_args( $form_id, $limit );
 		$actions = FrmAppHelper::check_cache( serialize( $args ), 'frm_actions', $args, 'get_posts' );
 
         if ( ! $actions ) {
@@ -25,13 +25,19 @@ class FrmFormActionsHelper {
 
         $settings = array();
         foreach ( $actions as $action ) {
-            if ( ! isset( $action_controls[ $action->post_excerpt ] ) || count( $settings ) >= $limit ) {
+			// some plugins/themes are formatting the post_excerpt
+			$action->post_excerpt = sanitize_title( $action->post_excerpt );
+
+			if ( ! isset( $action_controls[ $action->post_excerpt ] ) ) {
                 continue;
             }
 
             $action = $action_controls[ $action->post_excerpt ]->prepare_action( $action );
+			$settings[ $action->ID ] = $action;
 
-            $settings[ $action->ID ] = $action;
+			if ( count( $settings ) >= $limit ) {
+				break;
+			}
         }
 
         if ( 1 === $limit ) {
@@ -41,11 +47,11 @@ class FrmFormActionsHelper {
         return $settings;
     }
 
-	public static function action_args( $form_id = 0 ) {
+	public static function action_args( $form_id = 0, $limit = 99 ) {
 		$args = array(
 			'post_type'   => FrmFormActionsController::$action_post_type,
 			'post_status' => 'publish',
-			'numberposts' => 99,
+			'numberposts' => $limit,
 			'orderby'     => 'title',
 			'order'       => 'ASC',
 		);
@@ -55,16 +61,6 @@ class FrmFormActionsHelper {
 		}
 
 		return $args;
-	}
-
-	/**
-	 * Delete the action cache when a form action is created, deleted, or updated
-	 *
-	 * @since 2.0.4
-	 */
-	public static function clear_action_cache( $form_id ) {
-		$args = self::action_args( $form_id );
-		wp_cache_delete( serialize( $args ), 'frm_actions' );
 	}
 
     public static function action_conditions_met($action, $entry) {

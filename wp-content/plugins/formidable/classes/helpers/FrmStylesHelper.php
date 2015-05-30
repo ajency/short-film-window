@@ -12,7 +12,7 @@ class FrmStylesHelper {
             'overcast'      => 'Overcast',
             'le-frog'       => 'Le Frog',
             'flick'         => 'Flick',
-            'pepper-grinder'=> 'Pepper Grinder',
+			'pepper-grinder' => 'Pepper Grinder',
             'eggplant'      => 'Eggplant',
             'dark-hive'     => 'Dark Hive',
             'cupertino'     => 'Cupertino',
@@ -83,11 +83,11 @@ class FrmStylesHelper {
 
     public static function minus_icons() {
         return array(
-            0 => array( '-' => '62e', '+' => '62f'),
-            1 => array( '-' => '600', '+' => '602'),
-            2 => array( '-' => '604', '+' => '603'),
-            3 => array( '-' => '633', '+' => '632'),
-            4 => array( '-' => '613', '+' => '60f'),
+			0 => array( '-' => '62e', '+' => '62f' ),
+			1 => array( '-' => '600', '+' => '602' ),
+			2 => array( '-' => '604', '+' => '603' ),
+			3 => array( '-' => '633', '+' => '632' ),
+			4 => array( '-' => '613', '+' => '60f' ),
         );
     }
 
@@ -95,13 +95,13 @@ class FrmStylesHelper {
         $minus_icons = self::minus_icons();
 
         return array(
-            6 => array( '-' => '62d', '+' => '62a'),
-            0 => array( '-' => '60d', '+' => '609'),
-            1 => array( '-' => '60e', '+' => '60c'),
-            2 => array( '-' => '630', '+' => '631'),
-            3 => array( '-' => '62b', '+' => '628'),
-            4 => array( '-' => '62c', '+' => '629'),
-            5 => array( '-' => '635', '+' => '634'),
+			6 => array( '-' => '62d', '+' => '62a' ),
+			0 => array( '-' => '60d', '+' => '609' ),
+			1 => array( '-' => '60e', '+' => '60c' ),
+			2 => array( '-' => '630', '+' => '631' ),
+			3 => array( '-' => '62b', '+' => '628' ),
+			4 => array( '-' => '62c', '+' => '629' ),
+			5 => array( '-' => '635', '+' => '634' ),
             'p0' => $minus_icons[0],
             'p1' => $minus_icons[1],
             'p2' => $minus_icons[2],
@@ -117,13 +117,13 @@ class FrmStylesHelper {
     public static function icon_key_to_class($key, $icon = '+', $type = 'arrow') {
         if ( 'arrow' == $type && is_numeric($key) ) {
             //frm_arrowup6_icon
-            $arrow = array( '-' => 'down', '+' => 'up');
-            $class = 'frm_arrow'. $arrow[$icon];
+			$arrow = array( '-' => 'down', '+' => 'up' );
+			$class = 'frm_arrow' . $arrow[ $icon ];
         } else {
             //frm_minus1_icon
             $key = str_replace('p', '', $key);
-            $plus = array( '-' => 'minus', '+' => 'plus');
-            $class = 'frm_'. $plus[$icon];
+			$plus = array( '-' => 'minus', '+' => 'plus' );
+			$class = 'frm_' . $plus[ $icon ];
         }
 
         if ( $key ) {
@@ -143,7 +143,7 @@ class FrmStylesHelper {
 ?>
     	<select name="<?php echo esc_attr( $frm_style->get_field_name($name) ) ?>" id="frm_<?php echo esc_attr( $name ) ?>" class="frm_icon_font frm_multiselect hide-if-js">
             <?php foreach ( $icons as $key => $icon ) { ?>
-    	    <option value="<?php echo esc_attr( $key ) ?>" <?php selected( $style->post_content[$name], $key ) ?>>
+			<option value="<?php echo esc_attr( $key ) ?>" <?php selected( $style->post_content[ $name ], $key ) ?>>
                 <?php echo '&#xe'. $icon['+'] .'; &#xe'. $icon['-'] .';'; ?>
             </option>
             <?php } ?>
@@ -151,8 +151,8 @@ class FrmStylesHelper {
 
         <div class="btn-group hide-if-no-js" id="frm_<?php echo esc_attr( $name ) ?>_select">
             <button class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" type="button">
-                <i class="frm_icon_font <?php echo esc_attr( self::icon_key_to_class( $style->post_content[$name], '+', $type ) ) ?>"></i>
-                <i class="frm_icon_font <?php echo esc_attr( self::icon_key_to_class( $style->post_content[$name], '-', $type ) ) ?>"></i>
+				<i class="frm_icon_font <?php echo esc_attr( self::icon_key_to_class( $style->post_content[ $name ], '+', $type ) ) ?>"></i>
+				<i class="frm_icon_font <?php echo esc_attr( self::icon_key_to_class( $style->post_content[ $name ], '-', $type ) ) ?>"></i>
                 <b class="caret"></b>
             </button>
             <ul class="multiselect-container frm-dropdown-menu">
@@ -186,7 +186,7 @@ class FrmStylesHelper {
             $g = hexdec( substr($hex,2,2) );
             $b = hexdec( substr($hex,4,2) );
         }
-        $rgb = array($r, $g, $b);
+		$rgb = array( $r, $g, $b );
         return implode(',', $rgb); // returns the rgb values separated by commas
         //return $rgb; // returns an array with the rgb values
     }

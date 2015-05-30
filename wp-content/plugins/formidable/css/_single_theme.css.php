@@ -1,8 +1,8 @@
 <?php
 
 if ( isset($_GET['frm_style_setting']) || isset($_GET['flat']) ) {
-    if ( isset($_GET['frm_style_setting']) ){
-        extract($_GET['frm_style_setting']['post_content']);
+	if ( isset( $_GET['frm_style_setting'] ) ) {
+		extract( $_GET['frm_style_setting']['post_content'] );
     } else {
         extract($_GET);
     }
@@ -11,8 +11,9 @@ if ( isset($_GET['frm_style_setting']) || isset($_GET['flat']) ) {
     $auto_width = isset($auto_width) ? $auto_width : 0;
     $submit_style = isset($submit_style) ? $submit_style : 0;
 
-    if ( isset( $_GET['style_name'] ) && ! empty( $_GET['style_name'] ) ) {
-        $style_class = sanitize_text_field( $_GET['style_name'] ) .'.with_frm_style';
+	$style_name = FrmAppHelper::simple_get( 'style_name', 'sanitize_title' );
+	if ( ! empty( $style_name ) ) {
+		$style_class = $style_name . '.with_frm_style';
     } else {
         $style_class = 'with_frm_style';
     }
@@ -123,11 +124,11 @@ if ( ! isset($collapse_icon) ) {
 }
 
 .<?php echo $style_class ?> .frm_icon_font.frm_minus_icon:before{
-    content:"\e<?php echo isset($minus_icons[$repeat_icon]) ? $minus_icons[$repeat_icon]['-'] : $minus_icons[1]['-'] ?>";
+	content:"\e<?php echo isset( $minus_icons[ $repeat_icon ] ) ? $minus_icons[ $repeat_icon ]['-'] : $minus_icons[1]['-'] ?>";
 }
 
 .<?php echo $style_class ?> .frm_icon_font.frm_plus_icon:before{
-    content:"\e<?php echo isset($minus_icons[$repeat_icon]) ? $minus_icons[$repeat_icon]['+'] : $minus_icons[1]['+'] ?>";
+	content:"\e<?php echo isset( $minus_icons[ $repeat_icon ] ) ? $minus_icons[ $repeat_icon ]['+'] : $minus_icons[1]['+'] ?>";
 }
 
 .<?php echo $style_class ?> .frm_icon_font.frm_minus_icon:before,
@@ -136,11 +137,11 @@ if ( ! isset($collapse_icon) ) {
 }
 
 .<?php echo $style_class ?> .frm_trigger.active .frm_icon_font.frm_arrow_icon:before{
-    content:"\e<?php echo isset($arrow_icons[$collapse_icon]) ? $arrow_icons[$collapse_icon]['-'] : $arrow_icons[1]['-'] ?>";
+	content:"\e<?php echo isset( $arrow_icons[ $collapse_icon ] ) ? $arrow_icons[ $collapse_icon ]['-'] : $arrow_icons[1]['-'] ?>";
 }
 
 .<?php echo $style_class ?> .frm_trigger .frm_icon_font.frm_arrow_icon:before{
-    content:"\e<?php echo isset($arrow_icons[$collapse_icon]) ? $arrow_icons[$collapse_icon]['+'] : $arrow_icons[1]['+'] ?>";
+	content:"\e<?php echo isset( $arrow_icons[ $collapse_icon ] ) ? $arrow_icons[ $collapse_icon ]['+'] : $arrow_icons[1]['+'] ?>";
 }
 
 .<?php echo $style_class ?> .form-field{
@@ -530,6 +531,12 @@ if ( ! $submit_style ) { ?>
     display:<?php echo $check_align . $important ?>;
 }
 
+.<?php echo $style_class ?> .vertical_radio .frm_checkbox,
+.<?php echo $style_class ?> .vertical_radio .frm_radio,
+.vertical_radio .frm_catlevel_1{
+	display:block<?php echo $important ?>;
+}
+
 .<?php echo $style_class ?> .horizontal_radio .frm_checkbox,
 .<?php echo $style_class ?> .horizontal_radio .frm_radio,
 .horizontal_radio .frm_catlevel_1{
@@ -599,7 +606,7 @@ if ( ! $submit_style ) { ?>
 }
 
 .form_results.<?php echo $style_class ?>{
-    border-color:<?php echo $field_border_width ?> solid #<?php echo $border_color . $important ?>;
+    border:<?php echo $field_border_width ?> solid #<?php echo $border_color . $important ?>;
 }
 
 .form_results.<?php echo $style_class ?> tr td{
@@ -671,8 +678,7 @@ if ( ! $submit_style ) { ?>
 }
 
 .<?php echo $style_class ?> .frm_button{
-    padding-top:<?php echo $field_pad . $important ?>;
-    padding-bottom:<?php echo $field_pad . $important ?>;
+    padding:<?php echo $field_pad . $important ?>;
     -moz-border-radius:<?php echo $border_radius . $important ?>;
     -webkit-border-radius:<?php echo $border_radius . $important ?>;
     border-radius:<?php echo $border_radius . $important ?>;
@@ -689,7 +695,7 @@ if ( ! $submit_style ) { ?>
 }
 
 /* RTL Grids */
-<?php if ('rtl' == $direction ) { ?>
+<?php if ( 'rtl' == $direction ) { ?>
 .<?php echo $style_class ?> .frm_form_fields div.rating-cancel,
 .<?php echo $style_class ?> .frm_form_fields div.star-rating{
     float:right;

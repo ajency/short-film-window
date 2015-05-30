@@ -15,8 +15,7 @@ class FrmFormAction {
 
 	// Member functions that you must over-ride.
 
-	/** Update a particular instance.
-	 *
+	/**
 	 * This function should check that $new_instance is set correctly.
 	 * The newly calculated value of $instance should be returned.
 	 * If "false" is returned, the instance won't be saved/updated.
@@ -35,7 +34,7 @@ class FrmFormAction {
 	 * @param array $instance Current settings
 	 */
 	public function form($instance, $args = array()) {
-		echo '<p class="no-options-widget">' . __( 'There are no options for this action.', 'formidable' ) . '</p>';
+		echo '<p class="no-options-widget">' . esc_html__( 'There are no options for this action.', 'formidable' ) . '</p>';
 		return 'noform';
 	}
 
@@ -81,7 +80,7 @@ class FrmFormAction {
         $default_options = array(
             'classes'   => '',
             'active'    => true,
-            'event'     => array( 'create'),
+			'event'     => array( 'create' ),
             'limit'     => 1,
             'force_event' => false,
             'priority'  => 20,
@@ -90,7 +89,7 @@ class FrmFormAction {
         );
 
 		$this->action_options = wp_parse_args( $action_options, $default_options );
-		$this->control_options = wp_parse_args( $control_options, array( 'id_base' => $this->id_base) );
+		$this->control_options = wp_parse_args( $control_options, array( 'id_base' => $this->id_base ) );
 	}
 
 	/**
@@ -193,7 +192,7 @@ class FrmFormAction {
     * @return integer $post_id
     */
     public function maybe_create_action( $action, $forms ) {
-        if ( isset( $action['ID'] ) && is_numeric( $action['ID'] ) && $forms[$action['menu_order']] == 'updated' ) {
+		if ( isset( $action['ID'] ) && is_numeric( $action['ID'] ) && $forms[ $action['menu_order'] ] == 'updated' ) {
             // Update action only
             $action['post_content'] = FrmAppHelper::maybe_json_decode( $action['post_content'] );
             $post_id = $this->save_settings( $action );
@@ -211,18 +210,18 @@ class FrmFormAction {
         $action->menu_order = $form_id;
         $switch = $this->get_global_switch_fields();
         foreach ( (array) $action->post_content as $key => $val ) {
-            if ( is_numeric($val) && isset($frm_duplicate_ids[$val]) ) {
-                $action->post_content[$key] = $frm_duplicate_ids[$val];
+			if ( is_numeric( $val ) && isset( $frm_duplicate_ids[ $val ] ) ) {
+				$action->post_content[ $key ] = $frm_duplicate_ids[ $val ];
             } else if ( ! is_array( $val ) ) {
-                $action->post_content[$key] = FrmFieldsHelper::switch_field_ids($val);
-            } else if ( isset($switch[$key]) && is_array($switch[$key]) ) {
+				$action->post_content[ $key ] = FrmFieldsHelper::switch_field_ids( $val );
+			} else if ( isset( $switch[ $key ] ) && is_array( $switch[ $key ] ) ) {
                 // loop through each value if empty
-                if ( empty($switch[$key]) ) {
-                    $switch[$key] = array_keys($val);
-                }
+				if ( empty( $switch[ $key ] ) ) {
+					$switch[ $key ] = array_keys( $val );
+				}
 
-                foreach ( $switch[$key] as $subkey ) {
-                    $action->post_content[$key] = $this->duplicate_array_walk($action->post_content[$key], $subkey, $val);
+				foreach ( $switch[ $key ] as $subkey ) {
+					$action->post_content[ $key ] = $this->duplicate_array_walk( $action->post_content[ $key ], $subkey, $val );
                 }
             }
 
@@ -240,18 +239,18 @@ class FrmFormAction {
             foreach ( $subkey as $subkey2 ) {
                 foreach ( (array) $val as $ck => $cv ) {
                     if ( is_array($cv) ) {
-                        $action[$ck] = $this->duplicate_array_walk($action[$ck], $subkey2, $cv);
-                    } else if ( isset($cv[$subkey]) && is_numeric($cv[$subkey]) && isset($frm_duplicate_ids[$cv[$subkey]]) ) {
-                        $action[$ck][$subkey] = $frm_duplicate_ids[$cv[$subkey]];
+						$action[ $ck ] = $this->duplicate_array_walk( $action[ $ck ], $subkey2, $cv );
+					} else if ( isset( $cv[ $subkey ] ) && is_numeric( $cv[ $subkey ] ) && isset( $frm_duplicate_ids[ $cv[ $subkey ] ] ) ) {
+						$action[ $ck ][ $subkey ] = $frm_duplicate_ids[ $cv[ $subkey ] ];
                     }
                 }
             }
         } else {
             foreach ( (array) $val as $ck => $cv ) {
                 if ( is_array($cv) ) {
-                    $action[$ck] = $this->duplicate_array_walk($action[$ck], $subkey, $cv);
-                } else if ( $ck == $subkey && isset($frm_duplicate_ids[$cv]) ) {
-                    $action[$ck] = $frm_duplicate_ids[$cv];
+					$action[ $ck ] = $this->duplicate_array_walk( $action[ $ck ], $subkey, $cv );
+				} else if ( $ck == $subkey && isset( $frm_duplicate_ids[ $cv ] ) ) {
+					$action[ $ck ] = $frm_duplicate_ids[ $cv ];
                 }
             }
         }
@@ -275,8 +274,8 @@ class FrmFormAction {
  			return;
  		}
 
- 		if ( isset($_POST[$this->option_name]) && is_array($_POST[$this->option_name]) ) {
- 			$settings = $_POST[$this->option_name];
+		if ( isset( $_POST[ $this->option_name ] ) && is_array( $_POST[ $this->option_name ] ) ) {
+			$settings = $_POST[ $this->option_name ];
  		} else {
  			return;
  		}
@@ -293,7 +292,7 @@ class FrmFormAction {
          		continue;
  			}
 
- 			$old_instance = isset($all_instances[$number]) ? $all_instances[$number] : array();
+			$old_instance = isset( $all_instances[ $number ] ) ? $all_instances[ $number ] : array();
 
  			$new_instance['post_type']  = FrmFormActionsController::$action_post_type;
             $new_instance['post_name']    = $this->form_id .'_'. $this->id_base .'_'. $this->number;
@@ -322,7 +321,7 @@ class FrmFormAction {
             $instance['post_content'] = apply_filters('frm_before_save_'. $this->id_base .'_action', $new_instance['post_content'], $instance, $new_instance, $old_instance, $this);
 
 			if ( false !== $instance ) {
-				$all_instances[$number] = $instance;
+				$all_instances[ $number ] = $instance;
 			}
 
             $action_ids[] = $this->save_settings($instance);
@@ -334,18 +333,7 @@ class FrmFormAction {
  	}
 
 	public function save_settings($settings) {
-	    $settings = (array) $settings;
-
-        $settings['post_content'] = FrmAppHelper::prepare_and_encode( $settings['post_content'] );
-
-	    if ( empty($settings['ID']) ) {
-            unset($settings['ID']);
-        }
-
-		// delete all action caches
-		FrmFormActionsHelper::clear_action_cache( $settings['menu_order'] );
-
-		return FrmAppHelper::save_json_post( $settings );
+		return FrmAppHelper::save_settings( $settings, 'frm_actions' );
 	}
 
 	public function get_single_action( $id ) {
@@ -383,7 +371,7 @@ class FrmFormAction {
             $query['menu_order'] = $this->form_id;
         }
 
-	    $actions = get_posts( $query );
+		$actions = FrmAppHelper::check_cache( serialize( $query ) . '_type_' . $type, 'frm_actions', $query, 'get_posts' );
         unset($query);
 
         remove_filter( 'posts_where' , 'FrmFormActionsController::limit_by_type' );
@@ -400,7 +388,7 @@ class FrmFormAction {
 
             $action = $this->prepare_action($action);
 
-            $settings[$action->ID] = $action;
+			$settings[ $action->ID ] = $action;
         }
 
         if ( 1 === $limit ) {
@@ -412,6 +400,7 @@ class FrmFormAction {
 
 	public function prepare_action($action) {
 	    $action->post_content = FrmAppHelper::maybe_json_decode($action->post_content);
+		$action->post_excerpt = sanitize_title( $action->post_excerpt );
 
         $default_values = $this->get_global_defaults();
 
@@ -420,10 +409,10 @@ class FrmFormAction {
 
         foreach ( $default_values as $k => $vals ) {
             if ( is_array($vals) && ! empty($vals) ) {
-                if ( 'event' == $k && ! $this->action_options['force_event'] && ! empty($action->post_content[$k]) ) {
+				if ( 'event' == $k && ! $this->action_options['force_event'] && ! empty( $action->post_content[ $k ] ) ) {
                     continue;
                 }
-                $action->post_content[$k] = wp_parse_args($action->post_content[$k], $vals);
+				$action->post_content[ $k ] = wp_parse_args( $action->post_content[ $k ], $vals );
             }
         }
 
@@ -451,8 +440,17 @@ class FrmFormAction {
 
         foreach ( $post_ids as $id ) {
             wp_delete_post($id);
-			FrmFormActionsHelper::clear_action_cache( $form_id );
         }
+		self::clear_cache();
+	}
+
+	/**
+	 * Delete the action cache when a form action is created, deleted, or updated
+	 *
+	 * @since 2.0.5
+	 */
+	public static function clear_cache( ) {
+		FrmAppHelper::cache_delete_group( 'frm_actions' );
 	}
 
 	public function get_settings() {
@@ -463,7 +461,7 @@ class FrmFormAction {
 	    $defaults = $this->get_defaults();
 
 	    if ( ! isset($defaults['event']) ) {
-	        $defaults['event'] = array( 'create');
+			$defaults['event'] = array( 'create' );
 	    }
 
 	    if ( ! isset($defaults['conditions']) ) {
@@ -478,7 +476,7 @@ class FrmFormAction {
 
 	public function get_global_switch_fields() {
 	    $switch = $this->get_switch_fields();
-	    $switch['conditions'] = array( 'hide_field');
+		$switch['conditions'] = array( 'hide_field' );
 	    return $switch;
 	}
 
@@ -491,9 +489,9 @@ class FrmFormAction {
 
         // fill with existing options
         foreach ( $action->post_content as $name => $val ) {
-            if ( isset($form->options[$name]) ) {
-                $action->post_content[$name] = $form->options[$name];
-                unset($form->options[$name]);
+			if ( isset( $form->options[ $name ] ) ) {
+				$action->post_content[ $name ] = $form->options[ $name ];
+				unset( $form->options[ $name ] );
             }
         }
 
@@ -517,7 +515,7 @@ class FrmFormAction {
             $form->options = maybe_serialize($form->options);
 
             // update form options
-            $wpdb->update($wpdb->prefix .'frm_forms', array( 'options' => $form->options), array( 'id' => $form->id));
+			$wpdb->update( $wpdb->prefix . 'frm_forms', array( 'options' => $form->options ), array( 'id' => $form->id ) );
             wp_cache_delete( $form->id, 'frm_form');
         }
 

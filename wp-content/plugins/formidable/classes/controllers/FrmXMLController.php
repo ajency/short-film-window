@@ -7,7 +7,7 @@ class FrmXMLController {
     }
 
     public static function add_default_templates() {
-        if ( !function_exists( 'libxml_disable_entity_loader' ) ) {
+		if ( ! function_exists( 'libxml_disable_entity_loader' ) ) {
     		// XML import is not enabled on your server
     		return;
     	}
@@ -15,7 +15,7 @@ class FrmXMLController {
         $set_err = libxml_use_internal_errors(true);
         $loader = libxml_disable_entity_loader( true );
 
-        $files = apply_filters('frm_default_templates_files', array(FrmAppHelper::plugin_path() .'/classes/views/xml/default-templates.xml'));
+		$files = apply_filters( 'frm_default_templates_files', array( FrmAppHelper::plugin_path() . '/classes/views/xml/default-templates.xml' ) );
 
         foreach ( (array) $files as $file ) {
             FrmXMLHelper::import_xml($file);
@@ -36,7 +36,7 @@ class FrmXMLController {
 
     public static function route() {
         $action = isset( $_REQUEST['frm_action'] ) ? 'frm_action' : 'action';
-        $action = FrmAppHelper::get_param( $action );
+		$action = FrmAppHelper::get_param( $action, '', 'get', 'sanitize_title' );
 		if ( $action == 'import_xml' ) {
             return self::import_xml();
 		} else if ( $action == 'export_xml' ) {
@@ -98,8 +98,8 @@ class FrmXMLController {
         //add_filter('upload_mimes', 'FrmXMLController::allow_mime');
 
         $export_format = apply_filters('frm_export_formats', array(
-            'xml' => array( 'name' => 'XML', 'support' => 'forms', 'count' => 'multiple'),
-        ));
+			'xml' => array( 'name' => 'XML', 'support' => 'forms', 'count' => 'multiple' ),
+		) );
 
         $file_type = strtolower(pathinfo($_FILES['frm_import_file']['name'], PATHINFO_EXTENSION));
         if ( $file_type != 'xml' && isset( $export_format[ $file_type ] ) ) {
@@ -137,17 +137,9 @@ class FrmXMLController {
             wp_die( $error );
         }
 
-        $ids = array();
-        if ( isset($_POST['frm_export_forms']) ) {
-            $ids = $_POST['frm_export_forms'];
-        }
-
-        $type = false;
-        if ( isset($_POST['type']) ) {
-            $type = $_POST['type'];
-        }
-
-        $format = isset($_POST['format']) ? $_POST['format'] : 'xml';
+		$ids = FrmAppHelper::get_post_param( 'frm_export_forms', array() );
+		$type = FrmAppHelper::get_post_param( 'type', array() );
+		$format = FrmAppHelper::get_post_param( 'format', 'xml', 'sanitize_title' );
 
         if ( ! headers_sent() && ! $type ) {
             wp_redirect( esc_url_raw( admin_url( 'admin.php?page=formidable-import' ) ) );
@@ -185,7 +177,7 @@ class FrmXMLController {
 	        'actions'   => $wpdb->posts,
 	    );
 
-	    $defaults = array( 'ids' => false);
+		$defaults = array( 'ids' => false );
 	    $args = wp_parse_args( $args, $defaults );
 
         $sitename = sanitize_key( get_bloginfo( 'name' ) );
@@ -290,5 +282,4 @@ class FrmXMLController {
 
         return $mimes;
     }
-
 }

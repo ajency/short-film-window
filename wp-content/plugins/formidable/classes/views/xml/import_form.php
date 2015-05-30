@@ -32,7 +32,7 @@
     <div class="postbox">
     <h3 class="hndle"><span><?php _e( 'Export', 'formidable' ) ?></span></h3>
     <div class="inside with_frm_style">
-        <form method="post" action="<?php echo admin_url('admin-ajax.php'); ?>" id="frm_export_xml">
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" id="frm_export_xml">
             <input type="hidden" name="action" value="frm_export_xml" />
             <?php wp_nonce_field('export-xml-nonce', 'export-xml'); ?>
 
@@ -41,7 +41,7 @@
                     <th scope="row"><label for="format"><?php _e( 'Export Format', 'formidable' ); ?></label></th>
                     <td>
                         <select name="format">
-                        <?php foreach ( $export_format as $t => $type ){ ?>
+						<?php foreach ( $export_format as $t => $type ) { ?>
                             <option value="<?php echo esc_attr( $t ) ?>" data-support="<?php echo esc_attr( $type['support'] ) ?>" <?php echo isset( $type['count'] ) ? 'data-count="'. esc_attr( $type['count'] ) .'"' : ''; ?>><?php echo isset( $type['name'] ) ? $type['name'] : $t ?></option>
                         <?php } ?>
                         <?php if ( ! isset($export_format['csv']) ) { ?>
@@ -68,7 +68,7 @@
                     </td>
                 </tr>
 
-                <?php if (count($export_types) == 1) {
+				<?php if ( count( $export_types ) == 1 ) {
                     reset($export_types); ?>
                 <tr><td colspan="2"><input type="hidden" name="type[]" value="<?php echo key($export_types) ?>" /></td></tr>
                 <?php } else { ?>
@@ -76,7 +76,7 @@
                     <th scope="row"><label><?php _e( 'Data to Export', 'formidable' ); ?></label></th>
                     <td>
                         <?php _e( 'Include the following in the export file', 'formidable' ); ?>:<br/>
-                        <?php foreach ( $export_types as $t => $type ){ ?>
+						<?php foreach ( $export_types as $t => $type ) { ?>
                         <label><input type="checkbox" name="type[]" value="<?php echo esc_attr( $t ) ?>"/> <?php echo esc_html( $type ) ?></label> &nbsp;
                         <?php } ?>
                     </td>

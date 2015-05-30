@@ -74,7 +74,7 @@ class FrmSettings{
     /**
      * @return array
      */
-    public function default_options(){
+	public function default_options() {
         return array(
             'menu'      => 'Formidable',
             'mu_menu'   => 0,
@@ -97,7 +97,7 @@ class FrmSettings{
         );
     }
 
-    private function set_default_options(){
+	private function set_default_options() {
         $this->fill_recaptcha_settings();
 
         if ( ! isset($this->load_style) ) {
@@ -130,8 +130,8 @@ class FrmSettings{
         $settings = $this->default_options();
 
         foreach ( $settings as $setting => $default ) {
-            if ( isset($params['frm_'. $setting]) ) {
-                $this->{$setting} = $params['frm_'. $setting];
+			if ( isset( $params[ 'frm_' . $setting ] ) ) {
+				$this->{$setting} = $params[ 'frm_' . $setting ];
             } else if ( ! isset($this->{$setting}) ) {
                 $this->{$setting} = $default;
             }
@@ -169,7 +169,7 @@ class FrmSettings{
         return $errors;
     }
 
-    public function update($params){
+	public function update( $params ) {
         $this->fill_with_defaults($params);
         $this->update_settings($params);
 
@@ -197,8 +197,8 @@ class FrmSettings{
 
         $this->use_html = isset($params['frm_use_html']) ? $params['frm_use_html'] : 0;
         //$this->custom_style = isset($params['frm_custom_style']) ? $params['frm_custom_style'] : 0;
-        $this->jquery_css = isset($params['frm_jquery_css']) ? $params['frm_jquery_css'] : 0;
-        $this->accordion_js = isset($params['frm_accordion_js']) ? $params['frm_accordion_js'] : 0;
+		$this->jquery_css = isset( $params['frm_jquery_css'] ) ? absint( $params['frm_jquery_css'] ) : 0;
+		$this->accordion_js = isset( $params['frm_accordion_js'] ) ? absint( $params['frm_accordion_js'] ) : 0;
     }
 
     private function update_roles($params) {
@@ -236,7 +236,7 @@ class FrmSettings{
 		}
     }
 
-    public function store(){
+	public function store() {
         // Save the posted value in the database
 
         update_option('frm_options', $this);

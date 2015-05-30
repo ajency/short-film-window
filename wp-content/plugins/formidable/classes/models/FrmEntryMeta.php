@@ -27,7 +27,12 @@ class FrmEntryMeta {
 
         $query_results = $wpdb->insert( $wpdb->prefix .'frm_item_metas', $new_values );
 
-        $id = $query_results ? $wpdb->insert_id : 0;
+		if ( $query_results ) {
+			self::clear_cache();
+			$id = $wpdb->insert_id;
+		} else {
+			$id = 0;
+		}
 
         return $id;
     }
@@ -51,6 +56,7 @@ class FrmEntryMeta {
         $meta_value = maybe_serialize($values['meta_value']);
 
         wp_cache_delete( $entry_id, 'frm_entry');
+		self::clear_cache();
 
         return $wpdb->update( $wpdb->prefix .'frm_item_metas', array( 'meta_value' => $meta_value ), $where_values );
     }
@@ -58,7 +64,7 @@ class FrmEntryMeta {
     public static function update_entry_metas($entry_id, $values) {
         global $wpdb;
 
-        $prev_values = FrmDb::get_col( $wpdb->prefix .'frm_item_metas', array( 'item_id' => $entry_id, 'field_id !' => 0), 'field_id' );
+		$prev_values = FrmDb::get_col( $wpdb->prefix .'frm_item_metas', array( 'item_id' => $entry_id, 'field_id !' => 0 ), 'field_id' );
 
         foreach ( $values as $field_id => $meta_value ) {
             // set the value for the file upload field and add new tags (in Pro version)
@@ -67,14 +73,14 @@ class FrmEntryMeta {
             if ( $prev_values && in_array($field_id, $prev_values) ) {
                 if ( ( is_array( $meta_value ) && empty( $meta_value ) ) || ( ! is_array( $meta_value ) && trim( $meta_value ) == '' ) ) {
                     // remove blank fields
-                    unset($values[$field_id]);
+					unset( $values[ $field_id ] );
                 } else {
                     // if value exists, then update it
-                    self::update_entry_meta($entry_id, $field_id, '', $values[$field_id]);
+					self::update_entry_meta( $entry_id, $field_id, '', $values[ $field_id ] );
                 }
             } else {
                 // if value does not exist, then create it
-                self::add_entry_meta($entry_id, $field_id, '', $values[$field_id]);
+				self::add_entry_meta( $entry_id, $field_id, '', $values[ $field_id ] );
             }
         }
 
@@ -94,6 +100,7 @@ class FrmEntryMeta {
 
         // Delete any leftovers
         $wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'frm_item_metas ' . $where['where'], $where['values'] ) );
+		self::clear_cache();
     }
 
     public static function duplicate_entry_metas($old_id, $new_id) {
@@ -102,12 +109,25 @@ class FrmEntryMeta {
             self::add_entry_meta($new_id, $meta->field_id, null, $meta->meta_value);
             unset($meta);
         }
+		self::clear_cache();
     }
 
     public static function delete_entry_meta($entry_id, $field_id) {
         global $wpdb;
+		self::clear_cache();
         return $wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}frm_item_metas WHERE field_id=%d AND item_id=%d", $field_id, $entry_id));
     }
+
+	/**
+	 * Clear entry meta caching
+	 * Called when a meta is added or changed
+	 *
+	 * @since 2.0.5
+	 */
+	public static function clear_cache() {
+		FrmAppHelper::cache_delete_group( 'frm_entry_meta' );
+		FrmAppHelper::cache_delete_group( 'frm_item_meta' );
+	}
 
     public static function get_entry_meta_by_field($entry_id, $field_id) {
         global $wpdb;
@@ -115,8 +135,8 @@ class FrmEntryMeta {
         $entry_id = (int) $entry_id;
 
         $cached = FrmAppHelper::check_cache( $entry_id, 'frm_entry' );
-        if ( $cached && isset($cached->metas) && isset($cached->metas[$field_id]) ) {
-            $result = $cached->metas[$field_id];
+		if ( $cached && isset( $cached->metas ) && isset( $cached->metas[ $field_id ] ) ) {
+			$result = $cached->metas[ $field_id ];
             return stripslashes_deep($result);
         }
 
@@ -136,7 +156,7 @@ class FrmEntryMeta {
             if ( ! isset( $cached->metas ) ) {
                 $cached->metas = array();
             }
-            $cached->metas[$field_id] = $result;
+			$cached->metas[ $field_id ] = $result;
             wp_cache_set($entry_id, $cached, 'frm_entry');
         }
         $result = stripslashes_deep($result);
@@ -144,7 +164,7 @@ class FrmEntryMeta {
         return $result;
     }
 
-	public static function get_entry_meta( $entry_id, $field_id, $return_var = true ) {
+	public static function get_entry_meta( $entry_id, $field_id ) {
 		_deprecated_function( __FUNCTION__, '2.0', 'FrmEntryMeta::get_entry_meta_by_field' );
 		return self::get_entry_meta_by_field( $entry_id, $field_id );
 	}
@@ -153,11 +173,11 @@ class FrmEntryMeta {
         _deprecated_function( __FUNCTION__, '1.07.10');
 
         global $wpdb;
-        return FrmDb::get_col( $wpdb->prefix .'frm_item_metas', array( 'item_id' => $entry_id), 'meta_value' );
+		return FrmDb::get_col( $wpdb->prefix . 'frm_item_metas', array( 'item_id' => $entry_id ), 'meta_value' );
     }
 
     public static function get_entry_metas_for_field( $field_id, $order = '', $limit = '', $args = array() ) {
-        $defaults = array( 'value' => false, 'unique' => false, 'stripslashes' => true, 'is_draft' => false);
+		$defaults = array( 'value' => false, 'unique' => false, 'stripslashes' => true, 'is_draft' => false );
         $args = wp_parse_args( $args, $defaults );
 
         $query = array();
@@ -172,7 +192,7 @@ class FrmEntryMeta {
         }
 
 		foreach ( $values as $k => $v ) {
-            $values[$k] = maybe_unserialize($v);
+			$values[ $k ] = maybe_unserialize( $v );
             unset($k, $v);
         }
 
@@ -210,7 +230,7 @@ class FrmEntryMeta {
     }
 
     public static function get_entry_meta_info($entry_id) {
-        return FrmDb::get_results( 'frm_item_metas', array( 'item_id' => $entry_id) );
+		return FrmDb::get_results( 'frm_item_metas', array( 'item_id' => $entry_id ) );
     }
 
 	public static function getAll( $where = array(), $order_by = '', $limit = '', $stripslashes = false ) {
@@ -228,7 +248,7 @@ class FrmEntryMeta {
         }
 
         foreach ( $results as $k => $result ) {
-            $results[$k]->meta_value = stripslashes_deep(maybe_unserialize($result->meta_value));
+			$results[ $k ]->meta_value = stripslashes_deep( maybe_unserialize( $result->meta_value ) );
             unset($k, $result);
         }
 
@@ -237,7 +257,8 @@ class FrmEntryMeta {
 
     public static function getEntryIds( $where = array(), $order_by = '', $limit = '', $unique = true, $args = array() ) {
 		$defaults = array(
-			'is_draft' => false, 'user_id' => '',
+			'is_draft' => false,
+			'user_id'  => '',
 			'group_by' => '',
 		);
         $args = wp_parse_args($args, $defaults);
@@ -253,10 +274,9 @@ class FrmEntryMeta {
     }
 
     /**
-     * @param string $where
+     * @param string|array $where
      * @param string $order_by
      * @param string $limit
-     * @param boolean $unique
      */
     private static function get_ids_query($where, $order_by, $limit, $unique, $args, array &$query) {
         global $wpdb;
@@ -316,10 +336,10 @@ class FrmEntryMeta {
         }
 
         global $wpdb;
-        if (is_array($search)) {
+		if ( is_array( $search ) ) {
             $where = '';
 			foreach ( $search as $field => $value ) {
-                if ( $value <= 0 || ! in_array($field, array( 'year', 'month', 'day')) ) {
+				if ( $value <= 0 || ! in_array( $field, array( 'year', 'month', 'day' ) ) ) {
                     continue;
                 }
 

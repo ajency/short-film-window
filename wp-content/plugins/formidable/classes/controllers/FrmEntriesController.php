@@ -3,15 +3,11 @@
 class FrmEntriesController {
 
     public static function menu() {
-		if ( current_user_can( 'administrator' ) && ! current_user_can( 'frm_view_entries' ) ) {
-            global $wp_roles;
-            $wp_roles->add_cap( 'administrator', 'frm_view_entries' );
-            $wp_roles->add_cap( 'administrator', 'frm_delete_entries' );
-        }
+		FrmAppHelper::force_capability( 'frm_view_entries' );
 
         add_submenu_page('formidable', 'Formidable | '. __( 'Entries', 'formidable' ), __( 'Entries', 'formidable' ), 'frm_view_entries', 'formidable-entries', 'FrmEntriesController::route' );
 
-		if ( ! isset( $_GET['frm_action'] ) || ! in_array( $_GET['frm_action'], array( 'edit', 'show' ) ) ) {
+		if ( ! in_array( FrmAppHelper::simple_get( 'frm_action', 'sanitize_title' ), array( 'edit', 'show' ) ) ) {
             $frm_settings = FrmAppHelper::get_settings();
 			add_filter( 'manage_' . sanitize_title( $frm_settings->menu ) . '_page_formidable-entries_columns', 'FrmEntriesController::manage_columns' );
 			add_filter( 'manage_' . sanitize_title( $frm_settings->menu ) . '_page_formidable-entries_sortable_columns', 'FrmEntriesController::sortable_columns' );
@@ -21,7 +17,7 @@ class FrmEntriesController {
 
     /* Display in Back End */
     public static function route() {
-        $action = FrmAppHelper::get_param('frm_action');
+		$action = FrmAppHelper::get_param( 'frm_action', '', 'get', 'sanitize_title' );
 
         switch ( $action ) {
             case 'show':
@@ -81,7 +77,7 @@ class FrmEntriesController {
         $form_cols = FrmField::get_all_for_form($form_id, '', 'include');
 
         foreach ( $form_cols as $form_col ) {
-            if ( FrmFieldsHelper::is_no_save_field($form_col->type) ) {
+			if ( FrmFieldsHelper::is_no_save_field( $form_col->type ) ) {
                 continue;
             }
 
@@ -119,20 +115,20 @@ class FrmEntriesController {
         $frm_vars['cols'] = $columns;
 
 		$action = FrmAppHelper::simple_get( 'frm_action', 'sanitize_title' );
-		if ( FrmAppHelper::is_admin_page( 'formidable-entries' ) && ( $action == 'list' || $action == 'destroy' ) ) {
+		if ( FrmAppHelper::is_admin_page( 'formidable-entries' ) && in_array( $action, array( '', 'list', 'destroy' ) ) ) {
 			add_screen_option( 'per_page', array( 'label' => __( 'Entries', 'formidable' ), 'default' => 20, 'option' => 'formidable_page_formidable_entries_per_page' ) );
         }
 
         return $columns;
     }
 
-    public static function check_hidden_cols($check, $object_id, $meta_key, $meta_value, $prev_value) {
+	public static function check_hidden_cols( $check, $object_id, $meta_key, $meta_value, $prev_value ) {
         $frm_settings = FrmAppHelper::get_settings();
         if ( $meta_key != 'manage'.  sanitize_title($frm_settings->menu) .'_page_formidable-entriescolumnshidden' || $meta_value == $prev_value ) {
             return $check;
         }
 
-        if ( empty($prev_value) ) {
+		if ( empty( $prev_value ) ) {
             		$prev_value = get_metadata('user', $object_id, $meta_key, true);
         }
 
@@ -329,14 +325,14 @@ class FrmEntriesController {
     }
 
     /* Back End CRUD */
-    public static function show($id = false) {
+	public static function show( $id = 0 ) {
         FrmAppHelper::permission_check('frm_view_entries');
 
         if ( ! $id ) {
-            $id = FrmAppHelper::get_param('id');
+			$id = FrmAppHelper::get_param( 'id', 0, 'get', 'absint' );
 
             if ( ! $id ) {
-                $id = FrmAppHelper::get_param('item_id');
+				$id = FrmAppHelper::get_param( 'item_id', 0, 'get', 'absint' );
             }
         }
 
@@ -445,6 +441,14 @@ class FrmEntriesController {
         if ( $errors == '' ) {
             $errors = FrmEntry::validate( $_POST );
         }
+
+		/**
+		 * Use this filter to add trigger actions and add errors after
+		 * all other errors have been processed
+		 * @since 2.0.6
+		 */
+		$errors = apply_filters( 'frm_entries_before_create', $errors, $form );
+
 		$frm_vars['created_entries'][ $form_id ] = array( 'errors' => $errors );
 
         if ( empty( $errors ) ) {
@@ -617,7 +621,7 @@ class FrmEntriesController {
         }
 
         $action_var = isset($_REQUEST['frm_action']) ? 'frm_action' : 'action';
-        $action = apply_filters('frm_show_new_entry_page', FrmAppHelper::get_param($action_var, 'new'), $form);
+		$action = apply_filters( 'frm_show_new_entry_page', FrmAppHelper::get_param( $action_var, 'new', 'get', 'sanitize_title' ), $form );
 
         $default_values = array(
             'id' => '', 'form_name' => '', 'paged' => 1, 'form' => $form->id, 'form_id' => $form->id,
@@ -625,16 +629,16 @@ class FrmEntriesController {
         );
 
         $values = array();
-        $values['posted_form_id'] = FrmAppHelper::get_param('form_id');
-        if ( ! is_numeric($values['posted_form_id']) ) {
-            $values['posted_form_id'] = FrmAppHelper::get_param('form');
+		$values['posted_form_id'] = FrmAppHelper::get_param( 'form_id', '', 'get', 'absint' );
+		if ( ! $values['posted_form_id'] ) {
+			$values['posted_form_id'] = FrmAppHelper::get_param( 'form', '', 'get', 'absint' );
         }
 
 		if ( $form->id == $values['posted_form_id'] ) {
 			//if there are two forms on the same page, make sure not to submit both
             foreach ( $default_values as $var => $default ) {
                 if ( $var == 'action' ) {
-                    $values[ $var ] = FrmAppHelper::get_param( $action_var, $default );
+					$values[ $var ] = FrmAppHelper::get_param( $action_var, $default, 'get', 'sanitize_title' );
                 } else {
                     $values[ $var ] = FrmAppHelper::get_param( $var, $default );
                 }
