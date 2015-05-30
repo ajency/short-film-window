@@ -13389,6 +13389,21 @@ p.noneLeft {
     margin-bottom: 15px;
   }
 }
+.contact-map {
+  margin-left: 25px;
+  float: right;
+  width: 100%;
+  max-width: 550px;
+}
+@media screen and (max-width: 991px) {
+  .contact-map {
+    width: 100%;
+    max-width: none;
+    float: none;
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+}
 .article_meta {
   margin-top: 5px;
   color: #bbb;

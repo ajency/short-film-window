@@ -104,8 +104,6 @@
           $(this).next().toggleClass('open-menu');
         });
 
-
-
         height = window.innerHeight ? window.innerHeight : $(window).height();
         width = window.outerWidth ? window.outerWidth : $(window).width();
         if (!($('body').hasClass('home'))) {
