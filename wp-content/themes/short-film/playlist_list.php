@@ -342,7 +342,7 @@ Template Name: List of Playlists
 											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
 											<div class="grid-meta">
 												<div class="row">
-													<div class="col-xs-4">
+													<div class="col-xs-4 vid-meta">
 
 														<div class="pull-left p-l-10 m-t-10">
 															<div>
@@ -355,7 +355,7 @@ Template Name: List of Playlists
 															</div>
 														</div>
 													</div>
-													<div class="col-xs-8">
+													<div class="col-xs-8 vid-desc">
 														<div class="pull-right text-right m-t-10">
 														   <?php echo $recentvideo['excerpt'];?>
 														</div>

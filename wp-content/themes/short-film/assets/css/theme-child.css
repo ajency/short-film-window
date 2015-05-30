@@ -12162,6 +12162,13 @@ h6.brand {
     height: auto;
   }
 }
+.grid-half .vid-desc,
+.awardwinning .vid-desc,
+.trending .vid-desc,
+.sim_mov .vid-desc {
+  height: 60px;
+  overflow: hidden;
+}
 @media screen and (max-width: 1199px) {
   .headspace {
     padding-top: 130px;
@@ -13372,6 +13379,15 @@ p.noneLeft {
   /* line-height: 25px; */
   position: relative;
   top: -1px;
+}
+.col-md-4 img.img-responsive {
+  max-width: none;
+  width: 100%;
+}
+@media screen and (max-width: 767px) {
+  .col-md-4 img.img-responsive {
+    margin-bottom: 15px;
+  }
 }
 .article_meta {
   margin-top: 5px;

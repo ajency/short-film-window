@@ -34,7 +34,7 @@
 									$playlist_name = $playlist_info['playlist_name'];
 									$playlist_image_url = $playlist_info['playlist_image_url'];
 								?>
-								<img src="<?php echo $playlist_image_url;?>" alt="Photo of <?php echo $playlist_name;?>" />
+								<img src="<?php echo $playlist_image_url;?>" alt="Photo of <?php echo $playlist_name;?>" class="img-responsive" />
 
 							</div>
 
@@ -662,7 +662,7 @@
 
 					<input type="hidden" name="playlist" id="playlist" value="<?php echo $queried_object->term_id; ?>" />
 
-                    <a href="#" class="btn btn-primary load_more">Load More...</a>
+                    <a href="#" class="btn btn-primary load_more">Load More</a>
 
 			   </div>
 
