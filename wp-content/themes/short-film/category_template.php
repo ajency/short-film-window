@@ -229,11 +229,7 @@ Template Name: category_template
 							<?php
 								}
 							?>
-								<div class="grid-image">
-
-									 <img src="<?php echo $value[0]['medium_image'] ;?>">
-
-
+								<div class="grid-image" style="background-image: url(<?php echo $value[0]['medium_image'] ;?>);">
 								</div>
 								<div class="grid-text-wrap">
 									<div class="grid-title"><?php echo $value[0]['title'];?></div>
@@ -247,7 +243,7 @@ Template Name: category_template
 									<div class="grid-title"><?php echo $value[0]['title'];?></div>
 									<div class="grid-meta">
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class']; ?>">
 
 												</div>
@@ -257,7 +253,7 @@ Template Name: category_template
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
 											</div>
-											<div class="col-xs-8">
+											<div class="col-xs-8 vid-desc">
 												<div class="pull-right text-right m-t-10">
 												  <?php echo $value[0]['excerpt'];?>
 												</div>
@@ -285,10 +281,7 @@ Template Name: category_template
 								}
 							?>
 
-								<div class="grid-image">
-
-									 <img src="<?php echo $value[1]['small_image']; ?>">
-
+								<div class="grid-image" style="background-image: url(<?php echo $value[1]['medium_image'] ;?>);">
 								</div>
 								<div class="grid-text-wrap">
 									<div class="grid-title"><?php echo $value[1]['title'];?></div>
@@ -301,7 +294,7 @@ Template Name: category_template
 									<div class="grid-title"><?php echo $value[1]['title'];?></div>
 									<div class="grid-meta">
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[1]['class'] ;?>">
 
 												</div>
@@ -311,7 +304,7 @@ Template Name: category_template
 													<div class="<?php echo $value[1]['class'] ;?>"><?php echo $value[1]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
 												</div>
 											</div>
-											<div class="col-xs-8">
+											<div class="col-xs-8 vid-desc">
 												<div class="pull-right text-right m-t-10">
 												  <?php echo $value[1]['excerpt'];?>
 												</div>
@@ -339,8 +332,7 @@ Template Name: category_template
 								}
 							?>
 
-								<div class="grid-image">
-									<img src="<?php echo $value[2]['small_image'] ;?>">
+								<div class="grid-image" style="background-image: url(<?php echo $value[2]['medium_image'] ;?>);">
 								</div>
 								<div class="grid-text-wrap">
 									<div class="grid-title"><?php echo $value[2]['title'];?></div>
@@ -352,7 +344,7 @@ Template Name: category_template
 									<div class="grid-title"><?php echo $value[2]['title'];?></div>
 									<div class="grid-meta">
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[2]['class'] ;?>">
 
 												</div>
@@ -361,7 +353,7 @@ Template Name: category_template
 													<div class="<?php echo $value[2]['class'] ;?>"><?php echo $value[2]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
 												</div>
 											</div>
-											<div class="col-xs-8">
+											<div class="col-xs-8 vid-desc">
 												<div class="pull-right text-right m-t-10">
 												  <?php echo $value[2]['excerpt'];?>
 												</div>
@@ -392,8 +384,7 @@ Template Name: category_template
 								}
 							?>
 
-								<div class="grid-image">
-									<img src="<?php echo $value[3]['small_image'] ;?>">
+								<div class="grid-image" style="background-image: url(<?php echo $value[3]['medium_image'] ;?>);">
 								</div>
 								<div class="grid-text-wrap">
 									<div class="grid-title"><?php echo $value[3]['title'];?></div>
@@ -405,7 +396,7 @@ Template Name: category_template
 									<div class="grid-title"><?php echo $value[3]['title'];?></div>
 									<div class="grid-meta">
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[3]['class'] ;?>">
 
 												</div>
@@ -414,7 +405,7 @@ Template Name: category_template
 													<div class="<?php echo $value[3]['class'] ;?>"><?php echo $value[3]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
 												</div>
 											</div>
-											<div class="col-xs-8">
+											<div class="col-xs-8 vid-desc">
 												<div class="pull-right text-right m-t-10">
 												  <?php echo $value[3]['excerpt'];?>
 												</div>
@@ -442,8 +433,7 @@ Template Name: category_template
 								}
 							?>
 
-								<div class="grid-image">
-									<img src="<?php echo $value[4]['small_image'] ;?>">
+								<div class="grid-image" style="background-image: url(<?php echo $value[4]['medium_image'] ;?>);">
 								</div>
 								<div class="grid-text-wrap">
 									 <div class="grid-title"><?php echo $value[4]['title'];?></div>
@@ -455,7 +445,7 @@ Template Name: category_template
 									<div class="grid-title"><?php echo $value[4]['title'];?></div>
 									<div class="grid-meta">
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[4]['class'] ;?>">
 
 												</div>
@@ -464,7 +454,7 @@ Template Name: category_template
 													<div class="<?php echo $value[4]['class'] ;?>"><?php echo $value[4]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
 												</div>
 											</div>
-											<div class="col-xs-8">
+											<div class="col-xs-8 vid-desc">
 												<div class="pull-right text-right m-t-10">
 												  <?php echo $value[4]['excerpt'];?>
 												</div>
@@ -492,8 +482,7 @@ Template Name: category_template
 								}
 							?>
 
-								<div class="grid-image">
-									<img src="<?php echo $value[5]['medium_image'] ;?>">
+								<div class="grid-image" style="background-image: url(<?php echo $value[5]['medium_image'] ;?>);">
 								</div>
 								<div class="grid-text-wrap">
 									 <div class="grid-title"><?php echo $value[5]['title'];?></div>
@@ -505,7 +494,7 @@ Template Name: category_template
 									<div class="grid-title"><?php echo $value[5]['title'];?></div>
 									<div class="grid-meta">
 										<div class="row">
-											<div class="col-xs-4">
+											<div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
 
 												</div>
@@ -514,7 +503,7 @@ Template Name: category_template
 													<div class="<?php echo $value[5]['class'] ;?>"><?php echo $value[5]['post_like_count'];?><i class="fa fa-thumbs-up"></i></div>
 												</div>
 											</div>
-											<div class="col-xs-8">
+											<div class="col-xs-8 vid-desc">
 												<div class="pull-right text-right m-t-10">
 												  <?php echo $value[5]['excerpt'];?>
 												</div>
@@ -702,7 +691,7 @@ Template Name: category_template
 	<div class="text-center">
 		<input type="hidden" name="offset" id="offset" value="0" />
 		<input type="hidden" name="searchids" id="searchids" value="0" />
-		<a href="#" class="btn btn-primary load_more">Load More...</a>
+		<a href="#" class="btn btn-primary load_more">Load More</a>
     </div>
     <div class="spacer-40"></div>
 
@@ -877,6 +866,17 @@ window.onload = function() {
 
                 }
         });
+		//testing img size
+        var tt = setInterval(checkgridsize(), 1000);
+        var count = 1;
+        function checkgridsize() {
+            if (count==10) {
+                clearInterval(tt);
+            } else {
+                jQuery(window).trigger('resize');
+                count++;
+            }
+        }
 
     });
 
@@ -936,6 +936,17 @@ window.onload = function() {
 
                 }
         });
+		//testing img size
+        var tt = setInterval(checkgridsize(), 1000);
+        var count = 1;
+        function checkgridsize() {
+            if (count==10) {
+                clearInterval(tt);
+            } else {
+                jQuery(window).trigger('resize');
+                count++;
+            }
+        }
 
     });
 
@@ -982,10 +993,6 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
 		}
-        jQuery('.grid-box .grid-image').each(function(i) {
-            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
-            jQuery(this).find('img').show();
-        });
 	}
 
 	function get_all_posts()
@@ -1019,10 +1026,17 @@ window.onload = function() {
                     generate_data(response);
 					count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
                     jQuery('#offset').val(count);
-			        jQuery('.grid-box .grid-image').each(function(i) {
-			            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
-			            jQuery(this).find('img').show();
-			        });
+			        //testing img size
+			        var tt = setInterval(checkgridsize(), 1000);
+			        var count = 1;
+			        function checkgridsize() {
+			            if (count==10) {
+			                clearInterval(tt);
+			            } else {
+			                jQuery(window).trigger('resize');
+			                count++;
+			            }
+			        }
 
 				},
 				error:function(error){
@@ -1116,8 +1130,8 @@ window.onload = function() {
 
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 
-										+'<div class="grid-image">'
-											+'<img src="'+value.small_image+'">'
+										+'<div class="grid-image" style="background-image: url('+value.small_image+');">'
+											//+'<img src="'+value.small_image+'">'
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1136,7 +1150,7 @@ window.onload = function() {
 											+'<div class="grid-title">'+value.title+'</div>'
 											+'<div class="grid-meta">'
 												+'<div class="row">'
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 
 														+'<div class="pull-left p-l-10 m-t-10">'
 															+'<div>'
@@ -1151,7 +1165,7 @@ window.onload = function() {
 
 													+'</div>'
 
-													+'<div class="col-xs-8">'
+													+'<div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value.excerpt
 
@@ -1199,8 +1213,7 @@ window.onload = function() {
 
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 
-										+'<div class="grid-image">'
-											+'<img src="'+value.small_image+'">'
+										+'<div class="grid-image" style="background-image: url('+value.small_image+');">'
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1220,7 +1233,7 @@ window.onload = function() {
 											+'<div class="grid-title">'+value.title+'</div>'
 											+'<div class="grid-meta">'
 												+'<div class="row">'
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 
 														+'<div class="pull-left p-l-10 m-t-10">'
 															+'<div>'
@@ -1235,7 +1248,7 @@ window.onload = function() {
 
 													+'</div>'
 
-													+'<div class="col-xs-8">'
+													+'<div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value.excerpt
 
@@ -1281,8 +1294,7 @@ window.onload = function() {
 
 									+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
 
-										+'<div class="grid-image">'
-											+'<img src="'+value.small_image+'">'
+										+'<div class="grid-image" style="background-image: url('+value.small_image+');">'
 										+'</div>'
 
 										+'<div class="grid-text-wrap">'
@@ -1302,7 +1314,7 @@ window.onload = function() {
 											+'<div class="grid-title">'+value.title+'</div>'
 											+'<div class="grid-meta">'
 												+'<div class="row">'
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 
 														+'<div class="pull-left p-l-10 m-t-10">'
 															+'<div>'
@@ -1317,7 +1329,7 @@ window.onload = function() {
 
 													+'</div>'
 
-													+'<div class="col-xs-8">'
+													+'<div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value.excerpt
 
@@ -1378,8 +1390,7 @@ window.onload = function() {
 								+' <div class="grid-box grid-full content-align-bottom">'
 								+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
 
-										+'<div class="grid-image">'
-											+'<img src="'+value[0]['medium_image']+'">'
+										+'<div class="grid-image" style="background-image: url('+value[0]['medium_image']+');">'
 
 										+'</div>'
 
@@ -1396,7 +1407,7 @@ window.onload = function() {
 											+'<div class="grid-meta">'
 												+'<div class="row">'
 
-													+'<div class="col-xs-4">'
+													+'<div class="col-xs-4 vid-meta">'
 														+'<div class="pull-left text-center m-t-10 '+value[0]['class']+'">'
 
 														+'</div>'
@@ -1406,7 +1417,7 @@ window.onload = function() {
 														+'</div>'
 													+'</div>'
 
-													+' <div class="col-xs-8">'
+													+' <div class="col-xs-8 vid-desc">'
 														+'<div class="pull-right text-right m-t-10">'
 															+value[0]['excerpt']
 														+'</div>'
@@ -1419,8 +1430,7 @@ window.onload = function() {
 							+'</div>'
 							+'<div class="grid-box grid-half content-align-bottom">'
 								+'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
-									+'<div class="grid-image">'
-										+'<img src="'+value[1]['small_image']+'">'
+									+'<div class="grid-image" style="background-image: url('+value[1]['medium_image']+');">'
 									+'</div>'
 									+'<div class="grid-text-wrap">'
 										+'<div class="grid-title">'+value[1]['title']+'</div>'
@@ -1433,7 +1443,7 @@ window.onload = function() {
 										+'<div class="grid-title">'+value[1]['title']+'</div>'
 									   +' <div class="grid-meta">'
 											+'<div class="row">'
-											   +' <div class="col-xs-4">'
+											   +' <div class="col-xs-4 vid-meta">'
 													+'<div class="pull-left text-center m-t-10 '+value[1]['class']+'">'
 
 													+'</div>'
@@ -1442,7 +1452,7 @@ window.onload = function() {
 														+'<div class="'+value[1]['class']+'">'+value[1]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 												   +' </div>'
 												+'</div>'
-											   +' <div class="col-xs-8">'
+											   +' <div class="col-xs-8 vid-desc">'
 												  +'  <div class="pull-right text-right m-t-10">'
 													 +value[1]['excerpt']
 												   +' </div>'
@@ -1455,8 +1465,7 @@ window.onload = function() {
 							+'</div>'
 							+'<div class="grid-box grid-half content-align-bottom">'
 							   +'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
-									+'<div class="grid-image">'
-									   +' <img src="'+value[2]['small_image']+'">'
+									+'<div class="grid-image" style="background-image: url('+value[2]['medium_image']+');">'
 								   +' </div>'
 									+'<div class="grid-text-wrap">'
 									   +' <div class="grid-title">'+value[2]['title']+'</div>'
@@ -1469,7 +1478,7 @@ window.onload = function() {
 										+'<div class="grid-title">'+value[2]['title']+'</div>'
 										+'<div class="grid-meta">'
 											+'<div class="row">'
-												+'<div class="col-xs-4">'
+												+'<div class="col-xs-4 vid-meta">'
 													+'<div class="pull-left text-center m-t-10 '+value[2]['class']+'">'
 
 												   +' </div>'
@@ -1478,7 +1487,7 @@ window.onload = function() {
 														+'<div class="'+value[2]['class']+'">'+value[2]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 												   +' </div>'
 												+'</div>'
-												+'<div class="col-xs-8">'
+												+'<div class="col-xs-8 vid-desc">'
 													+'<div class="pull-right text-right m-t-10">'
 													  +value[2]['excerpt']
 													+'</div>'
@@ -1493,8 +1502,7 @@ window.onload = function() {
 						+'<div class="col-sm-6 multi-grid">'
 						   +' <div class="grid-box grid-half content-align-bottom">'
 								+'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
-									+'<div class="grid-image">'
-									   +' <img src="'+value[3]['small_image']+'">'
+									+'<div class="grid-image" style="background-image: url('+value[3]['medium_image']+');">'
 									+'</div>'
 								   +' <div class="grid-text-wrap">'
 									   +' <div class="grid-title">'+value[3]['title']+'</div>'
@@ -1507,7 +1515,7 @@ window.onload = function() {
 									   +' <div class="grid-title">'+value[3]['title']+'</div>'
 										+'<div class="grid-meta">'
 										   +' <div class="row">'
-											   +' <div class="col-xs-4">'
+											   +' <div class="col-xs-4 vid-meta">'
 												   +' <div class="pull-left text-center m-t-10 '+value[3]['class']+'">'
 
 													+'</div>'
@@ -1516,7 +1524,7 @@ window.onload = function() {
 													   +' <div class="'+value[3]['class']+'">'+value[3]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 													+'</div>'
 											   +' </div>'
-												+'<div class="col-xs-8">'
+												+'<div class="col-xs-8 vid-desc">'
 												   +' <div class="pull-right text-right m-t-10">'
 													 +value[3]['excerpt']
 												   +' </div>'
@@ -1529,8 +1537,7 @@ window.onload = function() {
 						   +' </div>'
 						   +' <div class="grid-box grid-half content-align-bottom">'
 								+'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
-									+'<div class="grid-image">'
-										+'<img src="'+value[4]['small_image']+'">'
+									+'<div class="grid-image" style="background-image: url('+value[4]['medium_image']+');">'
 									+'</div>'
 									+'<div class="grid-text-wrap">'
 									   +' <div class="grid-title">'+value[4]['title']+'</div>'
@@ -1542,7 +1549,7 @@ window.onload = function() {
 										+'<div class="grid-title">'+value[4]['title']+'</div>'
 										+'<div class="grid-meta">'
 											+'<div class="row">'
-											   +' <div class="col-xs-4">'
+											   +' <div class="col-xs-4 vid-meta">'
 													+'<div class="pull-left text-center m-t-10 '+value[4]['class']+'">'
 
 													+'</div>'
@@ -1551,7 +1558,7 @@ window.onload = function() {
 													   +' <div class="'+value[4]['class']+'">'+value[4]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 												   +' </div>'
 											   +' </div>'
-											   +' <div class="col-xs-8">'
+											   +' <div class="col-xs-8 vid-desc">'
 													+'<div class="pull-right text-right m-t-10">'
 													  +value[4]['excerpt']
 													+'</div>'
@@ -1564,8 +1571,7 @@ window.onload = function() {
 							+'</div>'
 							+'<div class="grid-box grid-full content-align-bottom">'
 								+'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
-									+'<div class="grid-image">'
-										+'<img src="'+value[5]['medium_image']+'">'
+									+'<div class="grid-image" style="background-image: url('+value[5]['medium_image']+');">'
 									+'</div>'
 									+'<div class="grid-text-wrap">'
 									   +' <div class="grid-title">'+value[5]['title']+'</div>'
@@ -1577,7 +1583,7 @@ window.onload = function() {
 										+'<div class="grid-title">'+value[5]['title']+'</div>'
 										+'<div class="grid-meta">'
 										   +' <div class="row">'
-											   +' <div class="col-xs-4">'
+											   +' <div class="col-xs-4 vid-meta">'
 												   +' <div class="pull-left text-center m-t-10 '+value[5]['class']+'">'
 
 													+'</div>'
@@ -1586,7 +1592,7 @@ window.onload = function() {
 														+'<div class="'+value[5]['class']+'">'+value[5]['post_like_count']+'<i class="fa fa-thumbs-up"></i></div>'
 													+'</div>'
 												+'</div>'
-											   +' <div class="col-xs-8">'
+											   +' <div class="col-xs-8 vid-desc">'
 												   +' <div class="pull-right text-right m-t-10">'
 													  +value[5]['excerpt']
 													+'</div>'

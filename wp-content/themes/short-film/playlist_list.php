@@ -78,8 +78,8 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[0]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[0]['playlist_image_url']; ?>);">
+								<!-- <img src="<?php echo $value[0]['playlist_image_url']; ?>" alt=""> -->
 							</span>
 
 							<div class="p-text">
@@ -103,8 +103,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[1]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[1]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -127,8 +126,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[2]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[2]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -151,8 +149,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[3]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[3]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -175,8 +172,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[4]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[4]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -200,8 +196,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[5]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[5]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -224,8 +219,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[6]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[6]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -248,8 +242,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[7]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[7]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -272,8 +265,7 @@ Template Name: List of Playlists
 					<div class="col-md-4 col-sm-6">
 						<div class="p-grid-c">
 
-							<span class="p-img-c">
-									<img src="<?php echo $value[8]['playlist_image_url']; ?>" alt="">
+							<span class="p-img-c" style="background-image: url(<?php echo $value[8]['playlist_image_url']; ?>);">
 							</span>
 
 							<div class="p-text">
@@ -342,8 +334,7 @@ Template Name: List of Playlists
 
 									<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentvideo['slug'];?>">
 
-										<div class="grid-image">
-											<img src="<?php echo $recentvideo['small_image'];?>">
+										<div class="grid-image" style="background-image: url(<?php echo $recentvideo['small_image'];?>);">
 										</div>
 
 										<div class="grid-text-wrap">
@@ -362,7 +353,7 @@ Template Name: List of Playlists
 											<div class="grid-title"><?php echo $recentvideo['title'];?></div>
 											<div class="grid-meta">
 												<div class="row">
-													<div class="col-xs-4">
+													<div class="col-xs-4 vid-meta">
 
 														<div class="pull-left p-l-10 m-t-10">
 															<div>
@@ -375,7 +366,7 @@ Template Name: List of Playlists
 															</div>
 														</div>
 													</div>
-													<div class="col-xs-8">
+													<div class="col-xs-8 vid-desc">
 														<div class="pull-right text-right m-t-10">
 														   <?php echo $recentvideo['excerpt'];?>
 														</div>
@@ -501,10 +492,7 @@ window.onload = function()
 					var count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
 
 					jQuery('#offset').val(count);
-					jQuery('.p-grid-c .p-img-c').each(function(i) {
-			            resizeimgs(jQuery(this), jQuery(this).find('img'), i);
-			            jQuery(this).find('img').show();
-			        });
+
 
 				},
 				error:function(error)
@@ -604,8 +592,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[0]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[0]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -629,8 +616,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[1]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[1]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -654,8 +640,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[2]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[2]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -679,8 +664,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[3]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[3]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -704,8 +688,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[4]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[4]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -727,8 +710,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[5]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[5]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -750,8 +732,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[6]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[6]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -774,8 +755,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[7]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[7]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
@@ -798,8 +778,7 @@ window.onload = function()
 								+'<div class="col-md-4 col-sm-6">'
 									+'<div class="p-grid-c">'
 
-										+'<span class="p-img-c">'
-												+'<img src="'+value[8]['playlist_image_url']+'" alt="">'
+										+'<span class="p-img-c" style="background-image: url('+value[8]['playlist_image_url']+');">'
 										+'</span>'
 
 										+'<div class="p-text">'
