@@ -2621,68 +2621,6 @@ function custom_login_logo()
 add_action('login_head', 'custom_login_logo');
 
 
-add_action( 'init', 'populate_likes_and_views' );
-
-function populate_likes_and_views()
-{
-
-	$videos_args = array(
-		'numberposts'	   => -1,
-		'post_type'        => 'post',
-		'post_status'      => 'publish'
-
-	);
-	
-	$all_videos = get_posts($videos_args);
-	
-	
-	foreach($all_videos as $post_video)
-	{	
-		$random_video_views = rand(50, 500);
-	
-		do
-		{
-			$random_video_likes = rand(50, 500);
-		
-		} while ($random_video_likes >= $random_video_views);
-			
-		update_post_meta( $post_video->ID, "no_of_views", $random_video_views);
-		
-		update_post_meta( $post_video->ID, "_post_like_count", $random_video_likes);
-		
-	} //end foreach
-	
-	
-	$articles_args = array(
-		
-		'numberposts'	   => -1,
-		'post_type'        => 'article',
-		'post_status'      => 'publish'
-
-	);
-	
-	$all_articles = get_posts( $articles_args );
-	
-	
-	foreach($all_articles as $post_article)
-	{	
-		$random_article_views = rand(50, 500);
-	
-		do
-		{
-			$random_article_likes = rand(50, 500);
-		
-		} while ($random_article_likes >= $random_article_views);
-			
-		update_post_meta( $post_article->ID, "no_of_views", $random_article_views);
-		
-		update_post_meta( $post_article->ID, "_post_like_count", $random_article_likes);
-		
-	} //end foreach
-	
-
-} //end function
-
 
 
 
