@@ -89,8 +89,8 @@ Template Name: List of Playlists
 								<div class="p-btm">
 
 
-										<div class="pull-right p-count <?php echo $value[0]['class'] ;?>"> 
-											<?php echo $value[0]['playlist_count']; ?> films
+										<div class="pull-right p-count <?php echo $value[0]['class'] ;?>"> 											
+											<p><?php echo $value[0]['playlist_count']; ?> films</p>
 										</div>
 
 								</div>

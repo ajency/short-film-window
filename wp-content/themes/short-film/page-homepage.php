@@ -110,6 +110,19 @@ Template Name: Homepage
 
 			foreach ($gridreposnse as $key => $value)
 			{
+				foreach ($value as $k => $val) 
+				{
+					$value[$k]['class'] = '';
+
+					if($val['slug'] == "")
+					{
+
+						$value[$k]['class'] = 'hidden';
+					}
+
+				}
+			
+			
 	?>
 				<div class="row">
                     <div class="col-sm-6 multi-grid">
