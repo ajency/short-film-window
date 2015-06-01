@@ -97,7 +97,7 @@
 											<div class="col-md-12">
 												<a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
 
-												<a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
+												<a href="#" id="listoption"  class="option" title="List"><i class="fa fa-th-list fa-3x"></i></a>
 
 												<a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
 
