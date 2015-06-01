@@ -161,6 +161,14 @@ Template Name: category_template
 	<div class="search-results-message">
 	</div>
 
+	<?php
+		
+		$count_videos = wp_count_posts('post');
+
+		$total_no_of_videos = $count_videos->publish;
+		
+		//echo $total_no_of_videos;
+	?>
 
 	<div class="all_posts">
 
@@ -691,6 +699,9 @@ Template Name: category_template
 	<div class="text-center">
 		<input type="hidden" name="offset" id="offset" value="0" />
 		<input type="hidden" name="searchids" id="searchids" value="0" />
+		
+		<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
+		
 		<a href="#" class="btn btn-primary load_more">Load More</a>
     </div>
     <div class="spacer-40"></div>
@@ -1000,8 +1011,20 @@ window.onload = function() {
 
 		genre = jQuery('#genre').val();
 		language = jQuery('#language').val();
-		posts_per_page = 12;
+		
 		offset = jQuery('#offset').val();
+		
+		var total_no_of_videos = jQuery('#total_no_of_videos').val();
+		
+		posts_per_page = 12;
+		
+		// if((total_no_of_videos-offset)<posts_per_page)
+		// {
+			// posts_per_page = total_no_of_videos-offset;
+				
+			// jQuery('.load_more').hide();		
+		// }
+		
 
 		if(language)
 		{
