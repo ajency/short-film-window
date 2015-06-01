@@ -7,7 +7,13 @@ Template Name: articles_template
 
 <?php get_header(); ?>
 
+	<?php
+		
+		$count_articles = wp_count_posts('article');
+		
+		$total_no_of_articles = $count_articles->publish;
 
+	?>
 
         <!--Content-->
         <div class="container header-space">
