@@ -534,8 +534,9 @@ Template Name: Homepage
 									<div class="infocus_home posrel">
 										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 											<h6><?php echo $recentarticle['title']; ?></h6>
-										</a>
-										<p><?php echo $recentarticle['excerpt']; ?></p>
+										
+											<p><?php echo $recentarticle['excerpt']; ?></p>
+										</a>	
 										<div>
 											<p class="pull-left"><small title="Published Date"><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">
