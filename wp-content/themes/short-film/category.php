@@ -156,12 +156,21 @@
 				<div class="search-results-message">
 				</div>
 
+				<?php
+				
+					$queried_object = get_queried_object();
+
+					
+					$total_no_of_videos = $queried_object->category_count;
+					
+					// echo $total_no_of_videos;
+				?>
 
                 <div class="all_posts">
 
-				<?php $queried_object = get_queried_object();
-
-
+			<?php 
+								
+				
  				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
