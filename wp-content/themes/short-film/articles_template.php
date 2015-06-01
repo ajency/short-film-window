@@ -12,6 +12,8 @@ Template Name: articles_template
 		$count_articles = wp_count_posts('article');
 		
 		$total_no_of_articles = $count_articles->publish;
+		
+		// echo $total_no_of_articles;
 
 	?>
 
@@ -141,6 +143,9 @@ Template Name: articles_template
 			<div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
+					
+					<input type="hidden" name="total_no_of_articles" id="total_no_of_articles" value="<?php echo $total_no_of_articles; ?>" />
+					
                     <a href="#" class="btn btn-primary load_more">Load More Articles</a>
             </div>
 
@@ -393,8 +398,20 @@ window.onload = function() {
 		console.log(" inside get_all_posts ");
 
 		posts_per_page = 12;
+				
 		offset = jQuery('#offset').val();
-
+		
+		var total_no_of_articles = jQuery('#total_no_of_articles').val();
+		
+		
+		if((total_no_of_articles-offset)<posts_per_page)
+		{
+			posts_per_page = total_no_of_articles-offset;
+				
+			jQuery('.load_more').hide();		
+		}
+		
+		
 		// data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 
 		//data = '&posts_per_page='+posts_per_page+'&offset='+offset;
