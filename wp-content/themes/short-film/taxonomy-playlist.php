@@ -184,7 +184,7 @@
 
 				?>
 
-					<div class="row gridlayout">
+					<div class="row gridlayout"  style="display: none;">
 
 				 		<div class="col-sm-6 multi-grid">
                             <div class="grid-box grid-full content-align-bottom">
@@ -501,7 +501,7 @@
 								$value['region'] = array(0 => 'No regions added');
 
                 ?>
-                <div class="row listlayout" style="display: none;">
+                <div class="row listlayout">
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -765,12 +765,16 @@
 <script type="text/javascript">
 
 window.onload = function() {
-	jQuery('#tracker').val('gridoption');
+	
+	// jQuery('#tracker').val('gridoption');
+	jQuery('#tracker').val('listoption');
 
 	showLayout();
 
 
-	jQuery('#gridoption').children().addClass('text-primary');
+	// jQuery('#gridoption').children().addClass('text-primary');
+	jQuery('#listoption').children().addClass('text-primary');
+	
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
 
@@ -790,7 +794,8 @@ window.onload = function() {
 
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
-		jQuery('#gridoption').children().removeClass('text-primary');
+		// jQuery('#gridoption').children().removeClass('text-primary');
+		 jQuery('#listoption').children().removeClass('text-primary');
 
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();

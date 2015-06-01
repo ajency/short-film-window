@@ -99,9 +99,8 @@
 			<div class="header">
 			    <div class="header-links">
 			        <div class="links">
-			            <!--<a href="#">LOGIN</a>-->
-
- 					    <a href="<?php echo site_url(); ?>/wp-login.php">LOGIN</a>
+			           
+ 					   <!-- <a href="<?php// echo site_url(); ?>/wp-login.php">LOGIN</a> -->
 			            <!-- <span>|</span>
 			            <a href="#">SEARCH</a> -->
 			        </div>
