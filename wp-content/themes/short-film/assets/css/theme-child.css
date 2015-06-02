@@ -950,6 +950,11 @@ img {
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out 0.5s;
+  -moz-transition: all 0.2s ease-in-out 0.5s;
+  -ms-transition: all 0.2s ease-in-out 0.5s;
+  -o-transition: all 0.2s ease-in-out 0.5s;
+  transition: all 0.2s ease-in-out 0.5s;
   display: inline-block;
   max-width: 100%;
   height: auto;
@@ -2367,6 +2372,11 @@ output {
   -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -ms-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
 }
 .form-control:focus {
   border-color: #af152f;
@@ -3166,6 +3176,11 @@ input[type="button"].btn-block {
   -moz-transition: opacity 0.15s linear;
   -o-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
+  -webkit-transition: opacity 0.15s linear 0.5s;
+  -moz-transition: opacity 0.15s linear 0.5s;
+  -ms-transition: opacity 0.15s linear 0.5s;
+  -o-transition: opacity 0.15s linear 0.5s;
+  transition: opacity 0.15s linear 0.5s;
 }
 .fade.in {
   opacity: 1;
@@ -4699,6 +4714,11 @@ a.badge:focus {
   -moz-transition: border 0.2s ease-in-out;
   -o-transition: border 0.2s ease-in-out;
   transition: border 0.2s ease-in-out;
+  -webkit-transition: border 0.2s ease-in-out 0.5s;
+  -moz-transition: border 0.2s ease-in-out 0.5s;
+  -ms-transition: border 0.2s ease-in-out 0.5s;
+  -o-transition: border 0.2s ease-in-out 0.5s;
+  transition: border 0.2s ease-in-out 0.5s;
 }
 .thumbnail > img,
 .thumbnail a > img {
@@ -4834,6 +4854,11 @@ a.thumbnail.active {
   -moz-transition: width 0.6s ease;
   -o-transition: width 0.6s ease;
   transition: width 0.6s ease;
+  -webkit-transition: width 0.6s ease 0.5s;
+  -moz-transition: width 0.6s ease 0.5s;
+  -ms-transition: width 0.6s ease 0.5s;
+  -o-transition: width 0.6s ease 0.5s;
+  transition: width 0.6s ease 0.5s;
 }
 .progress-striped .progress-bar,
 .progress-bar-striped {
@@ -5867,6 +5892,11 @@ button.close {
   -moz-transition: 0.6s ease-in-out left;
   -o-transition: 0.6s ease-in-out left;
   transition: 0.6s ease-in-out left;
+  -webkit-transition: 0.6s ease-in-out left 0.5s;
+  -moz-transition: 0.6s ease-in-out left 0.5s;
+  -ms-transition: 0.6s ease-in-out left 0.5s;
+  -o-transition: 0.6s ease-in-out left 0.5s;
+  transition: 0.6s ease-in-out left 0.5s;
 }
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
@@ -6768,6 +6798,11 @@ button.close {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 /* Border Classes */
 .b-l {
@@ -7037,6 +7072,11 @@ body {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 @media (min-width: 768px) {
   .social {
@@ -8756,6 +8796,11 @@ body {
   -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -ms-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
 }
 .form-control:focus {
   border-color: #af152f;
@@ -8813,6 +8858,11 @@ select {
   -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -ms-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
 }
 select:focus {
   border-color: #af152f;
@@ -9642,6 +9692,11 @@ a.small .fa {
   -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -ms-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s 0.5s;
   background: transparent;
   outline: 0;
 }
@@ -10003,6 +10058,11 @@ The default control bar that is a container for most of the controls.
   -moz-transition: visibility 0.1s, opacity 0.1s;
   -o-transition: visibility 0.1s, opacity 0.1s;
   transition: visibility 0.1s, opacity 0.1s;
+  -webkit-transition: visibility 0.1s, opacity 0.1s 0.5s;
+  -moz-transition: visibility 0.1s, opacity 0.1s 0.5s;
+  -ms-transition: visibility 0.1s, opacity 0.1s 0.5s;
+  -o-transition: visibility 0.1s, opacity 0.1s 0.5s;
+  transition: visibility 0.1s, opacity 0.1s 0.5s;
 }
 /* Hide the control bar when the video is playing and the user is inactive  */
 .vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
@@ -10014,6 +10074,11 @@ The default control bar that is a container for most of the controls.
   -moz-transition: visibility 1s, opacity 1s;
   -o-transition: visibility 1s, opacity 1s;
   transition: visibility 1s, opacity 1s;
+  -webkit-transition: visibility 1s, opacity 1s 0.5s;
+  -moz-transition: visibility 1s, opacity 1s 0.5s;
+  -ms-transition: visibility 1s, opacity 1s 0.5s;
+  -o-transition: visibility 1s, opacity 1s 0.5s;
+  transition: visibility 1s, opacity 1s 0.5s;
 }
 .vjs-default-skin.vjs-controls-disabled .vjs-control-bar {
   display: none;
@@ -10217,6 +10282,11 @@ fonts to show/hide properly.
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
   transition: all 0.4s;
+  -webkit-transition: all 0.4s 0.5s;
+  -moz-transition: all 0.4s 0.5s;
+  -ms-transition: all 0.4s 0.5s;
+  -o-transition: all 0.4s 0.5s;
+  transition: all 0.4s 0.5s;
 }
 /* On hover, make the progress bar grow to something that's more clickable.
     This simply changes the overall font for the progress bar, and this
@@ -10230,6 +10300,11 @@ fonts to show/hide properly.
   -moz-transition: all 0.2s;
   -o-transition: all 0.2s;
   transition: all 0.2s;
+  -webkit-transition: all 0.2s 0.5s;
+  -moz-transition: all 0.2s 0.5s;
+  -ms-transition: all 0.2s 0.5s;
+  -o-transition: all 0.2s 0.5s;
+  transition: all 0.2s 0.5s;
 }
 /* Box containing play and load progresses. Also acts as seek scrubber. */
 .vjs-default-skin .vjs-progress-holder {
@@ -10371,6 +10446,11 @@ easily in the skin designer. http://designer.videojs.com/
   -moz-transition: all 0.4s;
   -o-transition: all 0.4s;
   transition: all 0.4s;
+  -webkit-transition: all 0.4s 0.5s;
+  -moz-transition: all 0.4s 0.5s;
+  -ms-transition: all 0.4s 0.5s;
+  -o-transition: all 0.4s 0.5s;
+  transition: all 0.4s 0.5s;
 }
 /* Optionally center */
 .vjs-default-skin.vjs-big-play-centered .vjs-big-play-button {
@@ -10410,6 +10490,11 @@ easily in the skin designer. http://designer.videojs.com/
   -moz-transition: all 0s;
   -o-transition: all 0s;
   transition: all 0s;
+  -webkit-transition: all 0s 0.5s;
+  -moz-transition: all 0s 0.5s;
+  -ms-transition: all 0s 0.5s;
+  -o-transition: all 0s 0.5s;
+  transition: all 0s 0.5s;
 }
 .vjs-default-skin .vjs-big-play-button:before {
   content: "\e001";
@@ -10937,6 +11022,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .header .header-links .links a {
   margin-right: 5px;
@@ -10971,6 +11061,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .header-links {
   float: right;
@@ -11055,6 +11150,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .links a {
   color: #cccccc;
@@ -11068,6 +11168,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .social-links .link {
   position: relative;
@@ -11125,6 +11230,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .sub-header span {
   margin: 0 30px;
@@ -11600,6 +11710,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .post-like:hover {
   color: #af152f;
@@ -11618,6 +11733,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .watchlist-add a:hover {
   color: #af152f;
@@ -11641,6 +11761,11 @@ a {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 @media (max-width: 767px) {
   .watchlist-add,
@@ -12209,9 +12334,18 @@ h6.brand {
   left: 50%;
   right: 0;
   top: 38%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
   transform: translateX(-50%);
+  -webkit-backface-visibility: hidden;
   z-index: 1;
   background: url(../img/play.png) center center no-repeat;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
   transition: all 0.5s;
 }
 .play_movie_big:hover {
@@ -12370,6 +12504,11 @@ h6.brand {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .without-vid {
   height: 576px;
@@ -12397,6 +12536,11 @@ h6.brand {
   -moz-transition: all 0.3s ease-in 0s;
   -o-transition: all 0.3s ease-in 0s;
   transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s 0.5s;
+  -moz-transition: all 0.3s ease-in 0s 0.5s;
+  -ms-transition: all 0.3s ease-in 0s 0.5s;
+  -o-transition: all 0.3s ease-in 0s 0.5s;
+  transition: all 0.3s ease-in 0s 0.5s;
 }
 .movie-info h3,
 .movie-info h5,
