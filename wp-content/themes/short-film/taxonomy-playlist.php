@@ -4,13 +4,17 @@
 <?php
 
 	$queried_object = get_queried_object();
+	
 
 	$taxonomy = $queried_object->taxonomy;
 
 	$term_name = $queried_object->name;
 
 	$playlist_id = $queried_object->term_id;
-
+	
+	
+	$total_no_of_videos = $queried_object->count;
+		
 
 	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
 
@@ -147,6 +151,7 @@
 					);
 				}
 
+				$posts_per_page = 12;
 
 
 				$response = Film\Video::get_many($args);
@@ -653,16 +658,33 @@
  					<div class="spacer-40"></div>
  					<input type="hidden" name="tracker" id="tracker" value="" / >
             </div>
+			
+			
+			
             <div class="content-wrapper">
-                <div class="text-center">
+                
+				<div class="spacer-40"></div><div class="loader_more"></div>
+				
+				<div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
 
 					<input type="hidden" name="taxonomy" id="taxonomy" value="<?php echo $queried_object->taxonomy; ?>" />
 
 					<input type="hidden" name="playlist" id="playlist" value="<?php echo $queried_object->term_id; ?>" />
+					
+					<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
 
-                    <a href="#" class="btn btn-primary load_more">Load More</a>
+					<?php
+					
+						if($total_no_of_videos > $posts_per_page)
+						{
+					?>
+							<a href="#" class="btn btn-primary load_more">Load More</a>
+					<?php
+						}
+					?>
+					                  
 
 			   </div>
 
@@ -784,9 +806,12 @@ window.onload = function() {
 	jQuery('.load_more').live('click',function(e){
 
 
-		jQuery('.loader').text("Loading data...")
-
+		// jQuery('.loader').text("Loading data...")
+		
 		e.preventDefault();
+		
+		jQuery('.loader_more').text("Loading data...");
+		
 		get_all_posts();
 
 
@@ -852,6 +877,16 @@ window.onload = function() {
 
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
+		
+		var total_no_of_videos = jQuery('#total_no_of_videos').val();
+		
+		if((total_no_of_videos-offset)<posts_per_page)
+		{
+			posts_per_page = total_no_of_videos-offset;
+				
+			jQuery('.load_more').hide();		
+		}
+		
 
 
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&playlist='+playlist;
@@ -882,7 +917,8 @@ window.onload = function() {
 
 				},
 				error:function(error){
-					jQuery('.loader').text("")
+					// jQuery('.loader').text("")
+					jQuery('.loader_more').text("")
 					jQuery('.all_posts').html('<p class="noneLeft">No Playlists found</p>');
 
 				}
@@ -955,7 +991,8 @@ window.onload = function() {
     function generate_data(response)
 	{
 
-        jQuery('.loader').text("")
+         jQuery('.loader').text("")
+         jQuery('.loader_more').text("")
         html = jQuery('.all_posts').html()
 
         if(response.length>0)
