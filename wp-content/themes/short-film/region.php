@@ -612,7 +612,7 @@ window.onload = function() {
         jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 		get_all_posts();
 
@@ -630,7 +630,7 @@ window.onload = function() {
 	jQuery('.load_more').live('click',function(e){
 
 
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 		e.preventDefault();
 		get_all_posts();
@@ -656,7 +656,7 @@ window.onload = function() {
                 url : SITEURL+'/wp-json/sort',
                 data : data,
                 success:function(response){
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
                     jQuery('.all_posts').html("")
                     generate_data(response);
 
@@ -685,7 +685,7 @@ window.onload = function() {
                 data : data,
                 success:function(response){
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
                     jQuery('.all_posts').html("")
                      myarr = [];
                     jQuery.each(response,function(index,value){

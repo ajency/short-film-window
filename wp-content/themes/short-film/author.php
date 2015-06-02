@@ -7,14 +7,14 @@
 			<?php
 
 				$queried_object = get_queried_object();
-				
+
 
 				$author_id	= $queried_object->ID;
-				
+
 				$total_no_of_videos = count_user_posts( $author_id , 'post' );
-				
+
 				$total_no_of_articles = count_user_posts( $author_id , 'article' );
-				
+
 				$posts_per_page = 6;
 
 
@@ -24,7 +24,7 @@
 
 
 				$author_info = get_author_info($author_id);
-				
+
 			?>
 
             <!--this row contains author info-->
@@ -39,7 +39,7 @@
 							$author_name = $author_info['author_name'];
 
 							$image_url = get_author_image_url($author_id);  //plugin function
-							
+
 							if($image_url)
 							{
 						?>
@@ -49,15 +49,15 @@
 							else
 							{
 								$image_url = get_template_directory_uri().'/assets/img/user.jpg';
-																
-							
+
+
 						?>
 
 								<img src="<?php echo $image_url;?>" alt="Photo of <?php echo $author_name;?>" class="img-responsive" />
-						
+
 						<?php
 							}
-						?>	
+						?>
 
 					</div>
 
@@ -107,15 +107,15 @@
 
 							</div>
 
-						
+
 							<div class="col-xs-4 text-right list-info-btns posata">
 
 								<div class="soc-ico nh">
 
-									 
+
 
 									   <?php echo do_shortcode('[ssba url="' . $author_info['author_link'] . '" title="' . $author_info['author_name'] . '"]'); ?>
-									 
+
 									  <?php// echo aal_author_likes($author_id); ?>
 
 									    <?php//// echo getAuthorLikeLink( $author_id ); ?>
@@ -124,11 +124,11 @@
 
 
 								<div class="lico_c">
-									
+
 
 									<div class="lico like-action">
 
-									
+
 
 									</div>
 
@@ -136,7 +136,7 @@
 
 							</div>
 
-						
+
 
 
 						</div>
@@ -165,7 +165,7 @@
 					<div class="all_posts">
 
 						<?php
-						
+
 							foreach ($response_posts as $key => $value)
 							{
 
@@ -239,7 +239,7 @@
 													</div>
 
 													<div class="lico like-action">
-													
+
 															<?php echo getPostLikeLink($value['id']) ; ?>
 													</div>
 
@@ -262,15 +262,15 @@
 
 					</div> <!-- end #all_posts -->
 
-					<div class="spacer-40"></div><div class="loader_more"></div>
+					<div class="spacer-40"></div>
 					<div class="text-center">
 						<input type="hidden" name="offset" id="offset" value="0" />
-						
-						
+
+
 						<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
 
 						<?php
-						
+
 							if($total_no_of_videos > $posts_per_page)
 							{
 						?>
@@ -278,9 +278,10 @@
 						<?php
 							}
 						?>
-						
-						
-						
+						<div class="loader_more load_dis"></div>
+
+
+
 					</div>
 
                     <hr class="border-btm m-t-35">
@@ -307,7 +308,7 @@
 					<div class="all_articles">
 
 						<?php
-							
+
 							foreach ($response_articles as $key => $value)
 							{
 
@@ -355,7 +356,7 @@
                                                 <span class="date" title="Published Date"><i class="fa fa-clock-o"></i> <?php echo $value['post_date'];?></span>
 
 											   <span class="author"><a href="<?php echo get_author_posts_url($value['directorid']); ?>" title="Author"><i class="fa fa-user"></i> <?php echo ucfirst($value['director']);?> </a> </span>
-											 
+
 
 												<span class="art_likes"><?php echo getPostLikeLink($value['id']) ; ?> </span>
 
@@ -386,15 +387,15 @@
 
 					</div> <!-- end #all_posts -->
 
-					<div class="spacer-40"></div><div class="loader_more_art"></div>
-					
+
+
 					<div class="text-center">
 						<input type="hidden" name="offset_art" id="offset_art" value="0" />
-						
+
 						<input type="hidden" name="total_no_of_articles" id="total_no_of_articles" value="<?php echo $total_no_of_articles; ?>" />
 
 						<?php
-						
+
 							if($total_no_of_articles > $posts_per_page)
 							{
 						?>
@@ -402,8 +403,10 @@
 						<?php
 							}
 						?>
-						
-											
+						<div class="loader_more_art load_dis"></div>
+						<div class="spacer-40"></div>
+
+
 					</div>
 
 				</div> <!-- end #show_articles -->
@@ -454,8 +457,8 @@
 
 
 			e.preventDefault();
-			
-			jQuery('.loader_more').text("Loading data...");
+
+			jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
 
 			get_all_posts();
 
@@ -465,8 +468,8 @@
 		jQuery('.load_more_art').live('click',function(e){
 
 			e.preventDefault();
-			
-			jQuery('.loader_more_art').text("Loading data...");
+
+			jQuery('.loader_more_art').html('<div class="loader_c"><div class="loader_i"></div></div>');
 
 			get_all_articles();
 
@@ -478,13 +481,13 @@
 
 			posts_per_page = 6;
 			offset = jQuery('#offset').val();
-			
+
 			var total_no_of_videos = jQuery('#total_no_of_videos').val();
-		
+
 			if((total_no_of_videos-offset)<posts_per_page)
 			{
-					
-				jQuery('.load_more').hide();		
+
+				jQuery('.load_more').hide();
 			}
 
 
@@ -506,7 +509,7 @@
 					{
 
 						console.log(" inside get_all_posts success ");
-						
+
 						generate_data(response);
 
 						count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
@@ -529,16 +532,16 @@
 		function get_all_articles()
 		{
 			console.log(" inside get_all_articles ");
-		
+
 			posts_per_page = 6;
 			offset_art = jQuery('#offset_art').val();
-			
+
 			var total_no_of_articles = jQuery('#total_no_of_articles').val();
-		
+
 			if((total_no_of_articles-offset_art)<posts_per_page)
 			{
-					
-				jQuery('.load_more_art').hide();		
+
+				jQuery('.load_more_art').hide();
 			}
 
 
@@ -560,7 +563,7 @@
 					{
 
 						console.log(" inside get_all_articles success ");
-					
+
 
 						generate_data_art(response);
 
@@ -587,7 +590,7 @@
 
             jQuery('.loader_more').text("");
             jQuery('.loader_more_art').text("");
-			
+
 
 			html = jQuery('.all_posts').html();
 
@@ -613,13 +616,13 @@
 										+'<div class="col-md-12">'
 											+'<h4 class="m-t-0">'
 												+'<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a>'
-												
+
 											+'</h4>'
 										+'</div>'
 
 									+'</div>'
 
-									
+
 									+'<div class="row">'
 
 										+'<div class="col-xs-8 cont">'
@@ -627,7 +630,7 @@
 											+'<p>'+value.excerpt+'</p>'
 
 											+ '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' Minutes</h6>'
-									
+
 											 +'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 
@@ -639,7 +642,7 @@
 
 												+ '</span>'
                                             + '</p>'
-									
+
 
 										+'</div>'
 
@@ -730,12 +733,12 @@
 
 							+'</div>'
                         +'</div>'
-                        
+
                          +'<div class="row">'
                              +'<div class="col-xs-9">'
 									+'<p class="article_meta">'
                                         +'<span class="date" title="Published Date"><i class="fa fa-clock-o"></i> '+value.post_date+'</span>'
-									
+
 										+'<span class="author">'
 
 											+'<a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
@@ -751,7 +754,7 @@
                              +'</div>'
                              +'<div class="col-xs-3">'
                                 +'<div class="social-strip soc-ico">'
-								
+
 
 										+'<div class="ssba"><div style="text-align:right"><a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook"></a><a href="http://pinterest.com/pin/create/bookmarklet/?is_video=false&amp;url='+SITEURL+'/'+value.slug+'/&amp;media='+value.featured_image+'&amp;description='+value.title+'" class="ssba_pinterest_share ssba_share_link" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest"></a><a class="ssba_twitter_share" href="http://twitter.com/share?url='+SITEURL+'/'+value.slug+'/&amp;text='+value.title+'+" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter"></a><a class="ssba_google_share" href="https://plus.google.com/share?url='+SITEURL+'/'+value.slug+'" target="_blank"><img src="'+SITEURL+'/wp-content/plugins/simple-share-buttons-adder/buttons/somacro/google.png" title="Google+" class="ssba" alt="Share on Google+"></a></div></div>'
 
@@ -759,7 +762,7 @@
 
 								+'</div>'
                              +'</div>'
-                           
+
                          +'</div>'
                          +'<div class="row">'
                              +'<div class="col-md-12">'
