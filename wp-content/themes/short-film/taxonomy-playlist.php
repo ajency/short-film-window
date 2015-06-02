@@ -73,7 +73,7 @@
 													}
 
 											?>
-											<p>Total Runtime: <span class="co"><?php echo $total_runtime;?></span> </p>
+											<p>Total Runtime: <span class="co"><?php echo $total_runtime;?></span> minutes</p>
 										</div>
 									</div>
 
@@ -109,7 +109,6 @@
 										</div>
 
 									</div> <!-- end list info btns -->
-
 
 
 
