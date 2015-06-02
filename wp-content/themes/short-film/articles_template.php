@@ -425,7 +425,7 @@ window.onload = function() {
 		var total_no_of_articles = jQuery('#total_no_of_articles').val();
 
 
-		if((total_no_of_articles-offset)<posts_per_page)
+		if((total_no_of_articles-offset)<=posts_per_page)
 		{
 			posts_per_page = total_no_of_articles-offset;
 
