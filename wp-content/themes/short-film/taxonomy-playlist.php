@@ -112,7 +112,6 @@
 
 
 
-
 								</div> <!-- row end -->
 							</div> <!-- col-md-8 posata end -->
 
