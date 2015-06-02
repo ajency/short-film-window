@@ -2435,7 +2435,9 @@ function check_featured_image($post_id)
 					
     	}
    	
-    }               
+    }     
+	
+	
 }
 
 ////
