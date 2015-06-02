@@ -7,6 +7,8 @@
 			<?php
 
 				$queried_object = get_queried_object();
+				
+				// print_r($queried_object);
 
 
 				$author_id	= $queried_object->ID;
@@ -22,6 +24,10 @@
 
 				$response_articles = get_articles_by_author($author_id);
 
+				// echo "***********************************";
+				// echo $total_no_of_videos;
+				// echo "###";
+				// echo $total_no_of_articles;
 
 				$author_info = get_author_info($author_id);
 
@@ -398,6 +404,7 @@
 
 							if($total_no_of_articles > $posts_per_page)
 							{
+								
 						?>
 								<a href="#" class="btn btn-primary load_more_art">Load More Articles</a>
 						<?php
@@ -477,14 +484,12 @@
 
 		function get_all_posts()
 		{
-			console.log(" inside get_all_posts ");
-
 			posts_per_page = 6;
 			offset = jQuery('#offset').val();
 
 			var total_no_of_videos = jQuery('#total_no_of_videos').val();
 
-			if((total_no_of_videos-offset)<posts_per_page)
+			if((total_no_of_videos-offset)<=posts_per_page)
 			{
 
 				jQuery('.load_more').hide();
@@ -507,14 +512,11 @@
 
 					success:function(response)
 					{
-
-						console.log(" inside get_all_posts success ");
-
 						generate_data(response);
 
 						count = parseInt(jQuery('#offset').val()) + parseInt(response.length);
 						jQuery('#offset').val(count);
-						console.log(count);
+						// console.log(count);
 
 					},
 					error:function(error)
@@ -531,14 +533,13 @@
 
 		function get_all_articles()
 		{
-			console.log(" inside get_all_articles ");
-
 			posts_per_page = 6;
 			offset_art = jQuery('#offset_art').val();
 
 			var total_no_of_articles = jQuery('#total_no_of_articles').val();
-
-			if((total_no_of_articles-offset_art)<posts_per_page)
+			
+						
+			if((total_no_of_articles-offset_art)<=posts_per_page)
 			{
 
 				jQuery('.load_more_art').hide();
@@ -561,15 +562,11 @@
 
 					success:function(response)
 					{
-
-						console.log(" inside get_all_articles success ");
-
-
 						generate_data_art(response);
 
 						count_art = parseInt(jQuery('#offset_art').val()) + parseInt(response.length);
 						jQuery('#offset_art').val(count_art);
-						console.log(count_art);
+						// console.log(count_art);
 
 					},
 					error:function(error)
@@ -586,8 +583,6 @@
 
 		function generate_data(response)
 		{
-			console.log(" inside generate_data ");
-
             jQuery('.loader_more').text("");
             jQuery('.loader_more_art').text("");
 
@@ -697,8 +692,6 @@
 
 		function generate_data_art(response)
 		{
-			console.log(" inside generate_data_art ");
-
 			jQuery('.loader_more').text("");
             jQuery('.loader_more_art').text("");
 
@@ -709,7 +702,7 @@
 
 				jQuery.each(response,function(index,value)
 				{
-					console.log(" inside jQuery of generate_data_art ");
+					// console.log(" inside jQuery of generate_data_art ");
 
 					html += '<div class="row listlayout article_row">'
                      +'<div class="col-md-5">'

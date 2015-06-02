@@ -881,7 +881,7 @@ window.onload = function() {
 
 		var total_no_of_videos = jQuery('#total_no_of_videos').val();
 
-		if((total_no_of_videos-offset)<posts_per_page)
+		if((total_no_of_videos-offset)<=posts_per_page)
 		{
 			posts_per_page = total_no_of_videos-offset;
 

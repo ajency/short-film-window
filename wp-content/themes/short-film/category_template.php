@@ -1022,7 +1022,7 @@ window.onload = function() {
 
 		posts_per_page = 12;
 
-		// if((total_no_of_videos-offset)<posts_per_page)
+		// if((total_no_of_videos-offset)<=posts_per_page)
 		// {
 			// posts_per_page = total_no_of_videos-offset;
 
