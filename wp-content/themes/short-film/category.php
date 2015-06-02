@@ -679,11 +679,15 @@
  					<input type="hidden" name="tracker" id="tracker" value="" / >
             </div>
             <div class="content-wrapper">
+			
+				<div class="spacer-40"></div><div class="loader_more"></div>
+			
                 <div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More</a>
                 </div>
+				
                 <div class="spacer-40 hideinsmall"></div>
 
                 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
@@ -768,10 +772,10 @@ window.onload = function() {
 
 	jQuery('.load_more').live('click',function(e){
 
-
-		jQuery('.loader').text("Loading data...")
-
 		e.preventDefault();
+		
+		jQuery('.loader_more').text("Loading data...");
+		
 		get_all_posts();
 
 
@@ -1038,7 +1042,8 @@ window.onload = function() {
 
 				},
 				error:function(error){
-					jQuery('.loader').text("")
+					jQuery('.loader').text("");
+					jQuery('.loader_more').text("");
 					jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 
 				}
@@ -1359,7 +1364,9 @@ window.onload = function() {
 
     function generate_data(response){
 
-        jQuery('.loader').text("")
+        jQuery('.loader').text("");
+		jQuery('.loader_more').text("");
+		
         html = jQuery('.all_posts').html()
 
         if(response.length>0)

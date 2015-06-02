@@ -2621,8 +2621,8 @@ function custom_login_logo()
 add_action('login_head', 'custom_login_logo');
 
 
-add_action( 'init', 'populate_likes_and_views' );
-
+////add_action( 'init', 'populate_likes_and_views' );
+/*
 function populate_likes_and_views()
 {
 
@@ -2683,6 +2683,6 @@ function populate_likes_and_views()
 
 } //end function
 
-
+*/
 
 
