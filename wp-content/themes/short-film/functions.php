@@ -1640,6 +1640,9 @@ function get_embed_url($postid,$videourl)
 	//if youtube video
 	if ($videotype == "youtube")
 	{
+		$youtubehttpval =  explode("://", $videourl);
+		$httpval = $youtubehttpval[0];
+		
 		$youtubeUrl =  explode("?v=", $videourl);
 
 		if($youtubeUrl[1])  //if not embed link
@@ -1654,7 +1657,7 @@ function get_embed_url($postid,$videourl)
 
 		}
 
-		$embedurl =  'http://www.youtube.com/embed/'.$youtubeUrlid.'?autoplay=1';
+		$embedurl =  $httpval .'://www.youtube.com/embed/'.$youtubeUrlid.'?autoplay=1';
 
 	}
 
