@@ -162,11 +162,11 @@ Template Name: category_template
 	</div>
 
 	<?php
-		
+
 		$count_videos = wp_count_posts('post');
 
 		$total_no_of_videos = $count_videos->publish;
-		
+
 		//echo $total_no_of_videos;
 	?>
 
@@ -696,16 +696,17 @@ Template Name: category_template
 	<input type="hidden" name="tracker" id="tracker" value="" / >
 </div>
 <div class="content-wrapper">
-	
-	<div class="spacer-40"></div><div class="loader_more"></div>
-	
+
+	<div class="spacer-40"></div>
+
 	<div class="text-center">
 		<input type="hidden" name="offset" id="offset" value="0" />
 		<input type="hidden" name="searchids" id="searchids" value="0" />
-		
+
 		<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
-		
+
 		<a href="#" class="btn btn-primary load_more">Load More</a>
+		<div class="loader_more load_dis"></div>
     </div>
     <div class="spacer-40"></div>
 
@@ -761,7 +762,7 @@ window.onload = function() {
         jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 		get_all_posts();
 
@@ -773,7 +774,7 @@ window.onload = function() {
 		jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 		get_all_posts();
 
@@ -782,9 +783,9 @@ window.onload = function() {
 	jQuery('.load_more').live('click',function(e){
 
 		e.preventDefault();
-		
-		jQuery('.loader_more').text("Loading data...");
-		
+
+		jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 		get_all_posts();
 
 
@@ -808,7 +809,7 @@ window.onload = function() {
                 url : SITEURL+'/wp-json/sort',
                 data : data,
                 success:function(response){
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
                     jQuery('.all_posts').html("")
                     generate_data(response);
 
@@ -849,7 +850,7 @@ window.onload = function() {
 					console.log("inside success ");
 					console.log(response);
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -918,7 +919,7 @@ window.onload = function() {
 					console.log("inside success ");
 					console.log(response);
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -1014,20 +1015,20 @@ window.onload = function() {
 
 		genre = jQuery('#genre').val();
 		language = jQuery('#language').val();
-		
+
 		offset = jQuery('#offset').val();
-		
+
 		var total_no_of_videos = jQuery('#total_no_of_videos').val();
-		
+
 		posts_per_page = 12;
-		
-		// if((total_no_of_videos-offset)<posts_per_page)
+
+		// if((total_no_of_videos-offset)<=posts_per_page)
 		// {
 			// posts_per_page = total_no_of_videos-offset;
-				
-			// jQuery('.load_more').hide();		
+
+			// jQuery('.load_more').hide();
 		// }
-		
+
 
 		if(language)
 		{
@@ -1389,7 +1390,7 @@ window.onload = function() {
 
         jQuery('.loader').text("");
         jQuery('.loader_more').text("");
-		
+
         html = jQuery('.all_posts').html()
 
         if(response.length>0)

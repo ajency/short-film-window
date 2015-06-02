@@ -58,17 +58,17 @@ Template Name: List of Playlists
 
 			foreach ($play_gridreponse as $key => $value)
 			{
-				
+
 				  foreach ($value as $k => $val) {
                                 $value[$k]['class'] = '';
-								
+
                                 if($val['playlist_link'] == "")
                                 {
 
                                     $value[$k]['class'] = 'hidden';
-                                }	
+                                }
                             }
-				
+
 	?>
 			<div class="playlist-grid">
 
@@ -89,7 +89,7 @@ Template Name: List of Playlists
 								<div class="p-btm">
 
 
-										<div class="pull-right p-count <?php echo $value[0]['class'] ;?>"> 											
+										<div class="pull-right p-count <?php echo $value[0]['class'] ;?>">
 											<p><?php echo $value[0]['playlist_count']; ?> films</p>
 										</div>
 
@@ -429,7 +429,7 @@ window.onload = function()
 
 		console.log("inside load_more");
 
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 
 		 get_all_playlists();
@@ -569,7 +569,7 @@ window.onload = function()
 			grid = generate_play_grid_response(response);
 
 			jQuery.each(grid,function(index,value){
-			
+
 
 					jQuery.each(value,function(index,val){
 						value[index]['class'] = '';
@@ -580,9 +580,9 @@ window.onload = function()
 
 							value[index]['class'] = 'hidden';
 						}
-						
 
-					});			
+
+					});
 
 
 				html+= '<div class="playlist-grid">'
