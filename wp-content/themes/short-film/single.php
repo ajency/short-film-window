@@ -266,7 +266,7 @@ window.onload = function() {
 
 jQuery('.img-content').readmore({
 speed: 100,
-collapsedHeight: 200,
+collapsedHeight: 188,
 heightMargin: 16,
 moreLink: '<a href="#" class="readmore_dn"></a>',
 lessLink: '<a href="#" class="readmore_up"></a>',
