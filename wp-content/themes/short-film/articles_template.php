@@ -55,6 +55,8 @@ Template Name: articles_template
 								'offset'           	=> 0,
 
 					);
+					
+					$posts_per_page = 12;
 
 					$response = Article_post\Article::get_many_articles($args);
 
@@ -139,6 +141,8 @@ Template Name: articles_template
  					<div class="spacer-40"></div>
  					<input type="hidden" name="tracker" id="tracker" value="" / >
 			</div>
+			
+			<div class="spacer-40"></div><div class="loader_more"></div>
 
 			<div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
@@ -146,7 +150,17 @@ Template Name: articles_template
 					
 					<input type="hidden" name="total_no_of_articles" id="total_no_of_articles" value="<?php echo $total_no_of_articles; ?>" />
 					
-                    <a href="#" class="btn btn-primary load_more">Load More Articles</a>
+               
+					<?php
+					
+						if($total_no_of_articles > $posts_per_page)
+						{
+					?>
+							<a href="#" class="btn btn-primary load_more">Load More Articles</a>
+					<?php
+						}
+					?>
+					
             </div>
 
 			<div class="spacer-40"></div>
@@ -263,7 +277,8 @@ window.onload = function() {
 
 	jQuery('.load_more').live('click',function(e){
 
-		jQuery('.loader').text("Loading data...")
+		// jQuery('.loader').text("Loading data...")
+		jQuery('.loader_more').text("Loading data...");
 
 		e.preventDefault();
 		get_all_posts();
@@ -278,6 +293,8 @@ window.onload = function() {
 		var title = jQuery(e.target).val();
 
 		data = 'title='+jQuery(e.target).val();
+		
+		jQuery('.loader').text("Loading data...");
 
 		jQuery('.load_more').hide();
 
@@ -288,8 +305,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
-
+                    
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
 
@@ -310,8 +326,9 @@ window.onload = function() {
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
                 },
-                error:function(response){
-
+                error:function(response)
+				{
+					jQuery('.loader').text("");
                 }
         });
 
@@ -326,6 +343,8 @@ window.onload = function() {
 		var title = jQuery(this).prev().val();
 
 		data = 'title='+jQuery(this).prev().val();
+		
+		jQuery('.loader').text("Loading data...");
 
 		jQuery('.load_more').hide();
 
@@ -336,7 +355,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -359,8 +378,9 @@ window.onload = function() {
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
                 },
-                error:function(response){
-
+                error:function(response)
+				{
+					jQuery('.loader').text("");
                 }
         });
 
@@ -433,8 +453,10 @@ window.onload = function() {
                     jQuery('#offset').val(count);
 
 				},
-				error:function(error){
+				error:function(error)
+				{
 					jQuery('.loader').text("")
+					jQuery('.loader_more').text("")
 					jQuery('.all_posts').html('<p class="noneLeft">No Articles found</p>');
 					console.log(" inside get_all_posts error ");
 
@@ -448,7 +470,8 @@ window.onload = function() {
     function generate_data(response)
 	{
 
-        jQuery('.loader').text("")
+       jQuery('.loader').text("")
+        jQuery('.loader_more').text("")
 
 	    html = jQuery('.all_posts').html()
 
