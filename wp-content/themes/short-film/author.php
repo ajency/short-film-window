@@ -7,8 +7,15 @@
 			<?php
 
 				$queried_object = get_queried_object();
+				
 
 				$author_id	= $queried_object->ID;
+				
+				$total_no_of_videos = count_user_posts( $author_id , 'post' );
+				
+				$total_no_of_articles = count_user_posts( $author_id , 'article' );
+				
+				$posts_per_page = 6;
 
 
 				$response_posts = get_posts_by_author($author_id);
@@ -255,9 +262,25 @@
 
 					</div> <!-- end #all_posts -->
 
+					<div class="spacer-40"></div><div class="loader_more"></div>
 					<div class="text-center">
 						<input type="hidden" name="offset" id="offset" value="0" />
-						<a href="#" class="btn btn-primary load_more">Load More Videos</a>
+						
+						
+						<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
+
+						<?php
+						
+							if($total_no_of_videos > $posts_per_page)
+							{
+						?>
+								<a href="#" class="btn btn-primary load_more">Load More Videos</a>
+						<?php
+							}
+						?>
+						
+						
+						
 					</div>
 
                     <hr class="border-btm m-t-35">
@@ -363,9 +386,24 @@
 
 					</div> <!-- end #all_posts -->
 
+					<div class="spacer-40"></div><div class="loader_more_art"></div>
+					
 					<div class="text-center">
 						<input type="hidden" name="offset_art" id="offset_art" value="0" />
-						<a href="#" class="btn btn-primary load_more_art">Load More Articles</a>
+						
+						<input type="hidden" name="total_no_of_articles" id="total_no_of_articles" value="<?php echo $total_no_of_articles; ?>" />
+
+						<?php
+						
+							if($total_no_of_articles > $posts_per_page)
+							{
+						?>
+								<a href="#" class="btn btn-primary load_more_art">Load More Articles</a>
+						<?php
+							}
+						?>
+						
+											
 					</div>
 
 				</div> <!-- end #show_articles -->
@@ -416,6 +454,8 @@
 
 
 			e.preventDefault();
+			
+			jQuery('.loader_more').text("Loading data...");
 
 			get_all_posts();
 
@@ -425,6 +465,8 @@
 		jQuery('.load_more_art').live('click',function(e){
 
 			e.preventDefault();
+			
+			jQuery('.loader_more_art').text("Loading data...");
 
 			get_all_articles();
 
@@ -436,6 +478,14 @@
 
 			posts_per_page = 6;
 			offset = jQuery('#offset').val();
+			
+			var total_no_of_videos = jQuery('#total_no_of_videos').val();
+		
+			if((total_no_of_videos-offset)<posts_per_page)
+			{
+					
+				jQuery('.load_more').hide();		
+			}
 
 
 			jQuery.ajax({
@@ -466,7 +516,7 @@
 					},
 					error:function(error)
 					{
-						
+						jQuery('.loader_more').text("");
 						jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 						console.log(" inside get_all_posts error ");
 
@@ -482,6 +532,14 @@
 		
 			posts_per_page = 6;
 			offset_art = jQuery('#offset_art').val();
+			
+			var total_no_of_articles = jQuery('#total_no_of_articles').val();
+		
+			if((total_no_of_articles-offset_art)<posts_per_page)
+			{
+					
+				jQuery('.load_more_art').hide();		
+			}
 
 
 			jQuery.ajax({
@@ -513,7 +571,7 @@
 					},
 					error:function(error)
 					{
-						
+						jQuery('.loader_more_art').text("");
 						jQuery('.all_articles').html('<p class="noneLeft">No Articles found</p>');
 						console.log(" inside get_all_articles error ");
 
@@ -527,6 +585,9 @@
 		{
 			console.log(" inside generate_data ");
 
+            jQuery('.loader_more').text("");
+            jQuery('.loader_more_art').text("");
+			
 
 			html = jQuery('.all_posts').html();
 
@@ -635,6 +696,8 @@
 		{
 			console.log(" inside generate_data_art ");
 
+			jQuery('.loader_more').text("");
+            jQuery('.loader_more_art').text("");
 
 			html = jQuery('.all_articles').html();
 
