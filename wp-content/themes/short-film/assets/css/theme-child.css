@@ -13172,6 +13172,9 @@ a:focus {
 .posata {
   position: static;
 }
+.header-links .links {
+  display: none;
+}
 a.content-bottom,
 .article_row h4 a.article_title,
 a.exp_all,
@@ -13402,6 +13405,37 @@ p.noneLeft {
     float: none;
     margin-left: 0;
     margin-bottom: 15px;
+  }
+}
+.loader .loader_c {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+.loader_c {
+  width: 45px;
+  height: 45px;
+  padding: 9px;
+  position: relative;
+  margin: 0 auto;
+  background: #eee;
+  border-radius: 2px;
+}
+.loader_c .loader_i {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  margin: 0;
+  border: 3px solid transparent;
+  border-right: 3px solid #af152f;
+  position: relative;
+  animation: rotatall 0.8s linear infinite;
+}
+@keyframes rotatall {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
   }
 }
 .article_meta {
