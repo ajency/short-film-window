@@ -4,17 +4,17 @@
 <?php
 
 	$queried_object = get_queried_object();
-	
+
 
 	$taxonomy = $queried_object->taxonomy;
 
 	$term_name = $queried_object->name;
 
 	$playlist_id = $queried_object->term_id;
-	
-	
+
+
 	$total_no_of_videos = $queried_object->count;
-		
+
 
 	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
 
@@ -658,13 +658,13 @@
  					<div class="spacer-40"></div>
  					<input type="hidden" name="tracker" id="tracker" value="" / >
             </div>
-			
-			
-			
+
+
+
             <div class="content-wrapper">
-                
+
 				<div class="spacer-40"></div><div class="loader_more"></div>
-				
+
 				<div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
@@ -672,11 +672,11 @@
 					<input type="hidden" name="taxonomy" id="taxonomy" value="<?php echo $queried_object->taxonomy; ?>" />
 
 					<input type="hidden" name="playlist" id="playlist" value="<?php echo $queried_object->term_id; ?>" />
-					
+
 					<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
 
 					<?php
-					
+
 						if($total_no_of_videos > $posts_per_page)
 						{
 					?>
@@ -684,7 +684,8 @@
 					<?php
 						}
 					?>
-					                  
+					<div class="spacer-40">
+
 
 			   </div>
 
@@ -787,7 +788,7 @@
 <script type="text/javascript">
 
 window.onload = function() {
-	
+
 	// jQuery('#tracker').val('gridoption');
 	jQuery('#tracker').val('listoption');
 
@@ -796,7 +797,7 @@ window.onload = function() {
 
 	// jQuery('#gridoption').children().addClass('text-primary');
 	jQuery('#listoption').children().addClass('text-primary');
-	
+
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
 
@@ -807,11 +808,11 @@ window.onload = function() {
 
 
 		// jQuery('.loader').text("Loading data...")
-		
+
 		e.preventDefault();
-		
-		jQuery('.loader_more').text("Loading data...");
-		
+
+		jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 		get_all_posts();
 
 
@@ -877,16 +878,16 @@ window.onload = function() {
 
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
-		
+
 		var total_no_of_videos = jQuery('#total_no_of_videos').val();
-		
-		if((total_no_of_videos-offset)<posts_per_page)
+
+		if((total_no_of_videos-offset)<=posts_per_page)
 		{
 			posts_per_page = total_no_of_videos-offset;
-				
-			jQuery('.load_more').hide();		
+
+			jQuery('.load_more').hide();
 		}
-		
+
 
 
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&playlist='+playlist;

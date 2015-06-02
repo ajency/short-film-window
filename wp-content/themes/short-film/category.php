@@ -157,20 +157,20 @@
 				</div>
 
 				<?php
-				
+
 					$queried_object = get_queried_object();
 
-					
+
 					$total_no_of_videos = $queried_object->category_count;
-					
+
 					// echo $total_no_of_videos;
 				?>
 
                 <div class="all_posts">
 
-			<?php 
-								
-				
+			<?php
+
+
  				$args = array(
 					'orderby'           => 'post_date',
 					'order'             => 'DESC',
@@ -679,15 +679,16 @@
  					<input type="hidden" name="tracker" id="tracker" value="" / >
             </div>
             <div class="content-wrapper">
-			
-				<div class="spacer-40"></div><div class="loader_more"></div>
-			
+
+				<div class="spacer-40"></div>
+
                 <div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More</a>
+                    <div class="loader_more load_dis"></div>
                 </div>
-				
+
                 <div class="spacer-40 hideinsmall"></div>
 
                 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
@@ -748,7 +749,7 @@ window.onload = function() {
         jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 		get_all_posts();
 
@@ -762,7 +763,7 @@ window.onload = function() {
 		jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 
 		get_all_posts();
@@ -773,9 +774,9 @@ window.onload = function() {
 	jQuery('.load_more').live('click',function(e){
 
 		e.preventDefault();
-		
+
 		jQuery('.loader_more').text("Loading data...");
-		
+
 		get_all_posts();
 
 
@@ -799,7 +800,7 @@ window.onload = function() {
                 url : SITEURL+'/wp-json/sort',
                 data : data,
                 success:function(response){
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
                     jQuery('.all_posts').html("")
                     generate_data(response);
 
@@ -841,7 +842,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
                     var clear = '<i class="fa fa-times"></i>';
@@ -908,7 +909,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
@@ -1366,7 +1367,7 @@ window.onload = function() {
 
         jQuery('.loader').text("");
 		jQuery('.loader_more').text("");
-		
+
         html = jQuery('.all_posts').html()
 
         if(response.length>0)

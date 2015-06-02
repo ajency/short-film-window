@@ -9,13 +9,13 @@
 			<?php
 
 				$queried_object = get_queried_object();
-				
+
 				$taxonomy = $queried_object->taxonomy;
 
 				$term_name = $queried_object->name;
-				
+
 				$total_no_of_videos = $queried_object->count;
-				
+
 
 				if($taxonomy == "region")
 				{
@@ -51,7 +51,7 @@
 
 
 				$posts_per_page = 12;
-				
+
 				$response_posts = Film\Video::get_many($args);
 
 
@@ -195,9 +195,9 @@
 							</div> <!-- end #all_posts -->
 
 							<div class="spacer-40"></div><div class="loader_more"></div>
-							
+
 							<div class="text-center">
-														
+
 								<input type="hidden" name="taxonomy" id="taxonomy" value="<?php echo $queried_object->taxonomy; ?>" />
 
 								<?php
@@ -209,29 +209,30 @@
 									}
 									else if($queried_object->taxonomy == 'language')
 									{
-								?>	
-								
+								?>
+
 										<input type="hidden" name="language" id="language" value="<?php echo $queried_object->term_id; ?>" />
 								<?php
 									}
-								?>	
+								?>
 
 								<input type="hidden" name="offset" id="offset" value="0" />
-								
-								
+
+
 								<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
 
 								<?php
-								
+
 									if($total_no_of_videos > $posts_per_page)
 									{
 								?>
 										<a href="#" class="btn btn-primary load_more">Load More Videos</a>
+										<div class="spacer-40">
 								<?php
 									}
 								?>
-								
-								
+
+
 							</div>
 
 
@@ -271,9 +272,9 @@
 		jQuery('.load_more').live('click',function(e){
 
 			e.preventDefault();
-			
-			jQuery('.loader_more').text("Loading data...");
-			
+
+			jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 			get_all_posts();
 
 		});
@@ -284,19 +285,19 @@
 		taxonomy = jQuery('#taxonomy').val();
 
 		region = jQuery('#region').val();
-		
+
 		language = jQuery('#language').val();
 
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
-		
+
 		var total_no_of_videos = jQuery('#total_no_of_videos').val();
-		
-		if((total_no_of_videos-offset)<posts_per_page)
+
+		if((total_no_of_videos-offset)<=posts_per_page)
 		{
 			posts_per_page = total_no_of_videos-offset;
-				
-			jQuery('.load_more').hide();		
+
+			jQuery('.load_more').hide();
 		}
 
 
@@ -332,7 +333,7 @@
 			console.log(" inside generate_data ");
 
 			jQuery('.loader_more').text("");
-			
+
 			html = jQuery('.all_posts').html();
 
 			if(response.length>0)
