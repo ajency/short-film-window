@@ -11,18 +11,18 @@ Template Name: Homepage
         <div class="slider3 full-slider">
         	<div>
           		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
-          		<video id="land_vid" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
-					
-					<!--
+          		<video id="land_vid" preload="none" autoplay="true" loop="loop">
+
+
 				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
 				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
 				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
 				  I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
-				   -->
+
 
 				 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
-				
-				  
+
+
 				  <!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
 				</video>
          	</div>
@@ -116,7 +116,7 @@ Template Name: Homepage
 
 			foreach ($gridreposnse as $key => $value)
 			{
-				foreach ($value as $k => $val) 
+				foreach ($value as $k => $val)
 				{
 					$value[$k]['class'] = '';
 
@@ -127,8 +127,8 @@ Template Name: Homepage
 					}
 
 				}
-			
-			
+
+
 	?>
 				<div class="row">
                     <div class="col-sm-6 multi-grid">
@@ -517,7 +517,7 @@ Template Name: Homepage
 ?>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="slider1 regular-slider arrows-top">
+				<div class="slider1 regular-slider arrows-top a_noco">
 					<?php
 
 						foreach($recentarticles as $recentarticle)
@@ -534,9 +534,9 @@ Template Name: Homepage
 									<div class="infocus_home posrel">
 										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 											<h6><?php echo $recentarticle['title']; ?></h6>
-										
+
 											<p><?php echo $recentarticle['excerpt']; ?></p>
-										</a>	
+										</a>
 										<div>
 											<p class="pull-left"><small title="Published Date"><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">

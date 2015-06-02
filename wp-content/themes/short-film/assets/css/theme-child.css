@@ -12303,6 +12303,9 @@ h6.brand {
   height: 60px;
   overflow: hidden;
 }
+.a_noco a p {
+  color: #787878;
+}
 @media screen and (max-width: 1199px) {
   .headspace {
     padding-top: 130px;
