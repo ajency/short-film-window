@@ -220,7 +220,7 @@
 					<div class="row gridlayout"  style="display: none;">
 
 				 		<div class="col-sm-6 multi-grid">
-                            <div class="grid-box grid-full content-align-bottom">
+                            <div class="grid-box grid-full content-align-bottom <?php echo $value[0]['class']; ?>">
 
 							<?php
 								if($value[0]['slug'])
@@ -272,7 +272,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[1]['class']; ?>">
 
 							<?php
 								if($value[1]['slug'])
@@ -323,7 +323,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[2]['class']; ?>">
 
 							<?php
 								if($value[2]['slug'])
@@ -375,7 +375,7 @@
                         </div>
 
                         <div class="col-sm-6 multi-grid">
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[3]['class']; ?>">
 
 							<?php
 								if($value[3]['slug'])
@@ -424,7 +424,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[4]['class']; ?>">
 
 							<?php
 								if($value[4]['slug'])
@@ -473,7 +473,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-full content-align-bottom">
+                            <div class="grid-box grid-full content-align-bottom <?php echo $value[5]['class']; ?>">
 
 							<?php
 								if($value[5]['slug'])
@@ -966,7 +966,8 @@ window.onload = function() {
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;
-        var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+        // var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+        var image  = SITEURL+'/wp-content/themes/short-film/assets/img/white.png';
 		for (var i= 0; i < multiple[k]; i++) {
 
 			if(response[j] == undefined){
@@ -1048,7 +1049,7 @@ window.onload = function() {
 
 
                         +'<div class="col-sm-6 multi-grid">'
-                       +' <div class="grid-box grid-full content-align-bottom">'
+                       +' <div class="grid-box grid-full content-align-bottom '+value[0]['class']+'">'
 					     +'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[0]['medium_image']+');">'
                                 +'</div>'
@@ -1083,7 +1084,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                            +' </a>'
                         +'</div>'
-                        +'<div class="grid-box grid-half content-align-bottom">'
+                        +'<div class="grid-box grid-half content-align-bottom '+value[1]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[1]['medium_image']+');">'
                                 +'</div>'
@@ -1118,7 +1119,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
                         +'</div>'
-                        +'<div class="grid-box grid-half content-align-bottom">'
+                        +'<div class="grid-box grid-half content-align-bottom '+value[2]['class']+'">'
                            +'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[2]['medium_image']+');">'
                                +' </div>'
@@ -1155,7 +1156,7 @@ window.onload = function() {
                         +'</div>'
                    +' </div>'
                     +'<div class="col-sm-6 multi-grid">'
-                       +' <div class="grid-box grid-half content-align-bottom">'
+                       +' <div class="grid-box grid-half content-align-bottom '+value[3]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[3]['medium_image']+');">'
                                 +'</div>'
@@ -1190,7 +1191,7 @@ window.onload = function() {
                                +' <div class="overlay-vertical"></div>'
                            +' </a>'
                        +' </div>'
-                       +' <div class="grid-box grid-half content-align-bottom">'
+                       +' <div class="grid-box grid-half content-align-bottom '+value[4]['class']+'">'
                            +'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[4]['medium_image']+');">'
                                 +'</div>'
@@ -1224,7 +1225,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
                         +'</div>'
-                        +'<div class="grid-box grid-full content-align-bottom">'
+                        +'<div class="grid-box grid-full content-align-bottom '+value[5]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[5]['medium_image']+');">'
                                 +'</div>'

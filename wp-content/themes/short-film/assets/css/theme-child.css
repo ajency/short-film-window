@@ -10998,6 +10998,11 @@ hr {
 .header-space {
   padding-top: 150px;
 }
+@media screen and (max-width: 767px) {
+  .header-space {
+    padding-top: 110px;
+  }
+}
 @media screen and (max-width: 480px) {
   .header-space {
     padding-top: 10px;
@@ -11056,6 +11061,7 @@ a {
 .logo {
   width: 230px;
   float: left;
+  position: relative;
   /* transition */
   -webkit-transition: all 0.3s ease-in 0s;
   -moz-transition: all 0.3s ease-in 0s;
@@ -11075,6 +11081,7 @@ a {
     width: 100%;
     float: none;
     height: 70px;
+    display: none;
   }
   .header-links .social-links {
     float: right;
@@ -11091,7 +11098,7 @@ a {
   .navbar-default {
     margin-top: -70px;
     float: right;
-    width: 100%;
+    width: auto;
   }
 }
 .navbar-default ul li a:hover,
@@ -11123,20 +11130,29 @@ a {
   .navbar-default .menu ul {
     padding-top: 10px;
   }
-  .navbar-collapse {
+  .sub-header .navbar-default .navbar-collapse {
     background: rgba(0, 0, 0, 0.8);
     margin-top: 6px;
+    position: absolute;
+    width: auto;
+    right: 0px;
+    border: 0;
+    padding: 0;
   }
   .sub-header .navbar-default .menu li {
     display: block;
   }
   .sub-header .navbar-default .menu li a {
     display: block;
-    color: #af152f;
-    padding: 5px;
+    color: #E2E2E2;
+    padding: 8px 35px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    width: 180px;
+    /* text-transform: uppercase; */
   }
   .sub-header .navbar-default .menu li a:hover {
     background: #eee;
+    color: #af152f;
   }
   .sub-header .navbar-default .menu li:after {
     display: none;
@@ -12316,7 +12332,7 @@ h6.brand {
 }
 @media screen and (max-width: 767px) {
   .headspace {
-    padding-top: 166px;
+    padding-top: 97px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -13656,7 +13672,7 @@ p.noneLeft {
 .article_row .col-xs-3 .soc-ico {
   bottom: 0;
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 590px) {
   .article_row .col-xs-8,
   .article_row .col-xs-4,
   .article_row .col-xs-9,
@@ -13673,7 +13689,7 @@ p.noneLeft {
     text-align: center !important;
   }
 }
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 590px) {
   .article_row h4 {
     text-align: center;
   }

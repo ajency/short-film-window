@@ -52,6 +52,8 @@
 .logo{
 	width: 230px;
 	float: left;
+	position: relative;
+ 	// z-index: 1;
 	.ease;
 }
 
@@ -62,6 +64,7 @@
         float: none;
         height: 70px; //was 85px
         .social-links {float: right;}
+        display: none;
     }
 }
 .navbar-default {
@@ -73,7 +76,7 @@
     @media screen and (max-width: 767px) {
         margin-top: -70px;
         float: right;
-        width: 100%;
+        width: auto; //was auto
     }
     ul li a {
         &:hover, &:focus {
@@ -96,15 +99,27 @@
 }
 @media screen and (max-width: 767px) {
     .navbar-default .menu ul {padding-top: 10px;}
-    .navbar-collapse {background: rgba(0,0,0,0.8); margin-top: 6px;}
+    .sub-header .navbar-default .navbar-collapse {
+    	background: rgba(0,0,0,0.8);
+    	margin-top: 6px;
+    	position: absolute;
+	  	width: auto;
+	  	right: 0px;
+	  	border: 0;
+	  	padding: 0;
+    }
     .sub-header .navbar-default .menu li {
         display: block;
 //        text-align: right;
         a {
             display: block;
-            color: @brand-primary;
-            padding: 5px;
-            &:hover {background: #eee;}
+            // color: @brand-primary;
+ 			color: #E2E2E2;
+            padding: 8px 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  			width: 180px;
+  			/* text-transform: uppercase; */
+            &:hover {background: #eee; color: @brand-primary;}
         }
         &:after {display: none;}
     }

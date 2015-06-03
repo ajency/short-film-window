@@ -273,10 +273,14 @@ function generate_grid_response($response)
 				'duration'		=> 0,
 				'region'		=> array(0 => ''),
 				'tags'			=> "",
-				'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'small_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'medium_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
-				'large_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				// 'featured_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				// 'small_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				// 'medium_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				// 'large_image'	=> get_template_directory_uri().'/assets/img/placeholder.jpg',
+				'featured_image'	=> get_template_directory_uri().'/assets/img/white.png',
+				'small_image'	=> get_template_directory_uri().'/assets/img/white.png',
+				'medium_image'	=> get_template_directory_uri().'/assets/img/white.png',
+				'large_image'	=> get_template_directory_uri().'/assets/img/white.png',
 				'user_like_count'	=> "",
 				'post_like_count' => 0,
 				'no_of_views'	=> 0
@@ -320,7 +324,7 @@ function generate_play_grid_response($playlists)
 				'playlist_description'  => "",
 				'playlist_count' 	    => "",
 				'playlist_link' 		=> "",
-				'playlist_image_url' 	=> get_template_directory_uri().'/assets/img/placeholder.jpg'
+				'playlist_image_url' 	=> get_template_directory_uri().'/assets/img/white.png'
 
 			);
 
