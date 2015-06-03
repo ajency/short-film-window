@@ -347,7 +347,7 @@ afterToggle: function(){}
 	           +' <div class="adjust_i article_meta">'
 	                +'<p class="pull-left" title="Publishd Date"><i class="fa fa-clock-o"></i> '+response.post_date+'</p>'
 					+'<p class="pull-left" title="Author"><i class="fa fa-user"></i> '+response.director+'</p>'
-	               +' <p class="pull-right">'
+	               +' <p class="pull-right leftinsmall">'
 
 
 	                    +'<span class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"><i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </span>'
