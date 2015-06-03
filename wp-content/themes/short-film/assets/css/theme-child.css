@@ -10981,6 +10981,7 @@ body {
 }
 .content-wrapper {
   background: #ffffff;
+  padding: 0;
 }
 .wrapper {
   min-height: 100%;
@@ -12392,6 +12393,26 @@ h6.brand {
 @media screen and (max-width: 480px) {
   .play_movie_big {
     top: 25%;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .staffpick-display-section .play_movie_big {
+    top: 38%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .staffpick-display-section .play_movie_big {
+    top: 38%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .staffpick-display-section .play_movie_big {
+    top: 38%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .staffpick-display-section .play_movie_big {
+    top: 38%;
   }
 }
 @media screen and (max-width: 991px) {

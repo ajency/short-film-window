@@ -121,28 +121,31 @@
         }
 
         $(window).resize(function() {
-                height = window.innerHeight ? window.innerHeight : $(window).height();
-                width = window.outerWidth ? window.outerWidth : $(window).width();
-                if (!($('body').hasClass('home'))) {
-                    if (width < 480) {
-                $('.vid_if ').each(function() {
-                    $(this).css('max-height', height - 156);
-                    $('.show-featured-image').css('max-height', height - 156);
-                });
-            } else {
-                $('.vid_if ').each(function() {
-                    $(this).css('max-height', height);
-                    $('.show-featured-image').css('max-height', height);
-                });
-            }
+            height = window.innerHeight ? window.innerHeight : $(window).height();
+            width = window.outerWidth ? window.outerWidth : $(window).width();
+            if (!($('body').hasClass('home'))) {
+                if (width < 480) {
+                    $('.vid_if ').each(function() {
+                        $(this).css('max-height', height - 156);
+                        $('.show-featured-image')/*.css('max-height', height - 156)*/.css('height', 'auto');
+                    });
+                } else {
+                    $('.vid_if ').each(function() {
+                        $(this).css('max-height', height);
+                        $('.show-featured-image')/*.css('max-height', height)*/.css('height', 'auto');
+                    });
                 }
-            });
+            }
+            // if ($('body').hasClass('home')) {
+            //     $('.show-featured-image').css('height', $('.show-featured-image img').height());
+            // }
+        });
     });
 
     $(window).load(function() {
-        if ($('body').hasClass('home')) {
-            $('.show-featured-image').css('height', $('.show-featured-image img').height());
-        }
+        // if ($('body').hasClass('home')) {
+        //     $('.show-featured-image').css('height', $('.show-featured-image img').height());
+        // }
     });
 
     var element = $('.movie-info');
