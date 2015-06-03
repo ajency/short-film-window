@@ -29,7 +29,7 @@ Author: mitcho (Michael Yoshitaka Erlewine)
                         <a class="content-bottom" href="<?php the_permalink(); ?>">
                            <div class="grid-image" style="background-image: url(
                                <?php if (has_post_thumbnail()): ?>
-                                   <?php echo wp_get_attachment_url( get_post_thumbnail_id( $post->ID ) ); ?>
+                                   <?php echo wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'thumbnail')[0]; ?>
                                    <?php //the_post_thumbnail('thumbnail'); ?>
                                <?php else:?>
                                    <?php echo get_stylesheet_directory_uri() ?>/assets/img/placeholder.jpg
