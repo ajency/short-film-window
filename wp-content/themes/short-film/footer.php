@@ -85,7 +85,12 @@
 			                                        <a href="#"><i class="fa fa-youtube-play fa-fw"></i></a>
 			                                    </div>
 												-->
+												<!--
 												<div class="g-ytsubscribe" data-channel="GoogleDevelopers" data-layout="default" data-count="hidden"></div>
+												-->
+												
+												<div class="g-ytsubscribe" data-channelid="UCt98fHqG3GFj8mJNjee53BQ" data-layout="default" data-count="hidden"></div>
+												
 			                                </div>
 																						
 			                            </div>

@@ -2043,7 +2043,20 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 
 	}
 
-	return $total_runtime;
+	$temp_runtime_hours = $total_runtime/60;
+	$runtime_hours = floor($temp_runtime_hours);
+	
+	$runtime_mins = $total_runtime%60;
+	
+	$final_runtime = array();
+	
+	$final_runtime['runtime_hours'] = $runtime_hours;
+	$final_runtime['runtime_mins']  = $runtime_mins;
+	$final_runtime['total_runtime']  = $total_runtime;
+		
+	return $final_runtime;
+	
+	//return $total_runtime;
 
 
 } //end function
