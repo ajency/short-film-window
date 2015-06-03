@@ -166,8 +166,11 @@
 			        </div>
 			    </div>
 			    <div class="logo">
-			        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" class="img-responsive">
-			    </div>
+					
+			        <a href="<?php echo site_url(); ?>">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" class="img-responsive">
+					</a>
+				</div>
 
 				<!--
 				<div class="fb-like" data-href="https://www.facebook.com/mysfwpage" data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>

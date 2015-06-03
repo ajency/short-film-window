@@ -18,7 +18,9 @@
 
 	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
 
-	 $total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
+	 //$total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
+	 
+	 $final_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);	
 
 ?>
 
@@ -73,7 +75,34 @@
 													}
 
 											?>
-											<p>Total Runtime: <span class="co"><?php echo $total_runtime;?></span> minutes</p>
+											<!-- <p>Total Runtime: <span class="co"><?php// echo $total_runtime;?></span> minutes</p> -->
+											
+											<p>
+												Total Runtime:
+												
+												<?php 
+													if($final_runtime['runtime_hours'] > 0)
+													{
+														echo $final_runtime['runtime_hours'];
+													
+												?> 
+														Hours
+												
+												<?php
+													}
+													
+													if($final_runtime['runtime_mins'] > 0)
+													{
+														echo $final_runtime['runtime_mins'];
+												?>
+														Minutes
+												<?php
+													}	
+												?>			
+														
+											</p>
+											
+											
 										</div>
 									</div>
 
