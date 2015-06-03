@@ -46,6 +46,14 @@
         .frm_error {
             .error(#DD807E; 22px; 3px);
         }
+        @media screen and (max-width: 510px) {
+            text-align: center;
+            .frm_form_field.frm_left_container label, .frm_form_field.frm_left_container select {
+                display: block;
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
     }
     .rest-of-form {
         padding: 25px;
