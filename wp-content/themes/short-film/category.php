@@ -775,7 +775,7 @@ window.onload = function() {
 
 		e.preventDefault();
 
-		jQuery('.loader_more').text("Loading data...");
+		jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
 
 		get_all_posts();
 
@@ -1129,7 +1129,7 @@ window.onload = function() {
         jQuery.each(response,function(index,value){
 
 
-					html +=	'<div class="col-xs-4">'
+					html +=	'<div class="col-sm-4">'
 
 								+'<div class="grid-box grid-full content-align-bottom">'
 
@@ -1211,7 +1211,7 @@ window.onload = function() {
 
 
 
-					html +=	'<div class="col-xs-4">'
+					html +=	'<div class="col-sm-4">'
 
 								+'<div class="grid-box grid-full content-align-bottom">'
 
@@ -1293,7 +1293,7 @@ window.onload = function() {
         jQuery.each(response,function(index,value){
 
 
-					html +=	'<div class="col-xs-4">'
+					html +=	'<div class="col-sm-4">'
 
 								+'<div class="grid-box grid-full content-align-bottom">'
 

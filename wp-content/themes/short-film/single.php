@@ -194,7 +194,7 @@ get_header(); ?>
 
 	    <div class="text-center">
 
-	        <a href="<?php echo $temp[0] ?>"  class="btn btn-primary btn-lg watchmore">Watch more awesome films</a>
+	        <a href="<?php echo $temp[0] ?>"  class="watchmore">Watch more awesome films</a>
 	    </div>
 
 	</div>

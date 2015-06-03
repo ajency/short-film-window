@@ -305,6 +305,7 @@ Template Name: List of Playlists
 						<input type="hidden" name="offset" id="offset" value="0" />
 						<input type="hidden" name="total_no_of_playlists" id="total_no_of_playlists" value="<?php echo $total_no_of_playlists; ?>" />
 						<a href="#" class="btn btn-primary load_more">Load More </a>
+						<div class="loader_more load_dis"></div>
 					</div>
             	</div>
             </div>

@@ -10,11 +10,16 @@
 		}
 	}
 
-.playlist {
+.playlist, .author_page {
 	.playlist_img {
 		width: 100%;
 	}
 
+	img {
+		@media screen and (max-width: 991px) {
+			margin-bottom: 15px;
+		}
+	}
 	.disp_btm {
 		position: absolute;
 		bottom: 47px;
@@ -34,7 +39,7 @@
 			margin-bottom: 15px;
 		}
 	}
-	@media screen and (max-width: 680px) {
+	@media screen and (max-width: 767px) {
 		.pushin {
 			padding: 0;
 		}
