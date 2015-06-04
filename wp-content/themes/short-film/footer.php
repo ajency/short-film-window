@@ -98,6 +98,7 @@
 		                        </div>
 	                        </div>
 	                        <div class="col-xs-7 col-md-12">
+								<!--
 				                <form action="" class="form-horizontal">
 				                    <div class="form-group has-feedback">
 				                        <label for="" class="col-sm-5 col-md-4 text-right">SUBSCRIBE</label>
@@ -107,6 +108,16 @@
 				                        </div>
 				                    </div>
 				                </form>
+								-->
+								
+								<?php
+
+									if( function_exists( 'mc4wp_form' ) ) 
+									{
+										mc4wp_form();
+									}
+								
+								?>
 			                </div>
 		                </div>
 		            </div>

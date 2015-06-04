@@ -19,8 +19,8 @@
 	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
 
 	 //$total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
-	 
-	 $final_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);	
+
+	 $final_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
 
 ?>
 
@@ -32,7 +32,6 @@
                 <div class="row posrel">
 
 					<!--this row contains playlist info-->
-					<div class="row">
 
 							<div class="col-md-4">
 
@@ -76,33 +75,34 @@
 
 											?>
 											<!-- <p>Total Runtime: <span class="co"><?php// echo $total_runtime;?></span> minutes</p> -->
-											
+
 											<p>
 												Total Runtime:
-												
-												<?php 
+
+												<span class="co">
+												<?php
 													if($final_runtime['runtime_hours'] > 0)
 													{
 														echo $final_runtime['runtime_hours'];
-													
-												?> 
+
+												?>
 														Hours
-												
+
 												<?php
 													}
-													
+
 													if($final_runtime['runtime_mins'] > 0)
 													{
 														echo $final_runtime['runtime_mins'];
 												?>
 														Minutes
 												<?php
-													}	
-												?>			
-														
+													}
+												?>
+												</span>
 											</p>
-											
-											
+
+
 										</div>
 									</div>
 
@@ -118,13 +118,13 @@
 										</div>
 
 
-										<div class="lico_c">
+										<!-- <div class="lico_c">
 
 											<div class="lico like-action">
 
 											</div>
 
-										</div>
+										</div> -->
 
 										<div class="row opts disp_btm">
 											<div class="col-md-12">
@@ -149,7 +149,6 @@
 							</div>
 
 
-					</div> <!-- end row -->
 
 
                 </div>

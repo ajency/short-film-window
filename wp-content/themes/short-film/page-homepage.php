@@ -11,19 +11,17 @@ Template Name: Homepage
         <div class="slider3 full-slider">
         	<div>
           		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
-          		<video id="land_vid" preload="none" autoplay="true" loop="loop">
+          		<video id="land_vid" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
 
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4">
+				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
+				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
+				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
+				  	I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
 
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
-				  I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+				 	<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
 
-
-				 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
-
-
-				  <!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
+				  	<!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
 				</video>
          	</div>
         </div>
@@ -165,7 +163,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[0]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
 
 												</div>
@@ -175,7 +173,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                    <?php echo $value[0]['excerpt'];?>
                                                 </div>
@@ -231,7 +229,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[1]['excerpt'];?>
                                                 </div>
@@ -287,7 +285,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[2]['excerpt'];?>
                                                 </div>
@@ -346,7 +344,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                    <?php echo $value[3]['excerpt'];?>
                                                 </div>
@@ -402,7 +400,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[4]['excerpt'];?>
                                                 </div>
@@ -448,7 +446,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[5]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
 
 												</div>
@@ -458,7 +456,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[5]['excerpt'];?>
                                                 </div>
@@ -871,7 +869,7 @@ Template Name: Homepage
 											+'<div class="pull-lef t">'
 
 												//+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
-												
+
 												+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/director/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
 
 											+'</div>'
@@ -903,7 +901,7 @@ Template Name: Homepage
 										+'<div class="meta-ico-in" title="Views">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 
 
-										+'<div class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
+										+'<div class="meta-ico-in post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
 
 
 									+'</div>'

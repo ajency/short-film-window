@@ -53,6 +53,12 @@ a.exp_all, a.def_link {
 }
 a.def_link {color: #cccccc;}
 
+@media screen and (max-width: 767px) {
+    .playlist_list .pushin {
+        padding: 0;
+    }
+}
+
 .grid-meta {
     .p-l-10.pull-left {
         text-align: right;
@@ -115,13 +121,13 @@ hr.border-btm {
         text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
     }
 }
-.btn-primary.watchmore {
-    background-color: @brand-primary;
-    color: #fff;
-    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+.watchmore {
+    color: @brand-primary;
     white-space: normal;
+    font-size: 16px;
+    text-transform: uppercase;
     &:hover {
-        background-color: #811023;
+        color: saturate(lighten(@brand-primary, 25%), 20%);
     }
 }
 
@@ -132,13 +138,16 @@ p.noneLeft {
     text-align: center;
     text-transform: uppercase;
     display: block;
-    width: 400px;
+    max-width: 400px;
     margin: 25px auto;
     background: #F9F9F9;
     padding: 15px;
     color: #C8C8C8;
     text-shadow: 1px 1px 0 #fff;
     cursor: default;
+    @media screen and (max-width: 480px) {
+        width: 100%;
+    }
 }
 
 .stopclass {
@@ -238,6 +247,11 @@ p.noneLeft {
 .load_dis, .load_dis .loader_c {
     display: inline-block;
     vertical-align: top;
+}
+.loader_c.cont_load {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: -48px;
 }
 .loader_c {
     width: 43px;

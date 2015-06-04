@@ -48,7 +48,7 @@
     z-index: 1;
     &:hover {color: #fff;}
     background: url(../img/play.png) center center no-repeat;
-    //transition: all 0.5s;
+    //.transition(all; 0.5s);
     .transition(all; 0.5s);
     &:hover {
         background: url(../img/play_red.png) center center no-repeat;
@@ -65,6 +65,20 @@
     }
     @media screen and (max-width: 480px) {
         top: 25%;
+    }
+}
+.staffpick-display-section .play_movie_big {
+    @media screen and (max-width: 1199px) {
+        top: 38%;
+    }
+    @media screen and (max-width: 991px) {
+        top: 38%;
+    }
+    @media screen and (max-width: 767px) {
+        top: 38%;
+    }
+    @media screen and (max-width: 480px) {
+        top: 38%;
     }
 }
 @media screen and (max-width: 991px) {
@@ -90,7 +104,7 @@
         i {
             margin-right: 10px;
             color: @brand-primary;
-            transition: all 0.5s;
+            .transition(all; 0.5s);
         }
     }
     a.post-like.liked {
@@ -99,6 +113,14 @@
         &:hover {
             color: #aaa;
             i {color: #aaa;}
+        }
+    }
+    @media screen and (max-width: 570px) {
+        .pull-right.leftinsmall {
+            float: none !important;
+        }
+        .pull-right span .post-like i {
+            margin-left: 0;
         }
     }
     @media screen and (max-width: 992px) {
@@ -255,7 +277,7 @@
 
         a.post-like.liked {
             color: #797979;
-            i {color: #797979; transition: all 0.5s;}
+            i {color: #797979; .transition(all; 0.5s);}
             &:hover {
                 color: #aaa;
                 text-decoration: none;
@@ -298,7 +320,7 @@
             display: inline-block;
             opacity: 0.5;
             margin-left: 10px;
-            transition: all 0.5s;
+            .transition(all; 0.5s);
 //            &:hover {
 //                filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */
 //            filter: none; /* IE6-9 */

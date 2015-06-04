@@ -2425,8 +2425,77 @@ function custom_image_size_rules($file)
 
 ////
 
+
+
 add_action('save_post', 'check_featured_image', 100);
 
+
+function check_featured_image($post_id)
+{
+    $post = get_post($post_id);
+
+	//to check featured image size while adding new post & while updating post
+    
+	if(has_post_thumbnail($post_id))
+	{
+    	$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), "full" );
+    	$image_width = $image_data[1];
+
+    	if($image_width < 2000)
+		{
+    		$post->post_status = 'draft';
+						
+			remove_action('save_post', 'check_featured_image', 100);
+			wp_update_post( $post );
+			add_action('save_post', 'check_featured_image', 100);
+			
+						
+    		$message = '<p>Please, add featured image with minimum width 2000px!</p>'
+    		. '<p><a href="' . admin_url('post.php?post=' . $post_id . '&action=edit') . '">Go back and edit the post</a></p>';
+    		wp_die($message, 'Error - Invalid featured image size!');
+					
+    	}
+   	
+    } 
+	
+	// to populate number of likes & views while adding new post
+	
+	$post_status = get_post_status($post_id);
+	
+	if ( $post_status == 'auto-draft' )  // new post with no content
+	{
+		$post_like_count = get_post_meta( $post_id, "_post_like_count", true ); 
+	
+		$no_of_views = get_post_meta( $post_id, "no_of_views", true ); 
+	
+		
+		if(($post_like_count==false) || ($no_of_views==false))
+		{
+			// if likes & views are not present den populate dem wid random values
+			
+			$random_views = rand(50, 500);
+		
+			do
+			{
+				$random_likes = rand(50, 500);
+			
+			} while ($random_likes >= $random_views);
+				
+			update_post_meta( $post_id, "no_of_views", $random_views);
+			
+			update_post_meta( $post_id, "_post_like_count", $random_likes);
+			
+		}
+		
+	
+	} //end outer if 
+		
+				
+} //end function
+
+
+
+/*
 function check_featured_image($post_id)
 {
     $post = get_post($post_id);
@@ -2452,9 +2521,11 @@ function check_featured_image($post_id)
     	}
    	
     }     
-	
-	
+				
 }
+*/
+
+
 
 ////
 
@@ -2639,8 +2710,10 @@ function custom_login_logo()
 add_action('login_head', 'custom_login_logo');
 
 
-////add_action( 'init', 'populate_likes_and_views' );
 /*
+
+////add_action( 'init', 'populate_likes_and_views' );
+
 function populate_likes_and_views()
 {
 
