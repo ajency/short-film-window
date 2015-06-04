@@ -1645,7 +1645,7 @@ window.onload = function() {
                                 + '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</h6>'
 
 
-								+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+								+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 								+ '<p class="categories">'
                                     + '<span class="label label-greydark">'
@@ -1696,7 +1696,7 @@ window.onload = function() {
                                 	+ value.title
                                 + '</a>'
 
-								+ '<small><em>by <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'
+								+ '<small><em>by <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'
 
                             + '</h3>'
                         + '</div>'

@@ -2376,56 +2376,6 @@ $GLOBALS['wp_rewrite']->author_base = 'director';
 add_action('init', 'author_director_rewrite');
 
 
-/*
-add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
-
-function custom_image_size_rules($file)
-{
-
-	$img=getimagesize($file['tmp_name']);
-	$minimum = array('width' => '2000');
-	$width= $img[0];
-	$height =$img[1];
-
-	if ($width < $minimum['width'])
-	{
-		 return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
-
-	}
-
-	return $file;
-
-}
-
-*/
-
-
-/*
-	add_filter('wp_handle_upload_prefilter','custom_image_size_rules');
-
-	function custom_image_size_rules($file)
-	{
-
-		$img=getimagesize($file['tmp_name']);
-		$minimum = array('width' => '2000');
-		$width= $img[0];
-		$height =$img[1];
-
-		if (isset($_REQUEST['post_id']) && isset($_REQUEST['action']) && ($_REQUEST['action'] == 'upload-attachment')){
-
-		if($width < $minimum['width']){
-		return array("error"=>"Image dimensions are too small. Minimum width is {$minimum['width']}px. Uploaded image width is $width px");
-		}
-		}
-
-		return $file;
-	}
-
-*/
-
-////
-
-
 
 add_action('save_post', 'check_featured_image', 100);
 
@@ -2441,6 +2391,7 @@ function check_featured_image($post_id)
     	$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), "full" );
     	$image_width = $image_data[1];
 
+		
     	if($image_width < 2000)
 		{
     		$post->post_status = 'draft';
@@ -2450,7 +2401,7 @@ function check_featured_image($post_id)
 			add_action('save_post', 'check_featured_image', 100);
 			
 						
-    		$message = '<p>Please, add featured image with minimum width 2000px!</p>'
+    		$message = '<p>Please, add featured image with minimum width 2000px !</p>'
     		. '<p><a href="' . admin_url('post.php?post=' . $post_id . '&action=edit') . '">Go back and edit the post</a></p>';
     		wp_die($message, 'Error - Invalid featured image size!');
 					
