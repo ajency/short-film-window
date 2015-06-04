@@ -734,7 +734,7 @@
 
 										+'<span class="author">'
 
-											+'<a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
+											+'<a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author"><i class="fa fa-user"></i>' + value.director + '</a>'
 
 										+'</span>'
 
