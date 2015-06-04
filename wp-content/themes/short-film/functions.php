@@ -2430,12 +2430,13 @@ function custom_image_size_rules($file)
 add_action('save_post', 'check_featured_image', 100);
 
 
-
 function check_featured_image($post_id)
 {
     $post = get_post($post_id);
 
-    if(has_post_thumbnail($post_id))
+	//to check featured image size while adding new post & while updating post
+    
+	if(has_post_thumbnail($post_id))
 	{
     	$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), "full" );
     	$image_width = $image_data[1];
@@ -2455,9 +2456,43 @@ function check_featured_image($post_id)
 					
     	}
    	
-    }     
+    } 
+	
+	// to populate number of likes & views while adding new post
+	
+	$post_status = get_post_status($post_id);
+	
+	if ( $post_status == 'auto-draft' )  // new post with no content
+	{
+		$post_like_count = get_post_meta( $post_id, "_post_like_count", true ); 
+	
+		$no_of_views = get_post_meta( $post_id, "no_of_views", true ); 
+	
+		
+		if(($post_like_count==false) || ($no_of_views==false))
+		{
+			// if likes & views are not present den populate dem wid random values
+			
+			$random_views = rand(50, 500);
+		
+			do
+			{
+				$random_likes = rand(50, 500);
+			
+			} while ($random_likes >= $random_views);
 				
-}
+			update_post_meta( $post_id, "no_of_views", $random_views);
+			
+			update_post_meta( $post_id, "_post_like_count", $random_likes);
+			
+		}
+		
+	
+	} //end outer if 
+		
+				
+} //end function
+
 
 
 /*
@@ -2485,52 +2520,11 @@ function check_featured_image($post_id)
 					
     	}
    	
-    } 
-	
-	// to populate number of likes & views while adding new post
-	
-	$post_like_count = get_post_meta( $post_id, "_post_like_count", true ); 
-	
-	$no_of_views = get_post_meta( $post_id, "no_of_views", true ); 
-	
-	// echo " *** post_id= ";
-	// echo $post_id;
-	// echo " *** post_like_count= ";
-	// print_r($post_like_count);
-	// echo " *** no_of_views= ";
-	// print_r($no_of_views);
-	//wp_die();
-	
-	
-	
-	// if(($post_like_count != false) or ($no_of_views != false))
-	// {
-		//if likes OR views are already populated then dont do anything
-	// }	
-	// if(($post_like_count==false) || ($no_of_views==false))
-	// else
-	if(($post_like_count=="") || ($no_of_views==""))
-	{
-		// if likes & views are not present den populate dem wid random values
-		
-		$random_views = rand(50, 500);
-	
-		do
-		{
-			$random_likes = rand(50, 500);
-		
-		} while ($random_likes >= $random_views);
-			
-		update_post_meta( $post_id, "no_of_views", $random_views);
-		
-		update_post_meta( $post_id, "_post_like_count", $random_likes);
-		
-	}
-
+    }     
 				
-} //end function
-
+}
 */
+
 
 
 ////
@@ -2716,8 +2710,10 @@ function custom_login_logo()
 add_action('login_head', 'custom_login_logo');
 
 
-////add_action( 'init', 'populate_likes_and_views' );
 /*
+
+////add_action( 'init', 'populate_likes_and_views' );
+
 function populate_likes_and_views()
 {
 
