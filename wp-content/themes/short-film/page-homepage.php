@@ -11,13 +11,14 @@ Template Name: Homepage
         <div class="slider3 full-slider">
         	<div>
           		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
-          		<video id="land_vid" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
+          		<video id="land_vid" preload="none" autoplay="true" loop="loop">
 
-          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
-          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">
+          			<!-- <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp"> -->
+          			<!-- <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4"> -->
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4">
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
-				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
 				  	I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
 
 				 	<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
@@ -705,6 +706,9 @@ Template Name: Homepage
 
 <script type="text/javascript">
 
+	document.addEventListener('touchstart', function(e) {
+		document.getElementById('land_vid').play();
+	});
 	document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
 
 
@@ -740,7 +744,7 @@ Template Name: Homepage
             }
         }
 
-		jQuery('.staffpick-display-section').text("Loading data...");
+		jQuery('.staffpick-display-section').html('<div class="loader_c"><div class="loader_i"></div></div>');
 
 		jQuery.ajax({
 
@@ -1018,7 +1022,7 @@ Template Name: Homepage
 					console.log("inside success ");
 					console.log(response);
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -1075,7 +1079,7 @@ Template Name: Homepage
 					console.log("inside success ");
 					console.log(response);
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
