@@ -11941,6 +11941,10 @@ a {
   width: 100%;
   height: auto;
 }
+.home .loader_c {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 .movie-cat ul {
   list-style-type: none;
   margin: 0;
@@ -13122,6 +13126,11 @@ h6.brand {
 }
 .readmore_dn {
   background-image: url(../img/downarrow.png);
+  position: relative;
+  top: -8px;
+  background-color: #fff;
+  opacity: 1;
+  box-shadow: 0 -20px 30px 15px #ffffff;
 }
 .readmore_up {
   background-image: url(../img/uparrow.png);
