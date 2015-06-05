@@ -711,7 +711,7 @@
 					<?php
 						}
 					?>
-					<div class="spacer-40">
+					<div class="spacer-40"></div>
 
 
 			   </div>

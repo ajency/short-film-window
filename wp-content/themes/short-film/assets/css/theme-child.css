@@ -12285,6 +12285,7 @@ h6.brand {
   .listlayout .lico_c .lico,
   .couchlayout .lico_c .lico {
     display: inline-block;
+    vertical-align: middle;
     padding-right: 10px;
     padding-left: 10px;
     border-right: 1px solid #ccc;
@@ -12350,7 +12351,7 @@ h6.brand {
   }
 }
 .infocus_home {
-  height: 200px;
+  min-height: 200px;
   padding-bottom: 20px;
 }
 .infocus_home hr {
@@ -12361,21 +12362,22 @@ h6.brand {
 }
 @media screen and (max-width: 991px) {
   .infocus_home {
-    height: 265px;
+    min-height: 265px;
   }
 }
 @media screen and (max-width: 767px) {
   .infocus_home {
-    height: 245px;
+    min-height: 245px;
   }
 }
 @media screen and (max-width: 580px) {
   .infocus_home {
-    height: 275px;
+    min-height: 275px;
   }
 }
 @media screen and (max-width: 480px) {
   .infocus_home {
+    min-height: 0;
     height: auto;
   }
 }
@@ -13250,6 +13252,13 @@ h5.un {
   margin-bottom: 15px;
   padding-bottom: 15px;
 }
+@media screen and (max-width: 991px) {
+  .couchlayout .col-sm-10,
+  .couchlayout .col-sm-2 {
+    float: none !important;
+    width: 100% !important;
+  }
+}
 .listlayout img {
   margin-bottom: 10px;
 }
@@ -14066,7 +14075,7 @@ h4.auth_name {
 .author_page .disp_btm {
   position: absolute;
   bottom: 47px;
-  right: 0;
+  right: 15px;
 }
 .playlist .recent-movies h4,
 .author_page .recent-movies h4 {
