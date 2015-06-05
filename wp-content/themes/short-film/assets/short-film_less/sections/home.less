@@ -300,6 +300,7 @@ h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primar
             text-align: left !important;
             .meta-ico-in, .lico {
                 display: inline-block;
+                vertical-align: middle;
                 padding-right: 10px;
                 padding-left: 10px;
                 border-right: 1px solid #ccc;
@@ -350,7 +351,7 @@ h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primar
 
 
 .infocus_home {
-    height: 200px;
+    min-height: 200px;
     padding-bottom: 20px;
     hr {
         margin-bottom: 0;
@@ -359,15 +360,16 @@ h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primar
         bottom: 0;
     }
     @media screen and (max-width: 991px) {
-        height: 265px;
+        min-height: 265px;
     }
     @media screen and (max-width: 767px) {
-        height: 245px;
+        min-height: 245px;
     }
     @media screen and (max-width: 580px) {
-        height: 275px;
+        min-height: 275px;
     }
     @media screen and (max-width: 480px) {
+        min-height: 0;
         height: auto;
     }
 }
