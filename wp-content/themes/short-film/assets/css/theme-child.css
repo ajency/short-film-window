@@ -12455,7 +12455,7 @@ h6.brand {
 }
 @media screen and (max-width: 767px) {
   .play_movie_big {
-    top: 38%;
+    top: 29%;
   }
 }
 @media screen and (max-width: 480px) {
@@ -12549,6 +12549,12 @@ h6.brand {
 @media screen and (max-width: 992px) {
   .infocus h5 {
     margin-top: 15px;
+  }
+  .infocus .m-t-35 {
+    margin-top: 0;
+  }
+  .infocus .m-t-35 .soc-ico > div {
+    text-align: left !important;
   }
 }
 .movie-header {
@@ -12975,14 +12981,6 @@ h6.brand {
   width: auto;
   height: auto;
 }
-.img-content {
-  font-size: 15px;
-  color: #787878;
-}
-.img-content ol {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 .infocus .pull-right span i {
   margin-right: 4px;
   margin-left: 10px;
@@ -13101,7 +13099,7 @@ h6.brand {
 @media (max-width: 767px) {
   .vid-previous,
   .vid-next {
-    top: 63%;
+    top: 55%;
     width: 40px;
     height: 60px;
   }
@@ -13159,6 +13157,14 @@ h6.brand {
 .adjust_i .pull-left i {
   margin-right: 5px;
 }
+.img-content {
+  font-size: 15px;
+  color: #787878;
+}
+.img-content ol {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .img-content img {
   margin: 5px;
   padding: 5px;
@@ -13169,6 +13175,20 @@ h6.brand {
 }
 .img-content img.alignleft {
   float: left;
+}
+@media screen and (max-width: 680px) {
+  .img-content img,
+  .img-content img.alignleft,
+  .img-content img.alignright {
+    float: none;
+    clear: both;
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+.img-content a {
+  color: #af152f;
 }
 .listlayout,
 .couchlayout {
@@ -13239,9 +13259,6 @@ h5.un {
   color: #787878;
   padding-bottom: 10px;
 }
-.m-t-30 {
-  margin-top: 20px;
-}
 .couchlayout .share-button {
   margin-top: 30px;
 }
@@ -13251,6 +13268,37 @@ h5.un {
 .couchlayout .main-ex {
   margin-bottom: 15px;
   padding-bottom: 15px;
+}
+.couchlayout a.post-like {
+  color: #af152f;
+}
+.couchlayout a.post-like i {
+  color: #af152f;
+}
+.couchlayout a.post-like:hover {
+  color: #fe4665;
+  text-decoration: none;
+}
+.couchlayout a.post-like:hover i {
+  color: #fe4665;
+}
+.couchlayout a.post-like.liked {
+  color: #797979;
+}
+.couchlayout a.post-like.liked i {
+  color: #797979;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.couchlayout a.post-like.liked:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+.couchlayout a.post-like.liked:hover i {
+  color: #aaa;
 }
 @media screen and (max-width: 991px) {
   .couchlayout .col-sm-10,

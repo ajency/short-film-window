@@ -61,7 +61,7 @@
         top: 14%;
     }
     @media screen and (max-width: 767px) {
-        top: 38%;
+        top: 29%; //was 38%
     }
     @media screen and (max-width: 480px) {
         top: 25%;
@@ -125,6 +125,10 @@
     }
     @media screen and (max-width: 992px) {
         h5 {margin-top: 15px;}
+        .m-t-35 {
+            margin-top: 0;
+            .soc-ico > div {text-align: left !important;}
+        }
     }
 }
 
@@ -555,11 +559,7 @@
 .yarpp-thumbnails-horizontal.slider2 .yarpp-thumbnail.slide-cont, .yarpp-thumbnail.slide-cont > img, .yarpp-thumbnail.slide-cont .yarpp-thumbnail-default {width: auto; height: auto;}
 
 //img-content
-.img-content {
-    font-size: 15px;
-    color: #787878;
-    ol {margin-top: 10px; margin-bottom: 10px;}
-}
+
 
 //in focus
 .infocus {
@@ -695,7 +695,7 @@
     .vid-previous,
     .vid-next
     {
-        top: 63%;
+        top: 55%;
         width: 40px;
         height: 60px;
     }
@@ -850,6 +850,9 @@
 
 //styling WP content
 .img-content {
+    font-size: 15px;
+    color: #787878;
+    ol {margin-top: 10px; margin-bottom: 10px;}
     img {
         margin: 5px;
         padding: 5px;
@@ -861,7 +864,19 @@
     img.alignleft {
         float: left;
     }
+    @media screen and (max-width: 680px) {
+        img, img.alignleft, img.alignright {
+            float: none;
+            clear: both;
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
     p {
         // margin-bottom: 10px;
+    }
+    a {
+        color: @brand-primary;
     }
 }
