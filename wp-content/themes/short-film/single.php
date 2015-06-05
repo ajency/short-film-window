@@ -49,9 +49,16 @@ get_header(); ?>
 
 
 					</div>
+					
+					<div>
+					fav!!
+					</div>
+					
 				</div>
 
 			</div>
+			
+			
 
 			<hr class="m-t-0 m-b-5">
 			<div class="row">
