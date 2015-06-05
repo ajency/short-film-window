@@ -48,11 +48,13 @@ get_header(); ?>
 						 <?php echo do_shortcode('[ssba url="' . get_permalink($response['id']) . '" title="' . get_the_title($response['id']) . '"]'); ?>
 
 
+						<?php echo get_favorites_button($response['id']); ?> 
+						 
 					</div>
 					
-					<div>
-					fav!!
-					</div>
+					
+						
+					
 					
 				</div>
 
