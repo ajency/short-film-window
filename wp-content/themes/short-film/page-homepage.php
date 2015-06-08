@@ -8,10 +8,11 @@ Template Name: Homepage
 
 			<!-- slider -->
 
-        <div class="slider3 full-slider">
-        	<div>
-          		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
-          		<video id="land_vid" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
+        <div class="slide r3 full-sli der">
+        	<div class="videohere">
+        		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive shownojs">
+
+          		<!-- <video id="land_vid" class="hideinmob" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
 
           			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
           			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">
@@ -21,9 +22,8 @@ Template Name: Homepage
 				  	I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
 
 				 	<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
+				</video> -->
 
-				  	<!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
-				</video>
          	</div>
         </div>
 
@@ -708,10 +708,45 @@ Template Name: Homepage
 	// document.addEventListener('touchstart', function(e) {
 	// 	document.getElementById('land_vid').play();
 	// });
-	document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
 
 
 	jQuery(document).ready(function($) {
+
+		//load video ony screen size is greater than 680
+		var screenwi = window.outerWidth ? window.outerWidth : jQuery(window).width();
+
+		function loadvideoornot_hme() {
+			console.log('ismobile: ' + jQuery.browser.mobile);
+			if (jQuery.browser.mobile) {
+
+				// jQuery('.videohere').html(
+				// 	'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive sho win mob">'
+				// );
+				// jQuery('.videohere .shownojs').show();
+				jQuery('.container').eq(1).addClass('header-space');
+				jQuery('.container').find('.spacer-40').eq(0).hide();
+			}
+			else {
+				//if (screenwi > 680) {
+					jQuery('.videohere').html(
+						'<video id="land_vid" class="hi dei nmob" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">'+
+
+		          			//'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">'+
+		          			'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">'+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">'+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">'+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">'+
+						  	'I\'m sorry; your browser doesn\'t support HTML5 video in WebM with VP8 or MP4 with H.264.'+
+
+						 	'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">'+
+						'</video>'
+						);
+					document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
+				//}
+			}
+		}
+		loadvideoornot_hme();
+
 
 		// $('#land_vid').on('load', function() {
 		// 	this.play();

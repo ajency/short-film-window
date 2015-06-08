@@ -11050,11 +11050,61 @@ a {
 .header.smaller .logo {
   width: 175px;
 }
+@media screen and (min-width: 768px) and (max-width: 924px) {
+  .header.smaller .logo {
+    width: 110px;
+  }
+}
+@media screen and (min-width: 925px) {
+  .header.smaller .logo {
+    width: 125px;
+  }
+}
 .header.smaller .links {
   padding: 15px;
 }
+@media screen and (min-width: 768px) {
+  .header.smaller .header-links {
+    position: relative;
+    top: 6px;
+  }
+}
 .header.smaller .social-links {
   margin-top: 0;
+}
+@media screen and (min-width: 768px) and (max-width: 924px) {
+  .header.smaller .sub-header .menu li a {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .header.smaller .sub-header {
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+    margin-bottom: -14px;
+  }
+  .header.smaller .sub-header .container {
+    width: 100%;
+  }
+}
+.header.smaller .social-links .link {
+  display: inline-block;
+  vertical-align: middle;
+}
+@media screen and (min-width: 768px) and (max-width: 924px) {
+  .header.smaller .social-links .link .action {
+    width: auto;
+    height: auto;
+    background: none;
+  }
+}
+.header.smaller .social-links .icon {
+  display: none;
+}
+.header.smaller .social-links .twitter .action {
+  bottom: -5px;
 }
 .header.playing {
   top: -300px;
@@ -11242,16 +11292,6 @@ a {
   text-align: center;
   z-index: 1;
   padding: 0 0 5px;
-  /* transition */
-  -webkit-transition: all 0.3s ease-in 0s;
-  -moz-transition: all 0.3s ease-in 0s;
-  -o-transition: all 0.3s ease-in 0s;
-  transition: all 0.3s ease-in 0s;
-  -webkit-transition: all 0.3s ease-in 0s 0.5s;
-  -moz-transition: all 0.3s ease-in 0s 0.5s;
-  -ms-transition: all 0.3s ease-in 0s 0.5s;
-  -o-transition: all 0.3s ease-in 0s 0.5s;
-  transition: all 0.3s ease-in 0s 0.5s;
 }
 .sub-header span {
   margin: 0 30px;
@@ -11300,6 +11340,11 @@ a {
   }
   .navbar-collapse {
     background: rgba(0, 0, 0, 0);
+  }
+}
+@media screen and (min-width: 768px) {
+  .header.smaller *[class=clearfix] {
+    display: none;
   }
 }
 .footer {
@@ -11944,6 +11989,12 @@ a {
 .home .loader_c {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+.shownojs {
+  display: none;
+}
+.no-js .shownojs {
+  display: block;
 }
 .movie-cat ul {
   list-style-type: none;
