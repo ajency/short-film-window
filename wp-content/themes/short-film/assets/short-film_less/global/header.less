@@ -29,18 +29,64 @@
 	&.smaller{
 		background-color: darken(@gray-darker, 15%);
 		.logo{
-			width: 175px;
+			width: 145px;
+			@media screen and (min-width: 768px) and (max-width: 924px) {
+				width: 110px;
+			}
+			@media screen and (min-width: 925px) {
+				width: 125px;
+			}
 		}
 		.links{
 			padding: 15px;
 		}
+		.header-links {
+			@media screen and (min-width: 768px) {
+				position: relative;
+	  			top: 6px;
+			}
+		}
 		.social-links{
 			margin-top: 0;
+		}
+		.sub-header {
+			@media screen and (min-width: 768px) and (max-width: 924px) {
+				.menu li a {
+					font-size: 13px;
+				}
+			}
+			@media screen and (min-width: 768px) {
+				width: 75%;
+				margin: 0 auto;
+				position: relative;
+	  			top: -30px;
+	 			margin-bottom: -14px;
+				.container {
+					width: 100%;
+				}
+			}
 		}
 		&+.sub-header{
 			// margin-top: 92px;
 			// background: darken(@gray-darker, 15%);
 			// z-index: 3;
+		}
+		.social-links{
+			.link{
+				display: inline-block;
+				vertical-align: middle;
+				.action {
+					// @media screen and (min-width: 768px) and (max-width: 924px) {
+						width: auto;
+					  	height: auto;
+					  	background: none;
+					// }
+				}
+			}
+			.icon {
+				display: none;
+			}
+			.twitter .action {bottom: -5px;}
 		}
 	}
 
@@ -87,6 +133,8 @@
         border: 0;
         margin-right: 0;
         padding: 20px 0;
+        margin-bottom: 0;
+ 		margin-top: 12px;
         &:hover, &:focus {
             background: transparent;
             .icon-bar {background: @brand-primary}
@@ -205,7 +253,7 @@
 	z-index: 1;
 	// margin-top: 100px;
 	padding: 0 0 5px;
-	.ease;
+	// .ease;
 	span{
 		margin: 0 30px
 	}
@@ -256,4 +304,12 @@
 		}
 	}
     .navbar-collapse {background: rgba(0,0,0,0)}
+}
+
+.header.smaller {
+	@media screen and (min-width: 768px) {
+		*[class=clearfix] {
+			display: none;
+		}
+	}
 }

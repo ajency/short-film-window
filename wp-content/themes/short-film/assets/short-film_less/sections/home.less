@@ -8,6 +8,13 @@
     margin-bottom: 50px;
 }
 
+.shownojs {
+    display: none;
+}
+.no-js .shownojs {
+    display: block;
+}
+
 .movie-cat{
 	ul{
 		list-style-type: none;
@@ -52,9 +59,17 @@
 	margin: auto;
 	overflow: hidden;
 	margin-bottom: 10px;
+    display: block;
+
+    background-size: cover;
+    background-repeat: no-repeat;
 	img{
 		width: 100%;
+        display: none;
 	}
+}
+.gensli .focus-img img {
+    display: block;
 }
 .slider_gen {
     .focus-img {
@@ -356,7 +371,7 @@ h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primar
 
 
 .infocus_home {
-    min-height: 200px;
+    min-height: 255px; //was 200
     padding-bottom: 20px;
     hr {
         margin-bottom: 0;
@@ -365,18 +380,22 @@ h1.brand, h2.brand, h3.brand, h4.brand, h5.brand, h6.brand {color: @brand-primar
         bottom: 0;
     }
     @media screen and (max-width: 991px) {
-        min-height: 265px;
+        min-height: 318px;
     }
     @media screen and (max-width: 767px) {
         min-height: 245px;
     }
     @media screen and (max-width: 580px) {
-        min-height: 275px;
+        min-height: 290px;
     }
     @media screen and (max-width: 480px) {
         min-height: 0;
         height: auto;
     }
+}
+
+.home .content-wrapper {
+    overflow: visible;
 }
 
 //smaller grid box with lesser content
