@@ -21,14 +21,24 @@
     }
 }
 
+.home {
+    .play_movie_big {
+        left: 0;
+        top: 0;
+        transform: none;
+        width: 100%;
+        height: 100%;
+    }
+}
+
 .play_movie_big {
     content: '';
     display: block;
     font-size: 40px;
     color: #fff;
     background: rgba(0,0,0,0.2);
-    width: 137px;
-    height: 89px;
+    width: 175px; //137px
+    height: 125px; //89px
     opacity: 0.5;
 //    line-height: 71px;
 //    padding-left: 7px;
@@ -48,39 +58,38 @@
     z-index: 1;
     &:hover {color: #fff;}
     background: url(../img/play.png) center center no-repeat;
-    //.transition(all; 0.5s);
     .transition(all; 0.5s);
     &:hover {
         background: url(../img/play_red.png) center center no-repeat;
         opacity: 1;
     }
-    @media screen and (max-width: 1199px) {
-        top: 23%;
-    }
-    @media screen and (max-width: 991px) {
-        top: 14%;
-    }
-    @media screen and (max-width: 767px) {
-        top: 29%; //was 38%
-    }
-    @media screen and (max-width: 480px) {
-        top: 25%;
-    }
+    // @media screen and (max-width: 1199px) {
+    //     top: 23%;
+    // }
+    // @media screen and (max-width: 991px) {
+    //     top: 14%;
+    // }
+    // @media screen and (max-width: 767px) {
+    //     top: 29%; //was 38%
+    // }
+    // @media screen and (max-width: 480px) {
+    //     top: 25%;
+    // }
 }
-.staffpick-display-section .play_movie_big {
-    @media screen and (max-width: 1199px) {
-        top: 38%;
-    }
-    @media screen and (max-width: 991px) {
-        top: 38%;
-    }
-    @media screen and (max-width: 767px) {
-        top: 38%;
-    }
-    @media screen and (max-width: 480px) {
-        top: 38%;
-    }
-}
+// .staffpick-display-section .play_movie_big {
+//     @media screen and (max-width: 1199px) {
+//         top: 38%;
+//     }
+//     @media screen and (max-width: 991px) {
+//         top: 38%;
+//     }
+//     @media screen and (max-width: 767px) {
+//         top: 38%;
+//     }
+//     @media screen and (max-width: 480px) {
+//         top: 38%;
+//     }
+// }
 @media screen and (max-width: 991px) {
     .hideinsmall {display: none;}
 }

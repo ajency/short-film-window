@@ -494,7 +494,7 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-9">
                         <div class="">
-                            <h3 class="brand">IN FOCUS</h3>
+                            <h3 class="brand"><a href="<?php echo site_url(); ?>/articles/">IN FOCUS</a></h3>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
@@ -525,8 +525,8 @@ Template Name: Homepage
 							<div>
 								<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 
-									<div class="focus-img">
-										<img src="<?php echo $recentarticle['small_image'] ;?>" class="img-responsive">
+									<div class="focus-img" style="background-image: url(<?php echo $recentarticle['small_image'] ;?>);">
+										<!-- <img src="<?php echo $recentarticle['small_image'] ;?>" class="img-responsive"> -->
 									</div>
 								</a>
 
@@ -592,7 +592,7 @@ Template Name: Homepage
 
 			<div class="row">
 				<div class="col-md-12">
-					<div class="slider_gen regular-slider">
+					<div class="slider_gen regular-slider gensli">
 
 						<?php
 							foreach($response_cats as $response_cat)
@@ -631,7 +631,7 @@ Template Name: Homepage
                 <div class="spacer-50 hideinsmall"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
+                        <h3 class="brand"><small><em>SOME AWESOME</em></small> <a href="<?php echo site_url(); ?>/list_of_playlists/">PLAYLISTS</a></h3>
 
 						<hr class="m-t-0">
 

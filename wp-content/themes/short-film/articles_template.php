@@ -199,11 +199,11 @@ Template Name: articles_template
 						?>
 								<div class="col-sm-4">
 									<div class="pop_posts posrel">
-										<div class="focus-img">
-											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
+										<!-- <div class="focus-img"> -->
+											<a class="focus-img" style="background-image: url(<?php echo $populararticle['small_image'] ;?>);" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 												<img src="<?php echo $populararticle['small_image'];?>">
 											</a>
-										</div>
+										<!-- </div> -->
 
 										<div class="infocus_home">
 											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
@@ -214,9 +214,9 @@ Template Name: articles_template
 
 											<p>	<?php echo $populararticle['excerpt']; ?>	</p>
 											<div>
-												<p class="pull-left"><small><?php echo $populararticle['post_date'];?></small></p>
+												<p class="pull-left" title="Published Date"><small><?php echo $populararticle['post_date'];?></small></p>
 												<p class="pull-right">
-													<span><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
+													<span title="Likes"><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
 												</p>
 											</div>
 
