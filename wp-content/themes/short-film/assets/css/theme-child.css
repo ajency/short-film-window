@@ -13521,6 +13521,22 @@ h5.un {
   margin-top: 10px;
   padding: 7px 13px;
 }
+.mc4wp-form {
+  margin: 0;
+}
+.mc4wp-form label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: normal;
+}
+.mc4wp-form input[type=submit] {
+  text-indent: -99999px;
+  background-color: transparent !important;
+  border: 0;
+}
+.mc4wp-form .has-feedback .form-control {
+  padding-right: 30.75px !important;
+}
 .upp {
   text-transform: uppercase;
 }
