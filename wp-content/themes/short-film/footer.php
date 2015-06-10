@@ -103,8 +103,9 @@
 				                    <div class="form-group has-feedback">
 				                        <label for="" class="col-sm-5 col-md-4 text-right">SUBSCRIBE</label>
 				                        <div class="col-sm-7 col-md-8">
-				                            <input type="email" class="form-control input-sm subscribe" name="subscribe" placeholder="Subscribe to our newsletter to know about latest movies and articles" >
-				                            <span class="fa fa-envelope fa-2x form-control-feedback" aria-hidden="true"></span>
+				                            <input type="email" id="mc4wp_email" name="EMAIL" class="form-control input-sm subscribe" placeholder="Subscribe to our newsletter to know about latest movies and articles" >
+				                            <button type="submit"><i class="fa fa-envelope fa-2x form-control-feedback"></i></button>
+
 				                        </div>
 				                    </div>
 				                </form>
