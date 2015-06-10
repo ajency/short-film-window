@@ -53,6 +53,10 @@
                 margin: 0 auto;
                 text-align: center;
             }
+            .frm_error {
+                text-align: center;
+                right: 0;
+            }
         }
     }
     .rest-of-form {
@@ -76,6 +80,11 @@
             &.frm_left_container label.frm_primary_label {
                 padding-right: 15px;
                 padding-top: 7px;
+                .frm_required {display: none;}
+                @media screen and (max-width: 510px) {
+                    width: 100%;
+                    max-width: none;
+                }
             }
             &.frm_left_container input {
                 width: 75%;
@@ -96,6 +105,11 @@
             }
             .frm_error {
                 .error(#B94A48; 14px; 6px);
+                @media screen and (max-width: 510px) {
+                    width: auto;
+                    right: 0;
+                    bottom: -25px;
+                }
             }
             textarea {
                 margin-top: 10px;
