@@ -12493,7 +12493,7 @@ h6.brand {
   position: absolute;
   left: 50%;
   right: 0;
-  top: 38%;
+  top: 36%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
@@ -12514,6 +12514,29 @@ h6.brand {
 .play_movie_big:hover {
   background: url(../img/play_red.png) center center no-repeat;
   opacity: 1;
+}
+@media screen and (max-width: 1199px) {
+  .play_movie_big {
+    top: 18%;
+  }
+}
+@media screen and (max-width: 991px) {
+  .play_movie_big {
+    top: 14%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .play_movie_big {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
 }
 @media screen and (max-width: 991px) {
   .hideinsmall {
@@ -13448,6 +13471,11 @@ h5.un {
     margin: 0 auto;
     text-align: center;
   }
+  .frm_forms.frm_style_formidable-style.with_frm_style .highlight-first .frm_error,
+  .frm_forms.with_frm_style .highlight-first .frm_error {
+    text-align: center;
+    right: 0;
+  }
 }
 .frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form,
 .frm_forms.with_frm_style .rest-of-form {
@@ -13483,6 +13511,17 @@ h5.un {
   padding-right: 15px;
   padding-top: 7px;
 }
+.frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form .form-field.frm_left_container label.frm_primary_label .frm_required,
+.frm_forms.with_frm_style .rest-of-form .form-field.frm_left_container label.frm_primary_label .frm_required {
+  display: none;
+}
+@media screen and (max-width: 510px) {
+  .frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form .form-field.frm_left_container label.frm_primary_label,
+  .frm_forms.with_frm_style .rest-of-form .form-field.frm_left_container label.frm_primary_label {
+    width: 100%;
+    max-width: none;
+  }
+}
 .frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form .form-field.frm_left_container input,
 .frm_forms.with_frm_style .rest-of-form .form-field.frm_left_container input {
   width: 75%;
@@ -13515,6 +13554,14 @@ h5.un {
   bottom: 6px;
   font-family: 'Roboto';
   font-weight: 500;
+}
+@media screen and (max-width: 510px) {
+  .frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form .form-field .frm_error,
+  .frm_forms.with_frm_style .rest-of-form .form-field .frm_error {
+    width: auto;
+    right: 0;
+    bottom: -25px;
+  }
 }
 .frm_forms.frm_style_formidable-style.with_frm_style .rest-of-form .form-field textarea,
 .frm_forms.with_frm_style .rest-of-form .form-field textarea {
