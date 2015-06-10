@@ -13568,21 +13568,31 @@ h5.un {
   margin-top: 10px;
   padding: 7px 13px;
 }
-.mc4wp-form {
+.break-cols .mc4wp-form {
   margin: 0;
 }
-.mc4wp-form label {
+.break-cols .mc4wp-form label {
   margin: 0;
   font-size: 13px;
   font-weight: normal;
 }
-.mc4wp-form input[type=submit] {
-  text-indent: -99999px;
-  background-color: transparent !important;
-  border: 0;
+.break-cols .mc4wp-form input {
+  position: relative;
+  z-index: 0;
 }
-.mc4wp-form .has-feedback .form-control {
+.break-cols .mc4wp-form button {
+  background-color: transparent !important;
+  border: 0 !important;
+  padding: 3px 5px !important;
+  right: 15px;
+  border-radius: 0 2px 2px 0;
+  z-index: 1;
+}
+.break-cols .mc4wp-form .has-feedback .form-control {
   padding-right: 30.75px !important;
+}
+.break-cols .mc4wp-form .form-control-feedback {
+  pointer-events: auto;
 }
 .upp {
   text-transform: uppercase;
