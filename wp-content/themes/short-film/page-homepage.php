@@ -31,8 +31,8 @@ Template Name: Homepage
 
         <!--Content-->
         <div class="container">
-            <div class="content-wrapper">
-                <div class="spacer-40"></div>
+            <div class="content-wrapper mobheadspace">
+                <div class="spacer-40 hideinsmall"></div>
 
                 <h2 class="brand">STAFF PICKS <small><em class="brand_cat_name">This Week's Premiere</em></small></h2>
 
@@ -712,19 +712,14 @@ Template Name: Homepage
 
 	jQuery(document).ready(function($) {
 
-		//load video ony screen size is greater than 680
-		var screenwi = window.outerWidth ? window.outerWidth : jQuery(window).width();
+		//load video only in tablets and higher
+		var md = new MobileDetect(window.navigator.userAgent);
 
 		function loadvideoornot_hme() {
-			console.log('ismobile: ' + jQuery.browser.mobile);
-			if (jQuery.browser.mobile) {
+			console.log('You\'re using a ' + md.phone() || md.tablet());
+			if (md.phone()) {
 
-				// jQuery('.videohere').html(
-				// 	'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive sho win mob">'
-				// );
-				// jQuery('.videohere .shownojs').show();
-				jQuery('.container').eq(1).addClass('header-space');
-				jQuery('.container').find('.spacer-40').eq(0).hide();
+				$('.mobheadspace').css('padding-top', '10px')
 			}
 			else {
 				//if (screenwi > 680) {
@@ -747,10 +742,6 @@ Template Name: Homepage
 		}
 		loadvideoornot_hme();
 
-
-		// $('#land_vid').on('load', function() {
-		// 	this.play();
-		// });
 
         //function to resize the staffpick image after the viedo is stopped
         function resizeimgs(tw, obj, i) {

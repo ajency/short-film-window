@@ -161,18 +161,18 @@ get_header(); ?>
 		<div class="infocus">
 		</div>
 
-	    <div class="spacer-40"></div>
+	    <!-- <div class="spacer-40"></div> -->
 	    <div class="row">
 	        <div class="col-md-12">
-	            <h3 class="brand">SIMILAR MOVIES WE PICKED FOR YOU</h3>
-	            <hr>
+	            <!-- <h3 class="brand">SIMILAR MOVIES WE PICKED FOR YOU</h3> -->
+	            <!-- <hr> -->
 	                <div class="row">
 
 
 						<div class="col-md-12">
 							<?php
 
-								related_posts();
+								// related_posts();
 								//C:\xampp\htdocs\shortfilm\wp-content\plugins\yet-another-related-posts-plugin\includes\related_functions.php\related_posts()
 
 							?>
