@@ -40,7 +40,7 @@
 		<!--[if lt IE 9]>
 		          <script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
 		<![endif]-->
-		
+
 		<!-- Google Analytics -->
 
             <script>
@@ -53,9 +53,9 @@
               ga('send', 'pageview');
 
             </script>
-    
+
 		<!-- Google Analytics -->
-		
+
 	</head>
 
 	<body <?php body_class(); ?>>
@@ -115,7 +115,7 @@
 			<div class="header">
 			    <div class="header-links">
 			        <div class="links">
-			           
+
  					   <!-- <a href="<?php// echo site_url(); ?>/wp-login.php">LOGIN</a> -->
 			            <!-- <span>|</span>
 			            <a href="#">SEARCH</a> -->
@@ -166,9 +166,10 @@
 			        </div>
 			    </div>
 			    <div class="logo">
-					
+
 			        <a href="<?php echo site_url(); ?>">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" class="img-responsive">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.png" class="img-responsive fulllogo">
+						<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo_smallerscreen.png" class="img-responsive onlyreel">
 					</a>
 				</div>
 

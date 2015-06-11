@@ -613,6 +613,9 @@ function add_custom_scripts() {
     wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.min.js', '', false, true );
     wp_enqueue_script( 'jquery' );
 
+    //only this one's (mobile detect) been added by Renuka
+    wp_register_script('mobile-detect', 'http://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.2.0/mobile-detect.min.js');
+    wp_enqueue_script('mobile-detect');
 
     wp_register_script( 'flylabel_js', get_template_directory_uri() . '/assets/js/flyLabel/flyLabel.min.js', '', false, true );
     wp_enqueue_script( 'flylabel_js' );
@@ -1392,11 +1395,11 @@ function shortfilm_menu()
 		}
 	}
 
-	
+
 	function get_pairs_category_post($no_of_categories)
 	{
 		//echo "in get_pairs_category_post()";
-		
+
 		$response = array();
 
 		$args_cat = array(
@@ -1405,7 +1408,7 @@ function shortfilm_menu()
 		);
 
 		$categories = get_categories( $args_cat );
-		
+
 
 
 		foreach ( $categories as $category )
@@ -1418,12 +1421,12 @@ function shortfilm_menu()
 				);
 
 			$random_posts = get_posts( $args_post );
-						
+
 			foreach ( $random_posts as $random_post )
 			{
 				$random_post_id = $random_post->ID;
 			}
-					
+
 
 			$response[]=array(
 
@@ -1440,13 +1443,13 @@ function shortfilm_menu()
 		   return false;
 		}
 		else
-		{						
+		{
 		   return $response;
 		}
 
-	}	
-	
-	
+	}
+
+
 /*
 	function get_pairs_category_post($no_of_categories)
 	{
@@ -1642,7 +1645,7 @@ function get_embed_url($postid,$videourl)
 	{
 		$youtubehttpval =  explode("://", $videourl);
 		$httpval = $youtubehttpval[0];
-		
+
 		$youtubeUrl =  explode("?v=", $videourl);
 
 		if($youtubeUrl[1])  //if not embed link
@@ -2045,17 +2048,17 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 
 	$temp_runtime_hours = $total_runtime/60;
 	$runtime_hours = floor($temp_runtime_hours);
-	
+
 	$runtime_mins = $total_runtime%60;
-	
+
 	$final_runtime = array();
-	
+
 	$final_runtime['runtime_hours'] = $runtime_hours;
 	$final_runtime['runtime_mins']  = $runtime_mins;
 	$final_runtime['total_runtime']  = $total_runtime;
-		
+
 	return $final_runtime;
-	
+
 	//return $total_runtime;
 
 
@@ -2385,63 +2388,63 @@ function check_featured_image($post_id)
     $post = get_post($post_id);
 
 	//to check featured image size while adding new post & while updating post
-    
+
 	if(has_post_thumbnail($post_id))
 	{
     	$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), "full" );
     	$image_width = $image_data[1];
 
-		
+
     	if($image_width < 2000)
 		{
     		$post->post_status = 'draft';
-						
+
 			remove_action('save_post', 'check_featured_image', 100);
 			wp_update_post( $post );
 			add_action('save_post', 'check_featured_image', 100);
-			
-						
+
+
     		$message = '<p>Please, add featured image with minimum width 2000px !</p>'
     		. '<p><a href="' . admin_url('post.php?post=' . $post_id . '&action=edit') . '">Go back and edit the post</a></p>';
     		wp_die($message, 'Error - Invalid featured image size!');
-					
+
     	}
-   	
-    } 
-	
+
+    }
+
 	// to populate number of likes & views while adding new post
-	
+
 	$post_status = get_post_status($post_id);
-	
+
 	if ( $post_status == 'auto-draft' )  // new post with no content
 	{
-		$post_like_count = get_post_meta( $post_id, "_post_like_count", true ); 
-	
-		$no_of_views = get_post_meta( $post_id, "no_of_views", true ); 
-	
-		
+		$post_like_count = get_post_meta( $post_id, "_post_like_count", true );
+
+		$no_of_views = get_post_meta( $post_id, "no_of_views", true );
+
+
 		if(($post_like_count==false) || ($no_of_views==false))
 		{
 			// if likes & views are not present den populate dem wid random values
-			
+
 			$random_views = rand(50, 500);
-		
+
 			do
 			{
 				$random_likes = rand(50, 500);
-			
+
 			} while ($random_likes >= $random_views);
-				
+
 			update_post_meta( $post_id, "no_of_views", $random_views);
-			
+
 			update_post_meta( $post_id, "_post_like_count", $random_likes);
-			
+
 		}
-		
-	
-	} //end outer if 
-		
-				
+
+
+	} //end outer if
+
+
 } //end function
 
 
@@ -2459,20 +2462,20 @@ function check_featured_image($post_id)
     	if($image_width < 2000)
 		{
     		$post->post_status = 'draft';
-						
+
 			remove_action('save_post', 'check_featured_image', 100);
 			wp_update_post( $post );
 			add_action('save_post', 'check_featured_image', 100);
-			
-						
+
+
     		$message = '<p>Please, add featured image with minimum width 2000px!</p>'
     		. '<p><a href="' . admin_url('post.php?post=' . $post_id . '&action=edit') . '">Go back and edit the post</a></p>';
     		wp_die($message, 'Error - Invalid featured image size!');
-					
+
     	}
-   	
-    }     
-				
+
+    }
+
 }
 */
 
@@ -2487,11 +2490,11 @@ function remove_image_size_validation_on_click_of_post_trash($post_id)
     $post = get_post($post_id);
 
     if(has_post_thumbnail($post_id))
-	{			
-		remove_action('save_post', 'check_featured_image', 100);					
+	{
+		remove_action('save_post', 'check_featured_image', 100);
     }
-   	
-                 
+
+
 }
 
 ////
@@ -2674,54 +2677,54 @@ function populate_likes_and_views()
 		'post_status'      => 'publish'
 
 	);
-	
+
 	$all_videos = get_posts($videos_args);
-	
-	
+
+
 	foreach($all_videos as $post_video)
-	{	
+	{
 		$random_video_views = rand(50, 500);
-	
+
 		do
 		{
 			$random_video_likes = rand(50, 500);
-		
+
 		} while ($random_video_likes >= $random_video_views);
-			
+
 		update_post_meta( $post_video->ID, "no_of_views", $random_video_views);
-		
+
 		update_post_meta( $post_video->ID, "_post_like_count", $random_video_likes);
-		
+
 	} //end foreach
-	
-	
+
+
 	$articles_args = array(
-		
+
 		'numberposts'	   => -1,
 		'post_type'        => 'article',
 		'post_status'      => 'publish'
 
 	);
-	
+
 	$all_articles = get_posts( $articles_args );
-	
-	
+
+
 	foreach($all_articles as $post_article)
-	{	
+	{
 		$random_article_views = rand(50, 500);
-	
+
 		do
 		{
 			$random_article_likes = rand(50, 500);
-		
+
 		} while ($random_article_likes >= $random_article_views);
-			
+
 		update_post_meta( $post_article->ID, "no_of_views", $random_article_views);
-		
+
 		update_post_meta( $post_article->ID, "_post_like_count", $random_article_likes);
-		
+
 	} //end foreach
-	
+
 
 } //end function
 
