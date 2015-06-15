@@ -7,22 +7,25 @@ Template Name: Homepage
 <?php get_header(); ?>
 
 			<!-- slider -->
-
         <div class="slide r3 full-sli der">
         	<div class="videohere">
         		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive shownojs">
 
-          		<!-- <video id="land_vid" class="hideinmob" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
+          		<video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg"
+          		 	data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }'
+          		>
 
-          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
-          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">
+          			<!-- <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4"> -->
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
-				  	I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
 
-				 	<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
-				</video> -->
+				  	<p class="vjs-no-js">
+				  		I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+				 		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
+				 	</p>
+				</video>
 
          	</div>
         </div>
@@ -740,7 +743,7 @@ Template Name: Homepage
 				//}
 			}
 		}
-		loadvideoornot_hme();
+		//loadvideoornot_hme();
 
 
         //function to resize the staffpick image after the viedo is stopped

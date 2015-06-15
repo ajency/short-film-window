@@ -634,7 +634,10 @@ function add_custom_scripts() {
 	wp_register_script( 'readmore', get_template_directory_uri() . '/assets/js/readmore/readmore.js', array('jquery'),'1.2'  );
     wp_enqueue_script( 'readmore' );
 
-
+    //if (is_home()) {
+      wp_register_script( 'videojs', get_template_directory_uri() . '/assets/js/video-js/video.js', '', false, true );
+      wp_enqueue_script( 'videojs' );
+    //}
 
     if( is_single()){
       wp_register_script( 'videojs', get_template_directory_uri() . '/assets/js/video-js/video.js', '', false, true );
