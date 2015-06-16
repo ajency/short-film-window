@@ -731,9 +731,10 @@ Template Name: Homepage
 					jQuery('.videohere').html(
 						'<video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" data-setup=\'{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }\'>'+
 
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4">'+
 		          			'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">'+
 						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">'+
-						  	'+<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">'+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">'+
 
 						  	'<p class="vjs-no-js">'+
 						  		'I\'m sorry; your browser doesn\'t support HTML5 video in WebM with VP8 or MP4 with H.264.'+
