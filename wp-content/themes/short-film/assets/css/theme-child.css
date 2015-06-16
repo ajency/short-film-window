@@ -12380,7 +12380,7 @@ h6.brand {
   .listlayout .lico_c .lico,
   .couchlayout .lico_c .lico {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     padding-right: 10px;
     padding-left: 10px;
     border-right: 1px solid #ccc;
@@ -13263,29 +13263,37 @@ h6.brand {
 .adjust_i .pull-left i {
   margin-right: 5px;
 }
-.img-content {
+.img-content,
+.post_content {
   font-size: 15px;
   color: #787878;
 }
-.img-content ol {
+.img-content ol,
+.post_content ol {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-.img-content img {
+.img-content img,
+.post_content img {
   margin: 5px;
   padding: 5px;
   border: 1px solid #F5F5F5;
 }
-.img-content img.alignright {
+.img-content img.alignright,
+.post_content img.alignright {
   float: right;
 }
-.img-content img.alignleft {
+.img-content img.alignleft,
+.post_content img.alignleft {
   float: left;
 }
 @media screen and (max-width: 680px) {
   .img-content img,
+  .post_content img,
   .img-content img.alignleft,
-  .img-content img.alignright {
+  .post_content img.alignleft,
+  .img-content img.alignright,
+  .post_content img.alignright {
     float: none;
     clear: both;
     display: block;
@@ -13293,7 +13301,8 @@ h6.brand {
     height: auto;
   }
 }
-.img-content a {
+.img-content a,
+.post_content a {
   color: #af152f;
 }
 .listlayout,

@@ -9,14 +9,14 @@ Template Name: Homepage
 			<!-- slider -->
         <div class="slide r3 full-sli der">
         	<div class="videohere">
-        		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive shownojs">
+        		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive s howinsmall">
 
-          		<video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg"
+          		<!-- <video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg"
           		 	data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }'
           		>
 
-          			<!-- <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
-          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4"> -->
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
 				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
@@ -25,7 +25,7 @@ Template Name: Homepage
 				  		I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
 				 		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
 				 	</p>
-				</video>
+				</video> -->
 
          	</div>
         </div>
@@ -721,29 +721,31 @@ Template Name: Homepage
 		function loadvideoornot_hme() {
 			console.log('You\'re using a ' + md.phone() || md.tablet());
 			if (md.phone()) {
-
+				$('.videohere').html(
+					'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive showinsmall">'
+				);
 				$('.mobheadspace').css('padding-top', '10px')
 			}
 			else {
 				//if (screenwi > 680) {
 					jQuery('.videohere').html(
-						'<video id="land_vid" class="hi dei nmob" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">'+
+						'<video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" data-setup=\'{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }\'>'+
 
-		          			//'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">'+
-		          			'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">'+
-						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">'+
+		          			'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">'+
 						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">'+
-						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">'+
-						  	'I\'m sorry; your browser doesn\'t support HTML5 video in WebM with VP8 or MP4 with H.264.'+
+						  	'+<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">'+
 
-						 	'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">'+
+						  	'<p class="vjs-no-js">'+
+						  		'I\'m sorry; your browser doesn\'t support HTML5 video in WebM with VP8 or MP4 with H.264.'+
+						 		'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">'+
+						 	'</p>'+
 						'</video>'
 						);
 					document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
 				//}
 			}
 		}
-		//loadvideoornot_hme();
+		loadvideoornot_hme();
 
 
         //function to resize the staffpick image after the viedo is stopped
