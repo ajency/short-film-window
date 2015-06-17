@@ -708,11 +708,6 @@ Template Name: Homepage
 
 <script type="text/javascript">
 
-	// document.addEventListener('touchstart', function(e) {
-	// 	document.getElementById('land_vid').play();
-	// });
-
-
 	jQuery(document).ready(function($) {
 
 		//load video only in tablets and higher
@@ -743,6 +738,9 @@ Template Name: Homepage
 						'</video>'
 						);
 					document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
+					document.getElementById('land_vid').addEventListener('touchstart', function(e) {
+						document.getElementById('land_vid').play();
+					});
 				//}
 			}
 		}
@@ -1001,30 +999,7 @@ Template Name: Homepage
         jQuery('.vid_if ').css('height', sf_height);
         jQuery('.video-section').addClass('ontop');
 
-        var tag = document.createElement('script');
-	    tag.src = "https://www.youtube.com/iframe_api";
-	    var firstScriptTag = document.getElementsByTagName('script')[0];
-	    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 	});
-
-	function onPlayerReady(event){
-		setTimeout(function(){
-			event.target.playVideo();
-		}, 1000);
-	};
-
-	window.onYouTubeIframeAPIReady = function(){
-
-    	var player = new YT.Player('player', {
-          height: '390',
-          width: '640',
-          videoId: 'MiV6pe6DdYs',
-          events: {
-            'onReady': onPlayerReady
-          }
-        });
-    };
 
 	function generate_video(embedurl)
 	{
@@ -1032,16 +1007,13 @@ Template Name: Homepage
 
 		jQuery('.video-section').html("")
 
-		var url = 'https://www.youtube.com/embed/MiV6pe6DdYs';
-		// +'<iframe id="playid" class="vid_if" src="'+url+'" frameborder="0" allowfullscreen></iframe>'
-
 	    html = jQuery('.video-section').html()
 
 			html+=
                     '<a href="#" class="stopclass" id="stopid"> <i class="fa fa-times"></i> </a>'
 					+'<div class="play-video">'
 
-						+'<div id="player"></div>'
+						+'<iframe id="playid" class="vid_if" src="'+embedurl+'" frameborder="0" allowfullscreen></iframe>'
 
 					+'</div>';
 
