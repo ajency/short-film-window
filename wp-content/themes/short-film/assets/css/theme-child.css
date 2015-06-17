@@ -12523,6 +12523,10 @@ h6.brand {
 .home .play_movie_big {
   left: 0;
   top: 0;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
   transform: none;
   width: 100%;
   height: 100%;
