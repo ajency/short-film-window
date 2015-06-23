@@ -537,7 +537,7 @@
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-							<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
+							<img data-src="<?php echo $value['medium_image'];?>" src="" class="img-responsive width-full">
 						</a>
 
                     </div>
@@ -602,7 +602,7 @@
 	            <div class="couchlayout" style="display: none;">
 
 					<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-						<img src="<?php echo $value['large_image'];?>" alt="" class="img-responsive width-full">
+						<img data-src="<?php echo $value['large_image'];?>" src="" alt="" class="img-responsive width-full">
 					</a>
 
                     <div class="row">
@@ -1011,17 +1011,29 @@ jQuery(document).ready(function(){
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.gridlayout').show();
+            jQuery('.gridlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 
 		}
 		else if(jQuery('#tracker').val() == 'listoption'){
 			jQuery('.gridlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.listlayout').show();
+            jQuery('.listlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 		}
 		else if(jQuery('#tracker').val() == 'couchoption'){
 			jQuery('.gridlayout').hide();
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
+            jQuery('.couchlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 		}
 	}
 
@@ -1663,7 +1675,7 @@ jQuery(document).ready(function(){
                 html += '<div class="row listlayout">'
                     + '<div class="col-md-5">'
 						+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-							+ '<img src="'+value.medium_image+'" class="img-responsive width-full">'
+							+ '<img data-src="'+value.medium_image+'" src="" class="img-responsive width-full">'
 						+'</a>'
                     + '</div>'
                     + '<div class="col-md-7">'
@@ -1727,7 +1739,7 @@ jQuery(document).ready(function(){
                 html += '<div class="couchlayout">'
 
 					+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-						+ '<img src="'+value.large_image+'" alt="" class="img-responsive width-full">'
+						+ '<img data-src="'+value.large_image+'" src="" alt="" class="img-responsive width-full">'
                     +'</a>'
 					+ '<div class="row">'
 

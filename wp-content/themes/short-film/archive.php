@@ -399,7 +399,7 @@
                 ?>
                 <div class="row listlayout">
                     <div class="col-md-5">
-                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+                         <img data-src="<?php echo $value['featured_image'];?>" src="" class="img-responsive width-full">
                     </div>
                     <div class="col-md-7">
                         <div class="row">
@@ -454,7 +454,7 @@
                 </div>
 
 	            <div class="couchlayout">	            	
-            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
+            		<img data-src="<?php echo $value['featured_image'];?>" src="" alt="" class="img-responsive width-full">
                     <div class="row">
                         <div class="col-sm-8">
                             <h3 class="pull-left">
@@ -705,18 +705,30 @@ jQuery(document).ready(function(){
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.gridlayout').show();
+            jQuery('.gridlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 
 		}
 		else if(jQuery('#tracker').val() == 'listoption'){
-			jQuery('.gridlayout').hide();
-			jQuery('.couchlayout').hide();
-			jQuery('.listlayout').show();
-		}
-		else if(jQuery('#tracker').val() == 'couchoption'){
-			jQuery('.gridlayout').hide();
-			jQuery('.listlayout').hide();
-			jQuery('.couchlayout').show();
-		}
+            jQuery('.gridlayout').hide();
+            jQuery('.couchlayout').hide();
+            jQuery('.listlayout').show();
+            jQuery('.listlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
+        }
+        else if(jQuery('#tracker').val() == 'couchoption'){
+            jQuery('.gridlayout').hide();
+            jQuery('.listlayout').hide();
+            jQuery('.couchlayout').show();
+            jQuery('.couchlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
+        }
 	}
 
 	function get_all_posts(){
@@ -1191,7 +1203,7 @@ jQuery(document).ready(function(){
 
                         html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
-                          +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+                          +'<img data-src="'+value.featured_image+'" src="" class="img-responsive width-full">'
                      +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
@@ -1243,7 +1255,7 @@ jQuery(document).ready(function(){
 
                  html += '<div class="couchlayout">'
 
-                  +'<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+                  +'<img data-src="'+value.featured_image+'" src="" alt="" class="img-responsive width-full">'
                          +'<div class="row">'
                              +'<div class="col-sm-8">'
                                  +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
