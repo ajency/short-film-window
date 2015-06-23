@@ -183,6 +183,7 @@ Template Name: category_template
 			'language'			=> '',
 			'posts_per_page'   	=> 12,
 			'offset'           	=> 0,
+            'sort'              => 1
 
 		);
 
@@ -803,8 +804,35 @@ window.onload = function() {
 
     jQuery('#sort').live('change',function(e){
         e.preventDefault();
-        data = 'sort='+jQuery(e.target).val()
-        jQuery.ajax({
+        genre = jQuery('#genre').val();
+		language = jQuery('#language').val();
+
+		offset = jQuery('#offset').val();
+
+		var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+		posts_per_page = 12;
+
+		// if((total_no_of_videos-offset)<=posts_per_page)
+		// {
+			// posts_per_page = total_no_of_videos-offset;
+
+			// jQuery('.load_more').hide();
+		// }
+
+
+		 if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+
+       jQuery.ajax({
                 type : 'GET',
                 url : SITEURL+'/wp-json/sort',
                 data : data,
@@ -1014,32 +1042,32 @@ window.onload = function() {
 	{
 
 		genre = jQuery('#genre').val();
-		language = jQuery('#language').val();
+        language = jQuery('#language').val();
 
-		offset = jQuery('#offset').val();
+        offset = jQuery('#offset').val();
 
-		var total_no_of_videos = jQuery('#total_no_of_videos').val();
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
 
-		posts_per_page = 12;
+        posts_per_page = 12;
 
-		// if((total_no_of_videos-offset)<=posts_per_page)
-		// {
-			// posts_per_page = total_no_of_videos-offset;
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
 
-			// jQuery('.load_more').hide();
-		// }
+            // jQuery('.load_more').hide();
+        // }
 
 
-		if(language)
-		{
-			taxonomy = 'language';
+        if(language)
+        {
+            taxonomy = 'language';
 
-			data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		}
-		else
-		{
-			data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		}
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
 
 
 		jQuery.ajax({

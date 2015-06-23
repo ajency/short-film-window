@@ -195,13 +195,15 @@ class Video
 		}
 		else if($args['taxonomy'] == 'language')  // for taxonomy template - to query posts of a particular language (taxonomy)
 		{
-					
-			$params = array(
+			 if($args['sort'] == 1){
+
+
+			 	$params = array(
 						'orderby'          		=> 'post_date',
 						'order'            		=> 'DESC',
 						'post_type' 	   		=> 'post',
 						'post_status'      		=> 'publish',
-						'category'		  	 	=> $args['genre'],							
+						'cat'		  	 	=> $args['genre'],							
 						////'region'		  	 	=> $args['region'],						
 						//'meta_key'				=> $meta_key,
 						//'meta_value'			=> $args['language'],
@@ -219,6 +221,68 @@ class Video
 										)
 		
 					);
+            
+            
+        }
+        else if($args['sort'] == 2)
+        {	
+        	$params = array(
+						'orderby'           => 'meta_value_num',
+                    	'meta_key'          => 'no_of_views',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'cat'		  	 	=> $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						'tax_query' => array(
+											array(
+											  'taxonomy' => $args['taxonomy'],
+											  'field' => 'term_id',
+											  'terms' => $args['language'] 
+											 
+											)
+										)
+		
+					);
+            
+            
+        }
+        else
+        {
+			$params = array(
+						'orderby'           => 'meta_value_num',
+                    	'meta_key'          => 'duration',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'cat'		  	 	  => $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						'tax_query' => array(
+											array(
+											  'taxonomy' => $args['taxonomy'],
+											  'field' => 'term_id',
+											  'terms' => $args['language'] 
+											 
+											)
+										)
+		
+					);        		
+          
+            
+        }	
+			
 		}
 		else if($args['taxonomy'] == 'playlist')  // for taxonomy template - to query posts of a particular playlist (taxonomy)
 		{
@@ -250,39 +314,105 @@ class Video
 		else
 		{
 						
-			$params = array(
+			if($args['sort'] == 1){
+
+
+			 	$params = array(
 						'orderby'          		=> 'post_date',
 						'order'            		=> 'DESC',
 						'post_type' 	   		=> 'post',
 						'post_status'      		=> 'publish',
-						'category'		  	 	=> $args['genre'],							
+						'cat'		  	 	=> $args['genre'],							
 						////'region'		  	 	=> $args['region'],						
 						//'meta_key'				=> $meta_key,
 						//'meta_value'			=> $args['language'],
 						'posts_per_page'   		=> $args['posts_per_page'],
 						'offset'           		=> $args['offset'],
-						'exclude'				=> $args['exclude']
-				
+						'exclude'				=> $args['exclude'],
+						
+						// 'tax_query' => array(
+						// 					array(
+						// 					  'taxonomy' => $args['taxonomy'],
+						// 					  'field' => 'term_id',
+						// 					  'terms' => $args['language'] 
+											 
+						// 					)
+						// 				)
 		
 					);
+            
+            
+        }
+        else if($args['sort'] == 2)
+        {	
+        	$params = array(
+						'orderby'           => 'meta_value_num',
+                    	'meta_key'          => 'no_of_views',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'cat'		  	 	=> $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						// 'tax_query' => array(
+						// 					array(
+						// 					  'taxonomy' => $args['taxonomy'],
+						// 					  'field' => 'term_id',
+						// 					  'terms' => $args['language'] 
+											 
+						// 					)
+						// 				)
+		
+					);
+            
+            
+        }
+        else
+        {
+			$params = array(
+						'orderby'           => 'meta_value_num',
+                    	'meta_key'          => 'duration',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'cat'		  	 	  => $args['genre'],							
+						////'region'		  	 	=> $args['region'],						
+						//'meta_key'				=> $meta_key,
+						//'meta_value'			=> $args['language'],
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+						
+						// 'tax_query' => array(
+						// 					array(
+						// 					  'taxonomy' => $args['taxonomy'],
+						// 					  'field' => 'term_id',
+						// 					  'terms' => $args['language'] 
+											 
+						// 					)
+						// 				)
+		
+					);        		
+          
+            
+        }	
 		}
 
 
 		
 		#get all posts
-		$posts_array = get_posts($params); 
-
-
+		// $posts_array = get_posts($params); 
 		$post_response = array();
-		foreach ($posts_array as $key => $post) {
-
-			$post_detail = self::get($post->ID);
-
-			// $post_thumbnail_id = get_post_thumbnail_id($post->ID); 
-			// $image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
-			// $image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
-   //      	'/img/placeholder.jpg';
-
+		$query = new \WP_Query($params);
+		$response = array();
+	    while ( $query->have_posts() ) {
+			$query->the_post();
+			$post_detail = self::get($query->post->ID);
 			$post_response[] = array(
 					'id'				=> $post_detail['id'],
 					'slug'				=> $post_detail['slug'],
@@ -308,6 +438,43 @@ class Video
 				);
 			
 		}
+
+
+		// $post_response = array();
+		// foreach ($posts_array as $key => $post) {
+
+		// 	$post_detail = self::get($post->ID);
+
+		// 	// $post_thumbnail_id = get_post_thumbnail_id($post->ID); 
+		// 	// $image_details = wp_get_attachment_image_src( $post_thumbnail_id, 'medium');
+		// 	// $image = is_array( $image_details ) && count( $image_details ) > 1 ? $image_details[ 0 ] : get_template_directory_uri() .
+  //  //      	'/img/placeholder.jpg';
+
+		// 	$post_response[] = array(
+		// 			'id'				=> $post_detail['id'],
+		// 			'slug'				=> $post_detail['slug'],
+		// 			'featured_image'	=> $post_detail['featured_image'],
+		// 			'small_image'		=> $post_detail['small_image'],					
+		// 			'medium_image'		=> $post_detail['medium_image'],					
+		// 			'large_image'		=> $post_detail['large_image'],					
+		// 			'title'				=> $post_detail['title'],
+		// 			'duration'			=> $post_detail['duration'],
+		// 			'region'			=> $post_detail['region'],
+		// 			'language'			=> $post_detail['language'],
+		// 			'playlist'			=> $post_detail['playlist'],
+		// 			'director'			=> $post_detail['director'],
+		// 			'directorid'  	    => $post_detail['directorid'],
+		// 			'director_nicename' => $post_detail['director_nicename'],
+		// 			'categories'		=> $post_detail['categories'],
+		// 			'video_category_links'	=> $post_detail['video_category_links'],
+		// 			'video_region_links'	=> $post_detail['video_region_links'],
+		// 			'excerpt'			=> $post_detail['excerpt'],
+		// 			'post_like_count'	=> $post_detail['post_like_count'],
+		// 			'no_of_views'		=> $post_detail['no_of_views']
+							
+		// 		);
+			
+		// }
 
 		// print_r($post_response);
 		

@@ -119,6 +119,9 @@ class Video_API
 		$exclude = isset($_REQUEST['exclude']) && $_REQUEST['exclude'] !="" ? 
                         $_REQUEST['exclude'] : 0;
 
+        $sort = isset($_REQUEST['sort']) && $_REQUEST['sort'] !="" ? 
+                        $_REQUEST['sort'] : 0;
+
 
 		if($offset != 0)
 			$offset = intval($offset) +  1;
@@ -133,10 +136,13 @@ class Video_API
 					'playlist'			=> $playlist,
 					'posts_per_page'   	=> $posts_per_page,
 					'offset'           	=> $offset,
-                    'exclude'           => $exclude
+                    'exclude'           => $exclude,
+                    'sort'              => $sort
 
 
 		);
+
+
 		
 
 		$response = Film\Video::get_many($args);
@@ -370,40 +376,89 @@ class Video_API
 
     public function get_sorted_posts(){
 
+
+        $genre = isset($_REQUEST['genre']) && $_REQUEST['genre'] !="" ? 
+                        $_REQUEST['genre'] : "";
+                        
+        $taxonomy = isset($_REQUEST['taxonomy']) && $_REQUEST['taxonomy'] !="" ? 
+                        $_REQUEST['taxonomy'] : "";     
+
+        $region = isset($_REQUEST['region']) && $_REQUEST['region'] !="" ? 
+                        $_REQUEST['region'] : "";                           
+                        
+        $language = isset($_REQUEST['language']) && $_REQUEST['language'] !="" ? 
+                        $_REQUEST['language'] : "";
+                        
+        $playlist = isset($_REQUEST['playlist']) && $_REQUEST['playlist'] !="" ? 
+                        $_REQUEST['playlist'] : "";                     
+
+        $posts_per_page = isset($_REQUEST['posts_per_page']) && $_REQUEST['posts_per_page'] 
+        != "" ? $_REQUEST['posts_per_page'] : "";
+        
+        $offset = isset($_REQUEST['offset']) && $_REQUEST['offset'] !="" ? 
+                        $_REQUEST['offset'] : 0;
+        
+        $exclude = isset($_REQUEST['exclude']) && $_REQUEST['exclude'] !="" ? 
+                        $_REQUEST['exclude'] : 0;
+
+
+        if($offset != 0)
+            $offset = intval($offset) +  1;
+
+        
+
         $sort = $_REQUEST['sort'];
 
         if($sort == 1){
             $args = array(
                     'orderby'           => 'post_date',
                     'order'             => 'DESC',
-                    'posts_per_page'    => 12,
-                    'offset'            => 0,
+                    'cat'             => $genre,
+                    'posts_per_page'    => $posts_per_page,
+                    'offset'            => $offset,
+                    'exclude'           => $exclude,
                     'post_type'         => 'post'
 
 
-            );
+
+        );
+            
         }
         else if($sort == 2)
         {
             $args = array(
-                'posts_per_page'    => 12,
-                'order'             => 'DESC',
-                'orderby'           => 'meta_value_num',
-                'meta_key'          => 'no_of_views',
-                'post_type'         => 'post'
-            );
+                    'orderby'           => 'meta_value_num',
+                    'meta_key'          => 'no_of_views',
+                    'order'             => 'DESC',
+                    'cat'             => $genre,
+                    'posts_per_page'    => $posts_per_page,
+                    'offset'            => $offset,
+                    'exclude'           => $exclude,
+                    'post_type'         => 'post'
+
+
+
+        );
+            
         }
         else
         {
-            $args = array(
-                'posts_per_page'    => 12,
-                'order'             => 'DESC',
-                'orderby'           => 'meta_value_num',
-                'meta_key'          => 'duration',
-                'post_type'         => 'post'
-            );
-        }
+             $args = array(
+                    'orderby'           => 'meta_value_num',
+                    'meta_key'          => 'duration',
+                    'order'             => 'DESC',
+                    'cat'             => $genre,
+                    'posts_per_page'    => $posts_per_page,
+                    'offset'            => $offset,
+                    'exclude'           => $exclude,
+                    'post_type'         => 'post'
 
+
+
+        );
+            
+        }
+        
         $response = get_sorted_posts($args);
 
         if (is_wp_error($response)){
