@@ -179,7 +179,8 @@
 					'taxonomy'			=> '',
 					'language'			=> '',
 					'posts_per_page'   	=> 12,
-					'offset'           	=> 0
+					'offset'           	=> 0,
+                    'sort'              => 1
 
 
 				);
@@ -536,7 +537,7 @@
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-							<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
+							<img data-src="<?php echo $value['medium_image'];?>" src="" class="img-responsive width-full">
 						</a>
 
                     </div>
@@ -601,7 +602,7 @@
 	            <div class="couchlayout" style="display: none;">
 
 					<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-						<img src="<?php echo $value['large_image'];?>" alt="" class="img-responsive width-full">
+						<img data-src="<?php echo $value['large_image'];?>" src="" alt="" class="img-responsive width-full">
 					</a>
 
                     <div class="row">
@@ -726,7 +727,7 @@
 
 <script type="text/javascript">
 
-window.onload = function() {
+jQuery(document).ready(function(){
 	jQuery('#tracker').val('gridoption');
 
 	showLayout();
@@ -794,7 +795,34 @@ window.onload = function() {
 
     jQuery('#sort').live('change',function(e){
         e.preventDefault();
-        data = 'sort='+jQuery(e.target).val()
+        genre = jQuery('#genre').val();
+        language = jQuery('#language').val();
+
+        offset = jQuery('#offset').val();
+
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+        posts_per_page = 12;
+
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
+
+            // jQuery('.load_more').hide();
+        // }
+
+
+        if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+
         jQuery.ajax({
                 type : 'GET',
                 url : SITEURL+'/wp-json/sort',
@@ -983,17 +1011,29 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.gridlayout').show();
+            jQuery('.gridlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 
 		}
 		else if(jQuery('#tracker').val() == 'listoption'){
 			jQuery('.gridlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.listlayout').show();
+            jQuery('.listlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 		}
 		else if(jQuery('#tracker').val() == 'couchoption'){
 			jQuery('.gridlayout').hide();
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
+            jQuery('.couchlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 		}
 	}
 
@@ -1001,20 +1041,33 @@ window.onload = function() {
 	{
 
 		genre = jQuery('#genre').val();
-		language = jQuery('#language').val();
-		posts_per_page = 12;
-		offset = jQuery('#offset').val();
+        language = jQuery('#language').val();
 
-		if(language)
-		{
-			taxonomy = 'language';
+        offset = jQuery('#offset').val();
 
-			data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		}
-		else
-		{
-			data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		}
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+        posts_per_page = 12;
+
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
+
+            // jQuery('.load_more').hide();
+        // }
+
+
+        if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
+
 
 
 		jQuery.ajax({
@@ -1622,7 +1675,7 @@ window.onload = function() {
                 html += '<div class="row listlayout">'
                     + '<div class="col-md-5">'
 						+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-							+ '<img src="'+value.medium_image+'" class="img-responsive width-full">'
+							+ '<img data-src="'+value.medium_image+'" src="" class="img-responsive width-full">'
 						+'</a>'
                     + '</div>'
                     + '<div class="col-md-7">'
@@ -1686,7 +1739,7 @@ window.onload = function() {
                 html += '<div class="couchlayout">'
 
 					+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-						+ '<img src="'+value.large_image+'" alt="" class="img-responsive width-full">'
+						+ '<img data-src="'+value.large_image+'" src="" alt="" class="img-responsive width-full">'
                     +'</a>'
 					+ '<div class="row">'
 
@@ -1807,7 +1860,7 @@ function loadslick(){
 	});
 
 
-} //onload
+}) //onload
 
 </script>
 
