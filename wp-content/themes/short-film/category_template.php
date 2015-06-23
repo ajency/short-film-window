@@ -741,7 +741,7 @@ Template Name: category_template
 
 <script type="text/javascript">
 
-window.onload = function() {
+jQuery(document).ready(function(){
 
 	jQuery('#tracker').val('gridoption');
 
@@ -1868,7 +1868,7 @@ function loadslick(){
 	});
 
 
-} //end onload
+}) //end onload
 
 </script>
 

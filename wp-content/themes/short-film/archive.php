@@ -558,7 +558,7 @@
 
 <script type="text/javascript">
 
-window.onload = function() {
+jQuery(document).ready(function(){
 	jQuery('#tracker').val('gridoption');
 	
 	jQuery('#gridoption').children().addClass('text-primary');
@@ -1328,6 +1328,6 @@ function loadslick(){
               ]
         });
 }
-}
+})
 
 </script>
