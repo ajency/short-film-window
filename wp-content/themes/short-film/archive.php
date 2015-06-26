@@ -737,7 +737,7 @@ jQuery(document).ready(function(){
         language = jQuery('#language').val();
 
         offset = jQuery('#offset').val();
-
+        
         var total_no_of_videos = jQuery('#total_no_of_videos').val();
 
         posts_per_page = 12;

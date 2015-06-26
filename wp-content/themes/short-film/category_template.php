@@ -862,7 +862,7 @@ jQuery(document).ready(function(){
         jQuery('#offset').val(0);
 
 		var title = jQuery(e.target).val();
-
+		jQuery('.search-results-message').show();
 		data = 'title='+jQuery(e.target).val();
 
 		jQuery('.load_more').hide();
@@ -929,7 +929,7 @@ jQuery(document).ready(function(){
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
-
+        jQuery('.search-results-message').show();
 		var title = jQuery(this).prev().val();
 
 		data = 'title='+jQuery(this).prev().val();
@@ -1055,7 +1055,7 @@ jQuery(document).ready(function(){
 
 		genre = jQuery('#genre').val();
         language = jQuery('#language').val();
-
+        jQuery('.search-results-message').hide();
         offset = jQuery('#offset').val();
 
         var total_no_of_videos = jQuery('#total_no_of_videos').val();
