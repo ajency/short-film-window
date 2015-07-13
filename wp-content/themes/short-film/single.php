@@ -194,7 +194,7 @@ get_header(); ?>
 										<div class="info-ico">
 											<div class="views" title="Views">
 												<div><a class="content-bottom" href="<?php the_permalink()?>">
-													<img src="<?php echo $video['featured_image'];?>" alt="" class="img-responsive width-full" />
+													<img src="<?php echo $video['medium_image'];?>" alt="" class="img-responsive width-full" />
 												</a></div>
 												<a href="<?php the_permalink();?>">
 													<?php echo $video['title'];?> <i class="fa fa-eye"></i>
