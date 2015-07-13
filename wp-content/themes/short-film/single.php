@@ -187,36 +187,35 @@ get_header(); ?>
 							if ( $query->have_posts() ) {
 								while ( $query->have_posts() ) {
 									$query->the_post();
-									$post_like_count = get_post_meta(get_the_ID(),'_post_like_count', true);
-									$num_of_views = get_post_meta(get_the_ID(),'no_of_views',true);
+									$video= Film\Video::get($post->ID);
 									?>
 
 									<div class="col-xs-4">
 										<div class="info-ico">
 											<div class="views" title="Views">
-												<div><a class="content-bottom" href="<?php get_the_guid()?>">
-													<?php the_post_thumbnail(); ?>
+												<div><a class="content-bottom" href="<?php the_permalink()?>">
+													<img src="<?php echo $video['featured_image'];?>" alt="" class="img-responsive width-full" />
 												</a></div>
-												<a href="<?php the_permalink()?>">
-													<?php echo get_the_title()?> <i class="fa fa-eye"></i>
+												<a href="<?php the_permalink();?>">
+													<?php echo $video['title'];?> <i class="fa fa-eye"></i>
 												</a>
 											</div>
 
-											<?php echo get_the_excerpt()?>
+											<?php echo $video['excerpt']?>...
 											<div class="adjust_i article_meta">
 												<p class="pull-left" title="Publishd Date">
-													<i class="fa fa-clock-o"></i> <?php the_time('F jS, Y'); ?>
+													<i class="fa fa-clock-o"></i> <?php echo $video['post_date']; ?>
 												</p>
 												<p class="pull-left" title="Author">
-													<i class="fa fa-user"></i> <?php the_author(); ?>
+													<i class="fa fa-user"></i> <?php echo $video['director'];  ?>
 												</p>
 												<p class="pull-right leftinsmall">
 													<span class="post_likes">
-														<a href="#" class="post-like liked" data-post_id="167" title="Like/Unlike">
-															<i id="icon-like" class="fa fa-thumbs-up"></i><?php echo $post_like_count;?>
+														<a href="#" class="post-like liked" data-post_id="<?php echo $video['post_like_count'];?>" title="Like/Unlike">
+															<i id="icon-like" class="fa fa-thumbs-up"></i><?php echo $video['post_like_count'];?>
 														</a>
 													</span>
-													<span title="Views"><i class="fa fa-eye"></i><?php echo $num_of_views;?></span>
+													<span title="Views"><i class="fa fa-eye"></i><?php echo $video['no_of_views'];;?></span>
 												</p>
 											</div>
 										</div>
