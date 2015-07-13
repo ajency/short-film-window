@@ -197,7 +197,7 @@ get_header(); ?>
 												<div><a class="content-bottom" href="<?php get_the_guid()?>">
 													<?php the_post_thumbnail(); ?>
 												</a></div>
-												<a href="<?php get_the_guid()?>">
+												<a href="<?php the_permalink()?>">
 													<?php echo get_the_title()?> <i class="fa fa-eye"></i>
 												</a>
 											</div>
