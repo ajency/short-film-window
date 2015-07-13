@@ -1584,7 +1584,7 @@ function get_recent_articles()
 				'post_like_count'	=> $post_detail['post_like_count'],
 				'no_of_views'		=> $post_detail['no_of_views'],
 				////'post_date'			=> $post_detail['post_date']
-				'post_date'			=> get_the_date()
+				'post_date'			=> $post_detail['post_date']
 
 			);
 

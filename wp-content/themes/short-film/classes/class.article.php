@@ -86,7 +86,7 @@ class Article
 				'id'				=> $post->ID ,
 				'slug'				=> $post->post_name,
 				'title'				=> $post->post_title,
-				'post_date'			=> get_the_date(),
+				'post_date'			=> date("F jS, Y", strtotime($post->post_modified)),
 				//'content'			=> get_the_content('Read more'),
 				'content'			=> $post->post_content,
 				'excerpt'			=> $excerpt,
