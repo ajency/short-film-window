@@ -190,7 +190,7 @@ get_header(); ?>
 									$video= Film\Video::get($post->ID);
 									?>
 
-									<div class="col-xs-4">
+									<div class="col-sm-4">
 										<div class="info-ico grid-box grid-full content-align-bottom">
 											<!--New begins-->
 											<a class="content-bottom" href="<?php the_permalink()?>">
