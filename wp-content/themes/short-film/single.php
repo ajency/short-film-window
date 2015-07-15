@@ -190,9 +190,47 @@ get_header(); ?>
 									$video= Film\Video::get($post->ID);
 									?>
 
-									<div class="col-xs-4">
-										<div class="info-ico">
-											<div class="views" title="Views">
+									<div class="col-sm-4">
+										<div class="info-ico grid-box grid-full content-align-bottom">
+											<!--New begins-->
+											<a class="content-bottom" href="<?php the_permalink()?>">
+												<span class="grid-image" style="background-image: url(<?php echo $video['medium_image'];?>);"></span>
+												<span class="grid-text-wrap">
+													<span class="grid-title"><?php echo $video['title'];?></span>
+													<span class="grid-meta"><!--Region/5.30 MIN--></span>
+													<span class="grid-meta"><!--Category 1, Category 2, Category 3 etc--></span>
+													<span class="grid-meta">DIR. <?php echo $video['director'];  ?></span>
+												</span>
+												<span class="grid-text-wrap hover-text">
+													<span class="grid-title"><?php echo $video['title'];?></span>
+													<span class="grid-meta">
+														<span class="row">
+															<span class="col-xs-4">
+																<span class="pull-left p-l-10 m-t-10">
+																	<span>
+																		<?php echo $video['no_of_views'];;?>
+																		<i class="fa fa-eye"></i>
+																	</span>
+																	<span>
+																		<!--<a href="#" class="post-like liked" data-post_id="<?php echo $video['post_like_count'];?>" title="Like/Unlike">-->
+																		<?php echo $video['post_like_count'];?>
+																		<i id="icon-like" class="fa fa-thumbs-up"></i>
+																		<!--</a>-->
+																	</span>
+																</span>
+															</span>
+															<span class="col-xs-8">
+																<span class="pull-right text-right m-t-10">
+																	<?php echo $video['excerpt']?>...
+																</span>
+															</span>
+														</span>
+													</span>
+												</span>
+											</a>
+											<!--newends-->
+
+											<!-- <div class="views" title="Views">
 												<div><a class="content-bottom" href="<?php the_permalink()?>">
 													<img src="<?php echo $video['medium_image'];?>" alt="" class="img-responsive width-full" />
 												</a></div>
@@ -217,7 +255,7 @@ get_header(); ?>
 													</span>
 													<span title="Views"><i class="fa fa-eye"></i><?php echo $video['no_of_views'];;?></span>
 												</p>
-											</div>
+											</div> -->
 										</div>
 
 									</div>

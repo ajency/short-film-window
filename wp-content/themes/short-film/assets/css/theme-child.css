@@ -11537,12 +11537,16 @@ a {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+.grid-box.content-align-bottom span {
+  display: block;
+}
 .grid-box.content-align-bottom .grid-text-wrap {
   right: 0;
   text-align: right;
   opacity: 1;
   -khtml-opacity: 1;
   z-index: 6;
+  display: block;
   -webkit-transition: all 300ms;
   -o-transition: all 300ms;
   -moz-transition: all 300ms;
@@ -11551,15 +11555,18 @@ a {
 }
 .grid-box.content-align-bottom .grid-text-wrap .grid-title {
   text-decoration: underline;
+  display: block;
 }
 .grid-box.content-align-bottom .grid-text-wrap .grid-meta {
   line-height: 1.4;
   font-style: italic;
   font-size: 85%;
+  display: block;
 }
 .grid-box.content-align-bottom .grid-text-wrap.hover-text {
   text-align: right;
   bottom: -50px;
+  display: block;
   opacity: 0;
   max-height: 150px;
   overflow: hidden;
