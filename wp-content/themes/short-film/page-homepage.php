@@ -583,12 +583,7 @@ Template Name: Homepage
 	<?php
 
 		$image_size = 'thumbnail';
-
-		$no_of_categories = 4;
-
 		$response_cats = get_some_categories($no_of_categories, $image_size);
-
-
 		if(count($response_cats) > 0)
 		{
 	?>
@@ -1572,27 +1567,3 @@ Template Name: Homepage
 	});  // end of document.ready function
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
