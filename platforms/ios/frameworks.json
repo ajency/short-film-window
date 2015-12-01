@@ -1,0 +1,5 @@
+{
+    "MediaPlayer.framework": 1,
+    "AVFoundation.framework": 1,
+    "JavaScriptCore.framework": 1
+}
