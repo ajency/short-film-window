@@ -1,13 +1,30 @@
+.singleMovieContent
+{
+    .scroll
+    {
+        height: 100%;
+    }
+}
 .movieVideo
 {
-	background: url('../img/killerkart.jpg');
+	/*background: url('../img/killerkart.jpg');
 	height: 740px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center;*/
+    height: 100%;
+    .overlay
+    {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0,0.3);
+    }
     img
     {
-    	opacity: 0;
+    	height: 100%;
     }
     .movieHeader
     {
@@ -38,25 +55,25 @@
     	bottom: 0;
     	.title
     	{
-    		font-size: 2em;
+    		font-size: 1.5em;
     		border-bottom: 1px solid @grayLightest;
     		span
     		{
-    			font-size: 18px;
+    			font-size: 16px;
     			font-style: italic;
     			color: @grayLightest;
     		}
     	}	
     	.tagline 
     	{
-    		font-size: 1.5em;
+    		font-size: 1.2em;
 		    font-style: italic;
-		    line-height: 1.2;		    
+		    line-height: 1.5;		    
 		    color: @grayLightest;
     	}
     	.country 
     	{
-    		font-size: 1.2em;
+    		font-size: 1em;
     		padding: 10px 10px 3px 10px;
     		color: @grayLightest;   
     		i
@@ -74,11 +91,12 @@
     			padding: 1px 10px;
     			margin-right: 5px;
     			color: @grayLightest;
+                font-size: 0.7em;
     		}
     	}
     	.viewsNLikes
     	{
-    		font-size: 1.3em;
+    		font-size: 1em;
     		color: @grayLightest;
     		span
     		{
