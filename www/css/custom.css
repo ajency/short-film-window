@@ -1,0 +1,286 @@
+a {
+  outline: none;
+}
+.primary {
+  background: #af152f;
+}
+.primaryText {
+  color: #af152f;
+}
+.white {
+  background: #ffffff;
+}
+.whiteText {
+  color: #ffffff;
+}
+.whiteText:hover {
+  color: #ffffff;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+.bold {
+  font-weight: bold;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.margin0 {
+  margin: 0;
+}
+.padding0 {
+  padding: 0;
+}
+.bar .title {
+  font-size: 0.9em;
+}
+.tabs-striped .tabs {
+  background: #af152f;
+  color: #ffffff;
+  height: 42px;
+}
+.tabs-striped .tab-item {
+  font-size: 80%;
+}
+.tabs-striped .tab-item.tab-item-active,
+.tabs-striped .tab-item.activated,
+.tabs-striped .tab-item.active {
+  border-color: #ffffff;
+}
+.bar .button.button-icon.icon:before {
+  font-size: 1.3em;
+}
+.list {
+  border-bottom: 1px solid #aeaeae;
+}
+.item {
+  padding: 6px 20px;
+  border: none;
+  font-size: 0.8em;
+  font-family: 'Montserrat', sans-serif;
+}
+.item.item-avatar {
+  padding: 18px 18px 18px 72px;
+  border-bottom: 2px solid #aeaeae;
+}
+.item p {
+  font-family: 'Lato', sans-serif;
+}
+.item b {
+  float: left;
+  margin-top: 4px;
+}
+.item i {
+  margin-right: 10px;
+}
+.item .badge {
+  padding: 1px 6px;
+  font-size: 1em;
+  top: 8px;
+  right: 22px;
+  background: #af152f;
+  font-family: 'Montserrat', sans-serif;
+}
+.menu p.shortInfo {
+  font-size: 0.8em;
+  color: #5e5e5e;
+  margin-bottom: 0;
+}
+.menu button {
+  margin-top: 30px !important;
+}
+.readMore a {
+  float: left;
+  width: 100%;
+  color: #2e2e2e;
+  text-decoration: none;
+}
+.fbIcon {
+  background: #2d4372;
+  padding: 8px 10px;
+}
+.fbText {
+  background: #3b5997;
+  padding: 8px 20px;
+  font-weight: 300;
+}
+.welcome {
+  padding: 17% 10%;
+}
+.welcome .logo {
+  padding-bottom: 30px;
+}
+.welcome .logo img {
+  width: 85%;
+}
+.welcome p {
+  padding: 0 10% 10%;
+}
+.welcome .videoIcon {
+  margin: 16% 0 35%;
+}
+.welcome .videoIcon img {
+  width: 45%;
+}
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  .welcome {
+    padding: 5% 10%;
+  }
+  .welcome p {
+    padding: 0 10% 2%;
+  }
+  .welcome .logo img {
+    width: 200px;
+  }
+  .welcome .videoIcon {
+    margin: 6% 0 5%;
+  }
+  .welcome .videoIcon img {
+    width: 100px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .welcome .logo img {
+    width: 60%;
+  }
+  .welcome p {
+    font-size: 2em;
+    line-height: 1.5;
+  }
+  .welcome .videoIcon img {
+    width: 35%;
+  }
+}
+.tab-content .scroll {
+  padding-top: 88px;
+  height: 100%;
+}
+.card {
+  height: 100%;
+}
+.card .item.item-image {
+  padding: 0;
+  height: 100%;
+  position: relative;
+}
+.cardTitle {
+  font-family: 'Lato';
+  font-size: 2em;
+  margin-bottom: 3px;
+}
+.postDetails {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  color: #ffffff;
+}
+.movieVideo {
+  background: url('../img/killerkart.jpg');
+  height: 740px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.movieVideo img {
+  opacity: 0;
+}
+.movieVideo .movieHeader {
+  background: transparent;
+}
+.movieVideo .movieHeader button.watchList {
+  position: absolute !important;
+  right: 55px;
+}
+.movieVideo .movieHeader button i {
+  margin-right: 15px;
+  font-size: 1.5em;
+  float: left;
+}
+.movieVideo .movieDetails {
+  font-family: 'Lato', sans-serif;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+.movieVideo .movieDetails .title {
+  font-size: 2em;
+  border-bottom: 1px solid #d4d4d4;
+}
+.movieVideo .movieDetails .title span {
+  font-size: 18px;
+  font-style: italic;
+  color: #d4d4d4;
+}
+.movieVideo .movieDetails .tagline {
+  font-size: 1.5em;
+  font-style: italic;
+  line-height: 1.2;
+  color: #d4d4d4;
+}
+.movieVideo .movieDetails .country {
+  font-size: 1.2em;
+  padding: 10px 10px 3px 10px;
+  color: #d4d4d4;
+}
+.movieVideo .movieDetails .country i {
+  margin-right: 7px;
+  float: left;
+  margin-top: 2px;
+}
+.movieVideo .movieDetails .category span {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 1px 10px;
+  margin-right: 5px;
+  color: #d4d4d4;
+}
+.movieVideo .movieDetails .viewsNLikes {
+  font-size: 1.3em;
+  color: #d4d4d4;
+}
+.movieVideo .movieDetails .viewsNLikes span {
+  margin-right: 25px;
+}
+.movieVideo .movieDetails .viewsNLikes span i {
+  margin-right: 10px;
+}
+.icon-cust {
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-size: contain;
+  height: 25px;
+  width: 25px;
+  float: left;
+}
+.icon-cust.icon-home {
+  background-image: url('../img/icons/home.png');
+}
+.icon-cust.icon-star {
+  background-image: url('../img/icons/popular.png');
+}
+.icon-cust.icon-watchlist {
+  background-image: url('../img/icons/watchlist.png');
+}
+.icon-cust.icon-playlist {
+  background-image: url('../img/icons/playlist.png');
+}
+.icon-cust.icon-genre {
+  background-image: url('../img/icons/genre.png');
+}
+.icon-cust.icon-bell {
+  background-image: url('../img/icons/notification.png');
+}
+.icon-cust.icon-question {
+  background-image: url('../img/icons/faq.png');
+}
+.icon-cust.icon-logout {
+  background-image: url('../img/icons/logout.png');
+}
+/*# sourceMappingURL=custom.css.map */
