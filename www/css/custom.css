@@ -128,6 +128,10 @@ a {
 .welcome .videoIcon img {
   width: 45%;
 }
+.splashScreen img {
+  height: 100%;
+  width: 100%;
+}
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   .welcome {
     padding: 5% 10%;
