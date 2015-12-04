@@ -101,15 +101,6 @@ a {
   color: #2e2e2e;
   text-decoration: none;
 }
-.fbIcon {
-  background: #2d4372;
-  padding: 8px 10px;
-}
-.fbText {
-  background: #3b5997;
-  padding: 8px 20px;
-  font-weight: 300;
-}
 .welcome {
   padding: 17% 10%;
 }
@@ -123,10 +114,13 @@ a {
   padding: 0 10% 10%;
 }
 .welcome .videoIcon {
-  margin: 16% 0 35%;
+  margin: 16% 0 21%;
 }
 .welcome .videoIcon img {
   width: 45%;
+}
+.welcome .loading {
+  font-style: italic;
 }
 .splashScreen img {
   height: 100%;

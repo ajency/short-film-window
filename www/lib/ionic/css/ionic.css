@@ -5906,8 +5906,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   .checkbox input:before, .checkbox .checkbox-icon:before {
     border-color: #ddd; }
   .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
-    background: #387ef5;
-    border-color: #387ef5; }
+    background: #af152f;
+    border-color: #af152f; }
 
 .checkbox-light input:before, .checkbox-light .checkbox-icon:before {
   border-color: #ddd; }
@@ -5974,8 +5974,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
 
 .checkbox input, .checkbox-icon {
   position: relative;
-  width: 28px;
-  height: 28px;
+  width: 16px;
+  height: 16px;
   display: block;
   border: 0;
   background: transparent;
@@ -5987,8 +5987,8 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     height: 100%;
     border-width: 1px;
     border-style: solid;
-    border-radius: 28px;
-    background: #fff;
+    /*border-radius: 28px;*/
+    background: #eee;
     content: ' ';
     -webkit-transition: background-color 20ms ease-in-out;
     transition: background-color 20ms ease-in-out; }
@@ -6002,16 +6002,17 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   position: absolute;
-  top: 33%;
+  top: 20%;
   left: 25%;
   display: table;
-  width: 14px;
+  width: 9px;
   height: 6px;
   border: 1px solid #fff;
   border-top: 0;
   border-right: 0;
   content: ' ';
-  opacity: 0; }
+  opacity: 0; 
+font-weight: bold;}
 
 .platform-android .checkbox-platform input:before, .platform-android .checkbox-platform .checkbox-icon:before, .checkbox-square input:before, .checkbox-square .checkbox-icon:before {
   border-radius: 2px;
@@ -6043,7 +6044,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   opacity: 1; }
 
 .item-checkbox {
-  padding-left: 60px; }
+  padding-left: 45px; }
   .item-checkbox.active {
     box-shadow: none; }
 
@@ -6053,7 +6054,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   right: 8px;
   left: 8px;
   z-index: 3;
-  margin-top: -21px; }
+  margin-top: -15px; }
 
 .item-checkbox.item-checkbox-right {
   padding-right: 60px;
