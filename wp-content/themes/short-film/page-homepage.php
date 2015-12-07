@@ -9,7 +9,8 @@ Template Name: Homepage
 			<!-- slider -->
         <div class="slide r3 full-sli der">
         	<div class="videohere">
-        		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive s howinsmall">
+        		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive hideinsmall">
+        		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive s howinsmall"> -->
 
           		<!-- <video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg"
           		 	data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }'
@@ -583,12 +584,7 @@ Template Name: Homepage
 	<?php
 
 		$image_size = 'thumbnail';
-
-		$no_of_categories = 4;
-
 		$response_cats = get_some_categories($no_of_categories, $image_size);
-
-
 		if(count($response_cats) > 0)
 		{
 	?>
@@ -717,7 +713,7 @@ Template Name: Homepage
 			console.log('You\'re using a ' + md.phone() || md.tablet());
 			if (md.phone()) {
 				$('.videohere').html(
-					'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive showinsmall">'
+					'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader_mob.jpg" class="img-responsive showinsmall">'
 				);
 				$('.mobheadspace').css('padding-top', '10px')
 			}
@@ -1572,27 +1568,3 @@ Template Name: Homepage
 	});  // end of document.ready function
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

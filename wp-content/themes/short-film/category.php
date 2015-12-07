@@ -851,8 +851,8 @@ jQuery(document).ready(function(){
 
    	    e.preventDefault();
 
-		console.log("in search change event..");
-
+		
+        jQuery('.search-results-message').show()
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
@@ -918,7 +918,7 @@ jQuery(document).ready(function(){
 
    	    e.preventDefault();
 
-		console.log("in search change event..");
+		jQuery('.search-results-message').show();
 
         jQuery('#genre').val("");
         jQuery('#language').val("");
@@ -1042,7 +1042,7 @@ jQuery(document).ready(function(){
 
 		genre = jQuery('#genre').val();
         language = jQuery('#language').val();
-
+        jQuery('.search-results-message').hide()
         offset = jQuery('#offset').val();
 
         var total_no_of_videos = jQuery('#total_no_of_videos').val();
