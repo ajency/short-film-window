@@ -5,34 +5,35 @@
     <title>Test </title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="css/custom.css" rel="stylesheet"/>
+    <link href="../lib/ionic/css/ionic.css" rel="stylesheet"/>
+    <link href="../css/custom.css" rel="stylesheet"/>
 
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="../lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
-    <script src="js/custom.js"></script>
-    <script src="cordova.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../cordova.js"></script>
   </head>
   <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
     
   <ion-side-menus>
     <ion-side-menu-content class="singleGenre">
       <ion-header-bar class="bar bar-header primary">
-        <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>       
+        <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Playlists</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
       <ion-content class="popular filteredGenre">
         <div class="list card margin0">
 
           <div class="item item-thumbnail-left padding0">
-            <img src="img/animation.jpg">
-            <div class="primaryText cardTitle">Animation</div>
+            <img src="../img/manonmars.jpg">
+            <div class="primaryText cardTitle">Playlist Title</div>
+            <p class="movieDescription">Not all those who wonder are lost, all that is gold does not glitter. The old that is strong does not wither.</p>
             <div class="bold primaryText totalfilmsNTime">10 Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span></div>
           </div>
 
           <div class="item item-image padding0">
-            <img src="img/indian1.jpg"/>
+            <img src="../img/indian1.jpg"/>
             <div class="overlay"></div>
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
@@ -53,7 +54,7 @@
           </div>
 
           <div class="item item-image padding0">
-            <img src="img/indian1.jpg"/>
+            <img src="../img/indian1.jpg"/>
             <div class="overlay"></div>
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
@@ -74,11 +75,7 @@
           </div>
 
         </div>
-      </ion-content>  
-      <ion-footer-bar class="bar bar-footer">
-        <button class="button button-clear button-small col col-50 pull-left text-uppercase"><i class="ion-funnel"></i>Filter <span class="filterNo whiteText bold">3</span></button>   
-        <button class="button button-clear button-small col col-50 pull-right text-uppercase"><i class="ion-android-arrow-up"></i>Sort</button>
-      </ion-footer-bar>
+      </ion-content>        
     </ion-side-menu-content>   
   </ion-side-menus>
   </body>

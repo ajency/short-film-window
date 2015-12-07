@@ -5,14 +5,14 @@
     <title>Test </title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="css/custom.css" rel="stylesheet"/>
+    <link href="../lib/ionic/css/ionic.css" rel="stylesheet"/>
+    <link href="../css/custom.css" rel="stylesheet"/>
 
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="../lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
-    <script src="js/custom.js"></script>
-    <script src="cordova.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../cordova.js"></script>
   </head>
   <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
     
@@ -23,24 +23,70 @@
         <h5 class="title whiteText text-uppercase">Notifications</h5>
         <button class="button button-icon icon ion-search whiteText"></button>
       </ion-header-bar>
-      <ion-content>                
-        <div class="col noNotification text-center">
-          <img src="img/icons/notification_disabled.png"/>
-          <br>
-          <h4 class="text-uppercase">No new notifications</h4>
-          <p class="text-uppercase">
-            You will be notified when we add something new :D
-          </p>
-        </div>
-      </ion-content>      
+      <ion-content class="notifications">                
+        <ion-list>
+          <ion-item>
+            <h5>
+              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
+              <span class="read pull-right"></span>
+            </h5>
+            <p>
+              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
+            </p>
+          </ion-item>
+          <ion-item>
+            <h5>
+              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
+              <span class="read pull-right"></span>
+            </h5>
+            <p>
+              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
+            </p>
+          </ion-item>
+          <ion-item>
+            <h5>
+              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
+              <span class="read pull-right"></span>
+            </h5>
+            <p>
+              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
+            </p>
+          </ion-item>
+          <ion-item>
+            <h5>
+              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
+            </h5>
+            <p>
+              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
+            </p>
+          </ion-item>
+          <ion-item>
+            <h5>
+              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>              
+            </h5>
+            <p>
+              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
+            </p>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+      <ion-footer-bar class="bar bar-footer submitFormFooter">
+        <button class="button button-small col text-uppercase primaryText">Clear all notifications</button>      
+      </ion-footer-bar>   
     </ion-side-menu-content>
     <ion-side-menu side="left">
          <ion-content>
           <ion-list>
-              <a class="menuLogo" href="#">
-                <img class="item-image" src="img/logo.png">                
-              </a>
+              <!-- <a class="item item-avatar" href="#">
+                <img class="item-image" src="../img/avtar.png">
+                <h4 class="text-uppercase primaryText bold">Mark Zukerberg</h4>
+                <p><small>mark.zukerberg@facebook.com</small></p>
+              </a> -->
             
+              <a class="menuLogo" href="#">
+                <img class="item-image" src="../img/logo.png">                
+              </a>
+              
               <a class="item" href="#">
                 <i class="icon-cust icon-home"></i>
                 <b class="text-uppercase">Home</b>
@@ -77,7 +123,7 @@
                 <b class="text-uppercase">Faq</b>
               </a>
               
-             <!--  <a class="item" href="#">
+              <!-- <a class="item" href="#">
                 <i class="icon-cust icon-logout"></i>
                 <b class="text-uppercase">Logout</b>
               </a> -->

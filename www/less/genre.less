@@ -145,3 +145,60 @@
 	top: 0;
 	right: 0;
 }
+.popupFooter
+{
+	box-shadow: none !important;
+	.button
+	{		
+    	background: @grayLightest;
+    	top: 2px;
+    	&:last-child
+    	{
+    		background: @primary;
+    		color: @white;
+    	}
+	}
+}
+.filterRadioOuter
+{
+	padding: 2px 15px;	
+	input
+	{
+		float: left;
+		margin-top: 4px;		
+		opacity: 0;
+	}
+	.radioIcon
+	{
+		position: absolute;
+		z-index: 1;
+		display: block;		    
+		border-radius: 50%;
+		margin-top: 5px;
+		height: 10px;
+		width: 10px;
+		background: @grayLighter;
+		left: 15px;
+
+		&.radioIconChecked
+		{			
+		    background: @white;
+		    height: 16px;
+		    width: 16px;		    		    
+		    border: 1px solid @primary;
+		    margin-top: 2px;
+		    left: 13px;
+		    span
+		    {
+		    	height: 8px;
+			    width: 8px;
+			    background: @primary;
+			    z-index: 1;
+			    position: absolute;
+			    border-radius: 50%;
+			    top: 3px;
+			    left: 3px;
+		    }
+		}
+	}
+}

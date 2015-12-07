@@ -486,6 +486,54 @@ a {
   top: 0;
   right: 0;
 }
+.popupFooter {
+  box-shadow: none !important;
+}
+.popupFooter .button {
+  background: #d4d4d4;
+  top: 2px;
+}
+.popupFooter .button:last-child {
+  background: #af152f;
+  color: #ffffff;
+}
+.filterRadioOuter {
+  padding: 2px 15px;
+}
+.filterRadioOuter input {
+  float: left;
+  margin-top: 4px;
+  opacity: 0;
+}
+.filterRadioOuter .radioIcon {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  border-radius: 50%;
+  margin-top: 5px;
+  height: 10px;
+  width: 10px;
+  background: #aeaeae;
+  left: 15px;
+}
+.filterRadioOuter .radioIcon.radioIconChecked {
+  background: #ffffff;
+  height: 16px;
+  width: 16px;
+  border: 1px solid #af152f;
+  margin-top: 2px;
+  left: 13px;
+}
+.filterRadioOuter .radioIcon.radioIconChecked span {
+  height: 8px;
+  width: 8px;
+  background: #af152f;
+  z-index: 1;
+  position: absolute;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+}
 .submitForm .item-select {
   height: 35px;
 }

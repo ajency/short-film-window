@@ -1,3 +1,11 @@
+
+.item
+{
+	p
+	{
+		white-space: normal;
+	}
+}
 .tab-content
 {
 	.scroll
@@ -9,11 +17,7 @@
 .popular
 {
 	.card 
-	{
-		.item.item-avatar img
-		{
-			margin-top: 1px;
-		}
+	{		
 		.item.item-image
 		{
 			padding: 0;
@@ -24,7 +28,7 @@
 	.cardTitle
 	{
 		font-family: 'Lato';
-	    font-size: 2em;
+	    font-size: 1.3em;
 	    margin-bottom: 3px;    
 	}
 	.movieDetails .country
@@ -45,9 +49,10 @@
 	}
 	.playlistContent
 	{
-		> div
+		.imageContainer
 		{
 			height: 170px;
+			width: 50%;
 			position: relative;
 			float: left;
 			img
@@ -118,4 +123,11 @@
     {
     	color: @grayLightest;
     }
+}
+@media screen and (max-width: 767px) and (orientation: landscape)
+{
+	.playlist .playlistContent .imageContainer
+	{
+		width: 33.33%;
+	}
 }
