@@ -11,8 +11,8 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       playVideo: function() {
         var player;
         return player = new YT.Player('player', {
-          height: '500',
-          width: '400',
+          height: '100%',
+          width: '100%',
           videoId: 'M7lc1UVf-VE',
           playerVars: {
             'autoplay': 1,

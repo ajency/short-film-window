@@ -20,8 +20,8 @@ angular.module 'SFWApp.init', []
 
 				# if typeof YT == 'undefined' or typeof YT.Player == 'undefined' 
 					player = new YT.Player('player', {
-			          height: '500',
-			          width: '400',
+			          height: '100%',
+			          width: '100%',
 			          videoId: 'M7lc1UVf-VE',
 					  playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }         
 					  events: {
