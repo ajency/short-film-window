@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Test </title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
-
-    <link href="../lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="../css/custom.css" rel="stylesheet"/>
-
-    <script src="../lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
-    <script src="../js/custom.js"></script>
-    <script src="../cordova.js"></script>
-  </head>
-  <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
-    
-    <ion-side-menus>
+ <ion-side-menus ng-controller="sidebarCtrl">
     <ion-side-menu-content>
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
@@ -30,13 +12,13 @@
             <div class="list card margin0">
 
               <div class="item item-avatar">
-                <img src="../img/icons/weekly_premiere.png">
+                <img src="/img/icons/weekly_premiere.png">
                 <div class="primaryText cardTitle">Weekly Premiere</div>
                 <p>Carefully handpicked, just for you.</p>
               </div>
 
               <div class="item item-image padding0">
-                <img src="../img/indian1.jpg"/>
+                <img src="../img/indian1.jpg" ng-click="singleplay()"/>
                 <div class="postDetails">
                   <h2>I am here <span>by Optimus Prime</span></h2>
                   <span>Transilvania / Romanian</span>
@@ -45,9 +27,7 @@
               </div>
 
             </div>
-          
-          
-            
+        
           </ion-content>
         </ion-tab>
 
@@ -123,5 +103,3 @@
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>
-  </body>
-</html>

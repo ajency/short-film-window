@@ -1,44 +1,44 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', function($scope) {
-    var onPlayerStateChange, stopVideo;
+  '$scope', '$sce', 'App', function($scope, $sce, App) {
+    var Vtype, onPlayerReady, onPlayerStateChange, stopVideo;
     console.log('In Init');
+    Vtype = '0';
     $scope.$on('$ionicView.afterEnter', function() {
-      var firstScriptTag, tag;
-      console.log('after enter');
-      if (typeof YT === 'undefined' || typeof YT.Player === 'undefined') {
-        tag = document.createElement('script');
-        tag.src = 'https://www.youtube.com/iframe_api';
-        firstScriptTag = document.getElementsByTagName('script')[0];
-        return firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      }
+      return console.log('after enter');
     });
     $scope.view = {
+      init: function() {},
       playVideo: function() {
-        var onPlayerReady, player;
-        player = new YT.Player('player', {
-          height: '390',
-          width: '640',
+        var player;
+        return player = new YT.Player('player', {
+          height: '500',
+          width: '400',
           videoId: 'M7lc1UVf-VE',
+          playerVars: {
+            'autoplay': 1,
+            'rel': 0,
+            'wmode': 'transparent'
+          },
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
         });
-        onPlayerReady = function(event) {
-          console.log('Autostart player');
-          return event.target.playVideo();
-        };
       }
+    };
+    onPlayerReady = function(event) {
+      console.log(event);
+      return event.target.playVideo();
     };
     onPlayerStateChange = function(event) {
       var done;
       if (event.data === YT.PlayerState.PLAYING && !done) {
         setTimeout(stopVideo, 6000);
-        done = true;
+        return done = true;
       }
     };
     return stopVideo = function() {
-      player.stopVideo();
+      return player.stopVideo();
     };
   }
 ]);

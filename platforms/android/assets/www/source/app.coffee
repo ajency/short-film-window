@@ -1,17 +1,13 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer']
 
 .run ['$rootScope', 'App', '$timeout', ($rootScope, App, $timeout,ngCordova)->
-
-
-	tag = document.createElement('script');
-	tag.src = "https://www.youtube.com/iframe_api";
-	firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
+	tag = document.createElement('script')
+	tag.src = 'https://www.youtube.com/iframe_api'
+	firstScriptTag = document.getElementsByTagName('script')[0]
+	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
-	App.navigate 'init', {}, {animate: false, back: false}
+	App.navigate 'home', {}, {animate: false, back: false}
 
 
 	$rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->
