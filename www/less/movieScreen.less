@@ -1,13 +1,30 @@
+.singleMovieContent
+{
+    .scroll
+    {
+        height: 100%;
+    }
+}
+ .overlay
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.3);
+}
 .movieVideo
 {
-	background: url('../img/killerkart.jpg');
+	/*background: url('../img/killerkart.jpg');
 	height: 740px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center;*/
+    height: 100%;   
     img
     {
-    	opacity: 0;
+    	height: 100%;
     }
     .movieHeader
     {
@@ -29,66 +46,89 @@
     		}
     	}
     }
-    .movieDetails
-    {
-    	font-family: 'Lato' , sans-serif;
-    	position: absolute;
-    	left: 0;
-    	width: 100%;
-    	bottom: 0;
-    	.title
-    	{
-    		font-size: 2em;
-    		border-bottom: 1px solid @grayLightest;
-    		span
-    		{
-    			font-size: 18px;
-    			font-style: italic;
-    			color: @grayLightest;
-    		}
-    	}	
-    	.tagline 
-    	{
-    		font-size: 1.5em;
-		    font-style: italic;
-		    line-height: 1.2;		    
-		    color: @grayLightest;
-    	}
-    	.country 
-    	{
-    		font-size: 1.2em;
-    		padding: 10px 10px 3px 10px;
-    		color: @grayLightest;   
-    		i
-    		{
-    			margin-right: 7px;
-    			float: left;
-    			margin-top: 2px;
-    		} 	    	
-    	}
-    	.category 
-    	{
-    		span
-    		{
-    			background: rgba(255, 255, 255, 0.2);
-    			padding: 1px 10px;
-    			margin-right: 5px;
-    			color: @grayLightest;
-    		}
-    	}
-    	.viewsNLikes
-    	{
-    		font-size: 1.3em;
-    		color: @grayLightest;
-    		span
-    		{
-    			margin-right: 25px;
-    			i
-    			{
-    				margin-right: 10px;
-    			}
-    		}
-    	}
-    }
-    
+}    
+.movieDetails
+{
+	font-family: 'Lato' , sans-serif;
+	position: absolute;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+    text-align: left;
+	.title
+	{
+		font-size: 1em;
+		border-bottom: 1px solid @grayLightest;
+		span
+		{
+			font-size: 16px;
+			font-style: italic;
+			color: @grayLightest;
+		}
+	}	
+	.tagline 
+	{
+		font-size: 0.9em;
+	    font-style: italic;
+	    line-height: 1.5;		    
+	    color: @grayLightest;
+        white-space: normal;
+	}
+	.country 
+	{
+		font-size: 0.7em;
+		padding: 10px 0px 3px 0px;
+		color: @grayLightest;   
+		i
+		{
+			margin-right: 4px;
+			float: left;
+			margin-top: 1px;
+		} 	    	
+	}
+	.category 
+	{
+		span
+		{
+			background: rgba(255, 255, 255, 0.2);
+			padding: 1px 10px;
+			margin-right: 5px;
+			color: @grayLightest;
+            font-size: 0.7em;
+		}
+	}
+	.viewsNLikes
+	{
+		font-size: 0.8em;
+		color: @grayLightest;
+		span
+		{
+			margin-right: 25px;
+			i
+			{
+				margin-right: 3px;
+			}
+		}
+	}
 }
+.movieText 
+{
+	h5
+	{
+		margin-top: 30px;
+	}
+}
+.socialIcons
+{
+	margin-bottom:20px;
+	span
+	{
+		margin: 5px 15px;
+	}
+	i
+	{
+		font-size: 2em;
+	}
+}
+
+

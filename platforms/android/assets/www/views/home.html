@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test </title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
+
+    <link href="../lib/ionic/css/ionic.css" rel="stylesheet"/>
+    <link href="../css/custom.css" rel="stylesheet"/>
+
+    <script src="../lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
+    <script src="../js/custom.js"></script>
+    <script src="../cordova.js"></script>
+  </head>
+  <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
+    
+    <ion-side-menus>
+    <ion-side-menu-content>
+      <ion-header-bar class="bar bar-header primary">
+        <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
+        <h5 class="title whiteText text-uppercase">Shortfilm Window</h5>
+        <button class="button button-icon icon ion-search whiteText"></button>
+      </ion-header-bar>
+      <ion-tabs class="tabs-top tabs-striped primary whiteText">
+
+        <ion-tab title="Popular" class="text-uppercase">
+          <ion-content class="popular">
+            <div class="list card margin0">
+
+              <div class="item item-avatar">
+                <img src="../img/icons/weekly_premiere.png">
+                <div class="primaryText cardTitle">Weekly Premiere</div>
+                <p>Carefully handpicked, just for you.</p>
+              </div>
+
+              <div class="item item-image padding0">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    I am here <span>by Optimus Prime</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Transilvania / Romanian</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="list card margin0">
+
+              <div class="item item-avatar">
+                <img src="../img/icons/new_additions.png">
+                <div class="primaryText cardTitle">New Additions</div>
+                <p>Just starting out on their big journey!</p>
+              </div>
+
+              <div class="item item-image padding0 newAdditions">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    Tsunami <span>by Akira Kurosawa</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Japan / Japanese</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item item-image padding0 newAdditions">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    Tsunami <span>by Akira Kurosawa</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Japan / Japanese</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item item-image padding0 newAdditions">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    Tsunami <span>by Akira Kurosawa</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Japan / Japanese</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="list card margin0">
+
+              <div class="item item-avatar">
+                <img src="../img/icons/noteworthy.png">
+                <div class="primaryText cardTitle">Noteworthy</div>
+                <p>Completely out of the ordinary</p>
+              </div>
+
+              <div class="item item-image padding0 noteWorthy">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    Tsunami <span>by Akira Kurosawa</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Japan / Japanese</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item item-image padding0 noteWorthy">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    Tsunami <span>by Akira Kurosawa</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Japan / Japanese</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="item item-image padding0 noteWorthy">
+                <img src="../img/indian1.jpg"/>
+                <div class="overlay"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    Tsunami <span>by Akira Kurosawa</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Japan / Japanese</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          
+
+            <div class="list card margin0 playlist">
+
+              <div class="item item-avatar">
+                <img src="../img/icons/awesome_playlists.png">
+                <div class="primaryText cardTitle">Awesome Playlist</div>
+                <p>Just sit back and relax with some popcorn!</p>
+              </div>
+
+              <div class="playlistContent">
+                <div class="col imageContainer">
+                  <div class="playlistContentInner">  
+                    <img src="../img/manonmars.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Short animated movies by Man on Mars
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div>
+                    </div> 
+                  </div>
+                </div>              
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>            
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/manonmars.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Award winning indian shortfilms
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Mom and family Heart touching shortfilms
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>              
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/manonmars.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Ghost and screams shortfilm - window
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="viewPlaylist text-center">  
+                    <div class="text">Thats just the beginning!</div>
+                    <button class="primary button button-small whiteText text-uppercase">See all playlists</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          
+            
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Genre" class="text-uppercase">
+          <ion-content class="genre">
+            <div class="playlist">
+                <div class="playlistContent">
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner">  
+                      <img src="../img/horror.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Horror
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div>
+                      </div> 
+                    </div>
+                  </div>              
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/scifi.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Scifi
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/indian1.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Indian
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/thriller.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Thriller
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/awardwinning.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                           Award-Winning
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/animation.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Animation
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>                  
+                
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/comedy.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Comedy
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/romance.jpg"/>
+                      <div class="overlay"></div>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Romance
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                  </div>                  
+                </div>
+
+            </div>
+          </ion-content>
+        </ion-tab>
+
+        <ion-tab title="Playlists" class="text-uppercase">
+          <ion-content class="popular playlist">
+            <div class="playlistContent">
+                <div class="col imageContainer">
+                  <div class="playlistContentInner">  
+                    <img src="../img/manonmars.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Short animated movies by Man on Mars
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div>
+                    </div> 
+                  </div>
+                </div>              
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>            
+                <div class="col imageContainer">
+                    <div class="playlistContentInner"> 
+                      <img src="../img/manonmars.jpg"/>
+                      <div class="playlistDetails">
+                        <div class="title">
+                            Award winning indian shortfilms
+                        </div>
+                        <div class="totalFilms">
+                          <span>6 Films</span>
+                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                        </div> 
+                      </div>
+                    </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Mom and family Heart touching shortfilms
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>              
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/manonmars.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Ghost and screams shortfilm - window
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+                <div class="col imageContainer">
+                  <div class="playlistContentInner"> 
+                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
+                    <div class="playlistDetails">
+                      <div class="title">
+                          Blockbuster and always houseful-shortfilmwindow Evenings
+                      </div>
+                      <div class="totalFilms">
+                        <span>6 Films</span>
+                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                      </div> 
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="padding endOfPlaylist text-uppercase text-center">
+              <i class="ion-social-dropbox-outline"></i>
+              <h4 class="bold margin0">Thats it</h4>
+              <p>End of the line, folks</p>
+            </div>
+          </ion-content>
+        </ion-tab>
+
+      </ion-tabs>     
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+         <ion-content>
+          <ion-list>
+              <a class="menuLogo" href="#">
+                <img class="item-image" src="../img/logo.png">                
+              </a>
+            
+              <a class="item" href="#">
+                <i class="icon-cust icon-home"></i>
+                <b class="text-uppercase">Home</b>
+              </a>
+           
+              <a class="item" href="#">
+                <i class="icon-cust icon-star"></i>
+                <b class="text-uppercase">Popular films</b>
+              </a>
+            
+              <a class="item" href="#">
+                <i class="icon-cust icon-watchlist"></i>
+                <b class="text-uppercase">My watchlist</b>
+              </a>
+            
+              <a class="item" href="#">
+                <i class="icon-cust icon-playlist"></i>
+                <b class="text-uppercase">Playlist</b>
+              </a>
+            
+              <a class="item" href="#">
+                <i class="icon-cust icon-genre"></i>
+                <b class="text-uppercase">Genre</b>
+              </a>
+            
+              <a class="item" href="#">
+                <i class="icon-cust icon-bell"></i>
+                <b class="text-uppercase">Notifications</b>
+                <span class="badge badge-assertive">3</span>
+              </a>
+
+              <a class="item" href="#">
+                <i class="icon-cust icon-question"></i>
+                <b class="text-uppercase">Faq</b>
+              </a>              
+          </ion-list>
+            <p class="padding shortInfo">
+              ShortFilWindow is a snappy, intuitive, striking, mini-theatre that provides you priceless access to all the mind-blowing short films in the world.
+            </p>
+            <!-- <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6> -->
+            <p class="padding">
+            <button class="button button-block button-small bold primary whiteText text-uppercase">
+              Submit a film
+            </button>
+            </p>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
+  </body>
+</html>

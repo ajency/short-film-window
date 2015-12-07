@@ -1,0 +1,57 @@
+.submitForm
+{
+	.item-select 
+	{
+		height:35px;
+		select
+		{
+			border: 1px solid @grayLightest;
+    		height: 30px;
+    		top: 2px;    
+    		direction: ltr;		
+    		width:100%;
+    		max-width:100%;
+    		padding-left:5px;
+		}		
+	}
+	.formDetails
+	{
+		margin-top: 20px;
+		label.item
+		{
+			border: none;
+			border-bottom: 1px solid @grayLightest;
+		    padding: 5px;
+		    height: 34px;
+		    float: left;
+		    width: 100%;
+		    font-weight: 300;
+		    margin-bottom: 20px;
+		    textarea
+		    {
+		    	padding-bottom: 5px;
+		    }
+		}
+		p, address
+		{
+			color: @grayLight;
+			float: left;
+			width: 100%;
+		}
+	}
+}
+.submitFormFooter
+{
+	background: @grayLightest;
+	.button
+	{
+		border: none;
+		background: @grayLightest;
+		font-weight: 700;
+		&.active, &.activated
+		{
+			background: @grayLightest;
+			color: @primary;
+		}
+	}
+}
