@@ -1,36 +1,36 @@
 <ion-view> 
  
-     <div id="player"  ng-init="view.init()">
+     <div id="player" class="singleMovieOuter" ng-init="view.init()">
         <div class="movieVideo">
-            <img src="img/killerkart.jpg" ng-click="view.playVideo()"/>
-          
-            <ion-header-bar class="bar bar-header movieHeader">
-              <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
-              <button class="button button-icon whiteText watchList"><i class="ion-heart"></i></button>
-              <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
-            </ion-header-bar>
-            <div class="movieDetails padding whiteText">
-              <div class="title padding">
-                I am here <span>by Optimus Prime</span>
-              </div>
-              <div class="tagline padding">
-                Tagline of the movie goes here. It may span 2 lines for bigger taglines.
-              </div>
-              <div class="country padding">
-                <span>Transilvania / Romanian</span>
-                <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-              </div>
-              <div class="category padding">
-                <span class="inline">Drama</span>
-                <span class="inline">Comedy</span>
-                <span class="inline">Sci-Fi</span>
-                <span class="inline">Award Winning</span>
-              </div>
-              <div class="viewsNLikes padding">
-                <span><i class="ion-ios-eye"></i> 462</span>
-                <span><i class="ion-thumbsup"></i> 262</span>
-              </div>
+          <div class="imageContainerOuter"><img src="img/killerkart.jpg" ng-click="view.playVideo()"/></div>        
+          <ion-header-bar class="bar bar-header movieHeader">
+            <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
+            <button class="button button-icon whiteText watchList"><i class="ion-heart"></i></button>
+            <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
+          </ion-header-bar>
+          <div class="playIcon"><img src="img/play.png"/></div>
+          <div class="movieDetails padding whiteText">
+            <div class="title">
+              I am here <span>by Optimus Prime</span>
             </div>
-          </div>   
+            <div class="tagline">
+              Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+            </div>
+            <div class="country">
+              <span>Transilvania / Romanian</span>
+              <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+            </div>
+            <div class="category">
+              <span class="inline">Drama</span>
+              <span class="inline">Comedy</span>
+              <span class="inline">Sci-Fi</span>
+              <span class="inline">Award Winning</span>
+            </div>
+            <div class="viewsNLikes padding-top">
+              <span><i class="ion-ios-eye"></i> 462</span>
+              <span><i class="ion-thumbsup"></i> 262</span>
+            </div>
           </div>
+       </div>   
+    </div>
 </ion-view> 

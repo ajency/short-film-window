@@ -8,21 +8,33 @@
       <ion-tabs class="tabs-top tabs-striped primary whiteText">
 
         <ion-tab title="Popular" class="text-uppercase">
-          <ion-content>
-            <div class="list card margin0">
+          <ion-content class="popular">
+            <div class="list card margin0 cardOuter">
 
               <div class="item item-avatar">
                 <img src="img/icons/weekly_premiere.png">
                 <div class="primaryText cardTitle">Weekly Premiere</div>
                 <p>Carefully handpicked, just for you.</p>
-              </div>
+              </div>              
 
               <div class="item item-image padding0">
-                <img src="img/indian1.jpg" ng-click="singleplay()"/>
-                <div class="postDetails">
-                  <h2>I am here <span>by Optimus Prime</span></h2>
-                  <span>Transilvania / Romanian</span>
-                  <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                <div class="imageContainerOuter"><img src="img/indian1.jpg"/></div>
+                <div class="overlay" ng-click="singleplay()"></div>
+                <div class="movieDetails padding whiteText">
+                  <div class="title padding-vertical">
+                    I am here <span>by Optimus Prime</span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+                  </div>
+                  <div class="country padding-vertical">
+                    <span>Transilvania / Romanian</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                  </div>                  
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i> 462</span>
+                    <span><i class="ion-thumbsup"></i> 262</span>
+                  </div>
                 </div>
               </div>
 
@@ -44,10 +56,8 @@
     <ion-side-menu side="left">
          <ion-content>
           <ion-list>
-              <a class="item item-avatar" href="#">
-                <img class="item-image" src="../img/avtar.png">
-                <h4 class="text-uppercase primaryText bold">Mark Zukerberg</h4>
-                <p><small>mark.zukerberg@facebook.com</small></p>
+              <a class="menuLogo" href="#">
+                <img class="item-image" src="img/logo.png">                
               </a>
             
               <a class="item" href="#">
@@ -86,15 +96,15 @@
                 <b class="text-uppercase">Faq</b>
               </a>
               
-              <a class="item" href="#">
+              <!-- <a class="item" href="#">
                 <i class="icon-cust icon-logout"></i>
                 <b class="text-uppercase">Logout</b>
-              </a>
+              </a> -->
           </ion-list>
             <p class="padding shortInfo">
               ShortFilWindow is a snappy, intuitive, striking, mini-theatre that provides you priceless access to all the mind-blowing short films in the world.
             </p>
-            <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6>
+            <!-- <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6> -->
             <p class="padding">
             <button class="button button-block button-small bold primary whiteText text-uppercase">
               Submit a film

@@ -63,6 +63,7 @@ a {
 }
 .menu button {
   margin-top: 30px !important;
+  border: none !important;
 }
 .menu .list {
   border-bottom: 1px solid #aeaeae;
@@ -254,9 +255,47 @@ a {
 .endOfPlaylist h4 {
   color: #d4d4d4;
 }
+.cardOuter {
+  height: 100%;
+  margin-bottom: 0 !important;
+}
+.cardOuter .movieDetails {
+  bottom: 60px;
+}
+.imageContainerOuter {
+  height: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+.imageContainerOuter img {
+  height: 100%;
+  width: auto !important;
+  position: relative;
+  left: 100%;
+  margin-left: -200%;
+}
 @media screen and (max-width: 767px) and (orientation: landscape) {
   .playlist .playlistContent .imageContainer {
     width: 33.33%;
+  }
+  .cardOuter {
+    height: auto;
+  }
+  .cardOuter .movieDetails {
+    bottom: 0px;
+  }
+  .imageContainerOuter {
+    height: auto;
+  }
+  .imageContainerOuter img {
+    height: auto;
+    width: 100% !important;
+  }
+  .singleMovieOuter {
+    height: auto;
+  }
+  .singleMovieOuter .movieVideo {
+    height: auto;
   }
 }
 .singleMovieContent .scroll {
@@ -271,7 +310,7 @@ a {
   background: rgba(0, 0, 0, 0.3);
 }
 .movieVideo {
-  /*background: url('../img/killerkart.jpg');
+  /*background: url('../img/image1.jpg');
 	height: 740px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -286,10 +325,10 @@ a {
 }
 .movieVideo .movieHeader button.watchList {
   position: absolute !important;
-  right: 55px;
+  right: 40px;
 }
 .movieVideo .movieHeader button i {
-  margin-right: 15px;
+  margin-right: 5px;
   font-size: 1.5em;
   float: left;
 }
@@ -302,11 +341,12 @@ a {
   text-align: left;
 }
 .movieDetails .title {
-  font-size: 1em;
+  font-size: 1.2em;
   border-bottom: 1px solid #d4d4d4;
+  padding-bottom: 3px;
 }
 .movieDetails .title span {
-  font-size: 16px;
+  font-size: 0.9em;
   font-style: italic;
   color: #d4d4d4;
 }
@@ -316,6 +356,7 @@ a {
   line-height: 1.5;
   color: #d4d4d4;
   white-space: normal;
+  padding-top: 5px;
 }
 .movieDetails .country {
   font-size: 0.7em;
@@ -355,6 +396,23 @@ a {
 }
 .socialIcons i {
   font-size: 2em;
+}
+.singleMovieOuter {
+  height: 100%;
+}
+.playIcon {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+.playIcon img {
+  width: 100%;
+  height: auto;
 }
 .icon-cust {
   background-position: center;
