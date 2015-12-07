@@ -10,6 +10,9 @@ require_once (get_template_directory().'/functions/post-like.php');
 require_once (get_template_directory().'/classes/class.article.php');
 require_once (get_template_directory().'/api/class.article.api.php');
 
+//code added by kapil//
+require_once (get_template_directory().'/api/class.mobileapp.api.php');
+require_once(get_template_directory().'/functions-mobileapp.php');
 
 
 // Add Translation Option

@@ -120,4 +120,28 @@ function five_awesome_playlists(){
 	}
 	return $newlist;
 }
+
+function genres(){
+	global $wpdb;
+	$query = 'SELECT * FROM '.$wpdb->terms.' AS t INNER JOIN '.$wpdb->term_taxonomy.' AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy =  "category" AND tt.count > 0 ORDER BY  t.term_id';
+
+	$res = $wpdb->get_results($query);
+	$genres = array();
+	foreach ($res as $genre) {
+		$genres[]=array('name'=>$genre->name, 'count'=>$genre->count,'id'=>$genre->term_id);
+	}
+	return $genres;
+}
+
+function languages(){
+	global $wpdb;
+	$query = 'SELECT * FROM '.$wpdb->terms.' AS t INNER JOIN '.$wpdb->term_taxonomy.' AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy =  "language" AND tt.count > 0 ORDER BY  t.term_id';
+
+	$res = $wpdb->get_results($query);
+	$languages = array();
+	foreach ($res as $language) {
+		$languages[]=array('name'=>$language->name, 'id'=>$language->term_id);
+	}
+	return $languages;
+}
 ?>
