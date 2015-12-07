@@ -101,6 +101,16 @@ a {
   color: #2e2e2e;
   text-decoration: none;
 }
+.menuLogo {
+  width: 100%;
+  float: left;
+  margin: auto;
+  border-bottom: 1px solid #ccc;
+}
+.menuLogo img {
+  width: 110px;
+  padding: 10px 10px 2px 10px;
+}
 .welcome {
   padding: 17% 10%;
 }
@@ -120,7 +130,7 @@ a {
   width: 45%;
 }
 .welcome .loading {
-  font-style: italic;
+  color: #2e2e2e;
 }
 .splashScreen img {
   height: 100%;
@@ -154,6 +164,9 @@ a {
   .welcome .videoIcon img {
     width: 35%;
   }
+}
+.item p {
+  white-space: normal;
 }
 .tab-content .scroll {
   padding-top: 88px;
@@ -329,10 +342,13 @@ a {
   margin-right: 25px;
 }
 .movieDetails .viewsNLikes span i {
-  margin-right: 10px;
+  margin-right: 3px;
 }
-.movieText h4 {
+.movieText h5 {
   margin-top: 30px;
+}
+.socialIcons {
+  margin-bottom: 20px;
 }
 .socialIcons span {
   margin: 5px 15px;
@@ -394,7 +410,7 @@ a {
   font-size: 0.6em;
 }
 .singleGenre .item i {
-  margin-right: 4px;
+  margin-right: 3px;
   line-height: 1.6;
 }
 .singleGenre .bar-footer {
@@ -444,6 +460,7 @@ a {
 }
 .filteredGenre .totalfilmsNTime span i {
   line-height: 2;
+  margin-right: 1px;
 }
 .filteredGenre .movieDescription {
   padding-left: 120px;
@@ -469,13 +486,17 @@ a {
   top: 0;
   right: 0;
 }
+.submitForm .item-select {
+  height: 35px;
+}
 .submitForm .item-select select {
   border: 1px solid #d4d4d4;
   height: 30px;
-  top: 7px;
-}
-.submitForm .item-select option {
-  direction: rtl;
+  top: 2px;
+  direction: ltr;
+  width: 100%;
+  max-width: 100%;
+  padding-left: 5px;
 }
 .submitForm .formDetails {
   margin-top: 20px;
