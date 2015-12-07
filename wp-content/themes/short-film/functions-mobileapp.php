@@ -139,6 +139,7 @@ function languages(){
 
 	$res = $wpdb->get_results($query);
 	$languages = array();
+	$languages[]=array('name'=>'All', 'id'=>null);
 	foreach ($res as $language) {
 		$languages[]=array('name'=>$language->name, 'id'=>$language->term_id);
 	}
