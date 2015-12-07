@@ -1,44 +1,23 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
   '$scope', '$sce', 'App', function($scope, $sce, App) {
-    var Vtype, onPlayerReady, onPlayerStateChange, stopVideo;
+    var Vtype;
     console.log('In Init');
     Vtype = '0';
     $scope.$on('$ionicView.afterEnter', function() {
       return console.log('after enter');
     });
-    $scope.view = {
-      init: function() {},
+    return $scope.view = {
+      back: function() {
+        var count;
+        count = -1;
+        return App.goBack(count);
+      },
       playVideo: function() {
-        var player;
-        return player = new YT.Player('player', {
-          height: '100%',
-          width: '100%',
-          videoId: 'M7lc1UVf-VE',
-          playerVars: {
-            'autoplay': 1,
-            'rel': 0,
-            'wmode': 'transparent'
-          },
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
+        return App.navigate('singlePlayer', {}, {
+          animate: false,
+          back: false
         });
       }
-    };
-    onPlayerReady = function(event) {
-      console.log(event);
-      return event.target.playVideo();
-    };
-    onPlayerStateChange = function(event) {
-      var done;
-      if (event.data === YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        return done = true;
-      }
-    };
-    return stopVideo = function() {
-      return player.stopVideo();
     };
   }
 ]);

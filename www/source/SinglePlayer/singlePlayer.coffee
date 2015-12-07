@@ -1,15 +1,37 @@
 angular.module 'SFWApp.singlePlayer', []
 
 .controller 'playerCtrl', ['$scope','$sce'
-	 ,($scope,$sce)->
-	 	console.log "Viemo video Playing"
+	,($scope,$sce)->
+		$scope.view =
 
-	 	$scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="https://player.vimeo.com/video/76979871?api=1&player_id=player1&autoplay=1" width="100%" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+			init:->
+				vType = ''
+				if(vType == 'vimeo')
+					console.log "Viemo video Playing"
+					$scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/video/82125785?api=1&autoplay=1" width="100%" height="354" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+				else 
+					player = new YT.Player('player2', {
+			          height: '100%',
+			          width: '100%',
+			          videoId: 'M7lc1UVf-VE',
+					  playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }         
+					  events: {
+			            'onReady': onPlayerReady,
+			            'onStateChange': onPlayerStateChange
+			          }
+			        });
 
+		onPlayerReady = (event) ->
+		    console.log event
+		    event.target.playVideo()
 
+		onPlayerStateChange = (event) ->
+		  if event.data == YT.PlayerState.PLAYING and !done
+		    setTimeout stopVideo, 6000
+		    done = true
 
-
-
+		stopVideo = ->
+		  player.stopVideo()
 
 
 ]
