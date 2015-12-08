@@ -291,7 +291,7 @@ a {
     height: auto;
   }
   .imageContainerOuter img {
-    height: auto;
+    height: auto !important;
     width: 100% !important;
   }
   .singleMovieOuter {
@@ -418,6 +418,11 @@ a {
 .playIcon img {
   width: 100%;
   height: auto;
+}
+.videoOuter .scroll {
+  height: 100%;
+  position: relative;
+  z-index: 2;
 }
 .icon-cust {
   background-position: center;
