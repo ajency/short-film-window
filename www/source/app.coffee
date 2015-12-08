@@ -7,7 +7,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','S
 	firstScriptTag = document.getElementsByTagName('script')[0]
 	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
-	App.navigate 'home', {}, {animate: false, back: false}
+	App.navigate 'home', {}, {}
 
 
 	$rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->
