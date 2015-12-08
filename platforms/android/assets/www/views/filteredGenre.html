@@ -5,14 +5,14 @@
     <title>Test </title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="css/custom.css" rel="stylesheet"/>
+    <link href="../lib/ionic/css/ionic.css" rel="stylesheet"/>
+    <link href="../css/custom.css" rel="stylesheet"/>
 
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="../lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
-    <script src="js/custom.js"></script>
-    <script src="cordova.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../cordova.js"></script>
   </head>
   <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
     
@@ -22,17 +22,17 @@
         <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>       
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-      <ion-content class="popular filteredGenre">
-        <div class="list card margin0">
+      <ion-content class="popular filteredGenre genreImgOuter">
+        <div class="list card margin0 cardOuter">
 
           <div class="item item-thumbnail-left padding0">
-            <img src="img/animation.jpg">
+            <img src="../img/animation.jpg">
             <div class="primaryText cardTitle">Animation</div>
             <div class="bold primaryText totalfilmsNTime">10 Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span></div>
           </div>
 
           <div class="item item-image padding0">
-            <img src="img/indian1.jpg"/>
+            <div class="imageContainerOuter"><img src="../img/indian1.jpg"/></div>
             <div class="overlay"></div>
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
@@ -45,15 +45,16 @@
                 <span>Directed by : Optimus Prime</span>
                 <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
               </div>                  
-              <div class="viewsNLikes padding-vertical">
+              <div class="viewsNLikes padding-top">
                 <span><i class="ion-ios-eye"></i> 462</span>
                 <span><i class="ion-thumbsup"></i> 262</span>
               </div>
             </div>
           </div>
-
+          </div>
+          <div class="list card margin0 cardOuter">
           <div class="item item-image padding0">
-            <img src="img/indian1.jpg"/>
+            <div class="imageContainerOuter"><img src="../img/indian1.jpg"/></div>
             <div class="overlay"></div>
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
@@ -66,7 +67,7 @@
                 <span>Directed by : Optimus Prime</span>
                 <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
               </div>                  
-              <div class="viewsNLikes padding-vertical">
+              <div class="viewsNLikes padding-top">
                 <span><i class="ion-ios-eye"></i> 462</span>
                 <span><i class="ion-thumbsup"></i> 262</span>
               </div>
