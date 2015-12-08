@@ -13,11 +13,6 @@ angular.module('SFWApp.sidebar', [])
     $ionicSideMenuDelegate.toggleLeft()
     return
 
-  # $ionicModal.fromTemplateUrl 'my-modal.html', ((modal) ->
-  #   $scope.taskModal = modal
-  #   return
-  # ), scope: $scope
-
   $scope.openModal = ->
     $scope.taskModal.show()
     return
