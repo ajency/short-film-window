@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,700,100);
 /*!
  * Copyright 2014 Drifty Co.
@@ -2797,7 +2797,7 @@ cite {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
     font-weight: normal;
@@ -4148,7 +4148,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat';
   opacity: 0.7; }
   .tab-item:hover {
     cursor: pointer; }
