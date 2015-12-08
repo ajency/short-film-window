@@ -33,7 +33,11 @@
   @font-face {
   font-family: "Montserrat";
   src: url("../fonts/customfonts/Montserrat-Regular.eot?v=2.0.1");
-  src: url("../fonts/Montserrat-Regular.eot?v=2.0.1#iefix") format("embedded-opentype"), url("../fonts/Montserrat-Regular.ttf?v=2.0.1") format("truetype"), url("../fonts/Montserrat-Regular.woff?v=2.0.1") format("woff"), url("../fonts/Montserrat-Regular.woff") format("woff"), url("../fonts/Montserrat-Regular.svg?v=2.0.1#Ionicons") format("svg");
+  src: url("../fonts/Montserrat-Regular.eot?v=2.0.1#iefix") format("embedded-opentype"), 
+       url("../fonts/Montserrat-Regular.ttf?v=2.0.1") format("truetype"), 
+       url("../fonts/Montserrat-Regular.woff?v=2.0.1") format("woff"), 
+       url("../fonts/Montserrat-Regular.woff2") format("woff2"), 
+       url("../fonts/Montserrat-Regular.svg?v=2.0.1#Ionicons") format("svg");
   font-weight: normal;
   font-style: normal; }
 

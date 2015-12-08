@@ -419,6 +419,11 @@ a {
   width: 100%;
   height: auto;
 }
+.videoOuter .scroll {
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
 .icon-cust {
   background-position: center;
   background-repeat: no-repeat;
