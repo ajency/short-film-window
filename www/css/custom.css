@@ -45,9 +45,6 @@ a {
   color: #ffffff;
   height: 42px;
 }
-.tabs-striped .tab-item {
-  font-size: 80%;
-}
 .tabs-striped .tab-item.tab-item-active,
 .tabs-striped .tab-item.activated,
 .tabs-striped .tab-item.active {
@@ -69,9 +66,9 @@ a {
   border-bottom: 1px solid #aeaeae;
 }
 .menu .item {
-  padding: 6px 20px;
+  padding: 8px 20px;
   border: none;
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-family: 'Montserrat', sans-serif;
 }
 .menu .item.item-avatar {
@@ -89,7 +86,7 @@ a {
   margin-right: 10px;
 }
 .menu .item .badge {
-  padding: 1px 6px;
+  padding: 3px 6px;
   font-size: 1em;
   top: 8px;
   right: 22px;
@@ -269,6 +266,7 @@ a {
   height: 100%;
   text-align: center;
   overflow: hidden;
+  background: #000000;
 }
 .imageContainerOuter img {
   height: 100%;
@@ -328,6 +326,7 @@ a {
 }
 .movieVideo .movieHeader {
   background: transparent;
+  border: none;
 }
 .movieVideo .movieHeader button.watchList {
   position: absolute !important;
@@ -350,6 +349,7 @@ a {
   font-size: 1.2em;
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 3px;
+  font-weight: bold;
 }
 .movieDetails .title span {
   font-size: 0.9em;
@@ -357,7 +357,7 @@ a {
   color: #d4d4d4;
 }
 .movieDetails .tagline {
-  font-size: 0.9em;
+  font-size: 1em;
   font-style: italic;
   line-height: 1.5;
   color: #d4d4d4;
@@ -365,7 +365,7 @@ a {
   padding-top: 3px;
 }
 .movieDetails .country {
-  font-size: 0.7em;
+  font-size: 0.8em;
   padding: 10px 0px 3px 0px;
   color: #d4d4d4;
 }
@@ -378,10 +378,10 @@ a {
   padding: 2px 10px 0;
   margin-right: 5px;
   color: #d4d4d4;
-  font-size: 0.7em;
+  font-size: 0.8em;
 }
 .movieDetails .viewsNLikes {
-  font-size: 0.8em;
+  font-size: 1em;
   color: #d4d4d4;
 }
 .movieDetails .viewsNLikes span {
@@ -404,6 +404,7 @@ a {
 }
 .singleMovieOuter {
   height: 100%;
+  background: #000000;
 }
 .playIcon {
   height: 100px;
@@ -423,6 +424,26 @@ a {
   height: 100%;
   position: relative;
   z-index: 2;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .movieDetails .title {
+    font-size: 1.6em;
+    padding-bottom: 10px;
+  }
+  .movieDetails .tagline {
+    font-size: 1.2em;
+  }
+  .movieDetails .country,
+  .movieDetails .category span {
+    font-size: 1em;
+  }
+  .movieDetails .viewsNLikes {
+    font-size: 1.2em;
+  }
+  .playIcon {
+    width: 150px;
+    margin-left: -75px;
+  }
 }
 .icon-cust {
   background-position: center;
