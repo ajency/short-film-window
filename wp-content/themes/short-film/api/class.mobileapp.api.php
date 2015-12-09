@@ -22,10 +22,34 @@ class Mobileapp_API
             array( array( $this, 'fetch_defaults_json'), WP_JSON_Server::READABLE)
         );			
 
+        $routes['/get_video'] = array(
+            array( array( $this, 'fetch_video_json'), WP_JSON_Server::READABLE)
+        );//route for single video
     	return $routes;
 	}
 
-	
+    
+    public function fetch_video_json(){
+        $id = isset($_REQUEST['id']) && $_REQUEST['id'] !="" ? 
+                        $_REQUEST['id'] : "";     
+
+        $response = single_video($id);   
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+        return $response;
+    }
+
 	public function fetch_defaults_json()
 	{	
 		$response = array('defaults'=>array('filters'=>array(),'sort_keys'=>array(), 'content'=>array()));

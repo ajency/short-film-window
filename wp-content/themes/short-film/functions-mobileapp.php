@@ -27,6 +27,30 @@ function one_random_weekly_premiere(){
 	return $result;
 }
 
+function single_video($id){
+		
+		$movie['found']			= false;
+		if(!empty($id) && is_numeric($id)){
+			$res 			= 	Film\Video::get($id);
+			if(!is_wp_error($res)){
+				$movie['found']			= true;
+				$movie['movie_id']		=	$id;
+				$movie['no_of_views']	=	$res['no_of_views'];
+				$movie['no_of_likes']	=	$res['post_like_count'];
+				$movie['title']			=	$res['title'];
+				$movie['type']			=	$res['type'];
+				$movie['tagline']		=	$res['tagline'];
+				$movie['videourl']		=	$res['videourl'];
+				$movie['embedurl']		=	$res['embedurl'];
+				$movie['director']		=	$res['director'];
+				$movie['image']			=	$res['medium_image'];
+				$movie['country']		=	"India - Asia";				
+			}
+
+		}
+		return $movie;
+}
+
 function new_additions(){
 		$params = array(
 				'numberposts' => 3,
