@@ -1,4 +1,4 @@
- <ion-side-menus ng-controller="sidebarCtrl">
+ <ion-side-menus ng-controller="sidebarCtrl" ng-init="test()">
     <ion-side-menu-content>
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
@@ -18,7 +18,7 @@
               </div>              
 
               <div class="item item-image padding0">
-                <div class="imageContainerOuter"><img src="img/indian1.jpg"/></div>
+                <div class="imageContainerOuter"><img src="{{ imagepath }}"/></div>
                 <div class="overlay" ng-click="singleplay()"></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">

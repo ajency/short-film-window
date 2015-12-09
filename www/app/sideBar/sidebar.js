@@ -1,4 +1,4 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI) {
   $scope.singleplay = function() {
     console.log("enterd single play .");
     return App.navigate('init', {}, {
@@ -8,6 +8,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $scope.slideContent = function() {
     console.log("slide");
+    console.log(DetailsAPI.imageUrl);
     $ionicSideMenuDelegate.toggleLeft();
   };
   $scope.openModal = function() {
@@ -15,6 +16,12 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $scope.closeModal = function() {
     $scope.taskModal.hide();
+  };
+  $scope.test = function() {
+    console.log(1);
+    console.log(DetailsAPI.array.image);
+    $scope.imagepath = DetailsAPI.array.image;
+    return console.log($scope.imagepath);
   };
   $scope.showPopup = function() {
     var myPopup;
@@ -34,11 +41,5 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
         }
       ]
     });
-  };
-  return;
-  return $scope.view = {
-    test: function() {
-      return console.log(1);
-    }
   };
 });

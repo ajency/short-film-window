@@ -1,7 +1,9 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App) ->
+.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI) ->
+
+
   
   $scope.singleplay = ->
     console.log "enterd single play ."
@@ -10,13 +12,9 @@ angular.module('SFWApp.sidebar', [])
 
   $scope.slideContent = ->
     console.log "slide"
+    console.log DetailsAPI.imageUrl
     $ionicSideMenuDelegate.toggleLeft()
     return
-
-  # $ionicModal.fromTemplateUrl 'my-modal.html', ((modal) ->
-  #   $scope.taskModal = modal
-  #   return
-  # ), scope: $scope
 
   $scope.openModal = ->
     $scope.taskModal.show()
@@ -25,6 +23,13 @@ angular.module('SFWApp.sidebar', [])
   $scope.closeModal = ->
     $scope.taskModal.hide()
     return
+
+  $scope.test = ->
+    console.log 1 
+    console.log DetailsAPI.array.image
+    $scope.imagepath = DetailsAPI.array.image
+    console.log  $scope.imagepath
+
 
   $scope.showPopup = ->
     $scope.data = {}
@@ -44,9 +49,6 @@ angular.module('SFWApp.sidebar', [])
     return
 
   return
-  $scope.view = 
-    test : ()->
-      console.log 1
 
 
 

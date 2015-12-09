@@ -1,13 +1,25 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI']
 
-.run ['$rootScope', 'App', '$timeout', ($rootScope, App, $timeout,ngCordova)->
+.run ['$rootScope', 'App', '$timeout','DetailsAPI','Set_Get', ($rootScope, App, $timeout,DetailsAPI,Set_Get)->
+	
 	tag = document.createElement('script')
 	tag.src = 'https://www.youtube.com/iframe_api'
 	firstScriptTag = document.getElementsByTagName('script')[0]
 	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
-	App.navigate 'home', {}, {animate: false, back: false}
+	
+	DetailsAPI.GetVideoDetails()
+	.then (data)=>
+		console.log data.defaults.content.popular.weekly_premiere.image
+		DetailsAPI.setData(data.defaults.content.popular.weekly_premiere)
+		App.navigate 'home', {}, {}
+
+	, (error)=>
+		console.log 'Error Loading data'						
+
+
+	
 
 
 	$rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->
@@ -16,3 +28,4 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','S
 
 ]
 
+	

@@ -19,9 +19,8 @@ angular.module 'SFWApp.init', []
 	  
 
 		playVideo : ()->
-			App.navigate 'singlePlayer', {}, {animate: false, back: false}
-	
-
+		  App.navigate 'singlePlayer', {}, {}
+				
 
 
 
