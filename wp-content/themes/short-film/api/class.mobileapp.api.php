@@ -24,7 +24,7 @@ class Mobileapp_API
 
         $routes['/get_video'] = array(
             array( array( $this, 'fetch_video_json'), WP_JSON_Server::READABLE)
-        );//route for single video
+        );//route for single vid
     	return $routes;
 	}
 
