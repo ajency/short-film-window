@@ -6,10 +6,7 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.init', 'SFWApp.navigate'
     firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     $rootScope.App = App;
-    App.navigate('home', {}, {
-      animate: false,
-      back: false
-    });
+    App.navigate('home', {}, {});
     return $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       App.previousState = from.name;
       return App.currentState = to.name;

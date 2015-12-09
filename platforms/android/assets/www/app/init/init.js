@@ -13,10 +13,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         return App.goBack(count);
       },
       playVideo: function() {
-        return App.navigate('singlePlayer', {}, {
-          animate: false,
-          back: false
-        });
+        return App.navigate('singlePlayer', {}, {});
       }
     };
   }
