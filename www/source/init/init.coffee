@@ -1,8 +1,17 @@
 angular.module 'SFWApp.init', []
 
-.controller 'InitCtrl', ['$scope', '$sce','App'
-	 ,($scope, $sce,App)->
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI'
+	 ,($scope, $sce,App,DetailsAPI)->
+	
+	DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
+	.then (data)=>
+		console.log "succ"
+		
 
+	, (error)=>
+		console.log 'Error Loading data'	
+	
+	console.log  DetailsAPI.videoId
 	console.log 'In Init'
 	Vtype = '0'
 

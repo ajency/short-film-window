@@ -1,23 +1,23 @@
-var Set_Get, global;
-
-angular.module('SFWApp.singlePlayer').service('Set_Get', [
-  '$scope', function($scope) {}, global = {
-    VideoSection: '',
-    SectionImageURL: '',
-    SectionText: '',
-    imageUrl: '',
-    imageid: '',
-    no_likes: '',
-    no_views: '',
-    videotitle: '',
-    videotype: '',
-    videoURL: '',
-    videotagline: '',
-    videoduration: '',
-    director: '',
-    country: ''
-  }, Set_Get = {
-    setData: function(opts) {
+angular.module('SFWApp.singlePlayer').factory('Set_Get', [
+  function() {
+    var global, setData;
+    global = {
+      VideoSection: '',
+      SectionImageURL: '',
+      SectionText: '',
+      imageUrl: '',
+      imageid: '',
+      no_likes: '',
+      no_views: '',
+      videotitle: '',
+      videotype: '',
+      videoURL: '',
+      videotagline: '',
+      videoduration: '',
+      director: '',
+      country: ''
+    };
+    return setData = function(opts) {
       var SectionImageURL, SectionText, VideoSection, country, director, imageUrl, imageid, no_likes, no_views, videoURL, videoduration, videotagline, videotitle, videotype;
       if (opts == null) {
         opts = {};
@@ -35,7 +35,8 @@ angular.module('SFWApp.singlePlayer').service('Set_Get', [
       videotagline = _.has(opts, 'no_likes') ? opts.videotagline : '';
       videoduration = _.has(opts, 'no_likes') ? opts.videoduration : '';
       director = _.has(opts, 'no_likes') ? opts.director : '';
-      return country = _.has(opts, 'no_likes') ? opts.country : '';
-    }
+      country = _.has(opts, 'no_likes') ? opts.country : '';
+      return console.log(imageUrl(+"" + no_likes));
+    };
   }
 ]);

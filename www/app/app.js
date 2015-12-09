@@ -9,7 +9,12 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.init', 'SFWApp.navigate'
     DetailsAPI.GetVideoDetails().then((function(_this) {
       return function(data) {
         console.log(data.defaults.content.popular.weekly_premiere.image);
-        DetailsAPI.setData(data.defaults.content.popular.weekly_premiere);
+        DetailsAPI.setData({
+          premiere: data.defaults.content.popular.weekly_premiere,
+          new_addition: data.defaults.content.popular.new_additions,
+          noteworthy: data.defaults.content.popular.noteworthy,
+          awesome_playlist: data.defaults.content.popular.awesome_playlist
+        });
         return App.navigate('home', {}, {});
       };
     })(this), (function(_this) {

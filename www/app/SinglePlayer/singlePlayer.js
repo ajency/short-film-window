@@ -1,6 +1,7 @@
 angular.module('SFWApp.singlePlayer', []).controller('playerCtrl', [
-  '$scope', '$sce', function($scope, $sce) {
+  '$scope', '$sce', 'DetailsAPI', function($scope, $sce, DetailsAPI) {
     var onPlayerReady, onPlayerStateChange, stopVideo;
+    console.log(DetailsAPI.array.image);
     $scope.view = {
       init: function() {
         var player, vType;

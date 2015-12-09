@@ -2,7 +2,10 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
   '$q', 'App', '$http', function($q, App, $http) {
     var DetailsAPI;
     DetailsAPI = {};
-    DetailsAPI.imageUrl = '';
+    DetailsAPI.videoId = '';
+    DetailsAPI.array_addition = [];
+    DetailsAPI.array_noteworthy = [];
+    DetailsAPI.array_awplaylist = [];
     DetailsAPI.array = [];
     DetailsAPI.GetVideoDetails = function() {
       var defer;
@@ -19,6 +22,7 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     };
     DetailsAPI.GetSingleVideo = function(VideoId) {
       var defer;
+      console.log(VideoId);
       defer = $q.defer();
       $http.post('somthing', VideoId).then(function(data) {
         console.log('succ');
@@ -31,9 +35,18 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       return defer.promise;
     };
     DetailsAPI.setData = function(opts) {
+      if (opts == null) {
+        opts = {};
+      }
       console.log(opts);
-      DetailsAPI.array = opts;
-      return console.log(DetailsAPI.array.image);
+      DetailsAPI.array = opts.premiere;
+      DetailsAPI.array_addition = opts.new_addition;
+      DetailsAPI.array_noteworthy = opts.noteworthy;
+      DetailsAPI.array_awplalist = opts.awesome_playlist;
+      console.log(DetailsAPI.array);
+      console.log(DetailsAPI.array_addition);
+      console.log(DetailsAPI.array_noteworthy);
+      return console.log(DetailsAPI.array_awplalist);
     };
     return DetailsAPI;
   }

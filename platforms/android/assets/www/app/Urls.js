@@ -1,3 +1,3 @@
-var AUTH_URL;
+var URL;
 
-AUTH_URL = 'http://shortfilm.staging.wpengine.com';
+URL = 'http://shortfilm.staging.wpengine.com';

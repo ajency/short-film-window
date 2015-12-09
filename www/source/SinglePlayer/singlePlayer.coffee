@@ -1,8 +1,11 @@
 angular.module 'SFWApp.singlePlayer', []
 
-.controller 'playerCtrl', ['$scope','$sce'
-	,($scope,$sce)->
+.controller 'playerCtrl', ['$scope','$sce','DetailsAPI'
+	,($scope,$sce,DetailsAPI)->
+		console.log  DetailsAPI.array.image
+
 		$scope.view =
+
 
 			init:->
 				vType = ''

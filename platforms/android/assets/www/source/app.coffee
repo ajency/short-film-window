@@ -1,28 +1,25 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI']
 
-.run ['$rootScope', 'App', '$timeout', ($rootScope, App, $timeout,ngCordova)->
+.run ['$rootScope', 'App', '$timeout','DetailsAPI','Set_Get', ($rootScope, App, $timeout,DetailsAPI,Set_Get)->
+	
 	tag = document.createElement('script')
 	tag.src = 'https://www.youtube.com/iframe_api'
 	firstScriptTag = document.getElementsByTagName('script')[0]
 	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
-	# AuthAPI.validateUser(@refrencecode,@password )
-	# 					.then (data)=>
-	# 						if data.code == 'successful_login'
-	# 							Storage.login 'set'
-	# 							Storage.setHospitalData 'set', data.hospitalData 
-	# 							CSpinner.hide()
-	# 							App.navigate "dashboard", {}, {animate: false, back: false}
-	# 						else
-	# 							CToast.show 'Please check credentials'
-	# 							CSpinner.hide()
-	# 					, (error)=>
-	# 						CToast.show 'Please try again'
-	# 						CSpinner.hide()
+	
+	DetailsAPI.GetVideoDetails()
+	.then (data)=>
+		console.log data.defaults.content.popular.weekly_premiere.image
+		DetailsAPI.setData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist})
+		App.navigate 'home', {}, {}
+
+	, (error)=>
+		console.log 'Error Loading data'						
+
 
 	
-	App.navigate 'home', {}, {}
 
 
 	$rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->
@@ -31,3 +28,4 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','S
 
 ]
 
+	

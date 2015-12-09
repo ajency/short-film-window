@@ -1,5 +1,7 @@
 angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI) {
-  $scope.singleplay = function() {
+  $scope.singleplay = function(videoid) {
+    DetailsAPI.videoId = videoid;
+    console.log(DetailsAPI.videoId);
     console.log("enterd single play .");
     return App.navigate('init', {}, {
       animate: false,
@@ -18,10 +20,15 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
     $scope.taskModal.hide();
   };
   $scope.test = function() {
-    console.log(1);
-    console.log(DetailsAPI.array.image);
-    $scope.imagepath = DetailsAPI.array.image;
-    return console.log($scope.imagepath);
+    $scope.premeiere = DetailsAPI.array;
+    $scope.addition = DetailsAPI.array_addition;
+    $scope.noteworthy = DetailsAPI.array_noteworthy;
+    $scope.awplalist = DetailsAPI.array_awplalist;
+    console.log($scope.premeiere);
+    console.log($scope.addition);
+    console.log($scope.noteworthy);
+    console.log($scope.awplalist);
+    return $scope.videoId = '71';
   };
   $scope.showPopup = function() {
     var myPopup;

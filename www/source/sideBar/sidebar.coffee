@@ -5,7 +5,9 @@ angular.module('SFWApp.sidebar', [])
 
 
   
-  $scope.singleplay = ->
+  $scope.singleplay = (videoid)->
+    DetailsAPI.videoId = videoid
+    console.log DetailsAPI.videoId
     console.log "enterd single play ."
     App.navigate 'init', {}, {animate: false, back: false}
 
@@ -25,10 +27,17 @@ angular.module('SFWApp.sidebar', [])
     return
 
   $scope.test = ->
-    console.log 1 
-    console.log DetailsAPI.array.image
-    $scope.imagepath = DetailsAPI.array.image
-    console.log  $scope.imagepath
+    $scope.premeiere= DetailsAPI.array
+    $scope.addition= DetailsAPI.array_addition
+    $scope.noteworthy= DetailsAPI.array_noteworthy
+    $scope.awplalist= DetailsAPI.array_awplalist
+    console.log $scope.premeiere
+    console.log $scope.addition
+    console.log $scope.noteworthy
+    console.log $scope.awplalist
+    # $scope.videoId = DetailsAPI.array.videoId
+    $scope.videoId = '71'
+    
 
 
   $scope.showPopup = ->
