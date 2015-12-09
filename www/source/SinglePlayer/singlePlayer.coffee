@@ -8,10 +8,10 @@ angular.module 'SFWApp.singlePlayer', []
 
 
 			init:->
-				vType = ''
+				vType = 'vimeo'
 				if(vType == 'vimeo')
 					console.log "Viemo video Playing"
-					$scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/video/82125785?api=1&autoplay=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+					$scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/external/85569724.sd.mp4?s=43df5df0d733011263687d20a47557e4" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>');
 				else 
 					player = new YT.Player('player2', {
 			          height: '100%',

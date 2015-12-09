@@ -5,10 +5,10 @@ angular.module('SFWApp.singlePlayer', []).controller('playerCtrl', [
     $scope.view = {
       init: function() {
         var player, vType;
-        vType = '';
+        vType = 'vimeo';
         if (vType === 'vimeo') {
           console.log("Viemo video Playing");
-          return $scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/video/82125785?api=1&autoplay=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+          return $scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/video/82125785?api=1& autoplay=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
         } else {
           return player = new YT.Player('player2', {
             height: '100%',

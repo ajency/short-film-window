@@ -1,4 +1,13 @@
 angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI) {
+  var swiper;
+  swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    direction: 'vertical',
+    slidesPerView: 1,
+    paginationClickable: false,
+    spaceBetween: 30,
+    mousewheelControl: false
+  });
   $scope.singleplay = function(videoid) {
     DetailsAPI.videoId = videoid;
     console.log(DetailsAPI.videoId);
