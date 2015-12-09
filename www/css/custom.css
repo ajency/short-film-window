@@ -37,8 +37,8 @@ a {
 .padding0 {
   padding: 0;
 }
-.bar .title {
-  font-size: 0.9em;
+.bar.bar-header .title {
+  font-size: 1.2em !important;
 }
 .tabs-striped .tabs {
   background: #af152f;
@@ -89,7 +89,7 @@ a {
   margin-right: 10px;
 }
 .menu .item .badge {
-  padding: 2px 6px;
+  padding: 1px 6px;
   font-size: 1em;
   top: 8px;
   right: 22px;
@@ -291,7 +291,7 @@ a {
     height: auto;
   }
   .imageContainerOuter img {
-    height: auto;
+    height: auto !important;
     width: 100% !important;
   }
   .singleMovieOuter {

@@ -291,7 +291,7 @@ a {
     height: auto;
   }
   .imageContainerOuter img {
-    height: auto;
+    height: auto !important;
     width: 100% !important;
   }
   .singleMovieOuter {
