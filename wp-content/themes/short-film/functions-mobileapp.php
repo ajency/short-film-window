@@ -2,7 +2,7 @@
 
 function pr($data){
 	echo "<pre>";
-	print_r($data);
+	print_r($data);//print_r with pre tags
 	echo "</pre>";
 }
 
