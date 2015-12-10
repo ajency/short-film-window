@@ -2,7 +2,7 @@
  
      <div id="player" class="singleMovieOuter" ng-init="view.init()">
         <div class="movieVideo">
-          <div class="imageContainerOuter"><img src="img/killerkart.jpg"/></div>        
+          <div class="imageContainerOuter"><img src="{{ Videodetails.image}}"/></div>        
           <ion-header-bar class="bar bar-header movieHeader">
             <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
             <button class="button button-icon whiteText watchList"><i class="ion-heart"></i></button>
@@ -11,13 +11,13 @@
           <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()"/></div>
           <div class="movieDetails padding whiteText">
             <div class="title">
-              I am here <span>by Optimus Prime</span>
+             <span>{{ Videodetails.title }}</span>
             </div>
             <div class="tagline">
-              Tagline of the movie goes here. It may span 2 lines for bigger taglines.
+              {{ Videodetails.tagline }}
             </div>
             <div class="country">
-              <span>Transilvania / Romanian</span>
+              <span>{{ Videodetails.country }}</span>
               <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
             </div>
             <div class="category">
@@ -27,8 +27,8 @@
               <span class="inline">Award Winning</span>
             </div>
             <div class="viewsNLikes padding-top">
-              <span><i class="ion-ios-eye"></i> 462</span>
-              <span><i class="ion-thumbsup"></i> 262</span>
+              <span><i class="ion-ios-eye"></i> {{ Videodetails.no_of_views }}</span>
+              <span><i class="ion-thumbsup"></i> {{ Videodetails.no_of_likes }}</span>
             </div>
           </div>
        </div>   

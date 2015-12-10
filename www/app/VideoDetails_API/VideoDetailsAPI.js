@@ -7,6 +7,7 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     DetailsAPI.array_noteworthy = [];
     DetailsAPI.array_awplaylist = [];
     DetailsAPI.array = [];
+    DetailsAPI.singleVideoarray = [];
     DetailsAPI.GetVideoDetails = function() {
       var defer;
       defer = $q.defer();
@@ -24,8 +25,8 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       var defer;
       console.log(VideoId);
       defer = $q.defer();
-      $http.post('somthing', VideoId).then(function(data) {
-        console.log('succ');
+      $http.get("http://shortfilm.staging.wpengine.com/wp-json/get_video?id=" + VideoId).then(function(data) {
+        console.log('single video data succ');
         console.log(data);
         return defer.resolve(data.data);
       }, function(error) {

@@ -1,19 +1,23 @@
 angular.module('SFWApp.singlePlayer', []).controller('playerCtrl', [
   '$scope', '$sce', 'DetailsAPI', function($scope, $sce, DetailsAPI) {
     var onPlayerReady, onPlayerStateChange, stopVideo;
-    console.log(DetailsAPI.array.image);
+    console.log(DetailsAPI.singleVideoarray);
     $scope.view = {
+      vType: DetailsAPI.singleVideoarray.type,
+      vimomeo: null,
       init: function() {
-        var player, vType;
-        vType = '';
-        if (vType === 'vimeo') {
-          console.log("Viemo video Playing");
-          return $scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/video/82125785?api=1&autoplay=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
+        var modifiedUrl, player;
+        if (this.vType === 'vimeo') {
+          modifiedUrl = DetailsAPI.singleVideoarray.embedurl;
+          this.vimomeo = true;
+          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+          return console.log($scope.player1);
         } else {
+          this.vimomeo = false;
           return player = new YT.Player('player2', {
             height: '100%',
             width: '100%',
-            videoId: 'M7lc1UVf-vimeoVE',
+            videoId: "hykmq6Gb_VE",
             playerVars: {
               'autoplay': 1,
               'rel': 0,

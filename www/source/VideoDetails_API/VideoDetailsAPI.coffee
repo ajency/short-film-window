@@ -9,6 +9,8 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 	DetailsAPI.array_noteworthy = []
 	DetailsAPI.array_awplaylist = []
 	DetailsAPI.array = []
+	DetailsAPI.singleVideoarray = []
+
 
 	DetailsAPI.GetVideoDetails = ()->
 		defer = $q.defer()
@@ -28,9 +30,9 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 		console.log VideoId
 		defer = $q.defer()
 
-		$http.post 'somthing',VideoId
+		$http.get "http://shortfilm.staging.wpengine.com/wp-json/get_video?id=#{VideoId}"
 		.then (data)->
-			console.log 'succ'
+			console.log 'single video data succ'
 			console.log data
 			defer.resolve data.data
 		, (error)->

@@ -28,7 +28,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
     console.log($scope.addition);
     console.log($scope.noteworthy);
     console.log($scope.awplalist);
-    return $scope.videoId = '71';
+    return $scope.videoId = DetailsAPI.array.videoId;
   };
   $scope.showPopup = function() {
     var myPopup;

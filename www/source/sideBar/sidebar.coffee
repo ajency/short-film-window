@@ -3,8 +3,6 @@ angular.module('SFWApp.sidebar', [])
 
 .controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI) ->
 
-
-  
   $scope.singleplay = (videoid)->
     DetailsAPI.videoId = videoid
     console.log DetailsAPI.videoId
@@ -35,8 +33,8 @@ angular.module('SFWApp.sidebar', [])
     console.log $scope.addition
     console.log $scope.noteworthy
     console.log $scope.awplalist
-    # $scope.videoId = DetailsAPI.array.videoId
-    $scope.videoId = '71'
+    $scope.videoId = DetailsAPI.array.videoId
+    
     
 
 
