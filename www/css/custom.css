@@ -10,6 +10,9 @@ a {
 .white {
   background: #ffffff;
 }
+.player1video{
+  height:100%;
+}
 .whiteText {
   color: #ffffff;
 }

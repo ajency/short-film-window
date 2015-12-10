@@ -11,8 +11,6 @@ angular.module('SFWApp.sidebar', [])
   spaceBetween: 30
   mousewheelControl: false)
 
-
-  
   $scope.singleplay = (videoid)->
     DetailsAPI.videoId = videoid
     console.log DetailsAPI.videoId
