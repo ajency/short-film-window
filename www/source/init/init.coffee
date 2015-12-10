@@ -2,10 +2,16 @@ angular.module 'SFWApp.init', []
 
 .controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI'
 	 ,($scope, $sce,App,DetailsAPI)->
+	$scope.Videodetails = []
 	
 	DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
 	.then (data)=>
-		console.log "succ"
+		console.log "single video  data succ"
+		DetailsAPI.singleVideoarray = data
+		$scope.Videodetails = data
+		console.log $scope.Videodetails
+		console.log $scope.Videodetails.image
+
 		
 
 	, (error)=>
@@ -22,8 +28,9 @@ angular.module 'SFWApp.init', []
 		
 	$scope.view =
 		back:->
-			count = -1
-			App.goBack count
+			App.navigate 'home', {}, {}
+			# count = -1
+			# App.goBack count
 
 	  
 

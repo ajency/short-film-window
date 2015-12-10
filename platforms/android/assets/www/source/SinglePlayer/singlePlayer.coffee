@@ -2,27 +2,35 @@ angular.module 'SFWApp.singlePlayer', []
 
 .controller 'playerCtrl', ['$scope','$sce','DetailsAPI'
 	,($scope,$sce,DetailsAPI)->
-		console.log  DetailsAPI.array.image
+		
+		console.log  DetailsAPI.singleVideoarray
+		
 
 		$scope.view =
 
-
+			vType : DetailsAPI.singleVideoarray.type
+			vimomeo : null
 			init:->
-				vType = 'vimeo'
-				if(vType == 'vimeo')
-					console.log "Viemo video Playing"
-					$scope.player1 = $sce.trustAsHtml('<iframe id="player1" src="http://player.vimeo.com/video/82125785?api=1& autoplay=1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>');
-				else 
+
+				if(@vType == 'vimeo')
+					modifiedUrl = DetailsAPI.singleVideoarray.embedurl
+					@vimomeo = true
+					$scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+					# $scope.player1 = modifiedUrl;
+
+					console.log $scope.player1
+				else
+					@vimomeo = false
 					player = new YT.Player('player2', {
-			          height: '100%',
-			          width: '100%',
-			          videoId: 'M7lc1UVf-vimeoVE',
-					  playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }         
-					  events: {
-			            'onReady': onPlayerReady,
-			            'onStateChange': onPlayerStateChange
-			          }
-			        });
+						height: '100%',
+						width: '100%',
+						videoId:"hykmq6Gb_VE",
+						playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }         
+						events: {
+							'onReady': onPlayerReady,
+							'onStateChange': onPlayerStateChange
+						}
+					});
 
 		onPlayerReady = (event) ->
 		    console.log event

@@ -43,8 +43,8 @@ angular.module('SFWApp.sidebar', [])
     console.log $scope.addition
     console.log $scope.noteworthy
     console.log $scope.awplalist
-    # $scope.videoId = DetailsAPI.array.videoId
-    $scope.videoId = '71'
+    $scope.videoId = DetailsAPI.array.videoId
+    
     
 
 
