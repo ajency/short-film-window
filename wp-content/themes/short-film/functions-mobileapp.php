@@ -6,6 +6,14 @@ function pr($data){
 	echo "</pre>";
 }
 
+
+
+function kapil(){
+ $final_runtime = get_playlist_total_runtime(71, 'playlist');
+ pr($final_runtime);
+}
+//kapil();	
+
 function one_random_weekly_premiere(){
 	$data = get_pairs_category_post(16);
 	$r    = array_rand($data,1);
@@ -13,6 +21,7 @@ function one_random_weekly_premiere(){
 	$data = Film\Video::get($video['postid']);
 	
 		$result = array();
+		$result['movie_id']				=	$video['postid'];
 		$result['no_of_views']			=	$data['no_of_views'];
 		$result['no_of_likes']			=	$data['post_like_count'];
 		$result['title']				=	$data['title'];
@@ -23,7 +32,14 @@ function one_random_weekly_premiere(){
 		$result['director']				=	$data['director'];
 		$result['image']				=	$data['medium_image'];
 		$result['country']				=	"India - Asia";
-	
+		$result['duration']				=	$data['duration'];
+
+	if($result['type']	=='youtube'){
+		$url = explode("=",$data['videourl']);
+		$result['videourl'] = $url[1];
+	}else{
+		$result['embedurl'] = "http:".$result['embedurl'];
+	}
 	return $result;
 }
 
@@ -44,7 +60,15 @@ function single_video($id){
 				$movie['embedurl']		=	$res['embedurl'];
 				$movie['director']		=	$res['director'];
 				$movie['image']			=	$res['medium_image'];
-				$movie['country']		=	"India - Asia";				
+				$movie['country']		=	"India - Asia";	
+				$movie['duration']		=	$res['duration'];
+
+				if($movie['type']	=='youtube'){
+					$url = explode("=",$res['videourl']);
+					$movie['videourl'] = $url[1];
+				}else{
+					$movie['embedurl'] = "http:".$movie['embedurl'];
+				}					
 			}
 
 		}
@@ -75,6 +99,15 @@ function new_additions(){
 		$movies[$key]['director']		=	$recent_movie['director'];
 		$movies[$key]['image']			=	$recent_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
+		$movies[$key]['duration']		=	$recent_movie['duration'];
+
+
+		if($movies[$key]['type']	=='youtube'){
+			$url = explode("=",$recent_movie['videourl']);
+			$movies[$key]['videourl'] = $url[1];
+		}else{
+			$movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
+		}			
 	}
 
 	return $movies;
@@ -107,22 +140,34 @@ function noteworthy(){
 		$movies[$key]['director']		=	$noteworthy_movie['director'];
 		$movies[$key]['image']			=	$noteworthy_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
+		$movies[$key]['duration']		=	$noteworthy_movie['duration'];
+
+		if($movies[$key]['type']	=='youtube'){
+			$url = explode("=",$noteworthy_movie['videourl']);
+			$movies[$key]['videourl'] = $url[1];
+		}else{
+			$movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
+		}		
 	}
 
 	return $movies;
 }
 
-function five_awesome_playlists(){
-	global $wpdb;
-	$qt = 'SELECT * FROM '.$wpdb->terms.' AS t INNER JOIN '.$wpdb->term_taxonomy.' AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy =  "playlist" AND tt.count > 0 ORDER BY  t.term_id DESC LIMIT 0 , 5';
+function five_awesome_playlists_init(){
+return five_awesome_playlists();
+}
 
-	$playlists = $wpdb->get_results($qt, ARRAY_A);
+add_action('init', five_awesome_playlists_init);
+
+function five_awesome_playlists(){
+	$all_playlists =  get_terms('playlist', 'orderby=id', 'order=DESC');
+
 	$newlist = array();
-	$image_size = 'thumbnail';
-	foreach($playlists as $playlist)
+
+	foreach($all_playlists as $playlist)
 	{
-		$playlist_image = s8_get_taxonomy_image_src($playlist, $image_size);
-		
+		$playlist_image = s8_get_taxonomy_image_src($playlist, 'thumbnail');
+
 		$playlist_image_url = $playlist_image['src'];
 
 		$list = (array) $playlist;
@@ -131,31 +176,93 @@ function five_awesome_playlists(){
 
 		$play_id = get_term_by( 'name', $play_name, 'playlist');
 
+		$play_link = get_term_link( $play_id );
+
+		$link = '<a href="'.esc_url( $play_link ).'" title="Playlist Name">'.$play_name.'</a>';
+
+		$total_runtime = get_playlist_total_runtime($list['term_id'], 'playlist');
 		$newlist[] = array(
-						'playlist_id'			=> $list['term_id'],
-						'playlist_name'			=> $list['name'],
-						'playlist_slug'			=> $list['slug'],
-						'playlist_taxonomy' 	=> $list['taxonomy'],
-						'playlist_description'	=> $list['description'],
-						'playlist_count'		=> $list['count']
+						'playlist_id' => $list['term_id'],
+						'playlist_name' => $list['name'],
+						'playlist_slug' => $list['slug'],
+						'playlist_taxonomy' => $list['taxonomy'],
+						'playlist_description' => $list['description'],
+						'playlist_count' => $list['count'],
+
+						'playlist_link' => $play_link,
+						'playlist_image_url' => $playlist_image_url,
+						'run_time'			=>$total_runtime
 
 		);
 
 	}
+
+
 	return $newlist;
 }
 
-function genres(){
-	global $wpdb;
-	$query = 'SELECT * FROM '.$wpdb->terms.' AS t INNER JOIN '.$wpdb->term_taxonomy.' AS tt ON t.term_id = tt.term_id WHERE tt.taxonomy =  "category" AND tt.count > 0 ORDER BY  t.term_id';
 
-	$res = $wpdb->get_results($query);
-	$genres = array();
-	foreach ($res as $genre) {
-		$genres[]=array('name'=>$genre->name, 'count'=>$genre->count,'id'=>$genre->term_id);
-	}
-	return $genres;
+function genres_init(){
+return genres();
 }
+
+add_action('init', genres_init);
+
+function genres()
+{
+	$response_cats = array();
+
+	$args_cat = array(
+				'parent'      => 0
+
+	);
+
+	$categories = get_categories($args_cat);
+
+
+	foreach ( $categories as $category )
+	{
+
+		////get image urls
+		$cat_image = s8_get_taxonomy_image_src($category, 'default');
+
+		$cat_image_url = $cat_image['src'];
+
+		// //get links
+		$cat_link = get_category_link( $category->term_id );
+
+
+		// $cat_link = get_category_link( $category->term_id );
+		$total_runtime = get_genre_total_runtime($category->cat_ID);
+		$response_cats[]=array(
+
+			'genre_id'     	 	 =>  $category->cat_ID,
+			'genre_name'   		 =>  $category->cat_name,
+			'genre_termid' 		 =>  $category->term_id,
+			'genre_slug'   		 =>  $category->slug,
+			'genre_count'	 		 =>  $category->category_count,
+			'genre_taxonomy'	 	 =>  $category->taxonomy,
+			'genre_description'	 =>  $category->category_description,
+			'genre_link'	 		 =>  $cat_link,
+			'genre_image_url'	 	 =>  $cat_image_url,
+			'run_time'			=>$total_runtime
+
+
+		);
+	}
+
+	if (is_wp_error($response_cats))
+	{
+	   return false;
+	}
+	else
+	{
+	   return $response_cats;
+	}
+
+}
+
+ 
 
 function languages(){
 	global $wpdb;

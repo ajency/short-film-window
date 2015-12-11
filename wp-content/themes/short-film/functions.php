@@ -10,9 +10,7 @@ require_once (get_template_directory().'/functions/post-like.php');
 require_once (get_template_directory().'/classes/class.article.php');
 require_once (get_template_directory().'/api/class.article.api.php');
 
-//code added by kapil//
-require_once (get_template_directory().'/api/class.mobileapp.api.php');
-require_once(get_template_directory().'/functions-mobileapp.php');
+
 
 
 // Add Translation Option
@@ -2022,6 +2020,48 @@ function get_playlist_info($playlist_id, $taxonomy, $image_size)
 
 }
 
+function get_genre_total_runtime($genre_id){
+  $total_runtime = 0;
+
+
+
+
+  $args = array(
+    'orderby'           => 'post_date',
+    'order'             => 'DESC',
+    'genre'       => $genre_id,
+    'region'      => '',
+    'language'      => '',
+    'offset'            => 0
+  );
+
+
+
+  $response_posts = Film\Video::get_many($args);
+
+  foreach($response_posts as $response_post)
+  {
+    $total_runtime+=$response_post['duration'];
+
+  }
+
+  $temp_runtime_hours = $total_runtime/60;
+  $runtime_hours = floor($temp_runtime_hours);
+
+  $runtime_mins = $total_runtime%60;
+
+  $final_runtime = array();
+
+  $final_runtime['runtime_hours'] = $runtime_hours;
+  $final_runtime['runtime_mins']  = $runtime_mins;
+  $final_runtime['total_runtime']  = $total_runtime;
+
+  return $final_runtime;
+
+  //return $total_runtime;
+}
+
+
 function get_playlist_total_runtime($playlist_id, $taxonomy)
 {
 	$total_runtime = 0;
@@ -2737,3 +2777,6 @@ function populate_likes_and_views()
 */
 
 
+//code added by kapil//
+require_once (get_template_directory().'/api/class.mobileapp.api.php');
+require_once(get_template_directory().'/functions-mobileapp.php');

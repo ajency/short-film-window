@@ -57,12 +57,14 @@ class Mobileapp_API
         $weekly_premiere    =   one_random_weekly_premiere();
         $new_additions      =   new_additions();
         $noteworthy         =   noteworthy();
-        $awesome_playlists  =   five_awesome_playlists();
+        $awesome_playlists  =   five_awesome_playlists_init(5);
         $genres             =   genres();
         $languages          =   languages();
+        $playlists          =   five_awesome_playlists_init();
         $popular  = array(
                         'popular'=>array('weekly_premiere'=>$weekly_premiere, 'new_additions'=>$new_additions, 'noteworthy'=>$noteworthy, 'awesome_playlist'=>$awesome_playlists ),
-                        'genre'  =>$genres
+                        'genre'  =>$genres,
+                        'playlists'=>$playlists
                     );
             
 
@@ -70,6 +72,8 @@ class Mobileapp_API
         $response['defaults']['content']=$popular;
         $response['defaults']['filters']=array('languages'=>$languages);
         $response['defaults']['sort_keys']=array('freshness','popularity','length');
+
+
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
             $response->set_status(404);
