@@ -19,8 +19,8 @@
               </div>              
 
               <div class="item item-image padding0">
-                <div class="imageContainerOuter"><img src="{{ premeiere.image }}"/></div>
-                <div class="overlay" ng-click="singleplay({{ premeiere.movie_id }})"></div>
+                <div class="imageContainerOuter"><img src="{{ premeiere.image }}" ng-click="singleplay({{ premeiere.movie_id }})"/></div>
+                <div class="overlay" ></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                   <span>{{ premeiere.title }}</span>
@@ -42,17 +42,19 @@
             </div>
         
 
-       <div class="list card margin0 cardOuter">
+       
         <div class="item item-avatar">
-                <img src="../img/icons/new_additions.png">
+                <img src="img/icons/new_additions.png">
                 <div class="primaryText cardTitle">New Additions</div>
                 <p>Just starting out on their big journey!</p>
               </div>
-        <label
+        <div class="cardInner"
          ng-repeat ="data in addition">
-           <div class="item item-image padding0 newAdditions">
-                <div class="imageContainerOuter"><img src="{{ data.image }}"/></div>
-                <div class="overlay" ng-click="singleplay({{ data.movie_id }})" ></div>
+         <div class="list card margin0 cardOuter">
+           <div class="item item-image padding0 newAdditions" ng-click="singleplay({{ data.movie_id }})" >
+                <div class="imageContainerOuter"><img src="{{ data.image }}"  />
+                </div>
+                <div class="overlay" ></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                     <span>{{ data.title }}</span>
@@ -70,26 +72,22 @@
                   </div>
                 </div>
               </div>
+               </div>
 
-              </label>
-
-            </div>
-
-
-
-
-            <div class="list card margin0 cardOuter">
+              </div>
 
               <div class="item item-avatar">
-                <img src="../img/icons/noteworthy.png">
+                <img src="img/icons/noteworthy.png">
                 <div class="primaryText cardTitle">Noteworthy</div>
                 <p>Completely out of the ordinary</p>
               </div>
-          <label
+          <div class="cardInner"
           ng-repeat ="data in noteworthy">
+          <div class="list card margin0 cardOuter">
               <div class="item item-image padding0 noteWorthy">
-                <div class="imageContainerOuter"> <img src="{{ data.image }}"/> </div>
-                <div class="overlay" ng-click="singleplay({{ data.movie_id }})" ></div>
+                <div class="imageContainerOuter"><img src="{{ data.image }}" ng-click="singleplay({{ data.movie_id }})"/> 
+                </div>
+                <div class="overlay"  ></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                     <span>{{ data.title}}</span>
@@ -107,10 +105,11 @@
                   </div>
                 </div>
               </div>
-            </label>
+                </div>
+            </div>
 
               
-              </div>
+            
 
             
           
@@ -118,7 +117,7 @@
             <div class="list card margin0 playlist cardOuter">
 
               <div class="item item-avatar">
-                <img src="../img/icons/awesome_playlists.png">
+                <img src="img/icons/awesome_playlists.png">
                 <div class="primaryText cardTitle">Awesome Playlist</div>
                 <p>Just sit back and relax with some popcorn!</p>
               </div>
@@ -128,7 +127,7 @@
               <div class="playlistContent">
                 <div class="col imageContainer">
                   <div class="playlistContentInner">  
-                    <img src="../img/manonmars.jpg"/>
+                    <img src="img/manonmars.jpg"/>
                     <div class="playlistDetails">
                       <div class="title">
                           {{ data.playlist_description }}

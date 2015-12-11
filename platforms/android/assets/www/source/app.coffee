@@ -1,22 +1,30 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI']
 
-.run ['$rootScope', 'App', '$timeout','DetailsAPI','Set_Get', ($rootScope, App, $timeout,DetailsAPI,Set_Get)->
+.run ['$rootScope', 'App', '$timeout','DetailsAPI','Set_Get','$cordovaSplashscreen', ($rootScope, App, $timeout,DetailsAPI,Set_Get,$cordovaSplashscreen)->
 	
 	tag = document.createElement('script')
 	tag.src = 'https://www.youtube.com/iframe_api'
 	firstScriptTag = document.getElementsByTagName('script')[0]
 	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
-	
-	DetailsAPI.GetVideoDetails()
-	.then (data)=>
-		console.log data.defaults.content.popular.weekly_premiere.image
-		DetailsAPI.setData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist})
-		App.navigate 'home', {}, {}
+	# $cordovaSplashscreen.hide();
 
-	, (error)=>
-		console.log 'Error Loading data'						
+	$timeout ->
+	  App.navigate 'landingvideo', {}, {}
+	  return
+	, 3000
+
+	
+	
+	# DetailsAPI.GetVideoDetails()
+	# .then (data)=>
+	# 	console.log data.defaults.content.popular.weekly_premiere.image
+	# 	DetailsAPI.setData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist})
+	# 	App.navigate 'home', {}, {}
+
+	# , (error)=>
+	# 	console.log 'Error Loading data'						
 
 
 	
