@@ -19,6 +19,8 @@ a {
 .whiteText:hover {
   color: #ffffff;
 }
+.cardInner {  height: 100%;
+display: flex; }
 .text-uppercase {
   text-transform: uppercase;
 }
@@ -312,14 +314,14 @@ a {
 .singleMovieContent .scroll {
   height: 100%;
 }
-.overlay {
+/*.overlay {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
-}
+}*/
 .movieVideo {
   /*background: url('../img/image1.jpg');
 	height: 740px;

@@ -17,7 +17,7 @@ angular.module('SFWApp.singlePlayer', []).controller('playerCtrl', [
           return player = new YT.Player('player2', {
             height: '100%',
             width: '100%',
-            videoId: "hykmq6Gb_VE",
+            videoId: DetailsAPI.singleVideoarray.videourl,
             playerVars: {
               'autoplay': 1,
               'rel': 0,
