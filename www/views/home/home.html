@@ -19,8 +19,8 @@
               </div>              
 
               <div class="item item-image padding0">
-                <div class="imageContainerOuter"><img src="{{ premeiere.image }}" ng-click="singleplay({{ premeiere.movie_id }})"/></div>
-                <div class="overlay" ></div>
+                <div class="imageContainerOuter"><img src="{{ premeiere.image }}" /></div>
+                <div class="overlay" ng-click="singleplay({{ premeiere.movie_id }})"></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                   <span>{{ premeiere.title }}</span>
@@ -30,7 +30,7 @@
                   </div>
                   <div class="country padding-vertical">
                     <span>{{ premeiere.country }}</span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ premeiere.duration }}</span>
                   </div>                  
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i> {{ premeiere.no_of_views}}</span>
@@ -48,13 +48,13 @@
                 <div class="primaryText cardTitle">New Additions</div>
                 <p>Just starting out on their big journey!</p>
               </div>
-        <div class="cardInner"
+        <div class="cardInner marginB"
          ng-repeat ="data in addition">
          <div class="list card margin0 cardOuter">
-           <div class="item item-image padding0 newAdditions" ng-click="singleplay({{ data.movie_id }})" >
+           <div class="item item-image padding0 newAdditions"  >
                 <div class="imageContainerOuter"><img src="{{ data.image }}"  />
                 </div>
-                <div class="overlay" ></div>
+                <div class="overlay" ng-click="singleplay({{ data.movie_id }})"></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                     <span>{{ data.title }}</span>
@@ -64,7 +64,7 @@
                   </div>
                   <div class="country padding-vertical">
                     <span>{{ data.country }}</span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ data.duration }}</span>
                   </div>                  
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
@@ -81,13 +81,13 @@
                 <div class="primaryText cardTitle">Noteworthy</div>
                 <p>Completely out of the ordinary</p>
               </div>
-          <div class="cardInner"
+          <div class="cardInner marginB"
           ng-repeat ="data in noteworthy">
           <div class="list card margin0 cardOuter">
               <div class="item item-image padding0 noteWorthy">
-                <div class="imageContainerOuter"><img src="{{ data.image }}" ng-click="singleplay({{ data.movie_id }})"/> 
+                <div class="imageContainerOuter"><img src="{{ data.image }}" /> 
                 </div>
-                <div class="overlay"  ></div>
+                <div class="overlay" ng-click="singleplay({{ data.movie_id }})"  ></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                     <span>{{ data.title}}</span>
@@ -97,7 +97,7 @@
                   </div>
                   <div class="country padding-vertical">
                     <span>{{ data.country }}</span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }}</span>
                   </div>                  
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
@@ -114,26 +114,26 @@
             
           
 
-            <div class="list card margin0 playlist cardOuter">
+            <div class="list card margin0 playlist">
 
               <div class="item item-avatar">
                 <img src="img/icons/awesome_playlists.png">
                 <div class="primaryText cardTitle">Awesome Playlist</div>
                 <p>Just sit back and relax with some popcorn!</p>
               </div>
-              <label
+              <div
                 ng-repeat ="data in awplalist">
 
               <div class="playlistContent">
                 <div class="col imageContainer">
                   <div class="playlistContentInner">  
-                    <img src="img/manonmars.jpg"/>
+                    <img src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails">
                       <div class="title">
                           {{ data.playlist_description }}
                       </div>
                       <div class="totalFilms">
-                        <span>6 Films</span>
+                        <span>{{ data.playlist_count }} Films</span>
                         <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
                       </div>
                     </div> 
@@ -141,12 +141,14 @@
                 </div>              
                 
                 </div>
-              </label>
+              </div>
+              <div class="playlistContent">
                 <div class="col imageContainer">
                   <div class="viewPlaylist text-center">  
                     <div class="text">Thats just the beginning!</div>
                     <button class="primary button button-small whiteText text-uppercase">See all playlists</button>
                   </div>
+                </div>
                 </div>
               </div>
 
@@ -157,372 +159,59 @@
 
 
         </ion-tab>
-
         <ion-tab title="Genre" class="text-uppercase">
           <ion-content class="genre">
+          <div ng-repeat ="data in genre">
             <div class="playlist">
                 <div class="playlistContent">
                   <div class="col imageContainer">
                     <div class="playlistContentInner">  
-                      <img src="../img/horror.jpg"/>
+                      <img src="{{ data.genre_image_url }}"/>
                       <div class="overlay"></div>
                       <div class="playlistDetails">
                         <div class="title">
-                            Horror
+                            {{ data.genre_name }}
                         </div>
                         <div class="totalFilms">
-                          <span>6 Films</span>
+                          <span>{{ data.genre_count }} Films</span>
                           <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
                         </div>
                       </div> 
                     </div>
                   </div>              
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/scifi.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Scifi
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/indian1.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Indian
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/thriller.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Thriller
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>
-                
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/awardwinning.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                           Award-Winning
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/animation.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Animation
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>                  
-                
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/comedy.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Comedy
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/romance.jpg"/>
-                      <div class="overlay"></div>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Romance
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
-                  </div>                  
-                </div>
+                  
 
             </div>
+          </div>
+        </div>
           </ion-content>
         </ion-tab>
 
         <ion-tab title="Playlists" class="text-uppercase">
           <ion-content class="popular playlist">
             <div class="playlistContent">
+              <div ng-repeat ="data in playlist">
                 <div class="col imageContainer">
                   <div class="playlistContentInner">  
-                    <img src="../img/manonmars.jpg"/>
+                    <img src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails">
                       <div class="title">
-                          Short animated movies by Man on Mars
+                          {{ data.playlist_description }}
                       </div>
                       <div class="totalFilms">
-                        <span>6 Films</span>
+                        <span>{{ data.playlist_count }} Films</span>
                         <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
                       </div>
                     </div> 
                   </div>
-                </div>              
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>            
-                <div class="col imageContainer">
-                    <div class="playlistContentInner"> 
-                      <img src="../img/manonmars.jpg"/>
-                      <div class="playlistDetails">
-                        <div class="title">
-                            Award winning indian shortfilms
-                        </div>
-                        <div class="totalFilms">
-                          <span>6 Films</span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                        </div> 
-                      </div>
-                    </div>
                 </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Mom and family Heart touching shortfilms
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>              
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/manonmars.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Ghost and screams shortfilm - window
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-                <div class="col imageContainer">
-                  <div class="playlistContentInner"> 
-                    <img src="../img/KUNG-FURY-pixelon.jpg"/>
-                    <div class="playlistDetails">
-                      <div class="title">
-                          Blockbuster and always houseful-shortfilmwindow Evenings
-                      </div>
-                      <div class="totalFilms">
-                        <span>6 Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-                      </div> 
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <div class="padding endOfPlaylist text-uppercase text-center">
+              </div> 
+              </div>             
+              <div class="padding endOfPlaylist text-uppercase text-center">
               <i class="ion-social-dropbox-outline"></i>
               <h4 class="bold margin0">Thats it</h4>
               <p>End of the line, folks</p>
+            
             </div>
           </ion-content>
         </ion-tab>
@@ -532,15 +221,14 @@
     <ion-side-menu side="left">
          <ion-content>
           <ion-list>
-              <a class="menuLogo" href="#">
+              <a class="menuLogo">
                 <img class="item-image" src="img/logo.png">                
               </a>
             
-              <a class="item" href="#">
+              <a class="item" href="#/sidebar">
                 <i class="icon-cust icon-home"></i>
                 <b class="text-uppercase">Home</b>
               </a>
-           
               <a class="item" href="#">
                 <i class="icon-cust icon-star"></i>
                 <b class="text-uppercase">Popular films</b>

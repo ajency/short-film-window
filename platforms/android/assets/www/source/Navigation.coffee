@@ -10,25 +10,25 @@ angular.module 'SFWApp.navigate', []
 		
 		.state 'home',
 			url: '/sidebar'
-			cache: true
+			cache: false	
 			controller: 'sidebarCtrl'					
 			templateUrl: 'views/home/home.html'
 
 		.state 'init',
 			url: '/init'
-			cache: true
+			cache: false
 			controller: 'InitCtrl'					
 			templateUrl: 'views/singlevideo/movieScreen.html'
 
 		.state 'singlePlayer',
 			url: '/singlePlayer'
-			cache: true
+			cache: false
 			controller: 'playerCtrl'					
 			templateUrl: 'views/singlevideo/singlePlayer.html'	
 
 		.state 'landingvideo',
 			url: '/landing'
-			cache: true
+			cache: false
 			controller: 'landingCtrl'					
 			templateUrl: 'views/landingVideo/splash.html'	
 
