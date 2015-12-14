@@ -7,7 +7,9 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
           premiere: data.defaults.content.popular.weekly_premiere,
           new_addition: data.defaults.content.popular.new_additions,
           noteworthy: data.defaults.content.popular.noteworthy,
-          awesome_playlist: data.defaults.content.popular.awesome_playlist
+          awesome_playlist: data.defaults.content.popular.awesome_playlist,
+          genre: data.defaults.content.genre,
+          playlist: data.defaults.content.playlists
         });
         return App.navigate('home', {}, {});
       };

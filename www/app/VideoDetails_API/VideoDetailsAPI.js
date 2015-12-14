@@ -6,6 +6,8 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     DetailsAPI.array_addition = [];
     DetailsAPI.array_noteworthy = [];
     DetailsAPI.array_awplaylist = [];
+    DetailsAPI.genre_array = [];
+    DetailsAPI.playlist_array = [];
     DetailsAPI.array = [];
     DetailsAPI.singleVideoarray = [];
     DetailsAPI.GetVideoDetails = function() {
@@ -44,6 +46,10 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       DetailsAPI.array_addition = opts.new_addition;
       DetailsAPI.array_noteworthy = opts.noteworthy;
       DetailsAPI.array_awplalist = opts.awesome_playlist;
+      DetailsAPI.genre_array = opts.genre;
+      DetailsAPI.playlist_array = opts.playlist;
+      console.log(DetailsAPI.playlist_array);
+      console.log(DetailsAPI.genre_array);
       console.log(DetailsAPI.array);
       console.log(DetailsAPI.array_addition);
       console.log(DetailsAPI.array_noteworthy);
