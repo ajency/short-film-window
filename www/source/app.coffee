@@ -1,7 +1,7 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs']
 
-.run ['$rootScope', 'App', '$timeout','DetailsAPI','Set_Get','$cordovaSplashscreen', ($rootScope, App, $timeout,DetailsAPI,Set_Get,$cordovaSplashscreen)->
+.run ['$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen', ($rootScope, App, $timeout,Set_Get,$cordovaSplashscreen)->
 	
 	tag = document.createElement('script')
 	tag.src = 'https://www.youtube.com/iframe_api'
@@ -13,21 +13,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
 	$timeout ->
 	  App.navigate 'landingvideo', {}, {}
 	  return
-	, 3000
-
-	
-	
-	# DetailsAPI.GetVideoDetails()
-	# .then (data)=>
-	# 	console.log data.defaults.content.popular.weekly_premiere.image
-	# 	DetailsAPI.setData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist})
-	# 	App.navigate 'home', {}, {}
-
-	# , (error)=>
-	# 	console.log 'Error Loading data'						
-
-
-	
+	, 3000					
 
 
 	$rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->

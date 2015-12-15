@@ -1,0 +1,29 @@
+<ion-content class="genre" id="popular" ng-init="test()">
+  <ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="doRefresh()">
+  </ion-refresher>
+      <div ng-repeat ="data in genre">
+        <div class="playlist">
+            <div class="playlistContent" ng-click="singleGenre()">
+              <div class="col imageContainer">
+                <div class="playlistContentInner">  
+                  <img src="{{ data.genre_image_url }}"/>
+                  <div class="overlay"></div>
+                  <div class="playlistDetails">
+                    <div class="title">
+                        {{ data.genre_name }}
+                    </div>
+                    <div class="totalFilms">
+                      <span>{{ data.genre_count }} Films</span>
+                      <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ data.run_time }} MIN</span>
+                    </div>
+                  </div> 
+                </div>
+              </div>              
+              
+
+        </div>
+      </div>
+    </div>
+      </ion-content>
