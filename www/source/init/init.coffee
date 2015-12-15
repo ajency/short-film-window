@@ -1,8 +1,15 @@
 angular.module 'SFWApp.init', []
 
-.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI'
-	 ,($scope, $sce,App,DetailsAPI)->
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading'
+	 ,($scope, $sce,App,DetailsAPI,$ionicLoading)->
 	$scope.Videodetails = []
+
+	$ionicLoading.show
+	  content: 'Loading'
+	  animation: 'fade-in'
+	  showBackdrop: true
+	  maxWidth: 600
+	  showDelay: 0
 	
 	DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
 	.then (data)=>
@@ -11,11 +18,13 @@ angular.module 'SFWApp.init', []
 		$scope.Videodetails = data
 		console.log $scope.Videodetails
 		console.log $scope.Videodetails.image
+		$ionicLoading.hide();
 
 		
 
 	, (error)=>
-		console.log 'Error Loading data'	
+		console.log 'Error Loading data'
+		$ionicLoading.hide();	
 	
 	console.log  DetailsAPI.videoId
 	console.log 'In Init'
@@ -28,7 +37,7 @@ angular.module 'SFWApp.init', []
 		
 	$scope.view =
 		back:->
-			App.navigate 'home', {}, {}
+			App.navigate 'popular', {}, {}
 			# count = -1
 			# App.goBack count
 

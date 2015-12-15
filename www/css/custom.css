@@ -10,14 +10,14 @@ a {
 .white {
   background: #ffffff;
 }
-.player1video{
-  height:100%;
-}
 .whiteText {
   color: #ffffff;
 }
 .whiteText:hover {
   color: #ffffff;
+}
+.player1video{
+  height:100%;
 }
 .text-uppercase {
   text-transform: uppercase;
@@ -42,6 +42,7 @@ a {
 }
 .bar.bar-header .title {
   font-size: 1.2em !important;
+  text-align: center !important;
 }
 .tabs-striped .tabs {
   background: #af152f;
@@ -113,9 +114,10 @@ a {
   float: left;
   margin: auto;
   border-bottom: 1px solid #ccc;
+  text-align: center;
 }
 .menuLogo img {
-  width: 110px;
+  width: 170px;
   padding: 10px 10px 2px 10px;
 }
 .welcome {
@@ -291,12 +293,15 @@ a {
 .cardOuter .movieDetails {
   bottom: 60px;
 }
-.cardInner {
+.cardDetails {
   height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+}
+.cardDetails .cardOuter .movieDetails {
+  bottom: 0;
 }
 .marginB {
   margin-bottom: 10px !important;
@@ -339,6 +344,9 @@ a {
     height: auto;
   }
   .popular .card .item.item-image {
+    height: auto;
+  }
+  .cardDetails {
     height: auto;
   }
 }

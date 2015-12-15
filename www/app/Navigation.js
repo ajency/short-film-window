@@ -2,9 +2,36 @@ angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]
   '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     return $stateProvider.state('home', {
       url: '/sidebar',
-      cache: false,
+      abstract: true,
       controller: 'sidebarCtrl',
       templateUrl: 'views/home/home.html'
+    }).state('popular', {
+      url: '/popular',
+      parent: 'home',
+      views: {
+        "popularContent": {
+          templateUrl: 'views/tabs/popular.html',
+          controller: 'sidebarCtrl'
+        }
+      }
+    }).state('genre', {
+      url: '/genre',
+      parent: 'home',
+      views: {
+        "genreContent": {
+          templateUrl: 'views/tabs/genre.html',
+          controller: 'sidebarCtrl'
+        }
+      }
+    }).state('playlist', {
+      url: '/playlist',
+      parent: 'home',
+      views: {
+        "playlistContent": {
+          templateUrl: 'views/tabs/playlist.html',
+          controller: 'sidebarCtrl'
+        }
+      }
     }).state('init', {
       url: '/init',
       cache: false,

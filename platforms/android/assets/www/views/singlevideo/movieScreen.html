@@ -14,14 +14,14 @@
           <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()"/></div>
           <div class="movieDetails padding whiteText">
             <div class="title">
-             <span>{{ Videodetails.title }}</span>
+             {{ Videodetails.title }} <span> by {{ Videodetails.director }}</span>
             </div>
             <div class="tagline">
               {{ Videodetails.tagline }}
             </div>
             <div class="country">
-              <span>{{ Videodetails.country }}</span>
-              <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
+              {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
+              <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{Videodetails.duration }}  MIN</span>
             </div>
             <div class="category">
               <span class="inline">Drama</span>
