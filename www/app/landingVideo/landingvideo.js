@@ -11,7 +11,7 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
           genre: data.defaults.content.genre,
           playlist: data.defaults.content.playlists
         });
-        return App.navigate('home', {}, {});
+        return App.navigate('popular', {}, {});
       };
     })(this), (function(_this) {
       return function(error) {

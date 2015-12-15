@@ -8,7 +8,7 @@ angular.module 'SFWApp.landing', []
 		.then (data)=>
 			console.log data.defaults.content.popular.weekly_premiere.image
 			DetailsAPI.setData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
-			App.navigate 'home', {}, {}
+			App.navigate 'popular', {}, {}
 
 		, (error)=>
 			console.log 'Error Loading data'
