@@ -1,4 +1,4 @@
- <ion-side-menus ng-controller="sidebarCtrl" ng-init="test()">
+ <ion-side-menus  ng-init="test()">
     <ion-side-menu-content>
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
@@ -9,8 +9,11 @@
 
       
         <ion-tab title="Popular" ui-sref="popular" class="text-uppercase"  >
-        <ion-nav-view name="popularContent"></ion-nav-view>
+         
+
+          <ion-nav-view name="popularContent"></ion-nav-view>
         </ion-tab>
+
         <ion-tab title="Genre" ui-sref="genre" class="text-uppercase">
           <ion-nav-view name="genreContent"></ion-nav-view>
         </ion-tab>
@@ -71,7 +74,7 @@
               </a> -->
           </ion-list>
             <p class="padding shortInfo">
-              ShortFilWindow is a snappy, intuitive, striking, mini-theatre that provides you priceless access to all the mind-blowing short films in the world.
+              ShortFilmWindow is a snappy, intuitive, striking, mini-theatre that provides you priceless access to all the mind-blowing short films in the world.
             </p>
             <!-- <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6> -->
             <p class="padding">

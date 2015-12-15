@@ -1,4 +1,8 @@
-          <ion-content class="popular" >
+          <ion-content class="popular"  ng-init="test()">
+          <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+             </ion-refresher>
             <div class="list card margin0 cardOuter">
 
               <div class="item item-avatar">
@@ -9,7 +13,7 @@
 
               <div class="item item-image padding0">
                 <div class="imageContainerOuter"><img src="{{ premeiere.image }}" /></div>
-                <div class="overlay" ng-click="singleplay({{ premeiere.movie_id }})"></div>
+                <div class="overlay" ng-click="singleplay( premeiere.movie_id )"></div>
                 <div class="movieDetails padding whiteText">
                   <div class="title padding-vertical">
                   {{ premeiere.title }} <span>by {{ premeiere.director}}</span>
@@ -136,6 +140,6 @@
               </div>
 
             
-          
+         
             
           </ion-content>

@@ -6,8 +6,6 @@ angular.module 'SFWApp.Global', []
 
 		App = 
 			start: true
-			validateEmail: /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/
-			onlyNumbers: /^\d+$/
 			menuEnabled : left: false, right: false
 			previousState: ''
 			currentState: ''
@@ -24,20 +22,7 @@ angular.module 'SFWApp.Global', []
 
 			goBack : (count)->
 				$ionicHistory.goBack count
-
-			# check_inputlength : (ngmodel)->
-			# 	# console.log  @ngmodel.toString().length
-			# 	if @ngmodel.toString().length < 8
-			# 		console.log  @ngmodel.toString().length
-			# 	else	
-			# 		event.preventDefault()	
-
-			# check_passwordlength : (Passngmodel)->
-			# 	# console.log  @Passngmodel.toString().length
-			# 	if @Passngmodel.toString().length < 4
-			# 		console.log  @Passngmodel.toString().length
-					
-			# 		event.preventDefault()	
+	
 
 			isAndroid : ->
 				ionic.Platform.isAndroid()
