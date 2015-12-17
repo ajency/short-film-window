@@ -1,5 +1,5 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
-  '$scope', '$ionicLoading', 'App', function($scope, $ionicLoading, App) {
+  '$scope', '$ionicLoading', function($scope, $ionicLoading) {
     $scope.sortGenre = function() {
       return $ionicLoading.show({
         scope: $scope,
@@ -8,7 +8,11 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       });
     };
     $scope.filterGenre = function() {
-      return App.navigate('filterGenreCtrl', {}, {});
+      return $ionicLoading.show({
+        scope: $scope,
+        templateUrl: 'views/filterPopup/filterPopup.html',
+        hideOnStateChange: true
+      });
     };
     return $scope.hide = function() {
       $ionicLoading.hide();

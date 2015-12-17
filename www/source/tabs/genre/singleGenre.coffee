@@ -1,6 +1,6 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App',($scope,$ionicLoading,App)->
+.controller 'singleGenre', ['$scope','$ionicLoading',($scope,$ionicLoading)->
 
 	$scope.sortGenre = ()->
 		$ionicLoading.show
@@ -10,7 +10,10 @@ angular.module 'SFWApp.tabs'
 
 
 	$scope.filterGenre = ()->
-		App.navigate 'filterGenreCtrl',{},{}			
+		$ionicLoading.show
+						scope: $scope
+						templateUrl:'views/filterPopup/filterPopup.html'
+						hideOnStateChange: true						
 
 	$scope.hide = () ->
 	        $ionicLoading.hide();
