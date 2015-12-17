@@ -184,6 +184,14 @@
 		float: left;
 		margin-top: 4px;		
 		opacity: 0;
+		height: 20px;
+	    width: 100%;
+	    position: absolute;
+	    z-index: 3;
+	}
+	label
+	{
+		padding-left: 20px;
 	}
 	.radioIcon
 	{
@@ -196,26 +204,27 @@
 		width: 10px;
 		background: @grayLighter;
 		left: 15px;
-
-		&.radioIconChecked
-		{			
-		    background: @white;
-		    height: 16px;
-		    width: 16px;		    		    
-		    border: 1px solid @primary;
-		    margin-top: 2px;
-		    left: 13px;
-		    span
-		    {
-		    	height: 8px;
-			    width: 8px;
-			    background: @primary;
-			    z-index: 1;
-			    position: absolute;
-			    border-radius: 50%;
-			    top: 3px;
-			    left: 3px;
-		    }
-		}
+		padding: 0;
 	}
+	input:checked + .radioIcon
+	{			
+	    background: @white;
+	    height: 16px;
+	    width: 16px;		    		    
+	    border: 1px solid @primary;
+	    margin-top: 2px;
+	    left: 13px;
+	    span
+	    {
+	    	height: 8px;
+		    width: 8px;
+		    background: @primary;
+		    z-index: 1;
+		    position: absolute;
+		    border-radius: 50%;
+		    top: 3px;
+		    left: 3px;
+	    }
+	}
+	
 }

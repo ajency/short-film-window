@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Test </title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
-
-    <link href="../lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="../css/custom.css" rel="stylesheet"/>
-
-    <script src="../lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
-    <script src="../js/custom.js"></script>
-    <script src="../cordova.js"></script>
-  </head>
-  <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
-    
-  <ion-side-menus>
+      <ion-side-menus>
     <ion-side-menu-content class="singleGenre">
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>       
@@ -55,10 +37,9 @@
         </div>
       </ion-content>  
       <ion-footer-bar class="bar bar-footer">
-        <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filter()"><i class="ion-funnel"></i>Filter</button>   
+        <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()"><i class="ion-funnel"></i>Filter</button>   
         <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()"><i class="ion-android-arrow-up"></i>Sort</button>
       </ion-footer-bar>
     </ion-side-menu-content>   
   </ion-side-menus>
-  </body>
-</html>
+  

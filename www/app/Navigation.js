@@ -51,7 +51,12 @@ angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]
       url: '/singleGenre',
       cache: false,
       controller: 'singleGenre',
-      templateUrl: 'views/filterPopup'
+      templateUrl: 'views/tabs/genre/singleGenre.html'
+    }).state('filterGenreCtrl', {
+      url: '/filterGenreCtrl',
+      cache: false,
+      controller: 'filterGenreCtrl',
+      templateUrl: 'views/filterPopup/filterPopup.html'
     });
   }
 ]);

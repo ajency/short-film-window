@@ -16,14 +16,14 @@ a {
 .whiteText:hover {
   color: #ffffff;
 }
-.player1video{
-  height:100%;
-}
 .text-uppercase {
   text-transform: uppercase;
 }
 .text-capitalize {
   text-transform: capitalize;
+}
+.player1video{
+  height:100%;
 }
 .bold {
   font-weight: bold;
@@ -368,18 +368,21 @@ a {
 .movieVideo img {
   height: 100%;
 }
-.movieVideo .movieHeader {
+.movieHeader {
   background: transparent;
   border: none;
 }
-.movieVideo .movieHeader button.watchList {
+.movieHeader button.watchList {
   position: absolute !important;
   right: 40px;
 }
-.movieVideo .movieHeader button i {
+.movieHeader button i {
   margin-right: 5px;
   font-size: 1.5em;
   float: left;
+}
+.movieHeader button:first-child i {
+  margin-right: 13px;
 }
 .movieDetails {
   font-family: 'Lato', sans-serif;
@@ -469,6 +472,20 @@ a {
   height: 100%;
   position: relative;
   z-index: 2;
+}
+.movieScreen .singleMovieContent {
+  top: 0;
+}
+.infocus h5 {
+  margin-bottom: 5px;
+}
+.infocus p.subheading {
+  font-size: 0.9em;
+  font-style: italic;
+  line-height: 1.3;
+}
+.infocus img {
+  width: 100%;
 }
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .movieDetails .title {
@@ -649,6 +666,13 @@ a {
   float: left;
   margin-top: 4px;
   opacity: 0;
+  height: 20px;
+  width: 100%;
+  position: absolute;
+  z-index: 3;
+}
+.filterRadioOuter label {
+  padding-left: 20px;
 }
 .filterRadioOuter .radioIcon {
   position: absolute;
@@ -660,8 +684,9 @@ a {
   width: 10px;
   background: #aeaeae;
   left: 15px;
+  padding: 0;
 }
-.filterRadioOuter .radioIcon.radioIconChecked {
+.filterRadioOuter input:checked + .radioIcon {
   background: #ffffff;
   height: 16px;
   width: 16px;
@@ -669,7 +694,7 @@ a {
   margin-top: 2px;
   left: 13px;
 }
-.filterRadioOuter .radioIcon.radioIconChecked span {
+.filterRadioOuter input:checked + .radioIcon span {
   height: 8px;
   width: 8px;
   background: #af152f;

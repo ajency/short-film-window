@@ -5,8 +5,8 @@
   </ion-refresher>
       <div ng-repeat ="data in genre">
         <div class="playlist">
-            <div class="playlistContent" ng-click="singleGenre()">
-              <div class="col imageContainer">
+            <div class="playlistContent" >
+              <div class="col imageContainer" ng-click="singleGenre()">
                 <div class="playlistContentInner">  
                   <img src="{{ data.genre_image_url }}"/>
                   <div class="overlay"></div>
