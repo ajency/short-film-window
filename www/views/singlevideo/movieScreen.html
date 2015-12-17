@@ -1,16 +1,16 @@
-<ion-view> 
- 
+<ion-view class="movieScreen"> 
+<ion-header-bar class="bar bar-header movieHeader">
+        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
+        <button class="button button-icon whiteText watchList"><i class="ion-heart"></i></button>
+        <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
+      </ion-header-bar>
+ <ion-content class="singleMovieContent">      
      <div id="player" class="singleMovieOuter" ng-init="init()">
         <div class="movieVideo">
           <div class="imageContainerOuter">
             <img src="{{ Videodetails.image}}"/>
             <div class="overlay"></div>
-          </div>        
-          <ion-header-bar class="bar bar-header movieHeader">
-            <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
-            <button class="button button-icon whiteText watchList"><i class="ion-heart"></i></button>
-            <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
-          </ion-header-bar>
+          </div>                  
           <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()"/></div>
           <div class="movieDetails padding whiteText">
             <div class="title">
@@ -36,4 +36,37 @@
           </div>
        </div>   
     </div>
+    <div class="synopsis">
+      <h5 class="primaryText text-uppercase bold padding-horizontal padding-top">Synopsis</h5>
+      <p class="padding-horizontal">
+        Tense and to the-point thriller about a man who is given a casual errand which then expands into an assassination. 
+        <br><br>
+        You travel with Rick, and he is such a harmless, awkward-looking blank that you quickly indentify yourself with him. He seems like a man who does small, odd jobs for much more powerfull absent crime-boss. But today is the day his boss has decided to give Rick a promotion. 
+      </p> 
+      <div class="col text-center">
+        <i class="ion-ios-arrow-down"></i>
+      </div>       
+    </div>
+    <div class="infocus">
+      <h5 class="primaryText text-uppercase bold padding-horizontal padding-top">In focus</h5>
+      <p class="padding-horizontal primaryText subheading">
+       In conversation with Mr. Smith, the villan behind the Matrix       
+      </p> 
+      <div class="padding-horizontal"><img src="img/killerkart.jpg"/></div>  
+      <!-- <div class="movieText">
+        <p class="padding">
+          Here identification with characters, which we as story-consumers naturally grasp for and storyteller helpfully provide, plays with suspense and our expectations. We know enough about Rick to know that he is not a bad man, but not enough to know.... whether he will another man. We also know enough about his possible victims to not like him all that much, but not enough to actually wish him dead. The film extends this excruciating waiting game as long as possible with long following shots and meandering conversations.
+          <br><br>
+          And appropriately this short, gritty thriller ends at an old and decaying outdoor theater in the middle of the forest.
+        </p>   
+        <h5 class="primaryText text-uppercase text-center bold">Show your love</h5>     
+        <div class="text-center socialIcons">
+          <span class="inline"><i class="ion-social-facebook"></i></span>
+          <span class="inline"><i class="ion-social-pinterest"></i></span>
+          <span class="inline"><i class="ion-social-twitter"></i></span>
+          <span class="inline"><i class="ion-social-googleplus"></i></span>
+        </div>
+      </div>  -->              
+    </div>
+  </ion-content>
 </ion-view> 
