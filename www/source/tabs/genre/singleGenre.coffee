@@ -17,7 +17,8 @@ angular.module 'SFWApp.tabs'
 		GenreAPI.GetSingleGenre(DetailsAPI.videoId)
 		.then (data)=>
 			
-			$scope.genreData= data
+			$scope.genreData= data.movies
+			$scope.genre = data.genre
 			console.log $scope.genreData
 			$ionicLoading.hide();
 		, (error)=>

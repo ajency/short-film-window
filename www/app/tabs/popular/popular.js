@@ -1,5 +1,6 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
   '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
+    var swiper;
     $scope.doRefresh = function() {
       console.log(PulltorefreshAPI);
       $ionicLoading.show({
@@ -43,12 +44,17 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
-    return $scope.test = function() {
+    $scope.test = function() {
       $scope.premeiere = DetailsAPI.array;
       $scope.addition = DetailsAPI.array_addition;
       $scope.noteworthy = DetailsAPI.array_noteworthy;
       $scope.awplalist = DetailsAPI.array_awplalist;
       return $scope.videoId = DetailsAPI.array.videoId;
     };
+    return $scope.view = swiper = new Swiper('.swiper-container', {
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      direction: 'vertical'
+    });
   }
 ]);

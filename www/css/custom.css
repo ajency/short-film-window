@@ -4,6 +4,28 @@ a {
 .primary {
   background: #af152f;
 }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
 .primaryText {
   color: #af152f;
 }
@@ -16,6 +38,10 @@ a {
 .whiteText:hover {
   color: #ffffff;
 }
+
+.player1video{
+  height:100%;
+}
 .text-uppercase {
   text-transform: uppercase;
 }
@@ -27,9 +53,6 @@ a {
 }
 .pull-left {
   float: left;
-}
-.player1video{
-  height:100%;
 }
 .pull-right {
   float: right;
@@ -810,6 +833,3 @@ a {
   font-size: 0.8em;
 }
 /*# sourceMappingURL=custom.css.map */
-
-custom.css
-Displaying custom.css.
