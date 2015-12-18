@@ -1,5 +1,7 @@
-<ion-content class="text-center padding welcome">
+<ion-content class="text-center padding welcome" ng-init="view.init()">
+<div class="videoContainer">
 
   <video id="land_vid_html5_api" class="vjs-tech" poster="img/LandingHeader.jpg" data-setup="{ &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;preload&quot;: &quot;auto&quot;, &quot;loop&quot;: true, &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;auto&quot; }" loop="" preload="auto" autoplay=""><source src="video/LandingVideo.mp4" type="video/mp4"></p></video>
-
+  <button ng-click="view.skiplangingVideo()">Skip <i class="ion-ios-arrow-forward"></i></button>
+  </div>
 </ion-content>

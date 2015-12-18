@@ -19,7 +19,9 @@ angular.module 'SFWApp.Global', []
 						disableBack   : !back
 		
 				$state.go state, params
-
+			getbackView :()->
+				console.log $ionicHistory.backView()	
+				
 			goBack : (count)->
 				$ionicHistory.goBack count
 	

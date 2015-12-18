@@ -1,10 +1,10 @@
 angular.module 'SFWApp.init', []
 
-.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading'
-	 ,($scope, $sce,App,DetailsAPI,$ionicLoading)->
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory'
+	 ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory)->
 	$scope.Videodetails = []
-	$scope.init= ()->
 
+	$scope.init= ()->
 		$ionicLoading.show
 		  content: 'Loading'
 		  animation: 'fade-in'
@@ -20,6 +20,8 @@ angular.module 'SFWApp.init', []
 			console.log $scope.Videodetails
 			console.log $scope.Videodetails.image
 			$ionicLoading.hide();
+			document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
+
 
 		, (error)=>
 			console.log 'Error Loading data'
@@ -36,14 +38,15 @@ angular.module 'SFWApp.init', []
 		
 	$scope.view =
 		back:->
-			App.navigate 'popular', {}, {}
+			$ionicHistory.goBack();
+			# App.navigate 'popular'
 			# count = -1
 			# App.goBack count
 
 	  
 
 		playVideo : ()->
-		  App.navigate 'singlePlayer', {}, {}
+		  App.navigate 'singlePlayer'
 				
 
 

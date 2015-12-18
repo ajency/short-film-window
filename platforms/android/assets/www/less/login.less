@@ -1,30 +1,46 @@
 .welcome
 {
 	padding:0;
-	/*.logo
+	.scroll
 	{
-		padding-bottom: 30px;
-		img
-		{
-			width: 85%;		
-		}
+		height: 100%;
 	}
-	p
+	.videoContainer
 	{
-		padding: 0 10% 10%;
+		position: fixed;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    overflow: hidden;
+	    z-index: -100;
+	}	
+	video
+	{			   
+	    width: 100%;
+	    height: 100%;
+	    object-fit:cover;
 	}
-	.videoIcon
+	button
 	{
-		margin: 16% 0 21%;
-		img
-		{
-			width: 45%;
-		}
+		position: absolute;
+	    z-index: 2;
+	    bottom: 30px;
+	    right: 0;
+	    background: none;
+	    border: none;
+	    font-size: 1em;
+	    color: #fff;	   
+	    padding: 0 10px 2px 20px;
+	    background: rgba(0,0,0,0.6);
+	    border-radius: 4px 0 0 4px;
+
+	    i
+	    {
+	    	float: right;
+	    	margin: 2px 0 0 5px;
+	    }
 	}
-	.loading
-	{
-		color:@grayDark;
-	}*/
 }
 .splashScreen
 {
@@ -35,49 +51,3 @@
 	}
 }
 
-/*@media screen and (min-width:320px) and (max-width:767px) and (orientation:landscape)
-{
-	.welcome
-	{
-		padding: 5% 10%;
-		p
-		{
-			padding: 0 10% 2%;
-		}
-		.logo
-		{
-			img
-			{
-				width: 200px;
-			}
-		}
-		.videoIcon
-		{
-			margin: 6% 0 5%;
-			img
-			{
-				width: 100px;
-			}
-		}
-	}
-
-}
-@media screen and (min-width:768px) and (max-width:1024px) and (orientation:portrait)
-{
-	.welcome 
-	{
-		.logo img 
-		{
-			width: 60%;
-		}
-		p
-		{
-			font-size: 2em;
-    		line-height: 1.5;
-		}
-		.videoIcon img
-		{
-			width: 35%;
-		}
-	}
-}*/
