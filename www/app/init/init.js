@@ -17,7 +17,8 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
           $scope.Videodetails = data;
           console.log($scope.Videodetails);
           console.log($scope.Videodetails.image);
-          return $ionicLoading.hide();
+          $ionicLoading.hide();
+          return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
         };
       })(this), (function(_this) {
         return function(error) {
@@ -34,10 +35,10 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
     });
     return $scope.view = {
       back: function() {
-        return App.navigate('popular', {}, {});
+        return App.navigate('popular');
       },
       playVideo: function() {
-        return App.navigate('singlePlayer', {}, {});
+        return App.navigate('singlePlayer');
       }
     };
   }

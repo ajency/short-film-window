@@ -1,10 +1,16 @@
 angular.module 'SFWApp.tabs'
-.controller 'genreCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI'
+.controller 'genreCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
 
-	,($scope,App,PulltorefreshAPI,DetailsAPI)->
+	,($scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading)->
 
 		$scope.doRefresh = ()->
-			
+			$ionicLoading.show
+			  content: 'Loading'
+			  animation: 'fade-in'
+			  showBackdrop: true
+			  maxWidth: 600
+			  showDelay: 0
+
 			PulltorefreshAPI.pullrequest()
 			.then (data)=>
 				console.log data.defaults.content.popular.weekly_premiere.image
@@ -12,15 +18,22 @@ angular.module 'SFWApp.tabs'
 			
 				$scope.genre = DetailsAPI.genre_array
 				$scope.$broadcast('scroll.refreshComplete');
+				$ionicLoading.hide();
+
 			, (error)=>
 				$scope.$broadcast('scroll.refreshComplete');
 				console.log 'Error Loading data'
+				$ionicLoading.hide();
 
 		
 		$scope.test = ->
 		    $scope.genre = DetailsAPI.genre_array
 
-		$scope.singleGenre = ()->
-			App.navigate "singleGenre",{},{}   
+		$scope.singleGenre = (genreId)->
+			console.log genreId
+			DetailsAPI.videoId = genreId
+			console.log DetailsAPI.videoId
+			App.navigate "singleGenre"
+
 		
 ]

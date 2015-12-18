@@ -1,20 +1,54 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App',($scope,$ionicLoading,App)->
+.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI)->
+	
+	$scope.init = () ->
+		$ionicLoading.show
+		  content: 'Loading'
+		  animation: 'fade-in'
+		  showBackdrop: true
+		  maxWidth: 600
+		  showDelay: 0
+
+		console.log GenreAPI
+
+		GenreAPI.GetSingleGenre(DetailsAPI.videoId)
+		.then (data)=>
+			
+			$scope.genreData= data
+			console.log $scope.genreData
+			$ionicLoading.hide();
+		, (error)=>
+			console.log 'Error Loading data'
+			$ionicLoading.hide();
+
 
 	$scope.sortGenre = ()->
 		$ionicLoading.show
-						scope: $scope
-						templateUrl:'views/filterPopup/sortPopupgener.html'
-						hideOnStateChange: true	
+			scope: $scope
+			templateUrl:'views/filterPopup/sortPopupgener.html'
+			hideOnStateChange: true	
 
 
 	$scope.filterGenre = ()->
-		App.navigate 'filterGenreCtrl',{},{}			
+		$ionicLoading.show
+			scope: $scope
+			templateUrl:'views/filterPopup/filterpopup.html'
+			hideOnStateChange: true						
 
 	$scope.hide = () ->
-	        $ionicLoading.hide();
-	        hideOnStateChange: false
+
+        $ionicLoading.hide();
+        hideOnStateChange: false
+
+
+	$scope.singleplay = (videoid)->
+
+		console.log videoid
+		DetailsAPI.videoId = videoid
+		console.log DetailsAPI.videoId
+		console.log "enterd single play ."
+		App.navigate 'init'        
 
 		
 ]

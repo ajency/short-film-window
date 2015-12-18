@@ -24,10 +24,10 @@
               <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{Videodetails.duration }}  MIN</span>
             </div>
             <div class="category">
-              <span class="inline">Drama</span>
-              <span class="inline">Comedy</span>
-              <span class="inline">Sci-Fi</span>
-              <span class="inline">Award Winning</span>
+              <label ng-repeat ="data in Videodetails.genres">
+              <span class="inline">{{ data }}</span>
+              
+            </label>
             </div>
             <div class="viewsNLikes padding-top">
               <span><i class="ion-ios-eye"></i> {{ Videodetails.no_of_views }}</span>
@@ -38,22 +38,20 @@
     </div>
     <div class="synopsis">
       <h5 class="primaryText text-uppercase bold padding-horizontal padding-top">Synopsis</h5>
-      <p class="padding-horizontal">
-        Tense and to the-point thriller about a man who is given a casual errand which then expands into an assassination. 
-        <br><br>
-        You travel with Rick, and he is such a harmless, awkward-looking blank that you quickly indentify yourself with him. He seems like a man who does small, odd jobs for much more powerfull absent crime-boss. But today is the day his boss has decided to give Rick a promotion. 
-      </p> 
-      <div class="col text-center">
+      <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
+        
+      </div> 
+    <!--   <div class="col text-center">
         <i class="ion-ios-arrow-down"></i>
-      </div>       
+      </div>   -->     
     </div>
-    <div class="infocus">
+  <!--   <div class="infocus">
       <h5 class="primaryText text-uppercase bold padding-horizontal padding-top">In focus</h5>
       <p class="padding-horizontal primaryText subheading">
        In conversation with Mr. Smith, the villan behind the Matrix       
       </p> 
       <div class="padding-horizontal"><img src="img/killerkart.jpg"/></div>  
-      <!-- <div class="movieText">
+      <div class="movieText">
         <p class="padding">
           Here identification with characters, which we as story-consumers naturally grasp for and storyteller helpfully provide, plays with suspense and our expectations. We know enough about Rick to know that he is not a bad man, but not enough to know.... whether he will another man. We also know enough about his possible victims to not like him all that much, but not enough to actually wish him dead. The film extends this excruciating waiting game as long as possible with long following shots and meandering conversations.
           <br><br>
@@ -66,7 +64,7 @@
           <span class="inline"><i class="ion-social-twitter"></i></span>
           <span class="inline"><i class="ion-social-googleplus"></i></span>
         </div>
-      </div>  -->              
-    </div>
+      </div>               
+    </div> -->
   </ion-content>
 </ion-view> 

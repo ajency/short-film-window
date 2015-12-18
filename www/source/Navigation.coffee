@@ -22,7 +22,6 @@ angular.module 'SFWApp.navigate', []
 					templateUrl: 'views/tabs/popular/popular.html'
 					controller: 'popularCtrl'
 
-
 		.state 'genre',
 			url: '/genre'
 			parent: 'home'
@@ -31,7 +30,6 @@ angular.module 'SFWApp.navigate', []
 					templateUrl: 'views/tabs/genre/genre.html'
 					controller: 'genreCtrl'
 					
-
 		.state 'playlist',
 			url: '/playlist'
 			parent: 'home'
@@ -64,11 +62,7 @@ angular.module 'SFWApp.navigate', []
 			controller: 'singleGenre'					
 			templateUrl: 'views/tabs/genre/singleGenre.html'
 
-		.state 'filterGenreCtrl',
-			url: '/filterGenreCtrl'
-			cache: false
-			controller: 'filterGenreCtrl'					
-			templateUrl: 'views/filterPopup/filterPopup.html'		
+				
 
 			
 

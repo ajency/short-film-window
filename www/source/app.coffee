@@ -1,5 +1,5 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs','SFWApp.filter']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs']
 
 .run ['$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen', ($rootScope, App, $timeout,Set_Get,$cordovaSplashscreen)->
 	

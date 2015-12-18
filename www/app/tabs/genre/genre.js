@@ -1,6 +1,13 @@
 angular.module('SFWApp.tabs').controller('genreCtrl', [
-  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', function($scope, App, PulltorefreshAPI, DetailsAPI) {
+  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     $scope.doRefresh = function() {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 600,
+        showDelay: 0
+      });
       return PulltorefreshAPI.pullrequest().then((function(_this) {
         return function(data) {
           console.log(data.defaults.content.popular.weekly_premiere.image);
@@ -13,20 +20,25 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
             playlist: data.defaults.content.playlists
           });
           $scope.genre = DetailsAPI.genre_array;
-          return $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('scroll.refreshComplete');
+          return $ionicLoading.hide();
         };
       })(this), (function(_this) {
         return function(error) {
           $scope.$broadcast('scroll.refreshComplete');
-          return console.log('Error Loading data');
+          console.log('Error Loading data');
+          return $ionicLoading.hide();
         };
       })(this));
     };
     $scope.test = function() {
       return $scope.genre = DetailsAPI.genre_array;
     };
-    return $scope.singleGenre = function() {
-      return App.navigate("singleGenre", {}, {});
+    return $scope.singleGenre = function(genreId) {
+      console.log(genreId);
+      DetailsAPI.videoId = genreId;
+      console.log(DetailsAPI.videoId);
+      return App.navigate("singleGenre");
     };
   }
 ]);

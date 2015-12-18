@@ -27,6 +27,9 @@ angular.module('SFWApp.Global', []).factory('App', [
         }
         return $state.go(state, params);
       },
+      getbackView: function() {
+        return console.log($ionicHistory.backView());
+      },
       goBack: function(count) {
         return $ionicHistory.goBack(count);
       },

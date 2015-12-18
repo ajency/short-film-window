@@ -1,7 +1,14 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
-  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', function($scope, App, PulltorefreshAPI, DetailsAPI) {
+  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     $scope.doRefresh = function() {
       console.log(PulltorefreshAPI);
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 600,
+        showDelay: 0
+      });
       return PulltorefreshAPI.pullrequest().then((function(_this) {
         return function(data) {
           console.log(data.defaults.content.popular.weekly_premiere.image);
@@ -18,12 +25,14 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
           $scope.noteworthy = DetailsAPI.array_noteworthy;
           $scope.awplalist = DetailsAPI.array_awplalist;
           $scope.videoId = DetailsAPI.array.videoId;
-          return $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('scroll.refreshComplete');
+          return $ionicLoading.hide();
         };
       })(this), (function(_this) {
         return function(error) {
           $scope.$broadcast('scroll.refreshComplete');
-          return console.log('Error Loading data');
+          console.log('Error Loading data');
+          return $ionicLoading.hide();
         };
       })(this));
     };
@@ -32,10 +41,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       DetailsAPI.videoId = videoid;
       console.log(DetailsAPI.videoId);
       console.log("enterd single play .");
-      return App.navigate('init', {}, {
-        animate: false,
-        back: false
-      });
+      return App.navigate('init');
     };
     return $scope.test = function() {
       $scope.premeiere = DetailsAPI.array;
