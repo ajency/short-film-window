@@ -1,8 +1,11 @@
 angular.module('SFWApp.singlePlayer', []).controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', function($scope, $sce, DetailsAPI) {
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', function($scope, $sce, DetailsAPI, $ionicHistory) {
     var onPlayerReady, onPlayerStateChange, stopVideo;
     console.log(DetailsAPI.singleVideoarray);
     $scope.view = {
+      back: function() {
+        return $ionicHistory.goBack();
+      },
       vType: DetailsAPI.singleVideoarray.type,
       vimomeo: null,
       init: function() {

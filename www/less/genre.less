@@ -185,7 +185,27 @@
     	}
 	}
 }
-.filterRadioOuter
+.sortPopup
+{
+	.popup-head
+	{
+		h4
+		{
+			margin: 0;
+			text-align: left;
+		}
+	}
+	.popupFooter
+	{
+		min-height: 10px;
+		button
+		{
+			margin: 0;
+			top: 0;
+		}
+	}
+}
+/*.filterRadioOuter
 {
 	padding: 2px 15px;	
 	input
@@ -236,4 +256,37 @@
 	    }
 	}
 	
+}*/
+.customRadio, .customRadioDuration
+{
+	.item-radio 
+	{
+		border:none !important;
+		.item-content
+		{
+			padding: 5px 5px 5px 40px;			
+		}
+		.radio-icon
+		{
+			right: 83%;
+			left: 0;
+			padding: 0;
+			visibility: visible;
+			padding: 5px 10px;
+
+			&.ion-checkmark:before
+			{
+				content: "\f21b";
+				transform: scale(0.5);
+    			float: left;
+    			color: @grayLighter;
+			}
+		}
+	}
+	.item-radio input:checked ~ .radio-icon.ion-checkmark:before
+	{
+		content: "\f3a7";
+		color: @primary;
+		transform: scale(0.8);
+	}
 }

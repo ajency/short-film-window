@@ -4,7 +4,7 @@
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase" ng-click="hide()"><i class="ion-ios-arrow-back margin0"></i>Filters</button>
       </ion-header-bar>
-      <ion-content class="">
+      <ion-content class="filterPopup">
        <h5 class="text-uppercase padding">Language</h3>
         <ul class="list margin0">       
           <li class="item-checkbox">
@@ -30,7 +30,7 @@
              Hindi
           </li>
         </ul>
-        <ul class="list margin0">      
+        <ul class="list">      
           <li class="item-checkbox">
              <label class="checkbox">
                <input type="checkbox">
@@ -39,49 +39,95 @@
           </li>
         </ul>        
         <hr>
-        <h5 class="text-uppercase padding">Country</h3>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">All</label>
-        </div>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">India</label>
-        </div>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">UK</label>
-        </div>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">Japan</label>
-        </div>
+        <h5 class="text-uppercase padding">Country</h3>       
+        <div class="list customRadioDuration">
+
+         <label class="item item-radio">
+            <input type="radio" name="group1">
+            <div class="item-content">
+               All
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group1">
+            <div class="item-content">
+               India
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group1">
+            <div class="item-content">
+               UK
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group1">
+            <div class="item-content">
+               Japan
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+      </div>
         <hr>        
         <h5 class="text-uppercase padding">Duration</h3>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">1 Min to 15 Mins</label>
-        </div>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">15 Mins to 30 Mins</label>
-        </div>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">30 Mins to 1 Hour</label>
-        </div>
-        <div class="col filterRadioOuter">
-          <input type="radio" value="" />
-          <label class="radioIcon"><span></span></label>
-          <label class="padding-left">1 Hour and Above</label>
-        </div>        
+
+       <div class="list customRadio">
+          <label class="item item-radio">
+            <input type="radio" name="group2">
+            <div class="item-content">
+               All
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group2">
+            <div class="item-content">
+               1 Min to 15 Mins
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group2">
+            <div class="item-content">
+               15 Mins to 30 Mins
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group2">
+            <div class="item-content">
+               30 Mins to 1 Hour
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+         <label class="item item-radio">
+            <input type="radio" name="group2">
+            <div class="item-content">
+               1 Hour and Above
+            </div>
+            <i class="radio-icon ion-checkmark"></i>
+         </label>
+
+      </div>
+       <!--  <div>
+        <ion-list class="customRadio">
+          <ion-radio >1 Min to 15 Mins</ion-radio>
+          <ion-radio >15 Mins to 30 Mins</ion-radio>
+          <ion-radio >30 Mins to 1 Hour</ion-radio>
+          <ion-radio >1 Hour and Above</ion-radio>
+        </ion-list>       
+        </div> -->
       </ion-content>  
       <ion-footer-bar class="bar bar-footer popupFooter">
         <button class="button button-clear button-small col col-50 pull-left text-uppercase">Reset</button>   

@@ -1,16 +1,16 @@
       <ion-side-menus ng-init="init()">
     <ion-side-menu-content class="singleGenre" >
       <ion-header-bar class="bar bar-header primary">
-        <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>       
+        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>       
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
       <ion-content class="popular">
         <div class="list card margin0 cardOuter">
 
           <div class="item item-avatar">
-            <img src="../img/icons/new_additions.png">
-            <div class="primaryText cardTitle">Horror</div>
-            <div class="primaryText bold totalfilmsNTime">10 Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span></div>
+            <img src="{{ genre.genre_image_url }}">
+            <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
+            <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
           </div>
 
           <!-- <div class="item item-image padding0">

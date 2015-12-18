@@ -8,7 +8,8 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         maxWidth: 600,
         showDelay: 0
       });
-      console.log(GenreAPI);
+      console.log(DetailsAPI.genre_array);
+      $scope.genre = DetailsAPI.genre_array;
       return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
         return function(data) {
           $scope.genreData = data;
@@ -49,8 +50,10 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
-    return $scope.back = function() {
-      return $ionicHistory.goBack();
+    return $scope.view = {
+      back: function() {
+        return $ionicHistory.goBack();
+      }
     };
   }
 ]);

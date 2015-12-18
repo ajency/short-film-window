@@ -10,7 +10,9 @@ angular.module 'SFWApp.tabs'
 		  maxWidth: 600
 		  showDelay: 0
 
-		console.log GenreAPI
+		console.log DetailsAPI.genre_array
+		$scope.genre = DetailsAPI.genre_array
+		
 
 		GenreAPI.GetSingleGenre(DetailsAPI.videoId)
 		.then (data)=>
@@ -51,10 +53,11 @@ angular.module 'SFWApp.tabs'
 		App.navigate 'init'        
 
 
-	$scope.back = ()->
-		$ionicHistory.goBack();
-		# count = -1
-		# App.goBack count	
+	$scope.view= 
+		back :()->
+			$ionicHistory.goBack();
+			# count = -1
+			# App.goBack count	
 
 		
 ]
