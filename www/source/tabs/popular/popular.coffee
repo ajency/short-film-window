@@ -1,6 +1,8 @@
 angular.module 'SFWApp.tabs',[]
 .controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
 	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading)->
+
+
 		
 		$scope.doRefresh = ()->
 			console.log PulltorefreshAPI
@@ -46,4 +48,13 @@ angular.module 'SFWApp.tabs',[]
 			$scope.noteworthy= DetailsAPI.array_noteworthy
 			$scope.awplalist= DetailsAPI.array_awplalist
 			$scope.videoId = DetailsAPI.array.videoId
+
+		$scope.view =
+
+		swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination'
+				paginationClickable: true
+				direction: 'vertical'
+					});
+
 ]

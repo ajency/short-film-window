@@ -12,7 +12,8 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       $scope.genre = DetailsAPI.genre_array;
       return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
         return function(data) {
-          $scope.genreData = data;
+          $scope.genreData = data.movies;
+          $scope.genre = data.genre;
           console.log($scope.genreData);
           return $ionicLoading.hide();
         };
