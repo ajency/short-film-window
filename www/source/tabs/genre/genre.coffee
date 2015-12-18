@@ -1,7 +1,7 @@
 angular.module 'SFWApp.tabs'
-.controller 'genreCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
+.controller 'genreCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
 
-	,($scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading)->
+	,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading)->
 
 		$scope.doRefresh = ()->
 			$ionicLoading.show
@@ -30,6 +30,7 @@ angular.module 'SFWApp.tabs'
 		    $scope.genre = DetailsAPI.genre_array
 
 		$scope.singleGenre = (genreId)->
+			
 			console.log genreId
 			DetailsAPI.videoId = genreId
 			console.log DetailsAPI.videoId

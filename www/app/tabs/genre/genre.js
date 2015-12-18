@@ -1,5 +1,5 @@
 angular.module('SFWApp.tabs').controller('genreCtrl', [
-  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
+  '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     $scope.doRefresh = function() {
       $ionicLoading.show({
         content: 'Loading',
