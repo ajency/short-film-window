@@ -1,5 +1,5 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', function($scope, $sce, App, DetailsAPI, $ionicLoading) {
+  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory) {
     var Vtype;
     $scope.Videodetails = [];
     $scope.init = function() {
@@ -35,7 +35,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
     });
     return $scope.view = {
       back: function() {
-        return App.navigate('popular');
+        return $ionicHistory.goBack();
       },
       playVideo: function() {
         return App.navigate('singlePlayer');

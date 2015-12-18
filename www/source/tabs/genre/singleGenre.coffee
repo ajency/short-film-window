@@ -1,6 +1,6 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI)->
+.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory)->
 	
 	$scope.init = () ->
 		$ionicLoading.show
@@ -49,6 +49,12 @@ angular.module 'SFWApp.tabs'
 		console.log DetailsAPI.videoId
 		console.log "enterd single play ."
 		App.navigate 'init'        
+
+
+	$scope.back = ()->
+		$ionicHistory.goBack();
+		# count = -1
+		# App.goBack count	
 
 		
 ]

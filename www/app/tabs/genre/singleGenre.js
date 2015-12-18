@@ -1,5 +1,5 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
-  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI) {
+  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory) {
     $scope.init = function() {
       $ionicLoading.show({
         content: 'Loading',
@@ -42,12 +42,15 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         hideOnStateChange: false
       };
     };
-    return $scope.singleplay = function(videoid) {
+    $scope.singleplay = function(videoid) {
       console.log(videoid);
       DetailsAPI.videoId = videoid;
       console.log(DetailsAPI.videoId);
       console.log("enterd single play .");
       return App.navigate('init');
+    };
+    return $scope.back = function() {
+      return $ionicHistory.goBack();
     };
   }
 ]);
