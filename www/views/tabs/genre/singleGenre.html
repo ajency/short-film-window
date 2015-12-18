@@ -12,27 +12,6 @@
             <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
             <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
           </div>
-
-          <!-- <div class="item item-image padding0">
-            <div class="imageContainerOuter"><img src="../img/indian1.jpg"/></div>
-            <div class="overlay"></div>
-            <div class="movieDetails padding-horizontal whiteText">
-              <div class="title padding-vertical">
-                I am here <span>by Optimus Prime</span>
-              </div>
-              <div class="tagline padding-vertical">
-                Tagline of the movie goes here. It may span 2 lines for bigger taglines.
-              </div>
-              <div class="country padding-vertical">
-                <span>Transilvania / Romanian</span>
-                <span class="pull-right text-uppercase"><i class="ion-android-time"></i> 20 min</span>
-              </div>                  
-              <div class="viewsNLikes padding-top">
-                <span><i class="ion-ios-eye"></i> 462</span>
-                <span><i class="ion-thumbsup"></i> 262</span>
-              </div>
-            </div>
-          </div> -->
           <div ng-repeat ="data in genreData">
           <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
