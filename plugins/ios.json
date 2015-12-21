@@ -54,6 +54,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ionicframework.shortfilmwindow549658"
         }
     },
     "dependent_plugins": {}

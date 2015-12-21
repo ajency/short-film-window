@@ -8,6 +8,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
 	firstScriptTag = document.getElementsByTagName('script')[0]
 	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
+	swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination'
+					paginationClickable: true
+					direction: 'vertical'
+						});
 	# $cordovaSplashscreen.hide();
 
 	$timeout ->

@@ -5,10 +5,19 @@ angular.module('SFWApp.sidebar', [])
 
 
   $scope.slideContent = ->
+
     console.log "slide"
     console.log DetailsAPI.imageUrl
     $ionicSideMenuDelegate.toggleLeft()
     return
+
+   $scope.FAQ = ->
+
+    console.log "slide"
+    console.log DetailsAPI.imageUrl
+    $ionicSideMenuDelegate.toggleLeft()
+    window.open('http://www.shortfilmwindow.com/faq/', '_system', 'location=yes'); return false;
+    return 
 
   $scope.openModal = ->
     $scope.taskModal.show()

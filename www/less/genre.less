@@ -1,3 +1,7 @@
+.swiper-container, .swiper-wrapper, .player1video
+{
+	height: 100%;
+}
 .genre
 {
 	.playlist
@@ -29,6 +33,10 @@
 }
 .singleGenre
 {
+	.scroll
+	{
+		height: 100%;
+	}
 	.filterPopup
 	{
 		color: @grayDark;
@@ -195,9 +203,30 @@
 			text-align: left;
 		}
 	}
+	.popup-body
+	{
+		color: @grayDark;
+		.sortInner
+		{
+			float: left;
+			width: 100%;
+
+			img
+			{
+				float: left;	
+				margin-right: 10px;
+				width: 30px;			
+			}
+			span
+			{
+				float: left;
+				margin-top: 5px;
+			}
+		}
+	}
 	.popupFooter
 	{
-		min-height: 10px;
+		min-height: 38px;
 		button
 		{
 			margin: 0;

@@ -51,10 +51,10 @@ angular.module 'SFWApp.tabs',[]
 
 		$scope.view =
 
-		swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination'
-				paginationClickable: true
-				direction: 'vertical'
-					});
+			swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination'
+					paginationClickable: true
+					direction: 'vertical'
+						});
 
 ]

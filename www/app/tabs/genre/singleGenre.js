@@ -1,6 +1,12 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
   '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory) {
     $scope.init = function() {
+      var swiper;
+      swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        direction: 'vertical'
+      });
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -51,10 +57,8 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
-    return $scope.view = {
-      back: function() {
-        return $ionicHistory.goBack();
-      }
+    return $scope.back = function() {
+      return $ionicHistory.goBack();
     };
   }
 ]);

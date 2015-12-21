@@ -4,6 +4,13 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
     console.log(DetailsAPI.imageUrl);
     $ionicSideMenuDelegate.toggleLeft();
   };
+  $scope.FAQ = function() {
+    console.log("slide");
+    console.log(DetailsAPI.imageUrl);
+    $ionicSideMenuDelegate.toggleLeft();
+    window.open('http://www.shortfilmwindow.com/faq/', '_system', 'location=yes');
+    return false;
+  };
   $scope.openModal = function() {
     $scope.taskModal.show();
   };

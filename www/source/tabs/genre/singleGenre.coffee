@@ -3,6 +3,12 @@ angular.module 'SFWApp.tabs'
 .controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory)->
 	
 	$scope.init = () ->
+		swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination'
+				paginationClickable: true
+				direction: 'vertical'
+					});
+		
 		$ionicLoading.show
 		  content: 'Loading'
 		  animation: 'fade-in'
@@ -53,12 +59,15 @@ angular.module 'SFWApp.tabs'
 		console.log "enterd single play ."
 		App.navigate 'init'        
 
+	$scope.back = ()->
+		$ionicHistory.goBack();
+		# count = -1
+		# App.goBack count		
 
-	$scope.view= 
-		back :()->
-			$ionicHistory.goBack();
-			# count = -1
-			# App.goBack count	
+
+
+	
+
 
 		
 ]

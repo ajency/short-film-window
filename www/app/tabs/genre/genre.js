@@ -1,5 +1,6 @@
 angular.module('SFWApp.tabs').controller('genreCtrl', [
   '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
+    var swiper;
     $scope.doRefresh = function() {
       $ionicLoading.show({
         content: 'Loading',
@@ -34,11 +35,16 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
     $scope.test = function() {
       return $scope.genre = DetailsAPI.genre_array;
     };
-    return $scope.singleGenre = function(genreId) {
+    $scope.singleGenre = function(genreId) {
       console.log(genreId);
       DetailsAPI.videoId = genreId;
       console.log(DetailsAPI.videoId);
       return App.navigate("singleGenre");
     };
+    return swiper = new Swiper('.swiper-container', {
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      direction: 'vertical'
+    });
   }
 ]);
