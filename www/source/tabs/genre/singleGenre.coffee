@@ -8,7 +8,7 @@ angular.module 'SFWApp.tabs'
 				paginationClickable: true
 				direction: 'vertical'
 					});
-		
+
 		$ionicLoading.show
 		  content: 'Loading'
 		  animation: 'fade-in'
@@ -25,7 +25,6 @@ angular.module 'SFWApp.tabs'
 			
 			$scope.genreData= data.movies
 			$scope.genre = data.genre
-			console.log $scope.genreData
 			$ionicLoading.hide();
 		, (error)=>
 			console.log 'Error Loading data'

@@ -20,7 +20,6 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         return function(data) {
           $scope.genreData = data.movies;
           $scope.genre = data.genre;
-          console.log($scope.genreData);
           return $ionicLoading.hide();
         };
       })(this), (function(_this) {
