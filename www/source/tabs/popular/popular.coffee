@@ -1,11 +1,11 @@
 angular.module 'SFWApp.tabs',[]
 .controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
 	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading)->
-
+   
 
 		
 		$scope.doRefresh = ()->
-			console.log PulltorefreshAPI
+			
 			$ionicLoading.show
 			  content: 'Loading'
 			  animation: 'fade-in'

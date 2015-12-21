@@ -2,7 +2,6 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
   '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     var swiper;
     $scope.doRefresh = function() {
-      console.log(PulltorefreshAPI);
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
