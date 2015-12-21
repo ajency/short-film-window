@@ -14,7 +14,6 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         maxWidth: 600,
         showDelay: 0
       });
-      console.log(DetailsAPI.genre_array);
       $scope.genre = DetailsAPI.genre_array;
       return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
         return function(data) {
