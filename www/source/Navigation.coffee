@@ -8,27 +8,25 @@ angular.module 'SFWApp.navigate', []
 
 	$stateProvider
 
-		
+
 		.state 'home',
 			url: '/sidebar'
-			abstract: true	
-			controller: 'sidebarCtrl'					
+			abstract: true
+			controller: 'sidebarCtrl'
 			templateUrl: 'views/home/home.html'
 
 		.state 'tabhome',
 			url:'/homeTab'
 			parent: 'home'
-			abstract: true	
+			abstract: true
 			views:
 				"homeview":
-					templateUrl:'views/home/homeTab.html'	
-
-
+					templateUrl:'views/home/homeTab.html'
 
 		.state 'popular',
 			url: '/popular'
 			parent: 'tabhome'
-			views: 
+			views:
 				"popularContent":
 					templateUrl: 'views/tabs/popular/popular.html'
 					controller: 'popularCtrl'
@@ -36,41 +34,41 @@ angular.module 'SFWApp.navigate', []
 		.state 'genre',
 			url: '/genre'
 			parent: 'tabhome'
-			views: 
+			views:
 				"genreContent":
 					templateUrl: 'views/tabs/genre/genre.html'
 					controller: 'genreCtrl'
-					
+
 		.state 'playlist',
 			url: '/playlist'
 			parent: 'tabhome'
-			views: 
+			views:
 				"playlistContent":
 					templateUrl: 'views/tabs/playlist/playlist.html'
-					controller: 'playlistCtrl'						
+					controller: 'playlistCtrl'
 
 		.state 'init',
 			url: '/init'
 			cache: false
-			controller: 'InitCtrl'					
+			controller: 'InitCtrl'
 			templateUrl: 'views/singlevideo/movieScreen.html'
 
 		.state 'singlePlayer',
 			url: '/singlePlayer'
 			cache: false
-			controller: 'playerCtrl'					
-			templateUrl: 'views/singlevideo/singlePlayer.html'	
+			controller: 'playerCtrl'
+			templateUrl: 'views/singlevideo/singlePlayer.html'
 
 		.state 'landingvideo',
 			url: '/landing'
 			cache: false
-			controller: 'landingCtrl'					
-			templateUrl: 'views/landingVideo/splash.html'	
+			controller: 'landingCtrl'
+			templateUrl: 'views/landingVideo/splash.html'
 
 		.state 'singleGenre',
 			url: '/singleGenre'
 			cache: false
-			controller: 'singleGenre'					
+			controller: 'singleGenre'
 			templateUrl: 'views/tabs/genre/singleGenre.html'
 
 
@@ -79,15 +77,15 @@ angular.module 'SFWApp.navigate', []
 			parent: 'home'
 			views:
 				"homeview":
-					controller: 'faqCtrl'					
-					templateUrl: 'views/faq/faq.html'	
+					controller: 'faqCtrl'
+					templateUrl: 'views/faq/faq.html'
 
 		.state 'onlineSubmit',
 			url: '/onlineSubmit'
 			parent: 'home'
 			views:
 				"homeview":
-					controller: 'onlineSubmitCtrl'					
+					controller: 'onlineSubmitCtrl'
 					templateUrl: 'views/submit/submit.html'
 
 		.state 'offlineSubmit',
@@ -95,11 +93,11 @@ angular.module 'SFWApp.navigate', []
 			parent: 'home'
 			views:
 				"homeview":
-					controller: 'offlineSubmitCtrl'					
-					templateUrl: 'views/submit/offlineSubmitform.html'	
-				
+					controller: 'offlineSubmitCtrl'
+					templateUrl: 'views/submit/offlineSubmitform.html'
 
-			
+
+
 
 
 
