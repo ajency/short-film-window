@@ -16,9 +16,6 @@ angular.module 'SFWApp.landing', []
 				  hideOnStateChange:true
 				  showDelay: 0
 			init:->
-
-				# $scope.landingVideo = $sce.trustAsHtml('<video id="land_vid_html5_api" class="vjs-tech" poster="img/LandingHeader.jpg" data-setup="{ controls: false,autoplay: true, preload: auto, loop: true, width: 100%, height:auto }" loop="" preload="auto" autoplay=""><source src="video/LandingVideo.mp4" type="video/mp4"></video>');
-				# console.log $scope.landingVideo
 				console.log 'enterd init'
 
 				DetailsAPI.GetVideoDetails()

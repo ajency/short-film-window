@@ -3,6 +3,10 @@ angular.module('SFWApp.sidebar', [])
 
 .controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI) ->
 
+  $scope.submit = ->
+    console.log "submit called"
+    App.navigate "onlineSubmit"
+
 
   $scope.slideContent = ->
 

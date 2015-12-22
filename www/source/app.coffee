@@ -1,5 +1,5 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs']
+angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar', 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs','SFWApp.faq','SFWApp.submit']
 
 .run ['$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen', ($rootScope, App, $timeout,Set_Get,$cordovaSplashscreen)->
 	
@@ -8,6 +8,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
 	firstScriptTag = document.getElementsByTagName('script')[0]
 	firstScriptTag.parentNode.insertBefore tag, firstScriptTag	
 	$rootScope.App = App
+	
 	swiper = new Swiper('.swiper-container', {
 					pagination: '.swiper-pagination'
 					paginationClickable: true

@@ -1,4 +1,8 @@
 angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI) {
+  $scope.submit = function() {
+    console.log("submit called");
+    return App.navigate("onlineSubmit");
+  };
   $scope.slideContent = function() {
     console.log("slide");
     console.log(DetailsAPI.imageUrl);

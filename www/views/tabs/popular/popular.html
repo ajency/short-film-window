@@ -37,12 +37,8 @@
 
                   </div>
         
-
-       
-        
         <div class="cardDetails swiper-slide"
-         collection-repeat ="data in addition" item-width="100%"
-    item-height="100%">
+         ng-repeat ="data in addition" ion-sticky >
          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
          <div class="item item-avatar">
                 <img src="img/icons/new_additions.png">
@@ -76,8 +72,7 @@
 
               
           <div class="cardDetails swiper-slide"
-          collection-repeat ="data in noteworthy" item-width="100%"
-    item-height="100%">
+          ng-repeat ="data in noteworthy" >
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
           <div class="item item-avatar">
                 <img src="img/icons/noteworthy.png">
@@ -117,8 +112,7 @@
                 <p>Just sit back and relax with some popcorn!</p>
               </div>
               <div
-                collection-repeat ="data in awplalist" item-width="100%"
-    item-height="100%">
+                ng-repeat ="data in awplalist" >
 
               <div class="playlistContent">
                 <div class="col imageContainer">

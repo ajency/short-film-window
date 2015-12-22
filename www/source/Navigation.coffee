@@ -7,6 +7,7 @@ angular.module 'SFWApp.navigate', []
 .config ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)->
 
 	$stateProvider
+
 		
 		.state 'home',
 			url: '/sidebar'
@@ -14,9 +15,19 @@ angular.module 'SFWApp.navigate', []
 			controller: 'sidebarCtrl'					
 			templateUrl: 'views/home/home.html'
 
+		.state 'tabhome',
+			url:'/homeTab'
+			parent: 'home'
+			abstract: true	
+			views:
+				"homeview":
+					templateUrl:'views/home/homeTab.html'	
+
+
+
 		.state 'popular',
 			url: '/popular'
-			parent: 'home'
+			parent: 'tabhome'
 			views: 
 				"popularContent":
 					templateUrl: 'views/tabs/popular/popular.html'
@@ -24,7 +35,7 @@ angular.module 'SFWApp.navigate', []
 
 		.state 'genre',
 			url: '/genre'
-			parent: 'home'
+			parent: 'tabhome'
 			views: 
 				"genreContent":
 					templateUrl: 'views/tabs/genre/genre.html'
@@ -32,7 +43,7 @@ angular.module 'SFWApp.navigate', []
 					
 		.state 'playlist',
 			url: '/playlist'
-			parent: 'home'
+			parent: 'tabhome'
 			views: 
 				"playlistContent":
 					templateUrl: 'views/tabs/playlist/playlist.html'
@@ -62,6 +73,30 @@ angular.module 'SFWApp.navigate', []
 			controller: 'singleGenre'					
 			templateUrl: 'views/tabs/genre/singleGenre.html'
 
+
+		.state 'faq',
+			url: '/faq'
+			parent: 'home'
+			views:
+				"homeview":
+					controller: 'faqCtrl'					
+					templateUrl: 'views/faq/faq.html'	
+
+		.state 'onlineSubmit',
+			url: '/onlineSubmit'
+			parent: 'home'
+			views:
+				"homeview":
+					controller: 'onlineSubmitCtrl'					
+					templateUrl: 'views/submit/submit.html'
+
+		.state 'offlineSubmit',
+			url: '/offlineSubmit'
+			parent: 'home'
+			views:
+				"homeview":
+					controller: 'offlineSubmitCtrl'					
+					templateUrl: 'views/submit/offlineSubmitform.html'	
 				
 
 			

@@ -21,6 +21,7 @@ angular.module 'SFWApp.singlePlayer', []
 					modifiedUrl = DetailsAPI.singleVideoarray.embedurl
 					@vimomeo = true
 					$scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+				
 					# $scope.player1 = modifiedUrl;
 
 					console.log $scope.player1
