@@ -137,13 +137,13 @@
 {
 	height: 100%;
 	display: flex;
-	.cardOuter
+	/*.cardOuter
 	{
 		.movieDetails
 		{
 			bottom:0;
 		}
-	}
+	}*/
 }
 .marginB
 {
@@ -179,7 +179,11 @@
 			left: 50%;
 			top: -15px;
 			color: @grayDark;
-			.title span, .tagline, .country, .viewsNLikes
+			.title span
+			{
+				color: @grayLighter;
+			}
+			.tagline, .country, .viewsNLikes
 			{
 				color: @grayDark;
 			}

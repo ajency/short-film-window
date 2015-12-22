@@ -6,7 +6,11 @@
       </ion-header-bar>
 
 
-
+      <div class="item item-avatar singleGenreAvtar">
+            <img src="{{ genre.genre_image_url }}">
+            <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
+            <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
+          </div>  
       <ion-content class="popular">
      <!--  <div class="swiper-container">
         <div class="swiper-wrapper"> -->
@@ -14,11 +18,7 @@
          <div ng-repeat ="data in genreData" class="cardDetails swiper-slide">
 
         <div class="list card margin0 cardOuter ">  
-          <div class="item item-avatar">
-            <img src="{{ genre.genre_image_url }}">
-            <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
-            <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
-          </div>               
+                       
           <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
                 <div class="overlay" ></div>
