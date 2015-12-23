@@ -61,6 +61,11 @@ angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]
       cache: false,
       controller: 'singleGenre',
       templateUrl: 'views/tabs/genre/singleGenre.html'
+    }).state('singlePlaylist', {
+      url: '/singlePlaylist',
+      cache: false,
+      controller: 'singlePlaylist',
+      templateUrl: 'views/tabs/playlist/singleplaylist.html'
     }).state('faq', {
       url: '/faq',
       parent: 'home',

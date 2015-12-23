@@ -71,6 +71,12 @@ angular.module 'SFWApp.navigate', []
 			controller: 'singleGenre'
 			templateUrl: 'views/tabs/genre/singleGenre.html'
 
+		.state 'singlePlaylist',
+			url: '/singlePlaylist'
+			cache: false
+			controller: 'singlePlaylist'
+			templateUrl: 'views/tabs/playlist/singleplaylist.html'
+
 
 		.state 'faq',
 			url: '/faq'

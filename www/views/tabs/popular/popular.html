@@ -7,12 +7,11 @@
                 <div class="swiper-wrapper">
 
                   <div class="list card margin0 cardOuter swiper-slide">
-
-                    <div class="item item-avatar">
+                <div class="item item-avatar"  ion-affix data-affix-within-parent-with-class="card">
                       <img src="img/icons/weekly_premiere.png">
                       <div class="primaryText cardTitle">Weekly Premiere</div>
                       <p>Carefully handpicked, just for you.</p>
-                    </div>              
+                    </div>
 
                     <div class="item item-image padding0" ng-click="singleplay( premeiere.movie_id )">
                       <div class="imageContainerOuter"><img src="{{ premeiere.image }}" /></div>
@@ -27,7 +26,7 @@
                         <div class="country padding-vertical">
                           {{ premeiere.region }}/ {{ premeiere.language}}<span></span>
                           <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ premeiere.duration }} MIN</span>
-                        </div>                  
+                        </div>
                         <div class="viewsNLikes padding-vertical">
                           <span><i class="ion-ios-eye"></i> {{ premeiere.no_of_views}}</span>
                           <span><i class="ion-thumbsup"></i> {{ premeiere.no_of_likes }}</span>
@@ -36,13 +35,13 @@
                     </div>
 
                   </div>
-        
+
         <div class="cardDetails swiper-slide"
          ng-repeat ="data in addition" ion-sticky >
          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
-         <div class="item item-avatar">
+         <div class="item item-avatar" ion-affix data-affix-within-parent-with-class="card">
                 <img src="img/icons/new_additions.png">
-                <div class="primaryText cardTitle">New Additions</div>
+                <div class="primaryText cardTitle" >New Additions</div>
                 <p>Just starting out on their big journey!</p>
               </div>
            <div class="item item-image padding0 newAdditions"  >
@@ -59,7 +58,7 @@
                   <div class="country padding-vertical">
                     {{ data.region }}/ {{ data.language}}<span></span>
                     <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ data.duration }} MIN</span>
-                  </div>                  
+                  </div>
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
                     <span><i class="ion-thumbsup"></i> {{ data.no_of_likes}}</span>
@@ -70,7 +69,7 @@
 
               </div>
 
-              
+
           <div class="cardDetails swiper-slide"
           ng-repeat ="data in noteworthy" >
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
@@ -80,7 +79,7 @@
                 <p>Completely out of the ordinary</p>
               </div>
               <div class="item item-image padding0 noteWorthy">
-                <div class="imageContainerOuter"><img src="{{ data.image }}" /> 
+                <div class="imageContainerOuter"><img src="{{ data.image }}" />
                 </div>
                 <div class="overlay"   ></div>
                 <div class="movieDetails padding whiteText">
@@ -93,7 +92,7 @@
                   <div class="country padding-vertical">
                     {{ data.region }}/ {{ data.language}}<span></span>
                     <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
-                  </div>                  
+                  </div>
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
                     <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
@@ -102,7 +101,7 @@
               </div>
                 </div>
             </div>
-           
+
 
             <div class="list card margin0 playlist swiper-slide">
 
@@ -116,7 +115,7 @@
 
               <div class="playlistContent">
                 <div class="col imageContainer">
-                  <div class="playlistContentInner">  
+                  <div class="playlistContentInner">
                     <img src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails">
                       <div class="title">
@@ -126,21 +125,21 @@
                         <span>{{ data.playlist_count }} Films</span>
                         <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.run_time }}MIN</span>
                       </div>
-                    </div> 
+                    </div>
                   </div>
-                </div>              
-                
+                </div>
+
                 </div>
               </div>
               <div class="playlistContent">
                 <div class="col imageContainer">
-                  <div class="viewPlaylist text-center">  
+                  <div class="viewPlaylist text-center">
                     <div class="text">Thats just the beginning!</div>
                     <button class="primary button button-small whiteText text-uppercase">See all playlists</button>
                   </div>
                 </div>
                 </div>
-              </div>    
+              </div>
 
                </div>
             </div>
@@ -158,7 +157,7 @@
             <div class="swiper-slide">Slide 9</div>
             <div class="swiper-slide">Slide 10</div>
         </div>
-    
+
         <div class="swiper-pagination"></div>
     </div> -->
           </ion-content>

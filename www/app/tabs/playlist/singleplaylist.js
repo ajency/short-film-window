@@ -1,5 +1,5 @@
-angular.module('SFWApp.tabs').controller('singleGenre', [
-  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory) {
+angular.module('SFWApp.tabs').controller('singlePlaylist', [
+  '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory) {
     $scope.init = function() {
       var swiper;
       swiper = new Swiper('.swiper-container', {
@@ -14,10 +14,10 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         maxWidth: 600,
         showDelay: 0
       });
-      return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
+      return PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId).then((function(_this) {
         return function(data) {
-          $scope.genreData = data.movies;
-          $scope.genre = data.genre;
+          $scope.playlistData = data.movies;
+          $scope.playlist = data.playlist;
           return $ionicLoading.hide();
         };
       })(this), (function(_this) {
@@ -26,26 +26,6 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           return $ionicLoading.hide();
         };
       })(this));
-    };
-    $scope.sortGenre = function() {
-      return $ionicLoading.show({
-        scope: $scope,
-        templateUrl: 'views/filterPopup/sortPopupgener.html',
-        hideOnStateChange: true
-      });
-    };
-    $scope.filterGenre = function() {
-      return $ionicLoading.show({
-        scope: $scope,
-        templateUrl: 'views/filterPopup/filterpopup.html',
-        hideOnStateChange: true
-      });
-    };
-    $scope.hide = function() {
-      $ionicLoading.hide();
-      return {
-        hideOnStateChange: false
-      };
     };
     $scope.singleplay = function(videoid) {
       console.log(videoid);

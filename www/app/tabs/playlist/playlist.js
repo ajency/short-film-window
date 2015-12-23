@@ -31,8 +31,14 @@ angular.module('SFWApp.tabs').controller('playlistCtrl', [
         };
       })(this));
     };
-    return $scope.test = function() {
+    $scope.test = function() {
       return $scope.playlist = DetailsAPI.playlist_array;
+    };
+    return $scope.singleplaylist = function(playlistId) {
+      console.log(playlistId);
+      DetailsAPI.videoId = playlistId;
+      console.log(DetailsAPI.videoId);
+      return App.navigate("singlePlaylist");
     };
   }
 ]);

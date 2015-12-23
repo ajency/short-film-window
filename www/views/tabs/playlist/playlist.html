@@ -5,8 +5,8 @@
              </ion-refresher>
             <div class="playlistContent">
               <div ng-repeat ="data in playlist">
-                <div class="col imageContainer">
-                  <div class="playlistContentInner">  
+                <div class="col imageContainer" ng-click="singleplaylist( data.playlist_id)">
+                  <div class="playlistContentInner">
                     <img src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails">
                       <div class="title">
@@ -16,15 +16,15 @@
                         <span>{{ data.playlist_count }} Films</span>
                         <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ data.run_time }} MIN</span>
                       </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
-              </div> 
-              </div>             
+              </div>
+              </div>
               <div class="padding endOfPlaylist text-uppercase text-center">
               <i class="ion-social-dropbox-outline"></i>
               <h4 class="bold margin0">Thats it</h4>
               <p>End of the line, folks</p>
-            
+
             </div>
           </ion-content>

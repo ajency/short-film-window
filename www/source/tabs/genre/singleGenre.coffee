@@ -1,7 +1,7 @@
 angular.module 'SFWApp.tabs'
 
 .controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory)->
-	
+
 	$scope.init = () ->
 		swiper = new Swiper('.swiper-container', {
 				pagination: '.swiper-pagination'
@@ -16,13 +16,13 @@ angular.module 'SFWApp.tabs'
 		  maxWidth: 600
 		  showDelay: 0
 
-		
-		$scope.genre = DetailsAPI.genre_array
-		
+
+		# $scope.genre = DetailsAPI.genre_array
+
 
 		GenreAPI.GetSingleGenre(DetailsAPI.videoId)
 		.then (data)=>
-			
+
 			$scope.genreData= data.movies
 			$scope.genre = data.genre
 			$ionicLoading.hide();
@@ -35,14 +35,14 @@ angular.module 'SFWApp.tabs'
 		$ionicLoading.show
 			scope: $scope
 			templateUrl:'views/filterPopup/sortPopupgener.html'
-			hideOnStateChange: true	
+			hideOnStateChange: true
 
 
 	$scope.filterGenre = ()->
 		$ionicLoading.show
 			scope: $scope
 			templateUrl:'views/filterPopup/filterpopup.html'
-			hideOnStateChange: true						
+			hideOnStateChange: true
 
 	$scope.hide = () ->
 
@@ -56,17 +56,17 @@ angular.module 'SFWApp.tabs'
 		DetailsAPI.videoId = videoid
 		console.log DetailsAPI.videoId
 		console.log "enterd single play ."
-		App.navigate 'init'        
+		App.navigate 'init'
 
 	$scope.back = ()->
 		$ionicHistory.goBack();
 		# count = -1
-		# App.goBack count		
+		# App.goBack count
 
 
 
-	
 
 
-		
+
+
 ]
