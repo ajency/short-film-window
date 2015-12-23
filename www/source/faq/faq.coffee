@@ -1,6 +1,6 @@
 angular.module 'SFWApp.faq', []
 
-.controller 'faqCtrl', ['$scope','$sce','$ionicHistory',($scope,$sce,$ionicHistory)->
+.controller 'faqCtrl', ['$scope','$sce','$ionicHistory','$ionicLoading',($scope,$sce,$ionicHistory,$ionicLoading)->
 
 	$scope.view =
 
@@ -10,8 +10,19 @@ angular.module 'SFWApp.faq', []
 			# App.goBack count
 
 		init:->
+            $('#player1').ready ->
+                $ionicLoading.show
+                  content: 'Loading'
+                  animation: 'fade-in'
+                  showBackdrop: true
+                  maxWidth: 600
+                  hideOnStateChange:true
+                  showDelay: 0
 
-			modifiedUrl = "http://www.shortfilmwindow.com/faq/"
-			$scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+            $('#player1').load ->
+                $ionicLoading.hide();
+
+            modifiedUrl = "http://www.shortfilmwindow.com/faq/"
+            $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
 
 		]

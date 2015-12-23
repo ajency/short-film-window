@@ -32,8 +32,9 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
         };
       })(this));
     };
-    $scope.test = function() {
-      return $scope.genre = DetailsAPI.genre_array;
+    $scope.init = function() {
+      $scope.genre = DetailsAPI.genre_array;
+      return console.log($scope.genre);
     };
     $scope.singleGenre = function(genreId) {
       console.log(genreId);

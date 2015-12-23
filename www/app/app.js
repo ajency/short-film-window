@@ -1,4 +1,4 @@
-angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'SFWApp.faq', 'SFWApp.submit']).run([
+angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'SFWApp.faq', 'SFWApp.submit', 'ionicLazyLoad']).run([
   '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', function($rootScope, App, $timeout, Set_Get, $cordovaSplashscreen) {
     var firstScriptTag, swiper, tag;
     tag = document.createElement('script');
@@ -13,7 +13,7 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init',
     });
     $timeout(function() {
       App.navigate('landingvideo', {}, {});
-    }, 3000);
+    }, 1000);
     return $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       App.previousState = from.name;
       return App.currentState = to.name;
