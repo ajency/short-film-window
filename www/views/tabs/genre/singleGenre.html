@@ -1,11 +1,9 @@
-      <ion-side-menus ng-init="init()">
-    <ion-side-menu-content class="singleGenre" >
+      <ion-view class="singleGenre" ng-init="init()">
+<!--     <ion-content class="singleGenre" > -->
       <ion-header-bar class="bar bar-header primary">
-        <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
+        <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Genre</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-
-
       <div class="item item-avatar singleGenreAvtar">
             <img src="{{ genre.genre_image_url }}">
             <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
@@ -51,5 +49,6 @@
         <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()"><i class="ion-funnel"></i>Filter</button>
         <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()"><i class="ion-android-arrow-up"></i>Sort</button>
       </ion-footer-bar>
-    </ion-side-menu-content>
-  </ion-side-menus>
+    <!-- </ion-side-menu-content> -->
+  <!-- </ion-side-menus> -->
+  <ion-view>

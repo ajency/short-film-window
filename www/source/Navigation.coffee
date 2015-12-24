@@ -65,9 +65,14 @@ angular.module 'SFWApp.navigate', []
 			controller: 'landingCtrl'
 			templateUrl: 'views/landingVideo/splash.html'
 
+		.state 'navbar',
+			url:'/navbar'
+			abstract: false
+			templateUrl:'views/home/navBar.html'
+
 		.state 'singleGenre',
 			url: '/singleGenre'
-			cache: false
+			cache:false
 			controller: 'singleGenre'
 			templateUrl: 'views/tabs/genre/singleGenre.html'
 
@@ -75,32 +80,9 @@ angular.module 'SFWApp.navigate', []
 			url: '/singlePlaylist'
 			cache: false
 			controller: 'singlePlaylist'
-			templateUrl: 'views/tabs/playlist/singleplaylist.html'
+			templateUrl: 'views/tabs/playlist/singlePlaylist.html'
 
 
-		.state 'faq',
-			url: '/faq'
-			parent: 'home'
-			views:
-				"homeview":
-					controller: 'faqCtrl'
-					templateUrl: 'views/faq/faq.html'
-
-		.state 'onlineSubmit',
-			url: '/onlineSubmit'
-			parent: 'home'
-			views:
-				"homeview":
-					controller: 'onlineSubmitCtrl'
-					templateUrl: 'views/submit/submit.html'
-
-		.state 'offlineSubmit',
-			url: '/offlineSubmit'
-			parent: 'home'
-			views:
-				"homeview":
-					controller: 'offlineSubmitCtrl'
-					templateUrl: 'views/submit/offlineSubmitform.html'
 
 
 

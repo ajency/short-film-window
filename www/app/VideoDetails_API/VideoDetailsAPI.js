@@ -8,6 +8,10 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     DetailsAPI.array_awplaylist = [];
     DetailsAPI.genre_array = [];
     DetailsAPI.playlist_array = [];
+    DetailsAPI.Global_array = [];
+    DetailsAPI.GlobalChild_array = [];
+    DetailsAPI.Filter = [];
+    DetailsAPI.Sort = [];
     DetailsAPI.array = [];
     DetailsAPI.singleVideoarray = [];
     DetailsAPI.GetVideoDetails = function() {

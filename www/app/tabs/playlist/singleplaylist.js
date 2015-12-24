@@ -7,25 +7,34 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
         paginationClickable: true,
         direction: 'vertical'
       });
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
-      return PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId).then((function(_this) {
-        return function(data) {
-          $scope.playlistData = data.movies;
-          $scope.playlist = data.playlist;
-          return $ionicLoading.hide();
-        };
-      })(this), (function(_this) {
-        return function(error) {
-          console.log('Error Loading data');
-          return $ionicLoading.hide();
-        };
-      })(this));
+      if (DetailsAPI.GlobalChild_array.length > 0) {
+        console.log("Playlist cached");
+        $scope.playlistData = DetailsAPI.GlobalChild_array;
+        return $scope.playlist = DetailsAPI.Global_array;
+      } else {
+        console.log("Playlist emplty");
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: true,
+          maxWidth: 600,
+          showDelay: 0
+        });
+        return PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId).then((function(_this) {
+          return function(data) {
+            DetailsAPI.Global_array = data.playlist;
+            DetailsAPI.GlobalChild_array = data.movies;
+            $scope.playlistData = data.movies;
+            $scope.playlist = data.playlist;
+            return $ionicLoading.hide();
+          };
+        })(this), (function(_this) {
+          return function(error) {
+            console.log('Error Loading data');
+            return $ionicLoading.hide();
+          };
+        })(this));
+      }
     };
     $scope.singleplay = function(videoid) {
       console.log(videoid);
@@ -35,7 +44,11 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
       return App.navigate('init');
     };
     return $scope.back = function() {
-      return $ionicHistory.goBack();
+      var count;
+      DetailsAPI.Global_array = [];
+      DetailsAPI.GlobalChild_array = [];
+      count = -1;
+      return App.goBack(count);
     };
   }
 ]);

@@ -17,9 +17,9 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
 	# $cordovaSplashscreen.hide();
 
 	$timeout ->
-	  App.navigate 'landingvideo', {}, {}
+	  App.navigate 'landingvideo'
 	  return
-	, 1000
+	, 5000
 
 
 	$rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams)->

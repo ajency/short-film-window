@@ -9,26 +9,28 @@ angular.module 'SFWApp.tabs'
                 direction: 'vertical'
                     });
 
-        $ionicLoading.show
-          content: 'Loading'
-          animation: 'fade-in'
-          showBackdrop: true
-          maxWidth: 600
-          showDelay: 0
-
-
-        # $scope.playlist = DetailsAPI.genre_array
-
-
-        PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId)
-        .then (data)=>
-
-            $scope.playlistData= data.movies
-            $scope.playlist = data.playlist
-            $ionicLoading.hide();
-        , (error)=>
-            console.log 'Error Loading data'
-            $ionicLoading.hide();
+        if ( DetailsAPI.GlobalChild_array.length >0 )
+            console.log "Playlist cached"
+            $scope.playlistData= DetailsAPI.GlobalChild_array
+            $scope.playlist = DetailsAPI.Global_array
+        else
+            console.log "Playlist emplty"
+            $ionicLoading.show
+              content: 'Loading'
+              animation: 'fade-in'
+              showBackdrop: true
+              maxWidth: 600
+              showDelay: 0
+            PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId)
+            .then (data)=>
+                DetailsAPI.Global_array = data.playlist
+                DetailsAPI.GlobalChild_array = data.movies
+                $scope.playlistData= data.movies
+                $scope.playlist = data.playlist
+                $ionicLoading.hide();
+            , (error)=>
+                console.log 'Error Loading data'
+                $ionicLoading.hide();
 
     $scope.singleplay = (videoid)->
 
@@ -39,8 +41,10 @@ angular.module 'SFWApp.tabs'
         App.navigate 'init'
 
     $scope.back = ()->
-        $ionicHistory.goBack();
-        # count = -1
-        # App.goBack count
+        # $ionicHistory.goBack();
+        DetailsAPI.Global_array = []
+        DetailsAPI.GlobalChild_array = []
+        count = -1
+        App.goBack count
 
 ]

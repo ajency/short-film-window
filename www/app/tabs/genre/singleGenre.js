@@ -7,32 +7,46 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         paginationClickable: true,
         direction: 'vertical'
       });
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
-      return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
-        return function(data) {
-          $scope.genreData = data.movies;
-          $scope.genre = data.genre;
-          return $ionicLoading.hide();
-        };
-      })(this), (function(_this) {
-        return function(error) {
-          console.log('Error Loading data');
-          return $ionicLoading.hide();
-        };
-      })(this));
-    };
-    $scope.sortGenre = function() {
-      return $ionicLoading.show({
-        scope: $scope,
-        templateUrl: 'views/filterPopup/sortPopupgener.html',
-        hideOnStateChange: true
-      });
+      if (DetailsAPI.GlobalChild_array.length > 0) {
+        console.log("Genre cached");
+        $scope.genreData = DetailsAPI.GlobalChild_array;
+        $scope.genre = DetailsAPI.Global_array;
+        $scope.sortData = DetailsAPI.Sort;
+        $scope.language = DetailsAPI.Filter;
+      } else {
+        $ionicLoading.show({
+          content: 'Loading',
+          animation: 'fade-in',
+          showBackdrop: true,
+          maxWidth: 600,
+          showDelay: 0
+        });
+        GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
+          return function(data) {
+            DetailsAPI.GlobalChild_array = data.movies;
+            DetailsAPI.Global_array = data.genre;
+            DetailsAPI.Filter = data.filters.languages;
+            DetailsAPI.Sort = data.sort_keys;
+            $scope.genreData = data.movies;
+            $scope.genre = data.genre;
+            $scope.sortData = data.sort_keys;
+            $scope.language = data.filters.languages;
+            return $ionicLoading.hide();
+          };
+        })(this), (function(_this) {
+          return function(error) {
+            console.log('Error Loading data');
+            return $ionicLoading.hide();
+          };
+        })(this));
+      }
+      return $scope.sortGenre = function() {
+        return $ionicLoading.show({
+          scope: $scope,
+          templateUrl: 'views/filterPopup/sortPopupgener.html',
+          hideOnStateChange: true
+        });
+      };
     };
     $scope.filterGenre = function() {
       return $ionicLoading.show({
@@ -55,7 +69,13 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       return App.navigate('init');
     };
     return $scope.back = function() {
-      return $ionicHistory.goBack();
+      var count;
+      DetailsAPI.GlobalChild_array = [];
+      DetailsAPI.Global_array = [];
+      DetailsAPI.Filter = [];
+      DetailsAPI.Sort = [];
+      count = -1;
+      return App.goBack(count);
     };
   }
 ]);

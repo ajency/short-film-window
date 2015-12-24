@@ -3,6 +3,12 @@ angular.module('SFWApp.sidebar', [])
 
 .controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI) ->
 
+  $scope.displayWeb = (Url) ->
+    console.log Url
+    $ionicSideMenuDelegate.toggleLeft()
+    window.open(Url, '_system');
+    return true
+
   $scope.submit = ->
     console.log "submit called"
     App.navigate "onlineSubmit"
@@ -14,14 +20,6 @@ angular.module('SFWApp.sidebar', [])
     console.log DetailsAPI.imageUrl
     $ionicSideMenuDelegate.toggleLeft()
     return
-
-   $scope.FAQ = ->
-
-    console.log "slide"
-    console.log DetailsAPI.imageUrl
-    $ionicSideMenuDelegate.toggleLeft()
-    window.open('http://www.shortfilmwindow.com/faq/', '_system', 'location=yes'); return false;
-    return 
 
   $scope.openModal = ->
     $scope.taskModal.show()
@@ -49,6 +47,7 @@ angular.module('SFWApp.sidebar', [])
     return
 
   return
+
 
 
 

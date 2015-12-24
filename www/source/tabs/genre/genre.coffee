@@ -15,7 +15,6 @@ angular.module 'SFWApp.tabs'
 			.then (data)=>
 				console.log data.defaults.content.popular.weekly_premiere.image
 				PulltorefreshAPI.saveData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
-
 				$scope.genre = DetailsAPI.genre_array
 				$scope.$broadcast('scroll.refreshComplete');
 				$ionicLoading.hide();
@@ -29,6 +28,9 @@ angular.module 'SFWApp.tabs'
 		$scope.init = ->
 		    $scope.genre = DetailsAPI.genre_array
 		    console.log $scope.genre
+		    console.log App.previousState
+		    console.log App.currentState
+
 
 		$scope.singleGenre = (genreId)->
 
@@ -37,12 +39,12 @@ angular.module 'SFWApp.tabs'
 			console.log DetailsAPI.videoId
 			App.navigate "singleGenre"
 
-
-		swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination'
-				paginationClickable: true
-				direction: 'vertical'
-					});
+		$scope.view =
+			swiper = new Swiper('.swiper-container', {
+					pagination: '.swiper-pagination'
+					paginationClickable: true
+					direction: 'vertical'
+						});
 
 
 ]

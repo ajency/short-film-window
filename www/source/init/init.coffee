@@ -4,50 +4,54 @@ angular.module 'SFWApp.init', []
 	 ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory)->
 	$scope.Videodetails = []
 
-	$scope.init= ()->
-		$ionicLoading.show
-		  content: 'Loading'
-		  animation: 'fade-in'
-		  showBackdrop: true
-		  maxWidth: 600
-		  showDelay: 0
-		
-		DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
-		.then (data)=>
-			console.log "single video  data succ"
-			DetailsAPI.singleVideoarray = data
-			$scope.Videodetails = data
-			console.log $scope.Videodetails
-			console.log $scope.Videodetails.image
-			$ionicLoading.hide();
-			document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
+	$scope.init = ()->
+			if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
+				console.log "Single video Data Cached"
+				$scope.Videodetails =  DetailsAPI.singleVideoarray
+			else
+				$ionicLoading.show
+				  content: 'Loading'
+				  animation: 'fade-in'
+				  showBackdrop: true
+				  maxWidth: 600
+				  showDelay: 0
+
+				DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
+				.then (data)=>
+					console.log "single video  data succ"
+					DetailsAPI.singleVideoarray = data
+					$scope.Videodetails = data
+					console.log $scope.Videodetails
+					console.log $scope.Videodetails.image
+					$ionicLoading.hide();
+					document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
 
 
-		, (error)=>
-			console.log 'Error Loading data'
-			$ionicLoading.hide();	
-	
-	console.log  DetailsAPI.videoId
-	console.log 'In Init'
-	Vtype = '0'
+				, (error)=>
+					console.log 'Error Loading data'
+					$ionicLoading.hide();
+
+			console.log  DetailsAPI.videoId
+			console.log 'In Init'
+			Vtype = '0'
 
 
-	$scope.$on '$ionicView.afterEnter', ->
-		console.log 'after enter'
+			$scope.$on '$ionicView.afterEnter', ->
+				console.log 'after enter'
 
-		
+
 	$scope.view =
 		back:->
-			$ionicHistory.goBack();
-			# App.navigate 'popular'
-			# count = -1
-			# App.goBack count
+			DetailsAPI.singleVideoarray = []
+			# $ionicHistory.goBack();
+			count = -1
+			App.goBack count
 
-	  
+
 
 		playVideo : ()->
 		  App.navigate 'singlePlayer'
-				
+
 
 
 

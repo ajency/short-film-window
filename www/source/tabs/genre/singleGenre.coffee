@@ -9,33 +9,42 @@ angular.module 'SFWApp.tabs'
 				direction: 'vertical'
 					});
 
-		$ionicLoading.show
-		  content: 'Loading'
-		  animation: 'fade-in'
-		  showBackdrop: true
-		  maxWidth: 600
-		  showDelay: 0
+		if ( DetailsAPI.GlobalChild_array.length >0 )
+			console.log "Genre cached"
+			$scope.genreData= DetailsAPI.GlobalChild_array
+			$scope.genre = DetailsAPI.Global_array
+			$scope.sortData = DetailsAPI.Sort
+			$scope.language = DetailsAPI.Filter
+
+		else
+			$ionicLoading.show
+			  content: 'Loading'
+			  animation: 'fade-in'
+			  showBackdrop: true
+			  maxWidth: 600
+			  showDelay: 0
+			GenreAPI.GetSingleGenre(DetailsAPI.videoId)
+			.then (data)=>
+				DetailsAPI.GlobalChild_array = data.movies
+				DetailsAPI.Global_array = data.genre
+				DetailsAPI.Filter = data.filters.languages
+				DetailsAPI.Sort = data.sort_keys
+
+				$scope.genreData= data.movies
+				$scope.genre = data.genre
+				$scope.sortData= data.sort_keys
+				$scope.language = data.filters.languages
+				$ionicLoading.hide();
+			, (error)=>
+				console.log 'Error Loading data'
+				$ionicLoading.hide();
 
 
-		# $scope.genre = DetailsAPI.genre_array
-
-
-		GenreAPI.GetSingleGenre(DetailsAPI.videoId)
-		.then (data)=>
-
-			$scope.genreData= data.movies
-			$scope.genre = data.genre
-			$ionicLoading.hide();
-		, (error)=>
-			console.log 'Error Loading data'
-			$ionicLoading.hide();
-
-
-	$scope.sortGenre = ()->
-		$ionicLoading.show
-			scope: $scope
-			templateUrl:'views/filterPopup/sortPopupgener.html'
-			hideOnStateChange: true
+		$scope.sortGenre = ()->
+			$ionicLoading.show
+				scope: $scope
+				templateUrl:'views/filterPopup/sortPopupgener.html'
+				hideOnStateChange: true
 
 
 	$scope.filterGenre = ()->
@@ -59,9 +68,13 @@ angular.module 'SFWApp.tabs'
 		App.navigate 'init'
 
 	$scope.back = ()->
-		$ionicHistory.goBack();
-		# count = -1
-		# App.goBack count
+		# $ionicHistory.goBack();
+		DetailsAPI.GlobalChild_array = []
+		DetailsAPI.Global_array = []
+		DetailsAPI.Filter = []
+		DetailsAPI.Sort = []
+		count = -1
+		App.goBack count
 
 
 

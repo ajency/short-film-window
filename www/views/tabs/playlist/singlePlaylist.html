@@ -1,12 +1,10 @@
-  <ion-side-menus ng-init="init()">
-    <ion-side-menu-content class="singleGenre" >
-      <ion-header-bar class="bar bar-header primary">
+  <ion-view  class="singleGenre" ng-init="init()">
+<!--     <ion-side-menu-content class="singleGenre" >
+ -->
+     <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Playlists</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-      <ion-content class="popular filteredGenre">
-
-
 
           <div class="item item-thumbnail-left padding0">
             <img src="{{ playlist.playlist_image_url }}">
@@ -14,6 +12,7 @@
             <p class="movieDescription"> {{ playlist.playlist_description }}</p>
             <div class="bold primaryText totalfilmsNTime">{{playlist.playlist_count}} Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{playlist.run_time }} MIN</span></div>
           </div>
+          <ion-content class="popular">
           <div ng-repeat ="data in playlistData" class="cardDetails swiper-slide">
 
         <div class="list card margin0 cardOuter ">
@@ -42,5 +41,5 @@
 
         </div>
       </ion-content>
-    </ion-side-menu-content>
-  </ion-side-menus>
+    </ion-view>
+<!--   </ion-side-menus> -->

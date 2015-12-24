@@ -3,14 +3,17 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 .factory 'DetailsAPI',['$q', 'App', '$http' ,($q, App, $http)->
 
 	DetailsAPI = {}
-	
+
 	DetailsAPI.videoId = ''
 	DetailsAPI.array_addition = []
 	DetailsAPI.array_noteworthy = []
 	DetailsAPI.array_awplaylist = []
 	DetailsAPI.genre_array = []
 	DetailsAPI.playlist_array = []
-
+	DetailsAPI.Global_array = []
+	DetailsAPI.GlobalChild_array = []
+	DetailsAPI.Filter = []
+	DetailsAPI.Sort = []
 	DetailsAPI.array = []
 	DetailsAPI.singleVideoarray = []
 
@@ -44,7 +47,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 			defer.reject error
 
 		defer.promise
-	
+
 
 
 	DetailsAPI.setData = (opts={})->
@@ -62,8 +65,8 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 			console.log DetailsAPI.array_addition
 			console.log DetailsAPI.array_noteworthy
 			console.log DetailsAPI.array_awplalist
-			
 
-	DetailsAPI		
+
+	DetailsAPI
 
 ]

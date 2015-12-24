@@ -2,9 +2,9 @@ angular.module 'SFWApp.singlePlayer', []
 
 .controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory'
 	,($scope,$sce,DetailsAPI,$ionicHistory)->
-		
+
 		console.log  DetailsAPI.singleVideoarray
-		
+
 
 		$scope.view =
 
@@ -21,7 +21,7 @@ angular.module 'SFWApp.singlePlayer', []
 					modifiedUrl = DetailsAPI.singleVideoarray.embedurl
 					@vimomeo = true
 					$scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-				
+
 					# $scope.player1 = modifiedUrl;
 
 					console.log $scope.player1
@@ -31,7 +31,7 @@ angular.module 'SFWApp.singlePlayer', []
 						height: '100%',
 						width: '100%',
 						videoId:DetailsAPI.singleVideoarray.videourl ,
-						playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }         
+						playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }
 						events: {
 							'onReady': onPlayerReady,
 							'onStateChange': onPlayerStateChange

@@ -5,7 +5,6 @@
              </ion-refresher>
               <div class="swiper-container">
                 <div class="swiper-wrapper">
-
                   <div class="list card margin0 cardOuter swiper-slide">
                 <div class="item item-avatar"  ion-affix data-affix-within-parent-with-class="card">
                       <img src="img/icons/weekly_premiere.png">
@@ -114,7 +113,7 @@
                 ng-repeat ="data in awplalist" >
 
               <div class="playlistContent">
-                <div class="col imageContainer">
+                <div class="col imageContainer" ng-click= "singleplaylist( data.playlist_id)">
                   <div class="playlistContentInner">
                     <img src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails">

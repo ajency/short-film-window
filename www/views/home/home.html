@@ -4,6 +4,11 @@
         <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
         <h5 class="title whiteText text-uppercase">Shortfilm Window</h5>
         <button class="button button-icon icon ion-search whiteText"></button>
+       <!--  <ion-nav-bar>
+          <ion-nav-back-button class="button-clear">
+              <i class="ion-arrow-left-c"></i> Back
+          </ion-nav-back-button>
+        </ion-nav-bar> -->
       </ion-header-bar>
      <!--  <ion-tabs class="tabs-top tabs-striped primary whiteText">
 
@@ -25,8 +30,6 @@
       </ion-tabs> -->
 
          <ion-nav-view name="homeview"> </ion-nav-view>
-         <!-- <ion-nav-view name="onlinesubmit"> </ion-nav-view> -->
-
     </ion-side-menu-content>
 
 
@@ -67,7 +70,7 @@
                 <span class="badge badge-assertive">3</span>
               </a>
 
-              <a class="item"  ui-sref="faq" ng-click="slideContent()">
+              <a class="item"  href="#" ng-click="displayWeb('http://www.shortfilmwindow.com/faq/')">
                 <i class="icon-cust icon-question"></i>
                 <b class="text-uppercase">Faq</b>
               </a>
@@ -80,9 +83,10 @@
             <p class="padding shortInfo">
               ShortFilmWindow is a snappy, intuitive, striking, mini-theatre that provides you priceless access to all the mind-blowing short films in the world.
             </p>
-            <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6>
+            <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#" ng-click="displayWeb('http://www.shortfilmwindow.com/about/')">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6>
             <p class="padding">
-            <button class="button button-block button-small bold primary whiteText text-uppercase" ng-click="slideContent() ;submit()">
+            <button class="button button-block button-small bold primary whiteText text-uppercase"
+            ng-click="displayWeb('http://www.shortfilmwindow.com/submit-film/')">
               Submit a film
             </button>
             </p>

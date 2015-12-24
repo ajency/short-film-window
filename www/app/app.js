@@ -12,8 +12,8 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init',
       direction: 'vertical'
     });
     $timeout(function() {
-      App.navigate('landingvideo', {}, {});
-    }, 1000);
+      App.navigate('landingvideo');
+    }, 5000);
     return $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       App.previousState = from.name;
       return App.currentState = to.name;

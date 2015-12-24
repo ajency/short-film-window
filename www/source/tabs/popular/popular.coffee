@@ -1,24 +1,28 @@
 angular.module 'SFWApp.tabs',[]
 .controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
 	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading)->
-   
 
-		
+		$scope.singleplaylist = (playlistId)->
+			console.log playlistId
+			DetailsAPI.videoId = playlistId
+			console.log DetailsAPI.videoId
+			App.navigate "singlePlaylist"
+
 		$scope.doRefresh = ()->
-			
+
 			$ionicLoading.show
 			  content: 'Loading'
 			  animation: 'fade-in'
 			  showBackdrop: true
 			  maxWidth: 600
 			  showDelay: 0
-			
+
 
 			PulltorefreshAPI.pullrequest()
 			.then (data)=>
 				console.log data.defaults.content.popular.weekly_premiere.image
 				PulltorefreshAPI.saveData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
-				
+
 				$scope.premeiere= DetailsAPI.array
 				$scope.addition= DetailsAPI.array_addition
 				$scope.noteworthy= DetailsAPI.array_noteworthy
@@ -26,7 +30,7 @@ angular.module 'SFWApp.tabs',[]
 				$scope.videoId = DetailsAPI.array.videoId
 				$scope.$broadcast('scroll.refreshComplete');
 				$ionicLoading.hide();
-				
+
 
 			, (error)=>
 				$scope.$broadcast('scroll.refreshComplete');
@@ -39,10 +43,10 @@ angular.module 'SFWApp.tabs',[]
 			DetailsAPI.videoId = videoid
 			console.log DetailsAPI.videoId
 			console.log "enterd single play ."
-			App.navigate 'init'	
+			App.navigate 'init'
 
 		$scope.test = ->
-			
+
 			$scope.premeiere= DetailsAPI.array
 			$scope.addition= DetailsAPI.array_addition
 			$scope.noteworthy= DetailsAPI.array_noteworthy

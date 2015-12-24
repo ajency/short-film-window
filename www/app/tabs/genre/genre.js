@@ -34,7 +34,9 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
     };
     $scope.init = function() {
       $scope.genre = DetailsAPI.genre_array;
-      return console.log($scope.genre);
+      console.log($scope.genre);
+      console.log(App.previousState);
+      return console.log(App.currentState);
     };
     $scope.singleGenre = function(genreId) {
       console.log(genreId);
@@ -42,7 +44,7 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
       console.log(DetailsAPI.videoId);
       return App.navigate("singleGenre");
     };
-    return swiper = new Swiper('.swiper-container', {
+    return $scope.view = swiper = new Swiper('.swiper-container', {
       pagination: '.swiper-pagination',
       paginationClickable: true,
       direction: 'vertical'

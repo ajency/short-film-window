@@ -1,6 +1,12 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
   '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     var swiper;
+    $scope.singleplaylist = function(playlistId) {
+      console.log(playlistId);
+      DetailsAPI.videoId = playlistId;
+      console.log(DetailsAPI.videoId);
+      return App.navigate("singlePlaylist");
+    };
     $scope.doRefresh = function() {
       $ionicLoading.show({
         content: 'Loading',
