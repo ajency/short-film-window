@@ -17,8 +17,8 @@ angular.module('SFWApp.Global').directive('ajError', [
           case 'server_error':
             errorMsg = 'Could not connect to server';
             break;
-          case 'session_expired':
-            errorMsg = 'Your session has expired';
+          case 'no_result':
+            errorMsg = 'No results found';
             break;
           default:
             errorMsg = 'Unknown error';

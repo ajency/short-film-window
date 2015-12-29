@@ -85,6 +85,10 @@ angular.module 'SFWApp.tabs'
 			DetailsAPI.Global_array = data.genre
 			DetailsAPI.Filter = data.filters.languages
 			DetailsAPI.Sort = data.sort_keys
+			if DetailsAPI.GlobalChild_array.length > 0
+				$scope.display = 'result'
+			else
+				$scope.display = 'error'
 
 			$scope.genreData= data.movies
 			$scope.genre = data.genre
@@ -96,6 +100,8 @@ angular.module 'SFWApp.tabs'
 			$ionicLoading.hide();
 		# $scope.sort_key = ''
 		# $scope.lang = ''
+
+
 
 	$scope.hide = () ->
 		$ionicLoading.hide();
@@ -150,4 +156,9 @@ angular.module 'SFWApp.tabs'
 		DetailsAPI.Sort = []
 		count = -1
 		App.goBack count
+
+	$scope.view =
+		onTapToRetry : ->
+			$scope.display = 'result'
+			$scope.reset()
 ]

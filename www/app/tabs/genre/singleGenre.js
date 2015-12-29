@@ -90,6 +90,11 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           DetailsAPI.Global_array = data.genre;
           DetailsAPI.Filter = data.filters.languages;
           DetailsAPI.Sort = data.sort_keys;
+          if (DetailsAPI.GlobalChild_array.length > 0) {
+            $scope.display = 'result';
+          } else {
+            $scope.display = 'error';
+          }
           $scope.genreData = data.movies;
           $scope.genre = data.genre;
           $scope.sortData = data.sort_keys;
@@ -152,7 +157,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
-    return $scope.back = function() {
+    $scope.back = function() {
       var count;
       DetailsAPI.GlobalChild_array = [];
       DetailsAPI.Global_array = [];
@@ -160,6 +165,12 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       DetailsAPI.Sort = [];
       count = -1;
       return App.goBack(count);
+    };
+    return $scope.view = {
+      onTapToRetry: function() {
+        $scope.display = 'result';
+        return $scope.reset();
+      }
     };
   }
 ]);

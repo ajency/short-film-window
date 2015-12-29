@@ -9,7 +9,7 @@ angular.module 'SFWApp.VideoDetailsAPI'
 
 		defer = $q.defer()
 
-		$http.get 'http://shortfilm.staging.wpengine.com/wp-json/get_defaults'
+		$http.get URL + '/wp-json/get_defaults'
 		.then (data)->
 			console.log 'succ'
 			console.log data
@@ -34,5 +34,5 @@ angular.module 'SFWApp.VideoDetailsAPI'
 
 
 
- 	
+
 ]

@@ -3,7 +3,8 @@
         <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Playlists</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-
+<div ng-switch = 'display'>
+  <div ng-switch-when = 'result'>
           <div class="item item-thumbnail-left singleGenreAvtar has-header">
             <img src="{{ playlist.playlist_image_url }}">
             <marquee scrolldelay="200" class="primaryText cardTitle">{{ playlist.playlist_name }}</marquee>
@@ -42,5 +43,12 @@
             <!-- </div>
         </div> -->
       </ion-content>
+    </div>
+      <aj-error class="errors"
+      ng-switch-when="error"
+      error-type="view.errorType"
+      tap-to-retry="view.onTapToRetry()">
+    </aj-error>
+  </div>
     </ion-view>
 
