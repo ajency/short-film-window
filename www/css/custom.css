@@ -563,8 +563,40 @@ a {
 .genre .overlay {
   background: rgba(0, 0, 0, 0.5);
 }
+.singleGenre .popular {
+  margin-top: 71px;
+}
+.singleGenre .popular .cardOuter .movieDetails {
+  bottom: 0;
+}
 .singleGenre .singleGenreAvtar {
-  margin-top: 45px;
+  margin-top: 43px;
+}
+.singleGenre .singleGenreAvtar.item-thumbnail-left {
+  /*padding-left: 119px;*/
+  padding-bottom: 3px;
+}
+.singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle,
+.singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
+  margin-left: 10px;
+}
+.singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  max-height: 103px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+.singleGenre .singleGenreAvtar.item-thumbnail-left .totalfilmsNTime {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  padding: 0 14px 0 116px;
+  bottom: 0;
 }
 .singleGenre .scroll {
   height: 100%;

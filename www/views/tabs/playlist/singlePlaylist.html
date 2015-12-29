@@ -6,9 +6,9 @@
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
 
-          <div class="item item-thumbnail-left padding0">
+          <div class="item item-thumbnail-left singleGenreAvtar">
             <img src="{{ playlist.playlist_image_url }}">
-            <div class="primaryText cardTitle">{{ playlist.playlist_name }}</div>
+            <marquee scrolldelay="200" class="primaryText cardTitle">{{ playlist.playlist_name }}</marquee>
             <p class="movieDescription"> {{ playlist.playlist_description }}</p>
             <div class="bold primaryText totalfilmsNTime">{{playlist.playlist_count}} Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{playlist.run_time }} MIN</span></div>
           </div>
