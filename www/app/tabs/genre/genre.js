@@ -2,13 +2,6 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
   '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     var swiper;
     $scope.doRefresh = function() {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
       return PulltorefreshAPI.pullrequest().then((function(_this) {
         return function(data) {
           console.log(data.defaults.content.popular.weekly_premiere.image);

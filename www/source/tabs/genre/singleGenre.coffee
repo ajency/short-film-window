@@ -2,6 +2,8 @@ angular.module 'SFWApp.tabs'
 
 .controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory)->
 
+	$scope.lang = ''
+	$scope.sort_key = ''
 	$scope.init = () ->
 		swiper = new Swiper('.swiper-container', {
 				pagination: '.swiper-pagination'
@@ -40,12 +42,15 @@ angular.module 'SFWApp.tabs'
 				$ionicLoading.hide();
 
 
-		$scope.sortGenre = ()->
-			$ionicLoading.show
-				scope: $scope
-				templateUrl:'views/filterPopup/sortPopupgener.html'
-				hideOnStateChange: true
+	$scope.sortGenre = ()->
+		$ionicLoading.show
+			scope: $scope
+			templateUrl:'views/filterPopup/sortPopupgener.html'
+			hideOnStateChange: true
 
+	$scope.langSelected = (language_id) ->
+		console.log language_id
+		$scope.lang = language_id
 
 	$scope.filterGenre = ()->
 		$ionicLoading.show
@@ -53,10 +58,76 @@ angular.module 'SFWApp.tabs'
 			templateUrl:'views/filterPopup/filterpopup.html'
 			hideOnStateChange: true
 
-	$scope.hide = () ->
+	$scope.getId = (sort_id)->
+		console.log sort_id
+		$scope.sort_key = sort_id
 
-        $ionicLoading.hide();
-        hideOnStateChange: false
+
+	$scope.FiltersortApply = ()->
+		console.log $scope.lang
+		console.log $scope.sort_key
+		arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
+
+		hideOnStateChange: false
+		$ionicLoading.show
+			  content: 'Loading'
+			  animation: 'fade-in'
+			  showBackdrop: true
+			  maxWidth: 600
+			  showDelay: 0
+		GenreAPI.ApplyFilter(arr)
+		.then (data)=>
+			DetailsAPI.GlobalChild_array = data.movies
+			DetailsAPI.Global_array = data.genre
+			DetailsAPI.Filter = data.filters.languages
+			DetailsAPI.Sort = data.sort_keys
+
+			$scope.genreData= data.movies
+			$scope.genre = data.genre
+			$scope.sortData= data.sort_keys
+			$scope.language = data.filters.languages
+			$ionicLoading.hide();
+		, (error)=>
+			console.log 'Error Loading data'
+			$ionicLoading.hide();
+		# $scope.sort_key = ''
+		# $scope.lang = ''
+
+	$scope.hide = () ->
+		$ionicLoading.hide();
+		hideOnStateChange: false
+
+	$scope.reset = () ->
+		$scope.sort_key = ''
+		$scope.lang = ''
+		console.log $scope.lang
+		console.log $scope.sort_key
+		arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
+
+		hideOnStateChange: false
+		$ionicLoading.show
+			  content: 'Loading'
+			  animation: 'fade-in'
+			  showBackdrop: true
+			  maxWidth: 600
+			  showDelay: 0
+		GenreAPI.ApplyFilter(arr)
+		.then (data)=>
+			DetailsAPI.GlobalChild_array = data.movies
+			DetailsAPI.Global_array = data.genre
+			DetailsAPI.Filter = data.filters.languages
+			DetailsAPI.Sort = data.sort_keys
+
+			$scope.genreData= data.movies
+			$scope.genre = data.genre
+			$scope.sortData= data.sort_keys
+			$scope.language = data.filters.languages
+			$ionicLoading.hide();
+		, (error)=>
+			console.log 'Error Loading data'
+			$ionicLoading.hide();
+
+
 
 
 	$scope.singleplay = (videoid)->
@@ -75,11 +146,4 @@ angular.module 'SFWApp.tabs'
 		DetailsAPI.Sort = []
 		count = -1
 		App.goBack count
-
-
-
-
-
-
-
 ]
