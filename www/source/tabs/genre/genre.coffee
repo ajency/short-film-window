@@ -4,12 +4,12 @@ angular.module 'SFWApp.tabs'
 	,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading)->
 
 		$scope.doRefresh = ()->
-			$ionicLoading.show
-			  content: 'Loading'
-			  animation: 'fade-in'
-			  showBackdrop: true
-			  maxWidth: 600
-			  showDelay: 0
+			# $ionicLoading.show
+			#   content: 'Loading'
+			#   animation: 'fade-in'
+			#   showBackdrop: true
+			#   maxWidth: 600
+			#   showDelay: 0
 
 			PulltorefreshAPI.pullrequest()
 			.then (data)=>

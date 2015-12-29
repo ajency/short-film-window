@@ -8,7 +8,7 @@
        <h5 class="text-uppercase padding">Language</h3>
         <div ng-repeat = "data in language">
      <label class="item item-radio">
-            <input type="radio" name="group1">
+            <input type="radio" name="group1"ng-click="langSelected({{ data.id}} )">
             <div class="item-content">
                {{ data.name}}
             </div>
@@ -27,8 +27,8 @@
         </div> -->
       </ion-content>
       <ion-footer-bar class="bar bar-footer popupFooter">
-        <button class="button button-clear button-small col col-50 pull-left text-uppercase">Reset</button>
-        <button class="button button-clear button-small col col-50 pull-right text-uppercase">Apply</button>
+        <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="reset()">Reset</button>
+        <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="FiltersortApply()">Apply</button>
       </ion-footer-bar>
     </ion-side-menu-content>
   </ion-side-menus>
