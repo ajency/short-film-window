@@ -50,6 +50,8 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 
 
+
+
 	DetailsAPI.setData = (opts={})->
 			console.log opts
 			DetailsAPI.array = opts.premiere
@@ -65,6 +67,8 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 			console.log DetailsAPI.array_addition
 			console.log DetailsAPI.array_noteworthy
 			console.log DetailsAPI.array_awplalist
+
+
 
 
 	DetailsAPI

@@ -16,6 +16,20 @@ angular.module('SFWApp.tabs').factory('GenreAPI', [
       });
       return defer.promise;
     };
+    GenreAPI.ApplyFilter = function(param) {
+      var defer;
+      console.log(param);
+      defer = $q.defer();
+      $http.get("http://shortfilm.staging.wpengine.com/wp-json/get_genre_videos?genre_id=" + param[0] + "&sort_key=" + param[1] + "&&language_id=" + param[2]).then(function(data) {
+        console.log('single video data succ');
+        console.log(data);
+        return defer.resolve(data.data);
+      }, function(error) {
+        console.log('eroor');
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
     return GenreAPI;
   }
 ]);
