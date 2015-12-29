@@ -59,6 +59,42 @@ a {
   color: #5e5e5e;
   margin-bottom: 0;
 }
+.errors {
+    min-height: 230px;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -115px;
+}
+.errors h1,
+.errors h2,
+.errors h3 {
+  text-transform: uppercase;
+}
+.errors-all .error-img {
+  display: block;
+  margin: 10px auto;
+  margin-top: 0;  
+  height: 100px;
+}
+.errors-all h3 {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555555;
+}
+.errors-all h5 {
+  margin-top: 3px;
+  color: #777777;
+}
+.errors-all button.button {
+  text-transform: uppercase;
+  font-weight: normal !important;
+  border: none;
+  padding: 0 20px;
+  margin-top: 10px;
+}
 .menu button {
   margin-top: 30px !important;
   border: none !important;
@@ -306,7 +342,10 @@ a {
     width: 50%;
     left: 50%;
     top: -15px;
-    color: #2e2e2e;
+    color: #af152f;
+  }
+  .cardOuter .movieDetails .title {
+    font-size: 1.1em;
   }
   .cardOuter .movieDetails .title span {
     color: #aeaeae;
@@ -314,19 +353,20 @@ a {
   .cardOuter .movieDetails .tagline,
   .cardOuter .movieDetails .country,
   .cardOuter .movieDetails .viewsNLikes {
-    color: #2e2e2e;
+    color: #5e5e5e;
   }
   .cardOuter .movieDetails .tagline {
     display: block;
     display: -webkit-box;
     max-width: 100%;
-    max-height: 43px;
+    max-height: 33px;
     margin: 0 auto;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.2;
+    font-size: 0.9em;
   }
   .cardOuter .movieDetails .country {
     padding-top: 10px;
@@ -360,6 +400,12 @@ a {
   }
   .singleMovieContent .overlay {
     background: rgba(0, 0, 0, 0.6) !important;
+  }
+  .singlePlaylist {
+    margin-top: 118px;
+  }
+  .singlePlaylist .cardOuter .movieDetails {
+    top: 0;
   }
 }
 .singleMovieContent .scroll {
@@ -412,7 +458,7 @@ a {
   font-size: 1.2em;
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 3px;
-  font-weight: bold;
+  /*font-weight: bold;*/
   white-space: normal;
 }
 .movieDetails .title span {
@@ -598,6 +644,9 @@ a {
 .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
   margin-left: 10px;
 }
+.singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
+  font-size: 1.2em;
+}
 .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
   display: block;
   display: -webkit-box;
@@ -767,11 +816,11 @@ a {
 }
 /*.filterRadioOuter
 {
-	padding: 2px 15px;	
+	padding: 2px 15px;
 	input
 	{
 		float: left;
-		margin-top: 4px;		
+		margin-top: 4px;
 		opacity: 0;
 		height: 20px;
 	    width: 100%;
@@ -786,7 +835,7 @@ a {
 	{
 		position: absolute;
 		z-index: 1;
-		display: block;		    
+		display: block;
 		border-radius: 50%;
 		margin-top: 5px;
 		height: 10px;
@@ -796,10 +845,10 @@ a {
 		padding: 0;
 	}
 	input:checked + .radioIcon
-	{			
+	{
 	    background: @white;
 	    height: 16px;
-	    width: 16px;		    		    
+	    width: 16px;
 	    border: 1px solid @primary;
 	    margin-top: 2px;
 	    left: 13px;
@@ -815,7 +864,7 @@ a {
 		    left: 3px;
 	    }
 	}
-	
+
 }*/
 .pane.faq .pane {
   background: transparent;
@@ -853,6 +902,15 @@ a {
       -ms-transform: scale(0.8);
           transform: scale(0.8);
 }
+/*.synopsis a
+{
+	display: block;
+	text-align: center;
+}*/
+/*.listItem
+{
+	height: 100%;
+}*/
 .submitForm .item-select {
   height: 35px;
 }
