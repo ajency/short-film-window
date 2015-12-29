@@ -1,4 +1,4 @@
-angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'SFWApp.faq', 'SFWApp.submit', 'ion-affix', 'ion-sticky', 'ionicLazyLoad']).run([
+angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'SFWApp.submit', 'ion-affix', 'ion-sticky', 'ionicLazyLoad']).run([
   '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', function($rootScope, App, $timeout, Set_Get, $cordovaSplashscreen) {
     var firstScriptTag, swiper, tag;
     tag = document.createElement('script');

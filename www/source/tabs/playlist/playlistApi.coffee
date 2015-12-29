@@ -8,7 +8,7 @@ angular.module 'SFWApp.tabs'
         console.log playlistId
         defer = $q.defer()
 
-        $http.get "http://shortfilm.staging.wpengine.com/wp-json/get_playlist_videos/?playlist_id=#{playlistId}"
+        $http.get URL+"/wp-json/get_playlist_videos/?playlist_id=#{playlistId}"
         .then (data)->
             console.log 'single genre data succ'
             console.log data

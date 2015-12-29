@@ -18,8 +18,8 @@ angular.module 'SFWApp.Global'
                 errorMsg = 'No internet availability'
             when 'server_error'
                 errorMsg = 'Could not connect to server'
-            when 'session_expired'
-                errorMsg = 'Your session has expired'
+            when 'no_result'
+                errorMsg = 'No results found'
             else
                 errorMsg = 'Unknown error'
 

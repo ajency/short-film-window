@@ -6,7 +6,7 @@ angular.module('SFWApp.tabs').factory('GenreAPI', [
       var defer;
       console.log(GenreId);
       defer = $q.defer();
-      $http.get("http://shortfilm.staging.wpengine.com/wp-json/get_genre_videos?genre_id=" + GenreId).then(function(data) {
+      $http.get(URL + ("/wp-json/get_genre_videos?genre_id=" + GenreId)).then(function(data) {
         console.log('single genre data succ');
         console.log(data);
         return defer.resolve(data.data);
@@ -20,7 +20,7 @@ angular.module('SFWApp.tabs').factory('GenreAPI', [
       var defer;
       console.log(param);
       defer = $q.defer();
-      $http.get("http://shortfilm.staging.wpengine.com/wp-json/get_genre_videos?genre_id=" + param[0] + "&sort_key=" + param[1] + "&&language_id=" + param[2]).then(function(data) {
+      $http.get(URL + ("/wp-json/get_genre_videos?genre_id=" + param[0] + "&sort_key=" + param[1] + "&language_id=" + param[2])).then(function(data) {
         console.log('single video data succ');
         console.log(data);
         return defer.resolve(data.data);
