@@ -3,6 +3,7 @@ angular.module 'SFWApp.init', []
 .controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory'
 	 ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory)->
 	$scope.Videodetails = []
+	$scope.display = 'result'
 
 	$scope.init = ()->
 			if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
@@ -18,17 +19,16 @@ angular.module 'SFWApp.init', []
 
 				DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
 				.then (data)=>
+					# $scope.display = 'result'
 					console.log "single video  data succ"
 					DetailsAPI.singleVideoarray = data
 					$scope.Videodetails = data
-					console.log $scope.Videodetails
-					console.log $scope.Videodetails.image
+
 					$ionicLoading.hide();
 					document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
-
-
 				, (error)=>
 					console.log 'Error Loading data'
+					$scope.display = 'error'
 					$ionicLoading.hide();
 
 			console.log  DetailsAPI.videoId

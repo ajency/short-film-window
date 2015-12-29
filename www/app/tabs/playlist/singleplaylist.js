@@ -1,5 +1,6 @@
 angular.module('SFWApp.tabs').controller('singlePlaylist', [
   '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory) {
+    $scope.display = 'loader';
     $scope.init = function() {
       var swiper;
       swiper = new Swiper('.swiper-container', {
@@ -10,7 +11,8 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
       if (DetailsAPI.GlobalChild_array.length > 0) {
         console.log("Playlist cached");
         $scope.playlistData = DetailsAPI.GlobalChild_array;
-        return $scope.playlist = DetailsAPI.Global_array;
+        $scope.playlist = DetailsAPI.Global_array;
+        return $scope.display = 'result';
       } else {
         console.log("Playlist emplty");
         $ionicLoading.show({
@@ -26,11 +28,13 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
             DetailsAPI.GlobalChild_array = data.movies;
             $scope.playlistData = data.movies;
             $scope.playlist = data.playlist;
+            $scope.display = 'result';
             return $ionicLoading.hide();
           };
         })(this), (function(_this) {
           return function(error) {
             console.log('Error Loading data');
+            $scope.display = 'error';
             return $ionicLoading.hide();
           };
         })(this));

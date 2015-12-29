@@ -1,6 +1,7 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
   '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory) {
     $scope.Videodetails = [];
+    $scope.display = 'result';
     $scope.init = function() {
       var Vtype;
       if (!angular.isUndefined(DetailsAPI.singleVideoarray.movie_id)) {
@@ -19,14 +20,13 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
-            console.log($scope.Videodetails);
-            console.log($scope.Videodetails.image);
             $ionicLoading.hide();
             return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
           };
         })(this), (function(_this) {
           return function(error) {
             console.log('Error Loading data');
+            $scope.display = 'error';
             return $ionicLoading.hide();
           };
         })(this));

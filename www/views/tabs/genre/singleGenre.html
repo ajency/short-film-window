@@ -5,10 +5,10 @@
   </ion-header-bar>
 
 
-
+<div ng-switch ="display" >
+  <div ng-switch-when="result">
   <ion-content class="popular " ion-sticky >
-
-    <div class="item item-avatar singleGenreAvtar item-divider">
+  <div class="item item-avatar singleGenreAvtar item-divider">
         <img src="{{ genre.genre_image_url }}">
         <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
         <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
@@ -46,5 +46,13 @@
     <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()"><i class="ion-funnel"></i>Filter</button>
     <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()"><i class="ion-android-arrow-up"></i>Sort</button>
   </ion-footer-bar>
+</div>
 
+
+    <aj-error class="errors"
+      ng-switch-when="error"
+      error-type="view.errorType"
+      tap-to-retry="view.onTapToRetry()">
+    </aj-error>
+    </div>
 </ion-view>

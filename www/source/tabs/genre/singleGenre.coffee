@@ -4,6 +4,7 @@ angular.module 'SFWApp.tabs'
 
 	$scope.lang = ''
 	$scope.sort_key = ''
+	$scope.display = 'loader'
 	$scope.init = () ->
 		swiper = new Swiper('.swiper-container', {
 				pagination: '.swiper-pagination'
@@ -17,6 +18,7 @@ angular.module 'SFWApp.tabs'
 			$scope.genre = DetailsAPI.Global_array
 			$scope.sortData = DetailsAPI.Sort
 			$scope.language = DetailsAPI.Filter
+			$scope.display = 'result'
 
 		else
 			$ionicLoading.show
@@ -36,9 +38,11 @@ angular.module 'SFWApp.tabs'
 				$scope.genre = data.genre
 				$scope.sortData= data.sort_keys
 				$scope.language = data.filters.languages
+				$scope.display = 'result'
 				$ionicLoading.hide();
 			, (error)=>
 				console.log 'Error Loading data'
+				$scope.display = 'error'
 				$ionicLoading.hide();
 
 

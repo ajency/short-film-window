@@ -2,6 +2,7 @@ angular.module 'SFWApp.tabs'
 
 .controller 'singlePlaylist', ['$scope','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory)->
 
+    $scope.display= 'loader'
     $scope.init = () ->
         swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination'
@@ -13,6 +14,7 @@ angular.module 'SFWApp.tabs'
             console.log "Playlist cached"
             $scope.playlistData= DetailsAPI.GlobalChild_array
             $scope.playlist = DetailsAPI.Global_array
+            $scope.display= 'result'
         else
             console.log "Playlist emplty"
             $ionicLoading.show
@@ -27,9 +29,11 @@ angular.module 'SFWApp.tabs'
                 DetailsAPI.GlobalChild_array = data.movies
                 $scope.playlistData= data.movies
                 $scope.playlist = data.playlist
+                $scope.display = 'result'
                 $ionicLoading.hide();
             , (error)=>
                 console.log 'Error Loading data'
+                $scope.display= 'error'
                 $ionicLoading.hide();
 
     $scope.singleplay = (videoid)->

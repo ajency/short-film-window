@@ -2,6 +2,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
   '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory) {
     $scope.lang = '';
     $scope.sort_key = '';
+    $scope.display = 'loader';
     $scope.init = function() {
       var swiper;
       swiper = new Swiper('.swiper-container', {
@@ -14,7 +15,8 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         $scope.genreData = DetailsAPI.GlobalChild_array;
         $scope.genre = DetailsAPI.Global_array;
         $scope.sortData = DetailsAPI.Sort;
-        return $scope.language = DetailsAPI.Filter;
+        $scope.language = DetailsAPI.Filter;
+        return $scope.display = 'result';
       } else {
         $ionicLoading.show({
           content: 'Loading',
@@ -33,11 +35,13 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
             $scope.genre = data.genre;
             $scope.sortData = data.sort_keys;
             $scope.language = data.filters.languages;
+            $scope.display = 'result';
             return $ionicLoading.hide();
           };
         })(this), (function(_this) {
           return function(error) {
             console.log('Error Loading data');
+            $scope.display = 'error';
             return $ionicLoading.hide();
           };
         })(this));
