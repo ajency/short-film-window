@@ -33,9 +33,53 @@
 }
 .singleGenre
 {
+	.popular
+	{
+		/*margin-top: 71px;*/
+		.cardOuter .movieDetails
+		{
+			bottom: 0;
+		}
+	}
+	.item-divider
+	{
+		color: @grayDark !important;
+		margin: 0;
+		text-align: left !important;
+		min-height: 30px !important;		
+	}
 	.singleGenreAvtar
 	{
-		margin-top: 45px;
+		/*margin-top: 43px;*/
+		&.item-thumbnail-left
+		{
+			/*padding-left: 119px;*/
+			padding-bottom: 3px;
+			.cardTitle, .movieDescription
+			{
+				margin-left: 10px;
+			}
+			.movieDescription
+			{
+				display: block;
+			  	display: -webkit-box;		    
+			    max-width: 100%;
+			    max-height: 103px;			    
+			    -webkit-line-clamp: 4;
+			    -webkit-box-orient: vertical;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    line-height: 1.2;
+			}
+			.totalfilmsNTime
+			{
+				position: absolute;
+			    width: 100%;
+			    left: 0;
+			    padding: 0 14px 0 116px;
+			    bottom: 0;
+			}
+		}
 	}
 	.scroll
 	{
@@ -238,9 +282,14 @@
 		button
 		{
 			margin: 0;
-			top: 0;
+			top: 3px;
+			border: none;
 		}
 	}
+}
+.singlePlaylistAvtar
+{
+	margin-top: 43px;
 }
 /*.filterRadioOuter
 {
