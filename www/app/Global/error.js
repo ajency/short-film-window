@@ -9,7 +9,7 @@ angular.module('SFWApp.Global').directive('ajError', [
         errorType: '='
       },
       link: function(scope, el, attr) {
-        var errorMsg;
+        var button, errorMsg, errorTitle;
         switch (scope.errorType) {
           case 'offline':
             errorMsg = 'No internet availability';
@@ -22,8 +22,12 @@ angular.module('SFWApp.Global').directive('ajError', [
             break;
           default:
             errorMsg = 'Unknown error';
+            errorTitle = 'Result';
+            button = 'clear Filter/Sort';
         }
         scope.errorMsg = errorMsg;
+        scope.errorTitle = errorTitle;
+        scope.button = button;
         return scope.onTryAgain = function() {
           return scope.tapToRetry();
         };

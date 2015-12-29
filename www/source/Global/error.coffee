@@ -11,6 +11,7 @@ angular.module 'SFWApp.Global'
         tapToRetry: '&'
         errorType: '='
 
+
     link: (scope, el, attr)->
 
         switch scope.errorType
@@ -22,8 +23,15 @@ angular.module 'SFWApp.Global'
                 errorMsg = 'No results found'
             else
                 errorMsg = 'Unknown error'
+                errorTitle = 'Result'
+                button = 'clear Filter/Sort'
 
         scope.errorMsg = errorMsg
+        scope.errorTitle = errorTitle
+        scope.button = button
+
+
+
 
         scope.onTryAgain = ->
             scope.tapToRetry()
