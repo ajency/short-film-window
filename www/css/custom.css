@@ -60,7 +60,13 @@ a {
   margin-bottom: 0;
 }
 .errors {
-  padding-top: 65px;
+    min-height: 230px;
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -150px;
+    margin-top: -115px;
 }
 .errors h1,
 .errors h2,
@@ -70,20 +76,24 @@ a {
 .errors-all .error-img {
   display: block;
   margin: 10px auto;
-  margin-top: 0;
-  opacity: 0.1;
-  height: 75px;
+  margin-top: 0;  
+  height: 100px;
 }
 .errors-all h3 {
   margin-bottom: 5px;
   font-weight: bold;
+  color: #555555;
 }
 .errors-all h5 {
   margin-top: 3px;
+  color: #777777;
 }
 .errors-all button.button {
   text-transform: uppercase;
   font-weight: normal !important;
+  border: none;
+  padding: 0 20px;
+  margin-top: 10px;
 }
 .menu button {
   margin-top: 30px !important;
