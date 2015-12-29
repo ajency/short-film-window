@@ -161,8 +161,20 @@ a {
   white-space: normal;
 }
 .tab-content .scroll {
-/*  padding-top: 88px;*/
+  /*padding-top:88px;*/
   height: 100%;
+}
+.item-divider {
+  min-height: 73px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background: #ffffff;
+}
+.item-divider .cardTitle {
+  font-size: 1.3em;
+}
+.popular.has-tabs-top {
+  top: 86px;
 }
 .popular .card .item.item-image {
   padding: 0;
@@ -564,13 +576,19 @@ a {
   background: rgba(0, 0, 0, 0.5);
 }
 .singleGenre .popular {
-  margin-top: 71px;
+  /*margin-top: 71px;*/
 }
 .singleGenre .popular .cardOuter .movieDetails {
   bottom: 0;
 }
+.singleGenre .item-divider {
+  color: #2e2e2e !important;
+  margin: 0;
+  text-align: left !important;
+  min-height: 30px !important;
+}
 .singleGenre .singleGenreAvtar {
-  margin-top: 43px;
+  /*margin-top: 43px;*/
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
   /*padding-left: 119px;*/
@@ -741,15 +759,19 @@ a {
 }
 .sortPopup .popupFooter button {
   margin: 0;
-  top: 0;
+  top: 3px;
+  border: none;
+}
+.singlePlaylistAvtar {
+  margin-top: 43px;
 }
 /*.filterRadioOuter
 {
-	padding: 2px 15px;
+	padding: 2px 15px;	
 	input
 	{
 		float: left;
-		margin-top: 4px;
+		margin-top: 4px;		
 		opacity: 0;
 		height: 20px;
 	    width: 100%;
@@ -764,7 +786,7 @@ a {
 	{
 		position: absolute;
 		z-index: 1;
-		display: block;
+		display: block;		    
 		border-radius: 50%;
 		margin-top: 5px;
 		height: 10px;
@@ -774,10 +796,10 @@ a {
 		padding: 0;
 	}
 	input:checked + .radioIcon
-	{
+	{			
 	    background: @white;
 	    height: 16px;
-	    width: 16px;
+	    width: 16px;		    		    
 	    border: 1px solid @primary;
 	    margin-top: 2px;
 	    left: 13px;
@@ -793,7 +815,7 @@ a {
 		    left: 3px;
 	    }
 	}
-
+	
 }*/
 .pane.faq .pane {
   background: transparent;

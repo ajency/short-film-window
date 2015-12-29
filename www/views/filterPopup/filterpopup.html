@@ -4,17 +4,17 @@
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase" ng-click="hide()"><i class="ion-ios-arrow-back margin0"></i>Filters</button>
       </ion-header-bar>
-      <ion-content class="filterPopup">
-       <h5 class="text-uppercase padding">Language</h3>
-        <div ng-repeat = "data in language">
-     <label class="item item-radio">
+      <ion-content class="filterPopup" ion-sticky>
+       <h5 class="text-uppercase padding item-divider">Language</h3>
+        <div ng-repeat = "data in language" class="customRadio">
+            <label class="item item-radio">
             <input type="radio" name="group1"ng-click="langSelected({{ data.id}} )">
             <div class="item-content">
                {{ data.name}}
             </div>
             <i class="radio-icon ion-checkmark"></i>
          </label>
-</div>
+        </div>
 
 
        <!--  <div>
