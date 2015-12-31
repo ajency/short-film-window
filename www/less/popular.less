@@ -20,6 +20,7 @@
     padding-top: 16px;
     padding-bottom: 16px;
     background: @white;
+    border: none;
 	
 	.cardTitle 
 	{
@@ -39,6 +40,11 @@
 			padding: 0;
 			height: 100%;
 			position: relative;
+			border: none;
+		}
+		.item.item-avtar
+		{
+			border: none;
 		}
 	}
 	.cardTitle
@@ -193,7 +199,7 @@
 		{
 			width: 50%;
 			left: 50%;
-			top: -15px;
+			top: -10px;
 			color: @primary;
 			.title 
 			{
@@ -206,6 +212,10 @@
 			.tagline, .country, .viewsNLikes
 			{
 				color: @grayLight;
+			}
+			.viewsNLikes
+			{
+				font-size: 0.8em;
 			}
 			.tagline
 			{
