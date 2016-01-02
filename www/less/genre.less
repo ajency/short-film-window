@@ -34,8 +34,7 @@
 .singleGenre
 {
 	.popular
-	{
-		/*margin-top: 71px;*/
+	{		
 		.cardOuter .movieDetails
 		{
 			bottom: 0;
@@ -49,11 +48,9 @@
 		min-height: 30px !important;		
 	}
 	.singleGenreAvtar
-	{
-		/*margin-top: 43px;*/
+	{		
 		&.item-thumbnail-left
-		{
-			/*padding-left: 119px;*/
+		{		
 			padding-bottom: 3px;
 			.cardTitle, .movieDescription
 			{
@@ -153,7 +150,7 @@
 		padding-top: 45px;
 	}
 }
-.filteredGenre
+/*.filteredGenre
 {
 	.card 
 	{
@@ -214,7 +211,7 @@
 			padding-left: 90px;
 		}
 	}
-}
+}*/
 .filterNo
 {
 	height: 16px;
@@ -295,58 +292,7 @@
 {
 	margin-top: 43px;
 }
-/*.filterRadioOuter
-{
-	padding: 2px 15px;	
-	input
-	{
-		float: left;
-		margin-top: 4px;		
-		opacity: 0;
-		height: 20px;
-	    width: 100%;
-	    position: absolute;
-	    z-index: 3;
-	}
-	label
-	{
-		padding-left: 20px;
-	}
-	.radioIcon
-	{
-		position: absolute;
-		z-index: 1;
-		display: block;		    
-		border-radius: 50%;
-		margin-top: 5px;
-		height: 10px;
-		width: 10px;
-		background: @grayLighter;
-		left: 15px;
-		padding: 0;
-	}
-	input:checked + .radioIcon
-	{			
-	    background: @white;
-	    height: 16px;
-	    width: 16px;		    		    
-	    border: 1px solid @primary;
-	    margin-top: 2px;
-	    left: 13px;
-	    span
-	    {
-	    	height: 8px;
-		    width: 8px;
-		    background: @primary;
-		    z-index: 1;
-		    position: absolute;
-		    border-radius: 50%;
-		    top: 3px;
-		    left: 3px;
-	    }
-	}
-	
-}*/
+
 .pane.faq .pane
 {
 	background: transparent;
@@ -384,12 +330,30 @@
 		transform: scale(0.8);
 	}
 }
-/*.synopsis a
+.errors
 {
-	display: block;
-	text-align: center;
-}*/
-/*.listItem
-{
-	height: 100%;
-}*/
+	min-height: 300px;
+	width: 320px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -110px;
+	margin-left: -160px;
+	img
+	{
+		height: 120px;
+	}
+	.button
+	{
+		padding: 0 20px;
+		border: none;
+	}
+	h3
+	{
+		color: @grayDark;
+	}
+	h5
+	{
+		color: @grayLight;
+	}
+}
