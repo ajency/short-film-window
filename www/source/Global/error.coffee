@@ -22,7 +22,7 @@ angular.module 'SFWApp.Global'
             when 'no_result'
                 errorMsg = 'No results found'
             else
-                errorMsg = 'Unknown error'
+                errorMsg = 'No results found'
                 errorTitle = 'Result'
                 button = 'clear Filter/Sort'
 

@@ -21,7 +21,7 @@ angular.module('SFWApp.Global').directive('ajError', [
             errorMsg = 'No results found';
             break;
           default:
-            errorMsg = 'Unknown error';
+            errorMsg = 'No results found';
             errorTitle = 'Result';
             button = 'clear Filter/Sort';
         }
