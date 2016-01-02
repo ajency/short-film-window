@@ -1,6 +1,6 @@
 <div class="errors-all text-center">
     <img src="./img/sad_cloud_gray.png" alt="" class="error-img">
-    <h3>Error</h3>
+    <h3>{{ errorTitle }}</h3>
     <!-- </br> -->
     <h5 class="gray">{{errorMsg}}</h5>
 
@@ -8,7 +8,7 @@
         <button
             class="button primary whiteText button-primary button-small"
             ng-click="onTryAgain()">
-            Try again
+            {{ button }}
         </button>
     </div>
 </div>
