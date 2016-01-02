@@ -59,42 +59,6 @@ a {
   color: #5e5e5e;
   margin-bottom: 0;
 }
-.errors {
-    min-height: 230px;
-    width: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -150px;
-    margin-top: -115px;
-}
-.errors h1,
-.errors h2,
-.errors h3 {
-  text-transform: uppercase;
-}
-.errors-all .error-img {
-  display: block;
-  margin: 10px auto;
-  margin-top: 0;  
-  height: 100px;
-}
-.errors-all h3 {
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555555;
-}
-.errors-all h5 {
-  margin-top: 3px;
-  color: #777777;
-}
-.errors-all button.button {
-  text-transform: uppercase;
-  font-weight: normal !important;
-  border: none;
-  padding: 0 20px;
-  margin-top: 10px;
-}
 .menu button {
   margin-top: 30px !important;
   border: none !important;
@@ -205,6 +169,7 @@ a {
   padding-top: 16px;
   padding-bottom: 16px;
   background: #ffffff;
+  border: none;
 }
 .item-divider .cardTitle {
   font-size: 1.3em;
@@ -216,6 +181,10 @@ a {
   padding: 0;
   height: 100%;
   position: relative;
+  border: none;
+}
+.popular .card .item.item-avtar {
+  border: none;
 }
 .popular .cardTitle {
   font-family: 'Lato';
@@ -341,7 +310,7 @@ a {
   .cardOuter .movieDetails {
     width: 50%;
     left: 50%;
-    top: -15px;
+    top: -10px;
     color: #af152f;
   }
   .cardOuter .movieDetails .title {
@@ -354,6 +323,9 @@ a {
   .cardOuter .movieDetails .country,
   .cardOuter .movieDetails .viewsNLikes {
     color: #5e5e5e;
+  }
+  .cardOuter .movieDetails .viewsNLikes {
+    font-size: 0.8em;
   }
   .cardOuter .movieDetails .tagline {
     display: block;
@@ -463,7 +435,7 @@ a {
 }
 .movieDetails .title span {
   font-size: 0.9em;
-  font-style: italic;
+  /*font-style: italic;*/
   color: #d4d4d4;
 }
 .movieDetails .tagline {
@@ -621,9 +593,6 @@ a {
 .genre .overlay {
   background: rgba(0, 0, 0, 0.5);
 }
-.singleGenre .popular {
-  /*margin-top: 71px;*/
-}
 .singleGenre .popular .cardOuter .movieDetails {
   bottom: 0;
 }
@@ -633,11 +602,7 @@ a {
   text-align: left !important;
   min-height: 30px !important;
 }
-.singleGenre .singleGenreAvtar {
-  /*margin-top: 43px;*/
-}
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
-  /*padding-left: 119px;*/
   padding-bottom: 3px;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle,
@@ -711,49 +676,68 @@ a {
 .singleGenre .imageContainerOuter {
   padding-top: 45px;
 }
-.filteredGenre .card {
-  box-shadow: none;
-  border-bottom: none;
-}
-.filteredGenre .item {
-  position: relative;
-  padding: 0;
-}
-.filteredGenre .item.item.item-image {
-  margin-bottom: 10px;
-}
-.filteredGenre .cardTitle {
-  padding: 10px 10px 0 120px;
-  font-size: 1em;
-}
-.filteredGenre .totalfilmsNTime {
-  position: absolute;
-  width: 100%;
-  bottom: 3px;
-  padding: 0 9px 0 120px;
-  font-size: 0.6em;
-}
-.filteredGenre .totalfilmsNTime span i {
-  line-height: 2;
-  margin-right: 1px;
-}
-.filteredGenre .movieDescription {
-  padding-left: 120px;
-  font-size: 0.7em;
-  line-height: 1.5;
-  white-space: normal;
-}
-.filteredGenre.genreImgOuter .item-thumbnail-left {
-  min-height: 90px;
-}
-.filteredGenre.genreImgOuter .item-thumbnail-left img {
-  max-width: 70px;
-  max-height: 70px;
-}
-.filteredGenre.genreImgOuter .cardTitle,
-.filteredGenre.genreImgOuter .totalfilmsNTime {
-  padding-left: 90px;
-}
+/*.filteredGenre
+{
+	.card 
+	{
+		box-shadow: none;
+		border-bottom: none;
+	}
+	.item
+	{
+		position: relative;		
+		padding: 0;
+		&.item.item-image
+		{
+			margin-bottom: 10px;
+		}
+	}
+	.cardTitle
+	{
+		padding:10px 10px 0 120px;
+		font-size: 1em;    	
+	}
+	.totalfilmsNTime
+	{
+		position: absolute;
+	    width: 100%;
+	    bottom: 3px;
+	    padding:0 9px 0 120px;	   
+	    font-size: 0.6em;    
+	    span
+	    {
+	    	i
+	    	{
+	    		line-height: 2;
+	    		margin-right: 1px;
+	    	}
+	    }
+	}
+	.movieDescription
+	{
+		padding-left:120px;
+		font-size: 0.7em;
+		line-height: 1.5;
+		white-space: normal; 
+	}
+
+	&.genreImgOuter
+	{
+		.item-thumbnail-left 
+		{
+			min-height: 90px;
+			img
+			{
+				max-width: 70px;
+	    		max-height: 70px;
+			}
+		}
+		.cardTitle , .totalfilmsNTime 
+		{
+			padding-left: 90px;
+		}
+	}
+}*/
 .filterNo {
   height: 16px;
   width: 16px;
@@ -814,58 +798,6 @@ a {
 .singlePlaylistAvtar {
   margin-top: 43px;
 }
-/*.filterRadioOuter
-{
-	padding: 2px 15px;
-	input
-	{
-		float: left;
-		margin-top: 4px;
-		opacity: 0;
-		height: 20px;
-	    width: 100%;
-	    position: absolute;
-	    z-index: 3;
-	}
-	label
-	{
-		padding-left: 20px;
-	}
-	.radioIcon
-	{
-		position: absolute;
-		z-index: 1;
-		display: block;
-		border-radius: 50%;
-		margin-top: 5px;
-		height: 10px;
-		width: 10px;
-		background: @grayLighter;
-		left: 15px;
-		padding: 0;
-	}
-	input:checked + .radioIcon
-	{
-	    background: @white;
-	    height: 16px;
-	    width: 16px;
-	    border: 1px solid @primary;
-	    margin-top: 2px;
-	    left: 13px;
-	    span
-	    {
-	    	height: 8px;
-		    width: 8px;
-		    background: @primary;
-		    z-index: 1;
-		    position: absolute;
-		    border-radius: 50%;
-		    top: 3px;
-		    left: 3px;
-	    }
-	}
-
-}*/
 .pane.faq .pane {
   background: transparent;
 }
@@ -902,15 +834,28 @@ a {
       -ms-transform: scale(0.8);
           transform: scale(0.8);
 }
-/*.synopsis a
-{
-	display: block;
-	text-align: center;
-}*/
-/*.listItem
-{
-	height: 100%;
-}*/
+.errors {
+  min-height: 300px;
+  width: 320px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -110px;
+  margin-left: -160px;
+}
+.errors img {
+  height: 120px;
+}
+.errors .button {
+  padding: 0 20px;
+  border: none;
+}
+.errors h3 {
+  color: #2e2e2e;
+}
+.errors h5 {
+  color: #5e5e5e;
+}
 .submitForm .item-select {
   height: 35px;
 }
