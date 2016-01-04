@@ -1,5 +1,5 @@
           <ion-view>
-          <ion-content class="popular"  ng-init="test()" ion-sticky>
+          <ion-content class="popular"  ng-init="test()" ion-sticky overflow-scroll='true'>
            <ion-refresher
             pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
@@ -7,13 +7,13 @@
               <div class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="list card margin0 cardOuter swiper-slide">
-                <div class="item item-avatar item-divider"  >
+                <div  class="item item-avatar "  >
                       <img src="img/icons/weekly_premiere.png">
                       <div class="primaryText cardTitle">Weekly Premiere</div>
                       <p>Carefully handpicked, just for you.</p>
                     </div>
 
-                    <div class="item item-image padding0" ng-click="singleplay( premeiere.movie_id )">
+                    <div  style="height: {{ hgt }}px"class="item item-image padding0" ng-click="singleplay( premeiere.movie_id )">
                       <div class="imageContainerOuter"><img src="{{ premeiere.image }}" /></div>
                       <div class="overlay" ></div>
                       <div class="movieDetails padding-horizontal padding-bottom whiteText">
@@ -35,15 +35,15 @@
                     </div>
 
                   </div>
-     
-        <div class="cardDetails swiper-slide"
-         ng-repeat ="data in addition" >
-         <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
- <div class="item item-avatar item-divider" >
+      <div  class="item item-avatar item-divider" >
                 <img src="img/icons/new_additions.png">
                 <div class="primaryText cardTitle" >New Additions</div>
                 <p>Just starting out on their big journey!</p>
               </div>
+        <div class="cardDetails swiper-slide"
+         ng-repeat ="data in addition" >
+         <div class="list card margin0 cardOuter" style="height: {{ hgt }}px" ng-click="singleplay({{ data.movie_id }})">
+
            <div class="item item-image padding0 newAdditions"  >
                 <div class="imageContainerOuter"><img src="{{ data.image }}"  />
                 </div>
@@ -69,15 +69,15 @@
 
               </div>
 
-          
-          <div class="cardDetails swiper-slide"
-          ng-repeat ="data in noteworthy" >
-          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
-            <div class="item item-avatar item-divider">
+          <div  class="item item-avatar item-divider">
                 <img src="img/icons/noteworthy.png">
                 <div class="primaryText cardTitle">Noteworthy</div>
                 <p>Completely out of the ordinary</p>
               </div>
+          <div class="cardDetails swiper-slide"
+          ng-repeat ="data in noteworthy" >
+          <div class="list card margin0 cardOuter" style="height: {{ hgt }}px" ng-click="singleplay({{ data.movie_id }})">
+
               <div class="item item-image padding0 noteWorthy">
                 <div class="imageContainerOuter"><img src="{{ data.image }}" />
                 </div>
@@ -102,18 +102,17 @@
                 </div>
             </div>
 
-            
-            <div class="list card margin0 playlist swiper-slide">
-              <div class="item item-avatar item-divider">
+            <div class="item item-avatar item-divider">
                 <img src="img/icons/awesome_playlists.png">
                 <div class="primaryText cardTitle">Awesome Playlist</div>
                 <p>Just sit back and relax with some popcorn!</p>
               </div>
+            <div class="list card margin0 playlist swiper-slide">
               <div
                 ng-repeat ="data in awplalist" >
 
               <div class="playlistContent">
-                <div class="col imageContainer" ng-click= "singleplaylist( data.playlist_id)">
+                <div class="col imageContainer"  ng-click= "singleplaylist( data.playlist_id)">
                   <div class="playlistContentInner">
                     <img src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails">

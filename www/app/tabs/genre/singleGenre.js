@@ -1,5 +1,5 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
-  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share) {
+  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share, $window) {
     $scope.lang = '';
     $scope.sort_key = '';
     $scope.display = 'loader';
@@ -7,7 +7,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       return share.shareNative();
     };
     $scope.init = function() {
-      var swiper;
+      var device_height, device_width, swiper;
       swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -19,7 +19,14 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         $scope.genre = DetailsAPI.Global_array;
         $scope.sortData = DetailsAPI.Sort;
         $scope.language = DetailsAPI.Filter;
-        return $scope.display = 'result';
+        $scope.display = 'result';
+        device_width = $window.innerWidth;
+        device_height = $window.innerHeight;
+        console.log(device_width);
+        console.log(device_height);
+        $scope.used_height = 88 + 73;
+        $scope.hgt = device_height - $scope.used_height;
+        return console.log($scope.hgt);
       } else {
         $ionicLoading.show({
           content: 'Loading',
@@ -39,6 +46,13 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
             $scope.sortData = data.sort_keys;
             $scope.language = data.filters.languages;
             $scope.display = 'result';
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            console.log(device_width);
+            console.log(device_height);
+            $scope.used_height = 88 + 73;
+            $scope.hgt = device_height - $scope.used_height;
+            console.log($scope.hgt);
             return $ionicLoading.hide();
           };
         })(this), (function(_this) {

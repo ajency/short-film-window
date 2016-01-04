@@ -1,6 +1,6 @@
 angular.module 'SFWApp.tabs',[]
-.controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
-	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading)->
+.controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window'
+	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
 
 		$scope.singleplaylist = (playlistId)->
 			console.log playlistId
@@ -46,6 +46,14 @@ angular.module 'SFWApp.tabs',[]
 			App.navigate 'init'
 
 		$scope.test = ->
+			device_width = $window.innerWidth;
+			device_height = $window.innerHeight;
+			console.log device_width
+			console.log device_height
+
+			$scope.used_height = 86 + 73
+			$scope.hgt = device_height - $scope.used_height
+			console.log $scope.hgt
 
 			$scope.premeiere= DetailsAPI.array
 			$scope.addition= DetailsAPI.array_addition

@@ -1,5 +1,5 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
-  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
+  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window) {
     var swiper;
     $scope.singleplaylist = function(playlistId) {
       console.log(playlistId);
@@ -50,6 +50,14 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       return App.navigate('init');
     };
     $scope.test = function() {
+      var device_height, device_width;
+      device_width = $window.innerWidth;
+      device_height = $window.innerHeight;
+      console.log(device_width);
+      console.log(device_height);
+      $scope.used_height = 86 + 73;
+      $scope.hgt = device_height - $scope.used_height;
+      console.log($scope.hgt);
       $scope.premeiere = DetailsAPI.array;
       $scope.addition = DetailsAPI.array_addition;
       $scope.noteworthy = DetailsAPI.array_noteworthy;
