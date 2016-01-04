@@ -1,10 +1,12 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory)->
+.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share)->
 
 	$scope.lang = ''
 	$scope.sort_key = ''
 	$scope.display = 'loader'
+	$scope.share = () ->
+		share.shareNative()
 	$scope.init = () ->
 		swiper = new Swiper('.swiper-container', {
 				pagination: '.swiper-pagination'

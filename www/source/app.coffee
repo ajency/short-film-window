@@ -1,10 +1,11 @@
 
 angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar'
 					   , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs','SFWApp.submit','ion-affix'
-					   ,'ion-sticky','ionicLazyLoad']
+					   ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed']
 
 .run ['$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen', ($rootScope, App, $timeout,Set_Get,$cordovaSplashscreen)->
 
+	console.log "run method called"
 	tag = document.createElement('script')
 	tag.src = 'https://www.youtube.com/iframe_api'
 	firstScriptTag = document.getElementsByTagName('script')[0]
@@ -16,11 +17,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
 					paginationClickable: true
 					direction: 'vertical'
 						});
-	# $cordovaSplashscreen.hide();
 
+	# App.navigate 'landingvideo'
 	$timeout ->
-	  App.navigate 'landingvideo'
-	  return
+		App.navigate 'landingvideo'
+		return
 	, 5000
 
 

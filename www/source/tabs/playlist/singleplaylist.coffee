@@ -1,8 +1,10 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singlePlaylist', ['$scope','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory', ($scope,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory)->
+.controller 'singlePlaylist', ['$scope','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share', ($scope,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share)->
 
     $scope.display= 'loader'
+    $scope.share = () ->
+        share.shareNative()
     $scope.init = () ->
         swiper = new Swiper('.swiper-container', {
                 pagination: '.swiper-pagination'

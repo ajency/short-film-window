@@ -1,7 +1,4 @@
 <ion-view>
-<ion-header-bar class="bar bar-header movieHeader">
-        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
-</ion-header-bar>
   <ion-content class="videoOuter" ng-init="view.init()" ng-controller="playerCtrl">
 
 	<!-- You Tube player player -->
@@ -11,6 +8,8 @@
 	<!-- Vimeo player -->
 	<div class="player1video" ng-show="view.vimomeo">
 		<iframe id="player1" ng-src="{{player1}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
+       <!--  <vimeo-video player-id="video3" video-url="'https://vimeo.com/97564754'" player-width="640" player-height="360"></vimeo-video> -->
+
 	</div>
 
 	</ion-content>

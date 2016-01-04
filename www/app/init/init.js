@@ -1,7 +1,11 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory) {
+  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share) {
     $scope.Videodetails = [];
     $scope.display = 'result';
+    $scope.share = function() {
+      console.log("social sharing ");
+      return share.shareNative();
+    };
     $scope.init = function() {
       var Vtype;
       if (!angular.isUndefined(DetailsAPI.singleVideoarray.movie_id)) {

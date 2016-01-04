@@ -1,5 +1,5 @@
 angular.module('SFWApp.landing', []).controller('landingCtrl', [
-  '$scope', 'App', 'DetailsAPI', '$sce', '$ionicLoading', function($scope, App, DetailsAPI, $sce, $ionicLoading) {
+  '$scope', 'App', 'DetailsAPI', '$sce', '$ionicLoading', '$ImageCacheFactory', function($scope, App, DetailsAPI, $sce, $ionicLoading, $ImageCacheFactory) {
     return $scope.view = {
       skiplangingVideo: function() {
         land_vid_html5_api.pause();
@@ -18,6 +18,11 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
         return DetailsAPI.GetVideoDetails().then((function(_this) {
           return function(data) {
             console.log(data.defaults.content.popular.weekly_premiere.image);
+            $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]).then(function() {
+              return console.log("Images done loading!");
+            }, function(failed) {
+              return console.log("An image failed: " + failed);
+            });
             DetailsAPI.setData({
               premiere: data.defaults.content.popular.weekly_premiere,
               new_addition: data.defaults.content.popular.new_additions,
