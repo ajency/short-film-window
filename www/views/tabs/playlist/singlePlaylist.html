@@ -5,7 +5,7 @@
       </ion-header-bar>
 <div ng-switch = 'display'>
   <div ng-switch-when = 'result'>
-          <div class="item item-thumbnail-left singleGenreAvtar has-header">
+          <div  id = "header" class="item item-thumbnail-left singleGenreAvtar has-header">
             <img src="{{ playlist.playlist_image_url }}">
             <marquee scrolldelay="200" class="primaryText cardTitle">{{ playlist.playlist_name }}</marquee>
             <p class="movieDescription"> {{ playlist.playlist_description }}</p>
@@ -18,7 +18,8 @@
 
         <div class="list card margin0 cardOuter ">
 
-          <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
+          <div style="height: {{ hgt }}px" class="item item-image padding0"
+             ng-click="singleplay( data.movie_id )">
                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
                 <div class="overlay" ></div>
                 <div class="movieDetails padding-horizontal whiteText">

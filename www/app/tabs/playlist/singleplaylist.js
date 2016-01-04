@@ -1,11 +1,11 @@
 angular.module('SFWApp.tabs').controller('singlePlaylist', [
-  '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share) {
+  '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout) {
     $scope.display = 'loader';
     $scope.share = function() {
       return share.shareNative();
     };
     $scope.init = function() {
-      var swiper;
+      var device_height, device_width, swiper;
       swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -15,7 +15,14 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
         console.log("Playlist cached");
         $scope.playlistData = DetailsAPI.GlobalChild_array;
         $scope.playlist = DetailsAPI.Global_array;
-        return $scope.display = 'result';
+        $scope.display = 'result';
+        device_width = $window.innerWidth;
+        device_height = $window.innerHeight;
+        console.log(device_width);
+        console.log(device_height);
+        $scope.used_height = 44 + 120;
+        $scope.hgt = device_height - $scope.used_height;
+        return console.log($scope.hgt);
       } else {
         console.log("Playlist emplty");
         $ionicLoading.show({
@@ -32,6 +39,13 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
             $scope.playlistData = data.movies;
             $scope.playlist = data.playlist;
             $scope.display = 'result';
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            console.log(device_width);
+            console.log(device_height);
+            $scope.used_height = 44 + 120;
+            $scope.hgt = device_height - $scope.used_height;
+            console.log($scope.hgt);
             return $ionicLoading.hide();
           };
         })(this), (function(_this) {
