@@ -179,6 +179,10 @@ a {
   font-size: 1.3em;
   padding-top: 3px;
 }
+.item-thumbnail-left.item-divider {
+  padding: 5px 10px 5px 105px;
+  height: 118px;
+}
 .popular.has-tabs-top {
   top: 86px;
 }

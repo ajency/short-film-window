@@ -14,11 +14,11 @@
         <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
       </div>
  
-     <div ng-repeat ="data in genreData" class="cardDetails swiper-slide">
+     <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
     <div  class="list card margin0 cardOuter ">
 
-      <div style="height: {{ hgt }}px" class="item item-image padding0" ng-click="singleplay( data.movie_id )">
+      <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
             <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
             <div class="overlay" ></div>
             <div class="movieDetails padding whiteText">
