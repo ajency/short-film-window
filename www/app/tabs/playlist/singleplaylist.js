@@ -1,6 +1,9 @@
 angular.module('SFWApp.tabs').controller('singlePlaylist', [
-  '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory) {
+  '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share) {
     $scope.display = 'loader';
+    $scope.share = function() {
+      return share.shareNative();
+    };
     $scope.init = function() {
       var swiper;
       swiper = new Swiper('.swiper-container', {

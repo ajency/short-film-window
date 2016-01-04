@@ -1,5 +1,5 @@
 angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
-  '$q', 'App', '$http', function($q, App, $http) {
+  '$q', 'App', '$http', '$ImageCacheFactory', function($q, App, $http, $ImageCacheFactory) {
     var DetailsAPI;
     DetailsAPI = {};
     DetailsAPI.videoId = '';
@@ -14,6 +14,7 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     DetailsAPI.Sort = [];
     DetailsAPI.array = [];
     DetailsAPI.singleVideoarray = [];
+    DetailsAPI.imagArray = [];
     DetailsAPI.GetVideoDetails = function() {
       var defer;
       defer = $q.defer();
@@ -51,13 +52,7 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       DetailsAPI.array_noteworthy = opts.noteworthy;
       DetailsAPI.array_awplalist = opts.awesome_playlist;
       DetailsAPI.genre_array = opts.genre;
-      DetailsAPI.playlist_array = opts.playlist;
-      console.log(DetailsAPI.playlist_array);
-      console.log(DetailsAPI.genre_array);
-      console.log(DetailsAPI.array);
-      console.log(DetailsAPI.array_addition);
-      console.log(DetailsAPI.array_noteworthy);
-      return console.log(DetailsAPI.array_awplalist);
+      return DetailsAPI.playlist_array = opts.playlist;
     };
     return DetailsAPI;
   }

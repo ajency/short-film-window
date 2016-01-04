@@ -1,6 +1,6 @@
 angular.module 'SFWApp.VideoDetailsAPI',[]
 
-.factory 'DetailsAPI',['$q', 'App', '$http' ,($q, App, $http)->
+.factory 'DetailsAPI',['$q', 'App', '$http','$ImageCacheFactory' ,($q, App, $http,$ImageCacheFactory)->
 
 	DetailsAPI = {}
 
@@ -16,6 +16,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 	DetailsAPI.Sort = []
 	DetailsAPI.array = []
 	DetailsAPI.singleVideoarray = []
+	DetailsAPI.imagArray = []
 
 
 
@@ -36,6 +37,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 	DetailsAPI.GetSingleVideo = (VideoId)->
 		console.log VideoId
+
 		defer = $q.defer()
 
 		$http.get URL+"/wp-json/get_video?id=#{VideoId}"
@@ -49,10 +51,6 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 		defer.promise
 
-
-
-
-
 	DetailsAPI.setData = (opts={})->
 			console.log opts
 			DetailsAPI.array = opts.premiere
@@ -62,13 +60,20 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 			DetailsAPI.genre_array = opts.genre
 			DetailsAPI.playlist_array = opts.playlist
 
-			console.log DetailsAPI.playlist_array
-			console.log DetailsAPI.genre_array
-			console.log DetailsAPI.array
-			console.log DetailsAPI.array_addition
-			console.log DetailsAPI.array_noteworthy
-			console.log DetailsAPI.array_awplalist
+			# Pre-loading all images ....
 
+			# i = 0
+
+			# while i < DetailsAPI.genre_array.length
+			# 	DetailsAPI.imagArray = DetailsAPI.genre_array[i].genre_image_url
+			# 	# $ImageCacheFactory.Cache [
+			# 	# 	DetailsAPI.genre_array[i].genre_image_url,
+			# 	# ]
+			# 	# .then ()=>
+			# 	# 	console.log("Images done loading!");
+			# 	# ,(failed)=>
+			# 	# 	console.log("An image filed: "+failed);
+			# i++
 
 
 

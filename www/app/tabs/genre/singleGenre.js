@@ -1,8 +1,11 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
-  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory) {
+  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share) {
     $scope.lang = '';
     $scope.sort_key = '';
     $scope.display = 'loader';
+    $scope.share = function() {
+      return share.shareNative();
+    };
     $scope.init = function() {
       var swiper;
       swiper = new Swiper('.swiper-container', {

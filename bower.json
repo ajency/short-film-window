@@ -7,6 +7,7 @@
   "dependencies": {
     "underscore": "~1.8.3",
     "ngCordova": "~0.1.23-alpha",
-    "ion-sticky": "~1.0.4"
+    "ion-sticky": "~1.0.4",
+    "angular-vimeo-embed": "~0.1.2"
   }
 }

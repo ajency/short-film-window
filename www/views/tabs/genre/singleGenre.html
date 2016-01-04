@@ -1,13 +1,13 @@
 <ion-view class="singleGenre" ng-init="init()">
   <ion-header-bar class="bar bar-header primary">
     <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Genre</button>
-    <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
+    <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i></button>
   </ion-header-bar>
 
 
 <div ng-switch ="display" >
   <div ng-switch-when="result">
-  <ion-content class="popular " ion-sticky >
+  <ion-content class="popular " ion-sticky  overflow-scroll='true'>
   <div class="item item-avatar singleGenreAvtar item-divider">
         <img src="{{ genre.genre_image_url }}">
         <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
