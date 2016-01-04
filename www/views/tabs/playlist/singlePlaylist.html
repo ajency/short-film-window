@@ -5,20 +5,21 @@
       </ion-header-bar>
 <div ng-switch = 'display'>
   <div ng-switch-when = 'result'>
-          <div  id = "header" class="item item-thumbnail-left singleGenreAvtar has-header">
+         
+          <ion-content class="popular singlePlaylist" overflow-scroll='true' ion-sticky>
+           <div  id = "" class="item item-thumbnail-left singleGenreAvtar item-divider">
             <img src="{{ playlist.playlist_image_url }}">
             <marquee scrolldelay="200" class="primaryText cardTitle">{{ playlist.playlist_name }}</marquee>
             <p class="movieDescription"> {{ playlist.playlist_description }}</p>
             <div class="bold primaryText totalfilmsNTime">{{playlist.playlist_count}} Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{playlist.run_time }} MIN</span></div>
           </div>
-          <ion-content class="popular singlePlaylist" overflow-scroll='true'>
           <!-- <div class="swiper-container">
                 <div class="swiper-wrapper"> -->
-          <div ng-repeat ="data in playlistData" class="cardDetails swiper-slide">
+          <div ng-repeat ="data in playlistData" class="cardDetails swiper-slide" style="height: {{ hgt }}px">
 
         <div class="list card margin0 cardOuter ">
 
-          <div style="height: {{ hgt }}px" class="item item-image padding0"
+          <div class="item item-image padding0"
              ng-click="singleplay( data.movie_id )">
                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
                 <div class="overlay" ></div>
