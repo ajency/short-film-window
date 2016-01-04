@@ -31,12 +31,6 @@ angular.module 'SFWApp.tabs'
 			console.log $scope.hgt
 
 		else
-			$ionicLoading.show
-			  content: 'Loading'
-			  animation: 'fade-in'
-			  showBackdrop: true
-			  maxWidth: 600
-			  showDelay: 0
 			GenreAPI.GetSingleGenre(DetailsAPI.videoId)
 			.then (data)=>
 				DetailsAPI.GlobalChild_array = data.movies
@@ -48,8 +42,6 @@ angular.module 'SFWApp.tabs'
 				$scope.sortData= data.sort_keys
 				$scope.language = data.filters.languages
 				$scope.display = 'result'
-
-
 				device_width = $window.innerWidth;
 				device_height = $window.innerHeight;
 				console.log device_width
@@ -57,12 +49,10 @@ angular.module 'SFWApp.tabs'
 				$scope.used_height = 88 + 73
 				$scope.hgt = device_height - $scope.used_height
 				console.log $scope.hgt
-
-				$ionicLoading.hide();
 			, (error)=>
 				console.log 'Error Loading data'
 				$scope.display = 'error'
-				$ionicLoading.hide();
+
 
 
 	$scope.sortGenre = ()->
@@ -91,13 +81,10 @@ angular.module 'SFWApp.tabs'
 		console.log $scope.sort_key
 		arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
 
+		$ionicLoading.hide();
 		hideOnStateChange: false
-		$ionicLoading.show
-			  content: 'Loading'
-			  animation: 'fade-in'
-			  showBackdrop: true
-			  maxWidth: 600
-			  showDelay: 0
+		$scope.display = 'loader'
+
 		GenreAPI.ApplyFilter(arr)
 		.then (data)=>
 			DetailsAPI.GlobalChild_array = data.movies
@@ -116,6 +103,8 @@ angular.module 'SFWApp.tabs'
 			$ionicLoading.hide();
 		, (error)=>
 			console.log 'Error Loading data'
+			$scope.display = 'error'
+
 			$ionicLoading.hide();
 		# $scope.sort_key = ''
 		# $scope.lang = ''
@@ -134,12 +123,7 @@ angular.module 'SFWApp.tabs'
 		arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
 
 		hideOnStateChange: false
-		$ionicLoading.show
-			  content: 'Loading'
-			  animation: 'fade-in'
-			  showBackdrop: true
-			  maxWidth: 600
-			  showDelay: 0
+		$scope.display = 'loader'
 		GenreAPI.ApplyFilter(arr)
 		.then (data)=>
 			DetailsAPI.GlobalChild_array = data.movies
@@ -152,8 +136,10 @@ angular.module 'SFWApp.tabs'
 			$scope.sortData= data.sort_keys
 			$scope.language = data.filters.languages
 			$ionicLoading.hide();
+			$scope.display = 'result'
 		, (error)=>
 			console.log 'Error Loading data'
+			$scope.display = 'error'
 			$ionicLoading.hide();
 
 

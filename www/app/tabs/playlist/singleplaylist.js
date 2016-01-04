@@ -25,13 +25,7 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
         return console.log($scope.hgt);
       } else {
         console.log("Playlist emplty");
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: true,
-          maxWidth: 600,
-          showDelay: 0
-        });
+        $scope.display = 'loader';
         return PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
             DetailsAPI.Global_array = data.playlist;

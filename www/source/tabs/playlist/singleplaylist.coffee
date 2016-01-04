@@ -28,12 +28,7 @@ angular.module 'SFWApp.tabs'
 
         else
             console.log "Playlist emplty"
-            $ionicLoading.show
-              content: 'Loading'
-              animation: 'fade-in'
-              showBackdrop: true
-              maxWidth: 600
-              showDelay: 0
+            $scope.display= 'loader'
             PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId)
             .then (data)=>
                 DetailsAPI.Global_array = data.playlist

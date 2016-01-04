@@ -28,13 +28,6 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         $scope.hgt = device_height - $scope.used_height;
         return console.log($scope.hgt);
       } else {
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: true,
-          maxWidth: 600,
-          showDelay: 0
-        });
         return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
             DetailsAPI.GlobalChild_array = data.movies;
@@ -52,14 +45,12 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
             console.log(device_height);
             $scope.used_height = 88 + 73;
             $scope.hgt = device_height - $scope.used_height;
-            console.log($scope.hgt);
-            return $ionicLoading.hide();
+            return console.log($scope.hgt);
           };
         })(this), (function(_this) {
           return function(error) {
             console.log('Error Loading data');
-            $scope.display = 'error';
-            return $ionicLoading.hide();
+            return $scope.display = 'error';
           };
         })(this));
       }
@@ -91,16 +82,11 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       console.log($scope.lang);
       console.log($scope.sort_key);
       arr = [DetailsAPI.Global_array.genre_id, $scope.sort_key, $scope.lang];
+      $ionicLoading.hide();
       ({
         hideOnStateChange: false
       });
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
+      $scope.display = 'loader';
       return GenreAPI.ApplyFilter(arr).then((function(_this) {
         return function(data) {
           DetailsAPI.GlobalChild_array = data.movies;
@@ -121,6 +107,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       })(this), (function(_this) {
         return function(error) {
           console.log('Error Loading data');
+          $scope.display = 'error';
           return $ionicLoading.hide();
         };
       })(this));
@@ -141,13 +128,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       ({
         hideOnStateChange: false
       });
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
+      $scope.display = 'loader';
       return GenreAPI.ApplyFilter(arr).then((function(_this) {
         return function(data) {
           DetailsAPI.GlobalChild_array = data.movies;
@@ -158,11 +139,13 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           $scope.genre = data.genre;
           $scope.sortData = data.sort_keys;
           $scope.language = data.filters.languages;
-          return $ionicLoading.hide();
+          $ionicLoading.hide();
+          return $scope.display = 'result';
         };
       })(this), (function(_this) {
         return function(error) {
           console.log('Error Loading data');
+          $scope.display = 'error';
           return $ionicLoading.hide();
         };
       })(this));
