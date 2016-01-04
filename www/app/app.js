@@ -1,4 +1,4 @@
-angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'SFWApp.submit', 'ion-affix', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'vimeoEmbed']).run([
+angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'SFWApp.submit', 'ion-affix', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'vimeoEmbed', 'jett.ionic.filter.bar']).run([
   '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', function($rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window) {
     var device_height, device_width, firstScriptTag, swiper, tag;
     console.log("run method called");

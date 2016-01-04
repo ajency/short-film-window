@@ -125,6 +125,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       console.log($scope.lang);
       console.log($scope.sort_key);
       arr = [DetailsAPI.Global_array.genre_id, $scope.sort_key, $scope.lang];
+      $ionicLoading.hide();
       ({
         hideOnStateChange: false
       });

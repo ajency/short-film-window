@@ -2,6 +2,9 @@ angular.module 'SFWApp.tabs',[]
 .controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window'
 	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
 
+
+
+
 		$scope.singleplaylist = (playlistId)->
 			console.log playlistId
 			DetailsAPI.videoId = playlistId
