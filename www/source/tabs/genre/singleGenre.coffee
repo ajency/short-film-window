@@ -1,6 +1,6 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share)->
+.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share','$window', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share,$window)->
 
 	$scope.lang = ''
 	$scope.sort_key = ''
@@ -22,6 +22,14 @@ angular.module 'SFWApp.tabs'
 			$scope.language = DetailsAPI.Filter
 			$scope.display = 'result'
 
+			device_width = $window.innerWidth;
+			device_height = $window.innerHeight;
+			console.log device_width
+			console.log device_height
+			$scope.used_height = 88 + 73
+			$scope.hgt = device_height - $scope.used_height
+			console.log $scope.hgt
+
 		else
 			$ionicLoading.show
 			  content: 'Loading'
@@ -35,12 +43,21 @@ angular.module 'SFWApp.tabs'
 				DetailsAPI.Global_array = data.genre
 				DetailsAPI.Filter = data.filters.languages
 				DetailsAPI.Sort = data.sort_keys
-
 				$scope.genreData= data.movies
 				$scope.genre = data.genre
 				$scope.sortData= data.sort_keys
 				$scope.language = data.filters.languages
 				$scope.display = 'result'
+
+
+				device_width = $window.innerWidth;
+				device_height = $window.innerHeight;
+				console.log device_width
+				console.log device_height
+				$scope.used_height = 88 + 73
+				$scope.hgt = device_height - $scope.used_height
+				console.log $scope.hgt
+
 				$ionicLoading.hide();
 			, (error)=>
 				console.log 'Error Loading data'
