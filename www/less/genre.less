@@ -45,7 +45,7 @@
 		color: @grayDark !important;
 		margin: 0;
 		text-align: left !important;
-		min-height: 30px !important;		
+		min-height: 30px !important;				
 	}
 	.singleGenreAvtar
 	{		
@@ -259,10 +259,16 @@
 	.popup-body
 	{
 		color: @grayDark;
+		padding: 0;
 		.sortInner
 		{
 			float: left;
 			width: 100%;
+			&:focus, &:active, &:hover
+			{
+				background:#f2f2f2;
+				outline: none;
+			}
 
 			img
 			{
