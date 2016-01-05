@@ -727,7 +727,25 @@ a {
   background-size: contain;
   height: 25px;
   width: 25px;
-  float: left;
+  float: left
+  /*&.icon-filter, .icon-filter_red
+	{
+		background-image: url('../img/icons/filter_grey.png');
+		vertical-align: middle;
+		float: none;
+		margin: -3px 5px 0 0 !important;
+	}
+	.icon-filter_red
+	{
+		background-image: url('../img/icons/filter_red.png');
+	}
+	&.icon-sort
+	{
+		background-image: url('../img/icons/sort_notapplied.png');
+		vertical-align: middle;
+		float: none;
+		margin: -3px 5px 0 0 !important;
+	}*/
 }
 .icon-cust.icon-home {
   background-image: url('../img/icons/home.png');
@@ -763,22 +781,6 @@ a {
 }
 .icon-cust.icon-heart {
   background-image: url('../img/icons/favorite.png');
-}
-.icon-cust.icon-filter,
-.icon-cust .icon-filter_red {
-  background-image: url('../img/icons/filter_grey.png');
-  vertical-align: middle;
-  float: none;
-  margin: -3px 5px 0 0 !important;
-}
-.icon-cust .icon-filter_red {
-  background-image: url('../img/icons/filter_red.png');
-}
-.icon-cust.icon-sort {
-  background-image: url('../img/icons/sort_notapplied.png');
-  vertical-align: middle;
-  float: none;
-  margin: -3px 5px 0 0 !important;
 }
 .swiper-container,
 .swiper-wrapper,
@@ -874,6 +876,12 @@ a {
 .singleGenre .bar-footer .button:last-child {
   top: 2px;
   right: 0;
+}
+.singleGenre .bar-footer.genreFooter img {
+  display: inline-block;
+  margin-top: 3px;
+  vertical-align: inherit;
+  height: 25px;
 }
 .singleGenre .watchList {
   position: absolute;
