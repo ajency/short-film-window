@@ -437,8 +437,19 @@ a {
   top: 0;
   width: 100%;
   z-index: 99;
-  height: 42px
-  /*display: none;*/
+  height: 42px;
+  -webkit-transition: width 1s ease;
+          transition: width 1s ease;
+}
+.box.showSearch {
+  width: 100% !important;
+  -webkit-transition: width 1s ease;
+          transition: width 1s ease;
+}
+.box.hideSearch {
+  width: 0 !important;
+  -webkit-transition: width 1s ease;
+          transition: width 1s ease;
 }
 .box input {
   width: 100%;

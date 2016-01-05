@@ -298,7 +298,18 @@
 	width: 100%;
 	z-index: 99;
 	height: 42px;
-	/*display: none;*/
+	transition:width 1s ease;
+	
+	&.showSearch
+	{
+		width: 100% !important;	
+		transition:width 1s ease;	
+	}
+	&.hideSearch
+	{
+		width: 0 !important;
+		transition:width 1s ease;	
+	}
 	input
 	{
 		width: 100%;
