@@ -2,9 +2,16 @@ angular.module 'SFWApp.tabs'
 
 .controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share','$window', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share,$window)->
 
-	$scope.lang = ''
-	$scope.sort_key = ''
+	$scope.lang = null
+	$scope.sort_key = null
+	$scope.filterimg = 'img/icons/filter_grey.png'
+	$scope.sortimg = 'img/icons/sort_notapplied.png'
 	$scope.display = 'loader'
+	$scope.Popuparray = []
+	$scope.PopuparrayClicked = ['img/icons/fresh_red.png','img/icons/popularity_red.png','img/icons/length_red.png']
+	$scope.PopuparrayImages = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
+
+
 	$scope.share = () ->
 		share.shareNative()
 	$scope.init = () ->
@@ -42,6 +49,7 @@ angular.module 'SFWApp.tabs'
 				$scope.sortData= data.sort_keys
 				$scope.language = data.filters.languages
 				$scope.display = 'result'
+
 				device_width = $window.innerWidth;
 				device_height = $window.innerHeight;
 				console.log device_width
@@ -49,6 +57,7 @@ angular.module 'SFWApp.tabs'
 				$scope.used_height = 88 + 73
 				$scope.hgt = device_height - $scope.used_height
 				console.log $scope.hgt
+
 			, (error)=>
 				console.log 'Error Loading data'
 				$scope.display = 'error'
@@ -74,11 +83,37 @@ angular.module 'SFWApp.tabs'
 	$scope.getId = (sort_id)->
 		console.log sort_id
 		$scope.sort_key = sort_id
+		$scope.Popuparray = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
+		$scope.Popuparray[sort_id] = $scope.PopuparrayClicked[sort_id]
+		$scope.txtcolor = ['','','']
+		$scope.txtcolor[sort_id] = 'color:red'
+
+	$scope.popup = ()->
+		console.log "popup init called "
+		if _.isNull($scope.sort_key)
+			$scope.Popuparray = $scope.PopuparrayImages
+			console.log $scope.Popuparray[1]
+		else
+			$scope.Popuparray = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
+			$scope.Popuparray[$scope.sort_key] = $scope.PopuparrayClicked[$scope.sort_key]
+			$scope.txtcolor = ['','','']
+			$scope.txtcolor[$scope.sort_key] = 'color:red'
 
 
 	$scope.FiltersortApply = ()->
 		console.log $scope.lang
 		console.log $scope.sort_key
+		if _.isNull($scope.lang)
+			$scope.filterimg = 'img/icons/filter_grey.png'
+		else
+			$scope.filterimg = 'img/icons/filter_red.png'
+
+		if _.isNull($scope.sort_key)
+			$scope.sortimg = 'img/icons/sort_notapplied.png'
+		else
+			$scope.sortimg = $scope.PopuparrayClicked[$scope.sort_key]
+
+
 		arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
 
 		$ionicLoading.hide();
@@ -116,7 +151,8 @@ angular.module 'SFWApp.tabs'
 		hideOnStateChange: false
 
 	$scope.reset = () ->
-		$scope.sort_key = ''
+		$scope.sortimg = 'img/icons/sort_notapplied.png'
+		$scope.sort_key = null
 		$scope.lang = ''
 		console.log $scope.lang
 		console.log $scope.sort_key
