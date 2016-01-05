@@ -86,7 +86,7 @@ angular.module 'SFWApp.tabs'
 		$scope.Popuparray = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
 		$scope.Popuparray[sort_id] = $scope.PopuparrayClicked[sort_id]
 		$scope.txtcolor = ['','','']
-		$scope.txtcolor[sort_id] = 'color:red'
+		$scope.txtcolor[sort_id] = 'color:#AF152F'
 
 	$scope.popup = ()->
 		console.log "popup init called "
@@ -97,7 +97,7 @@ angular.module 'SFWApp.tabs'
 			$scope.Popuparray = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
 			$scope.Popuparray[$scope.sort_key] = $scope.PopuparrayClicked[$scope.sort_key]
 			$scope.txtcolor = ['','','']
-			$scope.txtcolor[$scope.sort_key] = 'color:red'
+			$scope.txtcolor[$scope.sort_key] = 'color:#AF152F'
 
 
 	$scope.FiltersortApply = ()->

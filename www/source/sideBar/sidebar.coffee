@@ -1,12 +1,20 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI) ->
+.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading) ->
   $scope.showsearchbar =  false
 
   $scope.SeacrchClicked = ()->
     console.log "search"
     $scope.showsearchbar = true
+    $ionicLoading.show
+      scope: $scope
+      templateUrl:'views/search/search.html'
+      hideOnStateChange: true
+
+  $scope.hide = () ->
+    $ionicLoading.hide();
+    hideOnStateChange: false
 
 
   $scope.displayWeb = (Url) ->

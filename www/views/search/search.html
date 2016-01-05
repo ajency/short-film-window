@@ -1,0 +1,35 @@
+<ion-side-menus>
+    <ion-side-menu-content class="singleGenre">
+
+      <ion-content class="filterPopup" ion-sticky overflow-scroll='true'>
+       <h5 class="text-uppercase padding item-divider">Search Result</h3>
+           <div class="cardDetails swiper-slide"
+          ng-repeat ="data in noteworthy" >
+          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
+              <div class="item item-image padding0 noteWorthy">
+                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
+                </div>
+                <div class="overlay"   ></div>
+                <div class="movieDetails padding-horizontal padding-bottom whiteText">
+                  <div class="title padding-vertical">
+                    {{ data.title }} <span>by {{ data.director  }} </span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    {{ data.tagline }}
+                  </div>
+                  <div class="country padding-vertical">
+                    {{ data.region }}/ {{ data.language}}<span></span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
+                  </div>
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
+                    <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
+                  </div>
+                </div>
+              </div>
+                </div>
+            </div>
+      </ion-content>
+    </ion-side-menu-content>
+  </ion-side-menus>
+

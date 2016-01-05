@@ -84,7 +84,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       $scope.Popuparray = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
       $scope.Popuparray[sort_id] = $scope.PopuparrayClicked[sort_id];
       $scope.txtcolor = ['', '', ''];
-      return $scope.txtcolor[sort_id] = 'color:red';
+      return $scope.txtcolor[sort_id] = 'color:#AF152F';
     };
     $scope.popup = function() {
       console.log("popup init called ");
@@ -95,7 +95,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         $scope.Popuparray = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
         $scope.Popuparray[$scope.sort_key] = $scope.PopuparrayClicked[$scope.sort_key];
         $scope.txtcolor = ['', '', ''];
-        return $scope.txtcolor[$scope.sort_key] = 'color:red';
+        return $scope.txtcolor[$scope.sort_key] = 'color:#AF152F';
       }
     };
     $scope.FiltersortApply = function() {

@@ -13,7 +13,7 @@
         <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
         <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
       </div>
- 
+
      <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
     <div  class="list card margin0 cardOuter ">
@@ -41,15 +41,17 @@
         </div>
 
     </div>
-   
+
   </ion-content>
-  <ion-footer-bar class="bar bar-footer genreFooter">
-    <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()"><img src="img/icons/filter_grey.png" />Filter</button>
-    <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()"><img src="img/icons/sort_notapplied.png"/>Sort</button>
+  <ion-footer-bar class="bar bar-footer">
+    <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()">
+      <img src= "{{ filterimg }}"></i>Filter</button>
+    <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()">
+      <img src =" {{ sortimg }}"></i>Sort</button>
   </ion-footer-bar>
 
 </div>
-  
+
 <div class="loaderOuter" ng-switch-when="loader">
   <div class="preloader5">
   <span></span>

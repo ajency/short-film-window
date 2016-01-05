@@ -1,8 +1,19 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading) {
   $scope.showsearchbar = false;
   $scope.SeacrchClicked = function() {
     console.log("search");
-    return $scope.showsearchbar = true;
+    $scope.showsearchbar = true;
+    return $ionicLoading.show({
+      scope: $scope,
+      templateUrl: 'views/search/search.html',
+      hideOnStateChange: true
+    });
+  };
+  $scope.hide = function() {
+    $ionicLoading.hide();
+    return {
+      hideOnStateChange: false
+    };
   };
   $scope.displayWeb = function(Url) {
     console.log(Url);
