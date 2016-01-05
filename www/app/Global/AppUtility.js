@@ -1,5 +1,5 @@
 angular.module('SFWApp.Global', []).factory('App', [
-  '$state', '$ionicHistory', '$window', function($state, $ionicHistory, $window) {
+  '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
     var App;
     return App = {
       start: true,

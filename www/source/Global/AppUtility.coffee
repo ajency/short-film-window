@@ -1,10 +1,10 @@
 angular.module 'SFWApp.Global', []
 
 
-.factory 'App', [ '$state', '$ionicHistory', '$window'
-	,( $state, $ionicHistory, $window)->
+.factory 'App', [ '$state', '$ionicHistory', '$window','$cordovaNetwork'
+	,( $state, $ionicHistory, $window, $cordovaNetwork)->
 
-		App = 
+		App =
 			start: true
 			menuEnabled : left: false, right: false
 			previousState: ''
@@ -17,14 +17,14 @@ angular.module 'SFWApp.Global', []
 					$ionicHistory.nextViewOptions
 						disableAnimate: !animate
 						disableBack   : !back
-		
+
 				$state.go state, params
 			getbackView :()->
-				console.log $ionicHistory.backView()	
-				
+				console.log $ionicHistory.backView()
+
 			goBack : (count)->
 				$ionicHistory.goBack count
-	
+
 
 			isAndroid : ->
 				ionic.Platform.isAndroid()
@@ -44,8 +44,8 @@ angular.module 'SFWApp.Global', []
 
 			hideKeyboardAccessoryBar : ->
 				if $window.cordova && $window.cordova.plugins.Keyboard
-					$cordovaKeyboard.hideAccessoryBar true				
-			
+					$cordovaKeyboard.hideAccessoryBar true
+
 
 ]
 
