@@ -1,12 +1,8 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicFilterBar) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI) {
+  $scope.showsearchbar = false;
   $scope.SeacrchClicked = function() {
-    var filterBarInstance;
     console.log("search");
-    return filterBarInstance = $ionicFilterBar.show({
-      items: "",
-      update: function(filterText) {},
-      filterProperties: 'description'
-    });
+    return $scope.showsearchbar = true;
   };
   $scope.displayWeb = function(Url) {
     console.log(Url);

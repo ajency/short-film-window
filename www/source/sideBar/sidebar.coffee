@@ -1,15 +1,13 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicFilterBar) ->
+.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI) ->
+  $scope.showsearchbar =  false
 
   $scope.SeacrchClicked = ()->
     console.log "search"
-    filterBarInstance = $ionicFilterBar.show(
-      items: ""
-      update: (filterText) ->
+    $scope.showsearchbar = true
 
-      filterProperties: 'description')
 
   $scope.displayWeb = (Url) ->
     console.log Url

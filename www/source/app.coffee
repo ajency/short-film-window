@@ -1,11 +1,27 @@
 
 angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar'
-					   , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs','SFWApp.submit','ion-affix'
-					   ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed','jett.ionic.filter.bar']
+					   , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs','SFWApp.submit'
+					   ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed']
 
-.run ['$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window', ($rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window)->
+.run ['$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork', ($rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork)->
 
 	console.log "run method called"
+
+	# listen for Online event
+	$rootScope.$on '$cordovaNetwork:online', (event, networkState) ->
+		console.log 'got ONLINE'
+		$rootScope.isOnline = true
+		$rootScope.network = $cordovaNetwork.getNetwork()
+		$rootScope.$apply()
+
+	# listen for Offline event
+	$rootScope.$on '$cordovaNetwork:offline', (event, networkState) ->
+		console.log 'got offline'
+		$rootScope.isOnline = false
+		$rootScope.network = $cordovaNetwork.getNetwork()
+		$rootScope.$apply()
+
+
 	#....YouTube Api loading
 	tag = document.createElement('script')
 	tag.src = 'https://www.youtube.com/iframe_api'
