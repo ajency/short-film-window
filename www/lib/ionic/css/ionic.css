@@ -5669,7 +5669,7 @@ label, input, button, select, textarea {
   line-height: 1.42857; }
 
 input, button, select, textarea {
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
+  font-family: 'Lato', sans-serif;}
 
 .item-input {
   display: -webkit-box;

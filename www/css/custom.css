@@ -40,6 +40,8 @@ a {
 .bar.bar-header .title {
   font-size: 1.2em !important;
   text-align: center !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 .tabs-striped .tabs {
   background: #af152f;
@@ -429,67 +431,33 @@ a {
     height: 7px;
   }
 }
-/*#preloader5 {
+.box {
   position: absolute;
-  border: 1px solid transparent;
-  left: 50%;
-  top: 50%;
-  border-radius: 100%;
-  box-shadow: -40px 0 0 5px #fff, -15px 15px 0 5px #fff, 0px 40px 0 5px #fff, 15px 15px 0 5px #fff, 40px 0 0 5px #fff, 15px -15px 0 5px #fff, 0px -40px 0 5px #fff, -15px -15px 0 5px #fff;
-  -webkit-animation: myanim 0.4s ease-in-out infinite;
-          animation: myanim 0.4s ease-in-out infinite;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  height: 42px
+  /*display: none;*/
 }
-
-@-webkit-keyframes myanim {
-  100% {
-    box-shadow: -15px 15px 0 5px #fff, 0px 40px 0 5px #fff, 15px 15px 0 5px #fff, 40px 0 0 5px #fff, 15px -15px 0 5px #fff, 0px -40px 0 5px #fff, -15px -15px 0 5px #fff, -40px 0 0 5px #fff;
-  }
+.box input {
+  width: 100%;
+  padding-left: 30px;
+  position: relative;
+  height: 100%;
+  color: #2e2e2e;
 }
-
-@keyframes myanim {
-  100% {
-    box-shadow: -15px 15px 0 5px #fff, 0px 40px 0 5px #fff, 15px 15px 0 5px #fff, 40px 0 0 5px #fff, 15px -15px 0 5px #fff, 0px -40px 0 5px #fff, -15px -15px 0 5px #fff, -40px 0 0 5px #fff;
-  }
-}*/
-/*#preloader5{
-    position:relative;
-    width:20px;
-    height:20px;
-    background:#af152f;
-    border-radius:50px;
-    animation: preloader_5 1.5s infinite linear;
-    position: absolute;
-    z-index: 99;
-    left: 50%;
-    top: 50%;
-    margin-left: -10px;
-    margin-top: -10px;
+.box i {
+  position: absolute;
+  left: 0;
+  z-index: 99;
+  top: 0;
+  color: #2e2e2e;
+  height: 100%;
+  padding-top: 11px;
+  width: 30px;
+  padding-left: 10px;
 }
-
-#preloader5:after{
-    position:absolute;
-    width:50px;
-    height:50px;
-    border-top:10px solid #af152f;
-    border-bottom:10px solid #af152f;
-    border-left:10px solid transparent;
-    border-right:10px solid transparent;
-    border-radius:50px;
-    content:'';
-    top:-15px;
-    left:-15px;
-    animation: preloader_5_after 1.5s infinite linear;
-}
-@keyframes preloader_5 {
-    0% {transform: rotate(0deg);}
-    50% {transform: rotate(180deg);background:#DD2F4C;}
-    100% {transform: rotate(360deg);}
-}
-@keyframes preloader_5_after {
-    0% {border-top:10px solid #DD2F4C;border-bottom:10px solid #DD2F4C;}
-    50% {border-top:10px solid #af152f;border-bottom:10px solid #DD2F4C;}
-    100% {border-top:10px solid #DD2F4C;border-bottom:10px solid #af152f;}
-}*/
 @media screen and (max-width: 767px) and (orientation: landscape) {
   .playlist .playlistContent .imageContainer {
     width: 33.33%;
