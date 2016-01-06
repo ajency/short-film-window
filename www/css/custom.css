@@ -159,6 +159,12 @@ a {
   height: 100%;
   width: 100%;
 }
+.mainContainer {
+  top: 0;
+}
+.mainContainer .scroll {
+  height: 100%;
+}
 .item p {
   white-space: normal;
 }
@@ -437,16 +443,18 @@ a {
   top: 0;
   width: 100%;
   z-index: 99;
-  height: 42px;
-  -webkit-transition: width 1s ease;
-          transition: width 1s ease;
+  height: 44px
+  /*opacity: 0;*/
+  /*transition:width 1s ease;*/
 }
 .box.showSearch {
   width: 100% !important;
   -webkit-transition: width 1s ease;
           transition: width 1s ease;
+  opacity: 1;
 }
 .box.hideSearch {
+  opacity: 0;
   width: 0 !important;
   -webkit-transition: width 1s ease;
           transition: width 1s ease;
@@ -460,7 +468,6 @@ a {
 }
 .box i {
   position: absolute;
-  left: 0;
   z-index: 99;
   top: 0;
   color: #2e2e2e;
@@ -468,6 +475,12 @@ a {
   padding-top: 11px;
   width: 30px;
   padding-left: 10px;
+}
+.box i.leftArrow {
+  left: 0;
+}
+.box i.searchIcon {
+  right: 10px;
 }
 @media screen and (max-width: 767px) and (orientation: landscape) {
   .playlist .playlistContent .imageContainer {
@@ -801,6 +814,12 @@ a {
 .genre .overlay {
   background: rgba(0, 0, 0, 0.5);
 }
+.singleGenre {
+  /*.imageContainerOuter
+	{
+		padding-top: 45px;
+	}*/
+}
 .singleGenre .popular .cardOuter .movieDetails {
   bottom: 0;
 }
@@ -886,9 +905,6 @@ a {
 .singleGenre .watchList {
   position: absolute;
   right: 35px;
-}
-.singleGenre .imageContainerOuter {
-  padding-top: 45px;
 }
 /*.filteredGenre
 {

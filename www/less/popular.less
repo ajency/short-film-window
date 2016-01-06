@@ -1,4 +1,11 @@
-
+.mainContainer
+{
+	top:0;
+	.scroll
+	{
+		height:100%;
+	}
+}
 .item
 {
 	p
@@ -297,18 +304,23 @@
 	top: 0;
 	width: 100%;
 	z-index: 99;
-	height: 42px;
-	transition:width 1s ease;
+	height: 44px;
+	/*opacity: 0;*/
+	/*transition:width 1s ease;*/
 	
 	&.showSearch
 	{
 		width: 100% !important;	
 		transition:width 1s ease;	
+		opacity: 1;
+
 	}
 	&.hideSearch
 	{
+		opacity: 0;	
 		width: 0 !important;
-		transition:width 1s ease;	
+		transition:width 1s ease;
+
 	}
 	input
 	{
@@ -320,8 +332,7 @@
 	}
 	i
 	{
-		position: absolute;
-	    left: 0;
+		position: absolute;	    
 	    z-index: 99;
 	    top: 0; 
 	    color: #2e2e2e;
@@ -329,7 +340,15 @@
 	    padding-top: 11px;
 	    width: 30px;
 	    padding-left: 10px;
-	}
+	    &.leftArrow
+	    {
+	    	left: 0;
+	    }
+	    &.searchIcon
+	    {
+	    	right: 10px;
+	    }
+	}	
 }
 @media screen and (max-width: 767px) and (orientation: landscape)
 {
