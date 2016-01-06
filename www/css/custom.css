@@ -446,18 +446,13 @@ a {
   height: 44px
   /*opacity: 0;*/
   /*transition:width 1s ease;*/
-}
-.box.showSearch {
-  width: 100% !important;
-  -webkit-transition: width 1s ease;
-          transition: width 1s ease;
-  opacity: 1;
-}
-.box.hideSearch {
-  opacity: 0;
-  width: 0 !important;
-  -webkit-transition: width 1s ease;
-          transition: width 1s ease;
+  /*&.showSearch
+	{
+		width: 100% !important;	
+		transition:width 1s ease;	
+		opacity: 1;
+
+	}*/
 }
 .box input {
   width: 100%;
@@ -481,6 +476,12 @@ a {
 }
 .box i.searchIcon {
   right: 10px;
+}
+.box.hideSearch i {
+  display: none;
+}
+.box.showSearch i {
+  display: block;
 }
 @media screen and (max-width: 767px) and (orientation: landscape) {
   .playlist .playlistContent .imageContainer {

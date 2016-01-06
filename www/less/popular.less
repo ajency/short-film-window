@@ -308,20 +308,13 @@
 	/*opacity: 0;*/
 	/*transition:width 1s ease;*/
 	
-	&.showSearch
+	/*&.showSearch
 	{
 		width: 100% !important;	
 		transition:width 1s ease;	
 		opacity: 1;
 
-	}
-	&.hideSearch
-	{
-		opacity: 0;	
-		width: 0 !important;
-		transition:width 1s ease;
-
-	}
+	}*/	
 	input
 	{
 		width: 100%;
@@ -348,7 +341,21 @@
 	    {
 	    	right: 10px;
 	    }
+	}
+	&.hideSearch
+	{
+		i
+		{
+			display: none;
+		}		
 	}	
+	&.showSearch
+	{
+		i
+		{
+			display: block;
+		}
+	}
 }
 @media screen and (max-width: 767px) and (orientation: landscape)
 {
