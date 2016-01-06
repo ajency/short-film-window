@@ -2,6 +2,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
   '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share, $window) {
     $scope.lang = null;
     $scope.sort_key = null;
+    $scope.errorType = '';
     $scope.filterimg = 'img/icons/filter_grey.png';
     $scope.sortimg = 'img/icons/sort_notapplied.png';
     $scope.display = 'loader';
@@ -127,6 +128,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           if (DetailsAPI.GlobalChild_array.length > 0) {
             $scope.display = 'result';
           } else {
+            $scope.errorType = 'no_Search_result';
             $scope.display = 'error';
           }
           $scope.genreData = data.movies;
@@ -138,6 +140,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       })(this), (function(_this) {
         return function(error) {
           console.log('Error Loading data');
+          $scope.errorType = '';
           $scope.display = 'error';
           return $ionicLoading.hide();
         };
@@ -178,6 +181,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       })(this), (function(_this) {
         return function(error) {
           console.log('Error Loading data');
+          $scope.errorType = '';
           $scope.display = 'error';
           return $ionicLoading.hide();
         };
@@ -201,8 +205,9 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
     };
     return $scope.view = {
       onTapToRetry: function() {
-        $scope.display = 'result';
-        return $scope.reset();
+        console.log($scope.errorType);
+        $scope.reset();
+        return $scope.display = 'loader';
       }
     };
   }

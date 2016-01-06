@@ -29,6 +29,7 @@ angular.module('SFWApp.sidebar', [])
       .then (data)=>
         console.log data
         $scope.SearchResult = data
+
         # device_width = $window.innerWidth;
         # device_height = $window.innerHeight;
         # console.log device_width

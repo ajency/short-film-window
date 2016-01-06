@@ -4,6 +4,7 @@ angular.module 'SFWApp.tabs'
 
 	$scope.lang = null
 	$scope.sort_key = null
+	$scope.errorType = ''
 	$scope.filterimg = 'img/icons/filter_grey.png'
 	$scope.sortimg = 'img/icons/sort_notapplied.png'
 	$scope.display = 'loader'
@@ -129,6 +130,7 @@ angular.module 'SFWApp.tabs'
 			if DetailsAPI.GlobalChild_array.length > 0
 				$scope.display = 'result'
 			else
+				$scope.errorType = 'no_Search_result'
 				$scope.display = 'error'
 
 			$scope.genreData= data.movies
@@ -138,6 +140,7 @@ angular.module 'SFWApp.tabs'
 			$ionicLoading.hide();
 		, (error)=>
 			console.log 'Error Loading data'
+			$scope.errorType = ''
 			$scope.display = 'error'
 
 			$ionicLoading.hide();
@@ -175,6 +178,7 @@ angular.module 'SFWApp.tabs'
 			$scope.display = 'result'
 		, (error)=>
 			console.log 'Error Loading data'
+			$scope.errorType = ''
 			$scope.display = 'error'
 			$ionicLoading.hide();
 
@@ -200,6 +204,8 @@ angular.module 'SFWApp.tabs'
 
 	$scope.view =
 		onTapToRetry : ->
-			$scope.display = 'result'
+			console.log $scope.errorType
 			$scope.reset()
+			$scope.display = 'loader'
+
 ]
