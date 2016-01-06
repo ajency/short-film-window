@@ -4,7 +4,7 @@
         <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
         <h5 class="title whiteText text-uppercase">Shortfilm Window</h5>
         <button class="button button-icon icon ion-search whiteText slide-left pull-right" ng-click = "SeacrchClicked()"></button>
-        <div class="box" ng-show="showsearchbar"><i class="ion-chevron-left slide-right pull-right"></i><input id="serach" placeholder="Search" class="box-inner" type="text" /></div>
+        <div class="box" ng-show="showsearchbar"><i class="ion-chevron-left slide-right pull-right" ng-click="hideSearch()"></i><input  id="autocomplete" placeholder="Search" class="box-inner" type="text" ng-keyup ="searchMovie()"/></div>
        <!--  <ion-nav-bar>
           <ion-nav-back-button class="button-clear">
               <i class="ion-arrow-left-c"></i> Back
@@ -29,8 +29,53 @@
         </ion-tab>
 
       </ion-tabs> -->
-
+      <div ng-switch ="display" >
+        <div class="loaderOuter" ng-switch-when="loader">
+      <div class="preloader5">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    </div>
+    <aj-error class="errors"
+      ng-switch-when="error"
+      error-type="errorType"
+      tap-to-retry="onTapToRetry()">
+    </aj-error>
+      <div ng-switch-when = "tabview">
          <ion-nav-view name="homeview"> </ion-nav-view>
+       </div>
+       <div ng-switch-when = "searchresult" class="popular " ion-sticky  overflow-scroll='true'>
+        <h1>Search Result</h1>
+      <div class="cardDetails swiper-slide"
+          ng-repeat ="data in SearchResult" >
+          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
+              <div class="item item-image padding0 noteWorthy">
+                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
+                </div>
+                <div class="overlay"   ></div>
+                <div class="movieDetails padding-horizontal padding-bottom whiteText">
+                  <div class="title padding-vertical">
+                    {{ data.title }} <span>by {{ data.director  }} </span>
+                  </div>
+                  <div class="tagline padding-vertical">
+                    {{ data.tagline }}
+                  </div>
+                  <div class="country padding-vertical">
+                    {{ data.region }}/ {{ data.language}}<span></span>
+                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
+                  </div>
+                  <div class="viewsNLikes padding-vertical">
+                    <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
+                    <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
+                  </div>
+                </div>
+              </div>
+                </div>
+            </div>
+       </div>
+     </div>
     </ion-side-menu-content>
 
 
@@ -110,6 +155,6 @@
             // });
             $(".box").removeClass("hideSearch");
             $(".box").addClass("showSearch");
-        });        
+        });
     });
 </script>

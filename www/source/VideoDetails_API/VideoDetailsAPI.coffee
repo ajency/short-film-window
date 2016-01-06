@@ -51,6 +51,22 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 		defer.promise
 
+	DetailsAPI.searchResult = (txt)->
+		console.log txt
+
+		defer = $q.defer()
+
+		$http.get URL+"/wp-json/search?str=#{txt}"
+		.then (data)->
+			console.log 'search video data succ'
+			console.log data
+			defer.resolve data.data
+		, (error)->
+			console.log 'eroor'
+			defer.reject error
+
+		defer.promise
+
 	DetailsAPI.setData = (opts={})->
 			console.log opts
 			DetailsAPI.array = opts.premiere

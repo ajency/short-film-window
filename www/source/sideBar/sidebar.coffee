@@ -3,14 +3,66 @@ angular.module('SFWApp.sidebar', [])
 
 .controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading) ->
   $scope.showsearchbar =  false
+  $scope.display = 'tabview'
+  $scope.errorType = ''
+  $scope.SearchResult = []
+
+  # $('#autocomplete').autocomplete
+  # serviceUrl: 'http://shortfilm.staging.wpengine.com/wp-json/search?str=Refle'
+  # onSelect: (suggestion) ->
+  #   alert 'You selected: ' + suggestion.value + ', ' + suggestion.data
+
+  $scope.singleplay = (videoid)->
+    console.log videoid
+    DetailsAPI.videoId = videoid
+    console.log DetailsAPI.videoId
+    console.log "enterd single play ."
+    App.navigate 'init'
+
+  $scope.searchMovie = () ->
+    console.log "key-up event called"
+    txt = document.getElementById("autocomplete");
+    txtvalue = txt.value;
+    console.log txtvalue
+    $scope.display = 'loader'
+    DetailsAPI.searchResult(txtvalue)
+      .then (data)=>
+        console.log data
+        $scope.SearchResult = data
+        # device_width = $window.innerWidth;
+        # device_height = $window.innerHeight;
+        # console.log device_width
+        # console.log device_height
+        # $scope.used_height = 88 + 73
+        # $scope.hgt = device_height - $scope.used_height
+
+        console.log "Search data"
+        if $scope.SearchResult.length < 0
+          $scope.errorType = 'no_Search_result'
+          $scope.display = 'error'
+        else
+          $scope.display = 'searchresult'
+
+      , (error)=>
+        console.log 'Error Loading data'
+        $scope.errorType = ''
+        $scope.display = 'error'
+
+  $scope.onTapToRetry = () ->
+    console.log $scope.errorType
+    if $scope.errorType == ''
+      $scope.searchMovie()
+    else
+      $scope.hideSearch()
+
+  $scope.hideSearch = () ->
+    console.log "hide Search Bar"
+    $scope.display = 'tabview'
 
   $scope.SeacrchClicked = ()->
     console.log "search"
     $scope.showsearchbar = true
-    $ionicLoading.show
-      scope: $scope
-      templateUrl:'views/search/search.html'
-      hideOnStateChange: true
+
 
   $scope.hide = () ->
     $ionicLoading.hide();

@@ -17,13 +17,15 @@ angular.module('SFWApp.Global').directive('ajError', [
           case 'server_error':
             errorMsg = 'Could not connect to server';
             break;
-          case 'no_result':
-            errorMsg = 'No results found';
-            break;
-          default:
+          case 'no_Search_result':
             errorMsg = 'No results found';
             errorTitle = 'Result';
-            button = 'clear Filter/Sort';
+            button = 'Close';
+            break;
+          default:
+            errorMsg = 'Something Went Wrong';
+            errorTitle = 'Error';
+            button = 'Retry';
         }
         scope.errorMsg = errorMsg;
         scope.errorTitle = errorTitle;

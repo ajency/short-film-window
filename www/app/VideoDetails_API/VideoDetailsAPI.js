@@ -42,6 +42,20 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       });
       return defer.promise;
     };
+    DetailsAPI.searchResult = function(txt) {
+      var defer;
+      console.log(txt);
+      defer = $q.defer();
+      $http.get(URL + ("/wp-json/search?str=" + txt)).then(function(data) {
+        console.log('search video data succ');
+        console.log(data);
+        return defer.resolve(data.data);
+      }, function(error) {
+        console.log('eroor');
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
     DetailsAPI.setData = function(opts) {
       if (opts == null) {
         opts = {};

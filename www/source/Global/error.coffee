@@ -19,12 +19,14 @@ angular.module 'SFWApp.Global'
                 errorMsg = 'No internet availability'
             when 'server_error'
                 errorMsg = 'Could not connect to server'
-            when 'no_result'
-                errorMsg = 'No results found'
-            else
+            when 'no_Search_result'
                 errorMsg = 'No results found'
                 errorTitle = 'Result'
-                button = 'clear Filter/Sort'
+                button = 'Close'
+            else
+                errorMsg = 'Something Went Wrong'
+                errorTitle = 'Error'
+                button = 'Retry'
 
         scope.errorMsg = errorMsg
         scope.errorTitle = errorTitle
