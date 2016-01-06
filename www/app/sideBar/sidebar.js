@@ -1,4 +1,4 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window) {
   $scope.showsearchbar = false;
   $scope.display = 'tabview';
   $scope.errorType = '';
@@ -19,8 +19,15 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
     $scope.display = 'loader';
     return DetailsAPI.searchResult(txtvalue).then((function(_this) {
       return function(data) {
+        var device_height, device_width;
         console.log(data);
         $scope.SearchResult = data;
+        device_width = $window.innerWidth;
+        device_height = $window.innerHeight;
+        console.log(device_width);
+        console.log(device_height);
+        $scope.used_height = 44;
+        $scope.hgt = device_height - $scope.used_height;
         console.log("Search data");
         if ($scope.SearchResult.length < 0) {
           $scope.errorType = 'no_Search_result';

@@ -1,7 +1,7 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading) ->
+.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window) ->
   $scope.showsearchbar =  false
   $scope.display = 'tabview'
   $scope.errorType = ''
@@ -30,12 +30,12 @@ angular.module('SFWApp.sidebar', [])
         console.log data
         $scope.SearchResult = data
 
-        # device_width = $window.innerWidth;
-        # device_height = $window.innerHeight;
-        # console.log device_width
-        # console.log device_height
-        # $scope.used_height = 88 + 73
-        # $scope.hgt = device_height - $scope.used_height
+        device_width = $window.innerWidth;
+        device_height = $window.innerHeight;
+        console.log device_width
+        console.log device_height
+        $scope.used_height = 44
+        $scope.hgt = device_height - $scope.used_height
 
         console.log "Search data"
         if $scope.SearchResult.length < 0
