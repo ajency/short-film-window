@@ -1,4 +1,4 @@
-<ion-view class="singleGenre" ng-init="init()">
+<!-- <ion-view class="singleGenre" ng-init="init()">
   <ion-header-bar class="bar bar-header primary">
     <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Genre</button>
     <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i>
@@ -80,30 +80,30 @@
     </div>
 
 </ion-view>
+ -->
 
-
-<!-- <ion-view class="singleGenre" ng-init="init()">
+<ion-view class="singleGenre" ng-init="init()">
   <ion-header-bar class="bar bar-header primary">
     <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Genre</button>
     <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i></button>
   </ion-header-bar>
-<div ng-switch ="display">
-<ion-content class="popular " ion-sticky  overflow-scroll='true'>
+<!-- <div ng-switch ="display"> -->
+<ion-content class="popular " >
 
   <div id="singlegenre" class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="list card margin0 cardOuter swiper-slide">
-        <div ng-switch-when="result">
-          <div  class="item item-avatar singleGenreAvtar item-divider">
+
+        <!-- <div ng-switch-when="result"> -->
+
+    <div ng-repeat ="data in genreData"  class="cardDetails swiper-slide">
+
+    <div   class="list card margin0 cardOuter ">
+  <div  class="item item-avatar singleGenreAvtar item-divider">
           <img src="{{ genre.genre_image_url }}">
           <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
         <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
       </div>
-    <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
-
-    <div  class="list card margin0 cardOuter ">
-
-      <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
+      <div class="item item-image padding0"  style="height: {{ hgt }}px" ng-click="singleplay( data.movie_id )">
             <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
             <div class="overlay" ></div>
             <div class="movieDetails padding whiteText">
@@ -125,14 +125,15 @@
           </div>
         </div>
 
-    </div>
 
 </div>
+</div>
+</div>
+<!-- </div> -->
 
   </ion-content>
-    </div>
-</div>
-</div>
+<!--     </div> -->
+
   <ion-footer-bar class="bar bar-footer genreFooter">
     <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()">
       <img src= "{{ filterimg }}"></i>Filter</button>
@@ -142,7 +143,7 @@
 
 
 
-<div class="loaderOuter" ng-switch-when="loader">
+<!-- <div class="loaderOuter" ng-switch-when="loader">
   <div class="preloader5">
   <span></span>
   <span></span>
@@ -157,9 +158,8 @@
       tap-to-retry="view.onTapToRetry()">
     </aj-error>
     </div>
-    </div>
+    </div> -->
 </ion-view>
 
 
 
- -->
