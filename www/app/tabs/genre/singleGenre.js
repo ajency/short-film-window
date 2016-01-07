@@ -1,5 +1,6 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
   '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share, $window) {
+    var swiper;
     $scope.lang = null;
     $scope.sort_key = null;
     $scope.errorType = '';
@@ -13,12 +14,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       return share.shareNative();
     };
     $scope.init = function() {
-      var device_height, device_width, swiper;
-      swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        direction: 'vertical'
-      });
+      var device_height, device_width;
       if (DetailsAPI.GlobalChild_array.length > 0) {
         console.log("Genre cached");
         $scope.genreData = DetailsAPI.GlobalChild_array;
@@ -155,6 +151,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
     $scope.reset = function() {
       var arr;
       $scope.sortimg = 'img/icons/sort_notapplied.png';
+      $scope.filterimg = 'img/icons/filter_grey.png';
       $scope.sort_key = null;
       $scope.lang = '';
       console.log($scope.lang);
@@ -203,7 +200,12 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       count = -1;
       return App.goBack(count);
     };
-    return $scope.view = {
+    $scope.view = swiper = new Swiper(document.getElementById("singlegenre"), {
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      direction: 'vertical'
+    });
+    return {
       onTapToRetry: function() {
         console.log($scope.errorType);
         $scope.reset();

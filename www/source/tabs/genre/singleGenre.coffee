@@ -16,12 +16,6 @@ angular.module 'SFWApp.tabs'
 	$scope.share = () ->
 		share.shareNative()
 	$scope.init = () ->
-		swiper = new Swiper('.swiper-container', {
-				pagination: '.swiper-pagination'
-				paginationClickable: true
-				direction: 'vertical'
-					});
-
 		if ( DetailsAPI.GlobalChild_array.length >0 )
 			console.log "Genre cached"
 			$scope.genreData= DetailsAPI.GlobalChild_array
@@ -155,6 +149,7 @@ angular.module 'SFWApp.tabs'
 
 	$scope.reset = () ->
 		$scope.sortimg = 'img/icons/sort_notapplied.png'
+		$scope.filterimg = 'img/icons/filter_grey.png'
 		$scope.sort_key = null
 		$scope.lang = ''
 		console.log $scope.lang
@@ -203,9 +198,18 @@ angular.module 'SFWApp.tabs'
 		App.goBack count
 
 	$scope.view =
+	    swiper = new Swiper( document.getElementById("singlegenre"), {
+	      pagination: '.swiper-pagination'
+	      paginationClickable: true
+	      direction: 'vertical'
+	      });
+
 		onTapToRetry : ->
 			console.log $scope.errorType
 			$scope.reset()
 			$scope.display = 'loader'
+
+
+
 
 ]
