@@ -3,6 +3,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.display = 'tabview';
   $scope.errorType = '';
   $scope.SearchResult = [];
+  $scope.classname = '';
   $scope.singleplay = function(videoid) {
     console.log(videoid);
     DetailsAPI.videoId = videoid;
@@ -33,6 +34,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
           $scope.errorType = 'no_Search_result';
           return $scope.display = 'error';
         } else {
+          $scope.classname = 'searchResult';
           return $scope.display = 'searchresult';
         }
       };

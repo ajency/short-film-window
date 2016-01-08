@@ -25,12 +25,11 @@
     </aj-error>
       <div ng-switch-when = "tabview">
          <ion-nav-view name="homeview"></ion-nav-view>
-        <ion-nav-view name="watchListContent"></ion-nav-view>
 
        </div>
 
        <div ng-switch-when = "searchresult" class="popular " ion-sticky  overflow-scroll='true'>
-      <div class="cardDetails swiper-slide"
+      <div class="cardDetails swiper-slide  {{ classname}}"
           ng-repeat ="data in SearchResult" >
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
               <div class="item item-image padding0 noteWorthy">

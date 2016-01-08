@@ -6,6 +6,7 @@ angular.module('SFWApp.sidebar', [])
   $scope.display = 'tabview'
   $scope.errorType = ''
   $scope.SearchResult = []
+  $scope.classname = ''
 
   # $('#autocomplete').autocomplete
   # serviceUrl: 'http://shortfilm.staging.wpengine.com/wp-json/search?str=Refle'
@@ -42,6 +43,7 @@ angular.module('SFWApp.sidebar', [])
           $scope.errorType = 'no_Search_result'
           $scope.display = 'error'
         else
+          $scope.classname = 'searchResult'
           $scope.display = 'searchresult'
 
       , (error)=>

@@ -51,7 +51,7 @@ angular.module 'SFWApp.navigate', []
 			url: '/watchList'
 			parent: 'home'
 			views:
-				"watchListContent":
+				"homeview":
 					templateUrl: 'views/watchlist/myWatchlist.html'
 					controller: 'watchlistCtrl'
 
