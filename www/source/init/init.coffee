@@ -8,7 +8,7 @@ angular.module 'SFWApp.init', []
 	$scope.getwatchlistDetails = []
 	$scope.watchFlag = '0'
 	$scope.intFlag = '0'
-	$scope.watchlistimg = ''
+	$scope.watchlistimg = 'icon-favorite'
 	$scope.share = ()->
 		console.log "social sharing "
 		share.shareNative()
@@ -21,28 +21,28 @@ angular.module 'SFWApp.init', []
 	$scope.checkIfaddedlist = () ->
 		console.log "checking if video exist"
 		Storage.watchlistDetails 'get'
-			.then (value)->
-				console.log value
-				$scope.getwatchlistDetails = value
-				if _.isNull($scope.getwatchlistDetails)
-					console.log "new video  entry"
-					$scope.watchlistimg = 'icon-favorite'
+		.then (value)->
+			console.log value
+			$scope.getwatchlistDetails = value
+			if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
+				console.log "new video  entry"
+				$scope.watchlistimg = 'icon-favorite'
 
-				else
-					i = 0
+			else
+				i = 0
 
-					while i < $scope.getwatchlistDetails.length
-						if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
-							console.log "Movie already added "
-							$scope.intFlag = '1'
-						else
-							console.log "New movie entry "
-						i++
-
-					if $scope.intFlag == '1'
-						$scope.watchlistimg = 'icon-unfavorite'
+				while i < $scope.getwatchlistDetails.length
+					if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
+						console.log "Movie already added "
+						$scope.intFlag = '1'
 					else
-						$scope.watchlistimg = 'icon-favorite'
+						console.log "New movie entry "
+					i++
+
+				if $scope.intFlag == '1'
+					$scope.watchlistimg = 'icon-unfavorite'
+				else
+					$scope.watchlistimg = 'icon-favorite'
 
 
 
@@ -52,9 +52,10 @@ angular.module 'SFWApp.init', []
 			.then (value)->
 				console.log value
 				$scope.getwatchlistDetails = value
-				if _.isNull($scope.getwatchlistDetails)
-					$scope.watchlistimg = ' icon-unfavorite'
+				if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
+					$scope.watchlistimg = 'icon-unfavorite'
 					console.log "new video  entry"
+					$scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
 					Storage.watchlistDetails 'set', $scope.addvideoDetails
 
 
@@ -63,7 +64,7 @@ angular.module 'SFWApp.init', []
 					while i < $scope.getwatchlistDetails.length
 						if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
 							console.log "Movie already added "
-							$scope.watchlistimg = ' icon-unfavorite'
+							$scope.watchlistimg = 'icon-unfavorite'
 							console.log  $scope.addvideoDetails
 							$scope.addvideoDetails.splice(i,1)
 							console.log $scope.addvideoDetails
@@ -74,7 +75,7 @@ angular.module 'SFWApp.init', []
 						i++
 
 					if $scope.watchFlag == '0'
-						$scope.watchlistimg = ' icon-unfavorite'
+						$scope.watchlistimg = 'icon-unfavorite'
 						i= 0
 
 						while i < $scope.getwatchlistDetails.length
@@ -87,14 +88,12 @@ angular.module 'SFWApp.init', []
 
 
 	$scope.updatewatchlist = ()->
-		$scope.watchlistimg = ' icon-favorite'
+		$scope.watchlistimg = 'icon-favorite'
 		i= 0
 
 		while i < $scope.addvideoDetails.length
 			$scope.addvideoDetails.push($scope.getwatchlistDetails[i])
 			i++
-
-		$scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
 		Storage.watchlistDetails 'set', $scope.addvideoDetails
 
 
