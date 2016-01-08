@@ -222,7 +222,7 @@
 	height: 100%;
 	width: 100%;
 	display: block;
-	background:rgba(0,0,0,0.5);
+	background:rgba(0,0,0,0.1);
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -268,7 +268,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: #AF152F;
   left: 31.5px;
   top: -3.5px;
 }
@@ -304,7 +304,7 @@
 	top: 0;
 	width: 100%;
 	z-index: 99;
-	height: 44px;
+	height: 45px;
 	/*opacity: 0;*/
 	/*transition:width 1s ease;*/
 	
@@ -357,6 +357,17 @@
 		}
 	}
 }
+.searchResult
+{
+	.cardDetails
+	{
+		margin-top: 44px;
+	}
+	.cardOuter .movieDetails
+	{
+		bottom: 0;
+	}
+}
 @media screen and (max-width: 767px) and (min-aspect-ratio: 13/9)
 {
 	.playlist .playlistContent .imageContainer
@@ -374,7 +385,8 @@
 			color: @primary;
 			.title 
 			{
-				font-size: 1.1em;
+				font-size: 1.1em;				
+				padding-bottom: 10px;
 				span
 				{
 					color: @grayLighter;
@@ -383,6 +395,11 @@
 			.tagline, .country, .viewsNLikes
 			{
 				color: @grayLight;
+				font-size: 1.2em;
+			}
+			.country, .category span
+			{
+				font-size: 1em;
 			}
 			.viewsNLikes
 			{
