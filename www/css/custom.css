@@ -641,7 +641,7 @@ a {
   color: #d4d4d4;
 }
 .movieDetails .tagline {
-  font-size: 3vh;
+  font-size: 2.6vh;
   font-style: italic;
   line-height: 1.5;
   color: #d4d4d4;
@@ -649,7 +649,7 @@ a {
   padding-top: 3px;
 }
 .movieDetails .country {
-  font-size: 2.5vh;
+  font-size: 2.2vh;
   padding: 10px 0px 3px 0px;
   color: #d4d4d4;
 }
@@ -657,16 +657,19 @@ a {
   margin-right: 4px;
   float: left;
 }
+.movieDetails .category {
+  padding-top: 5px;
+}
 .movieDetails .category span {
   background: rgba(255, 255, 255, 0.2);
   padding: 1px 10px 1px;
   margin-right: 5px;
   color: #d4d4d4;
-  font-size: 2.4vh;
+  font-size: 2.3vh;
   margin-bottom: 3px;
 }
 .movieDetails .viewsNLikes {
-  font-size: 2.5vh;
+  font-size: 2.3vh;
   color: #d4d4d4;
 }
 .movieDetails .viewsNLikes span {
@@ -733,24 +736,20 @@ a {
 .infocus img {
   width: 100%;
 }
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (max-width: 767px) and (min-aspect-ratio: 13/9) {
   .movieDetails .title {
-    font-size: 1.6em;
+    font-size: 1.1em;
     padding-bottom: 10px;
   }
   .movieDetails .tagline {
-    font-size: 1.2em;
+    font-size: 0.92em;
   }
   .movieDetails .country,
   .movieDetails .category span {
-    font-size: 1em;
+    font-size: 0.8em;
   }
   .movieDetails .viewsNLikes {
-    font-size: 1.2em;
-  }
-  .playIcon {
-    width: 150px;
-    margin-left: -75px;
+    font-size: 0.8em;
   }
 }
 .icon-cust {
