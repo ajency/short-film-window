@@ -6,30 +6,8 @@
         <button class="button button-icon icon ion-search whiteText slide-left pull-right" ng-click = "SeacrchClicked()"></button>
         <div class="box" ng-show="showsearchbar"><i class="ion-chevron-left slide-right pull-right leftArrow" ng-click="hideSearch()"></i><input  id="autocomplete" placeholder="Search" class="box-inner" type="text" />
         <i class="ion-search searchIcon" ng-click="searchMovie()"></i></div>
-       <!--  <ion-nav-bar>
-          <ion-nav-back-button class="button-clear">
-              <i class="ion-arrow-left-c"></i> Back
-          </ion-nav-back-button>
-        </ion-nav-bar> -->
+
       </ion-header-bar>
-     <!--  <ion-tabs class="tabs-top tabs-striped primary whiteText">
-
-
-        <ion-tab title="Popular" ui-sref="popular" class="text-uppercase"  >
-
-
-          <ion-nav-view name="popularContent"></ion-nav-view>
-        </ion-tab>
-
-        <ion-tab title="Genre" ui-sref="genre" class="text-uppercase">
-          <ion-nav-view name="genreContent"></ion-nav-view>
-        </ion-tab>
-
-        <ion-tab title="Playlists" ui-sref="playlist" class="text-uppercase">
-          <ion-nav-view name="playlistContent"></ion-nav-view>
-        </ion-tab>
-
-      </ion-tabs> -->
       <div class="scroll">
       <div ng-switch ="display" >
         <div class="loaderOuter" ng-switch-when="loader">
@@ -46,8 +24,11 @@
       tap-to-retry="onTapToRetry()">
     </aj-error>
       <div ng-switch-when = "tabview">
-         <ion-nav-view name="homeview"> </ion-nav-view>
+         <ion-nav-view name="homeview"></ion-nav-view>
+        <ion-nav-view name="watchListContent"></ion-nav-view>
+
        </div>
+
        <div ng-switch-when = "searchresult" class="popular " ion-sticky  overflow-scroll='true'>
       <div class="cardDetails swiper-slide"
           ng-repeat ="data in SearchResult" >
@@ -97,7 +78,7 @@
                 <b class="text-uppercase">Popular films</b>
               </a>
 
-              <a class="item" href="#" ng-click="slideContent()">
+              <a class="item" ui-sref="watchList" ng-click="slideContent()">
                 <i class="icon-cust icon-watchlist"></i>
                 <b class="text-uppercase">My watchlist</b>
               </a>
@@ -112,7 +93,7 @@
                 <b class="text-uppercase">Genre</b>
               </a>
 
-              <a class="item" href="#" ng-click="slideContent()">
+              <a class="item"  ng-click="slideContent()">
                 <i class="icon-cust icon-bell"></i>
                 <b class="text-uppercase">Notifications</b>
                 <span class="badge badge-assertive">3</span>

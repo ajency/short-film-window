@@ -1,1 +1,1 @@
-
+angular.module('SFWApp.watchlist', []).controller('watchlistCtrl', ['$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage) {}]);

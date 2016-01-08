@@ -6,6 +6,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
     $scope.errorType = '';
     $scope.filterimg = 'img/icons/filter_grey.png';
     $scope.sortimg = 'img/icons/sort_notapplied.png';
+    $scope.display = 'loader';
     $scope.Popuparray = [];
     $scope.PopuparrayClicked = ['img/icons/fresh_red.png', 'img/icons/popularity_red.png', 'img/icons/length_red.png'];
     $scope.PopuparrayImages = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
@@ -20,6 +21,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         $scope.genre = DetailsAPI.Global_array;
         $scope.sortData = DetailsAPI.Sort;
         $scope.language = DetailsAPI.Filter;
+        $scope.display = 'result';
         device_width = $window.innerWidth;
         device_height = $window.innerHeight;
         console.log(device_width);
@@ -38,6 +40,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
             $scope.genre = data.genre;
             $scope.sortData = data.sort_keys;
             $scope.language = data.filters.languages;
+            $scope.display = 'result';
             device_width = $window.innerWidth;
             device_height = $window.innerHeight;
             console.log(device_width);
@@ -169,7 +172,8 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           $scope.genre = data.genre;
           $scope.sortData = data.sort_keys;
           $scope.language = data.filters.languages;
-          return $ionicLoading.hide();
+          $ionicLoading.hide();
+          return $scope.display = 'result';
         };
       })(this), (function(_this) {
         return function(error) {

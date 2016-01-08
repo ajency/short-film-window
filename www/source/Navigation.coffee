@@ -47,6 +47,14 @@ angular.module 'SFWApp.navigate', []
 					templateUrl: 'views/tabs/playlist/playlist.html'
 					controller: 'playlistCtrl'
 
+		.state 'watchList',
+			url: '/watchList'
+			parent: 'home'
+			views:
+				"watchListContent":
+					templateUrl: 'views/watchlist/myWatchlist.html'
+					controller: 'watchlistCtrl'
+
 		.state 'init',
 			url: '/init'
 			cache: false

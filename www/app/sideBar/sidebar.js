@@ -29,7 +29,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
         $scope.used_height = 44;
         $scope.hgt = device_height - $scope.used_height;
         console.log("Search data");
-        if ($scope.SearchResult.length < 0) {
+        if ($scope.SearchResult.length === 0) {
           $scope.errorType = 'no_Search_result';
           return $scope.display = 'error';
         } else {
