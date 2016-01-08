@@ -1197,7 +1197,7 @@ a {
     background: rgba(0, 0, 0, 0.6) !important;
   }
   .singlePlaylist {
-    margin-top: 118px;
+    /*margin-top: 118px;*/
   }
   .singlePlaylist .cardOuter .movieDetails {
     top: 0;
