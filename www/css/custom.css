@@ -1202,5 +1202,8 @@ a {
   .singlePlaylist .cardOuter .movieDetails {
     top: 0;
   }
+  .singleGenreAvtar {
+    border-bottom: 1px solid #d4d4d4;
+  }
 }
 /*# sourceMappingURL=custom.css.map */
