@@ -95,11 +95,14 @@
 		{
 			color: @grayDark !important;
 			padding-left: 15px !important; 
+			font-size: 15px;
 		}
 	}
 	.filterHeader
 	{
 		padding-left: 15px !important; 
+		font-size: 15px;
+		border-bottom: 1px solid @grayLightest;
 	}
 	.bar
 	{
@@ -108,6 +111,10 @@
 			i
 			{
 				margin-right: 10px;
+				&.ion-android-share-alt
+				{
+					font-size: 20px;
+				}
 			}
 		}
 	}
@@ -345,7 +352,7 @@
 
 			&.ion-checkmark:before
 			{
-				content: "\f21b";
+				content: "\f401";
 				/*transform: scale(0.5);*/
     			float: left;
     			color: @grayLighter;
