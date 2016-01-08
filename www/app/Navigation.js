@@ -41,6 +41,15 @@ angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]
           controller: 'playlistCtrl'
         }
       }
+    }).state('watchList', {
+      url: '/watchList',
+      parent: 'home',
+      views: {
+        "watchListContent": {
+          templateUrl: 'views/watchlist/myWatchlist.html',
+          controller: 'watchlistCtrl'
+        }
+      }
     }).state('init', {
       url: '/init',
       cache: false,

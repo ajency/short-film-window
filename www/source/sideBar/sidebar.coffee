@@ -38,7 +38,7 @@ angular.module('SFWApp.sidebar', [])
         $scope.hgt = device_height - $scope.used_height
 
         console.log "Search data"
-        if $scope.SearchResult.length < 0
+        if $scope.SearchResult.length == 0
           $scope.errorType = 'no_Search_result'
           $scope.display = 'error'
         else
