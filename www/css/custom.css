@@ -331,7 +331,7 @@ a {
   height: 100%;
   width: 100%;
   display: block;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 0;
   left: 0;
@@ -381,7 +381,7 @@ a {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: #AF152F;
   left: 31.5px;
   top: -3.5px;
 }
@@ -443,7 +443,7 @@ a {
   top: 0;
   width: 100%;
   z-index: 99;
-  height: 44px
+  height: 45px
   /*opacity: 0;*/
   /*transition:width 1s ease;*/
   /*&.showSearch
@@ -483,6 +483,12 @@ a {
 .box.showSearch i {
   display: block;
 }
+.searchResult .cardDetails {
+  margin-top: 44px;
+}
+.searchResult .cardOuter .movieDetails {
+  bottom: 0;
+}
 @media screen and (max-width: 767px) and (min-aspect-ratio: 13/9) {
   .playlist .playlistContent .imageContainer {
     width: 33.33%;
@@ -498,6 +504,7 @@ a {
   }
   .cardOuter .movieDetails .title {
     font-size: 1.1em;
+    padding-bottom: 10px;
   }
   .cardOuter .movieDetails .title span {
     color: #aeaeae;
@@ -506,6 +513,11 @@ a {
   .cardOuter .movieDetails .country,
   .cardOuter .movieDetails .viewsNLikes {
     color: #5e5e5e;
+    font-size: 1.2em;
+  }
+  .cardOuter .movieDetails .country,
+  .cardOuter .movieDetails .category span {
+    font-size: 1em;
   }
   .cardOuter .movieDetails .viewsNLikes {
     font-size: 0.8em;
@@ -610,7 +622,7 @@ a {
   text-align: left;
 }
 .movieDetails .title {
-  font-size: 18px;
+  font-size: 3.2vh;
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 3px;
   /*font-weight: bold;*/
@@ -622,7 +634,7 @@ a {
   color: #d4d4d4;
 }
 .movieDetails .tagline {
-  font-size: 14px;
+  font-size: 2.8vh;
   font-style: italic;
   line-height: 1.5;
   color: #d4d4d4;
@@ -630,7 +642,7 @@ a {
   padding-top: 3px;
 }
 .movieDetails .country {
-  font-size: 12px;
+  font-size: 2.5vh;
   padding: 10px 0px 3px 0px;
   color: #d4d4d4;
 }
@@ -643,11 +655,11 @@ a {
   padding: 1px 10px 1px;
   margin-right: 5px;
   color: #d4d4d4;
-  font-size: 12px;
+  font-size: 2.4vh;
   margin-bottom: 3px;
 }
 .movieDetails .viewsNLikes {
-  font-size: 14px;
+  font-size: 2.6vh;
   color: #d4d4d4;
 }
 .movieDetails .viewsNLikes span {
@@ -793,8 +805,11 @@ a {
   margin: 0 auto;
   float: none;
 }
-.icon-cust.icon-heart {
+.icon-cust.icon-favorite {
   background-image: url('../img/icons/favorite.png');
+}
+.icon-cust.icon-unfavorite {
+  background-image: url('../img/icons/unfavorite.png');
 }
 .swiper-container,
 .swiper-wrapper,
