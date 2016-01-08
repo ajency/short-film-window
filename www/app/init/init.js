@@ -24,7 +24,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         $scope.getwatchlistDetails = value;
         if (_.isNull($scope.getwatchlistDetails)) {
           console.log("new video  entry");
-          return $scope.watchlistimg = ' icon-favorite';
+          return $scope.watchlistimg = 'icon-favorite';
         } else {
           i = 0;
           while (i < $scope.getwatchlistDetails.length) {

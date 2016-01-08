@@ -26,7 +26,7 @@ angular.module 'SFWApp.init', []
 				$scope.getwatchlistDetails = value
 				if _.isNull($scope.getwatchlistDetails)
 					console.log "new video  entry"
-					$scope.watchlistimg = ' icon-favorite'
+					$scope.watchlistimg = 'icon-favorite'
 
 				else
 					i = 0
