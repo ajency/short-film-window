@@ -43,6 +43,9 @@ a {
   left: 0 !important;
   right: 0 !important;
 }
+.bar.bar-header .button.button-icon.ion-navicon {
+  font-size: 25px;
+}
 .tabs-striped .tabs {
   background: #af152f;
   color: #ffffff;
@@ -464,7 +467,7 @@ a {
 .box i {
   position: absolute;
   z-index: 99;
-  top: 0;
+  top: 2px;
   color: #2e2e2e;
   height: 100%;
   padding-top: 11px;
@@ -493,6 +496,9 @@ a {
   .playlist .playlistContent .imageContainer {
     width: 33.33%;
   }
+  .singleGenre .totalfilmsNTime {
+    font-size: 0.7em;
+  }
   .cardOuter {
     height: 100%;
   }
@@ -501,6 +507,8 @@ a {
     left: 50%;
     top: -10px;
     color: #af152f;
+    background: none;
+    text-shadow: none;
   }
   .cardOuter .movieDetails .title {
     font-size: 1.1em;
@@ -509,31 +517,27 @@ a {
   .cardOuter .movieDetails .title span {
     color: #aeaeae;
   }
-  .cardOuter .movieDetails .tagline,
   .cardOuter .movieDetails .country,
   .cardOuter .movieDetails .viewsNLikes {
     color: #5e5e5e;
-    font-size: 1.2em;
+    font-size: 0.8em;
   }
-  .cardOuter .movieDetails .country,
   .cardOuter .movieDetails .category span {
-    font-size: 1em;
-  }
-  .cardOuter .movieDetails .viewsNLikes {
     font-size: 0.8em;
   }
   .cardOuter .movieDetails .tagline {
     display: block;
     display: -webkit-box;
     max-width: 100%;
-    max-height: 33px;
+    max-height: 39px;
     margin: 0 auto;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.2;
-    font-size: 0.9em;
+    font-size: 0.92em;
+    color: #5e5e5e;
   }
   .cardOuter .movieDetails .country {
     padding-top: 10px;
@@ -620,9 +624,12 @@ a {
   width: 100%;
   bottom: 0;
   text-align: left;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.9) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.9) 100%);
 }
 .movieDetails .title {
-  font-size: 3.2vh;
+  font-size: 3.5vh;
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 3px;
   /*font-weight: bold;*/
@@ -634,7 +641,7 @@ a {
   color: #d4d4d4;
 }
 .movieDetails .tagline {
-  font-size: 2.8vh;
+  font-size: 3vh;
   font-style: italic;
   line-height: 1.5;
   color: #d4d4d4;
@@ -659,7 +666,7 @@ a {
   margin-bottom: 3px;
 }
 .movieDetails .viewsNLikes {
-  font-size: 2.6vh;
+  font-size: 2.5vh;
   color: #d4d4d4;
 }
 .movieDetails .viewsNLikes span {
@@ -860,11 +867,12 @@ a {
   display: -webkit-box;
   max-width: 100%;
   max-height: 103px;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.2;
+  line-height: 1.3;
+  font-size: 14px;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .totalfilmsNTime {
   position: absolute;
@@ -880,14 +888,18 @@ a {
   color: #2e2e2e;
   text-align: left;
 }
-.singleGenre .filterPopup h5 {
+.singleGenre .filterPopup h4.filterHeader {
   color: #2e2e2e !important;
+  padding-left: 15px !important;
+}
+.singleGenre .filterHeader {
+  padding-left: 15px !important;
 }
 .singleGenre .bar .button i {
   margin-right: 10px;
 }
 .singleGenre .totalfilmsNTime {
-  font-size: 0.6em;
+  font-size: 2vh;
 }
 .singleGenre .item i {
   margin-right: 3px;
@@ -1024,12 +1036,17 @@ a {
 .sortPopup .popup-body .sortInner {
   float: left;
   width: 100%;
+  padding: 20px;
+  border-bottom: 1px solid #d4d4d4;
 }
 .sortPopup .popup-body .sortInner:focus,
 .sortPopup .popup-body .sortInner:active,
 .sortPopup .popup-body .sortInner:hover {
   background: #f2f2f2;
   outline: none;
+}
+.sortPopup .popup-body .sortInner:last-child {
+  border-bottom: none;
 }
 .sortPopup .popup-body .sortInner img {
   float: left;
@@ -1045,7 +1062,7 @@ a {
 }
 .sortPopup .popupFooter button {
   margin: 0;
-  top: 3px;
+  top: 0px;
   border: none;
 }
 .singlePlaylistAvtar {
@@ -1056,36 +1073,31 @@ a {
 }
 .customRadio .item-radio,
 .customRadioDuration .item-radio {
-  border: none !important;
+  border-bottom: 1px solid #d4d4d4;
 }
 .customRadio .item-radio .item-content,
 .customRadioDuration .item-radio .item-content {
-  padding: 5px 5px 5px 40px;
+  padding: 15px 5px 15px 25px;
 }
 .customRadio .item-radio .radio-icon,
 .customRadioDuration .item-radio .radio-icon {
-  right: 83%;
-  left: 0;
+  right: 25px;
   padding: 0;
   visibility: visible;
-  padding: 5px 10px;
+  padding: 14px 10px;
 }
 .customRadio .item-radio .radio-icon.ion-checkmark:before,
 .customRadioDuration .item-radio .radio-icon.ion-checkmark:before {
   content: "\f21b";
-  -webkit-transform: scale(0.5);
-      -ms-transform: scale(0.5);
-          transform: scale(0.5);
+  /*transform: scale(0.5);*/
   float: left;
   color: #aeaeae;
 }
 .customRadio .item-radio input:checked ~ .radio-icon.ion-checkmark:before,
 .customRadioDuration .item-radio input:checked ~ .radio-icon.ion-checkmark:before {
   content: "\f3a7";
-  color: #af152f;
-  -webkit-transform: scale(0.8);
-      -ms-transform: scale(0.8);
-          transform: scale(0.8);
+  color: #af152f
+  /*transform: scale(0.8);*/
 }
 .errors {
   min-height: 300px;

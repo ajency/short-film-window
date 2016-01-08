@@ -5,7 +5,7 @@
         <button class="button button-icon whiteText text-uppercase" ng-click="hide()"><i class="ion-ios-arrow-back margin0"></i>Filters</button>
       </ion-header-bar>
       <ion-content class="filterPopup" ion-sticky overflow-scroll='true'>
-       <h5 class="text-uppercase padding item-divider">Language</h3>
+       <h4 class="text-uppercase padding item-divider filterHeader">Language</h4>
         <div ng-repeat = "data in language" class="customRadio">
             <label class="item item-radio">
             <input type="radio" name="group1"ng-click="langSelected({{ data.id}} )">
