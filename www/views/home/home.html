@@ -28,8 +28,8 @@
 
        </div>
 
-       <div ng-switch-when = "searchresult" class="popular " ion-sticky  overflow-scroll='true'>
-      <div class="cardDetails swiper-slide  {{ classname}}"
+       <div ng-switch-when = "searchresult" class="popular  {{ classname}} " ion-sticky  overflow-scroll='true'>
+      <div class="cardDetails swiper-slide  "
           ng-repeat ="data in SearchResult" >
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
               <div class="item item-image padding0 noteWorthy">

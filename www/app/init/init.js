@@ -5,6 +5,8 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
     $scope.addvideoDetails = [];
     $scope.getwatchlistDetails = [];
     $scope.watchFlag = '0';
+    $scope.intFlag = '0';
+    $scope.watchlistimg = '';
     $scope.share = function() {
       console.log("social sharing ");
       return share.shareNative();
@@ -13,6 +15,34 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       console.log("video added to watchlist ");
       console.log(DetailsAPI.singleVideoarray);
       return $scope.CheckWatchlist();
+    };
+    $scope.checkIfaddedlist = function() {
+      console.log("checking if video exist");
+      return Storage.watchlistDetails('get').then(function(value) {
+        var i;
+        console.log(value);
+        $scope.getwatchlistDetails = value;
+        if (_.isNull($scope.getwatchlistDetails)) {
+          console.log("new video  entry");
+          return $scope.watchlistimg = ' icon-favorite';
+        } else {
+          i = 0;
+          while (i < $scope.getwatchlistDetails.length) {
+            if ($scope.getwatchlistDetails[i].movie_id === DetailsAPI.singleVideoarray.movie_id) {
+              console.log("Movie already added ");
+              $scope.intFlag = '1';
+            } else {
+              console.log("New movie entry ");
+            }
+            i++;
+          }
+          if ($scope.intFlag === '1') {
+            return $scope.watchlistimg = 'icon-unfavorite';
+          } else {
+            return $scope.watchlistimg = 'icon-favorite';
+          }
+        }
+      });
     };
     $scope.CheckWatchlist = function() {
       console.log("checking if video exist");
@@ -23,12 +53,14 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         if (_.isNull($scope.getwatchlistDetails)) {
           console.log("new video  entry");
           $scope.addvideoDetails.push(DetailsAPI.singleVideoarray);
-          return Storage.watchlistDetails('set', $scope.addvideoDetails);
+          Storage.watchlistDetails('set', $scope.addvideoDetails);
+          return $scope.watchlistimg = ' icon-unfavorite';
         } else {
           i = 0;
           while (i < $scope.getwatchlistDetails.length) {
             if ($scope.getwatchlistDetails[i].movie_id === DetailsAPI.singleVideoarray.movie_id) {
               console.log("Movie already added ");
+              $scope.watchlistimg = ' icon-unfavorite';
               $scope.watchFlag = '1';
             } else {
               console.log("New movie entry ");
@@ -36,6 +68,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             i++;
           }
           if ($scope.watchFlag === '0') {
+            $scope.watchlistimg = ' icon-unfavorite';
             i = 0;
             while (i < $scope.getwatchlistDetails.length) {
               $scope.addvideoDetails.push($scope.getwatchlistDetails[i]);
@@ -65,6 +98,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
+            $scope.checkIfaddedlist();
             $ionicLoading.hide();
             return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
           };
