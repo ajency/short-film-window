@@ -8,7 +8,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
     $scope.sortimg = 'img/icons/sort_notapplied.png';
     $scope.display = 'loader';
     $scope.Popuparray = [];
-    $scope.PopuparrayClicked = ['img/icons/fresh_red.png', 'img/icons/popularity_red.png', 'img/icons/lgt_red.png'];
+    $scope.PopuparrayClicked = ['img/icons/fresh_red.png', 'img/icons/popularity_red.png', 'img/icons/length-Red.png'];
     $scope.PopuparrayImages = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
     $scope.share = function() {
       return share.shareNative();
