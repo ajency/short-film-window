@@ -1197,10 +1197,13 @@ a {
     background: rgba(0, 0, 0, 0.6) !important;
   }
   .singlePlaylist {
-    margin-top: 118px;
+    /*margin-top: 118px;*/
   }
   .singlePlaylist .cardOuter .movieDetails {
     top: 0;
+  }
+  .singleGenreAvtar {
+    border-bottom: 1px solid #d4d4d4;
   }
 }
 /*# sourceMappingURL=custom.css.map */
