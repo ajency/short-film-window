@@ -242,6 +242,9 @@ a {
   height: 100%;
   overflow: hidden;
 }
+.playlist .playlistContent.generContent .imageContainer img {
+  width: 100% !important;
+}
 .playlist .playlistDetails {
   position: absolute;
   bottom: 0;
