@@ -1,5 +1,4 @@
-    <ion-side-menus>
-    <ion-side-menu-content class="singleGenre">
+    <ion-view ng-init="init() "class="singleGenre">
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
@@ -12,9 +11,10 @@
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
             </div>
-
+<div ng-switch = "display">
+<div ng-switch-when ="result">
       <div class="list card margin0 cardOuter swiper-slide">
-    <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
+    <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
     <div  class="list card margin0 cardOuter ">
 
@@ -43,11 +43,23 @@
     </div>
 
 </div>
+</div>
+<div class="loaderOuter" ng-switch-when="loader">
+  <div class="preloader5">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+</div>
 
+<div id="emptyWatchList" ng-switch-when = "no_result">
+  <!-- if no watch list added display no result . -->
+</div>
 
+</div>
+</div>
 
+</ion-content>
 
-          </div>
-        </ion-content>
-    </ion-side-menu-content>
-</ion-side-menus>
+</ion-view>

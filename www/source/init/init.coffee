@@ -28,6 +28,8 @@ angular.module 'SFWApp.init', []
 			if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
 				console.log "new video  entry"
 				$scope.watchlistimg = 'icon-favorite'
+				$scope.$apply()
+
 
 			else
 				i = 0
@@ -42,8 +44,13 @@ angular.module 'SFWApp.init', []
 
 				if $scope.intFlag == '1'
 					$scope.watchlistimg = 'icon-unfavorite'
+					$scope.$apply()
+
+
 				else
 					$scope.watchlistimg = 'icon-favorite'
+					$scope.$apply()
+
 
 
 
@@ -58,16 +65,22 @@ angular.module 'SFWApp.init', []
 				$scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
 				Storage.watchlistDetails 'set', $scope.addvideoDetails
 				$scope.watchlistimg = 'icon-unfavorite'
+				$scope.$apply()
+
 			else
+				console.log $scope.addvideoDetails
 				i = 0
 				while i < $scope.getwatchlistDetails.length
 					if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
 						console.log "Movie already added "
-						$scope.watchlistimg = 'icon-unfavorite'
+
 						console.log  $scope.addvideoDetails
-						$scope.addvideoDetails.splice(i,1)
-						console.log $scope.addvideoDetails
+						$scope.getwatchlistDetails.splice(i,1)
+						console.log $scope.getwatchlistDetails
 						$scope.updatewatchlist()
+						$scope.watchlistimg = 'icon-favorite'
+						$scope.$apply()
+
 						$scope.watchFlag = '1'
 					else
 						console.log "New movie entry "
@@ -75,22 +88,26 @@ angular.module 'SFWApp.init', []
 
 				if $scope.watchFlag == '0'
 					$scope.watchlistimg = 'icon-unfavorite'
-					i= 0
 
-					while i < $scope.getwatchlistDetails.length
+					n =  $scope.getwatchlistDetails.length
+					i= 0
+					while i < n
 						$scope.addvideoDetails.push($scope.getwatchlistDetails[i])
 						i++
 
 					$scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
 					Storage.watchlistDetails 'set', $scope.addvideoDetails
+					$scope.$apply()
 
 
 
 	$scope.updatewatchlist = ()->
 		$scope.watchlistimg = 'icon-favorite'
+		$scope.$apply()
+
 		i= 0
 
-		while i < $scope.addvideoDetails.length
+		while i < $scope.getwatchlistDetails.length
 			$scope.addvideoDetails.push($scope.getwatchlistDetails[i])
 			i++
 		Storage.watchlistDetails 'set', $scope.addvideoDetails
@@ -117,6 +134,7 @@ angular.module 'SFWApp.init', []
 				console.log "single video  data succ"
 				DetailsAPI.singleVideoarray = data
 				$scope.Videodetails = data
+				$scope.checkIfaddedlist()
 
 				$ionicLoading.hide();
 				document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
@@ -126,7 +144,7 @@ angular.module 'SFWApp.init', []
 				$ionicLoading.hide();
 
 
-		$scope.checkIfaddedlist()
+
 		console.log  DetailsAPI.videoId
 		console.log 'In Init'
 		Vtype = '0'
