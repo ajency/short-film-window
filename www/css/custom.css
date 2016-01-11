@@ -267,6 +267,18 @@ a {
 .playlist .playlistDetails .totalFilms i {
   margin-right: 4px;
 }
+.playlist .playlistDetails .totalFilms.playlistTotalFilms {
+  position: absolute;
+}
+.playlist .playlistDetails.playlistDetailsInner {
+  height: 100%;
+}
+.playlist .playlistDetails.playlistDetailsInner .totalFilms {
+  position: absolute;
+  width: 100%;
+  bottom: 5px;
+  padding-right: 10px;
+}
 .playlist .viewPlaylist {
   background: #eee;
   height: 100%;
@@ -391,7 +403,7 @@ a {
   animation-timing-function: linear;
   height: 40px;
   width: 40px;
-  border: 5px solid #444;
+  border: 5px solid #777;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -497,6 +509,9 @@ a {
   margin-right: 5px;
   font-size: 1.5em;
   float: left;
+}
+.movieHeader button i.ion-heart {
+  font-size: 1.6em;
 }
 .movieHeader button:first-child i {
   margin-right: 13px;
@@ -830,6 +845,7 @@ a {
   margin-top: 3px;
   vertical-align: inherit;
   height: 25px;
+  margin-right: 5px;
 }
 .singleGenre .watchList {
   position: absolute;
