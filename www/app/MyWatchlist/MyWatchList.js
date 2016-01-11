@@ -8,9 +8,11 @@ angular.module('SFWApp.watchlist', []).controller('watchlistCtrl', [
         console.log(value);
         $scope.watchlistDetails = value;
         if ($scope.watchlistDetails.length > 0) {
-          return $scope.display = 'result';
+          $scope.display = 'result';
+          return $scope.$apply();
         } else {
-          return $scope.display = 'no_result';
+          $scope.display = 'no_result';
+          return $scope.$apply();
         }
       });
     };

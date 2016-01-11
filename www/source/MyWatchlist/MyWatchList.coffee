@@ -12,8 +12,10 @@ angular.module 'SFWApp.watchlist', []
                 $scope.watchlistDetails = value
                 if $scope.watchlistDetails.length >0
                     $scope.display = 'result'
+                    $scope.$apply()
                 else
                     $scope.display = 'no_result'
+                    $scope.$apply()
 
 
 

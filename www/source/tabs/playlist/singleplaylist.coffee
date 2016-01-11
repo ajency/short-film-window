@@ -26,6 +26,9 @@ angular.module 'SFWApp.tabs'
             $scope.hgt = device_height - $scope.used_height
             console.log $scope.hgt
 
+            # width for header..
+            $scope.headerwidth = device_width - 100 -27
+
         else
             console.log "Playlist emplty"
             $scope.display= 'loader'
@@ -44,6 +47,7 @@ angular.module 'SFWApp.tabs'
                 $scope.used_height = 44 + 120
                 $scope.hgt = device_height - $scope.used_height
                 console.log $scope.hgt
+                $scope.headerwidth = device_width - 100 - 27
 
 
                 $ionicLoading.hide();

@@ -22,7 +22,8 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
         console.log(device_height);
         $scope.used_height = 44 + 120;
         $scope.hgt = device_height - $scope.used_height;
-        return console.log($scope.hgt);
+        console.log($scope.hgt);
+        return $scope.headerwidth = device_width - 100 - 27;
       } else {
         console.log("Playlist emplty");
         $scope.display = 'loader';
@@ -40,6 +41,7 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
             $scope.used_height = 44 + 120;
             $scope.hgt = device_height - $scope.used_height;
             console.log($scope.hgt);
+            $scope.headerwidth = device_width - 100 - 27;
             return $ionicLoading.hide();
           };
         })(this), (function(_this) {

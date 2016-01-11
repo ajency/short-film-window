@@ -5,11 +5,11 @@
       </ion-header-bar>
 <div ng-switch = 'display'>
   <div ng-switch-when = 'result'>
-         
+
           <ion-content class="popular singlePlaylist" overflow-scroll='true' ion-sticky>
            <div  id = "" class="item item-thumbnail-left singleGenreAvtar item-divider">
             <div class="playlist-thumbnail"><img src="{{ playlist.playlist_image_url }}"></div>
-            <div class="playlistHeaderOuter">
+            <div class="playlistHeaderOuter" style = "width:{{ headerwidth}}px ;float:left;">
               <marquee scrolldelay="200" class="primaryText cardTitle">{{ playlist.playlist_name }}</marquee>
               <p class="movieDescription"> {{ playlist.playlist_description }}</p>
               <div class="bold primaryText totalfilmsNTime">{{playlist.playlist_count}} Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{playlist.run_time }} MIN</span></div>
@@ -48,7 +48,7 @@
         </div> -->
       </ion-content>
     </div>
-    <div class="loaderOuter" ng-switch-when="loader">     
+    <div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
     </div>
       <aj-error class="errors"
