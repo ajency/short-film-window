@@ -605,6 +605,10 @@ a {
 .movieScreen .singleMovieContent {
   top: 0;
 }
+.synopsis {
+  font-size: 2.7vh;
+  color: #5e5e5e;
+}
 .synopsis img {
   display: block;
   margin: 0 auto;
@@ -1213,6 +1217,9 @@ a {
   }
   .singleGenreAvtar {
     border-bottom: 1px solid #d4d4d4;
+  }
+  .synopsis {
+    font-size: 0.9em;
   }
 }
 /*# sourceMappingURL=custom.css.map */
