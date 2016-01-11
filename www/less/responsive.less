@@ -1,5 +1,13 @@
 @media screen and (max-width: 767px) and (min-aspect-ratio: 13/9)
 {
+	.menu p.shortInfo
+	{
+		font-size:0.92em;
+	}
+	.item-divider p
+	{
+		font-size:0.92em;
+	}
 	.movieDetails
 	{
 		.title
@@ -20,9 +28,27 @@
 			font-size: 0.9em;
 		}
 	}	
-	.playlist .playlistContent .imageContainer
+	.playlist 
 	{
-		width: 33.33%;
+		.playlistContent .imageContainer
+		{
+			width: 33.33%;
+		}
+		.playlistDetails .totalFilms
+		{
+			font-size: 1em;
+		}
+	&.genreOuter
+	{
+		.playlistDetails .title
+		{
+			font-size: 1.1em;			
+		}
+		.playlistDetails .totalFilms
+		{
+			font-size: 0.9em;			
+		}
+	}	
 	}
 	.singleGenre
 	{
@@ -31,9 +57,20 @@
 			font-size:0.7em;
 		}
 	}
+	.imageContainerOuter
+	{
+		height: 100%;
+		width: 50%;
+		img
+		{
+			height: auto !important;
+			width: 100% !important;
+		}
+	}
 	.cardOuter
 	{
 		height: 100%;
+		width: 100%;
 		.movieDetails
 		{
 			width: 50%;
@@ -81,17 +118,15 @@
 				padding-top: 10px;
 			}
 		}
-	}
-	.imageContainerOuter
-	{
-		height: 100%;
-		width: 50%;
-		img
-		{
-			height: auto !important;
-			width: 100% !important;
+		.imageContainerOuter
+		{			
+			img
+			{
+				height: 100% !important;
+				width:auto !important;
+			}
 		}
-	}
+	}	
 	.overlay
 	{
 		background: rgba(0,0,0,0) !important;
@@ -137,6 +172,10 @@
 	.singleGenreAvtar 
 	{
 		border-bottom: 1px solid @grayLightest;
+	}
+	.synopsis
+	{
+		font-size: 0.9em;
 	}
 
 }
