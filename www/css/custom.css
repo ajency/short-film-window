@@ -575,6 +575,11 @@ a {
 }
 .movieDetails .category {
   padding-top: 5px;
+  float: left;
+}
+.movieDetails .category label {
+  float: left;
+  margin-bottom: 5px;
 }
 .movieDetails .category span {
   background: rgba(255, 255, 255, 0.2);
@@ -1105,7 +1110,7 @@ a {
 @media screen and (max-width: 767px) and (min-aspect-ratio: 13/9) {
   .movieDetails .title {
     font-size: 1.2em;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
   .movieDetails .tagline {
     font-size: 1em;
