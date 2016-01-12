@@ -4,13 +4,16 @@
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
 
-        <ion-content class="popular" ion-sticky>          
-           <div class="item item-avatar watchlistHeader item-divider">
+        <ion-content class="popular" ion-sticky> 
+       <div class="item item-avatar watchlistHeader item-divider">
               <img src="img/icons/watchlist.png">
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
             </div> 
-<div ng-switch = "display">
+        <div id="" class="swiper-container">
+        <div class="swiper-wrapper">         
+           
+<div ng-switch = "display" class="displayDiv">
 <div ng-switch-when ="result">    
     <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
@@ -51,10 +54,20 @@
 
 <div id="emptyWatchList" ng-switch-when = "no_result">
   <!-- if no watch list added display no result . -->
+  <div class="text-center emptyWatchlistInner">
+   <h4> Nothing Here..    </h4>  
+    <div class="iconOuter">
+      <i class="ion-heart primaryText"></i>
+      <span>0</span>
+    </div>
+    <p>Please Add videos to the watchlist while you watch them.</p>
+    <button class="button button-small primary whiteText">Back</button>
+  </div>
 </div>
 
 </div>
-
+</div>
+</div>
 
 </ion-content>
 
