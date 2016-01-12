@@ -25,7 +25,7 @@
                         </div>
                         <div class="country padding-vertical">
                           {{ premeiere.region }}/ {{ premeiere.language}}<span></span>
-                          <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ premeiere.duration }} MIN</span>
+                          <span class="pull-right"><i class="ion-android-time"></i> {{ premeiere.duration }} Min</span>
                         </div>
                         <div class="viewsNLikes padding-vertical">
                           <span><i class="ion-ios-eye"></i> {{ premeiere.no_of_views}}</span>
@@ -58,7 +58,7 @@
                   </div>
                   <div class="country padding-vertical">
                     {{ data.region }}/ {{ data.language}}<span></span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ data.duration }} MIN</span>
+                    <span class="pull-right"><i class="ion-android-time"></i>{{ data.duration }} Min</span>
                   </div>
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
@@ -93,7 +93,7 @@
                   </div>
                   <div class="country padding-vertical">
                     {{ data.region }}/ {{ data.language}}<span></span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
+                    <span class="pull-right"><i class="ion-android-time"></i> {{ data.duration }} Min</span>
                   </div>
                   <div class="viewsNLikes padding-vertical">
                     <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
@@ -118,13 +118,13 @@
                 <div class="col imageContainer" ng-click= "singleplaylist( data.playlist_id)">
                   <div class="playlistContentInner">
                     <img src="{{ data.playlist_image_url }}"/>
-                    <div class="playlistDetails">
+                    <div class="playlistDetails playlistDetailsInner">
                       <!-- <div class="title">
                           {{ data.playlist_description }}
                       </div> -->
                       <div class="totalFilms">
-                        <span>{{ data.playlist_count }} Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.run_time }}MIN</span>
+                        <span><span class="filmNo">{{ data.playlist_count }}</span> Films</span>
+                        <span class="pull-right"><i class="ion-android-time"></i> {{ data.run_time }}Min</span>
                       </div>
                     </div>
                   </div>

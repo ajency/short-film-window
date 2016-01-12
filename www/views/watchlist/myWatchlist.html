@@ -3,17 +3,15 @@
         <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-        <ion-content class="popular">
-          <div class="list card margin0">
 
-            <div class="item item-avatar">
+        <ion-content class="popular" ion-sticky>          
+           <div class="item item-avatar watchlistHeader item-divider">
               <img src="img/icons/watchlist.png">
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
-            </div>
+            </div> 
 <div ng-switch = "display">
-<div ng-switch-when ="result">
-      <div class="list card margin0 cardOuter swiper-slide">
+<div ng-switch-when ="result">    
     <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
     <div  class="list card margin0 cardOuter ">
@@ -21,6 +19,9 @@
       <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
             <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
             <div class="overlay" ></div>
+            <div class="watchlistIcon">
+              <i class="ion-heart selected"></i>
+            </div>
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
               {{ data.title }} <span>by {{ data.director}}</span>
@@ -30,7 +31,7 @@
               </div>
               <div class="country padding-vertical">
                 {{ data.region }}/ {{ data.language}}<span></span>
-                <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
+                <span class="pull-right"><i class="ion-android-time"></i> {{ data.duration }} Min</span>
               </div>
               <div class="viewsNLikes padding-vertical">
                 <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
@@ -42,7 +43,7 @@
 
     </div>
 
-</div>
+
 </div>
  <div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
@@ -53,7 +54,7 @@
 </div>
 
 </div>
-</div>
+
 
 </ion-content>
 
