@@ -4,12 +4,15 @@
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
 
-        <ion-content class="popular" ion-sticky>          
-           <div class="item item-avatar watchlistHeader item-divider">
+        <ion-content class="popular" ion-sticky> 
+       <div class="item item-avatar watchlistHeader item-divider">
               <img src="img/icons/watchlist.png">
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
             </div> 
+        <div id="" class="swiper-container">
+        <div class="swiper-wrapper">         
+           
 <div ng-switch = "display">
 <div ng-switch-when ="result">    
     <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
@@ -54,7 +57,8 @@
 </div>
 
 </div>
-
+</div>
+</div>
 
 </ion-content>
 
