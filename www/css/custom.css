@@ -187,7 +187,7 @@ a {
   font-size: 2.6vh;
 }
 .item-divider .cardTitle {
-  font-size: 1.3em;
+  font-size: 3.5vh;
   padding-top: 3px;
 }
 .item-thumbnail-left.item-divider {
@@ -208,7 +208,7 @@ a {
 }
 .popular .cardTitle {
   font-family: 'Lato';
-  font-size: 1.3em;
+  font-size: 3.5vh;
   margin-bottom: 3px;
 }
 .popular .movieDetails .country {
@@ -263,6 +263,10 @@ a {
 .playlist .playlistDetails .totalFilms {
   font-size: 2.5vh;
   font-weight: 400;
+  padding-bottom: 10px;
+}
+.playlist .playlistDetails .totalFilms .filmNo {
+  font-size: 3.5vh;
 }
 .playlist .playlistDetails .totalFilms i {
   margin-right: 4px;
@@ -297,6 +301,7 @@ a {
 }
 .playlist.genreOuter .playlistDetails .totalFilms {
   font-size: 2.3vh;
+  padding-bottom: 10px;
 }
 .endOfPlaylist {
   float: left;
@@ -511,7 +516,7 @@ a {
   float: left;
 }
 .movieHeader button i.ion-heart {
-  font-size: 1.6em;
+  font-size: 1.8em;
 }
 .movieHeader button:first-child i {
   margin-right: 13px;
@@ -624,7 +629,7 @@ a {
   top: 0;
 }
 .synopsis {
-  font-size: 2.7vh;
+  font-size: 1.2em;
   color: #5e5e5e;
 }
 .synopsis img {
@@ -635,6 +640,15 @@ a {
   border: none;
   color: #2e2e2e;
   text-decoration: none;
+}
+.synopsis .synopsisText {
+  display: -webkit-box;
+  max-width: 100%;
+  max-height: 110px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .infocus h5 {
   margin-bottom: 5px;
@@ -851,6 +865,19 @@ a {
   position: absolute;
   right: 35px;
 }
+.singleGenre .watchlistIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+}
+.singleGenre .watchlistIcon i {
+  color: #ffffff;
+  font-size: 30px;
+}
+.singleGenre .watchlistIcon i.selected {
+  color: #af152f;
+}
 /*.filteredGenre
 {
 	.card 
@@ -949,21 +976,28 @@ a {
 .sortPopup .popup-body {
   color: #2e2e2e;
   padding: 0;
+  background: #ffffff;
 }
 .sortPopup .popup-body .sortInner {
   float: left;
   width: 100%;
   padding: 20px;
   border-bottom: 1px solid #d4d4d4;
+  font-size: 2.5vh;
 }
 .sortPopup .popup-body .sortInner:focus,
 .sortPopup .popup-body .sortInner:active,
 .sortPopup .popup-body .sortInner:hover {
-  background: #f2f2f2;
+  background: rgba(241, 196, 204, 0.12);
+  font-weight: 600;
   outline: none;
+  position: relative;
+  box-shadow: 1px 1px 5px #f1c4cc;
+  z-index: 9999999;
 }
 .sortPopup .popup-body .sortInner:last-child {
-  border-bottom: none;
+  /*border-bottom: none; */
+  margin-bottom: 10px;
 }
 .sortPopup .popup-body .sortInner img {
   float: left;
@@ -1121,6 +1155,10 @@ a {
   .item-divider p {
     font-size: 0.92em;
   }
+  .popular .cardTitle,
+  .item-divider .cardTitle {
+    font-size: 1.3em;
+  }
   .movieDetails .title {
     font-size: 1.2em;
     padding-bottom: 5px;
@@ -1141,6 +1179,9 @@ a {
   .playlist .playlistDetails .totalFilms {
     font-size: 1em;
   }
+  .playlist .playlistDetails .totalFilms .filmNo {
+    font-size: 1.5em;
+  }
   .playlist.genreOuter .playlistDetails .title {
     font-size: 1.1em;
   }
@@ -1148,7 +1189,7 @@ a {
     font-size: 0.9em;
   }
   .singleGenre .totalfilmsNTime {
-    font-size: 0.7em;
+    font-size: 0.75em;
   }
   .imageContainerOuter {
     height: 100%;
@@ -1172,7 +1213,7 @@ a {
   }
   .cardOuter .movieDetails .title {
     font-size: 1.1em;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
   .cardOuter .movieDetails .title span {
     color: #aeaeae;
@@ -1205,6 +1246,9 @@ a {
   .cardOuter .imageContainerOuter img {
     height: 100% !important;
     width: auto !important;
+  }
+  .sortPopup .popup-body .sortInner {
+    font-size: 1em;
   }
   .overlay {
     background: rgba(0, 0, 0, 0) !important;
