@@ -1,9 +1,29 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window, Storage) {
   $scope.showsearchbar = false;
   $scope.display = 'tabview';
   $scope.errorType = '';
   $scope.SearchResult = [];
   $scope.classname = '';
+  $scope.watchListCount = '0';
+  $scope.getwatchlistcount = function() {
+    console.log("init called");
+    return Storage.watchlistDetails('get').then(function(value) {
+      console.log(value);
+      $scope.watchlistDetails = value;
+      if (_.isNull($scope.watchlistDetails)) {
+        $scope.watchListCount = '0';
+        return $scope.$apply();
+      } else {
+        if ($scope.watchlistDetails.length > 0) {
+          $scope.watchListCount = $scope.watchlistDetails.length;
+          return $scope.$apply();
+        } else {
+          $scope.watchListCount = '0';
+          return $scope.$apply();
+        }
+      }
+    });
+  };
   $scope.singleplay = function(videoid) {
     console.log(videoid);
     DetailsAPI.videoId = videoid;
@@ -81,6 +101,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.slideContent = function() {
     console.log("slide");
     console.log(DetailsAPI.imageUrl);
+    $scope.getwatchlistcount();
     $ionicSideMenuDelegate.toggleLeft();
   };
   $scope.openModal = function() {

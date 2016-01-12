@@ -433,8 +433,8 @@ a {
   /*transition:width 1s ease;*/
   /*&.showSearch
 	{
-		width: 100% !important;	
-		transition:width 1s ease;	
+		width: 100% !important;
+		transition:width 1s ease;
 		opacity: 1;
 
 	}*/
@@ -914,14 +914,14 @@ a {
 }
 /*.filteredGenre
 {
-	.card 
+	.card
 	{
 		box-shadow: none;
 		border-bottom: none;
 	}
 	.item
 	{
-		position: relative;		
+		position: relative;
 		padding: 0;
 		&.item.item-image
 		{
@@ -931,15 +931,15 @@ a {
 	.cardTitle
 	{
 		padding:10px 10px 0 120px;
-		font-size: 1em;    	
+		font-size: 1em;
 	}
 	.totalfilmsNTime
 	{
 		position: absolute;
 	    width: 100%;
 	    bottom: 3px;
-	    padding:0 9px 0 120px;	   
-	    font-size: 0.6em;    
+	    padding:0 9px 0 120px;
+	    font-size: 0.6em;
 	    span
 	    {
 	    	i
@@ -954,12 +954,12 @@ a {
 		padding-left:120px;
 		font-size: 0.7em;
 		line-height: 1.5;
-		white-space: normal; 
+		white-space: normal;
 	}
 
 	&.genreImgOuter
 	{
-		.item-thumbnail-left 
+		.item-thumbnail-left
 		{
 			min-height: 90px;
 			img
@@ -968,7 +968,7 @@ a {
 	    		max-height: 70px;
 			}
 		}
-		.cardTitle , .totalfilmsNTime 
+		.cardTitle , .totalfilmsNTime
 		{
 			padding-left: 90px;
 		}
@@ -991,6 +991,10 @@ a {
   z-index: 1;
   top: 0;
   right: 0;
+}
+.watchlistIcon button{
+  position: relative;
+    z-index: 99;
 }
 .popupFooter {
   box-shadow: none !important;

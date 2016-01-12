@@ -43,6 +43,7 @@ angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]
       }
     }).state('watchList', {
       url: '/watchList',
+      cache: false,
       parent: 'home',
       views: {
         "homeview": {

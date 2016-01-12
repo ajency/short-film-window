@@ -15,7 +15,7 @@
           <div  class="item item-avatar singleGenreAvtar item-divider">
           <img src="{{ genre.genre_image_url }}">
           <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
-        <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
+        <div class=" bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
       </div>
     <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
@@ -62,7 +62,7 @@
 
 
 
-<div class="loaderOuter" ng-switch-when="loader">     
+<div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
     </div>
 

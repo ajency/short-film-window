@@ -4,27 +4,27 @@
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
 
-        <ion-content class="popular" ion-sticky> 
+        <ion-content class="popular" ion-sticky>
        <div class="item item-avatar watchlistHeader item-divider">
               <img src="img/icons/watchlist.png">
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
-            </div> 
-        <div id="" class="swiper-container">
-        <div class="swiper-wrapper">         
-           
+            </div>
+        <!-- <div id="" class="swiper-container">
+        <div class="swiper-wrapper">          -->
+
 <div ng-switch = "display" class="displayDiv">
-<div ng-switch-when ="result">    
+<div ng-switch-when ="result">
     <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
     <div  class="list card margin0 cardOuter ">
-
+      <div class="watchlistIcon">
+              <button class="button button-icon whiteText" ng-click= "updatewatchlist( data.movie_id )"><i class="ion-heart selected"></i></button>
+            </div>
       <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
             <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
             <div class="overlay" ></div>
-            <div class="watchlistIcon">
-              <i class="ion-heart selected"></i>
-            </div>
+
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
               {{ data.title }} <span>by {{ data.director}}</span>
@@ -55,19 +55,19 @@
 <div id="emptyWatchList" ng-switch-when = "no_result">
   <!-- if no watch list added display no result . -->
   <div class="text-center emptyWatchlistInner">
-   <h4> Nothing Here..    </h4>  
+   <h4> Nothing Here..    </h4>
     <div class="iconOuter">
       <i class="ion-heart primaryText"></i>
       <span>0</span>
     </div>
     <p>Please Add videos to the watchlist while you watch them.</p>
-    <button class="button button-small primary whiteText">Back</button>
+  <!--   <button class="button button-small primary whiteText">Back</button> -->
   </div>
 </div>
 
 </div>
-</div>
-</div>
+<!-- </div>
+</div> -->
 
 </ion-content>
 

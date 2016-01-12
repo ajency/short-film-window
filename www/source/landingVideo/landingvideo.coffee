@@ -56,6 +56,8 @@ angular.module 'SFWApp.landing', []
 					# success
 					console.log "toast displayed"
 					), (error) ->
+						console.log "error toast "
+
 
 
 

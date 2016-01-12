@@ -53,7 +53,9 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
           ({
             skip: false
           });
-          return $cordovaToast.show('Please Connect to Internet', 'long', 'bottom').then((function(success) {}, console.log("toast displayed")), function(error) {});
+          return $cordovaToast.show('Please Connect to Internet', 'long', 'bottom').then((function(success) {}, console.log("toast displayed")), function(error) {
+            return console.log("error toast ");
+          });
         }
       }
     };
