@@ -13,7 +13,7 @@
         <div id="" class="swiper-container">
         <div class="swiper-wrapper">         
            
-<div ng-switch = "display">
+<div ng-switch = "display" class="displayDiv">
 <div ng-switch-when ="result">    
     <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
@@ -54,6 +54,15 @@
 
 <div id="emptyWatchList" ng-switch-when = "no_result">
   <!-- if no watch list added display no result . -->
+  <div class="text-center emptyWatchlistInner">
+   <h4> Nothing Here..    </h4>  
+    <div class="iconOuter">
+      <i class="ion-heart primaryText"></i>
+      <span>0</span>
+    </div>
+    <p>Please Add videos to the watchlist while you watch them.</p>
+    <button class="button button-small primary whiteText">Back</button>
+  </div>
 </div>
 
 </div>

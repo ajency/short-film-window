@@ -878,6 +878,40 @@ a {
 .singleGenre .watchlistIcon i.selected {
   color: #af152f;
 }
+.singleGenre .emptyWatchlistInner {
+  padding: 20px;
+  border-top: 1px solid #d4d4d4;
+}
+.singleGenre .emptyWatchlistInner .iconOuter {
+  position: relative;
+  width: 100px;
+  margin: auto;
+}
+.singleGenre .emptyWatchlistInner .iconOuter i {
+  font-size: 90px;
+  color: #d4d4d4;
+  display: block;
+  margin-top: 20px;
+}
+.singleGenre .emptyWatchlistInner .iconOuter span {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  font-size: 30px;
+  background: #999;
+  width: 30px;
+  height: 30px;
+  line-height: 0.95;
+  border-radius: 50%;
+  color: #ffffff;
+}
+.singleGenre .emptyWatchlistInner p {
+  margin: 20px 0;
+  font-size: 2.8vh;
+}
+.singleGenre .emptyWatchlistInner button {
+  padding: 0 20px;
+}
 /*.filteredGenre
 {
 	.card 
@@ -1071,6 +1105,9 @@ a {
 }
 .errors h5 {
   color: #5e5e5e;
+}
+.displayDiv {
+  width: 100%;
 }
 .submitForm .item-select {
   height: 35px;
@@ -1283,6 +1320,9 @@ a {
   }
   .synopsis {
     font-size: 0.9em;
+  }
+  .singleGenre .emptyWatchlistInner p {
+    font-size: 1.1em;
   }
 }
 /*# sourceMappingURL=custom.css.map */
