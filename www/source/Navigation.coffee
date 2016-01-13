@@ -50,6 +50,7 @@ angular.module 'SFWApp.navigate', []
 
 		.state 'watchList',
 			url: '/watchList'
+			cache: false
 			parent: 'home'
 			views:
 				"homeview":

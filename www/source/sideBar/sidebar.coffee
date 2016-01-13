@@ -1,17 +1,38 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window) ->
+.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage) ->
   $scope.showsearchbar =  false
   $scope.display = 'tabview'
   $scope.errorType = ''
   $scope.SearchResult = []
   $scope.classname = ''
+  $scope.watchListCount = '0'
 
   # $('#autocomplete').autocomplete
   # serviceUrl: 'http://shortfilm.staging.wpengine.com/wp-json/search?str=Refle'
   # onSelect: (suggestion) ->
   #   alert 'You selected: ' + suggestion.value + ', ' + suggestion.data
+  $scope.getwatchlistcount = ()->
+    console.log "init called"
+    Storage.watchlistDetails 'get'
+    .then (value)->
+        console.log value
+        $scope.watchlistDetails = value
+        if  _.isNull($scope.watchlistDetails)
+          $scope.watchListCount = '0'
+          $scope.$apply()
+
+        else
+            if($scope.watchlistDetails.length >0)
+              $scope.watchListCount = $scope.watchlistDetails.length
+              $scope.$apply()
+
+            else
+              $scope.watchListCount = '0'
+              $scope.$apply()
+
+
 
   $scope.singleplay = (videoid)->
     console.log videoid
@@ -87,6 +108,7 @@ angular.module('SFWApp.sidebar', [])
 
     console.log "slide"
     console.log DetailsAPI.imageUrl
+    $scope.getwatchlistcount()
     $ionicSideMenuDelegate.toggleLeft()
     return
 

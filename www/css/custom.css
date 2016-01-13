@@ -60,7 +60,7 @@ a {
   font-size: 1.3em;
 }
 .menu p.shortInfo {
-  font-size: 0.8em;
+  font-size: 2.3vh;
   color: #5e5e5e;
   margin-bottom: 0;
 }
@@ -184,14 +184,14 @@ a {
   padding-left: 65px;
 }
 .item-divider p {
-  font-size: 13px;
+  font-size: 2.6vh;
 }
 .item-divider .cardTitle {
-  font-size: 1.3em;
+  font-size: 3.5vh;
   padding-top: 3px;
 }
 .item-thumbnail-left.item-divider {
-  padding: 5px 10px 5px 105px;
+  padding: 5px 10px 5px 5px;
   height: 118px;
 }
 .popular.has-tabs-top {
@@ -208,7 +208,7 @@ a {
 }
 .popular .cardTitle {
   font-family: 'Lato';
-  font-size: 1.3em;
+  font-size: 3.5vh;
   margin-bottom: 3px;
 }
 .popular .movieDetails .country {
@@ -227,14 +227,23 @@ a {
   width: 50%;
   position: relative;
   float: left;
+  text-align: center;
 }
 .playlist .playlistContent .imageContainer img {
-  width: 100%;
+  /*width: 100%;*/
   height: 100%;
+  width: auto !important;
+  position: relative;
+  left: 100%;
+  margin-left: -200%;
 }
 .playlist .playlistContent .playlistContentInner {
   position: relative;
   height: 100%;
+  overflow: hidden;
+}
+.playlist .playlistContent.generContent .imageContainer img {
+  width: 100% !important;
 }
 .playlist .playlistDetails {
   position: absolute;
@@ -242,6 +251,7 @@ a {
   left: 0;
   width: 100%;
   padding: 20px 5px 0px 5px;
+  text-align: left;
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.81) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.81) 100%);
 }
@@ -251,11 +261,27 @@ a {
   margin-bottom: 5px;
 }
 .playlist .playlistDetails .totalFilms {
-  font-size: 0.75em;
-  font-weight: 300;
+  font-size: 2.5vh;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+.playlist .playlistDetails .totalFilms .filmNo {
+  font-size: 3.5vh;
 }
 .playlist .playlistDetails .totalFilms i {
   margin-right: 4px;
+}
+.playlist .playlistDetails .totalFilms.playlistTotalFilms {
+  position: absolute;
+}
+.playlist .playlistDetails.playlistDetailsInner {
+  height: 100%;
+}
+.playlist .playlistDetails.playlistDetailsInner .totalFilms {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding-right: 10px;
 }
 .playlist .viewPlaylist {
   background: #eee;
@@ -269,6 +295,13 @@ a {
 .playlist .viewPlaylist .button {
   padding: 0px 10px;
   font-size: 0.7em;
+}
+.playlist.genreOuter .playlistDetails .title {
+  font-size: 2.8vh;
+}
+.playlist.genreOuter .playlistDetails .totalFilms {
+  font-size: 2.3vh;
+  padding-bottom: 10px;
 }
 .endOfPlaylist {
   float: left;
@@ -340,105 +373,54 @@ a {
   left: 0;
   z-index: 999;
 }
-.preloader5 {
-  position: absolute;
-  margin: auto;
-  margin-top: -35px;
-  width: 70px;
-  height: 70px;
+@-webkit-keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: rotate-forever;
+  animation-name: rotate-forever;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  height: 40px;
+  width: 40px;
+  border: 5px solid #777;
+  border-right-color: transparent;
   border-radius: 50%;
-  margin-left: -35px;
+  display: inline-block;
+}
+.loading-spinner {
+  position: absolute;
   top: 50%;
+  right: 0;
+  bottom: 0;
   left: 50%;
-}
-.preloader5 span {
-  display: block;
-  position: absolute;
-  width: inherit;
-  height: inherit;
-}
-.preloader5 span:nth-child(1) {
-  -webkit-animation: rotation 2s infinite cubic-bezier(0, 0, 1, 1);
-          animation: rotation 2s infinite cubic-bezier(0, 0, 1, 1);
-}
-.preloader5 span:nth-child(2) {
-  -webkit-animation: rotation 2s infinite cubic-bezier(0.25, 0, 0.75, 1);
-          animation: rotation 2s infinite cubic-bezier(0.25, 0, 0.75, 1);
-}
-.preloader5 span:nth-child(3) {
-  -webkit-animation: rotation 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
-          animation: rotation 2s infinite cubic-bezier(0.5, 0, 0.5, 1);
-}
-.preloader5 span:nth-child(4) {
-  -webkit-animation: rotation 2s infinite cubic-bezier(0.75, 0, 0.25, 1);
-          animation: rotation 2s infinite cubic-bezier(0.75, 0, 0.25, 1);
-}
-.preloader5 span:nth-child(5) {
-  -webkit-animation: rotation 2s infinite cubic-bezier(1, 0, 0, 1);
-          animation: rotation 2s infinite cubic-bezier(1, 0, 0, 1);
-}
-.preloader5 span:after {
-  content: '';
-  display: block;
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #AF152F;
-  left: 31.5px;
-  top: -3.5px;
-}
-@-webkit-keyframes rotation {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-@keyframes rotation {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
-  }
-}
-@-webkit-keyframes bigsmall {
-  0% {
-    width: 7px;
-    height: 7px;
-  }
-  50% {
-    width: 20px;
-    height: 20px;
-    left: 25px;
-    top: -10px;
-  }
-  100% {
-    width: 7px;
-    height: 7px;
-  }
-}
-@keyframes bigsmall {
-  0% {
-    width: 7px;
-    height: 7px;
-  }
-  50% {
-    width: 20px;
-    height: 20px;
-    left: 25px;
-    top: -10px;
-  }
-  100% {
-    width: 7px;
-    height: 7px;
-  }
+  margin-top: -15px;
+  margin-left: -15px;
 }
 .box {
   position: absolute;
@@ -492,6 +474,12 @@ a {
 .searchResult .cardOuter .movieDetails {
   bottom: 0;
 }
+.backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+.playlistHeaderOuter {
+  float: left;
+}
 .bar {
   background-size: 100% 0px;
 }
@@ -525,10 +513,16 @@ a {
   position: absolute !important;
   right: 40px;
 }
+.movieHeader button.watchList .ion-heart.selected {
+  color: #af152f;
+}
 .movieHeader button i {
   margin-right: 5px;
   font-size: 1.5em;
   float: left;
+}
+.movieHeader button i.ion-heart {
+  font-size: 1.8em;
 }
 .movieHeader button:first-child i {
   margin-right: 13px;
@@ -576,6 +570,7 @@ a {
 .movieDetails .category {
   padding-top: 5px;
   float: left;
+  width: 100%;
 }
 .movieDetails .category label {
   float: left;
@@ -588,6 +583,7 @@ a {
   color: #d4d4d4;
   font-size: 2.3vh;
   margin-bottom: 3px;
+  float: left;
 }
 .movieDetails .viewsNLikes {
   font-size: 2.3vh;
@@ -614,6 +610,7 @@ a {
 .singleMovieOuter {
   height: 100%;
   background: #000000;
+  position: relative;
 }
 .playIcon {
   height: 100px;
@@ -637,6 +634,10 @@ a {
 .movieScreen .singleMovieContent {
   top: 0;
 }
+.synopsis {
+  font-size: 1.2em;
+  color: #5e5e5e;
+}
 .synopsis img {
   display: block;
   margin: 0 auto;
@@ -645,6 +646,15 @@ a {
   border: none;
   color: #2e2e2e;
   text-decoration: none;
+}
+.synopsis .synopsisText {
+  display: -webkit-box;
+  max-width: 100%;
+  max-height: 110px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .infocus h5 {
   margin-bottom: 5px;
@@ -759,9 +769,25 @@ a {
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
   padding-bottom: 3px;
 }
+.singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail {
+  height: 105px;
+  width: 100px;
+  overflow: hidden;
+  float: left;
+  text-align: center;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail img {
+  height: 100%;
+  width: auto !important;
+  position: relative;
+  left: 100%;
+  margin-left: -200%;
+}
 .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle,
 .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
-  margin-left: 10px;
+  /*margin-left: 10px;*/
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
   font-size: 1.2em;
@@ -783,7 +809,7 @@ a {
   width: 100%;
   left: 0;
   padding: 0 14px 0 116px;
-  bottom: 0;
+  bottom: 2px;
 }
 .singleGenre .scroll {
   height: 100%;
@@ -809,7 +835,8 @@ a {
   font-size: 20px;
 }
 .singleGenre .totalfilmsNTime {
-  font-size: 2vh;
+  font-size: 2.3vh;
+  color: #666;
 }
 .singleGenre .item i {
   margin-right: 3px;
@@ -839,10 +866,68 @@ a {
   margin-top: 3px;
   vertical-align: inherit;
   height: 25px;
+  margin-right: 5px;
 }
 .singleGenre .watchList {
   position: absolute;
   right: 35px;
+}
+.singleGenre .watchlistIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+}
+.singleGenre .watchlistIcon i {
+  color: #ffffff;
+  font-size: 30px;
+}
+.singleGenre .watchlistIcon i.selected {
+  color: #af152f;
+}
+.singleGenre #emptyWatchList {
+  border-top: 1px solid #d4d4d4;
+}
+.singleGenre .emptyWatchlistInner {
+  padding: 20px;
+  position: absolute;
+  height: 250px;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -125px;
+}
+.singleGenre .emptyWatchlistInner .iconOuter {
+  position: relative;
+  width: 100px;
+  margin: auto;
+}
+.singleGenre .emptyWatchlistInner .iconOuter i {
+  font-size: 90px;
+  color: #d4d4d4;
+  display: block;
+  margin-top: 20px;
+}
+.singleGenre .emptyWatchlistInner .iconOuter span {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  font-size: 30px;
+  background: #999;
+  width: 30px;
+  height: 30px;
+  line-height: 0.95;
+  border-radius: 50%;
+  color: #ffffff;
+}
+.singleGenre .emptyWatchlistInner p {
+  margin: 20px 0;
+  font-size: 2.8vh;
+  color: #5e5e5e;
+}
+.singleGenre .emptyWatchlistInner button {
+  padding: 0 20px;
 }
 /*.filteredGenre
 {
@@ -935,28 +1020,42 @@ a {
   background: #af152f;
   color: #ffffff;
 }
+.sortPopup .popup-head {
+  /*background: @grayLightest;*/
+  border-bottom: 3px solid #aaa;
+}
 .sortPopup .popup-head h4 {
   margin: 0;
   text-align: left;
+  color: #2e2e2e;
+  font-weight: 600;
+  font-size: 20px;
 }
 .sortPopup .popup-body {
   color: #2e2e2e;
   padding: 0;
+  background: #ffffff;
 }
 .sortPopup .popup-body .sortInner {
   float: left;
   width: 100%;
   padding: 20px;
   border-bottom: 1px solid #d4d4d4;
+  font-size: 2.6vh;
 }
 .sortPopup .popup-body .sortInner:focus,
 .sortPopup .popup-body .sortInner:active,
 .sortPopup .popup-body .sortInner:hover {
-  background: #f2f2f2;
+  background: rgba(241, 196, 204, 0.12);
+  font-weight: 600;
   outline: none;
+  position: relative;
+  box-shadow: 1px 1px 5px #f1c4cc;
+  z-index: 9999999;
 }
 .sortPopup .popup-body .sortInner:last-child {
-  border-bottom: none;
+  border-bottom: none
+  /*margin-bottom: 10px;*/
 }
 .sortPopup .popup-body .sortInner img {
   float: left;
@@ -1030,6 +1129,9 @@ a {
 }
 .errors h5 {
   color: #5e5e5e;
+}
+.displayDiv {
+  width: 100%;
 }
 .submitForm .item-select {
   height: 35px;
@@ -1108,6 +1210,16 @@ a {
   font-size: 0.8em;
 }
 @media screen and (max-width: 767px) and (min-aspect-ratio: 13/9) {
+  .menu p.shortInfo {
+    font-size: 0.92em;
+  }
+  .item-divider p {
+    font-size: 0.92em;
+  }
+  .popular .cardTitle,
+  .item-divider .cardTitle {
+    font-size: 1.3em;
+  }
   .movieDetails .title {
     font-size: 1.2em;
     padding-bottom: 5px;
@@ -1125,11 +1237,32 @@ a {
   .playlist .playlistContent .imageContainer {
     width: 33.33%;
   }
+  .playlist .playlistDetails .totalFilms {
+    font-size: 1em;
+  }
+  .playlist .playlistDetails .totalFilms .filmNo {
+    font-size: 1.5em;
+  }
+  .playlist.genreOuter .playlistDetails .title {
+    font-size: 1.1em;
+  }
+  .playlist.genreOuter .playlistDetails .totalFilms {
+    font-size: 0.9em;
+  }
   .singleGenre .totalfilmsNTime {
-    font-size: 0.7em;
+    font-size: 0.75em;
+  }
+  .imageContainerOuter {
+    height: 100%;
+    width: 50%;
+  }
+  .imageContainerOuter img {
+    height: auto !important;
+    width: 100% !important;
   }
   .cardOuter {
     height: 100%;
+    width: 100%;
   }
   .cardOuter .movieDetails {
     width: 50%;
@@ -1141,7 +1274,7 @@ a {
   }
   .cardOuter .movieDetails .title {
     font-size: 1.1em;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
   .cardOuter .movieDetails .title span {
     color: #aeaeae;
@@ -1171,13 +1304,12 @@ a {
   .cardOuter .movieDetails .country {
     padding-top: 10px;
   }
-  .imageContainerOuter {
-    height: 100%;
-    width: 50%;
+  .cardOuter .imageContainerOuter img {
+    height: 100% !important;
+    width: auto !important;
   }
-  .imageContainerOuter img {
-    height: auto !important;
-    width: 100% !important;
+  .sortPopup .popup-body .sortInner {
+    font-size: 1em;
   }
   .overlay {
     background: rgba(0, 0, 0, 0) !important;
@@ -1209,6 +1341,21 @@ a {
   }
   .singleGenreAvtar {
     border-bottom: 1px solid #d4d4d4;
+  }
+  .synopsis {
+    font-size: 0.9em;
+  }
+  .singleGenre .emptyWatchlistInner {
+    position: relative;
+    height: auto;
+    width: 100%;
+    left: 0;
+    top: 0;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .singleGenre .emptyWatchlistInner p {
+    font-size: 1.1em;
   }
 }
 /*# sourceMappingURL=custom.css.map */

@@ -1,26 +1,30 @@
-    <ion-side-menus>
-    <ion-side-menu-content class="singleGenre">
+    <ion-view ng-init="init() "class="singleGenre">
       <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-        <ion-content class="popular">
-          <div class="list card margin0">
 
-            <div class="item item-avatar">
+        <ion-content class="popular" ion-sticky>
+       <div class="item item-avatar watchlistHeader item-divider">
               <img src="img/icons/watchlist.png">
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
             </div>
+        <!-- <div id="" class="swiper-container">
+        <div class="swiper-wrapper">          -->
 
-      <div class="list card margin0 cardOuter swiper-slide">
-    <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
+<div ng-switch = "display" class="displayDiv">
+<div ng-switch-when ="result">
+    <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
 
     <div  class="list card margin0 cardOuter ">
-
+      <div class="watchlistIcon">
+              <button class="button button-icon whiteText" ng-click= "updatewatchlist( data.movie_id )"><i class="ion-heart selected"></i></button>
+            </div>
       <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
             <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
             <div class="overlay" ></div>
+
             <div class="movieDetails padding whiteText">
               <div class="title padding-vertical">
               {{ data.title }} <span>by {{ data.director}}</span>
@@ -30,7 +34,7 @@
               </div>
               <div class="country padding-vertical">
                 {{ data.region }}/ {{ data.language}}<span></span>
-                <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
+                <span class="pull-right"><i class="ion-android-time"></i> {{ data.duration }} Min</span>
               </div>
               <div class="viewsNLikes padding-vertical">
                 <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
@@ -42,12 +46,29 @@
 
     </div>
 
+
+</div>
+ <div class="loaderOuter" ng-switch-when="loader">
+      <div class="loading-spinner"></div>
+    </div>
+
+<div id="emptyWatchList" ng-switch-when = "no_result">
+  <!-- if no watch list added display no result . -->
+  <div class="text-center emptyWatchlistInner">
+   <h4> Nothing Here..    </h4>
+    <div class="iconOuter">
+      <i class="ion-heart primaryText"></i>
+      <span>0</span>
+    </div>
+    <p>Add videos to your watchlist.</p>
+  <!--   <button class="button button-small primary whiteText">Back</button> -->
+  </div>
 </div>
 
+</div>
+<!-- </div>
+</div> -->
 
+</ion-content>
 
-
-          </div>
-        </ion-content>
-    </ion-side-menu-content>
-</ion-side-menus>
+</ion-view>

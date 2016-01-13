@@ -10,13 +10,8 @@
       </ion-header-bar>
       <div class="scroll">
       <div ng-switch ="display" >
-        <div class="loaderOuter" ng-switch-when="loader">
-      <div class="preloader5">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+ <div class="loaderOuter" ng-switch-when="loader">
+      <div class="loading-spinner"></div>
     </div>
     <aj-error class="errors"
       ng-switch-when="error"
@@ -80,6 +75,7 @@
               <a class="item" ui-sref="watchList" ng-click="slideContent()">
                 <i class="icon-cust icon-watchlist"></i>
                 <b class="text-uppercase">My watchlist</b>
+                <span class="badge badge-assertive">{{ watchListCount}}</span>
               </a>
 
               <a class="item" ui-sref="playlist" ng-click="slideContent()">
@@ -125,6 +121,23 @@
     $(document).ready(function(){
         var boxWidth = $(".box").width();
         $(".slide-right").click(function(){
+            $(".box").animate({
+                width: 0
+            });
+            $(".box").removeClass("showSearch");
+            $(".box").addClass("hideSearch");
+        });
+        $(".slide-left").click(function(){
+            $(".box").animate({
+                width: boxWidth
+            });
+             $(".box").removeClass("hideSearch");
+            $(".box").addClass("showSearch");
+        });
+    });
+    $(window).on("orientationchange",function(){
+      alert("dfdsf");
+       $(".slide-right").click(function(){
             $(".box").animate({
                 width: 0
             });
