@@ -280,7 +280,7 @@ a {
 .playlist .playlistDetails.playlistDetailsInner .totalFilms {
   position: absolute;
   width: 100%;
-  bottom: 5px;
+  bottom: 0;
   padding-right: 10px;
 }
 .playlist .viewPlaylist {
@@ -433,8 +433,8 @@ a {
   /*transition:width 1s ease;*/
   /*&.showSearch
 	{
-		width: 100% !important;
-		transition:width 1s ease;
+		width: 100% !important;	
+		transition:width 1s ease;	
 		opacity: 1;
 
 	}*/
@@ -473,6 +473,12 @@ a {
 }
 .searchResult .cardOuter .movieDetails {
   bottom: 0;
+}
+.backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+.playlistHeaderOuter {
+  float: left;
 }
 .bar {
   background-size: 100% 0px;
@@ -803,7 +809,7 @@ a {
   width: 100%;
   left: 0;
   padding: 0 14px 0 116px;
-  bottom: 0;
+  bottom: 2px;
 }
 .singleGenre .scroll {
   height: 100%;
@@ -830,6 +836,7 @@ a {
 }
 .singleGenre .totalfilmsNTime {
   font-size: 2.3vh;
+  color: #666;
 }
 .singleGenre .item i {
   margin-right: 3px;
@@ -878,9 +885,18 @@ a {
 .singleGenre .watchlistIcon i.selected {
   color: #af152f;
 }
+.singleGenre #emptyWatchList {
+  border-top: 1px solid #d4d4d4;
+}
 .singleGenre .emptyWatchlistInner {
   padding: 20px;
-  border-top: 1px solid #d4d4d4;
+  position: absolute;
+  height: 250px;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  margin-left: -150px;
+  margin-top: -125px;
 }
 .singleGenre .emptyWatchlistInner .iconOuter {
   position: relative;
@@ -908,20 +924,21 @@ a {
 .singleGenre .emptyWatchlistInner p {
   margin: 20px 0;
   font-size: 2.8vh;
+  color: #5e5e5e;
 }
 .singleGenre .emptyWatchlistInner button {
   padding: 0 20px;
 }
 /*.filteredGenre
 {
-	.card
+	.card 
 	{
 		box-shadow: none;
 		border-bottom: none;
 	}
 	.item
 	{
-		position: relative;
+		position: relative;		
 		padding: 0;
 		&.item.item-image
 		{
@@ -931,15 +948,15 @@ a {
 	.cardTitle
 	{
 		padding:10px 10px 0 120px;
-		font-size: 1em;
+		font-size: 1em;    	
 	}
 	.totalfilmsNTime
 	{
 		position: absolute;
 	    width: 100%;
 	    bottom: 3px;
-	    padding:0 9px 0 120px;
-	    font-size: 0.6em;
+	    padding:0 9px 0 120px;	   
+	    font-size: 0.6em;    
 	    span
 	    {
 	    	i
@@ -954,12 +971,12 @@ a {
 		padding-left:120px;
 		font-size: 0.7em;
 		line-height: 1.5;
-		white-space: normal;
+		white-space: normal; 
 	}
 
 	&.genreImgOuter
 	{
-		.item-thumbnail-left
+		.item-thumbnail-left 
 		{
 			min-height: 90px;
 			img
@@ -968,7 +985,7 @@ a {
 	    		max-height: 70px;
 			}
 		}
-		.cardTitle , .totalfilmsNTime
+		.cardTitle , .totalfilmsNTime 
 		{
 			padding-left: 90px;
 		}
@@ -992,10 +1009,6 @@ a {
   top: 0;
   right: 0;
 }
-.watchlistIcon button{
-  position: relative;
-    z-index: 99;
-}
 .popupFooter {
   box-shadow: none !important;
 }
@@ -1007,9 +1020,16 @@ a {
   background: #af152f;
   color: #ffffff;
 }
+.sortPopup .popup-head {
+  /*background: @grayLightest;*/
+  border-bottom: 3px solid #aaa;
+}
 .sortPopup .popup-head h4 {
   margin: 0;
   text-align: left;
+  color: #2e2e2e;
+  font-weight: 600;
+  font-size: 20px;
 }
 .sortPopup .popup-body {
   color: #2e2e2e;
@@ -1021,7 +1041,7 @@ a {
   width: 100%;
   padding: 20px;
   border-bottom: 1px solid #d4d4d4;
-  font-size: 2.5vh;
+  font-size: 2.6vh;
 }
 .sortPopup .popup-body .sortInner:focus,
 .sortPopup .popup-body .sortInner:active,
@@ -1034,8 +1054,8 @@ a {
   z-index: 9999999;
 }
 .sortPopup .popup-body .sortInner:last-child {
-  /*border-bottom: none; */
-  margin-bottom: 10px;
+  border-bottom: none
+  /*margin-bottom: 10px;*/
 }
 .sortPopup .popup-body .sortInner img {
   float: left;
@@ -1324,6 +1344,15 @@ a {
   }
   .synopsis {
     font-size: 0.9em;
+  }
+  .singleGenre .emptyWatchlistInner {
+    position: relative;
+    height: auto;
+    width: 100%;
+    left: 0;
+    top: 0;
+    margin-left: 0;
+    margin-top: 0;
   }
   .singleGenre .emptyWatchlistInner p {
     font-size: 1.1em;

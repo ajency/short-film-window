@@ -135,4 +135,21 @@
             $(".box").addClass("showSearch");
         });
     });
+    $(window).on("orientationchange",function(){
+      alert("dfdsf");
+       $(".slide-right").click(function(){
+            $(".box").animate({
+                width: 0
+            });
+            $(".box").removeClass("showSearch");
+            $(".box").addClass("hideSearch");
+        });
+        $(".slide-left").click(function(){
+            $(".box").animate({
+                width: boxWidth
+            });
+             $(".box").removeClass("hideSearch");
+            $(".box").addClass("showSearch");
+        });
+    });
 </script>
