@@ -6,7 +6,7 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
     };
     $scope.init = function() {
       var device_height, device_width, swiper;
-      swiper = new Swiper('.swiper-container', {
+      swiper = new Swiper('.swiperplaylist', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
         direction: 'vertical'

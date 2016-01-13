@@ -4,7 +4,7 @@ angular.module 'SFWApp.tabs',[]
 
 
 
-    
+
 
 		$scope.singleplaylist = (playlistId)->
 			console.log playlistId
@@ -67,7 +67,7 @@ angular.module 'SFWApp.tabs',[]
 
 		$scope.view =
 
-			swiper = new Swiper('.swiper-container', {
+			swiper = new Swiper('.popularswiper', {
 					pagination: '.swiper-pagination'
 					paginationClickable: true
 					direction: 'vertical'

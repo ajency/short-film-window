@@ -57,7 +57,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       $scope.awplalist = DetailsAPI.array_awplalist;
       return $scope.videoId = DetailsAPI.array.videoId;
     };
-    $scope.view = swiper = new Swiper('.swiper-container', {
+    $scope.view = swiper = new Swiper('.popularswiper', {
       pagination: '.swiper-pagination',
       paginationClickable: true,
       direction: 'vertical'

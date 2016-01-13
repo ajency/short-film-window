@@ -4,9 +4,14 @@
         <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
 <div ng-switch = 'display'>
+   <ion-content class="popular singlePlaylist" overflow-scroll='true' ion-sticky>
+   <div class="swiper-container swiperplaylist">
+                <div class="swiper-wrapper">
   <div ng-switch-when = 'result'>
 
-          <ion-content class="popular singlePlaylist" overflow-scroll='true' ion-sticky>
+
+
+
            <div  id = "" class="item item-thumbnail-left singleGenreAvtar item-divider">
             <div class="playlist-thumbnail"><img src="{{ playlist.playlist_image_url }}"></div>
             <div class="playlistHeaderOuter" style = "width:{{ headerwidth}}px;">
@@ -15,8 +20,7 @@
               <div class="bold totalfilmsNTime">{{playlist.playlist_count}} Films <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{playlist.run_time }} MIN</span></div>
             </div>
           </div>
-          <!-- <div class="swiper-container">
-                <div class="swiper-wrapper"> -->
+
           <div ng-repeat ="data in playlistData" class="cardDetails swiper-slide" style="height: {{ hgt }}px">
 
         <div class="list card margin0 cardOuter ">
@@ -43,12 +47,13 @@
                 </div>
               </div>
             </div>
-         <!--    </div>
-            </div> -->
+            </div>
+            </div>
 
         </div>
-      </ion-content>
+
     </div>
+        </ion-content>
     <div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
     </div>

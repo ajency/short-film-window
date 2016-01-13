@@ -7,7 +7,7 @@ angular.module 'SFWApp.tabs'
         share.shareNative()
     $scope.init = () ->
 
-        swiper = new Swiper('.swiper-container', {
+        swiper = new Swiper('.swiperplaylist', {
                 pagination: '.swiper-pagination'
                 paginationClickable: true
                 direction: 'vertical'
