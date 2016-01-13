@@ -38,6 +38,7 @@ angular.module 'SFWApp.navigate', []
 				"genreContent":
 					templateUrl: 'views/tabs/genre/genre.html'
 					controller: 'genreCtrl'
+					params: {'data': null},
 
 		.state 'playlist',
 			url: '/playlist'
@@ -89,6 +90,8 @@ angular.module 'SFWApp.navigate', []
 			cache: false
 			controller: 'singlePlaylist'
 			templateUrl: 'views/tabs/playlist/singlePlaylist.html'
+
+	# $urlRouterProvider.otherwise('/landing');	
 
 
 

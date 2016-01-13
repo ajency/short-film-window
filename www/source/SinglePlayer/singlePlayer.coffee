@@ -5,7 +5,6 @@ angular.module 'SFWApp.singlePlayer', []
 
 		console.log  DetailsAPI.singleVideoarray
 
-
 		$scope.view =
 
 			back:->

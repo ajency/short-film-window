@@ -1,7 +1,9 @@
 angular.module 'SFWApp.tabs'
-.controller 'genreCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading'
+.controller 'genreCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams'
 
-	,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading)->
+	,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams)->
+
+		$scope.notificationPayload = $stateParams.data
 
 		$scope.doRefresh = ()->
 			# $ionicLoading.show
@@ -30,6 +32,7 @@ angular.module 'SFWApp.tabs'
 		    console.log $scope.genre
 		    console.log App.previousState
 		    console.log App.currentState
+		    return
 
 
 		$scope.singleGenre = (genreId)->

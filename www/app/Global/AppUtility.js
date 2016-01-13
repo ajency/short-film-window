@@ -1,6 +1,7 @@
 angular.module('SFWApp.Global', []).factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
     var App;
+    App = void 0;
     return App = {
       start: true,
       menuEnabled: {
@@ -9,12 +10,15 @@ angular.module('SFWApp.Global', []).factory('App', [
       },
       previousState: '',
       currentState: '',
+      fromNotification: 0,
       navigate: function(state, params, opts) {
         var animate, back;
-        if (params == null) {
+        animate = void 0;
+        back = void 0;
+        if (params === null) {
           params = {};
         }
-        if (opts == null) {
+        if (opts === null) {
           opts = {};
         }
         if (!_.isEmpty(opts)) {
@@ -31,7 +35,12 @@ angular.module('SFWApp.Global', []).factory('App', [
         return console.log($ionicHistory.backView());
       },
       goBack: function(count) {
-        return $ionicHistory.goBack(count);
+        if (this.fromNotification) {
+          this.fromNotification = 0;
+          return $state.go("popular");
+        } else {
+          return $ionicHistory.goBack(count);
+        }
       },
       isAndroid: function() {
         return ionic.Platform.isAndroid();

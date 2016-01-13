@@ -1,8 +1,8 @@
-<ion-view class="movieScreen" ng-init="init()">
+<ion-view class="movieScreen">
 <ion-header-bar class="bar bar-header movieHeader">
         <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText watchList" ng-click= "addwatchlist()">
-          <i class="icon-cust {{ watchlistimg }}"></i></button>
+          <i ng-class="{'icon-cust icon-favorite': watchlistimg == 'icon-favorite','icon-cust icon-unfavorite': watchlistimg == 'icon-unfavorite'}"></i></button>
         <button class="button button-icon whiteText" ng-click="share() "><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
       <div ng-switch ="display">

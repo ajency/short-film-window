@@ -29,7 +29,10 @@ angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]
       views: {
         "genreContent": {
           templateUrl: 'views/tabs/genre/genre.html',
-          controller: 'genreCtrl'
+          controller: 'genreCtrl',
+          params: {
+            'data': null
+          }
         }
       }
     }).state('playlist', {

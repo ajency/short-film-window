@@ -4,6 +4,7 @@ angular.module 'SFWApp.tabs',[]
 
 
 
+    
 
 		$scope.singleplaylist = (playlistId)->
 			console.log playlistId
@@ -71,5 +72,9 @@ angular.module 'SFWApp.tabs',[]
 					paginationClickable: true
 					direction: 'vertical'
 						});
+
+		App.previousState = 'landing' if App.previousState == 'landing'
+		console.log "*********-*",App.previousState
+		return
 
 ]

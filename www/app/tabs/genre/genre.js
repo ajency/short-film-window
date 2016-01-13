@@ -1,6 +1,7 @@
 angular.module('SFWApp.tabs').controller('genreCtrl', [
-  '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
+  '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$stateParams', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $stateParams) {
     var swiper;
+    $scope.notificationPayload = $stateParams.data;
     $scope.doRefresh = function() {
       return PulltorefreshAPI.pullrequest().then((function(_this) {
         return function(data) {
@@ -29,7 +30,7 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
       $scope.genre = DetailsAPI.genre_array;
       console.log($scope.genre);
       console.log(App.previousState);
-      return console.log(App.currentState);
+      console.log(App.currentState);
     };
     $scope.singleGenre = function(genreId) {
       console.log(genreId);
