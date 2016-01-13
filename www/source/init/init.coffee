@@ -32,6 +32,7 @@ angular.module 'SFWApp.init', []
 
 
 			else
+			# new video added
 				i = 0
 
 				while i < $scope.getwatchlistDetails.length
