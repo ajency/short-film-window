@@ -16,7 +16,8 @@
 <div ng-switch = "display" class="displayDiv">
 <div ng-switch-when ="result">
     <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
-
+    <button class="button button-icon whiteText watchList" ng-click= "updatewatchlist(data.movie_id ) ">
+          <i class="ion-heart selected"></i></button>
     <div  class="list card margin0 cardOuter ">
       <div class="watchlistIcon">
               <button class="button button-icon whiteText" ng-click= "updatewatchlist( data.movie_id )"><i class="ion-heart selected"></i></button>
@@ -60,7 +61,7 @@
       <i class="ion-heart primaryText"></i>
       <span>0</span>
     </div>
-    <p>Add videos to your watchlist.</p>
+    <p>Please Add videos to the watchlist while you watch them.</p>
   <!--   <button class="button button-small primary whiteText">Back</button> -->
   </div>
 </div>
