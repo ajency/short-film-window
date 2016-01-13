@@ -1,170 +1,171 @@
 angular.module 'SFWApp.init', []
 
-.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService'
-   ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService)->
-  $scope.Videodetails = []
-  $scope.display = 'result'
-  $scope.addvideoDetails = []
-  $scope.getwatchlistDetails = []
-  $scope.watchFlag = '0'
-  $scope.intFlag = '0'
-  $scope.watchlistimg = ''
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage'
+	 ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage)->
+	$scope.Videodetails = []
+	$scope.display = 'result'
+	$scope.addvideoDetails = []
+	$scope.getwatchlistDetails = []
+	$scope.watchFlag = '0'
+	$scope.intFlag = '0'
+	$scope.watchlistimg = ''
 
-  $scope.share = ()->
-    console.log "social sharing "
-    share.shareNative()
+	$scope.share = ()->
+		console.log "social sharing "
+		share.shareNative()
 
-  $scope.addwatchlist = ()->
-    console.log "video added to watchlist "
-    console.log DetailsAPI.singleVideoarray
-    $scope.CheckWatchlist()
+	$scope.addwatchlist = ()->
+		console.log "video added to watchlist "
+		console.log DetailsAPI.singleVideoarray
+		$scope.CheckWatchlist()
 
-  $scope.checkIfaddedlist = () ->
-    console.log "checking if video exist"
-    Storage.watchlistDetails 'get'
-    .then (value)->
-      console.log value
-      $scope.getwatchlistDetails = value
-      if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
-        console.log "new video  entry"
-        $scope.watchlistimg = 'icon-favorite'
-
-      else
-        i = 0
-
-        while i < $scope.getwatchlistDetails.length
-          if $scope.getwatchlistDetails[i].movie_id == $scope.Videodetails.movie_id
-            console.log "Movie already added "
-            $scope.intFlag = '1'
-          else
-            console.log "New movie entry "
-          i++
-
-        if $scope.intFlag == '1'
-          $scope.watchlistimg = 'icon-unfavorite'
-        else
-          $scope.watchlistimg = 'icon-favorite'
+	$scope.checkIfaddedlist = () ->
+		console.log "checking if video exist"
+		Storage.watchlistDetails 'get'
+		.then (value)->
+			console.log value
+			$scope.getwatchlistDetails = value
+			if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
+				console.log "new video  entry"
+				$scope.watchlistimg = 'icon-favorite'
+				$scope.$apply()
 
 
+			else
+			# new video added
+				i = 0
 
-  $scope.CheckWatchlist = () ->
-    console.log "checking if video exist"
-    Storage.watchlistDetails 'get'
-    .then (value)->
-      console.log value
-      $scope.getwatchlistDetails = value
-      if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
-        console.log "new video  entry"
-        $scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
-        Storage.watchlistDetails 'set', $scope.addvideoDetails
-        $scope.watchlistimg = 'icon-unfavorite'
-      else
-        i = 0
-        while i < $scope.getwatchlistDetails.length
-          if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
-            console.log "Movie already added "
-            $scope.watchlistimg = 'icon-unfavorite'
-            console.log  $scope.addvideoDetails
-            $scope.addvideoDetails.splice(i,1)
-            console.log $scope.addvideoDetails
-            $scope.updatewatchlist()
-            $scope.watchFlag = '1'
-          else
-            console.log "New movie entry "
-          i++
+				while i < $scope.getwatchlistDetails.length
+					if $scope.getwatchlistDetails[i].movie_id == $scope.Videodetails.movie_id
+						console.log "Movie already added "
+						$scope.intFlag = '1'
+					else
+						console.log "New movie entry "
+					i++
 
-        if $scope.watchFlag == '0'
-          $scope.watchlistimg = 'icon-unfavorite'
-          i= 0
+				if $scope.intFlag == '1'
+					$scope.watchlistimg = 'icon-unfavorite'
+					$scope.$apply()
 
-          while i < $scope.getwatchlistDetails.length
-            $scope.addvideoDetails.push($scope.getwatchlistDetails[i])
-            i++
 
-          $scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
-          Storage.watchlistDetails 'set', $scope.addvideoDetails
+				else
+					$scope.watchlistimg = 'icon-favorite'
+					$scope.$apply()
 
 
 
-  $scope.updatewatchlist = ()->
-    $scope.watchlistimg = 'icon-favorite'
-    i= 0
 
-    while i < $scope.addvideoDetails.length
-      $scope.addvideoDetails.push($scope.getwatchlistDetails[i])
-      i++
-    Storage.watchlistDetails 'set', $scope.addvideoDetails
+	$scope.CheckWatchlist = () ->
+		console.log "checking if video exist"
+		Storage.watchlistDetails 'get'
+		.then (value)->
+			console.log value
+			$scope.getwatchlistDetails = value
+			if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
+				console.log "new video  entry"
+				$scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
+				Storage.watchlistDetails 'set', $scope.addvideoDetails
+				$scope.watchlistimg = 'icon-unfavorite'
+				$scope.$apply()
 
-  $scope.initializeApp = ()->
-    $ionicLoading.show
-      content: 'Loading'
-      animation: 'fade-in'
-      showBackdrop: true
-      maxWidth: 600
-      showDelay: 0
+			else
+				console.log $scope.addvideoDetails
+				i = 0
+				while i < $scope.getwatchlistDetails.length
+					if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
+						console.log "Movie already added "
 
-    InitialiseService.initialize().then (data)->
-      $scope.init()
-      return
-    return  
+						console.log  $scope.addvideoDetails
+						$scope.getwatchlistDetails.splice(i,1)
+						console.log $scope.getwatchlistDetails
+						$scope.updatewatchlist()
+						$scope.watchlistimg = 'icon-favorite'
+						$scope.$apply()
 
-  $scope.init = ()->
+						$scope.watchFlag = '1'
+					else
+						console.log "New movie entry "
+					i++
 
-    if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
-      console.log "Single video Data Cached"
-      $scope.Videodetails =  DetailsAPI.singleVideoarray
+				if $scope.watchFlag == '0'
+					$scope.watchlistimg = 'icon-unfavorite'
 
+					n =  $scope.getwatchlistDetails.length
+					i= 0
+					while i < n
+						$scope.addvideoDetails.push($scope.getwatchlistDetails[i])
+						i++
 
-    else
-      $ionicLoading.show
-        content: 'Loading'
-        animation: 'fade-in'
-        showBackdrop: true
-        maxWidth: 600
-        showDelay: 0
-
-      DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
-      .then (data)=>
-        # $scope.display = 'result'
-        console.log "single video  data succ"
-        DetailsAPI.singleVideoarray = data
-        $scope.Videodetails = data
-
-        $ionicLoading.hide();
-        document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
-      , (error)=>
-        console.log 'Error Loading data'
-        $scope.display = 'error'
-        $ionicLoading.hide();
-
-
-    $scope.checkIfaddedlist()
-    console.log  DetailsAPI.videoId
-    console.log 'In Init'
-    Vtype = '0'
-
-
-    $scope.$on '$ionicView.afterEnter', ->
-      console.log 'after enter'
-
-
-  $scope.view =
-    back:->
-      DetailsAPI.singleVideoarray = []
-      # $ionicHistory.goBack();
-      count = -1
-      App.goBack count
+					$scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
+					Storage.watchlistDetails 'set', $scope.addvideoDetails
+					$scope.$apply()
 
 
 
-    playVideo : ()->
-      App.navigate 'singlePlayer'
+	$scope.updatewatchlist = ()->
+		$scope.watchlistimg = 'icon-favorite'
+		$scope.$apply()
 
-  if App.fromNotification
-    $scope.initializeApp()
-  else
-    $scope.init()  
-          
+		i= 0
+
+		while i < $scope.getwatchlistDetails.length
+			$scope.addvideoDetails.push($scope.getwatchlistDetails[i])
+			i++
+		Storage.watchlistDetails 'set', $scope.addvideoDetails
+
+
+	$scope.init = ()->
+
+		if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
+			console.log "Single video Data Cached"
+			$scope.Videodetails =  DetailsAPI.singleVideoarray
+
+
+		else
+			$ionicLoading.show
+			  content: 'Loading'
+			  animation: 'fade-in'
+			  showBackdrop: true
+			  maxWidth: 600
+			  showDelay: 0
+
+			DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
+			.then (data)=>
+				# $scope.display = 'result'
+				console.log "single video  data succ"
+				DetailsAPI.singleVideoarray = data
+				$scope.Videodetails = data
+				$scope.checkIfaddedlist()
+
+				$ionicLoading.hide();
+				document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
+			, (error)=>
+				console.log 'Error Loading data'
+				$scope.display = 'error'
+				$ionicLoading.hide();
+
+
+
+		console.log  DetailsAPI.videoId
+		console.log 'In Init'
+		Vtype = '0'
+
+
+		$scope.$on '$ionicView.afterEnter', ->
+			console.log 'after enter'
+
+
+	$scope.view =
+		back:->
+			DetailsAPI.singleVideoarray = []
+			# $ionicHistory.goBack();
+			count = -1
+			App.goBack count
+
+
+
+		playVideo : ()->
+		  App.navigate 'singlePlayer'
 
 
 
