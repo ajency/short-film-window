@@ -877,6 +877,7 @@ a {
   top: 10px;
   right: 10px;
   width: 50px;
+  z-index: 99;
 }
 .singleGenre .watchlistIcon i {
   color: #ffffff;
