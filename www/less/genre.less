@@ -97,7 +97,7 @@
 			    width: 100%;
 			    left: 0;
 			    padding: 0 14px 0 116px;
-			    bottom: 0;
+			    bottom: 2px;
 			}
 		}
 	}
@@ -139,6 +139,7 @@
 	.totalfilmsNTime
 	{
 		font-size: 2.3vh;
+		color: #666;
 	}
 	.item
 	{
@@ -203,10 +204,21 @@
 			}
 		}		
 	}
+	#emptyWatchList
+	{
+		border-top: 1px solid @grayLightest;
+	}
 	.emptyWatchlistInner
 	{
 		padding: 20px;
-		border-top: 1px solid @grayLightest;
+		position: absolute;
+	    height: 250px;
+	    width: 300px;
+	    left: 50%;
+	    top: 50%;
+	    margin-left: -150px;
+	    margin-top: -125px;
+		
 		.iconOuter
 		{
 			position: relative;
@@ -237,6 +249,7 @@
 		{
 			margin: 20px 0;
 			font-size: 2.8vh;
+			color: @grayLight;
 		}
 		button
 		{
@@ -348,10 +361,15 @@
 {
 	.popup-head
 	{
+		/*background: @grayLightest;*/
+		border-bottom:3px solid #aaa;
 		h4
 		{
 			margin: 0;
 			text-align: left;
+			color: @grayDark;
+			font-weight: 600;
+    		font-size: 20px;
 		}
 	}
 	.popup-body
@@ -365,7 +383,7 @@
 			width: 100%;
 			padding:20px;
 			border-bottom:1px solid @grayLightest;
-			font-size: 2.5vh;
+			font-size: 2.6vh;
 			&:focus, &:active, &:hover
 			{
 				background: rgba(241, 196, 204, 0.12);
@@ -378,8 +396,8 @@
 
 			&:last-child
 			{
-				/*border-bottom: none; */
-				margin-bottom: 10px;
+				border-bottom: none; 
+				/*margin-bottom: 10px;*/
 			}
 			img
 			{
