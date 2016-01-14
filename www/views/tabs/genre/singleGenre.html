@@ -8,13 +8,14 @@
 <ion-content class="popular " ion-sticky>
   <!-- <div class="swiper-container  genreswiper ">
     <div class="swiper-wrapper"> -->
+    
       <div ng-switch-when="result">
          <div  class="item item-avatar singleGenreAvtar item-divider">
           <img src="{{ genre.genre_image_url }}">
           <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
         <div class=" bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
       </div>
-
+<div snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
     <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
       <div class="list card margin0 cardOuter">
 
@@ -45,6 +46,7 @@
 
     </div>
 
+</div>
 </div>
 </div>
 <!-- </div>
