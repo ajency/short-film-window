@@ -29,12 +29,9 @@ angular.module 'SFWApp.init', []
 				console.log "new video  entry"
 				$scope.watchlistimg = 'icon-favorite'
 				$scope.$apply()
-
-
 			else
 			# new video added
 				i = 0
-
 				while i < $scope.getwatchlistDetails.length
 					if $scope.getwatchlistDetails[i].movie_id == $scope.Videodetails.movie_id
 						console.log "Movie already added "
@@ -119,8 +116,6 @@ angular.module 'SFWApp.init', []
 		if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
 			console.log "Single video Data Cached"
 			$scope.Videodetails =  DetailsAPI.singleVideoarray
-
-
 		else
 			$ionicLoading.show
 			  content: 'Loading'
@@ -135,10 +130,10 @@ angular.module 'SFWApp.init', []
 				console.log "single video  data succ"
 				DetailsAPI.singleVideoarray = data
 				$scope.Videodetails = data
-				$scope.checkIfaddedlist()
-
-				$ionicLoading.hide();
 				document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
+				$scope.checkIfaddedlist()
+				$ionicLoading.hide();
+
 			, (error)=>
 				console.log 'Error Loading data'
 				$scope.display = 'error'
