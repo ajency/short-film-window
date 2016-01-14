@@ -152,13 +152,13 @@ a {
   border: none;
   font-size: 1em;
   color: #fff;
-  padding: 2px 10px 0px 20px;
+  padding: 2px 10px 2px 20px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px 0 0 4px;
 }
 .welcome button i {
   float: right;
-  margin: 2px 0 0 5px;
+  margin: 1px 0 0 5px;
 }
 .splashScreen img {
   height: 100%;
@@ -265,7 +265,7 @@ a {
 .playlist .playlistDetails .totalFilms {
   font-size: 2.5vh;
   font-weight: 400;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 .playlist .playlistDetails .totalFilms .filmNo {
   font-size: 3.5vh;
@@ -303,7 +303,7 @@ a {
 }
 .playlist.genreOuter .playlistDetails .totalFilms {
   font-size: 2.3vh;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 .endOfPlaylist {
   float: left;
@@ -657,6 +657,7 @@ a {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 2.6vh;
 }
 .infocus h5 {
   margin-bottom: 5px;
@@ -1359,6 +1360,9 @@ a {
   }
   .singleGenre .emptyWatchlistInner p {
     font-size: 1.1em;
+  }
+  .synopsis .synopsisText {
+    font-size: 1em;
   }
 }
 /*# sourceMappingURL=custom.css.map */
