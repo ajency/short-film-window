@@ -68,13 +68,11 @@ angular.module 'SFWApp.tabs',[]
 		$scope.view =
 
 			swiper = new Swiper('.popularswiper', {
-					pagination: '.swiper-pagination'
-					paginationClickable: true
-					direction: 'vertical'
-						});
+						pagination: '.swiper-pagination'
+						paginationClickable: true
+						direction: 'vertical'
+					});
 
 		App.previousState = 'landing' if App.previousState == 'landing'
-		console.log "*********-*",App.previousState
-		return
 
 ]

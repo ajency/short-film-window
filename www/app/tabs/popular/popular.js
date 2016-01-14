@@ -63,8 +63,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       direction: 'vertical'
     });
     if (App.previousState === 'landing') {
-      App.previousState = 'landing';
+      return App.previousState = 'landing';
     }
-    console.log("*********-*", App.previousState);
   }
 ]);

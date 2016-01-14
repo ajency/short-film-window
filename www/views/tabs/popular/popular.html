@@ -1,20 +1,22 @@
-          <ion-view>
-          <ion-content class="popular"  ng-init="test()" ion-sticky>
-           <ion-refresher
+<ion-view>
+    <ion-content class="popular"  ng-init="test()">
+        <ion-refresher
             pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
-             </ion-refresher>
-              <div class="swiper-container  popularswiper">
+        </ion-refresher>
+              <div class="swiper-container popularswiper">
                 <div class="swiper-wrapper">
                   <div class="list card margin0 cardOuter swiper-slide">
-                <div class="item item-avatar item-divider"  >
+                    <div class="item item-avatar item-divider"  >
                       <img src="img/icons/weekly_premiere.png">
                       <div class="primaryText cardTitle">Weekly Premiere</div>
                       <p>Carefully handpicked, just for you.</p>
                     </div>
 
                     <div class="item item-image padding0" ng-click="singleplay( premeiere.movie_id )">
-                      <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ premeiere.image }}" /></div>
+                      <div class="imageContainerOuter" style="height: {{ hgt }}px">
+                        <img src="{{ premeiere.image }}" />
+                      </div>
                       <div class="overlay" ></div>
                       <div class="movieDetails padding-horizontal padding-bottom whiteText">
                         <div class="title padding-vertical">

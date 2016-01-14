@@ -16,14 +16,12 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
       },
       init: function() {
         console.log('sadsasadad');
-        InitialiseService.initialize().then(function(data) {
+        return InitialiseService.initialize().then(function(data) {
           console.log(data);
           $ionicLoading.hide();
-          App.navigate('popular');
+          return App.navigate('popular');
         }, function(error) {
-          $cordovaToast.show('Please Connect to Internet', 'long', 'bottom').then(function(success) {
-            console.log('toast displayed');
-          });
+          return $cordovaToast.show('Please Connect to Internet', 'long', 'bottom');
         });
       }
     };

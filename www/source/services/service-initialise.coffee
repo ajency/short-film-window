@@ -29,7 +29,7 @@ angular.module 'SFWApp.services'
            deferred.resolve($rootScope.vData)
            return
        else
-         deferred.reject()   
+         deferred.reject()
       deferred.promise
  }
 ]
