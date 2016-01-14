@@ -92,7 +92,9 @@ a {
   margin-right: 10px;
 }
 .menu .item .badge {
-  padding: 3px 6px;
+  padding: 2.5px 0;
+  text-align: center;
+  display: block;
   font-size: 1em;
   top: 8px;
   right: 22px;
