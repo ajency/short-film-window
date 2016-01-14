@@ -8,13 +8,13 @@
                 <div class="swiper-wrapper">
                   <div class="list card margin0 cardOuter swiper-slide">
                 <div class="item item-avatar item-divider"  >
-                      <img src="img/icons/weekly_premiere.png">
+                      <img ng-src="img/icons/weekly_premiere.png">
                       <div class="primaryText cardTitle">Weekly Premiere</div>
                       <p>Carefully handpicked, just for you.</p>
                     </div>
 
                     <div class="item item-image padding0" ng-click="singleplay( premeiere.movie_id )">
-                      <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ premeiere.image }}" /></div>
+                      <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ premeiere.image }}" /></div>
                       <div class="overlay" ></div>
                       <div class="movieDetails padding-horizontal padding-bottom whiteText">
                         <div class="title padding-vertical">
@@ -41,12 +41,12 @@
 
          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
           <div class="item item-avatar item-divider" >
-                <img src="img/icons/new_additions.png">
+                <img ng-src="img/icons/new_additions.png">
                 <div class="primaryText cardTitle" >New Additions</div>
                 <p>Just starting out on their big journey!</p>
               </div>
            <div class="item item-image padding0 newAdditions"  >
-                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}"  />
+                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}"  />
                 </div>
                 <div class="overlay" ></div>
                 <div class="movieDetails padding-horizontal padding-bottom whiteText">
@@ -76,12 +76,12 @@
 
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
             <div class="item item-avatar item-divider">
-                <img src="img/icons/noteworthy.png">
+                <img ng-src="img/icons/noteworthy.png">
                 <div class="primaryText cardTitle">Noteworthy</div>
                 <p>Completely out of the ordinary</p>
               </div>
               <div class="item item-image padding0 noteWorthy">
-                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
+                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}" />
                 </div>
                 <div class="overlay"   ></div>
                 <div class="movieDetails padding-horizontal padding-bottom whiteText">
@@ -107,7 +107,7 @@
 
             <div class="list card margin0 playlist swiper-slide">
             <div class="item item-avatar item-divider">
-                <img src="img/icons/awesome_playlists.png">
+                <img ng-src="img/icons/awesome_playlists.png">
                 <div class="primaryText cardTitle">Awesome Playlist</div>
                 <p>Just sit back and relax with some popcorn!</p>
               </div>
@@ -117,7 +117,7 @@
               <div class="playlistContent">
                 <div class="col imageContainer" ng-click= "singleplaylist( data.playlist_id)">
                   <div class="playlistContentInner">
-                    <img src="{{ data.playlist_image_url }}"/>
+                    <img ng-src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails playlistDetailsInner">
                       <!-- <div class="title">
                           {{ data.playlist_description }}

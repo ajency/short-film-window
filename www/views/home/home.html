@@ -28,7 +28,7 @@
           ng-repeat ="data in SearchResult" >
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
               <div class="item item-image padding0 noteWorthy">
-                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
+                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}" />
                 </div>
                 <div class="overlay"   ></div>
                 <div class="movieDetails padding-horizontal padding-bottom whiteText">
