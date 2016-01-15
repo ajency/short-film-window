@@ -57,6 +57,15 @@ angular.module 'SFWApp.navigate', []
 					templateUrl: 'views/watchlist/myWatchlist.html'
 					controller: 'watchlistCtrl'
 
+		.state 'search',
+			url: '/search'
+			cache: false
+			parent: 'home'
+			views:
+				"homeview":
+					templateUrl: 'views/home/search.html'
+					controller: 'sidebarCtrl'
+
 		.state 'init',
 			url: '/init'
 			cache: false
@@ -92,7 +101,7 @@ angular.module 'SFWApp.navigate', []
 			controller: 'singlePlaylist'
 			templateUrl: 'views/tabs/playlist/singlePlaylist.html'
 
-	# $urlRouterProvider.otherwise('/landing');	
+	# $urlRouterProvider.otherwise('/landing');
 
 
 

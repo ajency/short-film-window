@@ -1,6 +1,6 @@
+<ion-view>
  <ion-content class="mainContent">
-  <div ng-switch ="display" >
- <div ng-switch-when = "searchresult" class="popular  {{ classname}} " ion-sticky  overflow-scroll='true'>
+  <div  class="popular  {{ classname}} " ion-sticky  overflow-scroll='true'>
       <div class="cardDetails swiper-slide  "
           ng-repeat ="data in SearchResult" >
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
@@ -28,13 +28,5 @@
                 </div>
             </div>
        </div>
-        <div class="loaderOuter" ng-switch-when="loader">
-      <div class="loading-spinner"></div>
-    </div>
-    <aj-error class="errors"
-      ng-switch-when="error"
-      error-type="errorType"
-      tap-to-retry="onTapToRetry()">
-    </aj-error>
-  </div>
         </ion-content>
+      </ion-view>

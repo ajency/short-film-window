@@ -10,6 +10,7 @@
       </ion-header-bar>
 
       <div ng-switch ="display" >
+
  <div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
     </div>
@@ -20,7 +21,6 @@
     </aj-error>
       <div ng-switch-when = "tabview">
          <ion-nav-view name="homeview"></ion-nav-view>
-
        </div>
 
 

@@ -33,11 +33,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $scope.searchMovie = function() {
     var txt, txtvalue;
-    $ionicLoading.show({
-      scope: $scope,
-      templateUrl: 'views/home/search.html',
-      hideOnStateChange: true
-    });
+    App.navigate('search');
     console.log("key-up event called");
     txt = document.getElementById("autocomplete");
     txtvalue = txt.value;
@@ -60,7 +56,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
           return $scope.display = 'error';
         } else {
           $scope.classname = 'searchResult';
-          return $scope.display = 'searchresult';
+          return $scope.display = 'tabview';
         }
       };
     })(this), (function(_this) {
@@ -81,10 +77,6 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $scope.hideSearch = function() {
     console.log("hide Search Bar");
-    $ionicLoading.hide();
-    ({
-      hideOnStateChange: false
-    });
     return $scope.display = 'tabview';
   };
   $scope.SeacrchClicked = function() {
