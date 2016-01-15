@@ -118,12 +118,13 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         });
         DetailsAPI.GetSingleVideo(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
+            $scope.display = 'result';
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
+            document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
             $scope.checkIfaddedlist();
-            $ionicLoading.hide();
-            return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
+            return $ionicLoading.hide();
           };
         })(this), (function(_this) {
           return function(error) {
