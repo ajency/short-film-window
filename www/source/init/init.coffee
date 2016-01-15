@@ -126,7 +126,7 @@ angular.module 'SFWApp.init', []
 
 			DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
 			.then (data)=>
-				# $scope.display = 'result'
+				$scope.display = 'result'
 				console.log "single video  data succ"
 				DetailsAPI.singleVideoarray = data
 				$scope.Videodetails = data

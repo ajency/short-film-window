@@ -118,6 +118,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         });
         DetailsAPI.GetSingleVideo(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
+            $scope.display = 'result';
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
