@@ -5,13 +5,14 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init',
   USING_PARSE: true,
   initialized: false
 }).run([
-  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'ParseService', 'DetailsAPI', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, ParseService, DetailsAPI) {
+  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'ParseService', 'DetailsAPI', 'ParseConfiguration', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, ParseService, DetailsAPI, ParseConfiguration) {
     var device_height, device_width, firstScriptTag, swiper, tag;
     $ionicPlatform.ready(function() {
       $rootScope.isAndroid = ionic.Platform.isAndroid();
       return ParseService.initialize().then(function() {
         return ParseService.getInstallationId();
       }).then(function(_response) {
+        console.log(_response);
         return ParseService.registerCallback(function(pnObj) {
           return console.log('in assigned callback ' + JSON.stringify(pnObj));
         });
