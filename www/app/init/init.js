@@ -138,7 +138,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       console.log('In Init');
       return Vtype = '0';
     };
-    return $scope.initializeApp = function() {
+    $scope.initializeApp = function() {
       $ionicLoading.show({
         content: 'Loading',
         animation: 'fade-in',
@@ -146,19 +146,27 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         maxWidth: 600,
         showDelay: 0
       });
-      return InitialiseService.initialize().then(function(data) {});
+      InitialiseService.initialize().then(function(data) {});
+      return $scope.init();
     };
-  }, $scope.init(), App.fromNotification ? $scope.initializeApp() : $scope.init(), $scope.$on('$ionicView.afterEnter', function() {
-    return console.log('after enter');
-  }), $scope.view = {
-    back: function() {
-      var count;
-      DetailsAPI.singleVideoarray = [];
-      count = -1;
-      return App.goBack(count);
-    },
-    playVideo: function() {
-      return App.navigate('singlePlayer');
+    $scope.$on('$ionicView.afterEnter', function() {
+      return console.log('after enter');
+    });
+    $scope.view = {
+      back: function() {
+        var count;
+        DetailsAPI.singleVideoarray = [];
+        count = -1;
+        return App.goBack(count);
+      },
+      playVideo: function() {
+        return App.navigate('singlePlayer');
+      }
+    };
+    if (App.fromNotification) {
+      return $scope.initializeApp();
+    } else {
+      return $scope.init();
     }
   }
 ]);

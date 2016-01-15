@@ -147,22 +147,16 @@ angular.module 'SFWApp.init', []
 
 
     $scope.initializeApp = ()->
-	    $ionicLoading.show
-	      content: 'Loading'
-	      animation: 'fade-in'
-	      showBackdrop: true
-	      maxWidth: 600
-	      showDelay: 0
+      $ionicLoading.show
+        content: 'Loading'
+        animation: 'fade-in'
+        showBackdrop: true
+        maxWidth: 600
+        showDelay: 0
 
-    	InitialiseService.initialize().then (data)->
-			$scope.init()
+      InitialiseService.initialize().then (data)->
+      $scope.init()
 
-
-
-	if App.fromNotification
-	    $scope.initializeApp()
-	else
-	    $scope.init();
 
     $scope.$on '$ionicView.afterEnter', ->
         console.log 'after enter'
@@ -179,6 +173,11 @@ angular.module 'SFWApp.init', []
 
         playVideo : ()->
           App.navigate 'singlePlayer'
+
+    if App.fromNotification
+      $scope.initializeApp()
+    else
+      $scope.init();      
 
 
 
