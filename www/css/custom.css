@@ -431,15 +431,90 @@ a {
   width: 100%;
   z-index: 99;
   height: 45px
-  /*opacity: 0;*/
-  /*transition:width 1s ease;*/
-  /*&.showSearch
+  /*display: none;*/
+  /*transition: width 1s ease;
+	opacity: 0;*/
+  /*&.hideSearch
 	{
-		width: 100% !important;	
-		transition:width 1s ease;	
-		opacity: 1;
-
+		i
+		{
+			display: none;
+		}		
+	}	
+	&.showSearch
+	{
+		i
+		{
+			display: block;
+		}
 	}*/
+}
+.box.removeBox {
+  display: none;
+}
+.box.showSearch {
+  /*width: 100%;	
+		transition: width 1s ease;	
+		opacity: 1;*/
+  -webkit-animation-name: leftSide;
+          animation-name: leftSide;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  display: block;
+}
+.box.showSearch i {
+  display: block;
+}
+.box.hideSearch {
+  /*width: 0;	
+		transition:width 1s ease;	
+		opacity: 0;	*/
+  -webkit-animation-name: rightSide;
+          animation-name: rightSide;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s
+  /*opacity: 0;*/
+}
+.box.hideSearch i {
+  display: none;
+}
+@keyframes leftSide {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@keyframes rightSide {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
+@-webkit-keyframes leftSide {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes rightSide {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 0;
+  }
 }
 .box input {
   width: 100%;
@@ -463,12 +538,6 @@ a {
 }
 .box i.searchIcon {
   right: 10px;
-}
-.box.hideSearch i {
-  display: none;
-}
-.box.showSearch i {
-  display: block;
 }
 .searchResult .cardDetails {
   margin-top: 44px;

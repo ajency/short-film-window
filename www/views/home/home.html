@@ -120,35 +120,27 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var boxWidth = $(".box").width();
+        $(".box").removeClass("hideSearch");
+        $(".box").removeClass("showSearch");
         $(".slide-right").click(function(){
-            $(".box").animate({
-                width: 0
-            });
+            // $(".box").animate({
+            //    // width: 0
+            // });
             $(".box").removeClass("showSearch");
             $(".box").addClass("hideSearch");
+             setTimeout(function(){
+                $('.box').removeClass('hideSearch');
+                $('.box').addClass('removeBox');
+            }, 1000);
+
         });
         $(".slide-left").click(function(){
-            $(".box").animate({
-                width: boxWidth
-            });
+            // $(".box").animate({
+            //     //width: boxWidth
+            // });
+            $('.box').removeClass('removeBox');
              $(".box").removeClass("hideSearch");
             $(".box").addClass("showSearch");
         });
-    });
-    $(window).on("orientationchange",function(){
-       $(".slide-right").click(function(){
-            $(".box").animate({
-                width: 0
-            });
-            $(".box").removeClass("showSearch");
-            $(".box").addClass("hideSearch");
-        });
-        $(".slide-left").click(function(){
-            $(".box").animate({
-                width: boxWidth
-            });
-             $(".box").removeClass("hideSearch");
-            $(".box").addClass("showSearch");
-        });
-    });
+    });    
 </script>
