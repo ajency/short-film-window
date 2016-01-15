@@ -122,9 +122,15 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
+<<<<<<< HEAD
+            $scope.checkIfaddedlist();
+            $ionicLoading.hide();
+            return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
+=======
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
             $scope.checkIfaddedlist();
             return $ionicLoading.hide();
+>>>>>>> 3b926d0e22efac4baa011c314afeeea49969bf72
           };
         })(this), (function(_this) {
           return function(error) {
