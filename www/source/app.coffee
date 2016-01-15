@@ -10,13 +10,15 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
   USING_PARSE: true
   initialized: false)
 
-.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast', 'ParseService','DetailsAPI', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,ParseService,DetailsAPI)->
+.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast', 'ParseService','DetailsAPI','ParseConfiguration', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,ParseService,DetailsAPI,ParseConfiguration)->
 
   $ionicPlatform.ready ->
     $rootScope.isAndroid = ionic.Platform.isAndroid()
+
     ParseService.initialize().then(->
       ParseService.getInstallationId()
     ).then (_response) ->
+      console.log _response
       ParseService.registerCallback (pnObj) ->
         console.log 'in assigned callback ' + JSON.stringify(pnObj)
      .then  (success) ->
