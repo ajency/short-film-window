@@ -42,6 +42,10 @@ angular.module('SFWApp.sidebar', [])
     App.navigate 'init'
 
   $scope.searchMovie = () ->
+    $ionicLoading.show
+      scope: $scope
+      templateUrl:'views/home/search.html'
+      hideOnStateChange: true
     console.log "key-up event called"
     txt = document.getElementById("autocomplete");
     txtvalue = txt.value;
@@ -81,11 +85,14 @@ angular.module('SFWApp.sidebar', [])
 
   $scope.hideSearch = () ->
     console.log "hide Search Bar"
+    $ionicLoading.hide();
+    hideOnStateChange: false
     $scope.display = 'tabview'
 
   $scope.SeacrchClicked = ()->
     console.log "search"
     $scope.showsearchbar = true
+
 
 
   $scope.hide = () ->
