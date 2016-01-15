@@ -1,5 +1,5 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage) {
+  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService) {
     $scope.Videodetails = [];
     $scope.display = 'result';
     $scope.addvideoDetails = [];
@@ -122,15 +122,9 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
-<<<<<<< HEAD
-            $scope.checkIfaddedlist();
-            $ionicLoading.hide();
-            return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
-=======
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
             $scope.checkIfaddedlist();
             return $ionicLoading.hide();
->>>>>>> 3b926d0e22efac4baa011c314afeeea49969bf72
           };
         })(this), (function(_this) {
           return function(error) {
@@ -142,21 +136,29 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       }
       console.log(DetailsAPI.videoId);
       console.log('In Init');
-      Vtype = '0';
-      return $scope.$on('$ionicView.afterEnter', function() {
-        return console.log('after enter');
+      return Vtype = '0';
+    };
+    return $scope.initializeApp = function() {
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 600,
+        showDelay: 0
       });
+      return InitialiseService.initialize().then(function(data) {});
     };
-    return $scope.view = {
-      back: function() {
-        var count;
-        DetailsAPI.singleVideoarray = [];
-        count = -1;
-        return App.goBack(count);
-      },
-      playVideo: function() {
-        return App.navigate('singlePlayer');
-      }
-    };
+  }, $scope.init(), App.fromNotification ? $scope.initializeApp() : $scope.init(), $scope.$on('$ionicView.afterEnter', function() {
+    return console.log('after enter');
+  }), $scope.view = {
+    back: function() {
+      var count;
+      DetailsAPI.singleVideoarray = [];
+      count = -1;
+      return App.goBack(count);
+    },
+    playVideo: function() {
+      return App.navigate('singlePlayer');
+    }
   }
 ]);
