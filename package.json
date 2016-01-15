@@ -20,13 +20,10 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
+    "phonegap-plugin-push",
     {
-      "variables": {
-        "APP_ID": "2T1prpN7BMpV0QcVNJS6BDuDr1jmgy0bspF8TY1E",
-        "CLIENT_KEY": "qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo"
-      },
-      "locator": "https://github.com/grrrian/phonegap-parse-plugin",
-      "id": "com.parse.cordova.core.pushplugin"
+      "locator": "https://github.com/taivo/parse-push-plugin",
+      "id": "com.phonegap.parsepushplugin"
     }
   ],
   "cordovaPlatforms": [

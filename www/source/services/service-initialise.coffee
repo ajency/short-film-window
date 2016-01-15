@@ -1,4 +1,4 @@
-angular.module 'SFWApp.services'
+angular.module('SFWApp.services', [])
 .service 'InitialiseService', [
   '$q'
   'DetailsAPI'

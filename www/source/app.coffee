@@ -7,30 +7,23 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
   applicationId: '2T1prpN7BMpV0QcVNJS6BDuDr1jmgy0bspF8TY1E'
   javascriptKey: 'ZjvDbNoggTgKtbIJW8asuVw8huGoEBPVvcKbbXru'
   clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo'
-  USING_PARSE: true
-  initialized: false)
+ )
 
-.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast', 'ParseService','DetailsAPI','ParseConfiguration', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,ParseService,DetailsAPI,ParseConfiguration)->
+.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
 
   $ionicPlatform.ready ->
     $rootScope.isAndroid = ionic.Platform.isAndroid()
 
-    ParseService.initialize().then(->
-      ParseService.getInstallationId()
-    ).then (_response) ->
-      console.log _response
-      ParseService.registerCallback (pnObj) ->
-        console.log 'in assigned callback ' + JSON.stringify(pnObj)
-     .then  (success) ->
-      console.log 'Parse callback registered ' + success
-    , (_error) ->
-      console.log _error
+    ParsePushPlugin.on 'receivePN', (pn)->
+      console.log 'yo i got this push notification:' + JSON.stringify pn;
+      $rootScope.$broadcast 'receivePN', { payload: pn }
 
-  $window.onNotification = (pnObj) ->
-    console.log 'notifications: ' + JSON.stringify(pnObj)
-    if pnObj.receivedInForeground == false
-      DetailsAPI.videoId = 565
-      $state.go 'init'
+    ParsePushPlugin.on 'openPN', (pn)->
+      console.log 'Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify pn;
+      $rootScope.$broadcast 'openPN', { payload: pn }
+      
+
+
 
   $rootScope.App = App
 

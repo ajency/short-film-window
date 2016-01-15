@@ -1,7 +1,7 @@
 angular.module 'SFWApp.init', []
 
-.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService'
-     ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService)->
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService','$rootScope'
+     ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService,$rootScope)->
     $scope.Videodetails = []
     $scope.display = 'result'
     $scope.addvideoDetails = []
@@ -178,6 +178,12 @@ angular.module 'SFWApp.init', []
       $scope.initializeApp()
     else
       $scope.init();      
+
+    $rootScope.$on 'receivePN' , (event,args)->
+      console.log '*********'+args.payload 
+
+    $rootScope.$on 'openPN' , (event,args)->
+      console.log '---------'+args.payload  
 
 
 

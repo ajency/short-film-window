@@ -1,4 +1,4 @@
-angular.module('SFWApp.services').service('InitialiseService', [
+angular.module('SFWApp.services', []).service('InitialiseService', [
   '$q', 'DetailsAPI', 'App', '$rootScope', '$ImageCacheFactory', function($q, DetailsAPI, App, $rootScope, $ImageCacheFactory) {
     return {
       initialize: function() {

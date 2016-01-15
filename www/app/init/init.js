@@ -1,5 +1,5 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService) {
+  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, $rootScope) {
     $scope.Videodetails = [];
     $scope.display = 'result';
     $scope.addvideoDetails = [];
@@ -164,9 +164,15 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       }
     };
     if (App.fromNotification) {
-      return $scope.initializeApp();
+      $scope.initializeApp();
     } else {
-      return $scope.init();
+      $scope.init();
     }
+    $rootScope.$on('receivePN', function(event, args) {
+      return console.log('*********' + args.payload);
+    });
+    return $rootScope.$on('openPN', function(event, args) {
+      return console.log('---------' + args.payload);
+    });
   }
 ]);

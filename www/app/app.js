@@ -1,34 +1,25 @@
 angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'SFWApp.services', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'vimeoEmbed', 'SFWApp.storage', 'SFWApp.watchlist']).value('ParseConfiguration', {
   applicationId: '2T1prpN7BMpV0QcVNJS6BDuDr1jmgy0bspF8TY1E',
   javascriptKey: 'ZjvDbNoggTgKtbIJW8asuVw8huGoEBPVvcKbbXru',
-  clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo',
-  USING_PARSE: true,
-  initialized: false
+  clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo'
 }).run([
-  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'ParseService', 'DetailsAPI', 'ParseConfiguration', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, ParseService, DetailsAPI, ParseConfiguration) {
+  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
     var device_height, device_width, firstScriptTag, swiper, tag;
     $ionicPlatform.ready(function() {
       $rootScope.isAndroid = ionic.Platform.isAndroid();
-      return ParseService.initialize().then(function() {
-        return ParseService.getInstallationId();
-      }).then(function(_response) {
-        console.log(_response);
-        return ParseService.registerCallback(function(pnObj) {
-          return console.log('in assigned callback ' + JSON.stringify(pnObj));
+      ParsePushPlugin.on('receivePN', function(pn) {
+        console.log('yo i got this push notification:' + JSON.stringify(pn));
+        return $rootScope.$broadcast('receivePN', {
+          payload: pn
         });
-      }).then(function(success) {
-        return console.log('Parse callback registered ' + success);
-      }, function(_error) {
-        return console.log(_error);
+      });
+      return ParsePushPlugin.on('openPN', function(pn) {
+        console.log('Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify(pn));
+        return $rootScope.$broadcast('openPN', {
+          payload: pn
+        });
       });
     });
-    $window.onNotification = function(pnObj) {
-      console.log('notifications: ' + JSON.stringify(pnObj));
-      if (pnObj.receivedInForeground === false) {
-        DetailsAPI.videoId = 565;
-        return $state.go('init');
-      }
-    };
     $rootScope.App = App;
     tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
