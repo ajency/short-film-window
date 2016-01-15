@@ -170,6 +170,12 @@ a {
 .mainContainer .scroll {
   height: 100%;
 }
+.mainContent {
+  top: 0;
+}
+.mainContent .scroll {
+  height: 100%;
+}
 .item p {
   white-space: normal;
 }
@@ -539,7 +545,7 @@ a {
 .box i.searchIcon {
   right: 10px;
 }
-.searchResult .cardDetails {
+.searchResult .cardDetails:first-child {
   margin-top: 44px;
 }
 .searchResult .cardOuter .movieDetails {
