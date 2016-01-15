@@ -33,7 +33,6 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $scope.searchMovie = function() {
     var txt, txtvalue;
-    App.navigate('search');
     console.log("key-up event called");
     txt = document.getElementById("autocomplete");
     txtvalue = txt.value;
@@ -56,7 +55,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
           return $scope.display = 'error';
         } else {
           $scope.classname = 'searchResult';
-          return $scope.display = 'tabview';
+          return $scope.display = 'searchresult';
         }
       };
     })(this), (function(_this) {
