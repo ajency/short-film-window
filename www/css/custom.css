@@ -578,7 +578,7 @@ a {
   float: left;
   margin-bottom: 5px;
 }
-.movieDetails .category span {
+.movieDetails .category div {
   background: rgba(255, 255, 255, 0.2);
   padding: 1px 10px 1px;
   margin-right: 5px;
@@ -586,6 +586,7 @@ a {
   font-size: 2.3vh;
   margin-bottom: 3px;
   float: left;
+  white-space: nowrap;
 }
 .movieDetails .viewsNLikes {
   font-size: 2.3vh;
@@ -1232,7 +1233,7 @@ a {
     font-size: 1em;
   }
   .movieDetails .country,
-  .movieDetails .category span {
+  .movieDetails .category div {
     font-size: 0.83em;
   }
   .movieDetails .viewsNLikes {
@@ -1288,7 +1289,7 @@ a {
     color: #5e5e5e;
     font-size: 0.8em;
   }
-  .cardOuter .movieDetails .category span {
+  .cardOuter .movieDetails .category div {
     font-size: 0.8em;
   }
   .cardOuter .movieDetails .tagline {

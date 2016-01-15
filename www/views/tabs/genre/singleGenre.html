@@ -13,7 +13,7 @@
          <div  class="item item-avatar singleGenreAvtar item-divider">
           <img src="{{ genre.genre_image_url }}">
           <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
-        <div class=" bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
+        <div class=" bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right"><i class="ion-android-time"></i>{{ genre.run_time }} Min</span></div>
       </div>
 <div snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
     <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
@@ -34,7 +34,7 @@
               </div>
               <div class="country padding-vertical">
                 {{ data.region }}/ {{ data.language}}<span></span>
-                <span class="pull-right"><i class="ion-android-time"></i> {{ data.duration }} Min</span>
+                <div class="pull-right"><i class="ion-android-time"></i> {{ data.duration }} Min</div>
               </div>
               <div class="viewsNLikes padding-vertical">
                 <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
