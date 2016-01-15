@@ -370,16 +370,64 @@
 	width: 100%;
 	z-index: 99;
 	height: 45px;
-	/*opacity: 0;*/
-	/*transition:width 1s ease;*/
-	
-	/*&.showSearch
-	{
-		width: 100% !important;	
-		transition:width 1s ease;	
-		opacity: 1;
+	/*display: none;*/
+	/*transition: width 1s ease;
+	opacity: 0;*/
 
-	}*/	
+	&.removeBox
+	{
+		display: none;
+	}
+	
+	&.showSearch
+	{
+		/*width: 100%;	
+		transition: width 1s ease;	
+		opacity: 1;*/
+		animation-name: leftSide;
+    	animation-duration: 1s;
+    	display: block;
+		i
+		{
+			display: block;
+		}
+	}
+	&.hideSearch
+	{
+		/*width: 0;	
+		transition:width 1s ease;	
+		opacity: 0;	*/
+		animation-name: rightSide;
+    	animation-duration: 1s;	
+    	/*opacity: 0;*/
+		i
+		{
+			display: none;
+		}
+	}	
+
+
+	@keyframes leftSide {
+	    0% {width: 0;}	   
+	    100% {width: 100%;}
+	}
+
+	@keyframes rightSide {
+	    0% {width: 100%;}	   
+	    100% {width: 0;}
+	}
+
+	@-webkit-keyframes leftSide {
+	    0% {width: 0;}
+	    50% {width: 50%;}
+	    100% {width: 100%;}
+	}
+
+	@-webkit-keyframes rightSide {
+	    0% {width: 100%;}
+	    50% {width: 50%;}
+	    100% {width: 0;}
+	}
 	input
 	{
 		width: 100%;
@@ -407,7 +455,7 @@
 	    	right: 10px;
 	    }
 	}
-	&.hideSearch
+	/*&.hideSearch
 	{
 		i
 		{
@@ -420,7 +468,7 @@
 		{
 			display: block;
 		}
-	}
+	}*/
 }
 .searchResult
 {
