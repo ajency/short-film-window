@@ -8,7 +8,7 @@
         <i class="ion-search searchIcon" ng-click="searchMovie()"></i></div>
 
       </ion-header-bar>
-      <div class="scroll">
+
       <div ng-switch ="display" >
  <div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
@@ -23,36 +23,9 @@
 
        </div>
 
-       <div ng-switch-when = "searchresult" class="popular  {{ classname}} " ion-sticky  overflow-scroll='true'>
-      <div class="cardDetails swiper-slide  "
-          ng-repeat ="data in SearchResult" >
-          <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
-              <div class="item item-image padding0 noteWorthy">
-                <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
-                </div>
-                <div class="overlay"   ></div>
-                <div class="movieDetails padding-horizontal padding-bottom whiteText">
-                  <div class="title padding-vertical">
-                    {{ data.title }} <span>by {{ data.director  }} </span>
-                  </div>
-                  <div class="tagline padding-vertical">
-                    {{ data.tagline }}
-                  </div>
-                  <div class="country padding-vertical">
-                    {{ data.region }}/ {{ data.language}}<span></span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
-                  </div>
-                  <div class="viewsNLikes padding-vertical">
-                    <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
-                    <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
-                  </div>
-                </div>
-              </div>
-                </div>
-            </div>
-       </div>
+
      </div>
-     </div>
+
     </ion-side-menu-content>
 
 
@@ -120,34 +93,25 @@
 <script type="text/javascript">
     $(document).ready(function(){
         var boxWidth = $(".box").width();
+        $(".box").removeClass("hideSearch");
+        $(".box").removeClass("showSearch");
         $(".slide-right").click(function(){
-            $(".box").animate({
-                width: 0
-            });
+            // $(".box").animate({
+            //    // width: 0
+            // });
             $(".box").removeClass("showSearch");
             $(".box").addClass("hideSearch");
+             setTimeout(function(){
+                $('.box').removeClass('hideSearch');
+                $('.box').addClass('removeBox');
+            }, 1000);
+
         });
         $(".slide-left").click(function(){
-            $(".box").animate({
-                width: boxWidth
-            });
-             $(".box").removeClass("hideSearch");
-            $(".box").addClass("showSearch");
-        });
-    });
-    $(window).on("orientationchange",function(){
-      alert("dfdsf");
-       $(".slide-right").click(function(){
-            $(".box").animate({
-                width: 0
-            });
-            $(".box").removeClass("showSearch");
-            $(".box").addClass("hideSearch");
-        });
-        $(".slide-left").click(function(){
-            $(".box").animate({
-                width: boxWidth
-            });
+            // $(".box").animate({
+            //     //width: boxWidth
+            // });
+            $('.box').removeClass('removeBox');
              $(".box").removeClass("hideSearch");
             $(".box").addClass("showSearch");
         });

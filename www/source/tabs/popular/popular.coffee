@@ -4,7 +4,7 @@ angular.module 'SFWApp.tabs',[]
 
 
 
-    
+
 
 		$scope.singleplaylist = (playlistId)->
 			console.log playlistId
@@ -67,14 +67,12 @@ angular.module 'SFWApp.tabs',[]
 
 		$scope.view =
 
-			swiper = new Swiper('.swiper-container', {
-					pagination: '.swiper-pagination'
-					paginationClickable: true
-					direction: 'vertical'
-						});
+			swiper = new Swiper('.popularswiper', {
+						pagination: '.swiper-pagination'
+						paginationClickable: true
+						direction: 'vertical'
+					});
 
 		App.previousState = 'landing' if App.previousState == 'landing'
-		console.log "*********-*",App.previousState
-		return
 
 ]

@@ -1,6 +1,6 @@
 
 angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar','SFWApp.services'
-             , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs','SFWApp.submit'
+             , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs'
              ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed','SFWApp.storage','SFWApp.watchlist']
 
 .value('ParseConfiguration',
@@ -8,7 +8,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
   javascriptKey: 'ZjvDbNoggTgKtbIJW8asuVw8huGoEBPVvcKbbXru'
   clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo'
   USING_PARSE: true
-  initialized: false)            
+  initialized: false)
 
 .run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast', 'ParseService','DetailsAPI', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,ParseService,DetailsAPI)->
 
@@ -28,7 +28,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
     console.log 'notifications: ' + JSON.stringify(pnObj)
     if pnObj.receivedInForeground == false
       DetailsAPI.videoId = 565
-      $state.go 'init'    
+      $state.go 'init'
 
   $rootScope.App = App
 
@@ -64,8 +64,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
     return
 
   $timeout ->
-    $state.go 'landingvideo'
-    return
+    App.navigate 'landingvideo'
   , 3000
   return
 

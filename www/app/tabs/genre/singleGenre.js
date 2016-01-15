@@ -200,7 +200,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       count = -1;
       return App.goBack(count);
     };
-    $scope.view = swiper = new Swiper(document.getElementById("singlegenre"), {
+    $scope.view = swiper = new Swiper('.genreswiper', {
       pagination: '.swiper-pagination',
       paginationClickable: true,
       direction: 'vertical'

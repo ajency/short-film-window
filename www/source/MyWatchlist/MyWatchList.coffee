@@ -1,7 +1,7 @@
 angular.module 'SFWApp.watchlist', []
 
-.controller 'watchlistCtrl', ['$scope','Storage','DetailsAPI','App','$window'
-     ,($scope,Storage,DetailsAPI,App,$window)->
+.controller 'watchlistCtrl', ['$scope','Storage','DetailsAPI','App','$window','$ionicScrollDelegate'
+     ,($scope,Storage,DetailsAPI,App,$window,$ionicScrollDelegate)->
         $scope.watchlistDetails = []
         $scope.display = 'loader'
         $scope.watchFlag = '0'
@@ -39,6 +39,7 @@ angular.module 'SFWApp.watchlist', []
             console.log Id
             $scope.display = 'loader'
             $scope.CheckWatchlist(Id)
+            $ionicScrollDelegate.resize()
 
 
 
