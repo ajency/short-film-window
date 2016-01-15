@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"> -->
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
 
     <title></title>
 
@@ -26,8 +26,9 @@
     <!---Bower js-->
     <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="lib/underscore/underscore-min.js"></script>
-    <script src="lib/Swiper/dist/js/swiper.min.js"></script>
+    <script src="lib/Swiper/dist/js/swiper.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-snapscroll.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="lib/Vimeo-jQuery-API-0.10.1/dist/jquery.vimeo.api.min.js"></script>
@@ -41,7 +42,7 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-    
+
 
     <!-- your app's js -->
     <script src="app/app.js"></script>
@@ -53,10 +54,6 @@
 
       <!--watch list -->
     <script src="app/MyWatchlist/MyWatchList.js"></script>
-
-    <!---submit js-->
-    <script src="app/submit/offlineSubmit.js"></script>
-    <script src="app/submit/onlineSubmit.js"></script>
 
     <!---init js-->
     <script src="app/init/init.js"></script>
@@ -94,19 +91,8 @@
     <script src="app/services/service-parse.js"></script>
     <script src="app/services/service-initialise.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
 </head>
-<body ng-app="SFWApp" >
+<body ng-app="SFWApp" class="platform-android" >
   <ion-nav-view>
 
   </ion-nav-view>

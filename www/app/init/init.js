@@ -1,5 +1,5 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService) {
+  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage) {
     $scope.Videodetails = [];
     $scope.display = 'result';
     $scope.addvideoDetails = [];
@@ -103,18 +103,6 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       }
       return Storage.watchlistDetails('set', $scope.addvideoDetails);
     };
-    $scope.initializeApp = function() {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
-      InitialiseService.initialize().then(function(data) {
-        $scope.init();
-      });
-    };
     $scope.init = function() {
       var Vtype;
       if (!angular.isUndefined(DetailsAPI.singleVideoarray.movie_id)) {
@@ -130,12 +118,19 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         });
         DetailsAPI.GetSingleVideo(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
+            $scope.display = 'result';
             console.log("single video  data succ");
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
+<<<<<<< HEAD
             $scope.checkIfaddedlist();
             $ionicLoading.hide();
             return document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
+=======
+            document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
+            $scope.checkIfaddedlist();
+            return $ionicLoading.hide();
+>>>>>>> 3b926d0e22efac4baa011c314afeeea49969bf72
           };
         })(this), (function(_this) {
           return function(error) {
@@ -152,7 +147,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         return console.log('after enter');
       });
     };
-    $scope.view = {
+    return $scope.view = {
       back: function() {
         var count;
         DetailsAPI.singleVideoarray = [];
@@ -163,10 +158,5 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         return App.navigate('singlePlayer');
       }
     };
-    if (App.fromNotification) {
-      return $scope.initializeApp();
-    } else {
-      return $scope.init();
-    }
   }
 ]);

@@ -1,6 +1,6 @@
 <ion-view class="movieScreen">
 <ion-header-bar class="bar bar-header movieHeader">
-        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Backs</button>
+        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText watchList" ng-click= "addwatchlist()">
           <i ng-class="{'ion-heart': watchlistimg == 'icon-favorite','ion-heart selected': watchlistimg == 'icon-unfavorite'}"></i></button>
         <button class="button button-icon whiteText" ng-click="share() "><i class="ion-android-share-alt"></i></button>
@@ -10,7 +10,7 @@
      <div id="player" class="singleMovieOuter" >
         <div class="movieVideo">
           <div class="imageContainerOuter">
-            <img src="{{ Videodetails.image}}"/>
+            <img ng-src="{{ Videodetails.image}}"/>
             <div class="overlay"></div>
           </div>
           <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()"/></div>
@@ -23,11 +23,11 @@
             </div>
             <div class="country">
               {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
-              <span class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }}  Min</span>
+              <div class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }}  Min</div>
             </div>
             <div class="category">
               <label ng-repeat ="data in Videodetails.genres">
-              <span>{{ data }}</span>
+              <div>{{ data }}</div>
             </label>
             </div>
             <div class="viewsNLikes padding-top">
@@ -57,3 +57,11 @@
     </aj-error>
     </div>
 </ion-view>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".toggleSynopsis").click(function(){
+      alert("djhf");
+      $(".synopsisText").slideDown();
+    });
+  });
+</script>

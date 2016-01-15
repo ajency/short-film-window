@@ -1,5 +1,6 @@
 angular.module 'SFWApp.init', []
 
+<<<<<<< HEAD
 .controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService'
    ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService)->
   $scope.Videodetails = []
@@ -81,6 +82,59 @@ angular.module 'SFWApp.init', []
             $scope.updatewatchlist()
             $scope.watchlistimg = 'icon-favorite'
             $scope.$apply()
+=======
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage'
+	 ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage)->
+	$scope.Videodetails = []
+	$scope.display = 'result'
+	$scope.addvideoDetails = []
+	$scope.getwatchlistDetails = []
+	$scope.watchFlag = '0'
+	$scope.intFlag = '0'
+	$scope.watchlistimg = ''
+
+	$scope.share = ()->
+		console.log "social sharing "
+		share.shareNative()
+
+	$scope.addwatchlist = ()->
+		console.log "video added to watchlist "
+		console.log DetailsAPI.singleVideoarray
+		$scope.CheckWatchlist()
+
+	$scope.checkIfaddedlist = () ->
+		console.log "checking if video exist"
+		Storage.watchlistDetails 'get'
+		.then (value)->
+			console.log value
+			$scope.getwatchlistDetails = value
+			if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
+				console.log "new video  entry"
+				$scope.watchlistimg = 'icon-favorite'
+				$scope.$apply()
+			else
+			# new video added
+				i = 0
+				while i < $scope.getwatchlistDetails.length
+					if $scope.getwatchlistDetails[i].movie_id == $scope.Videodetails.movie_id
+						console.log "Movie already added "
+						$scope.intFlag = '1'
+					else
+						console.log "New movie entry "
+					i++
+
+				if $scope.intFlag == '1'
+					$scope.watchlistimg = 'icon-unfavorite'
+					$scope.$apply()
+
+
+				else
+					$scope.watchlistimg = 'icon-favorite'
+					$scope.$apply()
+
+
+
+>>>>>>> 3b926d0e22efac4baa011c314afeeea49969bf72
 
             $scope.watchFlag = '1'
           else
@@ -159,6 +213,7 @@ angular.module 'SFWApp.init', []
 
 
 
+<<<<<<< HEAD
     console.log  DetailsAPI.videoId
     console.log 'In Init'
     Vtype = '0'
@@ -174,6 +229,33 @@ angular.module 'SFWApp.init', []
       # $ionicHistory.goBack();
       count = -1
       App.goBack count
+=======
+		if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
+			console.log "Single video Data Cached"
+			$scope.Videodetails =  DetailsAPI.singleVideoarray
+		else
+			$ionicLoading.show
+			  content: 'Loading'
+			  animation: 'fade-in'
+			  showBackdrop: true
+			  maxWidth: 600
+			  showDelay: 0
+
+			DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
+			.then (data)=>
+				$scope.display = 'result'
+				console.log "single video  data succ"
+				DetailsAPI.singleVideoarray = data
+				$scope.Videodetails = data
+				document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
+				$scope.checkIfaddedlist()
+				$ionicLoading.hide();
+
+			, (error)=>
+				console.log 'Error Loading data'
+				$scope.display = 'error'
+				$ionicLoading.hide();
+>>>>>>> 3b926d0e22efac4baa011c314afeeea49969bf72
 
 
 

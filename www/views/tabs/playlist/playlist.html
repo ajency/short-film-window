@@ -8,7 +8,7 @@
               <div ng-repeat ="data in playlist">
                 <div class="col imageContainer" ng-click="singleplaylist( data.playlist_id)">
                   <div class="playlistContentInner">
-                    <img src="{{ data.playlist_image_url }}"/>
+                    <img ng-src="{{ data.playlist_image_url }}"/>
                     <div class="playlistDetails playlistDetailsInner">
                       <!-- <div class="title">
                           {{ data.playlist_description }}

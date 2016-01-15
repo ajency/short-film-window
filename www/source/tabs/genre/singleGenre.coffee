@@ -198,7 +198,7 @@ angular.module 'SFWApp.tabs'
 		App.goBack count
 
 	$scope.view =
-	    swiper = new Swiper( document.getElementById("singlegenre"), {
+	    swiper = new Swiper('.genreswiper', {
 	      pagination: '.swiper-pagination'
 	      paginationClickable: true
 	      direction: 'vertical'

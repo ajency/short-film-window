@@ -1,5 +1,5 @@
 angular.module('SFWApp.watchlist', []).controller('watchlistCtrl', [
-  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', function($scope, Storage, DetailsAPI, App, $window) {
+  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate) {
     $scope.watchlistDetails = [];
     $scope.display = 'loader';
     $scope.watchFlag = '0';
@@ -36,7 +36,8 @@ angular.module('SFWApp.watchlist', []).controller('watchlistCtrl', [
     $scope.updatewatchlist = function(Id) {
       console.log(Id);
       $scope.display = 'loader';
-      return $scope.CheckWatchlist(Id);
+      $scope.CheckWatchlist(Id);
+      return $ionicScrollDelegate.resize();
     };
     $scope.singleplay = function(videoid) {
       console.log(videoid);

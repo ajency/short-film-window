@@ -1,13 +1,11 @@
-<ion-content class="text-center padding welcome" ng-init="view.init()" overflow-scroll="true">
-<div class="videoContainer">
-
-  <video id="land_vid_html5_api" class="vjs-tech" poster="img/LandingHeader.jpg" data-setup="{ &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;preload&quot;: &quot;auto&quot;, &quot;loop&quot;: true, &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;auto&quot; }" loop="" preload="auto" autoplay="" autohide="1"&amp;showinfo="0"&amp;controls="0"><source src="video/LandingVideo.mp4" type="video/mp4"></p></video>
-<!-- <video id="land_vid_html5_api" class="vjs-tech" poster="http://shortfilm.staging.wpengine.com/wp-content/themes/short-film/assets/img/LandingHeader.jpg" data-setup="{ &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;preload&quot;: &quot;auto&quot;, &quot;loop&quot;: true, &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;auto&quot; }" loop="" preload="auto" autoplay=""><source src="http://shortfilm.staging.wpengine.com/wp-content/themes/short-film/assets/videos/LandingVideo.mp4" type="video/mp4"><p class="vjs-no-js">I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.<img src="http://shortfilm.staging.wpengine.com/wp-content/themes/short-film/assets/img/LandingHeader.jpg" class="img-responsive"></p></video> -->
-
-</video>
-
-  <button ng-click="view.skiplangingVideo()" ng-show="view.skip">Skip <i class="ion-ios-arrow-forward"></i></button>
-  </div>
-
-
-</ion-content>
+<ion-view>
+    <ion-content class="text-center padding welcome" ng-init="view.init()">
+        <div class="videoContainer">
+            <video id="land_vid_html5_api" class="vjs-tech" poster="img/LandingHeader.jpg" data-setup="{ &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;preload&quot;: &quot;auto&quot;, &quot;loop&quot;: true, &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;auto&quot; }" loop="" preload="auto" autoplay="" autohide="1"&amp;showinfo="0"&amp;controls="0"><source src="video/LandingVideo.mp4" type="video/mp4"
+            >
+            </video>
+            <!-- <video id="land_vid_html5_api" class="vjs-tech" poster="http://shortfilm.staging.wpengine.com/wp-content/themes/short-film/assets/img/LandingHeader.jpg" data-setup="{ &quot;controls&quot;: false, &quot;autoplay&quot;: true, &quot;preload&quot;: &quot;auto&quot;, &quot;loop&quot;: true, &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: &quot;auto&quot; }" loop="" preload="auto" autoplay=""><source src="http://shortfilm.staging.wpengine.com/wp-content/themes/short-film/assets/videos/LandingVideo.mp4" type="video/mp4"><p class="vjs-no-js">I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.<img src="http://shortfilm.staging.wpengine.com/wp-content/themes/short-film/assets/img/LandingHeader.jpg" class="img-responsive"></p></video> -->
+            <button ng-click="view.skiplangingVideo()" >Skip <i class="ion-ios-arrow-forward"></i></button>
+        </div>
+    </ion-content>
+</ion-view>
