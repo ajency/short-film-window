@@ -177,13 +177,13 @@ angular.module 'SFWApp.init', []
     if App.fromNotification
       $scope.initializeApp()
     else
-      $scope.init();      
+      $scope.init();
 
     $rootScope.$on 'receivePN' , (event,args)->
-      console.log '*********'+args.payload 
+      console.log '*********'+args.payload
 
     $rootScope.$on 'openPN' , (event,args)->
-      console.log '---------'+args.payload  
+      console.log '---------'+args.payload
 
 
 
