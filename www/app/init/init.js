@@ -169,10 +169,10 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       $scope.init();
     }
     $rootScope.$on('receivePN', function(event, args) {
-      return console.log('*********' + args.payload);
+      return console.log('*********' + args);
     });
     return $rootScope.$on('openPN', function(event, args) {
-      return console.log('---------' + args.payload);
+      return console.log('---------' + args);
     });
   }
 ]);
