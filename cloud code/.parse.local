@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "pushapp"
+    },
+    "pushapp": {
+      "applicationId": "DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO"
+    }
+  }
+}
