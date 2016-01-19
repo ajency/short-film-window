@@ -218,18 +218,84 @@
 		color: @grayDark;
 		text-decoration: none;
 	}
-	.synopsisText
-	{
-		display: -webkit-box;
-	    max-width: 100%;
-	    max-height: 110px;
-	    -webkit-line-clamp: 4;
-	    -webkit-box-orient: vertical;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	    font-size:2.6vh;
+
+	.synopsisDiv {
+	   transition: .5s linear all;
+	   height: 100%;
+	   overflow-x: scroll;
 	}
+	.synopsisDiv.ng-hide {
+	   height:80px;
+	}
+	.otherclass
+	{
+		/*animation-name: hideDiv;
+    	animation-duration: 1s;	*/
+		.synopsisText
+		{
+			display: -webkit-box;
+		    max-width: 100%;
+		    max-height: 110px;
+		    -webkit-line-clamp: 4;
+		    -webkit-box-orient: vertical;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    font-size:2.6vh;
+		    animation-name: hideDiv;
+    	animation-duration: 1s;	
+		}
+		.toggleSynopsis
+		{
+			i
+			{
+				transition: all 1s ease;
+			}
+		}
+	}
+	.showSynopsis
+	{
+		/*animation-name: showDiv;
+    	animation-duration: 1s;	*/
+		.synopsisText
+		{
+			display: -webkit-box;
+		    max-width: 100%;
+		    max-height: 100%;		    
+		    font-size:2.6vh;	
+		    animation-name: showDiv;
+    	animation-duration: 1s;		    
+		}
+		.toggleSynopsis
+		{
+			i
+			{
+				transition: all 1s ease;
+				&:before
+				{
+					transform: rotate(180deg);
+				}
+			}
+		}
+	}
+	@keyframes showDiv {
+	    0% {height: 110px;}	   
+	    100% {height: 100%;}
+	}
+	@-webkit-keyframes showDiv {
+	    0% {height: 110px;}	   
+	    100% {height: 100%;}
+	}
+	@keyframes hideDiv {
+	    0% {height: 100%;}	   
+	    100% {height: 110px;}
+	}
+	@-webkit-keyframes hideDiv {
+	    0% {height: 100%;}	   
+	    100% {height: 110px;}
+	}
+	
 }
+
 .infocus
 {
 	h5

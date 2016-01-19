@@ -205,7 +205,30 @@
 	}
 	.synopsis .synopsisText
 	{
-		font-size: 1em;
+		font-size: 1em !important;
 	}
 
+	.limitDiv
+	{
+		width: 33%;
+		&:nth-child(3), &:nth-child(4), &:nth-child(5)
+		{
+			display:none;
+		}
+		.imageContainer
+		{
+			width: 100% !important;
+		}
+	}
+	}
+@media screen and (min-height: 470px) and (max-height:640px)
+{
+	.limitDiv
+	{		
+		&:nth-child(4), &:nth-child(5)
+		{
+			display:none;
+		}
+	}
 }
+
