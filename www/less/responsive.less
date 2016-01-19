@@ -211,36 +211,24 @@
 	.limitDiv
 	{
 		width: 33%;
+		&:nth-child(3), &:nth-child(4), &:nth-child(5)
+		{
+			display:none;
+		}
 		.imageContainer
 		{
 			width: 100% !important;
 		}
 	}
-	
-	.limitDiv:nth-chlid(3)
-	{
-		display:none !important;
 	}
-	.limitDiv:nth-chlid(4)
-	{
-		display:none !important;
-	}
-	.limitDiv:nth-chlid(5)
-	{
-		display:none !important;
-	}
-		
-	}
-	
-@media screen and (min-height: 470px) and (max-height:630px)
-{	
-	.limitDiv:nth-chlid(4)
-	{
-		display:none !important;
-	}
-	.limitDiv:nth-chlid(5)
-	{
-		display:none !important;
+@media screen and (min-height: 470px) and (max-height:640px)
+{
+	.limitDiv
+	{		
+		&:nth-child(4), &:nth-child(5)
+		{
+			display:none;
+		}
 	}
 }
 

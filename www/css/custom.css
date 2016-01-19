@@ -756,6 +756,15 @@ a {
   color: #2e2e2e;
   text-decoration: none;
 }
+.synopsis .synopsisDiv {
+  -webkit-transition: .5s linear all;
+          transition: .5s linear all;
+  height: 100%;
+  overflow-x: scroll;
+}
+.synopsis .synopsisDiv.ng-hide {
+  height: 80px;
+}
 .synopsis .otherclass {
   /*animation-name: hideDiv;
     	animation-duration: 1s;	*/
@@ -1541,25 +1550,19 @@ a {
   .limitDiv {
     width: 33%;
   }
+  .limitDiv:nth-child(3),
+  .limitDiv:nth-child(4),
+  .limitDiv:nth-child(5) {
+    display: none;
+  }
   .limitDiv .imageContainer {
     width: 100% !important;
   }
-  .limitDiv:nth-chlid(3) {
-    display: none !important;
-  }
-  .limitDiv:nth-chlid(4) {
-    display: none !important;
-  }
-  .limitDiv:nth-chlid(5) {
-    display: none !important;
-  }
 }
-@media screen and (min-height: 470px) and (max-height: 630px) {
-  .limitDiv:nth-chlid(4) {
-    display: none !important;
-  }
-  .limitDiv:nth-chlid(5) {
-    display: none !important;
+@media screen and (min-height: 470px) and (max-height: 640px) {
+  .limitDiv:nth-child(4),
+  .limitDiv:nth-child(5) {
+    display: none;
   }
 }
 /*# sourceMappingURL=custom.css.map */
