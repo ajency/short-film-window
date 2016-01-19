@@ -1,5 +1,5 @@
 
-angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar','SFWApp.services'
+angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar','SFWApp.services'
              , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs'
              ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed','SFWApp.storage','SFWApp.watchlist']
 
@@ -21,7 +21,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
     ParsePushPlugin.on 'openPN', (pn)->
       console.log 'Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify pn;
       $rootScope.$broadcast 'openPN', { payload: pn }
-      
+
 
 
 

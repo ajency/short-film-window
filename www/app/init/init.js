@@ -1,7 +1,7 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
   '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, $rootScope) {
     $scope.Videodetails = [];
-    $scope.display = 'result';
+    $scope.display = 'loader';
     $scope.addvideoDetails = [];
     $scope.getwatchlistDetails = [];
     $scope.watchFlag = '0';
@@ -109,13 +109,6 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         console.log("Single video Data Cached");
         $scope.Videodetails = DetailsAPI.singleVideoarray;
       } else {
-        $ionicLoading.show({
-          content: 'Loading',
-          animation: 'fade-in',
-          showBackdrop: true,
-          maxWidth: 600,
-          showDelay: 0
-        });
         DetailsAPI.GetSingleVideo(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
             $scope.display = 'result';
@@ -123,14 +116,12 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
-            $scope.checkIfaddedlist();
-            return $ionicLoading.hide();
+            return $scope.checkIfaddedlist();
           };
         })(this), (function(_this) {
           return function(error) {
             console.log('Error Loading data');
-            $scope.display = 'error';
-            return $ionicLoading.hide();
+            return $scope.display = 'error';
           };
         })(this));
       }

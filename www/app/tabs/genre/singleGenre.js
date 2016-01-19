@@ -184,6 +184,16 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         };
       })(this));
     };
+    $scope.hideNoReset = function() {
+      $scope.sortimg = 'img/icons/sort_notapplied.png';
+      $scope.filterimg = 'img/icons/filter_grey.png';
+      $scope.sort_key = null;
+      $scope.lang = '';
+      $ionicLoading.hide();
+      return {
+        hideOnStateChange: false
+      };
+    };
     $scope.singleplay = function(videoid) {
       console.log(videoid);
       DetailsAPI.videoId = videoid;
