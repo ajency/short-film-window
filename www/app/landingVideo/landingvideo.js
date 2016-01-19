@@ -4,7 +4,7 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
       skip: true,
       skiplangingVideo: function() {
         land_vid_html5_api.pause();
-        console.log("skip videoa");
+        this.init();
         return $ionicLoading.show({
           content: 'Loading',
           animation: 'fade-in',
@@ -15,13 +15,13 @@ angular.module('SFWApp.landing', []).controller('landingCtrl', [
         });
       },
       init: function() {
-        console.log('sadsasadad');
+        console.log('init');
         return InitialiseService.initialize().then(function(data) {
-          console.log(data);
           $ionicLoading.hide();
           return App.navigate('popular');
         }, function(error) {
-          return $cordovaToast.show('Please Connect to Internet', 'long', 'bottom');
+          $ionicLoading.hide();
+          $cordovaToast.show('Please Connect to Internet', 'long', 'bottom');
         });
       }
     };

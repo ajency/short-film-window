@@ -30,7 +30,13 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       })(this), (function(_this) {
         return function(error) {
           $scope.$broadcast('scroll.refreshComplete');
-          console.log('Error Loading data');
+          if (App.isOnline) {
+            $scope.errorType = 'offline';
+            $scope.display = 'error';
+          } else {
+            $scope.classname = 'no_Search_result';
+            $scope.display = 'error';
+          }
           return $ionicLoading.hide();
         };
       })(this));
