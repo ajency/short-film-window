@@ -461,8 +461,8 @@ a {
 		i
 		{
 			display: none;
-		}
-	}
+		}		
+	}	
 	&.showSearch
 	{
 		i
@@ -475,8 +475,8 @@ a {
   display: none;
 }
 .box.showSearch {
-  /*width: 100%;
-		transition: width 1s ease;
+  /*width: 100%;	
+		transition: width 1s ease;	
 		opacity: 1;*/
   -webkit-animation-name: leftSide;
           animation-name: leftSide;
@@ -488,8 +488,8 @@ a {
   display: block;
 }
 .box.hideSearch {
-  /*width: 0;
-		transition:width 1s ease;
+  /*width: 0;	
+		transition:width 1s ease;	
 		opacity: 0;	*/
   -webkit-animation-name: rightSide;
           animation-name: rightSide;
@@ -741,7 +741,11 @@ a {
   color: #2e2e2e;
   text-decoration: none;
 }
-.synopsis .synopsisText {
+.synopsis .otherclass {
+  /*animation-name: hideDiv;
+    	animation-duration: 1s;	*/
+}
+.synopsis .otherclass .synopsisText {
   display: -webkit-box;
   max-width: 100%;
   max-height: 110px;
@@ -750,6 +754,69 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 2.6vh;
+  -webkit-animation-name: hideDiv;
+          animation-name: hideDiv;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+.synopsis .otherclass .toggleSynopsis i {
+  -webkit-transition: all 1s ease;
+          transition: all 1s ease;
+}
+.synopsis .showSynopsis {
+  /*animation-name: showDiv;
+    	animation-duration: 1s;	*/
+}
+.synopsis .showSynopsis .synopsisText {
+  display: -webkit-box;
+  max-width: 100%;
+  max-height: 100%;
+  font-size: 2.6vh;
+  -webkit-animation-name: showDiv;
+          animation-name: showDiv;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+.synopsis .showSynopsis .toggleSynopsis i {
+  -webkit-transition: all 1s ease;
+          transition: all 1s ease;
+}
+.synopsis .showSynopsis .toggleSynopsis i:before {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+@keyframes showDiv {
+  0% {
+    height: 110px;
+  }
+  100% {
+    height: 100%;
+  }
+}
+@-webkit-keyframes showDiv {
+  0% {
+    height: 110px;
+  }
+  100% {
+    height: 100%;
+  }
+}
+@keyframes hideDiv {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 110px;
+  }
+}
+@-webkit-keyframes hideDiv {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 110px;
+  }
 }
 .infocus h5 {
   margin-bottom: 5px;
@@ -1027,14 +1094,14 @@ a {
 }
 /*.filteredGenre
 {
-	.card
+	.card 
 	{
 		box-shadow: none;
 		border-bottom: none;
 	}
 	.item
 	{
-		position: relative;
+		position: relative;		
 		padding: 0;
 		&.item.item-image
 		{
@@ -1044,15 +1111,15 @@ a {
 	.cardTitle
 	{
 		padding:10px 10px 0 120px;
-		font-size: 1em;
+		font-size: 1em;    	
 	}
 	.totalfilmsNTime
 	{
 		position: absolute;
 	    width: 100%;
 	    bottom: 3px;
-	    padding:0 9px 0 120px;
-	    font-size: 0.6em;
+	    padding:0 9px 0 120px;	   
+	    font-size: 0.6em;    
 	    span
 	    {
 	    	i
@@ -1067,12 +1134,12 @@ a {
 		padding-left:120px;
 		font-size: 0.7em;
 		line-height: 1.5;
-		white-space: normal;
+		white-space: normal; 
 	}
 
 	&.genreImgOuter
 	{
-		.item-thumbnail-left
+		.item-thumbnail-left 
 		{
 			min-height: 90px;
 			img
@@ -1081,7 +1148,7 @@ a {
 	    		max-height: 70px;
 			}
 		}
-		.cardTitle , .totalfilmsNTime
+		.cardTitle , .totalfilmsNTime 
 		{
 			padding-left: 90px;
 		}
@@ -1454,17 +1521,7 @@ a {
     font-size: 1.1em;
   }
   .synopsis .synopsisText {
-    font-size: 1em;
+    font-size: 1em !important;
   }
 }
-
-.awesomePlaylistContent{
- height: calc(100vh - 165px);
- overflow-y: hidden;
-}
-
-.playlist .awesomePlaylistContent .imageContainer {
- height: calc((100vh - 165px)/2) !important;
-}
-
 /*# sourceMappingURL=custom.css.map */
