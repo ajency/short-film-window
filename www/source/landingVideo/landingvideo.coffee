@@ -7,7 +7,7 @@ angular.module 'SFWApp.landing', []
 
             skiplangingVideo:->
                 land_vid_html5_api.pause();
-                console.log "skip videoa"
+                this.init()
                 $ionicLoading.show
                     content: 'Loading'
                     animation: 'fade-in'
@@ -16,14 +16,15 @@ angular.module 'SFWApp.landing', []
                     hideOnStateChange:true
                     showDelay: 0
             init:->
-                console.log 'sadsasadad'
+                console.log 'init'
                 InitialiseService.initialize()
                 .then (data) ->
-                    console.log data
                     $ionicLoading.hide()
                     App.navigate 'popular'
                 , (error) ->
+                    $ionicLoading.hide()
                     $cordovaToast.show('Please Connect to Internet', 'long', 'bottom')
+                    return
 
 
 

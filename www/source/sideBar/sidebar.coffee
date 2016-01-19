@@ -59,7 +59,6 @@ angular.module('SFWApp.sidebar', [])
         $scope.used_height = 44
         $scope.hgt = device_height - $scope.used_height
 
-        console.log "Search data"
         if $scope.SearchResult.length == 0
           $scope.errorType = 'no_Search_result'
           $scope.display = 'error'
@@ -69,7 +68,7 @@ angular.module('SFWApp.sidebar', [])
 
       , (error)=>
         console.log 'Error Loading data'
-        $scope.errorType = ''
+        $scope.errorType = 'offline'
         $scope.display = 'error'
 
   $scope.onTapToRetry = () ->

@@ -8,12 +8,10 @@ angular.module('SFWApp.services', []).service('InitialiseService', [
         deferred = $q.defer();
         if (App.isOnline()) {
           DetailsAPI.GetVideoDetails().then(function(data) {
-            console.log('first');
             $rootScope.vData = data;
             $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]);
             return 1;
           }).then(function(data) {
-            console.log('second');
             return DetailsAPI.setData({
               premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
               new_addition: $rootScope.vData.defaults.content.popular.new_additions,
