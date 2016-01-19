@@ -180,10 +180,10 @@ angular.module 'SFWApp.init', []
       $scope.init();
 
     $rootScope.$on 'receivePN' , (event,args)->
-      console.log '*********'+args
+      console.log ''+args
 
     $rootScope.$on 'openPN' , (event,args)->
-      console.log '---------'+args
+      console.log ''+args
 
 
 
