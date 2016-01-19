@@ -38,12 +38,15 @@
        </div>
     </div>
     <div class="synopsis padding">
+      <div ng-class="{true:'showSynopsis',false:'otherclass'}[showSynopsisDiv]" >
       <h5 class="primaryText text-uppercase bold">Synopsis</h5>
       <div class="synopsisText">
         <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
         </div>
       </div>
-        <div class="toggleSynopsis text-center padding">
+    </div>
+
+        <div class="toggleSynopsis text-center padding" ng-click="showSynopsisDiv = !showSynopsisDiv">
           <i class="ion-chevron-down primaryText"></i>
         </div>
 

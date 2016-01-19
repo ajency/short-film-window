@@ -168,6 +168,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
     } else {
       $scope.init();
     }
+    $scope.showSynopsisDiv = false;
     $rootScope.$on('receivePN', function(event, args) {
       return console.log('' + args);
     });

@@ -179,6 +179,8 @@ angular.module 'SFWApp.init', []
     else
       $scope.init();
 
+    $scope.showSynopsisDiv = false
+
     $rootScope.$on 'receivePN' , (event,args)->
       console.log ''+args
 
