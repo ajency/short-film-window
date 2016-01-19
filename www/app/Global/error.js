@@ -13,6 +13,8 @@ angular.module('SFWApp.Global').directive('ajError', [
         switch (scope.errorType) {
           case 'offline':
             errorMsg = 'No internet availability';
+            errorTitle = 'Error';
+            button = 'Retry';
             break;
           case 'server_error':
             errorMsg = 'Could not connect to server';

@@ -17,6 +17,8 @@ angular.module 'SFWApp.Global'
         switch scope.errorType
             when 'offline'
                 errorMsg = 'No internet availability'
+                errorTitle = 'Error'
+                button = 'Retry'
             when 'server_error'
                 errorMsg = 'Could not connect to server'
             when 'no_Search_result'
