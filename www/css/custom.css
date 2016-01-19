@@ -1467,4 +1467,14 @@ a {
  height: calc((100vh - 165px)/2) !important;
 }
 
+
+.synopsisDiv {
+   transition: .5s linear all;
+   height: 100px;
+   overflow-x: scroll;
+}
+.synopsisDiv.ng-hide {
+   height:0;
+}
+
 /*# sourceMappingURL=custom.css.map */
