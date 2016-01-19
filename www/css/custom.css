@@ -327,6 +327,21 @@ a {
   font-size: 2.3vh;
   padding-bottom: 5px;
 }
+.playlist .awesomePlaylistContent {
+  width: 100%;
+  float: left;
+}
+.limitDiv {
+  float: left;
+  width: 50%;
+}
+.limitDiv .playlistContent {
+  width: 100%;
+  float: left;
+}
+.limitDiv .playlistContent .imageContainer {
+  width: 100%;
+}
 .endOfPlaylist {
   float: left;
   width: 100%;
@@ -1522,6 +1537,29 @@ a {
   }
   .synopsis .synopsisText {
     font-size: 1em !important;
+  }
+  .limitDiv {
+    width: 33%;
+  }
+  .limitDiv .imageContainer {
+    width: 100% !important;
+  }
+  .limitDiv:nth-chlid(3) {
+    display: none !important;
+  }
+  .limitDiv:nth-chlid(4) {
+    display: none !important;
+  }
+  .limitDiv:nth-chlid(5) {
+    display: none !important;
+  }
+}
+@media screen and (min-height: 470px) and (max-height: 630px) {
+  .limitDiv:nth-chlid(4) {
+    display: none !important;
+  }
+  .limitDiv:nth-chlid(5) {
+    display: none !important;
   }
 }
 /*# sourceMappingURL=custom.css.map */
