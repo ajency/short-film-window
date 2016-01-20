@@ -219,11 +219,11 @@
 		text-decoration: none;
 	}
 
-	.synopsisDiv {
+	/*.synopsisDiv {
 	   transition: 1s linear all;
 	   max-height:3000px;
 	   overflow-x: scroll;
-	   /*opacity: 1;*/
+	   opacity: 1;
 	   .synopsisText
 	   {
 	   		font-size:2.6vh;
@@ -231,53 +231,50 @@
 	}
 	.synopsisDiv.ng-hide {
 	   max-height:80px;
-	   /*opacity: 0;*/
-	}
-	.otherclass
+	   opacity: 0;
+	}*/
+	.synopsisDivHide
 	{
-		/*animation-name: hideDiv;
-    	animation-duration: 1s;	*/
+		/*transition: 0.5s linear all;*/
 		.synopsisText
 		{
-			display: -webkit-box;
+			/*display: -webkit-box;*/
 		    max-width: 100%;
-		    max-height: 110px;
-		    -webkit-line-clamp: 4;
-		    -webkit-box-orient: vertical;
+		    max-height: 80px;
+		    /*-webkit-line-clamp: 4;
+		    -webkit-box-orient: vertical;*/
 		    overflow: hidden;
-		    text-overflow: ellipsis;
+		    /*text-overflow: ellipsis;*/
 		    font-size:2.6vh;
-		    animation-name: hideDiv;
-    	animation-duration: 1s;	
+		    transition: 0.5s linear all;
 		}
 		.toggleSynopsis
 		{
-			i
+			i:before
 			{
 				transition: all 1s ease;
 			}
 		}
 	}
-	.showSynopsis
+	.synopsisDivShow
 	{
-		/*animation-name: showDiv;
-    	animation-duration: 1s;	*/
+		/*transition: 1s linear all;*/
 		.synopsisText
 		{
-			display: -webkit-box;
+			/*display: -webkit-box;*/
 		    max-width: 100%;
-		    max-height: 100%;		    
+		    max-height: 3000px;		    
 		    font-size:2.6vh;	
-		    animation-name: showDiv;
-    	animation-duration: 1s;		    
+		    transition: 0.5s linear all;   
 		}
 		.toggleSynopsis
 		{
 			i
 			{
-				transition: all 1s ease;
+				transition: all 2s ease;
 				&:before
 				{
+					transition: all 1s ease;
 					transform: rotate(180deg);
 				}
 			}
