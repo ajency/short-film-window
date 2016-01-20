@@ -753,22 +753,22 @@ a {
 }
 .synopsis a {
   border: none;
-  color: #2e2e2e;
+  color: #5e5e5e;
   text-decoration: none;
 }
 .synopsis .synopsisDiv {
-  -webkit-transition: .5s linear all;
-          transition: .5s linear all;
-  /*height: 100%;*/
-  overflow-x: scroll;
-  opacity: 1;
+  -webkit-transition: 1s linear all;
+          transition: 1s linear all;
+  max-height: 3000px;
+  overflow-x: scroll
+  /*opacity: 1;*/
 }
 .synopsis .synopsisDiv .synopsisText {
   font-size: 2.6vh;
 }
 .synopsis .synopsisDiv.ng-hide {
-  /*height:80px;*/
-  opacity: 0;
+  max-height: 80px
+  /*opacity: 0;*/
 }
 .synopsis .otherclass {
   /*animation-name: hideDiv;
