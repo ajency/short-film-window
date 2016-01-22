@@ -29,7 +29,7 @@ angular.module 'SFWApp.tabs'
         ParseNotificationService.deleteNotifications()
         .then (data) ->
           console.log data
-          $scope.notificationArray = data
+          $scope.notificationArray = []
           $scope.result = 'display'
         .catch (error) ->
           console.log error
