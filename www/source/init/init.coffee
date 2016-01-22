@@ -171,11 +171,13 @@ angular.module 'SFWApp.init', []
 
     $scope.showSynopsisDiv = false
 
-    $rootScope.$on 'receivePN' , (event,args)->
+    $rootScope.$on 'receiveNotification' , (event,args)->
       console.log ''+args
+      $rootScope.getnotificationcount()
 
-    $rootScope.$on 'openPN' , (event,args)->
+    $rootScope.$on 'openNotification' , (event,args)->
       console.log ''+args
+      $rootScope.getnotificationcount()
 
 
 

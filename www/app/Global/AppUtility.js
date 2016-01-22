@@ -4,6 +4,7 @@ angular.module('SFWApp.Global', []).factory('App', [
     App = void 0;
     return App = {
       start: true,
+      unreadNotifications: 0,
       menuEnabled: {
         left: false,
         right: false

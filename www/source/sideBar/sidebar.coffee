@@ -1,7 +1,7 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage) ->
+.controller 'sidebarCtrl', ($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService) ->
   $scope.showsearchbar =  false
   $scope.display = 'tabview'
   $scope.errorType = ''
@@ -32,7 +32,11 @@ angular.module('SFWApp.sidebar', [])
               $scope.watchListCount = '0'
               $scope.$apply()
 
-
+  $rootScope.getnotificationcount = ()->
+    ParseNotificationService.getUnreadNotificationsCount()
+    .then (value)->
+      $rootScope.unreadNotificationCount = value
+      $rootScope.$apply()
 
   $scope.singleplay = (videoid)->
     console.log videoid

@@ -7,6 +7,7 @@ angular.module('SFWApp.Global', []).factory 'App', [
     App = undefined
     App =
       start: true
+      unreadNotifications : 0
       menuEnabled:
         left: false
         right: false
@@ -34,7 +35,7 @@ angular.module('SFWApp.Global', []).factory 'App', [
         if this.fromNotification
           this.fromNotification = 0
           $state.go "popular"
-        else  
+        else
           $ionicHistory.goBack count
       isAndroid: ->
         ionic.Platform.isAndroid()

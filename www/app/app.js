@@ -1,21 +1,29 @@
 angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'SFWApp.services', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'vimeoEmbed', 'SFWApp.storage', 'SFWApp.watchlist']).value('ParseConfiguration', {
-  applicationId: '2T1prpN7BMpV0QcVNJS6BDuDr1jmgy0bspF8TY1E',
-  javascriptKey: 'ZjvDbNoggTgKtbIJW8asuVw8huGoEBPVvcKbbXru',
-  clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo'
+  applicationId: 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO',
+  javascriptKey: 'TTrki92xoLK7s4POTGeFk4i2Ynm8tPbPl7QrKl7K',
+  clientKey: 'gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5',
+  masterKey: 'LALmaz73J44ndeC2n7vuuySMVLGHUSTEQADmJPKN',
+  installationId: ''
 }).run([
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
     var device_height, device_width, firstScriptTag, swiper, tag;
     $ionicPlatform.ready(function() {
       $rootScope.isAndroid = ionic.Platform.isAndroid();
-      ParsePushPlugin.on('receivePN', function(pn) {
-        console.log('yo i got this push notification:' + JSON.stringify(pn));
-        return $rootScope.$broadcast('receivePN', {
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      ParsePushPlugin.getInstallationObjectId(function(id) {
+        return ParseConfiguration.installationId = id;
+      }, function(e) {
+        return ParseConfiguration.installationId = 0;
+      });
+      ParsePushPlugin.on('openPN', function(pn) {
+        console.log('Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify(pn));
+        return $rootScope.$broadcast('openNotification', {
           payload: pn
         });
       });
-      return ParsePushPlugin.on('openPN', function(pn) {
-        console.log('Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify(pn));
-        return $rootScope.$broadcast('openPN', {
+      return ParsePushPlugin.on('receivePN', function(pn) {
+        console.log('yo i got this push notification:' + JSON.stringify(pn));
+        return $rootScope.$broadcast('receiveNotification', {
           payload: pn
         });
       });

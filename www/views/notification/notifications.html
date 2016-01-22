@@ -1,144 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title>Test </title>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
-
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="css/custom.css" rel="stylesheet"/>
-
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-
-    <!-- Needed for Cordova/PhoneGap (will be a 404 during development) -->
-    <script src="js/custom.js"></script>
-    <script src="cordova.js"></script>
-  </head>
-  <body ng-app="ionicTest" ng-controller="ionicTestCtrl">
-    
-    <ion-side-menus>
-    <ion-side-menu-content>
-      <ion-header-bar class="bar bar-header primary">
-        <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
-        <h5 class="title whiteText text-uppercase">Notifications</h5>
-        <button class="button button-icon icon ion-search whiteText"></button>
-      </ion-header-bar>
-      <ion-content class="notifications">                
-        <ion-list>
-          <ion-item>
-            <h5>
-              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
+<ion-view>
+    <ion-view ng-init="init() " class="singleGenre">
+        <ion-header-bar class="bar bar-header primary">
+            <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>
+            <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
+        </ion-header-bar>
+        <ion-content ng-switch="result" ng-init="getNotifications()">
+            <div class="item item-avatar watchlistHeader item-divider">
+                <img src="img/icons/watchlist.png">
+                <div class="primaryText cardTitle">Notifications</div>
+            </div>
+            <ion-list ng-switch-when="display">
+                <ion-item ng-repeat="notify in notificationArray">
+                    <h5>
+              <span class="text-uppercase date">{{notify.createdAt}}</span>
               <span class="read pull-right"></span>
             </h5>
-            <p>
-              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
-            </p>
-          </ion-item>
-          <ion-item>
-            <h5>
-              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
-              <span class="read pull-right"></span>
-            </h5>
-            <p>
-              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
-            </p>
-          </ion-item>
-          <ion-item>
-            <h5>
-              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
-              <span class="read pull-right"></span>
-            </h5>
-            <p>
-              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
-            </p>
-          </ion-item>
-          <ion-item>
-            <h5>
-              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>
-            </h5>
-            <p>
-              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
-            </p>
-          </ion-item>
-          <ion-item>
-            <h5>
-              <span class="text-uppercase date">Sunday 17th oct, 2:06 pm</span>              
-            </h5>
-            <p>
-              This week's premiere has been released. The wait is finally over! Go and check out the latest features.
-            </p>
-          </ion-item>
-        </ion-list>
-      </ion-content>
-      <ion-footer-bar class="bar bar-footer submitFormFooter">
-        <button class="button button-small col text-uppercase primaryText">Clear all notifications</button>      
-      </ion-footer-bar>   
-    </ion-side-menu-content>
-    <ion-side-menu side="left">
-         <ion-content>
-          <ion-list>
-              <!-- <a class="item item-avatar" href="#">
-                <img class="item-image" src="img/avtar.png">
-                <h4 class="text-uppercase primaryText bold">Mark Zukerberg</h4>
-                <p><small>mark.zukerberg@facebook.com</small></p>
-              </a> -->
-            
-              <a class="menuLogo" href="#">
-                <img class="item-image" src="img/logo.png">                
-              </a>
-              
-              <a class="item" href="#">
-                <i class="icon-cust icon-home"></i>
-                <b class="text-uppercase">Home</b>
-              </a>
-           
-              <a class="item" href="#">
-                <i class="icon-cust icon-star"></i>
-                <b class="text-uppercase">Popular films</b>
-              </a>
-            
-              <a class="item" href="#">
-                <i class="icon-cust icon-watchlist"></i>
-                <b class="text-uppercase">My watchlist</b>
-              </a>
-            
-              <a class="item" href="#">
-                <i class="icon-cust icon-playlist"></i>
-                <b class="text-uppercase">Playlist</b>
-              </a>
-            
-              <a class="item" href="#">
-                <i class="icon-cust icon-genre"></i>
-                <b class="text-uppercase">Genre</b>
-              </a>
-            
-              <a class="item" href="#">
-                <i class="icon-cust icon-bell"></i>
-                <b class="text-uppercase">Notifications</b>
-                <span class="badge badge-assertive">3</span>
-              </a>
+                    <p>{{notify.alert}}</p>
+                </ion-item>
+            </ion-list>
 
-              <a class="item" href="#">
-                <i class="icon-cust icon-question"></i>
-                <b class="text-uppercase">Faq</b>
-              </a>
-              
-              <!-- <a class="item" href="#">
-                <i class="icon-cust icon-logout"></i>
-                <b class="text-uppercase">Logout</b>
-              </a> -->
-          </ion-list>
-            <p class="padding shortInfo">
-              ShortFilWindow is a snappy, intuitive, striking, mini-theatre that provides you priceless access to all the mind-blowing short films in the world.
-            </p>
-            <!-- <h6 class="padding-horizontal text-uppercase readMore bold margin0"><a href="#">Read more about us <i class="ion-chevron-right pull-right"></i></a></h6> -->
-            <p class="padding">
-            <button class="button button-block button-small bold primary whiteText text-uppercase">
-              Submit a film
-            </button>
-            </p>
+          <div class="col noNotification text-center" ng-switch-when="no-new-notifications">
+          <img src="img/icons/notification_disabled.png"/>
+          <br>
+          <h4 class="text-uppercase">No new notifications</h4>
+          <p class="text-uppercase">
+            You will be notified when we add something new :D
+          </p>
+        </div>
+
+        <div class="loaderOuter" ng-switch-when="loader">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <aj-error class="errors"
+          ng-switch-when="error"
+          error-type="errorType"
+          tap-to-retry="view.onTapToRetry()">
+        </aj-error>
+
+
         </ion-content>
-    </ion-side-menu>
-</ion-side-menus>
-  </body>
-</html>
+        <ion-footer-bar class="bar bar-footer submitFormFooter">
+            <button ng-click="clearNotifications()" class="button button-small col text-uppercase primaryText">Clear all notifications</button>
+        </ion-footer-bar>
+    </ion-view>

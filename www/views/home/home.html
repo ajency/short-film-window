@@ -91,10 +91,10 @@
                 <b class="text-uppercase">Genre</b>
               </a>
 
-              <a class="item"  ng-click="slideContent()">
+              <a class="item" ng-init="getnotificationcount()" ui-sref="notifications" ng-click="slideContent()">
                 <i class="icon-cust icon-bell"></i>
                 <b class="text-uppercase">Notifications</b>
-                <span class="badge badge-assertive">3</span>
+                <span class="badge badge-assertive">{{unreadNotificationCount}}</span>
               </a>
 
               <a class="item"  href="#" ng-click="displayWeb('http://www.shortfilmwindow.com/faq/')">
