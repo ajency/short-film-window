@@ -160,11 +160,13 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       $scope.init();
     }
     $scope.showSynopsisDiv = false;
-    $rootScope.$on('receivePN', function(event, args) {
-      return console.log('' + args);
+    $rootScope.$on('receiveNotification', function(event, args) {
+      console.log('' + args);
+      return $rootScope.getnotificationcount();
     });
-    return $rootScope.$on('openPN', function(event, args) {
-      return console.log('' + args);
+    return $rootScope.$on('openNotification', function(event, args) {
+      console.log('' + args);
+      return $rootScope.getnotificationcount();
     });
   }
 ]);

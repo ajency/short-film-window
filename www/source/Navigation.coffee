@@ -57,6 +57,16 @@ angular.module 'SFWApp.navigate', []
 					templateUrl: 'views/watchlist/myWatchlist.html'
 					controller: 'watchlistCtrl'
 
+		.state 'notifications',
+			url: '/notifications'
+			cache: false
+			parent: 'home'
+			views:
+				"homeview":
+					templateUrl: 'views/notification/notifications.html'
+					controller: 'notificationsCtrl'
+
+
 		.state 'init',
 			url: '/init'
 			cache: false
