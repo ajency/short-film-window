@@ -26,8 +26,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $rootScope.getnotificationcount = function() {
     return ParseNotificationService.getUnreadNotificationsCount().then(function(value) {
-      $rootScope.unreadNotificationCount = value;
-      return $rootScope.$apply();
+      return $rootScope.unreadNotificationCount = value;
     });
   };
   $scope.singleplay = function(videoid) {

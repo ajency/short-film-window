@@ -102,7 +102,7 @@ angular.module 'SFWApp.navigate', []
 			controller: 'singlePlaylist'
 			templateUrl: 'views/tabs/playlist/singlePlaylist.html'
 
-	# $urlRouterProvider.otherwise('/landing');
+	# $urlRouterProvider.otherwise('popular');
 
 
 

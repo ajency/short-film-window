@@ -10,17 +10,20 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
           "installation_id": installation_id
         }, {
           success: function(results) {
-            var notificationArray, obj;
+            var notificationArray;
             notificationArray = [];
-            _.each(results, function(value) {});
-            obj = {
-              "createdAt": value.attributes.createdAt,
-              "notificationId": value.attributes.notificationId.id,
-              "installationId": value.attributes.installationId.id,
-              "alert": value.attributes.notificationId.attributes.alert,
-              "status": value.attributes.status
-            };
-            notificationArray.push(obj);
+            _.each(results, function(value) {
+              var dt, obj;
+              dt = moment(value.attributes.createdAt).format('LLLL');
+              obj = {
+                "createdAt": dt,
+                "notificationId": value.attributes.notificationId.id,
+                "installationId": value.attributes.installationId.id,
+                "alert": value.attributes.notificationId.attributes.alert,
+                "status": value.attributes.status
+              };
+              return notificationArray.push(obj);
+            });
             deferred.resolve(notificationArray);
           },
           error: function(error) {
@@ -43,7 +46,7 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
           },
           error: function(error) {
             console.log(error);
-            deferred.reject(error);
+            deferred.reject('0');
           }
         });
         return deferred.promise;
@@ -57,8 +60,21 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
           "notification_id": notification_id
         }, {
           success: function(results) {
-            console.log(results);
-            deferred.resolve(results);
+            var notificationArray;
+            notificationArray = [];
+            _.each(results, function(value) {
+              var dt, obj;
+              dt = moment(value.attributes.createdAt).format('LLLL');
+              obj = {
+                "createdAt": dt,
+                "notificationId": value.attributes.notificationId.id,
+                "installationId": value.attributes.installationId.id,
+                "alert": value.attributes.notificationId.attributes.alert,
+                "status": value.attributes.status
+              };
+              return notificationArray.push(obj);
+            });
+            deferred.resolve(notificationArray);
           },
           error: function(error) {
             console.log('Some error.');
@@ -75,17 +91,19 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
           "installation_id": installation_id
         }, {
           success: function(results) {
-            var notificationArray, obj;
+            var notificationArray;
             notificationArray = [];
-            _.each(results, function(value) {});
-            obj = {
-              "createdAt": value.attributes.createdAt,
-              "notificationId": value.attributes.notificationId.id,
-              "installationId": value.attributes.installationId.id,
-              "alert": value.attributes.notificationId.attributes.alert,
-              "status": value.attributes.status
-            };
-            notificationArray.push(obj);
+            _.each(results, function(value) {
+              var obj;
+              obj = {
+                "createdAt": value.attributes.createdAt,
+                "notificationId": value.attributes.notificationId.id,
+                "installationId": value.attributes.installationId.id,
+                "alert": value.attributes.notificationId.attributes.alert,
+                "status": value.attributes.status
+              };
+              return notificationArray.push(obj);
+            });
             deferred.resolve(notificationArray);
           },
           error: function(error) {

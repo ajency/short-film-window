@@ -1,7 +1,7 @@
 angular.module 'SFWApp.init', []
 
-.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService','$rootScope'
-     ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService,$rootScope)->
+.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService','ParseNotificationService','$rootScope'
+     ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService,ParseNotificationService,$rootScope)->
     $scope.Videodetails = []
     $scope.display = 'loader'
     $scope.addvideoDetails = []
@@ -115,6 +115,7 @@ angular.module 'SFWApp.init', []
 
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
             console.log "Single video Data Cached"
+            $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray
         else
             DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
@@ -170,18 +171,6 @@ angular.module 'SFWApp.init', []
       $scope.init();
 
     $scope.showSynopsisDiv = false
-
-    $rootScope.$on 'receiveNotification' , (event,args)->
-      console.log ''+args
-      $rootScope.getnotificationcount()
-
-    $rootScope.$on 'openNotification' , (event,args)->
-      console.log ''+args
-      $rootScope.getnotificationcount()
-
-
-
-
 
 ]
 

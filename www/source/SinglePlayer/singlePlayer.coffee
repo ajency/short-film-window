@@ -1,16 +1,17 @@
 angular.module 'SFWApp.singlePlayer', []
 
-.controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory'
-	,($scope,$sce,DetailsAPI,$ionicHistory)->
+.controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory','App'
+	,($scope,$sce,DetailsAPI,$ionicHistory,App)->
 
 		console.log  DetailsAPI.singleVideoarray
+
 
 		$scope.view =
 
 			back:->
-				$ionicHistory.goBack();
-				# count = -1
-				# App.goBack count
+				# $ionicHistory.goBack();
+				count = -1
+				App.goBack count
 
 			vType : DetailsAPI.singleVideoarray.type
 			vimomeo : null

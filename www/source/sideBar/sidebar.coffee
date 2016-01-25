@@ -36,7 +36,6 @@ angular.module('SFWApp.sidebar', [])
     ParseNotificationService.getUnreadNotificationsCount()
     .then (value)->
       $rootScope.unreadNotificationCount = value
-      $rootScope.$apply()
 
   $scope.singleplay = (videoid)->
     console.log videoid
