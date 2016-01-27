@@ -14,9 +14,9 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 .run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
-    $cordovaSplashscreen.show()
-    $rootScope.isAndroid = ionic.Platform.isAndroid()
 
+    $rootScope.isAndroid = ionic.Platform.isAndroid()
+    # $cordovaSplashscreen.show()
     Parse.initialize( ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey );
 
     ParsePushPlugin.getInstallationObjectId (id) ->
@@ -73,10 +73,10 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       ev.preventDefault()
     return
 
-  # InitialiseService.initialize().then (data)->
-  #   console.log 'appinit',data
-  #   # $cordovaSplashscreen.hide()
-  #   App.navigate 'popular'
+  InitialiseService.initialize().then (data)->
+    console.log 'appinit',data
+    # $cordovaSplashscreen.hide()
+    App.navigate 'popular'
 
   # $timeout ->
 

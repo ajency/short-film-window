@@ -8,7 +8,6 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, swiper, tag;
     $ionicPlatform.ready(function() {
-      $cordovaSplashscreen.show();
       $rootScope.isAndroid = ionic.Platform.isAndroid();
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       ParsePushPlugin.getInstallationObjectId(function(id) {
@@ -56,10 +55,14 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
       }
       App.currentState = to.name;
     });
-    return $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
+    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
       if (fromState.name === 'init' && toState.name === 'landingvideo') {
         ev.preventDefault();
       }
+    });
+    return InitialiseService.initialize().then(function(data) {
+      console.log('appinit', data);
+      return App.navigate('popular');
     });
   }
 ]);
