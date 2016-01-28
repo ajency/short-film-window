@@ -71,13 +71,11 @@ angular.module 'SFWApp.tabs',[]
       $scope.awplalist= DetailsAPI.array_awplalist
       $scope.videoId = DetailsAPI.array.videoId
 
-    $scope.view =
-
-      swiper = new Swiper('.popularswiper', {
-            pagination: '.swiper-pagination'
-            paginationClickable: true
-            direction: 'vertical'
-          });
+    swiper = new Swiper('.popularswiper', {
+          pagination: '.swiper-pagination'
+          paginationClickable: true
+          direction: 'vertical'
+        });
 
     App.previousState = 'landing' if App.previousState == 'landing'
 

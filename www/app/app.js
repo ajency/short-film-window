@@ -6,31 +6,31 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   installationId: ''
 }).run([
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
-    var device_height, device_width, firstScriptTag, swiper, tag;
+    var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
-      $rootScope.isAndroid = ionic.Platform.isAndroid();
+      InitialiseService.initialize().then(function(response) {
+        console.log(response);
+        return App.navigate('popular');
+      })["catch"](e)(function() {
+        return console.log('error', e);
+      })["finally"](function() {
+        return console.log('This finally block');
+      });
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       ParsePushPlugin.getInstallationObjectId(function(id) {
         return ParseConfiguration.installationId = id;
       }, function(e) {
         return ParseConfiguration.installationId = 0;
       });
-      ParsePushPlugin.on('openPN', function(pn) {
-        console.log('openPn', pn);
+      window.ParsePushPlugin.on('openPN', function(pn) {
         return $rootScope.$broadcast('openNotification', {
           payload: pn
         });
       });
-      ParsePushPlugin.on('receivePN', function(pn) {
-        console.log('closePn', pn);
+      return window.ParsePushPlugin.on('receivePN', function(pn) {
         return $rootScope.$broadcast('receiveNotification', {
           payload: pn
         });
-      });
-      return InitialiseService.initialize().then(function(data) {
-        console.log('appinit', data);
-        $cordovaSplashscreen.hide();
-        return App.navigate('popular');
       });
     });
     $rootScope.App = App;
@@ -42,11 +42,6 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
     device_height = $window.innerHeight;
     console.log(device_width);
     console.log(device_height);
-    swiper = new Swiper('.swiper-container', {
-      pagination: '.swiper-pagination',
-      paginationClickable: true,
-      direction: 'vertical'
-    });
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       if (from.name === "" && to.name === 'init') {
         App.fromNotification = 1;
@@ -55,14 +50,14 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
       }
       App.currentState = to.name;
     });
-    $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
+    return $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
       if (fromState.name === 'init' && toState.name === 'landingvideo') {
         ev.preventDefault();
       }
     });
-    return InitialiseService.initialize().then(function(data) {
-      console.log('appinit', data);
-      return App.navigate('popular');
-    });
+  }
+]).config([
+  '$ionicConfigProvider', function($ionicConfigProvider) {
+    return $ionicConfigProvider.views.forwardCache(true);
   }
 ]);

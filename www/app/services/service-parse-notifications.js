@@ -5,7 +5,6 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
         var deferred, installation_id;
         deferred = $q.defer();
         installation_id = ParseConfiguration.installationId;
-        console.log(installation_id);
         Parse.Cloud.run('listAllNotificationsForUser', {
           "installation_id": installation_id
         }, {
@@ -27,7 +26,6 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
             deferred.resolve(notificationArray);
           },
           error: function(error) {
-            console.log(error);
             deferred.reject(error);
           }
         });
@@ -37,7 +35,6 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
         var deferred, installation_id;
         deferred = $q.defer();
         installation_id = ParseConfiguration.installationId;
-        console.log(installation_id);
         Parse.Cloud.run('countUnreadNotifications', {
           "installation_id": installation_id
         }, {
@@ -77,7 +74,6 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
             deferred.resolve(notificationArray);
           },
           error: function(error) {
-            console.log('Some error.');
             deferred.reject(error);
           }
         });

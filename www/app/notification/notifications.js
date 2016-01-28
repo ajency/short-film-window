@@ -24,6 +24,7 @@ angular.module('SFWApp.tabs').controller('notificationsCtrl', [
         return ParseNotificationService.deleteNotifications().then(function(data) {
           console.log(data);
           $scope.notificationArray = [];
+          $scope.result = 'no-new-notifications';
           return $scope.result = 'display';
         })["catch"](function(error) {
           console.log(error);

@@ -27,6 +27,7 @@ angular.module 'SFWApp.tabs'
         .then (data) ->
           console.log data
           $scope.notificationArray = []
+          $scope.result = 'no-new-notifications'
           $scope.result = 'display'
         .catch (error) ->
           console.log error

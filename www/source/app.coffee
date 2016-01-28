@@ -14,8 +14,15 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 .run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
+    InitialiseService.initialize()
+    .then (response) ->
+      console.log response
+      App.navigate 'popular'
+    .catch(e) ->
+      console.log 'error', e
+    .finally ->
+      console.log 'This finally block'
 
-    $rootScope.isAndroid = ionic.Platform.isAndroid()
     # $cordovaSplashscreen.show()
     Parse.initialize( ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey );
 
@@ -24,24 +31,13 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     , (e) ->
       ParseConfiguration.installationId =  0
 
-    ParsePushPlugin.on 'openPN', (pn)->
-      console.log 'openPn',pn
+    window.ParsePushPlugin.on 'openPN', (pn)->
       $rootScope.$broadcast 'openNotification', { payload: pn }
 
-    ParsePushPlugin.on 'receivePN', (pn)->
-      console.log 'closePn',pn
+    window.ParsePushPlugin.on 'receivePN', (pn)->
       $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
-    InitialiseService.initialize().then (data)->
-      console.log 'appinit',data
-      $cordovaSplashscreen.hide()
-      App.navigate 'popular'
-
-
-
-
   $rootScope.App = App
-
 #....YouTube Api loading
   tag = document.createElement('script')
   tag.src = 'https://www.youtube.com/iframe_api'
@@ -54,11 +50,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   console.log device_height
 
   #....swiper initialization
-  swiper = new Swiper('.swiper-container', {
-          pagination: '.swiper-pagination'
-          paginationClickable: true
-          direction: 'vertical'
-            });
+  # swiper = new Swiper('.swiper-container', {
+  #         pagination: '.swiper-pagination'
+  #         paginationClickable: true
+  #         direction: 'vertical'
+  #           });
 
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     if from.name == "" and to.name == 'init'
@@ -73,15 +69,19 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       ev.preventDefault()
     return
 
-  InitialiseService.initialize().then (data)->
-    console.log 'appinit',data
-    # $cordovaSplashscreen.hide()
-    App.navigate 'popular'
+  # InitialiseService.initialize().then (data)->
+  #   console.log 'appinit',data
+  #   # $cordovaSplashscreen.hide()
+  #   App.navigate 'popular'
 
   # $timeout ->
 
   # , 3000
   # return
 
+]
+
+.config ['$ionicConfigProvider', ($ionicConfigProvider)->
+  $ionicConfigProvider.views.forwardCache true
 ]
 

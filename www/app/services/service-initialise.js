@@ -9,8 +9,7 @@ angular.module('SFWApp.services', []).service('InitialiseService', [
         if (App.isOnline()) {
           DetailsAPI.GetVideoDetails().then(function(data) {
             $rootScope.vData = data;
-            $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]);
-            return 1;
+            return $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]);
           }).then(function(data) {
             return DetailsAPI.setData({
               premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
@@ -21,7 +20,7 @@ angular.module('SFWApp.services', []).service('InitialiseService', [
               playlist: $rootScope.vData.defaults.content.playlists
             });
           }).then(function(data) {
-            deferred.resolve($rootScope.vData);
+            return deferred.resolve($rootScope.vData);
           });
         } else {
           deferred.reject();
