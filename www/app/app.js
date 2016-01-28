@@ -42,6 +42,13 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
     console.log(device_width);
     console.log(device_height);
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+      if (to.name === 'notifications') {
+        $rootScope.pageHeader = 'Notifications';
+        return;
+      } else {
+        $rootScope.pageHeader = 'Shortfilm Window';
+        return;
+      }
       if (from.name === "" && to.name === 'init') {
         App.fromNotification = 1;
       } else {

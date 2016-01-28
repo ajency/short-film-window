@@ -3,15 +3,19 @@ angular.module 'SFWApp.tabs',[]
   ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
 
 
-    $scope.$on '$ionicView.afterEnter', ->
-      console.log 'Loading Swiper'
-      $rootScope.swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
-        direction: 'vertical'
-        )
+    # $scope.$on '$ionicView.afterEnter', ->
+    #   console.log 'Loading Swiper'
+    #   $rootScope.swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
+    #     direction: 'vertical'
+    #     )
 
-    $scope.$on '$ionicView.beforeLeave', ->
-      console.log 'Destory'
-      $rootScope.swiper.destroy()
+    # $scope.$on '$ionicView.beforeLeave', ->
+    #   console.log 'Destory'
+    #   $rootScope.swiper.destroy()
+
+    swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
+      direction: 'vertical'
+    )
 
 
     $scope.singleplaylist = (playlistId)->

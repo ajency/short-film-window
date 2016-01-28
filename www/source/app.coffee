@@ -20,8 +20,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     .finally ->
       console.log 'finally'
 
-    # $cordovaSplashscreen.show()
-    Parse.initialize( ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey );
+    Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
 
     ParsePushPlugin.getInstallationObjectId (id) ->
       ParseConfiguration.installationId = id
@@ -48,14 +47,14 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   console.log device_width
   console.log device_height
 
-  #....swiper initialization
-  # swiper = new Swiper('.swiper-container', {
-  #         pagination: '.swiper-pagination'
-  #         paginationClickable: true
-  #         direction: 'vertical'
-  #           });
-
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
+    if to.name == 'notifications'
+      $rootScope.pageHeader = 'Notifications'
+      return
+    else
+      $rootScope.pageHeader = 'Shortfilm Window'
+      return
+
     if from.name == "" and to.name == 'init'
       App.fromNotification = 1
     else
@@ -67,16 +66,6 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     if fromState.name == 'init' and toState.name == 'landingvideo'
       ev.preventDefault()
     return
-
-  # InitialiseService.initialize().then (data)->
-  #   console.log 'appinit',data
-  #   # $cordovaSplashscreen.hide()
-  #   App.navigate 'popular'
-
-  # $timeout ->
-
-  # , 3000
-  # return
 
 ]
 

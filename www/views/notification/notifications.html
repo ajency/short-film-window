@@ -1,14 +1,6 @@
 <ion-view>
     <ion-view class="singleGenre">
-        <ion-header-bar class="bar bar-header primary">
-            <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>
-            <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
-        </ion-header-bar>
         <ion-content ng-switch="result" ng-init="getNotifications()">
-            <div class="item item-avatar watchlistHeader item-divider">
-                <img src="img/icons/watchlist.png">
-                <div class="primaryText cardTitle">Notifications</div>
-            </div>
 
             <ion-refresher pulling-text="Pull to refresh..." on-refresh="getNotifications()"></ion-refresher>
 
