@@ -2,19 +2,19 @@ angular.module 'SFWApp.tabs'
 .controller 'notificationsCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','ParseNotificationService'
   ,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,ParseNotificationService)->
 
-    $scope.result = 'loader'
-
-    $scope.refreshNotifications = ()->
-      $scope.getNotifications()
+    $scope.notificationArray = []
 
     $scope.getNotifications = ()->
-      $scope.notificationArray = []
       if App.isOnline()
+        $scope.result = 'loader'
         ParseNotificationService.getNotificationsWithStatus()
         .then (data) ->
-          console.log data
-          $scope.notificationArray = data
-          $scope.result = 'display'
+          if data.length == 0
+            $scope.result = 'no-new-notifications'
+          else
+            $scope.notificationArray = data
+            $scope.result = 'display'
+
         .catch (error) ->
           console.log error
           $scope.result = 'error'
@@ -23,12 +23,11 @@ angular.module 'SFWApp.tabs'
 
     $scope.clearNotifications = ()->
       if App.isOnline()
+        $scope.notificationArray = []
+        $scope.result = 'no-new-notifications'
         ParseNotificationService.deleteNotifications()
         .then (data) ->
           console.log data
-          $scope.notificationArray = []
-          $scope.result = 'no-new-notifications'
-          $scope.result = 'display'
         .catch (error) ->
           console.log error
           $scope.result = 'error'
@@ -37,14 +36,15 @@ angular.module 'SFWApp.tabs'
 
     $scope.markNotificationAsRead = (notification_id)->
       if App.isOnline()
+        console.log $scope.notificationArray,notification_id
+        match = _.findWhere $scope.notificationArray, {"notification_id": ''+notification_id+''}
+        console.log match
+        _.extend match, {status:'read'}
+        console.log $scope.notificationArray
+
         ParseNotificationService.updateNotificationStatus(notification_id)
         .then (data) ->
           console.log data
-          match = _.findWhere $scope.notificationArray, {"notification_id": notification_id}
-          _.extend match, {status:'read'}
-          console.log match
-
-          $scope.result = 'display'
         .catch (error) ->
           console.log error
           $scope.result = 'error'

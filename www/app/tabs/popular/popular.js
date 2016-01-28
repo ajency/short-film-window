@@ -1,14 +1,8 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
   '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window) {
-    $scope.$on('$ionicView.afterEnter', function() {
-      console.log('Loading Swiper');
-      return $rootScope.swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')), {
-        direction: 'vertical'
-      });
-    });
-    $scope.$on('$ionicView.beforeLeave', function() {
-      console.log('Destory');
-      return $rootScope.swiper.destroy();
+    var swiper;
+    swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')), {
+      direction: 'vertical'
     });
     $scope.singleplaylist = function(playlistId) {
       console.log(playlistId);
