@@ -740,6 +740,15 @@ a {
   position: relative;
   z-index: 2;
 }
+.videoOuter .downArrow {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  text-align: center;
+  top: 10px;
+  color: #af152f;
+  font-size: 30px;
+}
 .movieScreen .singleMovieContent {
   top: 0;
 }
@@ -853,6 +862,9 @@ a {
 }
 .infocus img {
   width: 100%;
+}
+.singlePlayerHeader button i.ion-ios-arrow-back {
+  margin-right: 10px;
 }
 .icon-cust {
   background-position: center;
