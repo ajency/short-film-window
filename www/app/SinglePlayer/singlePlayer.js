@@ -1,10 +1,23 @@
 angular.module('SFWApp.singlePlayer', []).controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', function($scope, $sce, DetailsAPI, $ionicHistory) {
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
     var onPlayerReady, onPlayerStateChange, stopVideo;
     console.log(DetailsAPI.singleVideoarray);
+    $scope.switchHeaderBar = true;
+    $timeout(function() {
+      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
+    }, 5000);
+    $scope.toggleHeader = function() {
+      $scope.switchHeaderBar = !$scope.switchHeaderBar;
+      return $timeout(function() {
+        $scope.switchHeaderBar = !$scope.switchHeaderBar;
+        return $scope.$apply();
+      }, 5000);
+    };
     $scope.view = {
       back: function() {
-        return $ionicHistory.goBack();
+        var count;
+        count = -1;
+        return App.goBack(count);
       },
       vType: DetailsAPI.singleVideoarray.type,
       vimomeo: null,

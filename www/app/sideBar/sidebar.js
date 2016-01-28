@@ -1,4 +1,4 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window, Storage, ParseNotificationService) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window, Storage) {
   $scope.showsearchbar = false;
   $scope.display = 'tabview';
   $scope.errorType = '';
@@ -22,12 +22,6 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
           return $scope.$apply();
         }
       }
-    });
-  };
-  $rootScope.getnotificationcount = function() {
-    return ParseNotificationService.getUnreadNotificationsCount().then(function(value) {
-      $rootScope.unreadNotificationCount = value;
-      return $rootScope.$apply();
     });
   };
   $scope.singleplay = function(videoid) {

@@ -14,7 +14,6 @@ angular.module('SFWApp.services', [])
         DetailsAPI.GetVideoDetails().then (data) ->
           $rootScope.vData = data
           $ImageCacheFactory.Cache [ data.defaults.content.popular.weekly_premiere.image ]
-          return 1
         .then (data) ->
           DetailsAPI.setData
             premiere: $rootScope.vData.defaults.content.popular.weekly_premiere
@@ -24,8 +23,7 @@ angular.module('SFWApp.services', [])
             genre: $rootScope.vData.defaults.content.genre
             playlist: $rootScope.vData.defaults.content.playlists
          .then (data) ->
-           deferred.resolve($rootScope.vData)
-           return
+           deferred.resolve $rootScope.vData
        else
          deferred.reject()
       deferred.promise

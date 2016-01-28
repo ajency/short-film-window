@@ -1,5 +1,5 @@
 angular.module('SFWApp.init', []).controller('InitCtrl', [
-  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, $rootScope) {
+  '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', 'ParseNotificationService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, ParseNotificationService, $rootScope) {
     $scope.Videodetails = [];
     $scope.display = 'loader';
     $scope.addvideoDetails = [];
@@ -107,6 +107,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       var Vtype;
       if (!angular.isUndefined(DetailsAPI.singleVideoarray.movie_id)) {
         console.log("Single video Data Cached");
+        $scope.display = 'result';
         $scope.Videodetails = DetailsAPI.singleVideoarray;
       } else {
         DetailsAPI.GetSingleVideo(DetailsAPI.videoId).then((function(_this) {
@@ -159,14 +160,6 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
     } else {
       $scope.init();
     }
-    $scope.showSynopsisDiv = false;
-    $rootScope.$on('receiveNotification', function(event, args) {
-      console.log('' + args);
-      return $rootScope.getnotificationcount();
-    });
-    return $rootScope.$on('openNotification', function(event, args) {
-      console.log('' + args);
-      return $rootScope.getnotificationcount();
-    });
+    return $scope.showSynopsisDiv = false;
   }
 ]);

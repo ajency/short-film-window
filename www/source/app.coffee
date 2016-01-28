@@ -11,11 +11,19 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   installationId: ''
  )
 
-.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
+.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
-    $rootScope.isAndroid = ionic.Platform.isAndroid()
+    InitialiseService.initialize()
+    .then (response) ->
+      console.log response
+      App.navigate 'popular'
+    .catch(e) ->
+      console.log 'error', e
+    .finally ->
+      console.log 'This finally block'
 
+    # $cordovaSplashscreen.show()
     Parse.initialize( ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey );
 
     ParsePushPlugin.getInstallationObjectId (id) ->
@@ -23,19 +31,13 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     , (e) ->
       ParseConfiguration.installationId =  0
 
-
-
-    ParsePushPlugin.on 'openPN', (pn)->
-      console.log 'Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify pn;
+    window.ParsePushPlugin.on 'openPN', (pn)->
       $rootScope.$broadcast 'openNotification', { payload: pn }
 
-    ParsePushPlugin.on 'receivePN', (pn)->
-      console.log 'yo i got this push notification:' + JSON.stringify pn;
+    window.ParsePushPlugin.on 'receivePN', (pn)->
       $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
-
   $rootScope.App = App
-
 #....YouTube Api loading
   tag = document.createElement('script')
   tag.src = 'https://www.youtube.com/iframe_api'
@@ -48,11 +50,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   console.log device_height
 
   #....swiper initialization
-  swiper = new Swiper('.swiper-container', {
-          pagination: '.swiper-pagination'
-          paginationClickable: true
-          direction: 'vertical'
-            });
+  # swiper = new Swiper('.swiper-container', {
+  #         pagination: '.swiper-pagination'
+  #         paginationClickable: true
+  #         direction: 'vertical'
+  #           });
 
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     if from.name == "" and to.name == 'init'
@@ -67,10 +69,19 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       ev.preventDefault()
     return
 
-  $timeout ->
-    App.navigate 'landingvideo'
-  , 3000
-  return
+  # InitialiseService.initialize().then (data)->
+  #   console.log 'appinit',data
+  #   # $cordovaSplashscreen.hide()
+  #   App.navigate 'popular'
 
+  # $timeout ->
+
+  # , 3000
+  # return
+
+]
+
+.config ['$ionicConfigProvider', ($ionicConfigProvider)->
+  $ionicConfigProvider.views.forwardCache true
 ]
 

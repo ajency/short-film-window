@@ -1,53 +1,65 @@
 angular.module 'SFWApp.singlePlayer', []
 
-.controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory'
-	,($scope,$sce,DetailsAPI,$ionicHistory)->
+.controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory','App','$timeout'
+  ,($scope,$sce,DetailsAPI,$ionicHistory,App,$timeout)->
 
-		console.log  DetailsAPI.singleVideoarray
+    console.log  DetailsAPI.singleVideoarray
 
-		$scope.view =
+    $scope.switchHeaderBar = true
 
-			back:->
-				$ionicHistory.goBack();
-				# count = -1
-				# App.goBack count
+    $timeout ->
+      $scope.switchHeaderBar = !$scope.switchHeaderBar
+    ,5000
 
-			vType : DetailsAPI.singleVideoarray.type
-			vimomeo : null
-			init:->
+    $scope.toggleHeader = ()->
+      $scope.switchHeaderBar = !$scope.switchHeaderBar
+      $timeout ->
+        $scope.switchHeaderBar = !$scope.switchHeaderBar
+        $scope.$apply()
+      ,5000
 
-				if(@vType == 'vimeo')
-					modifiedUrl = DetailsAPI.singleVideoarray.embedurl
-					@vimomeo = true
-					$scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+    $scope.view =
+      back:->
+        # $ionicHistory.goBack();
+        count = -1
+        App.goBack count
 
-					# $scope.player1 = modifiedUrl;
+      vType : DetailsAPI.singleVideoarray.type
+      vimomeo : null
+      init:->
 
-					console.log $scope.player1
-				else
-					@vimomeo = false
-					player = new YT.Player('player2', {
-						height: '100%',
-						width: '100%',
-						videoId:DetailsAPI.singleVideoarray.videourl ,
-						playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }
-						events: {
-							'onReady': onPlayerReady,
-							'onStateChange': onPlayerStateChange
-						}
-					});
+        if(@vType == 'vimeo')
+          modifiedUrl = DetailsAPI.singleVideoarray.embedurl
+          @vimomeo = true
+          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
 
-		onPlayerReady = (event) ->
-		    console.log event
-		    event.target.playVideo()
+          # $scope.player1 = modifiedUrl;
 
-		onPlayerStateChange = (event) ->
-		  if event.data == YT.PlayerState.PLAYING and !done
-		    setTimeout stopVideo, 6000
-		    done = true
+          console.log $scope.player1
+        else
+          @vimomeo = false
+          player = new YT.Player('player2', {
+            height: '100%',
+            width: '100%',
+            videoId:DetailsAPI.singleVideoarray.videourl ,
+            playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
 
-		stopVideo = ->
-		  player.stopVideo()
+    onPlayerReady = (event) ->
+        console.log event
+        event.target.playVideo()
+
+    onPlayerStateChange = (event) ->
+      if event.data == YT.PlayerState.PLAYING and !done
+        setTimeout stopVideo, 6000
+        done = true
+
+    stopVideo = ->
+      player.stopVideo()
 
 
 ]
