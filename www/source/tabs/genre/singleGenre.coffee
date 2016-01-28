@@ -204,11 +204,11 @@ angular.module 'SFWApp.tabs'
     App.goBack count
 
   $scope.view =
-      swiper = new Swiper('.genreswiper', {
-        pagination: '.swiper-pagination'
-        paginationClickable: true
-        direction: 'vertical'
-        });
+      # swiper = new Swiper('.genreswiper', {
+      #   pagination: '.swiper-pagination'
+      #   paginationClickable: true
+      #   direction: 'vertical'
+      #   });
 
     onTapToRetry : ->
       console.log $scope.errorType

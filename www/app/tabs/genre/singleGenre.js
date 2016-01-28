@@ -1,6 +1,5 @@
 angular.module('SFWApp.tabs').controller('singleGenre', [
   '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share, $window) {
-    var swiper;
     $scope.lang = null;
     $scope.sort_key = null;
     $scope.errorType = '';
@@ -210,12 +209,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
       count = -1;
       return App.goBack(count);
     };
-    $scope.view = swiper = new Swiper('.genreswiper', {
-      pagination: '.swiper-pagination',
-      paginationClickable: true,
-      direction: 'vertical'
-    });
-    return {
+    return $scope.view = {
       onTapToRetry: function() {
         console.log($scope.errorType);
         $scope.reset();
