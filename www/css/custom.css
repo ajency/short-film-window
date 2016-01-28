@@ -279,11 +279,12 @@ a {
   width: auto;
 }
 .playlist .playlistDetails .totalFilms div.timeOuterDiv {
-  width: 70px;
+  width: 90px;
+  margin-top: 2px;
 }
 .playlist .playlistDetails .totalFilms div i {
   /*float: left;*/
-  width: 11px;
+  width: 15px;
 }
 .playlist .playlistDetails .totalFilms div .time {
   /*float: left;*/
