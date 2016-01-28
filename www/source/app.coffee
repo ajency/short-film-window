@@ -16,10 +16,9 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   $ionicPlatform.ready ->
     InitialiseService.initialize()
     .then (response) ->
-      console.log response
       App.navigate 'popular'
     .finally ->
-      console.log 'This finally block'
+      console.log 'finally'
 
     # $cordovaSplashscreen.show()
     Parse.initialize( ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey );

@@ -9,10 +9,9 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
     var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
       InitialiseService.initialize().then(function(response) {
-        console.log(response);
         return App.navigate('popular');
       })["finally"](function() {
-        return console.log('This finally block');
+        return console.log('finally');
       });
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       ParsePushPlugin.getInstallationObjectId(function(id) {

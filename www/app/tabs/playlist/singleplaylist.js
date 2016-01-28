@@ -1,10 +1,6 @@
 angular.module('SFWApp.tabs').controller('singlePlaylist', [
   '$scope', '$rootScope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', function($scope, $rootScope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout) {
     $scope.display = 'loader';
-    $scope.$on('$ionicView.beforeLeave', function() {
-      console.log('Destory');
-      return $rootScope.swiper.destroy();
-    });
     $scope.share = function() {
       return share.shareNative();
     };
@@ -20,6 +16,7 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
         console.log(device_width);
         console.log(device_height);
         $scope.used_height = 44 + 120;
+        console.log('******', $scope.used_height);
         $scope.hgt = device_height - $scope.used_height;
         console.log($scope.hgt);
         return $scope.headerwidth = device_width - 100 - 27;
@@ -41,6 +38,7 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
             $scope.hgt = device_height - $scope.used_height;
             console.log($scope.hgt);
             $scope.headerwidth = device_width - 100 - 27;
+            console.log('-----', $scope.used_height);
             return $ionicLoading.hide();
           };
         })(this), (function(_this) {

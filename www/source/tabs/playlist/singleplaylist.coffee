@@ -5,9 +5,9 @@ angular.module 'SFWApp.tabs'
     $scope.display= 'loader'
 
 
-    $scope.$on '$ionicView.beforeLeave', ->
-      console.log 'Destory'
-      $rootScope.swiper.destroy()
+    # $scope.$on '$ionicView.beforeLeave', ->
+    #   console.log 'Destory'
+    #   $rootScope.swiper.destroy()
 
 
     $scope.share = () ->
@@ -23,6 +23,7 @@ angular.module 'SFWApp.tabs'
             console.log device_width
             console.log device_height
             $scope.used_height = 44 + 120
+            console.log '******',$scope.used_height
             $scope.hgt = device_height - $scope.used_height
             console.log $scope.hgt
 
@@ -48,6 +49,7 @@ angular.module 'SFWApp.tabs'
                 $scope.hgt = device_height - $scope.used_height
                 console.log $scope.hgt
                 $scope.headerwidth = device_width - 100 - 27
+                console.log '-----',$scope.used_height
 
 
                 $ionicLoading.hide();
