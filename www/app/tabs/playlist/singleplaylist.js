@@ -1,16 +1,15 @@
 angular.module('SFWApp.tabs').controller('singlePlaylist', [
-  '$scope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', function($scope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout) {
+  '$scope', '$rootScope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', function($scope, $rootScope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout) {
     $scope.display = 'loader';
+    $scope.$on('$ionicView.beforeLeave', function() {
+      console.log('Destory');
+      return $rootScope.swiper.destroy();
+    });
     $scope.share = function() {
       return share.shareNative();
     };
     $scope.init = function() {
-      var device_height, device_width, swiper;
-      swiper = new Swiper('.swiperplaylist', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        direction: 'vertical'
-      });
+      var device_height, device_width;
       if (DetailsAPI.GlobalChild_array.length > 0) {
         console.log("Playlist cached");
         $scope.playlistData = DetailsAPI.GlobalChild_array;

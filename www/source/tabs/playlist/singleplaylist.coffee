@@ -1,18 +1,18 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singlePlaylist', ['$scope','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share','$window','$timeout', ($scope,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share,$window,$timeout)->
+.controller 'singlePlaylist', ['$scope','$rootScope','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share','$window','$timeout', ($scope,$rootScope,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share,$window,$timeout)->
 
     $scope.display= 'loader'
+
+
+    $scope.$on '$ionicView.beforeLeave', ->
+      console.log 'Destory'
+      $rootScope.swiper.destroy()
+
+
     $scope.share = () ->
         share.shareNative()
     $scope.init = () ->
-
-        swiper = new Swiper('.swiperplaylist', {
-                pagination: '.swiper-pagination'
-                paginationClickable: true
-                direction: 'vertical'
-                    });
-
         if ( DetailsAPI.GlobalChild_array.length >0 )
             console.log "Playlist cached"
             $scope.playlistData= DetailsAPI.GlobalChild_array
