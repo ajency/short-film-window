@@ -6,7 +6,7 @@
         <button class="button button-icon whiteText" ng-click="share() "><i class="ion-android-share-alt"></i></button>
     </ion-header-bar>
 
-  <ion-content class="videoOuter">
+  <ion-content class="videoOuter" ng-class="{true : 'has-header' , false : 'no-header' } [switchHeaderBar]">
 
    <i ng-click="toggleHeader()" class="ion-chevron-down" ng-show="!switchHeaderBar"  style="position: absolute;text-align: center;color: red;padding-left: 50%;font-size: 25px;"></i>
 
