@@ -1,9 +1,17 @@
 angular.module 'SFWApp.tabs',[]
-.controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window'
-  ,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
+.controller 'popularCtrl', ['$scope','$rootScope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window'
+  ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
 
 
+    $scope.$on '$ionicView.afterEnter', ->
+      console.log 'Loading Swiper'
+      $rootScope.swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
+        direction: 'vertical'
+        )
 
+    $scope.$on '$ionicView.beforeLeave', ->
+      console.log 'Destory'
+      $rootScope.swiper.destroy()
 
 
     $scope.singleplaylist = (playlistId)->
@@ -70,12 +78,6 @@ angular.module 'SFWApp.tabs',[]
       $scope.noteworthy= DetailsAPI.array_noteworthy
       $scope.awplalist= DetailsAPI.array_awplalist
       $scope.videoId = DetailsAPI.array.videoId
-
-    swiper = new Swiper('.popularswiper', {
-          pagination: '.swiper-pagination'
-          paginationClickable: true
-          direction: 'vertical'
-        });
 
     App.previousState = 'landing' if App.previousState == 'landing'
 

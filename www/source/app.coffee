@@ -1,7 +1,7 @@
 
 angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWApp.init','SFWApp.navigate','SFWApp.Global','SFWApp.sidebar','SFWApp.services'
              , 'ngSanitize','SFWApp.singlePlayer','SFWApp.VideoDetailsAPI','SFWApp.tabs'
-             ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed','SFWApp.storage','SFWApp.watchlist']
+             ,'ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','vimeoEmbed','SFWApp.storage','SFWApp.watchlist','SFWApp.directives']
 
 .value('ParseConfiguration',
   applicationId: 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO'
@@ -18,8 +18,6 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     .then (response) ->
       console.log response
       App.navigate 'popular'
-    .catch(e) ->
-      console.log 'error', e
     .finally ->
       console.log 'This finally block'
 
@@ -32,9 +30,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       ParseConfiguration.installationId =  0
 
     window.ParsePushPlugin.on 'openPN', (pn)->
+      console.log 'operns'
       $rootScope.$broadcast 'openNotification', { payload: pn }
 
     window.ParsePushPlugin.on 'receivePN', (pn)->
+      console.log 'revire'
       $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
   $rootScope.App = App

@@ -1,4 +1,4 @@
-angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'SFWApp.services', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'vimeoEmbed', 'SFWApp.storage', 'SFWApp.watchlist']).value('ParseConfiguration', {
+angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', 'SFWApp.init', 'SFWApp.navigate', 'SFWApp.Global', 'SFWApp.sidebar', 'SFWApp.services', 'ngSanitize', 'SFWApp.singlePlayer', 'SFWApp.VideoDetailsAPI', 'SFWApp.tabs', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'vimeoEmbed', 'SFWApp.storage', 'SFWApp.watchlist', 'SFWApp.directives']).value('ParseConfiguration', {
   applicationId: 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO',
   javascriptKey: 'TTrki92xoLK7s4POTGeFk4i2Ynm8tPbPl7QrKl7K',
   clientKey: 'gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5',
@@ -11,8 +11,6 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
       InitialiseService.initialize().then(function(response) {
         console.log(response);
         return App.navigate('popular');
-      })["catch"](e)(function() {
-        return console.log('error', e);
       })["finally"](function() {
         return console.log('This finally block');
       });
@@ -23,11 +21,13 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
         return ParseConfiguration.installationId = 0;
       });
       window.ParsePushPlugin.on('openPN', function(pn) {
+        console.log('operns');
         return $rootScope.$broadcast('openNotification', {
           payload: pn
         });
       });
       return window.ParsePushPlugin.on('receivePN', function(pn) {
+        console.log('revire');
         return $rootScope.$broadcast('receiveNotification', {
           payload: pn
         });

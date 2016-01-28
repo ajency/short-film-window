@@ -1,6 +1,15 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
-  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window) {
-    var swiper;
+  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window) {
+    $scope.$on('$ionicView.afterEnter', function() {
+      console.log('Loading Swiper');
+      return $rootScope.swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')), {
+        direction: 'vertical'
+      });
+    });
+    $scope.$on('$ionicView.beforeLeave', function() {
+      console.log('Destory');
+      return $rootScope.swiper.destroy();
+    });
     $scope.singleplaylist = function(playlistId) {
       console.log(playlistId);
       DetailsAPI.videoId = playlistId;
@@ -63,11 +72,6 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       $scope.awplalist = DetailsAPI.array_awplalist;
       return $scope.videoId = DetailsAPI.array.videoId;
     };
-    swiper = new Swiper('.popularswiper', {
-      pagination: '.swiper-pagination',
-      paginationClickable: true,
-      direction: 'vertical'
-    });
     if (App.previousState === 'landing') {
       return App.previousState = 'landing';
     }
