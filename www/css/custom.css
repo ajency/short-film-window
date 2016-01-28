@@ -535,9 +535,6 @@ a {
   0% {
     width: 0;
   }
-  50% {
-    width: 50%;
-  }
   100% {
     width: 100%;
   }
@@ -545,9 +542,6 @@ a {
 @-webkit-keyframes rightSide {
   0% {
     width: 100%;
-  }
-  50% {
-    width: 50%;
   }
   100% {
     width: 0;
