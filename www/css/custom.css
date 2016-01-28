@@ -866,6 +866,9 @@ a {
 .singlePlayerHeader button i.ion-ios-arrow-back {
   margin-right: 10px;
 }
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.singleMovieContent {
+  top: 0 !important;
+}
 .icon-cust {
   background-position: center;
   background-repeat: no-repeat;
