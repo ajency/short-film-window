@@ -25,39 +25,35 @@ angular.module 'SFWApp.tabs',[]
       App.navigate "singlePlaylist"
 
     $scope.doRefresh = ()->
-
-      # $ionicLoading.show
-      #   content: 'Loading'
-      #   animation: 'fade-in'
-      #   showBackdrop: true
-      #   maxWidth: 600
-      #   showDelay: 0
-
-
-      PulltorefreshAPI.pullrequest()
-      .then (data)=>
-        console.log data.defaults.content.popular.weekly_premiere.image
-        PulltorefreshAPI.saveData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
-
-        $scope.premeiere= DetailsAPI.array
-        $scope.addition= DetailsAPI.array_addition
-        $scope.noteworthy= DetailsAPI.array_noteworthy
-        $scope.awplalist= DetailsAPI.array_awplalist
-        $scope.videoId = DetailsAPI.array.videoId
-        $scope.$broadcast('scroll.refreshComplete');
-        $ionicLoading.hide();
+      
+      if !App.isOnline()
+        $scope.checkNetwork = false
+      else    
+        PulltorefreshAPI.pullrequest()
+        .then (data)=>
+          $scope.checkNetwork = true
+          console.log data.defaults.content.popular.weekly_premiere.image
+          PulltorefreshAPI.saveData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
+          
+          $scope.premeiere= DetailsAPI.array
+          $scope.addition= DetailsAPI.array_addition
+          $scope.noteworthy= DetailsAPI.array_noteworthy
+          $scope.awplalist= DetailsAPI.array_awplalist
+          $scope.videoId = DetailsAPI.array.videoId
+          $scope.$broadcast('scroll.refreshComplete');
+          $ionicLoading.hide();
 
 
-      , (error)=>
-        $scope.$broadcast('scroll.refreshComplete');
-        if App.isOnline
-          $scope.errorType = 'offline'
-          $scope.display = 'error'
-        else
-          $scope.classname = 'no_Search_result'
-          $scope.display = 'error'
+        , (error)=>
+          $scope.$broadcast('scroll.refreshComplete');
+          if App.isOnline
+            $scope.errorType = 'offline'
+            $scope.display = 'error'
+          else
+            $scope.classname = 'no_Search_result'
+            $scope.display = 'error'
 
-        $ionicLoading.hide();
+          $ionicLoading.hide();
 
     $scope.singleplay = (videoid)->
 
@@ -68,6 +64,7 @@ angular.module 'SFWApp.tabs',[]
       App.navigate 'init'
 
     $scope.test = ->
+      $scope.checkNetwork = true
       device_width = $window.innerWidth;
       device_height = $window.innerHeight;
       console.log device_width
@@ -82,7 +79,9 @@ angular.module 'SFWApp.tabs',[]
       $scope.noteworthy= DetailsAPI.array_noteworthy
       $scope.awplalist= DetailsAPI.array_awplalist
       $scope.videoId = DetailsAPI.array.videoId
+      if !App.isOnline()
+        $scope.checkNetwork = false
+      
 
-    App.previousState = 'landing' if App.previousState == 'landing'
 
 ]

@@ -8,11 +8,17 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
-      InitialiseService.initialize().then(function(response) {
-        return App.navigate('popular');
-      })["finally"](function() {
-        return console.log('finally');
-      });
+      if (App.isOnline()) {
+        InitialiseService.initialize().then(function(response) {
+          return App.navigate('popular');
+        })["finally"](function() {
+          return console.log('finally');
+        });
+      } else {
+        $cordovaToast.show('No internet availability', 'long', 'bottom').then(function() {
+          return App.navigate('popular');
+        });
+      }
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       ParsePushPlugin.getInstallationObjectId(function(id) {
         return ParseConfiguration.installationId = id;

@@ -1,4 +1,4 @@
-angular.module('SFWApp.tabs', []).controller('popularCtrl', [
+angular.module('SFWApp.tabs', []).controller('popularCtrls', [
   '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', function($scope, App, PulltorefreshAPI, DetailsAPI) {
     $scope.doRefresh = function() {
       console.log(PulltorefreshAPI);
