@@ -19,24 +19,7 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
           return App.navigate('popular');
         });
       }
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      ParsePushPlugin.getInstallationObjectId(function(id) {
-        return ParseConfiguration.installationId = id;
-      }, function(e) {
-        return ParseConfiguration.installationId = 0;
-      });
-      window.ParsePushPlugin.on('openPN', function(pn) {
-        console.log('operns');
-        return $rootScope.$broadcast('openNotification', {
-          payload: pn
-        });
-      });
-      return window.ParsePushPlugin.on('receivePN', function(pn) {
-        console.log('revire');
-        return $rootScope.$broadcast('receiveNotification', {
-          payload: pn
-        });
-      });
+      return Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
     });
     $rootScope.App = App;
     tag = document.createElement('script');

@@ -19,10 +19,6 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "com.ionic.keyboard",
-    {
-      "locator": "https://github.com/taivo/parse-push-plugin",
-      "id": "com.phonegap.parsepushplugin"
-    },
     "cordova-plugin-splashscreen",
     {
       "locator": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin",
@@ -37,15 +33,10 @@
       "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
       "id": "cordova-plugin-network-information"
     },
-    "phonegap-plugin-push@~1.5.3",
-    {
-      "locator": "/Users/ajency/Documents/com.parse.cordova.core.pushplugin",
-      "id": "com.parse.cordova.core.pushplugin"
-    },
-    {
-      "locator": "/Users/ajency/Documents/com.phonegap.plugins.PushPlugin",
-      "id": "com.phonegap.plugins.PushPlugin"
-    }
+    "phonegap-plugin-push@~1.5.3"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios",
+    "android"
+  ]
 }

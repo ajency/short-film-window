@@ -8,19 +8,23 @@ angular.module('SFWApp.services', []).service('InitialiseService', [
         deferred = $q.defer();
         if (App.isOnline()) {
           DetailsAPI.GetVideoDetails().then(function(data) {
-            $rootScope.vData = data;
-            return $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]);
+            return $rootScope.vData = data;
           }).then(function(data) {
-            return DetailsAPI.setData({
-              premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
-              new_addition: $rootScope.vData.defaults.content.popular.new_additions,
-              noteworthy: $rootScope.vData.defaults.content.popular.noteworthy,
-              awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist,
-              genre: $rootScope.vData.defaults.content.genre,
-              playlist: $rootScope.vData.defaults.content.playlists
+            return $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]).then(function(cachedata) {
+              return console.log(cachedata);
+            })["finally"](function() {
+              console.log('set data');
+              return DetailsAPI.setData({
+                premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
+                new_addition: $rootScope.vData.defaults.content.popular.new_additions,
+                noteworthy: $rootScope.vData.defaults.content.popular.noteworthy,
+                awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist,
+                genre: $rootScope.vData.defaults.content.genre,
+                playlist: $rootScope.vData.defaults.content.playlists
+              });
+            }).then(function(data) {
+              return deferred.resolve($rootScope.vData);
             });
-          }).then(function(data) {
-            return deferred.resolve($rootScope.vData);
           });
         } else {
           deferred.reject();
