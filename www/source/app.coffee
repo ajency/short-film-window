@@ -31,10 +31,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 
     Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
 
-    # ParsePushPlugin.getInstallationObjectId (id) ->
-    #   ParseConfiguration.installationId = id
-    # , (e) ->
-    #   ParseConfiguration.installationId =  0
+    ParsePushPlugin.getInstallationObjectId (id) ->
+      console.log id
+      ParseConfiguration.installationId = id
+    , (e) ->
+      ParseConfiguration.installationId =  0
 
     # window.ParsePushPlugin.on 'openPN', (pn)->
     #   console.log 'operns'

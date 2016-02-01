@@ -21,7 +21,13 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
           return App.navigate('popular');
         });
       }
-      return Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      return ParsePushPlugin.getInstallationObjectId(function(id) {
+        console.log(id);
+        return ParseConfiguration.installationId = id;
+      }, function(e) {
+        return ParseConfiguration.installationId = 0;
+      });
     });
     $rootScope.App = App;
     tag = document.createElement('script');
