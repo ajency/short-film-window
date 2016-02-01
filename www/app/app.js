@@ -10,7 +10,6 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
     $ionicPlatform.ready(function() {
       if (App.isOnline()) {
         InitialiseService.initialize().then(function(response) {
-          $cordovaSplashscreen.hide();
           return App.navigate('popular');
         })["finally"](function() {
           return console.log('finally');
@@ -22,11 +21,23 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
         });
       }
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      return ParsePushPlugin.getInstallationObjectId(function(id) {
+      ParsePushPlugin.getInstallationObjectId(function(id) {
         console.log(id);
         return ParseConfiguration.installationId = id;
       }, function(e) {
         return ParseConfiguration.installationId = 0;
+      });
+      window.ParsePushPlugin.on('openPN', function(pn) {
+        console.log('operns');
+        return $rootScope.$broadcast('openNotification', {
+          payload: pn
+        });
+      });
+      return window.ParsePushPlugin.on('receivePN', function(pn) {
+        console.log('revire');
+        return $rootScope.$broadcast('receiveNotification', {
+          payload: pn
+        });
       });
     });
     $rootScope.App = App;
