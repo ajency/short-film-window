@@ -203,8 +203,10 @@ a {
   padding: 5px 10px 5px 5px;
   /*min-height: 118px !important;
     height: 118px !important;*/
-  min-height: 190px !important;
-  height: 190px !important;
+  /*min-height: 190px !important;
+    height: 190px !important;*/
+  min-height: auto !important;
+  height: auto !important;
 }
 .popular.has-tabs-top {
   top: 86px;
@@ -974,8 +976,11 @@ a {
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
   /*padding-bottom: 3px;*/
+  position: absolute;
   padding: 0;
-  border-bottom: 2px solid #ffffff;
+  background: none;
+  box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.3)
+  /*border-bottom: 2px solid @white;*/
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail {
   /*height: 105px;*/
@@ -987,6 +992,7 @@ a {
   text-align: center;
   margin-right: 10px;
   margin-top: 2px;
+  display: none;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail img {
   height: 100%;
@@ -994,18 +1000,21 @@ a {
   position: relative;
   left: 100%;
   margin-left: -200%;
+  display: none;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail .overlay {
   background: -webkit-linear-gradient(top, #000000 0%, rgba(0, 0, 0, 0.51) 80%, rgba(0, 0, 0, 0.39) 100%);
   background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.51) 80%, rgba(0, 0, 0, 0.39) 100%);
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .singlePlaylistDetails {
-  position: absolute;
+  /*position: absolute;*/
   top: 0;
   left: 0;
   width: 100%;
   padding: 10px;
   text-align: center;
+  background: -webkit-linear-gradient(top, #000000 0%, rgba(0, 0, 0, 0.51) 60%, rgba(0, 0, 0, 0.39) 100%);
+  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.51) 60%, rgba(0, 0, 0, 0.39) 100%);
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
   font-size: 3.5vh;
@@ -1021,6 +1030,7 @@ a {
   margin-top: 10px;
   margin-bottom: 10px;
   color: #ffffff;
+  line-height: 1.2;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
   display: block;
