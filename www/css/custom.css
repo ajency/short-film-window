@@ -186,11 +186,9 @@ a {
 }
 .item-divider {
   min-height: 73px;
-  padding-top: 16px;
-  padding-bottom: 16px;
   background: #ffffff;
   border: none;
-  padding-left: 65px;
+  padding: 16px 5px 16px 65px;
 }
 .item-divider p {
   font-size: 2.6vh;
@@ -284,17 +282,20 @@ a {
   width: auto;
 }
 .playlist .playlistDetails .totalFilms div.timeOuterDiv {
-  width: 78px;
+  /*width: 90px;*/
   margin-top: 2px;
 }
 .playlist .playlistDetails .totalFilms div i {
-  float: right;
-  width: 15px;
-  text-align: right;
+  /*float: right;
+    				width: 15px;
+    				text-align: right;*/
 }
 .playlist .playlistDetails .totalFilms div .time {
   /*float: left;*/
-  width: auto;
+  /*width: auto;*/
+  width: 88px;
+  display: block;
+  text-align: right;
 }
 .playlist .playlistDetails .totalFilms .filmNo {
   font-size: 3.5vh;
@@ -679,6 +680,7 @@ a {
   padding-bottom: 3px;
   /*font-weight: bold;*/
   white-space: normal;
+  line-height: 1;
 }
 .movieDetails .title span {
   font-size: 0.9em;
