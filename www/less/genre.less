@@ -37,7 +37,7 @@
 	{		
 		.cardOuter .movieDetails
 		{
-			bottom: 0;
+			bottom: 0px;
 		}
 	}
 	.item-divider
@@ -52,10 +52,12 @@
 		&.item-thumbnail-left
 		{		
 			padding-bottom: 3px;
+			/*padding: 0;*/
 			.playlist-thumbnail
 			{
 				height: 105px;
 			    width: 100px;
+			    /*width: 100%;*/
 			    overflow: hidden;
 			    float: left;
 			    text-align: center;
@@ -64,19 +66,32 @@
 			    img
 			    {
 			    	height: 100%;
-				    width: auto !important;
+				    width: auto;
 				    position: relative;
 				    left: 100%;
 				    margin-left: -200%;
-			    }
+			    }			    
 			}
-			.cardTitle, .movieDescription
-			{
-				/*margin-left: 10px;*/
-			}
+			.singlePlaylistDetails
+		    {
+		    	/*position: absolute;
+		    	top: 0;
+		    	left: 0;
+		    	width:100%;
+		    	padding: 10px;*/
+		    }			
 			.cardTitle
 			{
-				font-size: 1.2em;
+				font-size: 3vh;
+				white-space: normal;
+				margin-bottom: 5px;
+				display: -webkit-box;
+			    max-width: 100%;
+			    max-height: 103px;
+			    -webkit-line-clamp: 4;
+			    -webkit-box-orient: vertical;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
 			}
 			.movieDescription
 			{
@@ -146,7 +161,7 @@
 		i
 		{			
 			margin-right: 3px;
-			line-height: 1.6;
+			line-height: 1.9;
 		}
 	}
 	.bar-footer

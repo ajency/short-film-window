@@ -280,11 +280,11 @@ a {
   width: auto;
 }
 .playlist .playlistDetails .totalFilms div.timeOuterDiv {
-  width: 90px;
+  width: 75px;
   margin-top: 2px;
 }
 .playlist .playlistDetails .totalFilms div i {
-  /*float: left;*/
+  float: right;
   width: 15px;
 }
 .playlist .playlistDetails .totalFilms div .time {
@@ -367,9 +367,11 @@ a {
 .cardOuter {
   height: 100%;
   margin-bottom: 0 !important;
+  padding: 0 !important;
+  box-shadow: none;
 }
 .cardOuter .movieDetails {
-  bottom: 60px;
+  bottom: 70px;
 }
 .cardDetails {
   height: 100%;
@@ -584,6 +586,9 @@ a {
 .playlistHeaderOuter {
   float: left;
 }
+.popularDisplayDiv {
+  height: 100%;
+}
 .bar {
   background-size: 100% 0px;
 }
@@ -693,6 +698,7 @@ a {
 .movieDetails .viewsNLikes {
   font-size: 2.3vh;
   color: #d4d4d4;
+  padding-bottom: 15px;
 }
 .movieDetails .viewsNLikes span {
   margin-right: 25px;
@@ -713,7 +719,7 @@ a {
   font-size: 2em;
 }
 .singleMovieOuter {
-  height: 100%;
+  height: 84%;
   background: #000000;
   position: relative;
 }
@@ -956,7 +962,7 @@ a {
 	}*/
 }
 .singleGenre .popular .cardOuter .movieDetails {
-  bottom: 0;
+  bottom: 0px;
 }
 .singleGenre .item-divider {
   color: #2e2e2e !important;
@@ -965,11 +971,13 @@ a {
   min-height: 30px !important;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
-  padding-bottom: 3px;
+  padding-bottom: 3px
+  /*padding: 0;*/
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail {
   height: 105px;
   width: 100px;
+  /*width: 100%;*/
   overflow: hidden;
   float: left;
   text-align: center;
@@ -978,17 +986,29 @@ a {
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail img {
   height: 100%;
-  width: auto !important;
+  width: auto;
   position: relative;
   left: 100%;
   margin-left: -200%;
 }
-.singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle,
-.singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
-  /*margin-left: 10px;*/
+.singleGenre .singleGenreAvtar.item-thumbnail-left .singlePlaylistDetails {
+  /*position: absolute;
+		    	top: 0;
+		    	left: 0;
+		    	width:100%;
+		    	padding: 10px;*/
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
-  font-size: 1.2em;
+  font-size: 3vh;
+  white-space: normal;
+  margin-bottom: 5px;
+  display: -webkit-box;
+  max-width: 100%;
+  max-height: 103px;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
   display: block;
@@ -1038,7 +1058,7 @@ a {
 }
 .singleGenre .item i {
   margin-right: 3px;
-  line-height: 1.6;
+  line-height: 1.9;
 }
 .singleGenre .bar-footer {
   padding: 0;
@@ -1569,6 +1589,9 @@ a {
   }
   .limitDiv .imageContainer {
     width: 100% !important;
+  }
+  .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
+    font-size: 1.1em;
   }
 }
 @media screen and (min-height: 470px) and (max-height: 640px) {
