@@ -25,24 +25,22 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       .show 'No internet availability','long','bottom'
       .then ()->
         App.navigate 'popular'
-
-
           
 
     Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
 
-    ParsePushPlugin.getInstallationObjectId (id) ->
-      ParseConfiguration.installationId = id
-    , (e) ->
-      ParseConfiguration.installationId =  0
+    # ParsePushPlugin.getInstallationObjectId (id) ->
+    #   ParseConfiguration.installationId = id
+    # , (e) ->
+    #   ParseConfiguration.installationId =  0
 
-    window.ParsePushPlugin.on 'openPN', (pn)->
-      console.log 'operns'
-      $rootScope.$broadcast 'openNotification', { payload: pn }
+    # window.ParsePushPlugin.on 'openPN', (pn)->
+    #   console.log 'operns'
+    #   $rootScope.$broadcast 'openNotification', { payload: pn }
 
-    window.ParsePushPlugin.on 'receivePN', (pn)->
-      console.log 'revire'
-      $rootScope.$broadcast 'receiveNotification', { payload: pn }
+    # window.ParsePushPlugin.on 'receivePN', (pn)->
+    #   console.log 'revire'
+    #   $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
   $rootScope.App = App
 #....YouTube Api loading

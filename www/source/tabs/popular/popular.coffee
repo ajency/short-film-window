@@ -3,18 +3,18 @@ angular.module 'SFWApp.tabs',[]
   ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
 
 
-    # $scope.$on '$ionicView.afterEnter', ->
-    #   console.log 'Loading Swiper'
-    #   $rootScope.swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
-    #     direction: 'vertical'
-    #     )
-
-    # $scope.$on '$ionicView.beforeLeave', ->
-    #   console.log 'Destory'
-    #   $rootScope.swiper.destroy()
-
     swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
       direction: 'vertical'
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflow:
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows : false
     )
 
 
