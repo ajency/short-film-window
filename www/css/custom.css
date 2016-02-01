@@ -201,8 +201,10 @@ a {
 }
 .singleGenre .item-thumbnail-left.item-divider {
   padding: 5px 10px 5px 5px;
-  min-height: 118px !important;
-  height: 118px !important;
+  /*min-height: 118px !important;
+    height: 118px !important;*/
+  min-height: 190px !important;
+  height: 190px !important;
 }
 .popular.has-tabs-top {
   top: 86px;
@@ -971,13 +973,15 @@ a {
   min-height: 30px !important;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
-  padding-bottom: 3px
-  /*padding: 0;*/
+  /*padding-bottom: 3px;*/
+  padding: 0;
+  border-bottom: 2px solid #ffffff;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail {
-  height: 105px;
-  width: 100px;
-  /*width: 100%;*/
+  /*height: 105px;*/
+  height: 100%;
+  /*width: 100px;*/
+  width: 100%;
   overflow: hidden;
   float: left;
   text-align: center;
@@ -991,15 +995,20 @@ a {
   left: 100%;
   margin-left: -200%;
 }
+.singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail .overlay {
+  background: -webkit-linear-gradient(top, #000000 0%, rgba(0, 0, 0, 0.51) 80%, rgba(0, 0, 0, 0.39) 100%);
+  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.51) 80%, rgba(0, 0, 0, 0.39) 100%);
+}
 .singleGenre .singleGenreAvtar.item-thumbnail-left .singlePlaylistDetails {
-  /*position: absolute;
-		    	top: 0;
-		    	left: 0;
-		    	width:100%;
-		    	padding: 10px;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
-  font-size: 3vh;
+  font-size: 3.5vh;
   white-space: normal;
   margin-bottom: 5px;
   display: -webkit-box;
@@ -1009,6 +1018,9 @@ a {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
   display: block;
@@ -1021,13 +1033,18 @@ a {
   text-overflow: ellipsis;
   line-height: 1.3;
   font-size: 14px;
+  color: #ccc;
+  margin-bottom: 10px;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .totalfilmsNTime {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  padding: 0 14px 0 116px;
-  bottom: 2px;
+  /*position: absolute;
+			    width: 100%;
+			    left: 0;
+			    padding: 0 14px 0 116px;
+			    bottom: 2px;*/
+  text-align: left;
+  padding: 10px 15px;
+  color: #fff;
 }
 .singleGenre .scroll {
   height: 100%;
