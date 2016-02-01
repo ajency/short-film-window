@@ -57,12 +57,17 @@ angular.module('SFWApp.tabs').controller('singlePlaylist', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
-    return $scope.back = function() {
+    $scope.back = function() {
       var count;
       DetailsAPI.Global_array = [];
       DetailsAPI.GlobalChild_array = [];
       count = -1;
       return App.goBack(count);
+    };
+    return window.onscroll = function(oEvent) {
+      var scrollPos;
+      scrollPos = document.getElementsByTagName("body")[0].scrollTop;
+      return console.log(scrollPos);
     };
   }
 ]);

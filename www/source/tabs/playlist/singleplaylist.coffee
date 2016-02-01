@@ -73,4 +73,15 @@ angular.module 'SFWApp.tabs'
         count = -1
         App.goBack count
 
+    window.onscroll = (oEvent)-> 
+      # mydivpos = document.getElementById("mydiv").offsetTop
+      scrollPos = document.getElementsByTagName("body")[0].scrollTop
+      console.log scrollPos
+
+      # if scrollPos >= mydivpos
+      #   document.getElementById("noshow").className = "";
+      # else
+      #   document.getElementById("noshow").className = "hidden";
+    
+
 ]
