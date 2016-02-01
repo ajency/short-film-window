@@ -284,12 +284,13 @@ a {
   width: auto;
 }
 .playlist .playlistDetails .totalFilms div.timeOuterDiv {
-  width: 75px;
+  width: 78px;
   margin-top: 2px;
 }
 .playlist .playlistDetails .totalFilms div i {
   float: right;
   width: 15px;
+  text-align: right;
 }
 .playlist .playlistDetails .totalFilms div .time {
   /*float: left;*/
@@ -610,6 +611,9 @@ a {
   width: 100%;
   display: -webkit-box;
   line-height: 1.4;
+}
+.popularswiper .swiper-wrapper .list:last-child {
+  margin-bottom: 0;
 }
 .bar {
   background-size: 100% 0px;
