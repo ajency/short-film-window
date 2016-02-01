@@ -22,6 +22,7 @@
                 <div class="swiper-wrapper">
                     <!-- <div ng-switch-when='result'> -->
                     <div ng-repeat="data in playlistData" class="cardDetails swiper-slide" is-loaded>
+                    <div class="overlay" style="z-index:44444;background: linear-gradient(to top, #000000 0%, rgba(0, 0, 0, 0.1) 10%, rgba(0, 0, 0, 0.5) 100%);"></div>
                         <div class="list card margin0 cardOuter ">
                             <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
                                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
