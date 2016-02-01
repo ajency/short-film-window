@@ -54,7 +54,8 @@
 			/*padding-bottom: 3px;*/
 			padding: 0;
 			border-bottom: 2px solid @white;
-			background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);
+			/*background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);*/
+			background: @white;
 			.playlist-thumbnail
 			{
 				/*height: 105px;*/
@@ -63,6 +64,7 @@
 			    /*width: 100%;*/
 			    height: 120px;
 			    width: 120px;
+			    display: none;
 
 			    overflow: hidden;
 			    /*float: left;*/
@@ -108,7 +110,7 @@
 
 			    margin-top: 10px;
 			    margin-bottom: 10px;
-			    color: @white;
+			    /*color: @white;*/
 			    line-height: 1.2;
 			    
 			}
@@ -125,7 +127,7 @@
 			    line-height: 1.3;
 			    font-size: 14px;
 
-			    color: #ccc;
+			    /*color: #ccc;*/
 			    margin-bottom: 10px;
 			}
 			.totalfilmsNTime
@@ -138,7 +140,7 @@
 
 			    text-align: left;
 			    padding: 10px 15px;
-			    color: #fff;
+			    /*color: #fff;*/
 			}
 		}
 	}
@@ -538,4 +540,11 @@
 .displayDiv
 {
 	width: 100%;
+}
+.singlePlaylist
+{
+	.scroll
+	{
+		/*height: auto !important;*/
+	}
 }
