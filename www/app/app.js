@@ -10,12 +10,14 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
     $ionicPlatform.ready(function() {
       if (App.isOnline()) {
         InitialiseService.initialize().then(function(response) {
+          $cordovaSplashscreen.hide();
           return App.navigate('popular');
         })["finally"](function() {
           return console.log('finally');
         });
       } else {
         $cordovaToast.show('No internet availability', 'long', 'bottom').then(function() {
+          $cordovaSplashscreen.hide();
           return App.navigate('popular');
         });
       }

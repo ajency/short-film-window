@@ -17,6 +17,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     if App.isOnline()
       InitialiseService.initialize()
       .then (response) ->
+        $cordovaSplashscreen.hide()
         App.navigate 'popular'
       .finally ->
         console.log 'finally'
@@ -24,6 +25,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       $cordovaToast
       .show 'No internet availability','long','bottom'
       .then ()->
+        $cordovaSplashscreen.hide()
         App.navigate 'popular'
           
 
