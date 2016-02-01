@@ -52,25 +52,25 @@
 		&.item-thumbnail-left
 		{		
 			/*padding-bottom: 3px;*/
-			position: absolute;
 			padding: 0;
-			background: none;
-			box-shadow: 1px 3px 2px rgba(0,0,0,0.3);
-			/*border-bottom: 2px solid @white;*/
+			border-bottom: 2px solid @white;
+			background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);
 			.playlist-thumbnail
 			{
 				/*height: 105px;*/
-				height: 100%;
+				/*height: 100%;*/
 			    /*width: 100px;*/
-			    width: 100%;
+			    /*width: 100%;*/
+			    height: 120px;
+			    width: 120px;
+
 			    overflow: hidden;
-			    float: left;
+			    /*float: left;*/
 			    text-align: center;
-			    margin-right: 10px;
-			    margin-top: 2px;
-
-			    display: none;
-
+			    /*margin-right: 10px;
+			    margin-top: 2px;*/
+			    margin: auto;
+			    margin-top: 20px;
 			    img
 			    {
 			    	height: 100%;
@@ -78,24 +78,20 @@
 				    position: relative;
 				    left: 100%;
 				    margin-left: -200%;
-
-				    display: none;
 			    }	
-			    .overlay
+			   /* .overlay
 			    {
 			    	background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);
-			    }		    
+			    }	*/	    
 			}
 			.singlePlaylistDetails
 		    {
-		    	/*position: absolute;*/
+		    /*	position: absolute;
 		    	top: 0;
-		    	left: 0;
+		    	left: 0;*/
 		    	width:100%;
 		    	padding: 10px;
 		    	text-align: center;
-
-		    	background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 60%,rgba(0,0,0,0.39) 100%);
 		    }			
 			.cardTitle
 			{
@@ -114,7 +110,6 @@
 			    margin-bottom: 10px;
 			    color: @white;
 			    line-height: 1.2;
-
 			}
 			.movieDescription
 			{
