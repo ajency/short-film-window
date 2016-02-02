@@ -1,13 +1,14 @@
-angular.module 'SFWApp.directives' , []
-.directive 'scroll', ($window) ->
-  (scope, element, attrs) ->
-    angular.element($window).bind 'scroll', ->
-      if @pageYOffset >= 100
-        scope.boolChangeClass = true
-        console.log 'Scrolled below header.'
+angular.module 'SFWApp.directives'
+.directive 'scrollWatch', ($rootScope) ->
+  (scope, elem, attr) ->
+    start = 0
+    threshold = 150
+    elem.bind 'scroll', (e) ->
+      if e.detail.scrollTop - start > threshold
+        $rootScope.slideHeader = true
       else
-        scope.boolChangeClass = false
-        console.log 'Header is in view.'
-      scope.$apply()
-      return
-    return
+        $rootScope.slideHeader = false
+      if $rootScope.slideHeaderPrevious >= e.detail.scrollTop - start
+        $rootScope.slideHeader = false
+      $rootScope.slideHeaderPrevious = e.detail.scrollTop - start
+      $rootScope.$apply()

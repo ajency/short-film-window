@@ -1,13 +1,13 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singlePlaylist', ['$scope','$rootScope','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share','$window','$timeout', ($scope,$rootScope,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share,$window,$timeout)->
+.controller 'singlePlaylist', ['$scope','$rootScope','$ionicScrollDelegate','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share','$window','$timeout', ($scope,$rootScope,$ionicScrollDelegate,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share,$window,$timeout)->
 
     $scope.display= 'loader'
 
 
-    # $scope.$on '$ionicView.beforeLeave', ->
-    #   console.log 'Destory'
-    #   $rootScope.swiper.destroy()
+    $rootScope.slideHeader = false
+
+    $rootScope.slideHeaderPrevious = 0
 
 
     $scope.share = () ->

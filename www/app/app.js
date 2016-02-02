@@ -8,10 +8,11 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
+      console.log(App.isOnline(), 'online');
       if (App.isOnline()) {
+        console.log('online');
         InitialiseService.initialize().then(function(response) {
           console.log('popular');
-          $cordovaSplashscreen.hide();
           return App.navigate('popular');
         })["finally"](function() {
           return console.log('finally');

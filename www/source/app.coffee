@@ -14,11 +14,13 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 .run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
+    console.log App.isOnline(),'online'
     if App.isOnline()
+      console.log 'online'
       InitialiseService.initialize()
       .then (response) ->
         console.log 'popular'
-        $cordovaSplashscreen.hide()
+        # $cordovaSplashscreen.hide()
         App.navigate 'popular'
       .finally ->
         console.log 'finally'

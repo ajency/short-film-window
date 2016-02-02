@@ -1,14 +1,19 @@
-angular.module('SFWApp.directives', []).directive('scroll', function($window) {
-  return function(scope, element, attrs) {
-    angular.element($window).bind('scroll', function() {
-      if (this.pageYOffset >= 100) {
-        scope.boolChangeClass = true;
-        console.log('Scrolled below header.');
+angular.module('SFWApp.directives').directive('scrollWatch', function($rootScope) {
+  return function(scope, elem, attr) {
+    var start, threshold;
+    start = 0;
+    threshold = 150;
+    return elem.bind('scroll', function(e) {
+      if (e.detail.scrollTop - start > threshold) {
+        $rootScope.slideHeader = true;
       } else {
-        scope.boolChangeClass = false;
-        console.log('Header is in view.');
+        $rootScope.slideHeader = false;
       }
-      scope.$apply();
+      if ($rootScope.slideHeaderPrevious >= e.detail.scrollTop - start) {
+        $rootScope.slideHeader = false;
+      }
+      $rootScope.slideHeaderPrevious = e.detail.scrollTop - start;
+      return $rootScope.$apply();
     });
   };
 });
