@@ -14,10 +14,13 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 .run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
+    console.log App.isOnline(),'online'
     if App.isOnline()
+      console.log 'online'
       InitialiseService.initialize()
       .then (response) ->
-        $cordovaSplashscreen.hide()
+        console.log 'popular'
+        # $cordovaSplashscreen.hide()
         App.navigate 'popular'
       .finally ->
         console.log 'finally'
@@ -31,11 +34,11 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 
     Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
 
-    ParsePushPlugin.getInstallationObjectId (id) ->
-      console.log id
-      ParseConfiguration.installationId = id
-    , (e) ->
-      ParseConfiguration.installationId =  0
+    # ParsePushPlugin.getInstallationObjectId (id) ->
+    #   console.log id
+    #   ParseConfiguration.installationId = id
+    # , (e) ->
+    #   ParseConfiguration.installationId =  0
 
     # window.ParsePushPlugin.on 'openPN', (pn)->
     #   console.log 'operns'

@@ -1,6 +1,8 @@
 angular.module('SFWApp.tabs').controller('singlePlaylist', [
-  '$scope', '$rootScope', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', function($scope, $rootScope, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout) {
+  '$scope', '$rootScope', '$ionicScrollDelegate', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', function($scope, $rootScope, $ionicScrollDelegate, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout) {
     $scope.display = 'loader';
+    $rootScope.slideHeader = false;
+    $rootScope.slideHeaderPrevious = 0;
     $scope.share = function() {
       return share.shareNative();
     };

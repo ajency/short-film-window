@@ -5,6 +5,8 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.SearchResult = [];
   $scope.classname = '';
   $scope.watchListCount = '0';
+  $scope.device_height = $window.innerHeight;
+  $scope.hgt = parseInt($scope.device_height) - parseInt(45);
   $scope.getwatchlistcount = function() {
     console.log("init called");
     return Storage.watchlistDetails('get').then(function(value) {
