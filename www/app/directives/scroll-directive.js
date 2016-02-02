@@ -1,15 +1,14 @@
-app.directive('scroll', function($window) {
+angular.module('SFWApp.directives', []).directive('scroll', function($window) {
   return function(scope, element, attrs) {
-    return angular.element($window).bind('scroll', function() {
-      console.log('asdsadas');
+    angular.element($window).bind('scroll', function() {
       if (this.pageYOffset >= 100) {
         scope.boolChangeClass = true;
-        console.log('Scrolled below header');
+        console.log('Scrolled below header.');
       } else {
         scope.boolChangeClass = false;
-        console.log('Header is in view');
+        console.log('Header is in view.');
       }
-      return scope.$apply();
+      scope.$apply();
     });
   };
 });

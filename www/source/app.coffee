@@ -17,7 +17,8 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     if App.isOnline()
       InitialiseService.initialize()
       .then (response) ->
-        # $cordovaSplashscreen.hide()
+        console.log 'popular'
+        $cordovaSplashscreen.hide()
         App.navigate 'popular'
       .finally ->
         console.log 'finally'
@@ -31,19 +32,19 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 
     Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
 
-    ParsePushPlugin.getInstallationObjectId (id) ->
-      console.log id
-      ParseConfiguration.installationId = id
-    , (e) ->
-      ParseConfiguration.installationId =  0
+    # ParsePushPlugin.getInstallationObjectId (id) ->
+    #   console.log id
+    #   ParseConfiguration.installationId = id
+    # , (e) ->
+    #   ParseConfiguration.installationId =  0
 
-    window.ParsePushPlugin.on 'openPN', (pn)->
-      console.log 'operns'
-      $rootScope.$broadcast 'openNotification', { payload: pn }
+    # window.ParsePushPlugin.on 'openPN', (pn)->
+    #   console.log 'operns'
+    #   $rootScope.$broadcast 'openNotification', { payload: pn }
 
-    window.ParsePushPlugin.on 'receivePN', (pn)->
-      console.log 'revire'
-      $rootScope.$broadcast 'receiveNotification', { payload: pn }
+    # window.ParsePushPlugin.on 'receivePN', (pn)->
+    #   console.log 'revire'
+    #   $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
   $rootScope.App = App
 #....YouTube Api loading
