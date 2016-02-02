@@ -8,6 +8,7 @@ angular.module('SFWApp.sidebar', [])
   $scope.SearchResult = []
   $scope.classname = ''
   $scope.watchListCount = '0'
+  $scope.afterSearch = false
 
   # $rootScope.$on 'openNotification', (event, pn)->
   #   console.log 'openpn'
@@ -59,6 +60,7 @@ angular.module('SFWApp.sidebar', [])
     App.navigate 'init'
 
   $scope.searchMovie = () ->
+    $scope.afterSearch = false
     console.log "key-up event called"
     txt = document.getElementById("autocomplete");
     txtvalue = txt.value;
@@ -66,6 +68,7 @@ angular.module('SFWApp.sidebar', [])
     $scope.display = 'loader'
     DetailsAPI.searchResult(txtvalue)
       .then (data)=>
+        $scope.afterSearch = true
         console.log data
         $scope.SearchResult = data
 

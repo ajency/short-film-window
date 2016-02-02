@@ -7,6 +7,7 @@ angular.module 'SFWApp.directives', []
         pagination: '.swiper-pagination'
         paginationClickable: true
         effect: 'coverflow',
+        loop: false
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 'auto',

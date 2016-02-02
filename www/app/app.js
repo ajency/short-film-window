@@ -8,9 +8,11 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
+      console.log(App.isOnline(), 'online');
       if (App.isOnline()) {
+        console.log('online');
         InitialiseService.initialize().then(function(response) {
-          $cordovaSplashscreen.hide();
+          console.log('popular');
           return App.navigate('popular');
         })["finally"](function() {
           return console.log('finally');
@@ -21,13 +23,7 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
           return App.navigate('popular');
         });
       }
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      return ParsePushPlugin.getInstallationObjectId(function(id) {
-        console.log(id);
-        return ParseConfiguration.installationId = id;
-      }, function(e) {
-        return ParseConfiguration.installationId = 0;
-      });
+      return Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
     });
     $rootScope.App = App;
     tag = document.createElement('script');

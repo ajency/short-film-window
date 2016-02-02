@@ -5,6 +5,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.SearchResult = [];
   $scope.classname = '';
   $scope.watchListCount = '0';
+  $scope.afterSearch = false;
   $scope.device_height = $window.innerHeight;
   $scope.hgt = parseInt($scope.device_height) - parseInt(45);
   $scope.getwatchlistcount = function() {
@@ -35,6 +36,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   };
   $scope.searchMovie = function() {
     var txt, txtvalue;
+    $scope.afterSearch = false;
     console.log("key-up event called");
     txt = document.getElementById("autocomplete");
     txtvalue = txt.value;
@@ -43,6 +45,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
     return DetailsAPI.searchResult(txtvalue).then((function(_this) {
       return function(data) {
         var device_height, device_width;
+        $scope.afterSearch = true;
         console.log(data);
         $scope.SearchResult = data;
         device_width = $window.innerWidth;

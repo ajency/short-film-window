@@ -8,6 +8,7 @@ angular.module 'SFWApp.tabs',[]
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
+      loop: false
       slidesPerView: 'auto',
       coverflow:
         rotate: 50,

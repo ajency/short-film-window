@@ -6,6 +6,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
+      loop: false,
       slidesPerView: 'auto',
       coverflow: {
         rotate: 50,
