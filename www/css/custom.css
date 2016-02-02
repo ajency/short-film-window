@@ -612,7 +612,7 @@ a {
   z-index: 9999;
   color: #333;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  font-size: 19px;
+  font-size: 3.4vh;
   /* padding: 10px; */
   max-height: 66px;
   -webkit-box-orient: vertical;
@@ -1077,9 +1077,9 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.3;
-  font-size: 16px;
+  font-size: 2.7vh;
   /*color: #ccc;*/
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .totalfilmsNTime {
   /*position: absolute;
@@ -1660,6 +1660,12 @@ a {
   }
   .singleGenre .singleGenreAvtar.item-thumbnail-left .cardTitle {
     font-size: 1.1em;
+  }
+  .playlistHeaderSmall {
+    font-size: 1.2em;
+  }
+  .singleGenre .singleGenreAvtar.item-thumbnail-left .movieDescription {
+    font-size: 1em;
   }
 }
 @media screen and (min-height: 470px) and (max-height: 640px) {
