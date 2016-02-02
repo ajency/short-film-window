@@ -564,6 +564,8 @@ a {
   position: relative;
   height: 100%;
   color: #2e2e2e;
+  line-height: 1.2;
+  font-size: 16px;
 }
 .box i {
   position: absolute;
@@ -580,8 +582,15 @@ a {
 }
 .box i.searchIcon {
   right: 10px;
+  font-size: 22px;
 }
-.searchResult .cardDetails:first-child {
+.searchResult {
+  /*.cardDetails:first-child
+	{
+		margin-top: 44px;
+	}*/
+}
+.searchResult .imageContainerOuter {
   margin-top: 44px;
 }
 .searchResult .cardOuter .movieDetails {
