@@ -12,8 +12,11 @@
       <div ng-switch ="display" >
          <ion-content class="mainContent">
   <div  class="popular  {{ classname}} " ion-sticky  overflow-scroll='true'>
+      <div id="searchswiperId" class="swiper-container genreswiper" swiper style="height: {{ device_height }}px;">
+                <div class="swiper-wrapper">
+
       <div class="cardDetails swiper-slide  "
-          ng-repeat ="data in SearchResult" >
+          ng-repeat ="data in SearchResult" is-loaded>
           <div class="list card margin0 cardOuter" ng-click="singleplay({{ data.movie_id }})">
               <div class="item item-image padding0 noteWorthy">
                 <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}" />
@@ -38,6 +41,8 @@
               </div>
                 </div>
             </div>
+       </div>
+       </div>
        </div>
         </ion-content>
  <div class="loaderOuter" ng-switch-when="loader">

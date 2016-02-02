@@ -21,6 +21,12 @@ angular.module('SFWApp.sidebar', [])
   # serviceUrl: 'http://shortfilm.staging.wpengine.com/wp-json/search?str=Refle'
   # onSelect: (suggestion) ->
   #   alert 'You selected: ' + suggestion.value + ', ' + suggestion.data
+
+  $scope.device_height = $window.innerHeight;
+  $scope.hgt = parseInt($scope.device_height) - parseInt(45)
+
+
+
   $scope.getwatchlistcount = ()->
     console.log "init called"
     Storage.watchlistDetails 'get'
@@ -91,6 +97,7 @@ angular.module('SFWApp.sidebar', [])
 
   $scope.hideSearch = () ->
     console.log "hide Search Bar"
+    # $scope.swp.$destroy();
     $scope.display = 'tabview'
 
   $scope.SeacrchClicked = ()->

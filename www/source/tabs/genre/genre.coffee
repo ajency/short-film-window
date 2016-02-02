@@ -42,12 +42,6 @@ angular.module 'SFWApp.tabs'
 			console.log DetailsAPI.videoId
 			App.navigate "singleGenre"
 
-		$scope.view =
-			swiper = new Swiper('.swiper-container', {
-					pagination: '.swiper-pagination'
-					paginationClickable: true
-					direction: 'vertical'
-						});
 
 
 ]
