@@ -5,8 +5,8 @@
     </ion-header-bar>
     <div ng-switch='display'>
         <ion-content class="popular singlePlaylist" overflow-scroll='true' ion-sticky>
-        <div ng-show='display == "result"' class="popularDisplayDiv" id="playlistHeaderSmall">
-            <div class="playlistHeaderSmall  item-divider">
+        <div ng-show='display == "result"' class="popularDisplayDiv" >
+            <div class="playlistHeaderSmall  item-divider" id="playlistHeaderSmall">
                 {{ playlist.playlist_name }}
             </div>
             <div id="playlistSwipeId" class="swiperplaylist">
@@ -61,3 +61,4 @@
         </aj-error>
     </div>
 </ion-view>
+

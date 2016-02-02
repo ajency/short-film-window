@@ -3,19 +3,20 @@
         <button class="button button-icon whiteText text-uppercase"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
-
+<div ng-switch = "display" class="displayDiv">
         <ion-content class="popular" ion-sticky>
+      <div ng-switch-when ="result">
        <div class="item item-avatar watchlistHeader item-divider">
               <img src="img/icons/watchlist.png">
               <div class="primaryText cardTitle">My watchlist</div>
               <p>Awesome movies to be watched later.</p>
             </div>
-        <!-- <div id="" class="swiper-container">
-        <div class="swiper-wrapper">          -->
+        <div id="watchlistswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
+                <div class="swiper-wrapper">
 
-<div ng-switch = "display" class="displayDiv">
-<div ng-switch-when ="result">
-    <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
+
+
+    <div ng-repeat ="data in watchlistDetails" style="height: {{ hgt }}px"  class="cardDetails swiper-slide" is-loaded>
     <button class="button button-icon whiteText watchList" ng-click= "updatewatchlist(data.movie_id ) ">
           <i class="ion-heart selected"></i></button>
     <div  class="list card margin0 cardOuter ">
@@ -47,7 +48,8 @@
 
     </div>
 
-
+</div>
+</div>
 </div>
  <div class="loaderOuter" ng-switch-when="loader">
       <div class="loading-spinner"></div>
@@ -66,10 +68,9 @@
   </div>
 </div>
 
-</div>
-<!-- </div>
-</div> -->
+
+
 
 </ion-content>
-
+</div>
 </ion-view>
