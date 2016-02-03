@@ -13,6 +13,7 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
         console.log('online');
         InitialiseService.initialize().then(function(response) {
           console.log('popular');
+          $cordovaSplashscreen.hide();
           return App.navigate('popular');
         })["finally"](function() {
           return console.log('finally');
