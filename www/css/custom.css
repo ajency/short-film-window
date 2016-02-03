@@ -1478,17 +1478,12 @@ a {
 .notifications h5 span {
   color: #aeaeae;
 }
-.notifications h5 span.read {
-  height: 8px;
-  width: 8px;
-  background: #aeaeae;
-  border-radius: 50%;
+.notifications h5 span i {
+  color: #aeaeae;
+  font-size: 12px;
 }
-.notifications h5 span.unread {
-  height: 8px;
-  width: 8px;
-  background: #5ab515;
-  border-radius: 50%;
+.notifications h5 span.unread i {
+  color: #5ab515;
 }
 .notifications p {
   white-space: normal;

@@ -8,8 +8,8 @@
                 <ion-item ng-repeat="notify in notificationArray" ng-click="markNotificationAsRead(notify.notificationId)">
                     <h5>
               <span class="text-uppercase date">{{notify.createdAt}}</span>
-              <span class="read pull-right" ng-if="notify.status == 'read'">read</span>
-              <span class="read pull-right" ng-if="notify.status == 'unread'">unread</span>
+              <span class="read pull-right" ng-if="notify.status == 'read'"><i class="ion-record"></i></span>
+              <span class="unread pull-right" ng-if="notify.status == 'unread'"><i class="ion-record"></i></span>
             </h5>
                     <p>{{notify.alert}}</p>
                 </ion-item>
