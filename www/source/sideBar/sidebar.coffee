@@ -12,6 +12,8 @@ angular.module('SFWApp.sidebar', [])
 
   $rootScope.$on 'openNotification', (event, pn)->
     console.log 'openpn'
+    if $rootScope.unreadNotificationCount
+      $rootScope.unreadNotificationCount--
     ParseNotificationService.updateNotificationStatus(pn.payload.notificationId)
     console.log pn
 
@@ -19,6 +21,7 @@ angular.module('SFWApp.sidebar', [])
     console.log 'recievepn',$rootScope.unreadNotificationCount
     $rootScope.unreadNotificationCount++
     console.log pn
+
 
   # $('#autocomplete').autocomplete
   # serviceUrl: 'http://shortfilm.staging.wpengine.com/wp-json/search?str=Refle'
