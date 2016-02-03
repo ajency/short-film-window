@@ -11,16 +11,16 @@ angular.module('SFWApp.sidebar', [])
   $scope.afterSearch = false
 
   $rootScope.$on 'openNotification', (event, pn)->
-    console.log 'openpn'
+    App.fromNotification = 1
+    DetailsAPI.videoId = 131
+    # pn.payload.movieId
     if $rootScope.unreadNotificationCount
       $rootScope.unreadNotificationCount--
-    ParseNotificationService.updateNotificationStatus(pn.payload.notificationId)
-    console.log pn
+    App.notificationPayload = pn 
+    App.navigate('init')    
 
   $rootScope.$on 'receiveNotification', (event, pn)->
-    console.log 'recievepn',$rootScope.unreadNotificationCount
     $rootScope.unreadNotificationCount++
-    console.log pn
 
 
   # $('#autocomplete').autocomplete

@@ -7,17 +7,16 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.watchListCount = '0';
   $scope.afterSearch = false;
   $rootScope.$on('openNotification', function(event, pn) {
-    console.log('openpn');
+    App.fromNotification = 1;
+    DetailsAPI.videoId = 131;
     if ($rootScope.unreadNotificationCount) {
       $rootScope.unreadNotificationCount--;
     }
-    ParseNotificationService.updateNotificationStatus(pn.payload.notificationId);
-    return console.log(pn);
+    App.notificationPayload = pn;
+    return App.navigate('init');
   });
   $rootScope.$on('receiveNotification', function(event, pn) {
-    console.log('recievepn', $rootScope.unreadNotificationCount);
-    $rootScope.unreadNotificationCount++;
-    return console.log(pn);
+    return $rootScope.unreadNotificationCount++;
   });
   $scope.device_height = $window.innerHeight;
   $scope.hgt = parseInt($scope.device_height) - parseInt(45);

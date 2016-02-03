@@ -109,6 +109,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         console.log("Single video Data Cached");
         $scope.display = 'result';
         $scope.Videodetails = DetailsAPI.singleVideoarray;
+        $ionicLoading.hide();
       } else {
         DetailsAPI.GetSingleVideo(DetailsAPI.videoId).then((function(_this) {
           return function(data) {
@@ -117,11 +118,13 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             DetailsAPI.singleVideoarray = data;
             $scope.Videodetails = data;
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
-            return $scope.checkIfaddedlist();
+            $scope.checkIfaddedlist();
+            return $ionicLoading.hide();
           };
         })(this), (function(_this) {
           return function(error) {
             console.log('Error Loading data');
+            $ionicLoading.hide();
             return $scope.display = 'error';
           };
         })(this));
@@ -138,8 +141,14 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         maxWidth: 600,
         showDelay: 0
       });
-      InitialiseService.initialize().then(function(data) {});
-      return $scope.init();
+      console.log(App.notificationPayload.payload.notificationId);
+      return ParseNotificationService.updateNotificationStatus(App.notificationPayload.payload.notificationId).then(function(data) {
+        console.log(data);
+        return $scope.init();
+      })["catch"](function(error) {
+        console.log(error);
+        return $scope.init();
+      });
     };
     $scope.$on('$ionicView.afterEnter', function() {
       return console.log('after enter');

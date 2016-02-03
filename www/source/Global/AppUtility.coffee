@@ -14,6 +14,7 @@ angular.module('SFWApp.Global', []).factory 'App', [
       previousState: ''
       currentState: ''
       fromNotification: 0
+      notificationPayload : []
       navigate: (state, params, opts) ->
         animate = undefined
         back = undefined

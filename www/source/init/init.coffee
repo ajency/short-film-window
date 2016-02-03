@@ -117,6 +117,7 @@ angular.module 'SFWApp.init', []
             console.log "Single video Data Cached"
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray
+            $ionicLoading.hide()
         else
             DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
             .then (data)=>
@@ -126,9 +127,11 @@ angular.module 'SFWApp.init', []
                 $scope.Videodetails = data
                 document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
                 $scope.checkIfaddedlist()
+                $ionicLoading.hide()
 
             , (error)=>
                 console.log 'Error Loading data'
+                $ionicLoading.hide()
                 $scope.display = 'error'
 
 
@@ -145,8 +148,17 @@ angular.module 'SFWApp.init', []
         maxWidth: 600
         showDelay: 0
 
-      InitialiseService.initialize().then (data)->
-      $scope.init()
+      console.log  App.notificationPayload.payload.notificationId  
+
+      # InitialiseService.initialize().then (data)->
+      ParseNotificationService.updateNotificationStatus(App.notificationPayload.payload.notificationId)
+      .then (data)->  
+        console.log data
+        $scope.init()
+
+      .catch (error)->
+        console.log error
+        $scope.init()
 
 
     $scope.$on '$ionicView.afterEnter', ->
@@ -168,7 +180,7 @@ angular.module 'SFWApp.init', []
      if App.fromNotification
       $scope.initializeApp()
     else
-      $scope.init();
+      $scope.init()
 
     $scope.showSynopsisDiv = false
 
