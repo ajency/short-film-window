@@ -596,6 +596,9 @@ a {
 .searchResult .cardOuter .movieDetails {
   bottom: 0;
 }
+.searchResult .cardDetails {
+  margin-top: 3px;
+}
 .backdrop {
   background: rgba(0, 0, 0, 0.8);
 }
