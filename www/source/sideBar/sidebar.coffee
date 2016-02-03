@@ -1,7 +1,7 @@
 angular.module('SFWApp.sidebar', [])
 
 
-.controller 'sidebarCtrl', ($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage) ->
+.controller 'sidebarCtrl', ($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService) ->
   $scope.showsearchbar =  false
   $scope.display = 'tabview'
   $scope.errorType = ''
@@ -10,13 +10,15 @@ angular.module('SFWApp.sidebar', [])
   $scope.watchListCount = '0'
   $scope.afterSearch = false
 
-  # $rootScope.$on 'openNotification', (event, pn)->
-  #   console.log 'openpn'
-  #   console.log pn
+  $rootScope.$on 'openNotification', (event, pn)->
+    console.log 'openpn'
+    ParseNotificationService.updateNotificationStatus(pn.payload.notificationId)
+    console.log pn
 
-  # $rootScope.$on 'receiveNotification', (event, pn)->
-  #   console.log 'recievepn'
-  #   console.log pn
+  $rootScope.$on 'receiveNotification', (event, pn)->
+    console.log 'recievepn',$rootScope.unreadNotificationCount
+    $rootScope.unreadNotificationCount++
+    console.log pn
 
   # $('#autocomplete').autocomplete
   # serviceUrl: 'http://shortfilm.staging.wpengine.com/wp-json/search?str=Refle'
@@ -47,10 +49,11 @@ angular.module('SFWApp.sidebar', [])
               $scope.watchListCount = '0'
               $scope.$apply()
 
-  # $rootScope.getnotificationcount = ()->
-  #   ParseNotificationService.getUnreadNotificationsCount()
-  #   .then (value)->
-  #     $rootScope.unreadNotificationCount = value
+  $rootScope.getnotificationcount = ()->
+    ParseNotificationService.getUnreadNotificationsCount()
+    .then (value)->
+      console.log value
+      $rootScope.unreadNotificationCount = value
 
   $scope.singleplay = (videoid)->
     console.log videoid

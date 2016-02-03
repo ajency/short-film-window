@@ -1,4 +1,4 @@
-angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window, Storage) {
+angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, $rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate, App, DetailsAPI, $ionicLoading, $window, Storage, ParseNotificationService) {
   $scope.showsearchbar = false;
   $scope.display = 'tabview';
   $scope.errorType = '';
@@ -6,6 +6,16 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.classname = '';
   $scope.watchListCount = '0';
   $scope.afterSearch = false;
+  $rootScope.$on('openNotification', function(event, pn) {
+    console.log('openpn');
+    ParseNotificationService.updateNotificationStatus(pn.payload.notificationId);
+    return console.log(pn);
+  });
+  $rootScope.$on('receiveNotification', function(event, pn) {
+    console.log('recievepn', $rootScope.unreadNotificationCount);
+    $rootScope.unreadNotificationCount++;
+    return console.log(pn);
+  });
   $scope.device_height = $window.innerHeight;
   $scope.hgt = parseInt($scope.device_height) - parseInt(45);
   $scope.getwatchlistcount = function() {
@@ -25,6 +35,12 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
           return $scope.$apply();
         }
       }
+    });
+  };
+  $rootScope.getnotificationcount = function() {
+    return ParseNotificationService.getUnreadNotificationsCount().then(function(value) {
+      console.log(value);
+      return $rootScope.unreadNotificationCount = value;
     });
   };
   $scope.singleplay = function(videoid) {

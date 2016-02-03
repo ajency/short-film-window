@@ -26,6 +26,7 @@ angular.module 'SFWApp.tabs'
         $scope.notificationArray = []
         $scope.result = 'no-new-notifications'
         ParseNotificationService.deleteNotifications()
+        $rootScope.unreadNotificationCount = 0
         .then (data) ->
           console.log data
         .catch (error) ->
@@ -41,6 +42,8 @@ angular.module 'SFWApp.tabs'
         console.log matchIndex
         $scope.notificationArray[matchIndex].status = 'read'
         console.log $scope.notificationArray
+        if $rootScope.unreadNotificationCount
+          $rootScope.unreadNotificationCount--
 
         ParseNotificationService.updateNotificationStatus(notification_id)
         .then (data) ->
