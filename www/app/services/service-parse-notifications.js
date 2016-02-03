@@ -57,21 +57,7 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
           "notification_id": notification_id
         }, {
           success: function(results) {
-            var notificationArray;
-            notificationArray = [];
-            _.each(results, function(value) {
-              var dt, obj;
-              dt = moment(value.attributes.createdAt).format('LLLL');
-              obj = {
-                "createdAt": dt,
-                "notificationId": value.attributes.notificationId.id,
-                "installationId": value.attributes.installationId.id,
-                "alert": value.attributes.notificationId.attributes.alert,
-                "status": value.attributes.status
-              };
-              return notificationArray.push(obj);
-            });
-            deferred.resolve(notificationArray);
+            deferred.resolve(results);
           },
           error: function(error) {
             deferred.reject(error);
@@ -87,20 +73,7 @@ angular.module('SFWApp.services').service('ParseNotificationService', [
           "installation_id": installation_id
         }, {
           success: function(results) {
-            var notificationArray;
-            notificationArray = [];
-            _.each(results, function(value) {
-              var obj;
-              obj = {
-                "createdAt": value.attributes.createdAt,
-                "notificationId": value.attributes.notificationId.id,
-                "installationId": value.attributes.installationId.id,
-                "alert": value.attributes.notificationId.attributes.alert,
-                "status": value.attributes.status
-              };
-              return notificationArray.push(obj);
-            });
-            deferred.resolve(notificationArray);
+            deferred.resolve(results);
           },
           error: function(error) {
             deferred.reject(error);

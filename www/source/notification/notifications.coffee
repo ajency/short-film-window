@@ -37,9 +37,9 @@ angular.module 'SFWApp.tabs'
     $scope.markNotificationAsRead = (notification_id)->
       if App.isOnline()
         console.log $scope.notificationArray,notification_id
-        match = _.findWhere $scope.notificationArray, {"notification_id": ''+notification_id+''}
-        console.log match
-        _.extend match, {status:'read'}
+        matchIndex = _.findLastIndex $scope.notificationArray, {"notificationId": ''+notification_id+''}
+        console.log matchIndex
+        $scope.notificationArray[matchIndex].status = 'read'
         console.log $scope.notificationArray
 
         ParseNotificationService.updateNotificationStatus(notification_id)

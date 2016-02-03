@@ -34,16 +34,14 @@ angular.module('SFWApp.tabs').controller('notificationsCtrl', [
       }
     };
     return $scope.markNotificationAsRead = function(notification_id) {
-      var match;
+      var matchIndex;
       if (App.isOnline()) {
         console.log($scope.notificationArray, notification_id);
-        match = _.findWhere($scope.notificationArray, {
-          "notification_id": '' + notification_id + ''
+        matchIndex = _.findLastIndex($scope.notificationArray, {
+          "notificationId": '' + notification_id + ''
         });
-        console.log(match);
-        _.extend(match, {
-          status: 'read'
-        });
+        console.log(matchIndex);
+        $scope.notificationArray[matchIndex].status = 'read';
         console.log($scope.notificationArray);
         return ParseNotificationService.updateNotificationStatus(notification_id).then(function(data) {
           return console.log(data);
