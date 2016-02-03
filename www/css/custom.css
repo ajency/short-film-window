@@ -123,6 +123,9 @@ a {
   width: 170px;
   padding: 10px 10px 2px 10px;
 }
+.platform-ios .menu .item .badge {
+  line-height: 13px;
+}
 .welcome {
   padding: 0;
   height: 101%;
@@ -609,7 +612,7 @@ a {
   height: 100%;
 }
 .playlistHeaderSmall {
-  position: fixed;
+  position: absolute;
   top: 0;
   background: #fff;
   z-index: 9999;
@@ -622,10 +625,24 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
-  display: -webkit-box;
+  /*display: -webkit-box;*/
   line-height: 25px;
   padding: 6px 10px;
   -webkit-line-clamp: 2;
+  /*transition: all 2s ease;*/
+  -webkit-transition: 0.5s linear all;
+          transition: 0.5s linear all;
+  opacity: 1;
+}
+.playlistHeaderSmall.ng-show {
+  opacity: 1;
+  -webkit-transition: 0.5s linear all;
+          transition: 0.5s linear all;
+}
+.playlistHeaderSmall.ng-hide {
+  opacity: 0;
+  -webkit-transition: 0.5s linear all;
+          transition: 0.5s linear all;
 }
 .popularswiper .swiper-wrapper .list:last-child {
   margin-bottom: 0;
@@ -1219,11 +1236,11 @@ a {
   float: left;
   margin-top: 1px;
 }
-.singleGenre .genreswiper .movieDetails .viewsNLikes {
-  margin-bottom: 20px;
-}
 .singleGenre .swiperplaylist .movieDetails .viewsNLikes {
   margin-bottom: 10px;
+}
+.platform-ios .singleGenre .genreswiper .movieDetails .viewsNLikes {
+  margin-bottom: 20px;
 }
 /*.filteredGenre
 {

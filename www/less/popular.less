@@ -564,7 +564,7 @@
 }
 .playlistHeaderSmall
 {
-	position: fixed;
+	position: absolute;
     top: 0;
     background: #fff;
     z-index: 9999;
@@ -577,11 +577,21 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    display: -webkit-box;
+    /*display: -webkit-box;*/
     line-height: 25px;
     padding: 6px 10px;
     -webkit-line-clamp: 2;
-
+    /*transition: all 2s ease;*/
+    transition: 0.5s linear all;
+   opacity: 1;  
+}
+.playlistHeaderSmall.ng-show {
+   opacity:1;
+   transition: 0.5s linear all;
+}
+.playlistHeaderSmall.ng-hide {
+   opacity:0;
+   transition: 0.5s linear all;
 }
 .popularswiper 
 {
