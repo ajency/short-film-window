@@ -45,17 +45,7 @@ angular.module('SFWApp.services').service 'ParseNotificationService', [
         installation_id = ParseConfiguration.installationId
         Parse.Cloud.run 'updateNotificationStatusAsRead', {"installation_id" : installation_id,"notification_id" : notification_id},
           success: (results) ->
-            notificationArray = []
-            _.each results, (value) ->
-              dt = moment(value.attributes.createdAt).format('LLLL')
-              obj =
-                "createdAt": dt
-                "notificationId": value.attributes.notificationId.id
-                "installationId": value.attributes.installationId.id
-                "alert": value.attributes.notificationId.attributes.alert
-                "status": value.attributes.status
-              notificationArray.push obj
-            deferred.resolve notificationArray
+            deferred.resolve results
             return
           error: (error) ->
             deferred.reject error
@@ -67,16 +57,7 @@ angular.module('SFWApp.services').service 'ParseNotificationService', [
         installation_id = ParseConfiguration.installationId
         Parse.Cloud.run 'deleteAllNotification', {"installation_id" : installation_id},
           success: (results) ->
-            notificationArray = []
-            _.each results, (value) ->
-              obj =
-                "createdAt": value.attributes.createdAt
-                "notificationId": value.attributes.notificationId.id
-                "installationId": value.attributes.installationId.id
-                "alert": value.attributes.notificationId.attributes.alert
-                "status": value.attributes.status
-              notificationArray.push obj
-            deferred.resolve notificationArray
+            deferred.resolve results
             return
           error: (error) ->
             deferred.reject error
