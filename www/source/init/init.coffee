@@ -122,7 +122,7 @@ angular.module 'SFWApp.init', []
             DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
             .then (data)=>
                 $scope.display = 'result'
-                console.log "single video  data succ"
+                console.log data
                 DetailsAPI.singleVideoarray = data
                 $scope.Videodetails = data
                 document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
