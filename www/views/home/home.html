@@ -1,4 +1,4 @@
-<ion-side-menus ng-init="test()">
+<ion-side-menus ng-init="getnotificationcount()">
     <ion-side-menu-content>
         <ion-header-bar class="bar bar-header primary">
             <button class="button button-icon icon ion-navicon whiteText" ng-click="slideContent()"></button>
@@ -81,7 +81,7 @@
                     <i class="icon-cust icon-genre"></i>
                     <b class="text-uppercase">Genre</b>
                 </a>
-                <a class="item" ng-init="getnotificationcount()" ui-sref="notifications" ng-click="slideContent()">
+                <a class="item" ui-sref="notifications" ng-click="slideContent()">
                     <i class="icon-cust icon-bell"></i>
                     <b class="text-uppercase">Notifications</b>
                     <span class="badge badge-assertive">{{unreadNotificationCount}}</span>

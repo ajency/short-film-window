@@ -20,7 +20,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       InitialiseService.initialize()
       .then (response) ->
         console.log 'popular'
-        $cordovaSplashscreen.hide()
+        # $cordovaSplashscreen.hide()
         App.navigate 'popular'
       .finally ->
         console.log 'finally'

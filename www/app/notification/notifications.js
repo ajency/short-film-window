@@ -23,7 +23,8 @@ angular.module('SFWApp.tabs').controller('notificationsCtrl', [
       if (App.isOnline()) {
         $scope.notificationArray = [];
         $scope.result = 'no-new-notifications';
-        return ParseNotificationService.deleteNotifications().then(function(data) {
+        ParseNotificationService.deleteNotifications();
+        return $rootScope.unreadNotificationCount = 0..then(function(data) {
           return console.log(data);
         })["catch"](function(error) {
           console.log(error);
@@ -43,6 +44,9 @@ angular.module('SFWApp.tabs').controller('notificationsCtrl', [
         console.log(matchIndex);
         $scope.notificationArray[matchIndex].status = 'read';
         console.log($scope.notificationArray);
+        if ($rootScope.unreadNotificationCount) {
+          $rootScope.unreadNotificationCount--;
+        }
         return ParseNotificationService.updateNotificationStatus(notification_id).then(function(data) {
           return console.log(data);
         })["catch"](function(error) {
