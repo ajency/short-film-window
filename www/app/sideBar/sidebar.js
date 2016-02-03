@@ -8,6 +8,9 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.afterSearch = false;
   $rootScope.$on('openNotification', function(event, pn) {
     console.log('openpn');
+    if ($rootScope.unreadNotificationCount) {
+      $rootScope.unreadNotificationCount--;
+    }
     ParseNotificationService.updateNotificationStatus(pn.payload.notificationId);
     return console.log(pn);
   });
