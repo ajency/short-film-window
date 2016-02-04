@@ -824,7 +824,8 @@ a {
 }
 .synopsis {
   font-size: 1.2em;
-  color: #5e5e5e
+  color: #5e5e5e;
+  background: #ffffff
   /*.synopsisDiv {
 	   transition: 1s linear all;
 	   max-height:3000px;
@@ -1037,6 +1038,9 @@ a {
   margin: 0;
   text-align: left !important;
   min-height: 30px !important;
+}
+.singleGenre .item-divider .totalfilmsNTime span {
+  margin-right: 10px;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left {
   /*padding-bottom: 3px;*/
@@ -1726,6 +1730,9 @@ a {
   }
   .singleGenre .watchlistIcon {
     left: 42%;
+  }
+  .singleMovieContent .videoOuter {
+    padding-top: 42px;
   }
 }
 @media screen and (min-height: 470px) and (max-height: 680px) {
