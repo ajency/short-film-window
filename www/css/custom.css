@@ -657,6 +657,10 @@ a {
 .singleMovieContent .scroll,
 .singleMovieContent .videoOuter {
   height: 100%;
+  background: #000000;
+}
+.singleMovieContent .videoOuter {
+  padding-top: 22px;
 }
 .overlay {
   position: absolute;
