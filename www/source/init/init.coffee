@@ -83,35 +83,47 @@ angular.module 'SFWApp.init', []
                     $scope.$apply()
 
 
-    $scope.init = ()->
+    $scope.init = (movieId = '')->
+        console.log movieId
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
-            console.log "Single video Data Cached"
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
             console.log $scope.Videodetails
             $scope.checkIfaddedlist()
-            $ionicLoading.hide()
+            $scope.initPlayer()
+        else
+            DetailsAPI.GetSingleVideo(movieId)
+            .then (data)=>
+                $scope.display = 'result'
+                obj = {"movie_id":data.movie_id,"singleVideoarray":data}
+                DetailsAPI.singleVideoarray = obj
+                $scope.Videodetails = data
 
-            $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
-            $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl
+                document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
+                $scope.initPlayer()
 
-            if($scope.vType == 'vimeo')
-              modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
-              console.log modifiedUrl
-              $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
-            else
-              player = new YT.Player('player2', {
-                height: '100%',
-                width: '100%',
-                videoId:$scope.videourl ,
-                playerVars: { 'autoplay': 0, 'rel': 0, 'wmode':'transparent', 'modestbranding' :1 }
-                events: {
-                  'onReady': onPlayerReady,
-                  'onStateChange': onPlayerStateChange
-                }
-              });  
+            , (error)=>
+                $scope.display = 'error'    
 
-        Vtype = '0'
+    $scope.initPlayer = ()->
+        $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
+        $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl
+
+        if($scope.vType == 'vimeo')
+          modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
+          console.log modifiedUrl
+          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
+        else
+          player = new YT.Player('player2', {
+            height: '100%',
+            width: '100%',
+            videoId:$scope.videourl ,
+            playerVars: { 'autoplay': 0, 'rel': 0, 'wmode':'transparent', 'modestbranding' :1 }
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });  
 
     onPlayerReady = (event) ->
         event.target.playVideo()
@@ -126,24 +138,18 @@ angular.module 'SFWApp.init', []
 
 
     $scope.initializeApp = ()->
-      $ionicLoading.show
-        content: 'Loading'
-        animation: 'fade-in'
-        showBackdrop: true
-        maxWidth: 600
-        showDelay: 0
 
-      console.log  App.notificationPayload.payload.notificationId  
+      console.log  App.notificationPayload.payload.notificationId
+      $scope.display = 'loader'
 
-      # InitialiseService.initialize().then (data)->
       ParseNotificationService.updateNotificationStatus(App.notificationPayload.payload.notificationId)
       .then (data)->  
         console.log data
-        $scope.init()
+        $scope.init(DetailsAPI.videoId)
 
       .catch (error)->
         console.log error
-        $scope.init()
+        $scope.init(DetailsAPI.videoId)
 
 
     $scope.$on '$ionicView.afterEnter', ->

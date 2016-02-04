@@ -6,6 +6,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
   $scope.classname = '';
   $scope.watchListCount = '0';
   $scope.afterSearch = false;
+  $rootScope.unreadNotificationCount = 0;
   $rootScope.$on('openNotification', function(event, pn) {
     App.fromNotification = 1;
     DetailsAPI.videoId = 131;
