@@ -653,6 +653,9 @@ a {
 .popularswiper .swiper-wrapper .list:last-child {
   margin-bottom: 0;
 }
+.playlistHgt {
+  height: calc(80%) !important;
+}
 .bar {
   background-size: 100% 0px;
 }
@@ -1736,6 +1739,9 @@ a {
   }
   .singleMovieContent .videoOuter {
     padding-top: 37px;
+  }
+  .playlistHgt {
+    height: 230px !important;
   }
 }
 @media screen and (min-height: 470px) and (max-height: 680px) {
