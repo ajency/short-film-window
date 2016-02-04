@@ -92,19 +92,16 @@ angular.module 'SFWApp.init', []
             $scope.checkIfaddedlist()
             $ionicLoading.hide()
 
-            console.log DetailsAPI.singleVideoarray
-
             $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
             $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl
 
-            console.log $scope.vType,$scope.videourl
-
             if($scope.vType == 'vimeo')
               modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
-              $scope.vimomeo = true
+              console.log modifiedUrl
+              $scope.vimeo = true
               $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
             else
-              $scope.vimomeo = false
+              $scope.vimeo = false
               player = new YT.Player('player2', {
                 height: '100%',
                 width: '100%',
