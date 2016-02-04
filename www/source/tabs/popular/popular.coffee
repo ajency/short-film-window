@@ -57,12 +57,18 @@ angular.module 'SFWApp.tabs',[]
           $ionicLoading.hide();
 
     $scope.singleplay = (videoid)->
-
       console.log videoid
       DetailsAPI.videoId = videoid
       console.log DetailsAPI.videoId
       console.log "enterd single play ."
       App.navigate 'init'
+
+    $scope.singlePlayService = (videoData)->
+      console.log videoData
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData
+      App.navigate 'init'
+
 
     $scope.test = ->
       $scope.checkNetwork = true

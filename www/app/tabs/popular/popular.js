@@ -68,6 +68,12 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
+    $scope.singlePlayService = function(videoData) {
+      console.log(videoData);
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
     return $scope.test = function() {
       var device_height, device_width;
       $scope.checkNetwork = true;

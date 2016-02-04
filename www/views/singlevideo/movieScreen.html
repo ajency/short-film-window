@@ -7,7 +7,7 @@
     </ion-header-bar>
     <div ng-switch="display">
         <ion-content class="singleMovieContent" overflow-scroll='true'>
-
+        <div ng-hide="showVideo">
             <div id="player" class="singleMovieOuter" ng-switch-when="result">
                 <div class="movieVideo">
                     <div class="imageContainerOuter">
@@ -38,11 +38,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="synopsis padding" ng-show="display == 'result'">
                 <h5 class="primaryText text-uppercase bold">Synopsis</h5>
                 <div class="synopsisDiv" ng-class="{true : 'synopsisDivShow' , false : 'synopsisDivHide' } [showSynopsisDiv]">
-
                     <div class="synopsisText">
                         <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
                         </div>
@@ -51,14 +49,23 @@
                         <i class="ion-chevron-down primaryText"></i>
                     </div>
                 </div>
-                
             </div>
-        </ion-content>
 
+            </div>
+
+
+            <div ng-show="showVideo">
+                <div id="player2" ng-hide="view.vimomeo">
+                </div>
+                <div class="player1video" ng-show="view.vimomeo">
+                    <iframe id="player1" ng-src="{{player1}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+
+        </ion-content>
         <div class="loaderOuter" ng-switch-when="loader">
             <div class="loading-spinner"></div>
         </div>
-
         <aj-error class="errors" ng-switch-when="error" error-type="view.errorType" tap-to-retry="view.onTapToRetry()">
         </aj-error>
     </div>

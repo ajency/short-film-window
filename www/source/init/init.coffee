@@ -3,24 +3,23 @@ angular.module 'SFWApp.init', []
 .controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService','ParseNotificationService','$rootScope'
      ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService,ParseNotificationService,$rootScope)->
     $scope.Videodetails = []
-    $scope.display = 'loader'
+    # $scope.display = 'loader'
     $scope.addvideoDetails = []
     $scope.getwatchlistDetails = []
     $scope.watchFlag = '0'
     $scope.intFlag = '0'
     $scope.watchlistimg = ''
 
+    $scope.showVideo = false
+
     $scope.share = ()->
         console.log "social sharing "
         share.shareNative()
 
     $scope.addwatchlist = ()->
-        console.log "video added to watchlist "
-        console.log DetailsAPI.singleVideoarray
         $scope.CheckWatchlist()
 
     $scope.checkIfaddedlist = () ->
-        console.log "checking if video exist"
         Storage.watchlistDetails 'get'
         .then (value)->
             console.log value
@@ -53,91 +52,82 @@ angular.module 'SFWApp.init', []
 
 
     $scope.CheckWatchlist = () ->
-        console.log "checking if video exist"
         Storage.watchlistDetails 'get'
         .then (value)->
-            console.log value
             $scope.getwatchlistDetails = value
             if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
-                console.log "new video  entry"
+                console.log 'first entry'
                 $scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
                 Storage.watchlistDetails 'set', $scope.addvideoDetails
                 $scope.watchlistimg = 'icon-unfavorite'
                 $scope.$apply()
 
             else
-                console.log $scope.addvideoDetails
-                i = 0
-                while i < $scope.getwatchlistDetails.length
-                    if $scope.getwatchlistDetails[i].movie_id == DetailsAPI.singleVideoarray.movie_id
-                        console.log "Movie already added "
-
-                        console.log  $scope.addvideoDetails
-                        $scope.getwatchlistDetails.splice(i,1)
-                        console.log $scope.getwatchlistDetails
-                        $scope.updatewatchlist()
-                        $scope.watchlistimg = 'icon-favorite'
-                        $scope.$apply()
-
-                        $scope.watchFlag = '1'
-                    else
-                        console.log "New movie entry "
-                    i++
-
-                if $scope.watchFlag == '0'
-                    $scope.watchlistimg = 'icon-unfavorite'
-
-                    n =  $scope.getwatchlistDetails.length
-                    i= 0
-                    while i < n
-                        $scope.addvideoDetails.push($scope.getwatchlistDetails[i])
-                        i++
-
-                    $scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
+                console.log 'some data present'
+                matchIndex = _.findLastIndex $scope.getwatchlistDetails, {"movie_id": DetailsAPI.singleVideoarray.movie_id }
+                if matchIndex != -1
+                    console.log 'remove from watchlist'
+                    $scope.getwatchlistDetails.splice matchIndex,1
+                    wl = $scope.getwatchlistDetails
+                    $scope.addvideoDetails = wl
                     Storage.watchlistDetails 'set', $scope.addvideoDetails
+                    $scope.watchlistimg = 'icon-favorite'
+                    $scope.$apply()
+                else
+                    console.log 'add'
+                    $scope.getwatchlistDetails.push(DetailsAPI.singleVideoarray)
+                    wl = $scope.getwatchlistDetails
+                    $scope.addvideoDetails = wl
+                    Storage.watchlistDetails 'set', $scope.addvideoDetails
+                    $scope.watchlistimg = 'icon-unfavorite'
                     $scope.$apply()
 
 
-
-    $scope.updatewatchlist = ()->
-        $scope.watchlistimg = 'icon-favorite'
-        $scope.$apply()
-
-        i= 0
-
-        while i < $scope.getwatchlistDetails.length
-            $scope.addvideoDetails.push($scope.getwatchlistDetails[i])
-            i++
-        Storage.watchlistDetails 'set', $scope.addvideoDetails
-
-
     $scope.init = ()->
-
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
             console.log "Single video Data Cached"
             $scope.display = 'result'
-            $scope.Videodetails =  DetailsAPI.singleVideoarray
+            $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
+            console.log $scope.Videodetails
+            $scope.checkIfaddedlist()
             $ionicLoading.hide()
-        else
-            DetailsAPI.GetSingleVideo(DetailsAPI.videoId)
-            .then (data)=>
-                $scope.display = 'result'
-                console.log data
-                DetailsAPI.singleVideoarray = data
-                $scope.Videodetails = data
-                document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
-                $scope.checkIfaddedlist()
-                $ionicLoading.hide()
 
-            , (error)=>
-                console.log 'Error Loading data'
-                $ionicLoading.hide()
-                $scope.display = 'error'
+            console.log DetailsAPI.singleVideoarray
 
+            $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
+            $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl
 
-        console.log  DetailsAPI.videoId
-        console.log 'In Init'
+            console.log $scope.vType,$scope.videourl
+
+            if($scope.vType == 'vimeo')
+              modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
+              $scope.vimomeo = true
+              $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
+            else
+              $scope.vimomeo = false
+              player = new YT.Player('player2', {
+                height: '100%',
+                width: '100%',
+                videoId:$scope.videourl ,
+                playerVars: { 'autoplay': 0, 'rel': 0, 'wmode':'transparent', 'modestbranding' :1 }
+                events: {
+                  'onReady': onPlayerReady,
+                  'onStateChange': onPlayerStateChange
+                }
+              });  
+
         Vtype = '0'
+
+    onPlayerReady = (event) ->
+        event.target.playVideo()
+
+    onPlayerStateChange = (event) ->
+      if event.data == YT.PlayerState.PLAYING and !done
+        setTimeout stopVideo, 6000
+        done = true
+
+    stopVideo = ->
+      player.stopVideo()    
 
 
     $scope.initializeApp = ()->
@@ -175,7 +165,8 @@ angular.module 'SFWApp.init', []
 
 
         playVideo : ()->
-          App.navigate 'singlePlayer'
+          # App.navigate 'singlePlayer'
+          $scope.showVideo = true
 
      if App.fromNotification
       $scope.initializeApp()
