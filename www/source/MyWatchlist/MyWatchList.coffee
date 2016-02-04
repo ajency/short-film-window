@@ -48,6 +48,12 @@ angular.module 'SFWApp.watchlist', []
             console.log "enterd single play ."
             App.navigate 'init'
 
+        $scope.singlePlayService = (videoData)->
+            console.log videoData
+            DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
+            DetailsAPI.singleVideoarray.singleVideoarray = videoData
+            App.navigate 'init'     
+
 
         $scope.CheckWatchlist = (Id) ->
             matchIndex = _.findLastIndex $scope.watchlistDetails, {"movie_id": Id }

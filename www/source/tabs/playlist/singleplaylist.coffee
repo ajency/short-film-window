@@ -58,13 +58,19 @@ angular.module 'SFWApp.tabs'
                 $scope.display= 'error'
                 $ionicLoading.hide();
 
-    $scope.singleplay = (videoid)->
+    # $scope.singleplay = (videoid)->
 
-        console.log videoid
-        DetailsAPI.videoId = videoid
-        console.log DetailsAPI.videoId
-        console.log "enterd single play ."
-        App.navigate 'init'
+    #     console.log videoid
+    #     DetailsAPI.videoId = videoid
+    #     console.log DetailsAPI.videoId
+    #     console.log "enterd single play ."
+    #     App.navigate 'init'
+
+    $scope.singlePlayService = (videoData)->
+        console.log videoData
+        DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
+        DetailsAPI.singleVideoarray.singleVideoarray = videoData
+        App.navigate 'init'     
 
     $scope.back = ()->
         # $ionicHistory.goBack();

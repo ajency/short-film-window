@@ -44,6 +44,12 @@ angular.module('SFWApp.watchlist', []).controller('watchlistCtrl', [
       console.log("enterd single play .");
       return App.navigate('init');
     };
+    $scope.singlePlayService = function(videoData) {
+      console.log(videoData);
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
     return $scope.CheckWatchlist = function(Id) {
       var matchIndex;
       matchIndex = _.findLastIndex($scope.watchlistDetails, {

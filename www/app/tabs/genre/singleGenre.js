@@ -193,11 +193,10 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
         hideOnStateChange: false
       };
     };
-    $scope.singleplay = function(videoid) {
-      console.log(videoid);
-      DetailsAPI.videoId = videoid;
-      console.log(DetailsAPI.videoId);
-      console.log("enterd single play .");
+    $scope.singlePlayService = function(videoData) {
+      console.log(videoData);
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
       return App.navigate('init');
     };
     $scope.back = function() {
