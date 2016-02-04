@@ -30,7 +30,7 @@
                             </div>
                         </div>
 
-                            <div ng-repeat="data in playlistData" class="item item-image padding0" ng-click="singlePlayService( data )"   style="height: {{ hgt }}px;" id="playlistContent">
+                            <div ng-repeat="data in playlistData" class="item item-image padding0 playlistHgt" ng-click="singlePlayService( data )"    id="playlistContent">
                                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
                                 <div class="overlay"></div>
                                 <div class="movieDetails padding-horizontal whiteText">
