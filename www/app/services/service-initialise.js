@@ -13,7 +13,6 @@ angular.module('SFWApp.services', []).service('InitialiseService', [
             return $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]).then(function(cachedata) {
               return console.log(cachedata);
             })["finally"](function() {
-              console.log('set data');
               return DetailsAPI.setData({
                 premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
                 new_addition: $rootScope.vData.defaults.content.popular.new_additions,

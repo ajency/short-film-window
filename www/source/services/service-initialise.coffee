@@ -17,7 +17,6 @@ angular.module('SFWApp.services', [])
           $ImageCacheFactory.Cache([ data.defaults.content.popular.weekly_premiere.image ]).then (cachedata) ->
             console.log cachedata
           .finally -> 
-            console.log 'set data'
             DetailsAPI.setData
               premiere: $rootScope.vData.defaults.content.popular.weekly_premiere
               new_addition: $rootScope.vData.defaults.content.popular.new_additions
