@@ -47,7 +47,7 @@
 		padding-top: 3px;
 	}
 }
-.singleGenre .item-thumbnail-left.item-divider
+.singleGenre .item-divider
 {
     padding: 5px 10px 5px 5px;
     /*min-height: 118px !important;
@@ -564,10 +564,10 @@
 }
 .playlistHeaderSmall
 {
-	position: absolute;
-    top: 0;
+	/*position: absolute;*/
+    /*top: 0;*/
     background: #fff;
-    z-index: 9999;
+    /*z-index: 9999;*/
     color: #333;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     font-size: 3vh;
@@ -581,13 +581,18 @@
     line-height: 25px;
     padding: 6px 10px;
     -webkit-line-clamp: 2;
-    /*transition: all 2s ease;*/
-    transition: 0.5s linear all;
-   opacity: 1;  
-}
-.playlistHeaderSmall.ng-show {
-   opacity:1;
+    /*transition: all 2s ease;*/   
+    opacity:0;
    transition: 0.5s linear all;
+}
+.playlistHeaderSmall.item-divider {
+   /*display:none;*/
+   /*transition: 5s linear all;*/
+}
+.playlistHeaderSmall.item-divider.assertive
+{
+	opacity: 1;
+	transition: 1s linear all;
 }
 .playlistHeaderSmall.ng-hide {
    opacity:0;

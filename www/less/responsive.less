@@ -181,9 +181,13 @@
 			top: 0;			
 		}		
 	}
-	.singleGenreAvtar 
+	.singleGenreAvtar , .singleGenre .item-divider.watchlistHeader 
 	{
 		border-bottom: 1px solid @grayLightest;
+	}
+	.singleGenreAvtar.item-divider.assertive, .singleGenre .item-divider.watchlistHeader.assertive
+	{
+		border-bottom: none;
 	}
 	.synopsis
 	{
@@ -205,7 +209,7 @@
 	}
 	.synopsis .synopsisText
 	{
-		font-size: 1em !important;
+		font-size: 1.1em !important;
 	}
 
 	.limitDiv
@@ -238,7 +242,19 @@
 	}	
 	.notifications p
 	{
-		font-size: 1.1em;
+		font-size: 0.9em;
+	}
+	.searchResult .cardDetails 
+	{
+		margin-top: 1px;
+	}
+	.searchResult .cardOuter .movieDetails
+	{
+		top: 37px;
+	}
+	.singleGenre .watchlistIcon
+	{
+		left: 42%;
 	}	
 }
 @media screen and (min-height: 470px) and (max-height:680px)

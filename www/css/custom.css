@@ -201,7 +201,7 @@ a {
   font-size: 3.5vh;
   padding-top: 3px;
 }
-.singleGenre .item-thumbnail-left.item-divider {
+.singleGenre .item-divider {
   padding: 5px 10px 5px 5px;
   /*min-height: 118px !important;
     height: 118px !important;*/
@@ -612,10 +612,10 @@ a {
   height: 100%;
 }
 .playlistHeaderSmall {
-  position: absolute;
-  top: 0;
+  /*position: absolute;*/
+  /*top: 0;*/
   background: #fff;
-  z-index: 9999;
+  /*z-index: 9999;*/
   color: #333;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   font-size: 3vh;
@@ -630,14 +630,18 @@ a {
   padding: 6px 10px;
   -webkit-line-clamp: 2;
   /*transition: all 2s ease;*/
+  opacity: 0;
   -webkit-transition: 0.5s linear all;
           transition: 0.5s linear all;
-  opacity: 1;
 }
-.playlistHeaderSmall.ng-show {
+.playlistHeaderSmall.item-divider {
+  /*display:none;*/
+  /*transition: 5s linear all;*/
+}
+.playlistHeaderSmall.item-divider.assertive {
   opacity: 1;
-  -webkit-transition: 0.5s linear all;
-          transition: 0.5s linear all;
+  -webkit-transition: 1s linear all;
+          transition: 1s linear all;
 }
 .playlistHeaderSmall.ng-hide {
   opacity: 0;
@@ -1035,6 +1039,7 @@ a {
   border-bottom: 2px solid #ffffff;
   /*background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);*/
   background: #ffffff;
+  min-height: 66px;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail {
   /*height: 105px;*/
@@ -1108,7 +1113,8 @@ a {
 			    padding: 0 14px 0 116px;
 			    bottom: 2px;*/
   text-align: left;
-  padding: 10px 15px
+  padding: 10px 15px 0;
+  margin-top: -30px
   /*color: #fff;*/
 }
 .singleGenre .scroll {
@@ -1500,6 +1506,7 @@ a {
 }
 .notifications h5 span {
   color: #aeaeae;
+  font-size: 1.9vh;
 }
 .notifications h5 span i {
   color: #aeaeae;
@@ -1511,6 +1518,7 @@ a {
 .notifications p {
   white-space: normal;
   color: #2e2e2e;
+  font-size: 2.5vh;
 }
 .noNotification {
   padding: 10%;
@@ -1653,8 +1661,13 @@ a {
   .singlePlaylist .cardOuter .movieDetails {
     top: 0;
   }
-  .singleGenreAvtar {
+  .singleGenreAvtar,
+  .singleGenre .item-divider.watchlistHeader {
     border-bottom: 1px solid #d4d4d4;
+  }
+  .singleGenreAvtar.item-divider.assertive,
+  .singleGenre .item-divider.watchlistHeader.assertive {
+    border-bottom: none;
   }
   .synopsis {
     font-size: 0.9em;
@@ -1672,7 +1685,7 @@ a {
     font-size: 1.1em;
   }
   .synopsis .synopsisText {
-    font-size: 1em !important;
+    font-size: 1.1em !important;
   }
   .limitDiv {
     width: 33%;
@@ -1698,7 +1711,16 @@ a {
     font-size: 1.15em;
   }
   .notifications p {
-    font-size: 1.1em;
+    font-size: 0.9em;
+  }
+  .searchResult .cardDetails {
+    margin-top: 1px;
+  }
+  .searchResult .cardOuter .movieDetails {
+    top: 37px;
+  }
+  .singleGenre .watchlistIcon {
+    left: 42%;
   }
 }
 @media screen and (min-height: 470px) and (max-height: 680px) {
