@@ -1,6 +1,6 @@
 <ion-view class="movieScreen">
     <ion-header-bar class="bar bar-header movieHeader">
-        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>{{vimeo}}</button>
+        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
         <button class="button button-icon whiteText watchList" ng-click="addwatchlist()">
             <i ng-class="{'ion-heart': watchlistimg == 'icon-favorite','ion-heart selected': watchlistimg == 'icon-unfavorite'}"></i></button>
         <button class="button button-icon whiteText" ng-click="share() "><i class="ion-android-share-alt"></i></button>
@@ -54,10 +54,10 @@
             </div>
 
 
-            <div ng-show="showVideo">
-                <div id="player2" ng-hide="vimeo">
+            <div ng-show="showVideo"  class="videoOuter">
+                <div id="player2" ng-hide="view.vimomeo">
                 </div>
-                <div class="player1video" ng-show="vimeo">
+                <div class="player1video" ng-show="view.vimomeo">
                     <iframe id="player1" ng-src="{{player1}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
             </div>

@@ -202,7 +202,7 @@ a {
   padding-top: 3px;
 }
 .singleGenre .item-divider {
-  padding: 5px 10px 5px 5px;
+  /*padding: 5px 10px 5px 5px;*/
   /*min-height: 118px !important;
     height: 118px !important;*/
   /*min-height: 190px !important;
@@ -654,7 +654,8 @@ a {
 .bar {
   background-size: 100% 0px;
 }
-.singleMovieContent .scroll {
+.singleMovieContent .scroll,
+.singleMovieContent .videoOuter {
   height: 100%;
 }
 .overlay {
