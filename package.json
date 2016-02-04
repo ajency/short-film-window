@@ -34,10 +34,7 @@
       "id": "cordova-plugin-network-information"
     },
     "phonegap-plugin-push@~1.5.3",
-    {
-      "locator": "https://github.com/taivo/parse-push-plugin",
-      "id": "com.phonegap.parsepushplugin"
-    }
+    "com.phonegap.parsepushplugin"
   ],
   "cordovaPlatforms": [
     "ios",

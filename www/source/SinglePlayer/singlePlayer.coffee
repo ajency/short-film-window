@@ -3,7 +3,9 @@ angular.module 'SFWApp.singlePlayer', []
 .controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory','App','$timeout'
   ,($scope,$sce,DetailsAPI,$ionicHistory,App,$timeout)->
 
-    console.log  DetailsAPI.singleVideoarray
+    $scope.videoDetails = DetailsAPI.singleVideoarray
+    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl
+    console.log $scope.videourl
 
     $scope.switchHeaderBar = true
 
@@ -20,37 +22,31 @@ angular.module 'SFWApp.singlePlayer', []
 
     $scope.view =
       back:->
-        # $ionicHistory.goBack();
         count = -1
         App.goBack count
 
-      vType : DetailsAPI.singleVideoarray.type
-      vimomeo : null
+      vType : $scope.videoDetails.singleVideoarray.type
+      vimomeo : true
       init:->
-
         if(@vType == 'vimeo')
-          modifiedUrl = DetailsAPI.singleVideoarray.embedurl
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl
           @vimomeo = true
-          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-
-          # $scope.player1 = modifiedUrl;
-
-          console.log $scope.player1
+          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
         else
           @vimomeo = false
           player = new YT.Player('player2', {
             height: '100%',
             width: '100%',
-            videoId:DetailsAPI.singleVideoarray.videourl ,
-            playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent' }
+            videoId:$scope.videourl ,
+            playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent', 'modestbranding' :1 }
             events: {
               'onReady': onPlayerReady,
               'onStateChange': onPlayerStateChange
             }
           });
 
+
     onPlayerReady = (event) ->
-        console.log event
         event.target.playVideo()
 
     onPlayerStateChange = (event) ->
