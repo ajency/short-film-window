@@ -1,20 +1,9 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
   '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window) {
     var swiper;
+    console.log('popular');
     swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')), {
-      direction: 'vertical',
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      loop: false,
-      slidesPerView: 'auto',
-      coverflow: {
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: false
-      }
+      direction: 'vertical'
     });
     $scope.singleplaylist = function(playlistId) {
       console.log(playlistId);

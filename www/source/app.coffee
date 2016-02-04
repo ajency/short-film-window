@@ -19,10 +19,8 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
       console.log 'online'
       InitialiseService.initialize()
       .then (response) ->
-        console.log response
-        console.log 'popular'
-        $cordovaSplashscreen.hide()
         App.navigate 'popular'
+        $cordovaSplashscreen.hide()
       .finally ->
         console.log 'finally'
     else
@@ -82,6 +80,9 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 ]
 
 .config ['$ionicConfigProvider', ($ionicConfigProvider)->
+  $ionicConfigProvider.views.maxCache 3
   $ionicConfigProvider.views.forwardCache true
+  $ionicConfigProvider.views.transition 'none'
+
 ]
 

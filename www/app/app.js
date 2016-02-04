@@ -12,10 +12,8 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
       if (App.isOnline()) {
         console.log('online');
         InitialiseService.initialize().then(function(response) {
-          console.log(response);
-          console.log('popular');
-          $cordovaSplashscreen.hide();
-          return App.navigate('popular');
+          App.navigate('popular');
+          return $cordovaSplashscreen.hide();
         })["finally"](function() {
           return console.log('finally');
         });
@@ -75,6 +73,8 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   }
 ]).config([
   '$ionicConfigProvider', function($ionicConfigProvider) {
-    return $ionicConfigProvider.views.forwardCache(true);
+    $ionicConfigProvider.views.maxCache(3);
+    $ionicConfigProvider.views.forwardCache(true);
+    return $ionicConfigProvider.views.transition('none');
   }
 ]);
