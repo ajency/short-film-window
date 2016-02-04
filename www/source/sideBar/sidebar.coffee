@@ -9,6 +9,7 @@ angular.module('SFWApp.sidebar', [])
   $scope.classname = ''
   $scope.watchListCount = '0'
   $scope.afterSearch = false
+  $rootScope.unreadNotificationCount = 0
 
   $rootScope.$on 'openNotification', (event, pn)->
     App.fromNotification = 1

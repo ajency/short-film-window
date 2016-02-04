@@ -80,40 +80,63 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         }
       });
     };
-    $scope.init = function() {
-      var Vtype, modifiedUrl, player;
+    $scope.init = function(movieId) {
+      if (movieId == null) {
+        movieId = '';
+      }
+      console.log(movieId);
       if (!angular.isUndefined(DetailsAPI.singleVideoarray.movie_id)) {
-        console.log("Single video Data Cached");
         $scope.display = 'result';
         $scope.Videodetails = DetailsAPI.singleVideoarray.singleVideoarray;
         console.log($scope.Videodetails);
         $scope.checkIfaddedlist();
-        $ionicLoading.hide();
-        $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type;
-        $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl;
-        if ($scope.vType === 'vimeo') {
-          modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl;
-          console.log(modifiedUrl);
-          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-        } else {
-          player = new YT.Player('player2', {
-            height: '100%',
-            width: '100%',
-            videoId: $scope.videourl,
-            playerVars: {
-              'autoplay': 0,
-              'rel': 0,
-              'wmode': 'transparent',
-              'modestbranding': 1
-            },
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-            }
-          });
-        }
+        return $scope.initPlayer();
+      } else {
+        return DetailsAPI.GetSingleVideo(movieId).then((function(_this) {
+          return function(data) {
+            var obj;
+            $scope.display = 'result';
+            obj = {
+              "movie_id": data.movie_id,
+              "singleVideoarray": data
+            };
+            DetailsAPI.singleVideoarray = obj;
+            $scope.Videodetails = data;
+            document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
+            return $scope.initPlayer();
+          };
+        })(this), (function(_this) {
+          return function(error) {
+            return $scope.display = 'error';
+          };
+        })(this));
       }
-      return Vtype = '0';
+    };
+    $scope.initPlayer = function() {
+      var modifiedUrl, player;
+      $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type;
+      $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl;
+      if ($scope.vType === 'vimeo') {
+        modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl;
+        console.log(modifiedUrl);
+        return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+      } else {
+        return player = new YT.Player('player2', {
+          height: '100%',
+          width: '100%',
+          videoId: $scope.videourl,
+          playerVars: {
+            'autoplay': 0,
+            'rel': 0,
+            'wmode': 'transparent',
+            'modestbranding': 1
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
     };
     onPlayerReady = function(event) {
       return event.target.playVideo();
@@ -129,20 +152,14 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       return player.stopVideo();
     };
     $scope.initializeApp = function() {
-      $ionicLoading.show({
-        content: 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 600,
-        showDelay: 0
-      });
       console.log(App.notificationPayload.payload.notificationId);
+      $scope.display = 'loader';
       return ParseNotificationService.updateNotificationStatus(App.notificationPayload.payload.notificationId).then(function(data) {
         console.log(data);
-        return $scope.init();
+        return $scope.init(DetailsAPI.videoId);
       })["catch"](function(error) {
         console.log(error);
-        return $scope.init();
+        return $scope.init(DetailsAPI.videoId);
       });
     };
     $scope.$on('$ionicView.afterEnter', function() {
