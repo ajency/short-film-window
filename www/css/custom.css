@@ -513,8 +513,9 @@ a {
           animation-duration: 1s;
   display: block;
 }
-.box.showSearch i {
+.box.showSearch i.searchIcon {
   /*display: block;*/
+  right: 0;
 }
 .box.hideSearch {
   /*width: 0;	
