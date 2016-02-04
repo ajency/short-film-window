@@ -123,6 +123,10 @@ $(document).ready(function() {
             $('.box').addClass('removeBox');
         }, 1000);
 
+        setTimeout(function(){            
+           $('.box i.searchIcon').hide();// or fade, css display however you'd like.
+        }, 500);
+
     });
     $(".slide-left").click(function() {
         // $(".box").animate({
@@ -131,6 +135,12 @@ $(document).ready(function() {
         $('.box').removeClass('removeBox');
         $(".box").removeClass("hideSearch");
         $(".box").addClass("showSearch");
+
+        
+
+        setTimeout(function(){            
+           $('.box.showSearch i.searchIcon').show();// or fade, css display however you'd like.
+        }, 700);
     });
 });
 </script>
