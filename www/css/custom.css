@@ -381,7 +381,7 @@ a {
   box-shadow: none;
 }
 .cardOuter .movieDetails {
-  bottom: 70px;
+  bottom: 0px;
 }
 .cardDetails {
   height: 100%;
@@ -778,6 +778,7 @@ a {
   font-size: 2.3vh;
   color: #d4d4d4;
   padding-bottom: 15px;
+  margin-bottom: 10px;
 }
 .movieDetails .viewsNLikes span {
   margin-right: 25px;
