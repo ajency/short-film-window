@@ -1,14 +1,8 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
-  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window) {
-    var swiper;
+  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', 'InitialiseService', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window, InitialiseService) {
     console.log('popular');
-    swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')), {
-      direction: 'vertical'
-    });
     $scope.singleplaylist = function(playlistId) {
-      console.log(playlistId);
       DetailsAPI.videoId = playlistId;
-      console.log(DetailsAPI.videoId);
       return App.navigate("singlePlaylist");
     };
     $scope.doRefresh = function() {
@@ -18,7 +12,6 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
         return PulltorefreshAPI.pullrequest().then((function(_this) {
           return function(data) {
             $scope.checkNetwork = true;
-            console.log(data.defaults.content.popular.weekly_premiere.image);
             PulltorefreshAPI.saveData({
               premiere: data.defaults.content.popular.weekly_premiere,
               new_addition: data.defaults.content.popular.new_additions,
@@ -51,36 +44,68 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       }
     };
     $scope.singleplay = function(videoid) {
-      console.log(videoid);
       DetailsAPI.videoId = videoid;
-      console.log(DetailsAPI.videoId);
-      console.log("enterd single play .");
       return App.navigate('init');
     };
     $scope.singlePlayService = function(videoData) {
-      console.log(videoData);
       DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
       DetailsAPI.singleVideoarray.singleVideoarray = videoData;
       return App.navigate('init');
     };
-    return $scope.test = function() {
+    $scope.initApp = function() {
       var device_height, device_width;
-      $scope.checkNetwork = true;
       device_width = $window.innerWidth;
       device_height = $window.innerHeight;
-      console.log(device_width);
-      console.log(device_height);
       $scope.used_height = 86 + 73;
       $scope.hgt = device_height - $scope.used_height;
-      console.log($scope.hgt);
-      $scope.premeiere = DetailsAPI.array;
-      $scope.addition = DetailsAPI.array_addition;
-      $scope.noteworthy = DetailsAPI.array_noteworthy;
-      $scope.awplalist = DetailsAPI.array_awplalist;
-      $scope.videoId = DetailsAPI.array.videoId;
       if (!App.isOnline()) {
-        return $scope.checkNetwork = false;
+        $scope.checkNetwork = false;
+        return $scope.display = 'nonetwork';
+      } else {
+        $scope.initDetailsApi();
+        return $scope.display = 'result';
       }
+    };
+    return $scope.initDetailsApi = function() {
+      var additionArr, awPlalistArr, noteworthyArr, premierArr;
+      premierArr = [];
+      additionArr = [];
+      noteworthyArr = [];
+      awPlalistArr = [];
+      $scope.allContentArray = [];
+      premierArr.push({
+        "order": 1,
+        "cardtitle": "Weekly Premiere",
+        "p": "Carefully handpicked, just for you.",
+        "iconimg": "weekly_premiere",
+        "content": DetailsAPI.array
+      });
+      additionArr = _.map(DetailsAPI.array_addition, function(value, key, list) {
+        return {
+          "order": 2,
+          "cardtitle": "New Additions",
+          "p": "Just starting out on their big journey!",
+          "iconimg": "new_additions",
+          "content": value
+        };
+      });
+      noteworthyArr = _.map(DetailsAPI.array_noteworthy, function(value, key, list) {
+        return {
+          "order": 3,
+          "cardtitle": "Noteworthy",
+          "p": "Completely out of the ordinary",
+          "iconimg": "noteworthy",
+          "content": value
+        };
+      });
+      awPlalistArr.push({
+        "order": 4,
+        "cardtitle": "Awesome Playlist",
+        "p": "Sit back and relax with some popcorn!",
+        "iconimg": "awesome_playlists",
+        "content": DetailsAPI.array_awplalist
+      });
+      return $scope.allContentArray = _.union(premierArr, additionArr, noteworthyArr, awPlalistArr);
     };
   }
 ]);

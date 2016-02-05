@@ -15,10 +15,14 @@
                     <div id="searchswiperId" class="swiper-container genreswiper" swiper style="height: {{ device_height }}px;">
                         <div class="swiper-wrapper">
                             <div class="cardDetails swiper-slide  " ng-repeat="data in SearchResult" is-loaded>
+<<<<<<< HEAD
                                 <div class="list card margin0 cardOuter">
                                 <div class="watchlistIcon">
                                     <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
                                 </div>
+=======
+                                <div class="list card margin0 cardOuter" ng-click="singlePlayService(data)">
+>>>>>>> local-copy-sfw-develop
                                     <div class="item item-image padding0 noteWorthy">
                                         <div  ng-click="singleplay({{ data.movie_id }})">
                                         <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}" />

@@ -46,11 +46,9 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
       return $rootScope.unreadNotificationCount = value;
     });
   };
-  $scope.singleplay = function(videoid) {
-    console.log(videoid);
-    DetailsAPI.videoId = videoid;
-    console.log(DetailsAPI.videoId);
-    console.log("enterd single play .");
+  $scope.singlePlayService = function(videoData) {
+    DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+    DetailsAPI.singleVideoarray.singleVideoarray = videoData;
     return App.navigate('init');
   };
   $scope.searchMovie = function() {
@@ -71,7 +69,7 @@ angular.module('SFWApp.sidebar', []).controller('sidebarCtrl', function($scope, 
         device_height = $window.innerHeight;
         console.log(device_width);
         console.log(device_height);
-        $scope.used_height = 44;
+        $scope.used_height = 32;
         $scope.hgt = device_height - $scope.used_height;
         if ($scope.SearchResult.length === 0) {
           $scope.errorType = 'no_Search_result';

@@ -59,12 +59,17 @@ angular.module('SFWApp.sidebar', [])
       console.log value
       $rootScope.unreadNotificationCount = value
 
-  $scope.singleplay = (videoid)->
-    console.log videoid
-    DetailsAPI.videoId = videoid
-    console.log DetailsAPI.videoId
-    console.log "enterd single play ."
-    App.navigate 'init'
+  # $scope.singleplay = (videoid)->
+  #   console.log videoid
+  #   DetailsAPI.videoId = videoid
+  #   console.log DetailsAPI.videoId
+  #   console.log "enterd single play ."
+  #   App.navigate 'init'
+
+  $scope.singlePlayService = (videoData)->
+    DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
+    DetailsAPI.singleVideoarray.singleVideoarray = videoData
+    App.navigate 'init'  
 
   $scope.searchMovie = () ->
     $scope.afterSearch = false
@@ -83,7 +88,7 @@ angular.module('SFWApp.sidebar', [])
         device_height = $window.innerHeight;
         console.log device_width
         console.log device_height
-        $scope.used_height = 44
+        $scope.used_height = 32
         $scope.hgt = device_height - $scope.used_height
 
         if $scope.SearchResult.length == 0

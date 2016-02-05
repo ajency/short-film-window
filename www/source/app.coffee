@@ -11,24 +11,26 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   installationId: ''
  )
 
-.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
+.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
-    console.log App.isOnline(),'online'
-    if App.isOnline()
-      console.log 'online'
-      InitialiseService.initialize()
-      .then (response) ->
-        App.navigate 'popular'
-        $cordovaSplashscreen.hide()
-      .finally ->
-        console.log 'finally'
-    else
-      $cordovaToast
-      .show 'No internet availability','long','bottom'
-      .then ()->
-        $cordovaSplashscreen.hide()
-        App.navigate 'popular'
+    # console.log App.isOnline(),'online'
+    # if App.isOnline()
+    #   console.log 'online'
+    #   InitialiseService.initialize()
+    #   .then (response) ->
+    #     App.navigate 'popular'
+    #     # $cordovaSplashscreen.hide()
+    #   .finally ->
+    #     console.log 'finally'
+    # else
+    #   $cordovaToast
+    #   .show 'No internet availability','long','bottom'
+    #   .then ()->
+    #     $cordovaSplashscreen.hide()
+    #     App.navigate 'popular'
+    console.log 'appInitialize'
+    App.navigate 'appInitialize'
           
 
     Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
@@ -60,29 +62,25 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     if to.name == 'notifications'
       $rootScope.pageHeader = 'Notifications'
-      return
     else
       $rootScope.pageHeader = 'Shortfilm Window'
-      return
 
     if from.name == "" and to.name == 'init'
       App.fromNotification = 1
     else
       App.previousState = from.name
     App.currentState = to.name
-    return
 
   $rootScope.$on '$stateChangeStart', (ev, toState, toParams, fromState, fromParams) ->
     if fromState.name == 'init' and toState.name == 'landingvideo'
-      ev.preventDefault()
-    return
+      ev.preventDefault() 
 
 ]
 
-.config ['$ionicConfigProvider', ($ionicConfigProvider)->
-  $ionicConfigProvider.views.maxCache 3
-  $ionicConfigProvider.views.forwardCache true
-  $ionicConfigProvider.views.transition 'none'
+# .config ['$ionicConfigProvider', ($ionicConfigProvider)->
+#   $ionicConfigProvider.views.maxCache 3
+#   $ionicConfigProvider.views.forwardCache true
+#   $ionicConfigProvider.views.transition 'none'
 
-]
+# ]
 

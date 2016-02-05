@@ -5,24 +5,11 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   masterKey: 'LALmaz73J44ndeC2n7vuuySMVLGHUSTEQADmJPKN',
   installationId: ''
 }).run([
-  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
+  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
-      console.log(App.isOnline(), 'online');
-      if (App.isOnline()) {
-        console.log('online');
-        InitialiseService.initialize().then(function(response) {
-          App.navigate('popular');
-          return $cordovaSplashscreen.hide();
-        })["finally"](function() {
-          return console.log('finally');
-        });
-      } else {
-        $cordovaToast.show('No internet availability', 'long', 'bottom').then(function() {
-          $cordovaSplashscreen.hide();
-          return App.navigate('popular');
-        });
-      }
+      console.log('appInitialize');
+      App.navigate('appInitialize');
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       ParsePushPlugin.getInstallationObjectId(function(id) {
         console.log(id);
@@ -53,28 +40,20 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       if (to.name === 'notifications') {
         $rootScope.pageHeader = 'Notifications';
-        return;
       } else {
         $rootScope.pageHeader = 'Shortfilm Window';
-        return;
       }
       if (from.name === "" && to.name === 'init') {
         App.fromNotification = 1;
       } else {
         App.previousState = from.name;
       }
-      App.currentState = to.name;
+      return App.currentState = to.name;
     });
     return $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
       if (fromState.name === 'init' && toState.name === 'landingvideo') {
-        ev.preventDefault();
+        return ev.preventDefault();
       }
     });
-  }
-]).config([
-  '$ionicConfigProvider', function($ionicConfigProvider) {
-    $ionicConfigProvider.views.maxCache(3);
-    $ionicConfigProvider.views.forwardCache(true);
-    return $ionicConfigProvider.views.transition('none');
   }
 ]);
