@@ -1,6 +1,11 @@
 angular.module('SFWApp.navigate', []).controller('navigateCtrl', [function() {}]).config([
   '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    return $stateProvider.state('home', {
+    return $stateProvider.state('appInitialize', {
+      url: '/appInitialize',
+      abstract: false,
+      controller: 'appInitializeCtrl',
+      templateUrl: 'views/landingVideo/appInitialize.html'
+    }).state('home', {
       url: '/sidebar',
       abstract: true,
       controller: 'sidebarCtrl',

@@ -8,6 +8,11 @@ angular.module 'SFWApp.navigate', []
 
 	$stateProvider
 
+	    .state 'appInitialize',
+			url: '/appInitialize'
+			abstract: false
+			controller: 'appInitializeCtrl'
+			templateUrl: 'views/landingVideo/appInitialize.html' 
 
 		.state 'home',
 			url: '/sidebar'

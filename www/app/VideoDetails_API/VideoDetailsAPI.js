@@ -15,6 +15,7 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     DetailsAPI.array = [];
     DetailsAPI.singleVideoarray = [];
     DetailsAPI.imagArray = [];
+    DetailsAPI.initialize = 0;
     DetailsAPI.GetVideoDetails = function() {
       var defer;
       defer = $q.defer();
@@ -66,7 +67,8 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       DetailsAPI.array_noteworthy = opts.noteworthy;
       DetailsAPI.array_awplalist = opts.awesome_playlist;
       DetailsAPI.genre_array = opts.genre;
-      return DetailsAPI.playlist_array = opts.playlist;
+      DetailsAPI.playlist_array = opts.playlist;
+      return DetailsAPI.initialize = 1;
     };
     return DetailsAPI;
   }

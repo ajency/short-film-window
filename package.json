@@ -19,7 +19,6 @@
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
     "com.ionic.keyboard",
-    "cordova-plugin-splashscreen",
     {
       "locator": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin",
       "id": "cordova-plugin-x-socialsharing"
@@ -34,7 +33,8 @@
       "id": "cordova-plugin-network-information"
     },
     "phonegap-plugin-push@~1.5.3",
-    "com.phonegap.parsepushplugin"
+    "com.phonegap.parsepushplugin",
+    "cordova-plugin-splashscreen"
   ],
   "cordovaPlatforms": [
     "ios",

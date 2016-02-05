@@ -17,6 +17,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 	DetailsAPI.array = []
 	DetailsAPI.singleVideoarray = []
 	DetailsAPI.imagArray = []
+	DetailsAPI.initialize = 0
 
 
 
@@ -75,6 +76,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 			DetailsAPI.array_awplalist = opts.awesome_playlist
 			DetailsAPI.genre_array = opts.genre
 			DetailsAPI.playlist_array = opts.playlist
+			DetailsAPI.initialize = 1
 
 			# Pre-loading all images ....
 
