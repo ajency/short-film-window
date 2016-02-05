@@ -30,7 +30,12 @@
                             </div>
                         </div>
 
-                            <div ng-repeat="data in playlistData" class="item item-image padding0 playlistHgt" ng-click="singlePlayService( data )"    id="playlistContent">
+                            <div ng-repeat="data in playlistData" class="item item-image padding0 playlistHgt"  id="playlistContent">
+                            <div class="watchlistIcon">
+                                    <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
+                                </div>
+                            <div class="" ng-click="singlePlayService( data )" >
+                                
                                 <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
                                 <div class="overlay"></div>
                                 <div class="movieDetails padding-horizontal whiteText">
@@ -49,6 +54,7 @@
                                         <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,12 @@
                         <div class="primaryText cardTitle">Weekly Premiere</div>
                         <p>Carefully handpicked, just for you.</p>
                     </div>
-                    <div class="item item-image padding0" ng-click="singlePlayService( premeiere )">
+
+                    <div class="item item-image padding0">
+                        <div class="watchlistIcon">
+                            <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
+                        </div>
+                        <div  ng-click="singlePlayService( premeiere )">
                         <div class="imageContainerOuter" style="height: {{ hgt }}px">
                             <img src="{{ premeiere.image }}" />
                         </div>
@@ -32,15 +37,20 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
                 <div class="cardDetails swiper-slide" ng-repeat="data in addition">
-                    <div class="list card margin0 cardOuter" ng-click="singlePlayService(data)">
+                    <div class="list card margin0 cardOuter">
                         <div class="item item-avatar item-divider">
                             <img src="img/icons/new_additions.png">
                             <div class="primaryText cardTitle">New Additions</div>
                             <p>Just starting out on their big journey!</p>
                         </div>
                         <div class="item item-image padding0 newAdditions">
+                            <div class="watchlistIcon">
+                                <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
+                            </div>
+                            <div  ng-click="singlePlayService(data)">
                             <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
                             </div>
                             <div class="overlay"></div>
@@ -61,16 +71,21 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                     </div>
                 </div>
                 <div class="cardDetails swiper-slide" ng-repeat="data in noteworthy">
-                    <div class="list card margin0 cardOuter" ng-click="singlePlayService( data  )">
+                    <div class="list card margin0 cardOuter">
                         <div class="item item-avatar item-divider">
                             <img src="img/icons/noteworthy.png">
                             <div class="primaryText cardTitle">Noteworthy</div>
                             <p>Completely out of the ordinary</p>
                         </div>
                         <div class="item item-image padding0 noteWorthy">
+                            <div class="watchlistIcon">
+                                <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
+                            </div>
+                            <div  ng-click="singlePlayService( data  )">
                             <div class="imageContainerOuter" style="height: {{ hgt }}px"><img src="{{ data.image }}" />
                             </div>
                             <div class="overlay"></div>
@@ -89,6 +104,7 @@
                                     <span><i class="ion-ios-eye"></i>{{ data.no_of_views }}</span>
                                     <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

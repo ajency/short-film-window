@@ -242,23 +242,7 @@
 		position: absolute;
 		right: 35px;
 	}
-	.watchlistIcon
-	{
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		width: 50px;	
-		z-index: 99;	
-		i
-		{
-			color: @white;
-			font-size: 30px;
-			&.selected
-			{
-				color: @primary;
-			}
-		}		
-	}
+	
 	#emptyWatchList
 	{
 		border-top: 1px solid @grayLightest;
@@ -330,6 +314,23 @@
 			margin-bottom: 10px;
 		}
 	}
+}
+.watchlistIcon
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 50px;	
+	z-index: 99;	
+	i
+	{
+		color: @white;
+		font-size: 30px;
+		&.selected
+		{
+			color: @primary;
+		}
+	}		
 }
 .platform-ios .singleGenre .genreswiper
 {
@@ -573,4 +574,8 @@
 .displayDiv
 {
 	width: 100%;
+}
+.searchResult .watchlistIcon
+{
+	top: 60px !important;
 }

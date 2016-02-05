@@ -15,6 +15,9 @@
                     <div class="swiper-wrapper">
                         <div ng-repeat="data in genreData" style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
                             <div class="list card margin0 cardOuter">
+                                <div class="watchlistIcon">
+                                    <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
+                                </div>
                                 <div class="item item-image padding0" ng-click="singlePlayService( data )">
                                     <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
                                     <div class="overlay"></div>

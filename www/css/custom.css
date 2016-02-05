@@ -596,7 +596,7 @@ a {
 	}*/
 }
 .searchResult .imageContainerOuter {
-  margin-top: 44px;
+  margin-top: 32px;
 }
 .searchResult .cardOuter .movieDetails {
   bottom: 0;
@@ -654,7 +654,11 @@ a {
   margin-bottom: 0;
 }
 .playlistHgt {
-  height: calc(80%) !important;
+  height: calc(85vh) !important;
+  border-bottom: 2px solid #ffffff;
+}
+#watchlistswiperId .cardOuter {
+  width: 100%;
 }
 .bar {
   background-size: 100% 0px;
@@ -946,6 +950,9 @@ a {
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.singleMovieContent {
   top: 0 !important;
 }
+.platform-ios .singleMovieContent .videoOuter {
+  padding-top: 40px;
+}
 .icon-cust {
   background-position: center;
   background-repeat: no-repeat;
@@ -1194,20 +1201,6 @@ a {
   position: absolute;
   right: 35px;
 }
-.singleGenre .watchlistIcon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 50px;
-  z-index: 99;
-}
-.singleGenre .watchlistIcon i {
-  color: #ffffff;
-  font-size: 30px;
-}
-.singleGenre .watchlistIcon i.selected {
-  color: #af152f;
-}
 .singleGenre #emptyWatchList {
   border-top: 1px solid #d4d4d4;
 }
@@ -1259,6 +1252,20 @@ a {
 }
 .singleGenre .swiperplaylist .movieDetails .viewsNLikes {
   margin-bottom: 10px;
+}
+.watchlistIcon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  z-index: 99;
+}
+.watchlistIcon i {
+  color: #ffffff;
+  font-size: 30px;
+}
+.watchlistIcon i.selected {
+  color: #af152f;
 }
 .platform-ios .singleGenre .genreswiper .movieDetails .viewsNLikes {
   margin-bottom: 20px;
@@ -1466,6 +1473,9 @@ a {
 }
 .displayDiv {
   width: 100%;
+}
+.searchResult .watchlistIcon {
+  top: 60px !important;
 }
 .submitForm .item-select {
   height: 35px;
@@ -1734,7 +1744,7 @@ a {
   .searchResult .cardOuter .movieDetails {
     top: 37px;
   }
-  .singleGenre .watchlistIcon {
+  .watchlistIcon {
     left: 42%;
   }
   .singleMovieContent .videoOuter {
