@@ -481,7 +481,8 @@ a {
   top: 0;
   width: 100%;
   z-index: 99;
-  height: 45px
+  height: 45px;
+  border-bottom: 1px solid #d4d4d4
   /*display: none;*/
   /*transition: width 1s ease;
 	opacity: 0;*/
@@ -1406,6 +1407,7 @@ a {
 .sortPopup .popup-body .sortInner span {
   float: left;
   margin-top: 5px;
+  font-size: 16px;
 }
 .sortPopup .popupFooter {
   min-height: 38px;
