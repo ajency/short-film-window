@@ -50,7 +50,7 @@ angular.module 'SFWApp.tabs'
         console.log device_width
         console.log device_height
         $scope.used_height = 88 + 73
-        $scope.hgt = device_height - $scope.used_height
+        $scope.hgt = device_height + 3 - $scope.used_height
         console.log $scope.hgt
 
       , (error)=>

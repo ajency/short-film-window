@@ -57,7 +57,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       device_width = $window.innerWidth;
       device_height = $window.innerHeight;
       $scope.used_height = 86 + 73;
-      $scope.hgt = device_height - $scope.used_height;
+      $scope.hgt = device_height + 3 - $scope.used_height;
       if (!App.isOnline()) {
         $scope.checkNetwork = false;
         return $scope.display = 'nonetwork';

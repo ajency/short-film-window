@@ -15,7 +15,7 @@
                     <div id="searchswiperId" class="swiper-container genreswiper" swiper style="height: {{ device_height }}px;">
                         <div class="swiper-wrapper">
                             <div class="cardDetails swiper-slide  " ng-repeat="data in SearchResult" is-loaded>
-                                <div class="list card margin0 cardOuter" ng-click="singlePlayService({{ data.movie_id }})">
+                                <div class="list card margin0 cardOuter" ng-click="singlePlayService(data)">
                                     <div class="item item-image padding0 noteWorthy">
                                         <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}" />
                                         </div>

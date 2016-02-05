@@ -45,7 +45,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
             console.log(device_width);
             console.log(device_height);
             $scope.used_height = 88 + 73;
-            $scope.hgt = device_height - $scope.used_height;
+            $scope.hgt = device_height + 3 - $scope.used_height;
             return console.log($scope.hgt);
           };
         })(this), (function(_this) {
