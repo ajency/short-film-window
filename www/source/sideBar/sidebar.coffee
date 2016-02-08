@@ -10,6 +10,36 @@ angular.module('SFWApp.sidebar', [])
   $scope.watchListCount = '0'
   $scope.afterSearch = false
   $rootScope.unreadNotificationCount = 0
+  $scope.getwatchlistDetails= []
+
+  $scope.checkIfaddedToWatchList = (movie_id)->
+    if $scope.getwatchlistDetails.length > 0
+        match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movie_id}
+        if match != -1
+            'selected'
+        else
+            'notselected'
+    else
+        'notselected'
+
+  $scope.findIndexInWatchlist = (movieId) ->
+    match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
+
+      
+  $scope.addwatchlist = (movieData) ->
+    console.log movieData 
+    obj = 
+        "movie_id" : movieData.movie_id
+        "singleVideoarray" : movieData
+
+    matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id)
+    if matchInWatchList  == -1
+        $scope.getwatchlistDetails.push(obj)
+        Storage.watchlistDetails 'set', $scope.getwatchlistDetails
+    else
+        $scope.getwatchlistDetails.splice matchInWatchList,1
+        Storage.watchlistDetails 'set', $scope.getwatchlistDetails 
+
 
   $rootScope.$on 'openNotification', (event, pn)->
     App.fromNotification = 1
@@ -35,12 +65,12 @@ angular.module('SFWApp.sidebar', [])
 
 
   $scope.getwatchlistcount = ()->
-    console.log "init called"
     Storage.watchlistDetails 'get'
     .then (value)->
-        console.log value
+        if _.isNull value
+          value = []
         $scope.watchlistDetails = value
-        if  _.isNull($scope.watchlistDetails)
+        if  $scope.watchlistDetails.length == 0
           $scope.watchListCount = '0'
           $scope.$apply()
 
@@ -56,15 +86,8 @@ angular.module('SFWApp.sidebar', [])
   $rootScope.getnotificationcount = ()->
     ParseNotificationService.getUnreadNotificationsCount()
     .then (value)->
-      console.log value
       $rootScope.unreadNotificationCount = value
 
-  # $scope.singleplay = (videoid)->
-  #   console.log videoid
-  #   DetailsAPI.videoId = videoid
-  #   console.log DetailsAPI.videoId
-  #   console.log "enterd single play ."
-  #   App.navigate 'init'
 
   $scope.singlePlayService = (videoData)->
     DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
@@ -72,36 +95,38 @@ angular.module('SFWApp.sidebar', [])
     App.navigate 'init'  
 
   $scope.searchMovie = () ->
-    $scope.afterSearch = false
-    console.log "key-up event called"
-    txt = document.getElementById("autocomplete");
-    txtvalue = txt.value;
-    console.log txtvalue
-    $scope.display = 'loader'
-    DetailsAPI.searchResult(txtvalue)
-      .then (data)=>
-        $scope.afterSearch = true
-        console.log data
-        $scope.SearchResult = data
 
-        device_width = $window.innerWidth;
-        device_height = $window.innerHeight;
-        console.log device_width
-        console.log device_height
-        $scope.used_height = 32
-        $scope.hgt = device_height - $scope.used_height
+    Storage.watchlistDetails 'get'
+    .then (value)->
+      if _.isNull value
+        value = []
+      $scope.watchlistDetails = value
+      console.log $scope.watchlistDetails
 
-        if $scope.SearchResult.length == 0
-          $scope.errorType = 'no_Search_result'
+      $scope.afterSearch = false
+      txt = document.getElementById("autocomplete");
+      txtvalue = txt.value;
+      $scope.display = 'loader'
+      DetailsAPI.searchResult(txtvalue)
+        .then (data)=>
+          $scope.afterSearch = true
+          $scope.SearchResult = data
+
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 32
+          $scope.hgt = device_height - $scope.used_height
+
+          if $scope.SearchResult.length == 0
+            $scope.errorType = 'no_Search_result'
+            $scope.display = 'error'
+          else
+            $scope.classname = 'searchResult'
+            $scope.display = 'searchresult'
+
+        , (error)=>
+          $scope.errorType = 'offline'
           $scope.display = 'error'
-        else
-          $scope.classname = 'searchResult'
-          $scope.display = 'searchresult'
-
-      , (error)=>
-        console.log 'Error Loading data'
-        $scope.errorType = 'offline'
-        $scope.display = 'error'
 
   $scope.onTapToRetry = () ->
     console.log $scope.errorType
@@ -127,20 +152,15 @@ angular.module('SFWApp.sidebar', [])
 
 
   $scope.displayWeb = (Url) ->
-    console.log Url
     $ionicSideMenuDelegate.toggleLeft()
     window.open(Url, '_system');
     return true
 
   $scope.submit = ->
-    console.log "submit called"
     App.navigate "onlineSubmit"
 
 
   $scope.slideContent = ->
-
-    console.log "slide"
-    console.log DetailsAPI.imageUrl
     $scope.getwatchlistcount()
     $ionicSideMenuDelegate.toggleLeft()
     return

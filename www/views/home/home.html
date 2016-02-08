@@ -17,6 +17,12 @@
                             <div class="cardDetails swiper-slide  " ng-repeat="data in SearchResult" is-loaded>
                                 <div class="list card margin0 cardOuter" ng-click="singlePlayService(data)">
                                     <div class="item item-image padding0 noteWorthy">
+                                    
+                                    <div class="watchlistIcon">
+                            <button class="button button-icon" ng-click="addwatchlist(data)">
+                            <i class="ion-heart" ng-class="checkIfaddedToWatchList(data.movie_id)"></i>
+                            </button>
+                            </div>
                                         <div class="imageContainerOuter" style="height: {{ hgt }}px"><img ng-src="{{ data.image }}" />
                                         </div>
                                         <div class="overlay"></div>
