@@ -119,7 +119,8 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
       if ($scope.vType === 'vimeo') {
         modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl;
         console.log(modifiedUrl);
-        return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        return console.log($scope.player1);
       } else {
         return player = new YT.Player('player2', {
           height: '100%',

@@ -14,24 +14,7 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
 .run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration','InitialiseService', ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration,InitialiseService)->
 
   $ionicPlatform.ready ->
-    # console.log App.isOnline(),'online'
-    # if App.isOnline()
-    #   console.log 'online'
-    #   InitialiseService.initialize()
-    #   .then (response) ->
-    #     App.navigate 'popular'
-    #     # $cordovaSplashscreen.hide()
-    #   .finally ->
-    #     console.log 'finally'
-    # else
-    #   $cordovaToast
-    #   .show 'No internet availability','long','bottom'
-    #   .then ()->
-    #     $cordovaSplashscreen.hide()
-    #     App.navigate 'popular'
-    console.log 'appInitialize'
-    App.navigate 'appInitialize'
-          
+    App.navigate 'appInitialize'        
 
     Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
 
