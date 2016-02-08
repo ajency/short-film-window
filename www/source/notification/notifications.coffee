@@ -4,6 +4,9 @@ angular.module 'SFWApp.tabs'
 
     $scope.notificationArray = []
 
+    $rootScope.$on 'receiveNotification', (event, pn)->
+      $scope.getNotifications()
+
     $scope.getNotifications = ()->
       if App.isOnline()
         $scope.result = 'loader'
@@ -16,7 +19,6 @@ angular.module 'SFWApp.tabs'
             $scope.result = 'display'
 
         .catch (error) ->
-          console.log error
           $scope.result = 'error'
       else
         $scope.result = 'error'
@@ -25,23 +27,19 @@ angular.module 'SFWApp.tabs'
       if App.isOnline()
         $scope.notificationArray = []
         $scope.result = 'no-new-notifications'
-        ParseNotificationService.deleteNotifications()
         $rootScope.unreadNotificationCount = 0
+        ParseNotificationService.deleteNotifications()
         .then (data) ->
           console.log data
         .catch (error) ->
-          console.log error
           $scope.result = 'error'
       else
         $scope.result = 'error'
 
     $scope.markNotificationAsRead = (notification_id)->
       if App.isOnline()
-        console.log $scope.notificationArray,notification_id
         matchIndex = _.findLastIndex $scope.notificationArray, {"notificationId": ''+notification_id+''}
-        console.log matchIndex
         $scope.notificationArray[matchIndex].status = 'read'
-        console.log $scope.notificationArray
         if $rootScope.unreadNotificationCount
           $rootScope.unreadNotificationCount--
 
@@ -49,7 +47,6 @@ angular.module 'SFWApp.tabs'
         .then (data) ->
           console.log data
         .catch (error) ->
-          console.log error
           $scope.result = 'error'
       else
         $scope.result = 'error'

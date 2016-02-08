@@ -19,8 +19,7 @@
                                 <img src="{{ playlist.playlist_image_url }}">
                                 <div class="overlay"></div>
                             </div>
-                            <div class="singlePlaylistDetails">
-                                <!-- <marquee scrolldelay="200" width="82%" class="cardTitle">{{ playlist.playlist_name }}</marquee> -->                                
+                            <div class="singlePlaylistDetails">                            
                                 <div class="cardTitle">{{ playlist.playlist_name }}</div>
                                 <p class="movieDescription"> {{ playlist.playlist_description }}</p>
                                 <div class="playlistHeaderSmall  item-divider">
@@ -31,9 +30,13 @@
                         </div>
 
                             <div ng-repeat="data in playlistData" class="item item-image padding0 playlistHgt"  id="playlistContent">
+
                             <div class="watchlistIcon">
-                                    <button class="button button-icon whiteText"><i class="ion-heart selected"></i></button>
-                                </div>
+                            <button class="button button-icon" ng-click="addwatchlist(data)">
+                            <i class="ion-heart" ng-class="checkIfaddedToWatchList(data.movie_id)"></i>
+                            </button>
+                            </div>
+                                
                             <div class="" ng-click="singlePlayService( data )" >
                                 
                                 <div class="imageContainerOuter playlistHgt"><img src="{{ data.image }}" /></div>
