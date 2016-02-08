@@ -956,6 +956,9 @@ a {
 .platform-ios .singleMovieContent .videoOuter {
   padding-top: 40px;
 }
+.platform-ios .movieDetails .viewsNLikes {
+  margin-bottom: 30px;
+}
 .icon-cust {
   background-position: center;
   background-repeat: no-repeat;
@@ -1263,6 +1266,10 @@ a {
   width: 50px;
   z-index: 99;
 }
+.watchlistIcon button {
+  height: 60px;
+  width: 60px;
+}
 .watchlistIcon i {
   color: #ffffff;
   font-size: 30px;
@@ -1480,6 +1487,9 @@ a {
 }
 .searchResult .watchlistIcon {
   top: 60px !important;
+}
+.platform-ios .searchResult .watchlistIcon {
+  top: 70px;
 }
 .submitForm .item-select {
   height: 35px;

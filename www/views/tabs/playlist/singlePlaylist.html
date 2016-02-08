@@ -5,6 +5,8 @@
     </ion-header-bar>
     <div ng-switch='display'>
         <ion-content scroll-watch class="popular singlePlaylist" ion-sticky>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+        </ion-refresher>
         <div ng-show='display == "result"' class="popularDisplayDiv" id="playlistHeaderSmall">
             
             <div id="playlistSwipeId" class="swiperplaylist">

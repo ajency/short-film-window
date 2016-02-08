@@ -5,6 +5,8 @@
     </ion-header-bar>
     <div ng-switch="display">
         <ion-content class="popular " ion-sticky>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+        </ion-refresher>
             <div ng-show='display == "result"'>
                 <div class="item item-avatar singleGenreAvtar item-divider">
                     <img src="{{ genre.genre_image_url }}">
