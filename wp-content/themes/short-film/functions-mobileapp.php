@@ -209,15 +209,10 @@ function five_awesome_playlists(){
 
 
 function genres_init(){
-	if ( is_home() ) {
-		return genres();
-	}
-	else{
-		return false;
-	}
+	return genres();
 }
 
-add_action('init', genres_init);
+add_action('init', 'genres_init');
 
 function genres()
 {
