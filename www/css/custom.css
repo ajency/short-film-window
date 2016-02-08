@@ -331,6 +331,7 @@ a {
 .playlist .viewPlaylist .button {
   padding: 0px 10px;
   font-size: 0.7em;
+  border: none;
 }
 .playlist.genreOuter .playlistDetails .title {
   font-size: 2.8vh;
