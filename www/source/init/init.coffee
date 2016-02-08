@@ -113,6 +113,7 @@ angular.module 'SFWApp.init', []
           modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
           console.log modifiedUrl
           $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
+          console.log $scope.player1
         else
           player = new YT.Player('player2', {
             height: '100%',

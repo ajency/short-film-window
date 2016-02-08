@@ -8,7 +8,6 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
   '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, tag;
     $ionicPlatform.ready(function() {
-      console.log('appInitialize');
       App.navigate('appInitialize');
       Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       ParsePushPlugin.getInstallationObjectId(function(id) {
