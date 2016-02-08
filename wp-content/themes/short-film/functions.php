@@ -2050,15 +2050,15 @@ function get_genre_total_runtime($genre_id){
 
   $runtime_mins = $total_runtime%60;
 
-  $final_runtime = array();
+  //$final_runtime = array();
 
-  $final_runtime['runtime_hours'] = $runtime_hours;
-  $final_runtime['runtime_mins']  = $runtime_mins;
-  $final_runtime['total_runtime']  = $total_runtime;
+  //$final_runtime['runtime_hours'] = $runtime_hours;
+  //$final_runtime['runtime_mins']  = $runtime_mins;
+  //$final_runtime['total_runtime']  = $total_runtime;
 
-  return $final_runtime;
+  //return $final_runtime;
 
-  //return $total_runtime;
+  return $total_runtime;
 }
 
 
@@ -2097,15 +2097,15 @@ function get_playlist_total_runtime($playlist_id, $taxonomy)
 
 	$runtime_mins = $total_runtime%60;
 
-	$final_runtime = array();
+/*	$final_runtime = array();
 
 	$final_runtime['runtime_hours'] = $runtime_hours;
 	$final_runtime['runtime_mins']  = $runtime_mins;
 	$final_runtime['total_runtime']  = $total_runtime;
 
-	return $final_runtime;
+	return $final_runtime;*/
 
-	//return $total_runtime;
+	return $total_runtime;
 
 
 } //end function
