@@ -154,7 +154,13 @@ function noteworthy(){
 }
 
 function five_awesome_playlists_init(){
-return five_awesome_playlists();
+
+	if ( is_home() ) {
+		return five_awesome_playlists();
+	}
+	else{
+		return false;
+	}
 }
 
 add_action('init', five_awesome_playlists_init);
@@ -203,7 +209,12 @@ function five_awesome_playlists(){
 
 
 function genres_init(){
-return genres();
+	if ( is_home() ) {
+		return genres();
+	}
+	else{
+		return false;
+	}
 }
 
 add_action('init', genres_init);

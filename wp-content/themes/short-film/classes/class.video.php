@@ -481,7 +481,34 @@ class Video
 		return $post_response;
 
 	}	
-	
+	public static function get_video_duration($args)
+	{
+		$params = array(
+						'orderby'           => 'meta_value_num',
+                    	'meta_key'          => 'duration',
+						'order'            		=> 'DESC',
+						'post_type' 	   		=> 'post',
+						'post_status'      		=> 'publish',
+						'cat'		  	 	  => $args['genre'],	
+						'posts_per_page'   		=> $args['posts_per_page'],
+						'offset'           		=> $args['offset'],
+						'exclude'				=> $args['exclude'],
+		
+					); 
+		$post_response = 0;
+		$query = new \WP_Query($params);
+	//	$response = array();
+	    while ( $query->have_posts() ) {
+			$query->the_post();
+			//$post_detail = self::get($query->post->ID);
+			$post_detail=get_post_meta( $query->post->ID , 'duration',true ) != false?get_post_meta($query->post->ID , 'duration',true ) : 0;
+
+			 $post_response=$post_response+$post_detail;		
+				
+			
+		}				  
+		return $post_response;
+	}
 
 	
 }

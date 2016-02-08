@@ -2037,14 +2037,14 @@ function get_genre_total_runtime($genre_id){
 
 
 
-  $response_posts = Film\Video::get_many($args);
+ /* $response_posts = Film\Video::get_video_duration($args);
 
   foreach($response_posts as $response_post)
   {
     $total_runtime+=$response_post['duration'];
 
-  }
-
+  }*/
+  $total_runtime = Film\Video::get_video_duration($args);
   $temp_runtime_hours = $total_runtime/60;
   $runtime_hours = floor($temp_runtime_hours);
 
