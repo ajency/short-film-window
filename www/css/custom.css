@@ -1662,7 +1662,8 @@ a {
     font-size: 1em;
   }
   .overlay {
-    background: rgba(0, 0, 0, 0) !important;
+    /*background: rgba(0,0,0,0) !important;*/
+    width: 50%;
   }
   .singleMovieOuter {
     height: auto;
@@ -1682,6 +1683,7 @@ a {
   }
   .singleMovieContent .overlay {
     background: rgba(0, 0, 0, 0.6) !important;
+    width: 100%;
   }
   .singlePlaylist {
     /*margin-top: 118px;*/
