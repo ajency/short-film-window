@@ -7,7 +7,15 @@ Template Name: articles_template
 
 <?php get_header(); ?>
 
+	<?php
 
+		$count_articles = wp_count_posts('article');
+
+		$total_no_of_articles = $count_articles->publish;
+
+		// echo $total_no_of_articles;
+
+	?>
 
         <!--Content-->
         <div class="container header-space">
@@ -47,6 +55,8 @@ Template Name: articles_template
 								'offset'           	=> 0,
 
 					);
+
+					$posts_per_page = 12;
 
 					$response = Article_post\Article::get_many_articles($args);
 
@@ -132,10 +142,26 @@ Template Name: articles_template
  					<input type="hidden" name="tracker" id="tracker" value="" / >
 			</div>
 
+			<div class="spacer-40"></div>
+
 			<div class="text-center">
 					<input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
-                    <a href="#" class="btn btn-primary load_more">Load More Articles</a>
+
+					<input type="hidden" name="total_no_of_articles" id="total_no_of_articles" value="<?php echo $total_no_of_articles; ?>" />
+
+
+					<?php
+
+						if($total_no_of_articles > $posts_per_page)
+						{
+					?>
+							<a href="#" class="btn btn-primary load_more">Load More Articles</a>
+					<?php
+						}
+					?>
+					<div class="loader_more load_dis"></div>
+
             </div>
 
 			<div class="spacer-40"></div>
@@ -173,11 +199,11 @@ Template Name: articles_template
 						?>
 								<div class="col-sm-4">
 									<div class="pop_posts posrel">
-										<div class="focus-img">
-											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
+										<!-- <div class="focus-img"> -->
+											<a class="focus-img" style="background-image: url(<?php echo $populararticle['small_image'] ;?>);" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
 												<img src="<?php echo $populararticle['small_image'];?>">
 											</a>
-										</div>
+										<!-- </div> -->
 
 										<div class="infocus_home">
 											<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $populararticle['slug'];?>">
@@ -188,9 +214,9 @@ Template Name: articles_template
 
 											<p>	<?php echo $populararticle['excerpt']; ?>	</p>
 											<div>
-												<p class="pull-left"><small><?php echo $populararticle['post_date'];?></small></p>
+												<p class="pull-left" title="Published Date"><small><?php echo $populararticle['post_date'];?></small></p>
 												<p class="pull-right">
-													<span><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
+													<span title="Likes"><i class="fa fa-thumbs-up"></i> <?php echo $populararticle['post_like_count'];?> </span>
 												</p>
 											</div>
 
@@ -252,7 +278,8 @@ window.onload = function() {
 
 	jQuery('.load_more').live('click',function(e){
 
-		jQuery('.loader').text("Loading data...")
+		// jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
+		jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
 
 		e.preventDefault();
 		get_all_posts();
@@ -268,6 +295,8 @@ window.onload = function() {
 
 		data = 'title='+jQuery(e.target).val();
 
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 		jQuery('.load_more').hide();
 
 		jQuery.ajax({
@@ -277,7 +306,6 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -299,8 +327,9 @@ window.onload = function() {
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
                 },
-                error:function(response){
-
+                error:function(response)
+				{
+					jQuery('.loader').text("");
                 }
         });
 
@@ -316,6 +345,8 @@ window.onload = function() {
 
 		data = 'title='+jQuery(this).prev().val();
 
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 		jQuery('.load_more').hide();
 
 		jQuery.ajax({
@@ -325,7 +356,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -348,8 +379,9 @@ window.onload = function() {
                     jQuery('#searchids').val(myarr.join(','));
                     generate_data(response);
                 },
-                error:function(response){
-
+                error:function(response)
+				{
+					jQuery('.loader').text("");
                 }
         });
 
@@ -387,7 +419,19 @@ window.onload = function() {
 		console.log(" inside get_all_posts ");
 
 		posts_per_page = 12;
+
 		offset = jQuery('#offset').val();
+
+		var total_no_of_articles = jQuery('#total_no_of_articles').val();
+
+
+		if((total_no_of_articles-offset)<=posts_per_page)
+		{
+			posts_per_page = total_no_of_articles-offset;
+
+			jQuery('.load_more').hide();
+		}
+
 
 		// data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
 
@@ -410,8 +454,10 @@ window.onload = function() {
                     jQuery('#offset').val(count);
 
 				},
-				error:function(error){
+				error:function(error)
+				{
 					jQuery('.loader').text("")
+					jQuery('.loader_more').text("")
 					jQuery('.all_posts').html('<p class="noneLeft">No Articles found</p>');
 					console.log(" inside get_all_posts error ");
 
@@ -425,7 +471,8 @@ window.onload = function() {
     function generate_data(response)
 	{
 
-        jQuery('.loader').text("")
+       jQuery('.loader').text("")
+        jQuery('.loader_more').text("")
 
 	    html = jQuery('.all_posts').html()
 

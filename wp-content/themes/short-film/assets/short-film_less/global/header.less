@@ -25,22 +25,98 @@
 		// 	padding: 0 2px;
 		// }
 	}
+	.onlyreel {
+		display: none;
+		width: 50px;
+		height: auto;
+	}
 
 	&.smaller{
 		background-color: darken(@gray-darker, 15%);
 		.logo{
-			width: 175px;
+			width: 50px;
+			// @media screen and (min-width: 768px) and (max-width: 924px) {
+			// 	width: 110px;
+			// }
+			@media screen and (min-width: 925px) {
+				width: 50px;
+			}
+			.fulllogo {
+				display: none;
+			}
+			.onlyreel {
+				display: block;
+			}
+			@media screen and (max-width: 767px) {
+				width: 175px;
+				.fulllogo {display: block;}
+				.onlyreel {display: none;}
+			}
 		}
 		.links{
 			padding: 15px;
 		}
+		.header-links {
+			@media screen and (min-width: 768px) {
+				position: relative;
+	  			top: 6px;
+			}
+		}
 		.social-links{
 			margin-top: 0;
+		}
+		.sub-header {
+			@media screen and (min-width: 768px) and (max-width: 924px) {
+				.menu li a {
+					font-size: 13px;
+				}
+			}
+			@media screen and (min-width: 768px) {
+				width: 100%;
+				text-align: left;
+				margin: 0 auto;
+				position: relative;
+	  			top: -30px;
+	 			margin-bottom: -14px;
+	 			margin-left: 25px;
+	 			.menu li a {
+	 				padding: 0 16px;
+	 			}
+				.container {
+					width: 100%;
+				}
+			}
+			@media screen and (min-width: 896px) {
+				width: 75%;
+				text-align: center;
+				margin-left: auto;
+				margin-right: auto;
+				.menu li a {
+	 				padding: 0 20px;
+	 			}
+			}
 		}
 		&+.sub-header{
 			// margin-top: 92px;
 			// background: darken(@gray-darker, 15%);
 			// z-index: 3;
+		}
+		.social-links{
+			.link{
+				display: inline-block;
+				vertical-align: middle;
+				.action {
+					// @media screen and (min-width: 768px) and (max-width: 924px) {
+						width: auto;
+					  	height: auto;
+					  	background: none;
+					// }
+				}
+			}
+			.icon {
+				display: none;
+			}
+			.twitter .action {bottom: -5px;}
 		}
 	}
 
@@ -52,6 +128,8 @@
 .logo{
 	width: 230px;
 	float: left;
+	position: relative;
+ 	// z-index: 1;
 	.ease;
 }
 
@@ -62,6 +140,7 @@
         float: none;
         height: 70px; //was 85px
         .social-links {float: right;}
+        display: none;
     }
 }
 .navbar-default {
@@ -73,7 +152,7 @@
     @media screen and (max-width: 767px) {
         margin-top: -70px;
         float: right;
-        width: 100%;
+        width: auto; //was auto
     }
     ul li a {
         &:hover, &:focus {
@@ -84,6 +163,8 @@
         border: 0;
         margin-right: 0;
         padding: 20px 0;
+        margin-bottom: 0;
+ 		margin-top: 12px;
         &:hover, &:focus {
             background: transparent;
             .icon-bar {background: @brand-primary}
@@ -96,15 +177,27 @@
 }
 @media screen and (max-width: 767px) {
     .navbar-default .menu ul {padding-top: 10px;}
-    .navbar-collapse {background: rgba(0,0,0,0.8); margin-top: 6px;}
+    .sub-header .navbar-default .navbar-collapse {
+    	background: rgba(0,0,0,0.8);
+    	margin-top: 6px;
+    	position: absolute;
+	  	width: auto;
+	  	right: 0px;
+	  	border: 0;
+	  	padding: 0;
+    }
     .sub-header .navbar-default .menu li {
         display: block;
 //        text-align: right;
         a {
             display: block;
-            color: @brand-primary;
-            padding: 5px;
-            &:hover {background: #eee;}
+            // color: @brand-primary;
+ 			color: #E2E2E2;
+            padding: 8px 35px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  			width: 180px;
+  			/* text-transform: uppercase; */
+            &:hover {background: #eee; color: @brand-primary;}
         }
         &:after {display: none;}
     }
@@ -135,7 +228,7 @@
 		color: @white;
 	}
 	.action{
-		background-color: lighten(@fb-brand, 20%);
+		background-color: @fb-brand;
 		width: 60px;
 		max-height: 23px;
 		text-align: center;
@@ -160,7 +253,7 @@
 		.action{
 			font-size: 0;
 			bottom: -8px;
-			background-color: lighten(@twitter-brand, 20%);
+			background-color: #E3E3E3;
 			iframe {
 				padding-bottom: 0;
  				margin-top: 1px;
@@ -190,7 +283,7 @@
 	z-index: 1;
 	// margin-top: 100px;
 	padding: 0 0 5px;
-	.ease;
+	// .ease;
 	span{
 		margin: 0 30px
 	}
@@ -225,7 +318,7 @@
 		position: relative;
 		.logo{
 			width: 100%;
-			img{
+			img.fulllogo {
 //				margin: auto;
 				display: block;
                 height: 65px;
@@ -241,4 +334,12 @@
 		}
 	}
     .navbar-collapse {background: rgba(0,0,0,0)}
+}
+
+.header.smaller {
+	@media screen and (min-width: 768px) {
+		*[class=clearfix] {
+			display: none;
+		}
+	}
 }

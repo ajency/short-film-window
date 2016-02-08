@@ -5,12 +5,13 @@ body{
 .content-wrapper{
     //background: url('../img/noisy-texture.png');
     background: #ffffff;
+    padding: 0;
 }
 
 .wrapper{
 	min-height: 100%;
     margin-bottom: 0;
-//	margin-bottom: -160px; 
+//	margin-bottom: -160px;
 }
 
 .footer-push{
@@ -27,6 +28,9 @@ hr{
 
 .header-space{
 	padding-top: 150px;
+	@media screen and (max-width: 767px) {
+        padding-top: 110px;
+    }
     @media screen and (max-width: 480px) {
         padding-top: 10px;
     }

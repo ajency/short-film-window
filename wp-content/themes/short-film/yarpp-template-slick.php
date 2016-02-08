@@ -27,12 +27,23 @@ Author: mitcho (Michael Yoshitaka Erlewine)
 						<!-- <a class="content-bottom" href="<?php// echo site_url();?>/<?php// echo $response['slug']; ?>"> -->
 
                         <a class="content-bottom" href="<?php the_permalink(); ?>">
-                           <div class="grid-image">
-                               <?php if (has_post_thumbnail()):
-                                   the_post_thumbnail('thumbnail');
-                               else:?>
-                                   <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/placeholder.jpg" />
+                           <div class="grid-image" style="background-image: url(
+                               <?php if (has_post_thumbnail()): ?>
+                                   <?php
+
+                                    $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'thumbnail');
+
+                                    echo $image_attributes[0];
+
+
+                                   ?>
+
+
+                                   <?php //the_post_thumbnail('thumbnail'); ?>
+                               <?php else:?>
+                                   <?php echo get_stylesheet_directory_uri() ?>/assets/img/placeholder.jpg
                                 <?php endif; ?>
+                                );">
                            </div>
                            <div class="grid-text-wrap">
                                <div class="grid-title"><?php the_title_attribute(); //echo $response['title'];?></div>

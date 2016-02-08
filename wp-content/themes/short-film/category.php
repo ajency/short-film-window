@@ -156,10 +156,19 @@
 				<div class="search-results-message">
 				</div>
 
+				<?php
+
+					$queried_object = get_queried_object();
+
+
+					$total_no_of_videos = $queried_object->category_count;
+
+					// echo $total_no_of_videos;
+				?>
 
                 <div class="all_posts">
 
-				<?php $queried_object = get_queried_object();
+			<?php
 
 
  				$args = array(
@@ -170,7 +179,8 @@
 					'taxonomy'			=> '',
 					'language'			=> '',
 					'posts_per_page'   	=> 12,
-					'offset'           	=> 0
+					'offset'           	=> 0,
+                    'sort'              => 1
 
 
 				);
@@ -209,7 +219,7 @@
 					<div class="row gridlayout">
 
 				 		<div class="col-sm-6 multi-grid">
-                            <div class="grid-box grid-full content-align-bottom">
+                            <div class="grid-box grid-full content-align-bottom <?php echo $value[0]['class'] ;?>">
 							<?php
 								if($value[0]['slug'])
 								{
@@ -261,7 +271,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[1]['class'] ;?>">
 
 							<?php
 								if($value[1]['slug'])
@@ -312,7 +322,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[2]['class'] ;?>">
 
 							<?php
 								if($value[2]['slug'])
@@ -364,7 +374,7 @@
                         </div>
 
                         <div class="col-sm-6 multi-grid">
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[3]['class'] ;?>">
 
 							<?php
 								if($value[3]['slug'])
@@ -413,7 +423,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[4]['class'] ;?>">
 
 							<?php
 								if($value[4]['slug'])
@@ -462,7 +472,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-full content-align-bottom">
+                            <div class="grid-box grid-full content-align-bottom <?php echo $value[5]['class'] ;?>">
 
 							<?php
 								if($value[5]['slug'])
@@ -527,7 +537,7 @@
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-							<img src="<?php echo $value['medium_image'];?>" class="img-responsive width-full">
+							<img data-src="<?php echo $value['medium_image'];?>" src="" class="img-responsive width-full">
 						</a>
 
                     </div>
@@ -592,7 +602,7 @@
 	            <div class="couchlayout" style="display: none;">
 
 					<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
-						<img src="<?php echo $value['large_image'];?>" alt="" class="img-responsive width-full">
+						<img data-src="<?php echo $value['large_image'];?>" src="" alt="" class="img-responsive width-full">
 					</a>
 
                     <div class="row">
@@ -670,11 +680,16 @@
  					<input type="hidden" name="tracker" id="tracker" value="" / >
             </div>
             <div class="content-wrapper">
+
+				<div class="spacer-40"></div>
+
                 <div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
                     <a href="#" class="btn btn-primary load_more">Load More</a>
+                    <div class="loader_more load_dis"></div>
                 </div>
+
                 <div class="spacer-40 hideinsmall"></div>
 
                 <a id="next" href="<?php echo site_url() ;?>/wp-json/page2/tagposts?tag=trending"></a>
@@ -712,7 +727,7 @@
 
 <script type="text/javascript">
 
-window.onload = function() {
+jQuery(document).ready(function(){
 	jQuery('#tracker').val('gridoption');
 
 	showLayout();
@@ -735,7 +750,7 @@ window.onload = function() {
         jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 		get_all_posts();
 
@@ -749,7 +764,7 @@ window.onload = function() {
 		jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 		jQuery('.all_posts').html("")
 
 		get_all_posts();
@@ -759,10 +774,10 @@ window.onload = function() {
 
 	jQuery('.load_more').live('click',function(e){
 
-
-		jQuery('.loader').text("Loading data...")
-
 		e.preventDefault();
+
+		jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 		get_all_posts();
 
 
@@ -780,13 +795,40 @@ window.onload = function() {
 
     jQuery('#sort').live('change',function(e){
         e.preventDefault();
-        data = 'sort='+jQuery(e.target).val()
+        genre = jQuery('#genre').val();
+        language = jQuery('#language').val();
+
+        offset = jQuery('#offset').val();
+
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+        posts_per_page = 12;
+
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
+
+            // jQuery('.load_more').hide();
+        // }
+
+
+        if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+
         jQuery.ajax({
                 type : 'GET',
                 url : SITEURL+'/wp-json/sort',
                 data : data,
                 success:function(response){
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
                     jQuery('.all_posts').html("")
                     generate_data(response);
 
@@ -809,8 +851,8 @@ window.onload = function() {
 
    	    e.preventDefault();
 
-		console.log("in search change event..");
-
+		
+        jQuery('.search-results-message').show()
         jQuery('#genre').val("");
         jQuery('#language').val("");
         jQuery('#offset').val(0);
@@ -828,7 +870,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
                     var clear = '<i class="fa fa-times"></i>';
@@ -876,7 +918,7 @@ window.onload = function() {
 
    	    e.preventDefault();
 
-		console.log("in search change event..");
+		jQuery('.search-results-message').show();
 
         jQuery('#genre').val("");
         jQuery('#language').val("");
@@ -895,7 +937,7 @@ window.onload = function() {
                 success:function(response)
 				{
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
@@ -969,17 +1011,29 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.gridlayout').show();
+            jQuery('.gridlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 
 		}
 		else if(jQuery('#tracker').val() == 'listoption'){
 			jQuery('.gridlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.listlayout').show();
+            jQuery('.listlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 		}
 		else if(jQuery('#tracker').val() == 'couchoption'){
 			jQuery('.gridlayout').hide();
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').show();
+            jQuery('.couchlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 		}
 	}
 
@@ -987,20 +1041,33 @@ window.onload = function() {
 	{
 
 		genre = jQuery('#genre').val();
-		language = jQuery('#language').val();
-		posts_per_page = 12;
-		offset = jQuery('#offset').val();
+        language = jQuery('#language').val();
+        jQuery('.search-results-message').hide()
+        offset = jQuery('#offset').val();
 
-		if(language)
-		{
-			taxonomy = 'language';
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
 
-			data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		}
-		else
-		{
-			data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		}
+        posts_per_page = 12;
+
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
+
+            // jQuery('.load_more').hide();
+        // }
+
+
+        if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
+
 
 
 		jQuery.ajax({
@@ -1029,7 +1096,8 @@ window.onload = function() {
 
 				},
 				error:function(error){
-					jQuery('.loader').text("")
+					jQuery('.loader').text("");
+					jQuery('.loader_more').text("");
 					jQuery('.all_posts').html('<p class="noneLeft">No videos found</p>');
 
 				}
@@ -1047,7 +1115,8 @@ window.onload = function() {
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;
-        var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+        // var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+        var image  = SITEURL+'/wp-content/themes/short-film/assets/img/white.png';
 		for (var i= 0; i < multiple[k]; i++) {
 
 			if(response[j] == undefined){
@@ -1113,7 +1182,7 @@ window.onload = function() {
         jQuery.each(response,function(index,value){
 
 
-					html +=	'<div class="col-xs-4">'
+					html +=	'<div class="col-sm-4">'
 
 								+'<div class="grid-box grid-full content-align-bottom">'
 
@@ -1195,7 +1264,7 @@ window.onload = function() {
 
 
 
-					html +=	'<div class="col-xs-4">'
+					html +=	'<div class="col-sm-4">'
 
 								+'<div class="grid-box grid-full content-align-bottom">'
 
@@ -1277,7 +1346,7 @@ window.onload = function() {
         jQuery.each(response,function(index,value){
 
 
-					html +=	'<div class="col-xs-4">'
+					html +=	'<div class="col-sm-4">'
 
 								+'<div class="grid-box grid-full content-align-bottom">'
 
@@ -1350,7 +1419,9 @@ window.onload = function() {
 
     function generate_data(response){
 
-        jQuery('.loader').text("")
+        jQuery('.loader').text("");
+		jQuery('.loader_more').text("");
+
         html = jQuery('.all_posts').html()
 
         if(response.length>0)
@@ -1377,7 +1448,7 @@ window.onload = function() {
 
 
                         +'<div class="col-sm-6 multi-grid">'
-                       +' <div class="grid-box grid-full content-align-bottom">'
+                       +' <div class="grid-box grid-full content-align-bottom '+value[0]['class']+'">'
 							+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[0]['medium_image']+');">'
                                 +'</div>'
@@ -1412,7 +1483,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                            +' </a>'
                         +'</div>'
-                        +'<div class="grid-box grid-half content-align-bottom">'
+                        +'<div class="grid-box grid-half content-align-bottom '+value[1]['class']+'">'
                            +'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[1]['medium_image']+');">'
                                 +'</div>'
@@ -1447,7 +1518,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
                         +'</div>'
-                        +'<div class="grid-box grid-half content-align-bottom">'
+                        +'<div class="grid-box grid-half content-align-bottom '+value[2]['class']+'">'
                           +'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[2]['medium_image']+');">'
                                +' </div>'
@@ -1484,7 +1555,7 @@ window.onload = function() {
                         +'</div>'
                    +' </div>'
                     +'<div class="col-sm-6 multi-grid">'
-                       +' <div class="grid-box grid-half content-align-bottom">'
+                       +' <div class="grid-box grid-half content-align-bottom '+value[3]['class']+'">'
                            +'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[3]['medium_image']+');">'
                                 +'</div>'
@@ -1519,7 +1590,7 @@ window.onload = function() {
                                +' <div class="overlay-vertical"></div>'
                            +' </a>'
                        +' </div>'
-                       +' <div class="grid-box grid-half content-align-bottom">'
+                       +' <div class="grid-box grid-half content-align-bottom '+value[4]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[4]['medium_image']+');">'
                                 +'</div>'
@@ -1553,7 +1624,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
                         +'</div>'
-                        +'<div class="grid-box grid-full content-align-bottom">'
+                        +'<div class="grid-box grid-full content-align-bottom '+value[5]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[5]['medium_image']+');">'
                                 +'</div>'
@@ -1604,7 +1675,7 @@ window.onload = function() {
                 html += '<div class="row listlayout">'
                     + '<div class="col-md-5">'
 						+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-							+ '<img src="'+value.medium_image+'" class="img-responsive width-full">'
+							+ '<img data-src="'+value.medium_image+'" src="" class="img-responsive width-full">'
 						+'</a>'
                     + '</div>'
                     + '<div class="col-md-7">'
@@ -1627,7 +1698,7 @@ window.onload = function() {
                                 + '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</h6>'
 
 
-								+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+								+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 								+ '<p class="categories">'
                                     + '<span class="label label-greydark">'
@@ -1668,7 +1739,7 @@ window.onload = function() {
                 html += '<div class="couchlayout">'
 
 					+ '<a class="content-bottom" href="'+SITEURL+'/'+value.slug+'">'
-						+ '<img src="'+value.large_image+'" alt="" class="img-responsive width-full">'
+						+ '<img data-src="'+value.large_image+'" src="" alt="" class="img-responsive width-full">'
                     +'</a>'
 					+ '<div class="row">'
 
@@ -1678,7 +1749,7 @@ window.onload = function() {
                                 	+ value.title
                                 + '</a>'
 
-								+ '<small><em>by <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'
+								+ '<small><em>by <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'
 
                             + '</h3>'
                         + '</div>'
@@ -1789,7 +1860,7 @@ function loadslick(){
 	});
 
 
-} //onload
+}) //onload
 
 </script>
 

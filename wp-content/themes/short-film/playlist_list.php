@@ -58,17 +58,17 @@ Template Name: List of Playlists
 
 			foreach ($play_gridreponse as $key => $value)
 			{
-				
+
 				  foreach ($value as $k => $val) {
                                 $value[$k]['class'] = '';
-								
+
                                 if($val['playlist_link'] == "")
                                 {
 
                                     $value[$k]['class'] = 'hidden';
-                                }	
+                                }
                             }
-				
+
 	?>
 			<div class="playlist-grid">
 
@@ -76,7 +76,7 @@ Template Name: List of Playlists
 
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[0]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[0]['playlist_image_url']; ?>);">
 								<!-- <img src="<?php echo $value[0]['playlist_image_url']; ?>" alt=""> -->
@@ -89,7 +89,7 @@ Template Name: List of Playlists
 								<div class="p-btm">
 
 
-										<div class="pull-right p-count <?php echo $value[0]['class'] ;?>"> 											
+										<div class="pull-right p-count <?php echo $value[0]['class'] ;?>">
 											<p><?php echo $value[0]['playlist_count']; ?> films</p>
 										</div>
 
@@ -101,7 +101,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[1]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[1]['playlist_image_url']; ?>);">
 							</span>
@@ -124,7 +124,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[2]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[2]['playlist_image_url']; ?>);">
 							</span>
@@ -147,7 +147,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[3]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[3]['playlist_image_url']; ?>);">
 							</span>
@@ -170,7 +170,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[4]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[4]['playlist_image_url']; ?>);">
 							</span>
@@ -194,7 +194,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[5]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[5]['playlist_image_url']; ?>);">
 							</span>
@@ -217,7 +217,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[6]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[6]['playlist_image_url']; ?>);">
 							</span>
@@ -240,7 +240,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[7]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[7]['playlist_image_url']; ?>);">
 							</span>
@@ -263,7 +263,7 @@ Template Name: List of Playlists
 					</div>
 
 					<div class="col-md-4 col-sm-6">
-						<div class="p-grid-c">
+						<div class="p-grid-c <?php echo $value[8]['class']; ?>">
 
 							<span class="p-img-c" style="background-image: url(<?php echo $value[8]['playlist_image_url']; ?>);">
 							</span>
@@ -305,6 +305,7 @@ Template Name: List of Playlists
 						<input type="hidden" name="offset" id="offset" value="0" />
 						<input type="hidden" name="total_no_of_playlists" id="total_no_of_playlists" value="<?php echo $total_no_of_playlists; ?>" />
 						<a href="#" class="btn btn-primary load_more">Load More </a>
+						<div class="loader_more load_dis"></div>
 					</div>
             	</div>
             </div>
@@ -429,7 +430,7 @@ window.onload = function()
 
 		console.log("inside load_more");
 
-		jQuery('.loader').text("Loading data...")
+		jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 
 		 get_all_playlists();
@@ -518,7 +519,8 @@ window.onload = function()
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;
-		var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+		// var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+		var image  = SITEURL+'/wp-content/themes/short-film/assets/img/white.png';
 		for (var i= 0; i < multiple[k]; i++) {
 
 			if(response[j] == undefined){
@@ -569,7 +571,7 @@ window.onload = function()
 			grid = generate_play_grid_response(response);
 
 			jQuery.each(grid,function(index,value){
-			
+
 
 					jQuery.each(value,function(index,val){
 						value[index]['class'] = '';
@@ -580,9 +582,9 @@ window.onload = function()
 
 							value[index]['class'] = 'hidden';
 						}
-						
 
-					});			
+
+					});
 
 
 				html+= '<div class="playlist-grid">'
@@ -590,7 +592,7 @@ window.onload = function()
 							+'<div class="row pushin">'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[0]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[0]['playlist_image_url']+');">'
 										+'</span>'
@@ -614,7 +616,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[1]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[1]['playlist_image_url']+');">'
 										+'</span>'
@@ -638,7 +640,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[2]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[2]['playlist_image_url']+');">'
 										+'</span>'
@@ -662,7 +664,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[3]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[3]['playlist_image_url']+');">'
 										+'</span>'
@@ -686,7 +688,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[4]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[4]['playlist_image_url']+');">'
 										+'</span>'
@@ -708,7 +710,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[5]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[5]['playlist_image_url']+');">'
 										+'</span>'
@@ -730,7 +732,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[6]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[6]['playlist_image_url']+');">'
 										+'</span>'
@@ -753,7 +755,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[7]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[7]['playlist_image_url']+');">'
 										+'</span>'
@@ -776,7 +778,7 @@ window.onload = function()
 								+'</div>'
 
 								+'<div class="col-md-4 col-sm-6">'
-									+'<div class="p-grid-c">'
+									+'<div class="p-grid-c '+value[8]['class']+'">'
 
 										+'<span class="p-img-c" style="background-image: url('+value[8]['playlist_image_url']+');">'
 										+'</span>'

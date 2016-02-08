@@ -5,6 +5,7 @@
 
 	$queried_object = get_queried_object();
 
+
 	$taxonomy = $queried_object->taxonomy;
 
 	$term_name = $queried_object->name;
@@ -12,9 +13,14 @@
 	$playlist_id = $queried_object->term_id;
 
 
+	$total_no_of_videos = $queried_object->count;
+
+
 	 $playlist_info = get_playlist_info($playlist_id, $taxonomy, 'thumbnail');
 
-	 $total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
+	 //$total_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
+
+	 $final_runtime = get_playlist_total_runtime($playlist_id, $taxonomy);
 
 ?>
 
@@ -26,7 +32,6 @@
                 <div class="row posrel">
 
 					<!--this row contains playlist info-->
-					<div class="row">
 
 							<div class="col-md-4">
 
@@ -69,7 +74,35 @@
 													}
 
 											?>
-											<p>Total Runtime: <span class="co"><?php echo $total_runtime;?></span> </p>
+											<!-- <p>Total Runtime: <span class="co"><?php// echo $total_runtime;?></span> minutes</p> -->
+
+											<p>
+												Total Runtime:
+
+												<span class="co">
+												<?php
+													if($final_runtime['runtime_hours'] > 0)
+													{
+														echo $final_runtime['runtime_hours'];
+
+												?>
+														Hours
+
+												<?php
+													}
+
+													if($final_runtime['runtime_mins'] > 0)
+													{
+														echo $final_runtime['runtime_mins'];
+												?>
+														Minutes
+												<?php
+													}
+												?>
+												</span>
+											</p>
+
+
 										</div>
 									</div>
 
@@ -85,19 +118,19 @@
 										</div>
 
 
-										<div class="lico_c">
+										<!-- <div class="lico_c">
 
 											<div class="lico like-action">
 
 											</div>
 
-										</div>
+										</div> -->
 
 										<div class="row opts disp_btm">
 											<div class="col-md-12">
 												<a href="#" id="gridoption" class="option" title="Grid"><i class="fa fa-th-large fa-3x"></i></a>
 
-												<a href="#" id="listoption"  class="option"title="List"><i class="fa fa-th-list fa-3x"></i></a>
+												<a href="#" id="listoption"  class="option" title="List"><i class="fa fa-th-list fa-3x"></i></a>
 
 												<a href="#" id="couchoption" class="option" title="Couch"><i class="fa fa-list-alt fa-3x"></i></a>
 
@@ -105,7 +138,6 @@
 										</div>
 
 									</div> <!-- end list info btns -->
-
 
 
 
@@ -117,7 +149,6 @@
 							</div>
 
 
-					</div> <!-- end row -->
 
 
                 </div>
@@ -147,6 +178,7 @@
 					);
 				}
 
+				$posts_per_page = 12;
 
 
 				$response = Film\Video::get_many($args);
@@ -184,10 +216,10 @@
 
 				?>
 
-					<div class="row gridlayout">
+					<div class="row gridlayout"  style="display: none;">
 
 				 		<div class="col-sm-6 multi-grid">
-                            <div class="grid-box grid-full content-align-bottom">
+                            <div class="grid-box grid-full content-align-bottom <?php echo $value[0]['class']; ?>">
 
 							<?php
 								if($value[0]['slug'])
@@ -239,7 +271,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[1]['class']; ?>">
 
 							<?php
 								if($value[1]['slug'])
@@ -290,7 +322,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[2]['class']; ?>">
 
 							<?php
 								if($value[2]['slug'])
@@ -342,7 +374,7 @@
                         </div>
 
                         <div class="col-sm-6 multi-grid">
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[3]['class']; ?>">
 
 							<?php
 								if($value[3]['slug'])
@@ -391,7 +423,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-half content-align-bottom">
+                            <div class="grid-box grid-half content-align-bottom <?php echo $value[4]['class']; ?>">
 
 							<?php
 								if($value[4]['slug'])
@@ -440,7 +472,7 @@
                                     <div class="overlay-vertical"></div>
                                 </a>
                             </div>
-                            <div class="grid-box grid-full content-align-bottom">
+                            <div class="grid-box grid-full content-align-bottom <?php echo $value[5]['class']; ?>">
 
 							<?php
 								if($value[5]['slug'])
@@ -501,7 +533,7 @@
 								$value['region'] = array(0 => 'No regions added');
 
                 ?>
-                <div class="row listlayout" style="display: none;">
+                <div class="row listlayout">
                     <div class="col-md-5">
 
 						<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $value['slug'];?>">
@@ -653,8 +685,14 @@
  					<div class="spacer-40"></div>
  					<input type="hidden" name="tracker" id="tracker" value="" / >
             </div>
+
+
+
             <div class="content-wrapper">
-                <div class="text-center">
+
+				<div class="spacer-40"></div><div class="loader_more"></div>
+
+				<div class="text-center">
                     <input type="hidden" name="offset" id="offset" value="0" />
                     <input type="hidden" name="searchids" id="searchids" value="0" />
 
@@ -662,7 +700,19 @@
 
 					<input type="hidden" name="playlist" id="playlist" value="<?php echo $queried_object->term_id; ?>" />
 
-                    <a href="#" class="btn btn-primary load_more">Load More</a>
+					<input type="hidden" name="total_no_of_videos" id="total_no_of_videos" value="<?php echo $total_no_of_videos; ?>" />
+
+					<?php
+
+						if($total_no_of_videos > $posts_per_page)
+						{
+					?>
+							<a href="#" class="btn btn-primary load_more">Load More</a>
+					<?php
+						}
+					?>
+					<div class="spacer-40"></div>
+
 
 			   </div>
 
@@ -765,12 +815,16 @@
 <script type="text/javascript">
 
 window.onload = function() {
-	jQuery('#tracker').val('gridoption');
+
+	// jQuery('#tracker').val('gridoption');
+	jQuery('#tracker').val('listoption');
 
 	showLayout();
 
 
-	jQuery('#gridoption').children().addClass('text-primary');
+	// jQuery('#gridoption').children().addClass('text-primary');
+	jQuery('#listoption').children().addClass('text-primary');
+
     count = parseInt(jQuery('#offset').val()) + parseInt("<?php echo count($response) ;?>");
     jQuery('#offset').val(count);
 
@@ -780,9 +834,12 @@ window.onload = function() {
 	jQuery('.load_more').live('click',function(e){
 
 
-		jQuery('.loader').text("Loading data...")
+		// jQuery('.loader').text("Loading data...")
 
 		e.preventDefault();
+
+		jQuery('.loader_more').html('<div class="loader_c"><div class="loader_i"></div></div>');
+
 		get_all_posts();
 
 
@@ -790,7 +847,8 @@ window.onload = function() {
 
 	jQuery('.option').live('click',function(e){
 		e.preventDefault();
-		jQuery('#gridoption').children().removeClass('text-primary');
+		// jQuery('#gridoption').children().removeClass('text-primary');
+		 jQuery('#listoption').children().removeClass('text-primary');
 
 		jQuery('#tracker').val(e.currentTarget.id);
 		showLayout();
@@ -848,6 +906,16 @@ window.onload = function() {
 		posts_per_page = 12;
 		offset = jQuery('#offset').val();
 
+		var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+		if((total_no_of_videos-offset)<=posts_per_page)
+		{
+			posts_per_page = total_no_of_videos-offset;
+
+			jQuery('.load_more').hide();
+		}
+
+
 
 		data = 'taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&playlist='+playlist;
 
@@ -877,7 +945,8 @@ window.onload = function() {
 
 				},
 				error:function(error){
-					jQuery('.loader').text("")
+					// jQuery('.loader').text("")
+					jQuery('.loader_more').text("")
 					jQuery('.all_posts').html('<p class="noneLeft">No Playlists found</p>');
 
 				}
@@ -896,7 +965,8 @@ window.onload = function() {
 		var k = 0 ;
 		grid[k] = {};
 		var j = 0;
-        var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+        // var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+        var image  = SITEURL+'/wp-content/themes/short-film/assets/img/white.png';
 		for (var i= 0; i < multiple[k]; i++) {
 
 			if(response[j] == undefined){
@@ -950,7 +1020,8 @@ window.onload = function() {
     function generate_data(response)
 	{
 
-        jQuery('.loader').text("")
+         jQuery('.loader').text("")
+         jQuery('.loader_more').text("")
         html = jQuery('.all_posts').html()
 
         if(response.length>0)
@@ -977,7 +1048,7 @@ window.onload = function() {
 
 
                         +'<div class="col-sm-6 multi-grid">'
-                       +' <div class="grid-box grid-full content-align-bottom">'
+                       +' <div class="grid-box grid-full content-align-bottom '+value[0]['class']+'">'
 					     +'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[0]['medium_image']+');">'
                                 +'</div>'
@@ -1012,7 +1083,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                            +' </a>'
                         +'</div>'
-                        +'<div class="grid-box grid-half content-align-bottom">'
+                        +'<div class="grid-box grid-half content-align-bottom '+value[1]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[1]['medium_image']+');">'
                                 +'</div>'
@@ -1047,7 +1118,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
                         +'</div>'
-                        +'<div class="grid-box grid-half content-align-bottom">'
+                        +'<div class="grid-box grid-half content-align-bottom '+value[2]['class']+'">'
                            +'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[2]['medium_image']+');">'
                                +' </div>'
@@ -1084,7 +1155,7 @@ window.onload = function() {
                         +'</div>'
                    +' </div>'
                     +'<div class="col-sm-6 multi-grid">'
-                       +' <div class="grid-box grid-half content-align-bottom">'
+                       +' <div class="grid-box grid-half content-align-bottom '+value[3]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[3]['medium_image']+');">'
                                 +'</div>'
@@ -1119,7 +1190,7 @@ window.onload = function() {
                                +' <div class="overlay-vertical"></div>'
                            +' </a>'
                        +' </div>'
-                       +' <div class="grid-box grid-half content-align-bottom">'
+                       +' <div class="grid-box grid-half content-align-bottom '+value[4]['class']+'">'
                            +'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[4]['medium_image']+');">'
                                 +'</div>'
@@ -1153,7 +1224,7 @@ window.onload = function() {
                                 +'<div class="overlay-vertical"></div>'
                             +'</a>'
                         +'</div>'
-                        +'<div class="grid-box grid-full content-align-bottom">'
+                        +'<div class="grid-box grid-full content-align-bottom '+value[5]['class']+'">'
                             +'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
                                 +'<div class="grid-image" style="background-image: url('+value[5]['medium_image']+');">'
                                 +'</div>'
@@ -1228,7 +1299,7 @@ window.onload = function() {
                                 + '<h6 class="m-t-30 m-b-0">'+value.video_region_links.join(', ')+'/'+value.duration+' MIN</h6>'
 
 
-								+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
+								+'<h6 class="m-t-0 m-b-0">Dir: <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">' + value.director + '</a></h6>'
 
 								+ '<p class="categories">'
                                     + '<span class="label label-greydark">'
@@ -1279,7 +1350,7 @@ window.onload = function() {
                                 	+ value.title
                                 + '</a>'
 
-								+ '<small><em>by <a href="'+SITEURL+'/author/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'
+								+ '<small><em>by <a href="'+SITEURL+'/director/'+value.director_nicename+'" title="Author">'+value.director+'</a></em></small>'
 
                             + '</h3>'
                         + '</div>'

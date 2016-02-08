@@ -7,24 +7,27 @@ Template Name: Homepage
 <?php get_header(); ?>
 
 			<!-- slider -->
+        <div class="slide r3 full-sli der">
+        	<div class="videohere">
+        		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive hideinsmall">
+        		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive s howinsmall"> -->
 
-        <div class="slider3 full-slider">
-        	<div>
-          		<!-- <img src="<?php echo get_template_directory_uri(); ?>/assets/img/home_main.jpg" class="img-responsive"> -->
-          		<video id="land_vid" preload="none" autoplay="true" loop="loop" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg">
-					
-					<!--
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
-				  <source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
-				  I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
-				   -->
+          		<!-- <video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg"
+          		 	data-setup='{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }'
+          		>
 
-				 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
-				
-				  
-				  <!-- You can embed a Flash player here, to play your mp4 video in older browsers -->
-				</video>
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_320x240.3gp">
+          			<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo_480x360.mp4">
+				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">
+				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">
+				  	<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">
+
+				  	<p class="vjs-no-js">
+				  		I'm sorry; your browser doesn't support HTML5 video in WebM with VP8 or MP4 with H.264.
+				 		<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">
+				 	</p>
+				</video> -->
+
          	</div>
         </div>
 
@@ -32,8 +35,8 @@ Template Name: Homepage
 
         <!--Content-->
         <div class="container">
-            <div class="content-wrapper">
-                <div class="spacer-40"></div>
+            <div class="content-wrapper mobheadspace">
+                <div class="spacer-40 hideinsmall"></div>
 
                 <h2 class="brand">STAFF PICKS <small><em class="brand_cat_name">This Week's Premiere</em></small></h2>
 
@@ -116,7 +119,7 @@ Template Name: Homepage
 
 			foreach ($gridreposnse as $key => $value)
 			{
-				foreach ($value as $k => $val) 
+				foreach ($value as $k => $val)
 				{
 					$value[$k]['class'] = '';
 
@@ -127,12 +130,12 @@ Template Name: Homepage
 					}
 
 				}
-			
-			
+
+
 	?>
 				<div class="row">
                     <div class="col-sm-6 multi-grid">
-                        <div class="grid-box grid-full content-align-bottom">
+                        <div class="grid-box grid-full content-align-bottom <?php echo $value[0]['class']; ?>">
 							<?php
 								if($value[0]['slug'])
 								{
@@ -165,7 +168,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[0]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[0]['class'] ;?>">
 
 												</div>
@@ -175,7 +178,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                    <?php echo $value[0]['excerpt'];?>
                                                 </div>
@@ -187,7 +190,7 @@ Template Name: Homepage
                             </a>
                         </div>
 
-					   <div class="grid-box grid-half content-align-bottom">
+					   <div class="grid-box grid-half content-align-bottom <?php echo $value[1]['class']; ?>">
 
 							<?php
 								if($value[1]['slug'])
@@ -231,7 +234,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[1]['excerpt'];?>
                                                 </div>
@@ -243,7 +246,7 @@ Template Name: Homepage
                             </a>
                         </div>
 
-					   <div class="grid-box grid-half content-align-bottom">
+					   <div class="grid-box grid-half content-align-bottom <?php echo $value[2]['class']; ?>">
 
 							<?php
 								if($value[2]['slug'])
@@ -287,7 +290,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[2]['excerpt'];?>
                                                 </div>
@@ -302,7 +305,7 @@ Template Name: Homepage
 
 				   <div class="col-sm-6 multi-grid">
 
-					   <div class="grid-box grid-half content-align-bottom">
+					   <div class="grid-box grid-half content-align-bottom <?php echo $value[3]['class']; ?>">
 
 							<?php
 								if($value[3]['slug'])
@@ -346,7 +349,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                    <?php echo $value[3]['excerpt'];?>
                                                 </div>
@@ -358,7 +361,7 @@ Template Name: Homepage
                             </a>
                         </div>
 
-						<div class="grid-box grid-half content-align-bottom">
+						<div class="grid-box grid-half content-align-bottom <?php echo $value[4]['class']; ?>">
 
 							<?php
 								if($value[4]['slug'])
@@ -402,7 +405,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8 vid-desc">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[4]['excerpt'];?>
                                                 </div>
@@ -414,7 +417,7 @@ Template Name: Homepage
                             </a>
                         </div>
 
-					  <div class="grid-box grid-full content-align-bottom">
+					  <div class="grid-box grid-full content-align-bottom <?php echo $value[5]['class']; ?>">
 
 								<?php
 								if($value[5]['slug'])
@@ -448,7 +451,7 @@ Template Name: Homepage
                                     <div class="grid-title"><?php echo $value[5]['title'];?></div>
                                     <div class="grid-meta">
                                         <div class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-xs-4 vid-meta">
 												<div class="pull-left text-center m-t-10 <?php echo $value[5]['class'] ;?>">
 
 												</div>
@@ -458,7 +461,7 @@ Template Name: Homepage
 														<i class="fa fa-thumbs-up"></i></div>
 												</div>
                                             </div>
-                                            <div class="col-sm-8">
+                                            <div class="col-xs-8 vid-desc">
                                                 <div class="pull-right text-right m-t-10">
                                                     <?php echo $value[5]['excerpt'];?>
                                                 </div>
@@ -495,7 +498,7 @@ Template Name: Homepage
                 <div class="row">
                     <div class="col-md-9">
                         <div class="">
-                            <h3 class="brand">IN FOCUS</h3>
+                            <h3 class="brand"><a href="<?php echo site_url(); ?>/articles/">IN FOCUS</a></h3>
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-12">
@@ -517,7 +520,7 @@ Template Name: Homepage
 ?>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="slider1 regular-slider arrows-top">
+				<div class="slider1 regular-slider arrows-top a_noco">
 					<?php
 
 						foreach($recentarticles as $recentarticle)
@@ -526,16 +529,17 @@ Template Name: Homepage
 							<div>
 								<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 
-									<div class="focus-img">
-										<img src="<?php echo $recentarticle['small_image'] ;?>" class="img-responsive">
+									<div class="focus-img" style="background-image: url(<?php echo $recentarticle['small_image'] ;?>);">
+										<!-- <img src="<?php echo $recentarticle['small_image'] ;?>" class="img-responsive"> -->
 									</div>
 								</a>
 
 									<div class="infocus_home posrel">
 										<a class="content-bottom" href="<?php echo site_url();?>/<?php echo $recentarticle['slug'];?>">
 											<h6><?php echo $recentarticle['title']; ?></h6>
+
+											<p><?php echo $recentarticle['excerpt']; ?></p>
 										</a>
-										<p><?php echo $recentarticle['excerpt']; ?></p>
 										<div>
 											<p class="pull-left"><small title="Published Date"><?php echo $recentarticle['post_date']; ?></small></p>
 											<p class="pull-right">
@@ -580,19 +584,14 @@ Template Name: Homepage
 	<?php
 
 		$image_size = 'thumbnail';
-
-		$no_of_categories = 4;
-
 		$response_cats = get_some_categories($no_of_categories, $image_size);
-
-
 		if(count($response_cats) > 0)
 		{
 	?>
 
 			<div class="row">
 				<div class="col-md-12">
-					<div class="slider_gen regular-slider">
+					<div class="slider_gen regular-slider gensli">
 
 						<?php
 							foreach($response_cats as $response_cat)
@@ -631,7 +630,7 @@ Template Name: Homepage
                 <div class="spacer-50 hideinsmall"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="brand"><small><em>SOME AWESOME</em></small> PLAYLISTS</h3>
+                        <h3 class="brand"><small><em>SOME AWESOME</em></small> <a href="<?php echo site_url(); ?>/list_of_playlists/">PLAYLISTS</a></h3>
 
 						<hr class="m-t-0">
 
@@ -705,14 +704,44 @@ Template Name: Homepage
 
 <script type="text/javascript">
 
-	document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
-
-
 	jQuery(document).ready(function($) {
 
-		// $('#land_vid').on('load', function() {
-		// 	this.play();
-		// });
+		//load video only in tablets and higher
+		var md = new MobileDetect(window.navigator.userAgent);
+
+		function loadvideoornot_hme() {
+			console.log('You\'re using a ' + md.phone() || md.tablet());
+			if (md.phone()) {
+				$('.videohere').html(
+					'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader_mob.jpg" class="img-responsive showinsmall">'
+				);
+				$('.mobheadspace').css('padding-top', '10px')
+			}
+			else {
+				//if (screenwi > 680) {
+					jQuery('.videohere').html(
+						'<video id="land_vid" class="video-js vjs-default-skin vjs-big-play-centered" poster="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" data-setup=\'{ "controls": false, "autoplay": true, "preload": "auto", "loop": true, "width": "100%", "height": "auto" }\'>'+
+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4">'+
+		          			'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.ogv" type="video/ogg">'+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.webm" type="video/webm">'+
+						  	'<source src="<?php echo get_template_directory_uri(); ?>/assets/videos/LandingVideo.mp4" type="video/mp4">'+
+
+						  	'<p class="vjs-no-js">'+
+						  		'I\'m sorry; your browser doesn\'t support HTML5 video in WebM with VP8 or MP4 with H.264.'+
+						 		'<img src="<?php echo get_template_directory_uri(); ?>/assets/img/LandingHeader.jpg" class="img-responsive">'+
+						 	'</p>'+
+						'</video>'
+						);
+					document.getElementById('land_vid').addEventListener('canplay', function() { this.play(); } );
+					document.getElementById('land_vid').addEventListener('touchstart', function(e) {
+						document.getElementById('land_vid').play();
+					});
+				//}
+			}
+		}
+		loadvideoornot_hme();
+
 
         //function to resize the staffpick image after the viedo is stopped
         function resizeimgs(tw, obj, i) {
@@ -740,7 +769,7 @@ Template Name: Homepage
             }
         }
 
-		jQuery('.staffpick-display-section').text("Loading data...");
+		jQuery('.staffpick-display-section').html('<div class="loader_c"><div class="loader_i"></div></div>');
 
 		jQuery.ajax({
 
@@ -869,7 +898,9 @@ Template Name: Homepage
 										+'<div class="col-md-10">'
 											+'<div class="pull-lef t">'
 
-												+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
+												//+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/author/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
+
+												+'<h3><a class="content-bottom" href="'+SITEURL+'/'+response.slug+'">'+response.title+'</a><small><em> by <a title="Author" href="'+SITEURL+'/director/'+response.director_nicename+'">'+response.director+'</a></em></small></h3>'
 
 											+'</div>'
 
@@ -900,7 +931,7 @@ Template Name: Homepage
 										+'<div class="meta-ico-in" title="Views">'+response.no_of_views+'<i class="fa fa-eye"></i></div>'
 
 
-										+'<div class="post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
+										+'<div class="meta-ico-in post_likes"><a href="#" class="post-like liked" data-post_id="'+response.id+'" title="Like/Unlike"> <i id="icon-like" class="fa fa-thumbs-up"></i>'+response.post_like_count+'</a> </div>'
 
 
 									+'</div>'
@@ -988,6 +1019,8 @@ Template Name: Homepage
 
     } // end of generate_video
 
+
+
     //onclick of playing video
 
 	jQuery(document).on('click', 'iframe.vid_if', function() {
@@ -1016,7 +1049,7 @@ Template Name: Homepage
 					console.log("inside success ");
 					console.log(response);
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -1073,7 +1106,7 @@ Template Name: Homepage
 					console.log("inside success ");
 					console.log(response);
                     jQuery('#offset').val(0)
-                    jQuery('.loader').text("Loading data...")
+                    jQuery('.loader').html('<div class="loader_c"><div class="loader_i"></div></div>')
 
 					//var clear = '<a href="#" id="clear-search-results-btn">Clear Search Results</a>';
 					var clear = '<i class="fa fa-times"></i>';
@@ -1155,7 +1188,7 @@ Template Name: Homepage
 				html+='<div class="row gridlayout">'
 
 					+'<div class="col-sm-6 multi-grid">'
-						+' <div class="grid-box grid-full content-align-bottom">'
+						+' <div class="grid-box grid-full content-align-bottom '+value[0]['class']+'">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[0]['slug']+'" href="'+SITEURL+'/'+value[0]['slug']+'">'
 
@@ -1197,7 +1230,7 @@ Template Name: Homepage
 							+'<div class="overlay-vertical"></div>'
 					   +' </a>'
 					+'</div>'
-					+'<div class="grid-box grid-half content-align-bottom">'
+					+'<div class="grid-box grid-half content-align-bottom '+value[1]['class']+'">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[1]['slug']+'" href="'+SITEURL+'/'+value[1]['slug']+'">'
 
@@ -1234,7 +1267,7 @@ Template Name: Homepage
 							+'<div class="overlay-vertical"></div>'
 						+'</a>'
 					+'</div>'
-					+'<div class="grid-box grid-half content-align-bottom">'
+					+'<div class="grid-box grid-half content-align-bottom '+value[2]['class']+'">'
 
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[2]['slug']+'" href="'+SITEURL+'/'+value[2]['slug']+'">'
@@ -1274,7 +1307,7 @@ Template Name: Homepage
 					+'</div>'
 			   +' </div>'
 				+'<div class="col-sm-6 multi-grid">'
-				   +' <div class="grid-box grid-half content-align-bottom">'
+				   +' <div class="grid-box grid-half content-align-bottom '+value[3]['class']+'">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[3]['slug']+'" href="'+SITEURL+'/'+value[3]['slug']+'">'
 
@@ -1311,7 +1344,7 @@ Template Name: Homepage
 						   +' <div class="overlay-vertical"></div>'
 					   +' </a>'
 				   +' </div>'
-				   +' <div class="grid-box grid-half content-align-bottom">'
+				   +' <div class="grid-box grid-half content-align-bottom '+value[4]['class']+'">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[4]['slug']+'" href="'+SITEURL+'/'+value[4]['slug']+'">'
 
@@ -1348,7 +1381,7 @@ Template Name: Homepage
 							+'<div class="overlay-vertical"></div>'
 						+'</a>'
 					+'</div>'
-					+'<div class="grid-box grid-full content-align-bottom">'
+					+'<div class="grid-box grid-full content-align-bottom '+value[5]['class']+'">'
 
 							+'<a class="content-bottom check-slug" data-slug="'+value[5]['slug']+'" href="'+SITEURL+'/'+value[5]['slug']+'">'
 
@@ -1409,7 +1442,8 @@ Template Name: Homepage
 			var k = 0 ;
 			grid[k] = {};
 			var j = 0;
-			var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+			// var image  = SITEURL+'/wp-content/themes/short-film/assets/img/placeholder.jpg';
+			var image  = SITEURL+'/wp-content/themes/short-film/assets/img/white.png';
 			for (var i= 0; i < multiple[k]; i++) {
 
 				if(response[j] == undefined)
@@ -1534,27 +1568,3 @@ Template Name: Homepage
 	});  // end of document.ready function
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

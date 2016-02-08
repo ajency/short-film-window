@@ -121,73 +121,34 @@
         }
 
         $(window).resize(function() {
-                height = window.innerHeight ? window.innerHeight : $(window).height();
-                width = window.outerWidth ? window.outerWidth : $(window).width();
-                if (!($('body').hasClass('home'))) {
-                    if (width < 480) {
-                $('.vid_if ').each(function() {
-                    $(this).css('max-height', height - 156);
-                    $('.show-featured-image').css('max-height', height - 156);
-                });
-            } else {
-                $('.vid_if ').each(function() {
-                    $(this).css('max-height', height);
-                    $('.show-featured-image').css('max-height', height);
-                });
-            }
+            height = window.innerHeight ? window.innerHeight : $(window).height();
+            width = window.outerWidth ? window.outerWidth : $(window).width();
+            if (!($('body').hasClass('home'))) {
+                if (width < 480) {
+                    $('.vid_if ').each(function() {
+                        $(this).css('max-height', height - 156);
+                        $('.show-featured-image')/*.css('max-height', height - 156)*/.css('height', 'auto');
+                    });
+                } else {
+                    $('.vid_if ').each(function() {
+                        $(this).css('max-height', height);
+                        $('.show-featured-image')/*.css('max-height', height)*/.css('height', 'auto');
+                    });
                 }
-            });
+            }
+            // if ($('body').hasClass('home')) {
+            //     $('.show-featured-image').css('height', $('.show-featured-image img').height());
+            // }
+        });
     });
 
     $(window).load(function() {
-        if ($('body').hasClass('home')) {
-            $('.show-featured-image').css('height', $('.show-featured-image img').height());
-        }
+        // if ($('body').hasClass('home')) {
+        //     $('.show-featured-image').css('height', $('.show-featured-image img').height());
+        // }
     });
 
-    var element = $('.movie-info');
-    if(element.length > 0) {
 
-      /* Single Post Video */
-      jQuery(document).ready(function() {
-        videojs('bg-video').Background({
-            container: 'vjs-hd',
-            autoPlay: false
-        });
-      });
-
-      /* Video response on play */
-      var player_name = _V_('#bg-video');
-      player_name.on('waiting', function(){
-        $('.vjs-poster').css('opacity', '0');
-      });
-      player_name.on('play', function(){
-        $('.movie-info').addClass('playing');
-        $('.header').addClass('playing');
-        $('.movie-header .overlay').css('display', 'none');
-        views = parseInt(jQuery('#noofviews').val()) + 1 ;
-        data = 'views='+views+'&post_id='+jQuery('#post_id').val();
-        jQuery.ajax({
-                type : 'POST',
-                url : SITEURL+'/wp-json/views',
-                data : data,
-                success:function(response){
-                    jQuery('#noofviews').val(response);
-
-                },
-                error:function(response){
-
-
-                }
-        });
-
-      });
-      player_name.on('pause', function(){
-        $('.movie-info').removeClass('playing');
-        $('.header').removeClass('playing');
-        $('.movie-header .overlay').css('display', 'block');
-      });
-    }
 
 
 })(jQuery);

@@ -2,3 +2,4 @@ wp-config.php
 .htaccess
 wp-content/uploads
 wp-content/plugins/formidable
+wp-content/themes/short-film/assets/videos

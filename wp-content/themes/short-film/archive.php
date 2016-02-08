@@ -128,6 +128,7 @@
 					'language'			=> '',
 					'posts_per_page'   	=> 12,
 					'offset'           	=> 0,
+                    'sort'              => 1
 
 
 				);
@@ -398,7 +399,7 @@
                 ?>
                 <div class="row listlayout">
                     <div class="col-md-5">
-                         <img src="<?php echo $value['featured_image'];?>" class="img-responsive width-full">
+                         <img data-src="<?php echo $value['featured_image'];?>" src="" class="img-responsive width-full">
                     </div>
                     <div class="col-md-7">
                         <div class="row">
@@ -453,7 +454,7 @@
                 </div>
 
 	            <div class="couchlayout">	            	
-            		<img src="<?php echo $value['featured_image'];?>" alt="" class="img-responsive width-full">
+            		<img data-src="<?php echo $value['featured_image'];?>" src="" alt="" class="img-responsive width-full">
                     <div class="row">
                         <div class="col-sm-8">
                             <h3 class="pull-left">
@@ -557,7 +558,7 @@
 
 <script type="text/javascript">
 
-window.onload = function() {
+jQuery(document).ready(function(){
 	jQuery('#tracker').val('gridoption');
 	
 	jQuery('#gridoption').children().addClass('text-primary');
@@ -606,7 +607,35 @@ window.onload = function() {
 
     jQuery('#sort').live('change',function(e){
         e.preventDefault();
-        data = 'sort='+jQuery(e.target).val()
+        genre = jQuery('#genre').val();
+        language = jQuery('#language').val();
+
+        offset = jQuery('#offset').val();
+
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+        posts_per_page = 12;
+
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
+
+            // jQuery('.load_more').hide();
+        // }
+
+
+        if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset=0&exclude='+jQuery('#searchids').val()+'&sort='+jQuery(e.target).val();
+        }
+
+
         jQuery.ajax({
                 type : 'GET',
                 url : SITEURL+'/wp-json/sort',
@@ -676,28 +705,61 @@ window.onload = function() {
 			jQuery('.listlayout').hide();
 			jQuery('.couchlayout').hide();
 			jQuery('.gridlayout').show();
+            jQuery('.gridlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
 
 		}
 		else if(jQuery('#tracker').val() == 'listoption'){
-			jQuery('.gridlayout').hide();
-			jQuery('.couchlayout').hide();
-			jQuery('.listlayout').show();
-		}
-		else if(jQuery('#tracker').val() == 'couchoption'){
-			jQuery('.gridlayout').hide();
-			jQuery('.listlayout').hide();
-			jQuery('.couchlayout').show();
-		}
+            jQuery('.gridlayout').hide();
+            jQuery('.couchlayout').hide();
+            jQuery('.listlayout').show();
+            jQuery('.listlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
+        }
+        else if(jQuery('#tracker').val() == 'couchoption'){
+            jQuery('.gridlayout').hide();
+            jQuery('.listlayout').hide();
+            jQuery('.couchlayout').show();
+            jQuery('.couchlayout img').each(function(index,value){
+
+                jQuery(value).attr('src' ,jQuery(value).attr('data-src'));
+            })
+        }
 	}
 
 	function get_all_posts(){
 
 		genre = jQuery('#genre').val();
-		language = jQuery('#language').val();
-		posts_per_page = 12;
-		offset = jQuery('#offset').val();
-		data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val();
-		
+        language = jQuery('#language').val();
+
+        offset = jQuery('#offset').val();
+        
+        var total_no_of_videos = jQuery('#total_no_of_videos').val();
+
+        posts_per_page = 12;
+
+        // if((total_no_of_videos-offset)<=posts_per_page)
+        // {
+            // posts_per_page = total_no_of_videos-offset;
+
+            // jQuery('.load_more').hide();
+        // }
+
+
+        if(language)
+        {
+            taxonomy = 'language';
+
+            data = 'genre='+genre+'&language='+language+'&taxonomy='+taxonomy+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
+        else
+        {
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+        }
 
 		jQuery.ajax({
 				type : 'GET',
@@ -1141,7 +1203,7 @@ window.onload = function() {
 
                         html += '<div class="row listlayout">'
                      +'<div class="col-md-5">'
-                          +'<img src="'+value.featured_image+'" class="img-responsive width-full">'
+                          +'<img data-src="'+value.featured_image+'" src="" class="img-responsive width-full">'
                      +'</div>'
                      +'<div class="col-md-7">'
                         +'<div class="row">'
@@ -1193,7 +1255,7 @@ window.onload = function() {
 
                  html += '<div class="couchlayout">'
 
-                  +'<img src="'+value.featured_image+'" alt="" class="img-responsive width-full">'
+                  +'<img data-src="'+value.featured_image+'" src="" alt="" class="img-responsive width-full">'
                          +'<div class="row">'
                              +'<div class="col-sm-8">'
                                  +'<h3 class="pull-left"><a class="content-bottom" target="_blank" href="'+SITEURL+'/'+value.slug+'">'+value.title+'</a><small><em>by '+value.director.toUpperCase()+'</em></small></h3>'
@@ -1278,6 +1340,6 @@ function loadslick(){
               ]
         });
 }
-}
+})
 
 </script>

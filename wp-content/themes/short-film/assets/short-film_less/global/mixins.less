@@ -24,3 +24,11 @@
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
 }
+
+.transition(@what: all; @howlong: 0.5s) {
+    -webkit-transition: @what @howlong;
+    -moz-transition: @what @howlong;
+    -ms-transition: @what @howlong;
+    -o-transition: @what @howlong;
+    transition: @what @howlong;
+}

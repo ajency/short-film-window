@@ -32,7 +32,7 @@ h5.un {
     width: 90px;
     background: #eee;
     margin-top: 10px;
-    
+
     .social-toggle {
         top: 6px;
         left: 8px;
@@ -64,7 +64,7 @@ h5.un {
         padding-bottom: 10px;
     }
 }
-.m-t-30 {margin-top: 20px;}
+// .m-t-30 {margin-top: 20px;}
 .couchlayout {
     .share-button {
         margin-top: 30px;
@@ -73,6 +73,30 @@ h5.un {
     .main-ex {
         margin-bottom: 15px;
         padding-bottom: 15px;
+    }
+    a.post-like {
+        color: @brand-primary;
+        i {color: @brand-primary;}
+        &:hover {
+            color: saturate(lighten(@brand-primary, 25%), 20%);
+            text-decoration: none;
+            i {color: saturate(lighten(@brand-primary, 25%), 20%);}
+        }
+        &.liked {
+            color: #797979;
+            i {color: #797979; .transition(all; 0.5s);}
+            &:hover {
+                color: #aaa;
+                text-decoration: none;
+                i {color: #aaa;}
+            }
+        }
+    }
+    @media screen and (max-width: 991px) {
+        .col-sm-10, .col-sm-2 {
+            float: none !important;
+            width: 100% !important;
+        }
     }
 }
 .listlayout img {margin-bottom: 10px;}
