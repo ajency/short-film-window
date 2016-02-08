@@ -1,8 +1,10 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singlePlaylist', ['$scope','$rootScope','$ionicScrollDelegate','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share','$window','$timeout', ($scope,$rootScope,$ionicScrollDelegate,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share,$window,$timeout)->
+.controller 'singlePlaylist', ['$scope','$rootScope','$ionicScrollDelegate','$ionicLoading','App','PlaylistAPI','DetailsAPI','$ionicHistory','share','$window','$timeout','Storage', ($scope,$rootScope,$ionicScrollDelegate,$ionicLoading,App,PlaylistAPI,DetailsAPI,$ionicHistory,share,$window,$timeout,Storage)->
 
     $scope.display= 'loader'
+
+    $scope.getwatchlistDetails = []
 
 
     $rootScope.slideHeader = false
@@ -10,70 +12,82 @@ angular.module 'SFWApp.tabs'
     $rootScope.slideHeaderPrevious = 0
 
 
+    $scope.checkIfaddedToWatchList = (movie_id)->
+        if $scope.getwatchlistDetails.length > 0
+            match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movie_id}
+            if match != -1
+                'selected'
+            else
+                'notselected'
+        else
+            'notselected'
+
+    $scope.findIndexInWatchlist = (movieId) ->
+        match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
+
+        
+    $scope.addwatchlist = (movieData) ->
+        console.log movieData 
+        obj = 
+            "movie_id" : movieData.movie_id
+            "singleVideoarray" : movieData
+
+        matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id)
+        if matchInWatchList  == -1
+            $scope.getwatchlistDetails.push(obj)
+            Storage.watchlistDetails 'set', $scope.getwatchlistDetails
+        else
+            $scope.getwatchlistDetails.splice matchInWatchList,1
+            Storage.watchlistDetails 'set', $scope.getwatchlistDetails 
+
     $scope.share = () ->
         share.shareNative()
+        
     $scope.init = () ->
-        if ( DetailsAPI.GlobalChild_array.length >0 )
-            console.log "Playlist cached"
-            $scope.playlistData= DetailsAPI.GlobalChild_array
-            $scope.playlist = DetailsAPI.Global_array
-            $scope.display= 'result'
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            console.log device_width
-            console.log device_height
-            $scope.used_height = 44 + 120
-            console.log '******',$scope.used_height
-            $scope.hgt = device_height - $scope.used_height
-            console.log $scope.hgt
+        Storage.watchlistDetails 'get'
+        .then (value)->
+            if _.isNull value
+                value = []
+            $scope.getwatchlistDetails = value 
 
-            # width for header..
-            $scope.headerwidth = device_width - 100 -27
-
-        else
-            console.log "Playlist emplty"
-            $scope.display= 'loader'
-            PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId)
-            .then (data)=>
-                DetailsAPI.Global_array = data.playlist
-                DetailsAPI.GlobalChild_array = data.movies
-                $scope.playlistData= data.movies
-                $scope.playlist = data.playlist
-                $scope.display = 'result'
-
+            if ( DetailsAPI.GlobalChild_array.length >0 )
+                $scope.playlistData= DetailsAPI.GlobalChild_array
+                $scope.playlist = DetailsAPI.Global_array
+                $scope.display= 'result'
                 device_width = $window.innerWidth;
                 device_height = $window.innerHeight;
-                console.log device_width
-                console.log device_height
                 $scope.used_height = 44 + 120
                 $scope.hgt = device_height - $scope.used_height
-                console.log $scope.hgt
-                $scope.headerwidth = device_width - 100 - 27
-                console.log '-----',$scope.used_height
+                # width for header..
+                $scope.headerwidth = device_width - 100 -27
 
+            else
+                $scope.display= 'loader'
+                PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId)
+                .then (data)=>
+                    DetailsAPI.Global_array = data.playlist
+                    DetailsAPI.GlobalChild_array = data.movies
+                    $scope.playlistData= data.movies
+                    $scope.playlist = data.playlist
+                    $scope.display = 'result'
 
-                $ionicLoading.hide();
-            , (error)=>
-                console.log 'Error Loading data'
-                $scope.display= 'error'
-                $ionicLoading.hide();
+                    device_width = $window.innerWidth;
+                    device_height = $window.innerHeight;
+                    $scope.used_height = 44 + 120
+                    $scope.hgt = device_height - $scope.used_height
+                    $scope.headerwidth = device_width - 100 - 27
+                    $ionicLoading.hide();
+                , (error)=>
+                    $scope.display= 'error'
+                    $ionicLoading.hide();
 
-    # $scope.singleplay = (videoid)->
-
-    #     console.log videoid
-    #     DetailsAPI.videoId = videoid
-    #     console.log DetailsAPI.videoId
-    #     console.log "enterd single play ."
-    #     App.navigate 'init'
 
     $scope.singlePlayService = (videoData)->
-        console.log videoData
         DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
         DetailsAPI.singleVideoarray.singleVideoarray = videoData
         App.navigate 'init'     
 
     $scope.back = ()->
-        # $ionicHistory.goBack();
         DetailsAPI.Global_array = []
         DetailsAPI.GlobalChild_array = []
         count = -1
