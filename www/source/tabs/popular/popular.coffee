@@ -1,36 +1,55 @@
 angular.module 'SFWApp.tabs',[]
-.controller 'popularCtrl', ['$scope','$rootScope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window','InitialiseService'
-  ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window,InitialiseService)->
+.controller 'popularCtrl', ['$scope','$rootScope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window','InitialiseService','Storage'
+  ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window,InitialiseService,Storage)->
+    
+    $scope.getwatchlistDetails = []
 
-    console.log 'popular'
-
-
-    # swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
-    #   direction: 'vertical'
-    #   effect: 'coverflow',
-    #   grabCursor: true,
-    #   centeredSlides: true,
-    #   loop: false
-    #   slidesPerView: 'auto',
-    #   coverflow:
-    #     rotate: 50,
-    #     stretch: 0,
-    #     depth: 100,
-    #     modifier: 1,
-    #     slideShadows : false
-    # )
-
-    # swiper = new Swiper(angular.element(document.querySelector('#popularswipeId')),
-    #   direction: 'vertical'
-    # )
-
+    $rootScope.$on 'watchListUpdate', (event, data)->
+      $scope.getwatchlistDetails = data
+      $scope.checkIfaddedlist()
 
     $scope.singleplaylist = (playlistId)->
       DetailsAPI.videoId = playlistId
       App.navigate "singlePlaylist"
 
+   
+    $scope.checkIfaddedlist = () ->
+      _.each $scope.allContentArray, (val,key)->   
+        $scope.allContentArray[key].addedToWatchList = 0
+
+      if $scope.getwatchlistDetails.length > 0
+        _.each $scope.getwatchlistDetails, (watchlistData)->
+          match = _.findIndex $scope.allContentArray, {"movieId": watchlistData.movie_id}
+          if match != -1
+            $scope.allContentArray[match].addedToWatchList = 1
+
+    $scope.findIndexInallContentArray = (movieId) ->
+      match = _.findIndex $scope.allContentArray, {"movieId": movieId}      
+
+    $scope.findIndexInWatchlist = (movieId) ->
+      match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
+
+    $scope.updateFlagInallContentArray = (movieId,flag) ->
+      matchIndex = $scope.findIndexInallContentArray(movieId)
+      $scope.allContentArray[matchIndex].addedToWatchList = flag
+          
+    $scope.addwatchlist = (movieData) -> 
+      obj = 
+        "movie_id" : movieData.movieId
+        "singleVideoarray" : movieData.content
+
+      matchInWatchList = $scope.findIndexInWatchlist(movieData.movieId)
+      if matchInWatchList  == -1
+        $scope.updateFlagInallContentArray(movieData.movieId,1)
+        $scope.getwatchlistDetails.push(obj)
+        Storage.watchlistDetails 'set', $scope.getwatchlistDetails
+      else
+        $scope.updateFlagInallContentArray(movieData.movieId,0)
+        $scope.getwatchlistDetails.splice matchInWatchList,1
+        Storage.watchlistDetails 'set', $scope.getwatchlistDetails
+       
+
     $scope.doRefresh = ()->
-      
       if !App.isOnline()
         $scope.checkNetwork = false
       else    
@@ -96,6 +115,8 @@ angular.module 'SFWApp.tabs',[]
         "p" : "Carefully handpicked, just for you."
         "iconimg" : "weekly_premiere"
         "content" : DetailsAPI.array
+        "addedToWatchList" : 0
+        "movieId": DetailsAPI.array.movie_id
 
       additionArr = _.map DetailsAPI.array_addition, (value, key, list)->
         "order": 2
@@ -103,6 +124,8 @@ angular.module 'SFWApp.tabs',[]
         "p" : "Just starting out on their big journey!"
         "iconimg" : "new_additions"
         "content" : value
+        "addedToWatchList" : 0
+        "movieId": value.movie_id
 
       noteworthyArr = _.map DetailsAPI.array_noteworthy, (value, key, list)->
         "order": 3
@@ -110,6 +133,8 @@ angular.module 'SFWApp.tabs',[]
         "p" : "Completely out of the ordinary"
         "iconimg" : "noteworthy"
         "content" : value  
+        "addedToWatchList" : 0
+        "movieId": value.movie_id
 
       awPlalistArr.push
         "order": 4
@@ -117,19 +142,20 @@ angular.module 'SFWApp.tabs',[]
         "p" : "Sit back and relax with some popcorn!"
         "iconimg" : "awesome_playlists"
         "content" : DetailsAPI.array_awplalist
+        "addedToWatchList" : 0
+        "movieId": ""
 
 
       $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
+      $scope.initWatchlist()   
 
-      # $scope.premeiere= DetailsAPI.array
-      # $scope.addition= DetailsAPI.array_addition
-      # $scope.noteworthy= DetailsAPI.array_noteworthy
-
-      # $scope.awplalist= DetailsAPI.array_awplalist
-      # $scope.videoId = DetailsAPI.array.videoId 
-      # console.log DetailsAPI      
-
-          
+    $scope.initWatchlist = ()->
+      Storage.watchlistDetails 'get'
+        .then (value)->
+          if _.isNull value
+            value = []
+          $scope.getwatchlistDetails = value  
+          $scope.checkIfaddedlist()              
       
 
 

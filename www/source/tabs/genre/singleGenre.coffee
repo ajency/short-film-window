@@ -1,6 +1,6 @@
 angular.module 'SFWApp.tabs'
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share','$window', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share,$window)->
+.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share','$window','Storage', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share,$window,Storage)->
 
   $scope.lang = null
   $scope.sort_key = null
@@ -15,47 +15,72 @@ angular.module 'SFWApp.tabs'
 
   $scope.share = () ->
     share.shareNative()
-  $scope.init = () ->
-    if ( DetailsAPI.GlobalChild_array.length >0 )
-      console.log "Genre cached"
-      $scope.genreData= DetailsAPI.GlobalChild_array
-      $scope.genre = DetailsAPI.Global_array
-      $scope.sortData = DetailsAPI.Sort
-      $scope.language = DetailsAPI.Filter
-      $scope.display = 'result'
 
-      device_width = $window.innerWidth;
-      device_height = $window.innerHeight;
-      console.log device_width
-      console.log device_height
-      $scope.used_height = 88 + 73
-      $scope.hgt = device_height - $scope.used_height
-      console.log $scope.hgt
-
+  $scope.checkIfaddedToWatchList = (movie_id)->
+    if $scope.getwatchlistDetails.length > 0
+      match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movie_id}
+      if match != -1
+        'selected'
+      else
+        'notselected'
     else
-      GenreAPI.GetSingleGenre(DetailsAPI.videoId)
-      .then (data)=>
-        DetailsAPI.GlobalChild_array = data.movies
-        DetailsAPI.Global_array = data.genre
-        DetailsAPI.Filter = data.filters.languages
-        DetailsAPI.Sort = data.sort_keys
-        $scope.genreData= data.movies
-        $scope.genre = data.genre
-        $scope.sortData= data.sort_keys
-        $scope.language = data.filters.languages
-        $scope.display = 'result'
+      'notselected'
 
-        device_width = $window.innerWidth;
-        device_height = $window.innerHeight;
-        console.log device_width
-        console.log device_height
-        $scope.used_height = 88 + 73
-        $scope.hgt = device_height + 3 - $scope.used_height
-        console.log $scope.hgt
+  $scope.findIndexInWatchlist = (movieId) ->
+    match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
 
-      , (error)=>
-        console.log 'Error Loading data'
-        $scope.display = 'error'
+        
+  $scope.addwatchlist = (movieData) ->
+    console.log movieData 
+    obj = 
+      "movie_id" : movieData.movie_id
+      "singleVideoarray" : movieData
+
+    matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id)
+    if matchInWatchList  == -1
+      $scope.getwatchlistDetails.push(obj)
+      Storage.watchlistDetails 'set', $scope.getwatchlistDetails
+    else
+      $scope.getwatchlistDetails.splice matchInWatchList,1
+      Storage.watchlistDetails 'set', $scope.getwatchlistDetails    
+      
+  $scope.init = () ->
+    Storage.watchlistDetails 'get'
+      .then (value)->
+        if _.isNull value
+          value = []
+        $scope.getwatchlistDetails = value 
+
+        if ( DetailsAPI.GlobalChild_array.length >0 )
+          $scope.genreData= DetailsAPI.GlobalChild_array
+          $scope.genre = DetailsAPI.Global_array
+          $scope.sortData = DetailsAPI.Sort
+          $scope.language = DetailsAPI.Filter
+
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 88 + 73
+          $scope.hgt = device_height - $scope.used_height
+        else
+          GenreAPI.GetSingleGenre(DetailsAPI.videoId)
+          .then (data)=>
+            DetailsAPI.GlobalChild_array = data.movies
+            DetailsAPI.Global_array = data.genre
+            DetailsAPI.Filter = data.filters.languages
+            DetailsAPI.Sort = data.sort_keys
+            $scope.genreData= data.movies
+            $scope.genre = data.genre
+            $scope.sortData= data.sort_keys
+            $scope.language = data.filters.languages
+            $scope.display = 'result'
+
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 88 + 73
+            $scope.hgt = device_height + 3 - $scope.used_height
+
+          , (error)=>
+            $scope.display = 'error'
 
 
 
@@ -66,7 +91,6 @@ angular.module 'SFWApp.tabs'
       hideOnStateChange: true
 
   $scope.langSelected = (language_id) ->
-    console.log language_id
     $scope.lang = language_id
 
   $scope.filterGenre = ()->
@@ -76,7 +100,6 @@ angular.module 'SFWApp.tabs'
       hideOnStateChange: true
 
   $scope.getId = (sort_id)->
-    console.log sort_id
     $scope.sort_key = sort_id
     $scope.Popuparray = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
     $scope.Popuparray[sort_id] = $scope.PopuparrayClicked[sort_id]
@@ -84,10 +107,8 @@ angular.module 'SFWApp.tabs'
     $scope.txtcolor[sort_id] = 'color:#AF152F'
 
   $scope.popup = ()->
-    console.log "popup init called "
     if _.isNull($scope.sort_key)
       $scope.Popuparray = $scope.PopuparrayImages
-      console.log $scope.Popuparray[1]
     else
       $scope.Popuparray = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
       $scope.Popuparray[$scope.sort_key] = $scope.PopuparrayClicked[$scope.sort_key]
@@ -133,15 +154,10 @@ angular.module 'SFWApp.tabs'
       $scope.language = data.filters.languages
       $ionicLoading.hide();
     , (error)=>
-      console.log 'Error Loading data'
       $scope.errorType = ''
       $scope.display = 'error'
 
       $ionicLoading.hide();
-    # $scope.sort_key = ''
-    # $scope.lang = ''
-
-
 
   $scope.hide = () ->
     $ionicLoading.hide();
@@ -152,8 +168,6 @@ angular.module 'SFWApp.tabs'
     $scope.filterimg = 'img/icons/filter_grey.png'
     $scope.sort_key = null
     $scope.lang = ''
-    console.log $scope.lang
-    console.log $scope.sort_key
     arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
     $ionicLoading.hide();
     hideOnStateChange: false
@@ -172,7 +186,6 @@ angular.module 'SFWApp.tabs'
       $ionicLoading.hide();
       $scope.display = 'result'
     , (error)=>
-      console.log 'Error Loading data'
       $scope.errorType = ''
       $scope.display = 'error'
       $ionicLoading.hide();
@@ -185,23 +198,12 @@ angular.module 'SFWApp.tabs'
     $ionicLoading.hide();
     hideOnStateChange: false
 
-
-  # $scope.singleplay = (videoid)->
-
-  #   console.log videoid
-  #   DetailsAPI.videoId = videoid
-  #   console.log DetailsAPI.videoId
-  #   console.log "enterd single play ."
-  #   App.navigate 'init'
-
   $scope.singlePlayService = (videoData)->
-    console.log videoData
     DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
     DetailsAPI.singleVideoarray.singleVideoarray = videoData
     App.navigate 'init'  
 
   $scope.back = ()->
-    # $ionicHistory.goBack();
     DetailsAPI.GlobalChild_array = []
     DetailsAPI.Global_array = []
     DetailsAPI.Filter = []
@@ -210,14 +212,7 @@ angular.module 'SFWApp.tabs'
     App.goBack count
 
   $scope.view =
-      # swiper = new Swiper('.genreswiper', {
-      #   pagination: '.swiper-pagination'
-      #   paginationClickable: true
-      #   direction: 'vertical'
-      #   });
-
     onTapToRetry : ->
-      console.log $scope.errorType
       $scope.reset()
       $scope.display = 'loader'
 

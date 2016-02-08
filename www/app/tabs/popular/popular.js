@@ -1,9 +1,63 @@
 angular.module('SFWApp.tabs', []).controller('popularCtrl', [
-  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', 'InitialiseService', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window, InitialiseService) {
-    console.log('popular');
+  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', 'InitialiseService', 'Storage', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window, InitialiseService, Storage) {
+    $scope.getwatchlistDetails = [];
+    $rootScope.$on('watchListUpdate', function(event, data) {
+      $scope.getwatchlistDetails = data;
+      return $scope.checkIfaddedlist();
+    });
     $scope.singleplaylist = function(playlistId) {
       DetailsAPI.videoId = playlistId;
       return App.navigate("singlePlaylist");
+    };
+    $scope.checkIfaddedlist = function() {
+      _.each($scope.allContentArray, function(val, key) {
+        return $scope.allContentArray[key].addedToWatchList = 0;
+      });
+      if ($scope.getwatchlistDetails.length > 0) {
+        return _.each($scope.getwatchlistDetails, function(watchlistData) {
+          var match;
+          match = _.findIndex($scope.allContentArray, {
+            "movieId": watchlistData.movie_id
+          });
+          if (match !== -1) {
+            return $scope.allContentArray[match].addedToWatchList = 1;
+          }
+        });
+      }
+    };
+    $scope.findIndexInallContentArray = function(movieId) {
+      var match;
+      return match = _.findIndex($scope.allContentArray, {
+        "movieId": movieId
+      });
+    };
+    $scope.findIndexInWatchlist = function(movieId) {
+      var match;
+      return match = _.findIndex($scope.getwatchlistDetails, {
+        "movie_id": movieId
+      });
+    };
+    $scope.updateFlagInallContentArray = function(movieId, flag) {
+      var matchIndex;
+      matchIndex = $scope.findIndexInallContentArray(movieId);
+      return $scope.allContentArray[matchIndex].addedToWatchList = flag;
+    };
+    $scope.addwatchlist = function(movieData) {
+      var matchInWatchList, obj;
+      obj = {
+        "movie_id": movieData.movieId,
+        "singleVideoarray": movieData.content
+      };
+      matchInWatchList = $scope.findIndexInWatchlist(movieData.movieId);
+      if (matchInWatchList === -1) {
+        $scope.updateFlagInallContentArray(movieData.movieId, 1);
+        $scope.getwatchlistDetails.push(obj);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      } else {
+        $scope.updateFlagInallContentArray(movieData.movieId, 0);
+        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      }
     };
     $scope.doRefresh = function() {
       if (!App.isOnline()) {
@@ -66,7 +120,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
         return $scope.display = 'result';
       }
     };
-    return $scope.initDetailsApi = function() {
+    $scope.initDetailsApi = function() {
       var additionArr, awPlalistArr, noteworthyArr, premierArr;
       premierArr = [];
       additionArr = [];
@@ -78,7 +132,9 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
         "cardtitle": "Weekly Premiere",
         "p": "Carefully handpicked, just for you.",
         "iconimg": "weekly_premiere",
-        "content": DetailsAPI.array
+        "content": DetailsAPI.array,
+        "addedToWatchList": 0,
+        "movieId": DetailsAPI.array.movie_id
       });
       additionArr = _.map(DetailsAPI.array_addition, function(value, key, list) {
         return {
@@ -86,7 +142,9 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
           "cardtitle": "New Additions",
           "p": "Just starting out on their big journey!",
           "iconimg": "new_additions",
-          "content": value
+          "content": value,
+          "addedToWatchList": 0,
+          "movieId": value.movie_id
         };
       });
       noteworthyArr = _.map(DetailsAPI.array_noteworthy, function(value, key, list) {
@@ -95,7 +153,9 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
           "cardtitle": "Noteworthy",
           "p": "Completely out of the ordinary",
           "iconimg": "noteworthy",
-          "content": value
+          "content": value,
+          "addedToWatchList": 0,
+          "movieId": value.movie_id
         };
       });
       awPlalistArr.push({
@@ -103,9 +163,21 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
         "cardtitle": "Awesome Playlist",
         "p": "Sit back and relax with some popcorn!",
         "iconimg": "awesome_playlists",
-        "content": DetailsAPI.array_awplalist
+        "content": DetailsAPI.array_awplalist,
+        "addedToWatchList": 0,
+        "movieId": ""
       });
-      return $scope.allContentArray = _.union(premierArr, additionArr, noteworthyArr, awPlalistArr);
+      $scope.allContentArray = _.union(premierArr, additionArr, noteworthyArr, awPlalistArr);
+      return $scope.initWatchlist();
+    };
+    return $scope.initWatchlist = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        if (_.isNull(value)) {
+          value = [];
+        }
+        $scope.getwatchlistDetails = value;
+        return $scope.checkIfaddedlist();
+      });
     };
   }
 ]);
