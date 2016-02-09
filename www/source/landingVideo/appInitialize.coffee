@@ -9,9 +9,7 @@ angular.module 'SFWApp.landing',[]
           if !App.isOnline()
             $scope.display = 'error'
           else  
-            InitialiseService.initialize()
-              .then (response) ->
-                App.navigate 'popular'
+            App.navigate 'popular'
       , (error) ->
             $scope.display = 'error'
 

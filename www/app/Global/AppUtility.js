@@ -55,6 +55,7 @@ angular.module('SFWApp.Global', []).factory('App', [
       },
       isOnline: function() {
         if (this.isWebView()) {
+          console.log($cordovaNetwork.getNetwork());
           return $cordovaNetwork.isOnline();
         } else {
           return navigator.onLine;

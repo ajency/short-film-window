@@ -7,9 +7,7 @@ angular.module('SFWApp.landing', []).controller('appInitializeCtrl', [
         if (!App.isOnline()) {
           return $scope.display = 'error';
         } else {
-          return InitialiseService.initialize().then(function(response) {
-            return App.navigate('popular');
-          });
+          return App.navigate('popular');
         }
       }, function(error) {
         return $scope.display = 'error';
