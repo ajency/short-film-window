@@ -778,8 +778,8 @@ a {
 .movieDetails .viewsNLikes {
   font-size: 2.3vh;
   color: #d4d4d4;
-  padding-bottom: 15px;
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 .movieDetails .viewsNLikes span {
   margin-right: 25px;
@@ -956,9 +956,10 @@ a {
 .platform-ios .singleMovieContent .videoOuter {
   padding-top: 40px;
 }
-.platform-ios .movieDetails .viewsNLikes {
-  margin-bottom: 30px;
-}
+/*.platform-ios .movieDetails .viewsNLikes
+{
+	margin-bottom: 30px;
+}*/
 .icon-cust {
   background-position: center;
   background-repeat: no-repeat;
@@ -1775,9 +1776,5 @@ a {
   .limitDiv:nth-child(5) {
     display: none;
   }
-}
-
-.platform-ios .popularswiper .movieScreen .viewsNLikes{
-  margin-bottom: 30px;
 }
 /*# sourceMappingURL=custom.css.map */
