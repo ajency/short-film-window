@@ -7,6 +7,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
     $scope.watchFlag = '0';
     $scope.intFlag = '0';
     $scope.watchlistimg = '';
+    $scope.showLoaderOrSynopsis = true;
     $scope.showVideo = false;
     $scope.share = function() {
       console.log("social sharing ");
@@ -90,6 +91,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         $scope.Videodetails = DetailsAPI.singleVideoarray.singleVideoarray;
         console.log($scope.Videodetails);
         DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id).then(function(data) {
+          $scope.showLoaderOrSynopsis = false;
           return document.getElementById('synopsis').outerHTML = data.content;
         });
         $scope.checkIfaddedlist();
@@ -106,6 +108,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             DetailsAPI.singleVideoarray = obj;
             $scope.Videodetails = data;
             $scope.Videodetails;
+            $scope.showLoaderOrSynopsis = false;
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
             return $scope.initPlayer();
           };

@@ -9,6 +9,7 @@ angular.module 'SFWApp.init', []
     $scope.watchFlag = '0'
     $scope.intFlag = '0'
     $scope.watchlistimg = ''
+    $scope.showLoaderOrSynopsis = true
 
     $scope.showVideo = false
 
@@ -91,6 +92,7 @@ angular.module 'SFWApp.init', []
             console.log $scope.Videodetails
             DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id)
             .then (data)->
+                $scope.showLoaderOrSynopsis = false
                 document.getElementById('synopsis').outerHTML = (data.content);
             $scope.checkIfaddedlist()
             $scope.initPlayer()
@@ -102,6 +104,7 @@ angular.module 'SFWApp.init', []
                 DetailsAPI.singleVideoarray = obj
                 $scope.Videodetails = data
                 $scope.Videodetails
+                $scope.showLoaderOrSynopsis = false
                 document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
                 $scope.initPlayer()
 
