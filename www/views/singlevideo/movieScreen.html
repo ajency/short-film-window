@@ -40,17 +40,17 @@
             </div>
             <div class="synopsis padding" ng-show="display == 'result'">
                 <h5 class="primaryText text-uppercase bold">Synopsis</h5>
-                <div class="loaderOuter">
+
+                <div class="loaderOuter" ng-show="showLoaderOrSynopsis">
                     <div class="loading-spinner"></div>
                 </div>
+
                 <div class="synopsisDiv" ng-class="{true : 'synopsisDivShow' , false : 'synopsisDivHide' } [showSynopsisDiv]">
 
-                   <!--  <div class="synopsisText">
+                    <div class="synopsisText" ng-hide="showLoaderOrSynopsis">
                         <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
                         </div>
-                    </div> -->
-
-                    
+                    </div>                 
 
                     <div class="toggleSynopsis text-center padding" ng-click="showSynopsisDiv = !showSynopsisDiv">
                         <i class="ion-chevron-down primaryText"></i>
