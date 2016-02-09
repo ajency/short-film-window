@@ -838,7 +838,8 @@ a {
 .synopsis {
   font-size: 1.2em;
   color: #5e5e5e;
-  background: #ffffff
+  background: #ffffff;
+  position: relative
   /*.synopsisDiv {
 	   transition: 1s linear all;
 	   max-height:3000px;
@@ -862,6 +863,13 @@ a {
   border: none;
   color: #5e5e5e;
   text-decoration: none;
+}
+.synopsis .loaderOuter {
+  background: rgba(0, 0, 0, 0.2);
+}
+.synopsis .loading-spinner {
+  height: 25px;
+  width: 25px;
 }
 .synopsis .synopsisDivHide {
   /*transition: 0.5s linear all;*/

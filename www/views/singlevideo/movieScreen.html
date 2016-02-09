@@ -40,6 +40,9 @@
             </div>
             <div class="synopsis padding" ng-show="display == 'result'">
                 <h5 class="primaryText text-uppercase bold">Synopsis</h5>
+                <div class="loaderOuter">
+                    <div class="loading-spinner"></div>
+                </div>
                 <div class="synopsisDiv" ng-class="{true : 'synopsisDivShow' , false : 'synopsisDivHide' } [showSynopsisDiv]">
 
                    <!--  <div class="synopsisText">
@@ -47,9 +50,7 @@
                         </div>
                     </div> -->
 
-                    <div class="loaderOuter">
-                        <div class="loading-spinner"></div>
-                    </div>
+                    
 
                     <div class="toggleSynopsis text-center padding" ng-click="showSynopsisDiv = !showSynopsisDiv">
                         <i class="ion-chevron-down primaryText"></i>
