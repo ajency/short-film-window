@@ -118,6 +118,7 @@ angular.module 'SFWApp.init', []
           $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
           console.log $scope.player1
         else
+          console.log $scope.videourl
           player = new YT.Player('player2', {
             height: '100%',
             width: '100%',
