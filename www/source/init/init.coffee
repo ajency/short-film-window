@@ -89,6 +89,9 @@ angular.module 'SFWApp.init', []
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
             console.log $scope.Videodetails
+            DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id)
+            .then (data)->
+                document.getElementById('synopsis').outerHTML = (data.content);
             $scope.checkIfaddedlist()
             $scope.initPlayer()
         else
@@ -98,7 +101,7 @@ angular.module 'SFWApp.init', []
                 obj = {"movie_id":data.movie_id,"singleVideoarray":data}
                 DetailsAPI.singleVideoarray = obj
                 $scope.Videodetails = data
-
+                $scope.Videodetails
                 document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
                 $scope.initPlayer()
 

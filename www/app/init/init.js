@@ -89,6 +89,9 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         $scope.display = 'result';
         $scope.Videodetails = DetailsAPI.singleVideoarray.singleVideoarray;
         console.log($scope.Videodetails);
+        DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id).then(function(data) {
+          return document.getElementById('synopsis').outerHTML = data.content;
+        });
         $scope.checkIfaddedlist();
         return $scope.initPlayer();
       } else {
@@ -102,6 +105,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             };
             DetailsAPI.singleVideoarray = obj;
             $scope.Videodetails = data;
+            $scope.Videodetails;
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
             return $scope.initPlayer();
           };
