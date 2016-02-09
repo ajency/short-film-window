@@ -1766,4 +1766,8 @@ a {
     display: none;
   }
 }
+
+.platform-ios .popularswiper .movieScreen .viewsNLikes{
+  margin-bottom: 30px;
+}
 /*# sourceMappingURL=custom.css.map */
