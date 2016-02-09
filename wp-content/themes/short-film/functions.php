@@ -2710,6 +2710,79 @@ function custom_login_logo()
 add_action('login_head', 'custom_login_logo');
 
 
+
+//caching data funtions start
+function save_cached_data($object_id='',$object_type,$data){
+    global $wpdb;
+    
+    $wpdb->insert('cache_data', array(
+                'id' => '',
+                'object_id' => $object_id,
+                'object_type' => $object_type,
+                'object_value' => maybe_serialize($data),
+                'last_updated_date'=> date('Y-m-d')
+                ),array(
+                '%d',
+                '%d',
+                '%s',
+                '%s',
+                '%s',
+                ) 
+    );
+}
+function delete_cache_data($object_id,$object_type){
+    global $wpdb;
+
+    $wpdb->delete( 'cache_data', array( 'object_id' => $object_id,'object_type' => $object_type ) );
+}
+
+
+
+
+function get_cached_data($object_type,$object_id=''){
+    global $wpdb;
+
+    if($object_id!='')
+        $where=" and object_id=".$object_id;
+    
+    $query_cached="select object_id,object_value from cache_data where object_type='".$object_type."'".$where;
+    $cached_results=$wpdb->get_results($query_cached,ARRAY_A);
+
+    foreach ($cached_results as $cached_value) {
+        $cached_array[$cached_value['object_id']]=maybe_unserialize($cached_value['object_value']);
+    }
+    return $cached_array;
+}
+
+
+add_action( 'publish_post', 'sendPushNotifications',10,2 );
+
+function sendPushNotifications($ID, $post)
+{
+  $post = (array)$post;
+
+  $post_title = $post["post_title"]; 
+
+  $post_date = $post["post_date"]; 
+  $post_modified = $post["post_modified"]; 
+  $ID = $post["ID"];
+
+  $object_id=1;
+  $object_type='default_data';
+  delete_cache_data($object_id,$object_type);//call to delete the cache data
+  
+  /*if ($post_date == $post_modified) 
+  {
+    require 'push.php'; 
+    $data = array("alert" => $post_title,"movieId" => $ID);
+    $notify = new pushNotifications;
+    $notify->sendNotifications($data);
+  }*/
+
+}
+
+//caching data funtions End
+
 /*
 
 ////add_action( 'init', 'populate_likes_and_views' );

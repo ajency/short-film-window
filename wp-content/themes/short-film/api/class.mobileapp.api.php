@@ -1,4 +1,6 @@
 <?php 
+
+
 function json_api_mobileapp( $server ) 
 {
     	
@@ -209,6 +211,19 @@ class Mobileapp_API
 
 	public function fetch_defaults_json()
 	{	
+
+        $object_type='default_data';
+        $id=1;
+        $cached_data=get_cached_data($object_type,$id);//data to fetch the stored proposal data
+
+       // print_r($cached_data);
+        if(!is_array($cached_data))
+        $cached_data=array();
+
+        if(count($cached_data)>0)
+        return $response   =$cached_data[$id]; 
+
+
 		$response = array('defaults'=>array('filters'=>array(),'sort_keys'=>array(), 'content'=>array()));
 		
         $weekly_premiere    =   one_random_weekly_premiere();
@@ -230,6 +245,9 @@ class Mobileapp_API
         $response['defaults']['filters']=array('languages'=>$languages);
         $response['defaults']['sort_keys']=array('freshness','popularity','length');
 
+        $object_type='default_data';
+        $object_id=1;
+        save_cached_data($object_id,$object_type,$response);
 
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
@@ -245,9 +263,6 @@ class Mobileapp_API
         }
         return $response;
 	}
-
-	
-
 
 }  //end class
 

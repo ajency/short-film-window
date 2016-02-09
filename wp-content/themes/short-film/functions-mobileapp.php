@@ -211,7 +211,12 @@ function five_awesome_playlists(){
 
 
 function genres_init(){
-	return genres();
+	if ( is_home() ) {
+		return genres();
+	}
+	else{
+		return false;
+	}
 }
 
 add_action('init', 'genres_init');
