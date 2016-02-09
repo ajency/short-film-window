@@ -12,6 +12,50 @@ function json_api_mobileapp( $server )
 
 add_action( 'wp_json_server_before_serve', 'json_api_mobileapp', 12, 1 );
 
+function genre_videos($genre_id, $language_id, $sort_id){
+    $taxonomy = isset($language_id) && $language_id !="" ? "language" : "";
+
+    $args = array(
+          'order'   => 'DESC',
+          'genre'   => $genre_id,
+          'taxonomy'=>$taxonomy,
+          'language'=>$language_id,
+          'posts_per_page'=>-1
+    );
+
+    if(isset($sort_id) && $sort_id !=""){
+      $args['sort']=$sort_id;     
+    }
+
+    $videos= Film\Video::get_many($args);
+    $movies= array();
+    foreach ($videos as $key => $video) {
+      $movie_id             =   $video['id'];
+      $movies[$key]['movie_id']   = $movie_id;
+      $video        =   Film\Video::get($movie_id);
+      $movies[$key]['no_of_views']  = $video['no_of_views'];
+      $movies[$key]['no_of_likes']  = $video['post_like_count'];
+      $movies[$key]['title']      = $video['title'];
+      $movies[$key]['type']     = $video['type'];
+      $movies[$key]['tagline']    = $video['tagline'];
+      $movies[$key]['videourl']   = $video['videourl'];
+      $movies[$key]['embedurl']   = $video['embedurl'];
+      $movies[$key]['director']   = $video['director'];
+      $movies[$key]['image']      = $video['medium_image'];
+      $movies[$key]['duration']   = $video['duration'];
+      $movies[$key]['region']     = $video['region'][0];
+      $movies[$key]['language']   = $video['language'][0];
+      $movies[$key]['genres']     = $video['categories'];
+
+      if($movies[$key]['type']  =='youtube'){
+        $url = explode("=",$video['videourl']);
+        $movies[$key]['videourl'] = $url[1];
+      }else{
+        $movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
+      }   
+    }
+    return $movies;
+}
 
 class Mobileapp_API 
 {
@@ -24,10 +68,123 @@ class Mobileapp_API
 
         $routes['/get_video'] = array(
             array( array( $this, 'fetch_video_json'), WP_JSON_Server::READABLE)
-        );//route for single vid
+        );
+
+        $routes['/get_genre_videos'] = array(
+            array( array( $this, 'fetch_get_genre_videos_json'), WP_JSON_Server::READABLE)
+        );//route for videos for genres 
+
+        $routes['/get_playlist_videos'] = array(
+            array( array( $this, 'fetch_get_playlist_videos_json'), WP_JSON_Server::READABLE)
+        );//route for videos for genres                
+
+        $routes['/search'] = array(
+            array( array( $this, 'fetch_videos_by_string'), WP_JSON_Server::READABLE)    
+        ); 
+
+        //route for single vid
     	return $routes;
 	}
 
+    public function fetch_videos_by_string(){
+
+        $str = isset($_REQUEST['str']) && $_REQUEST['str'] !="" ? 
+                        $_REQUEST['str'] : "" ;
+
+        $response = videos_by_string($str);
+
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+        return $response;         
+    }
+
+    public function fetch_get_playlist_videos_json(){
+        $playlist_id = isset($_REQUEST['playlist_id']) && $_REQUEST['playlist_id'] !="" ? 
+                        $_REQUEST['playlist_id'] : "";   
+        
+        $movies = playlist_videos($playlist_id);   
+        $playlists = five_awesome_playlists_init();
+        $playlist  = array();
+        foreach ($playlists as $key => $value) {
+            if($playlist_id == $value['playlist_id']){
+                $playlist   =  $value;
+                break;
+            }
+        }
+        $response = array('playlist'=>$playlist, 'movies'=>$movies);
+        
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+        return json_encode($response);                        
+    }
+
+    public function fetch_get_genre_videos_json(){
+        $genre_id = isset($_REQUEST['genre_id']) && $_REQUEST['genre_id'] !="" ? 
+                        $_REQUEST['genre_id'] : "";   
+        
+        $language_id = isset($_REQUEST['language_id']) && $_REQUEST['language_id'] !="null" && $_REQUEST['language_id'] !="" ? 
+                        $_REQUEST['language_id'] : "";  
+
+        $sort_id     = isset($_REQUEST['sort_key']) && $_REQUEST['sort_key'] !="" ? 
+                        $_REQUEST['sort_key'] : ""; 
+
+
+        $movies = genre_videos($genre_id, $language_id, ($sort_id+1));   
+        $genres = genres();
+        $genre  = array();
+        foreach ($genres as $key => $value) {
+            if($genre_id == $value['genre_id']){
+                $genre   =  $value;
+                break;
+            }
+        }
+        $response = array('genre'=>$genre, 'movies'=>$movies);
+        
+        $languages          =   languages();
+        $response['filters']=array('languages'=>$languages);
+
+        $response['sort_keys'][0]['id']="0";
+        $response['sort_keys'][1]['id']="1";
+        $response['sort_keys'][2]['id']="2";
+
+        $response['sort_keys'][0]['name']="freshness";
+        $response['sort_keys'][1]['name']="popularity";
+        $response['sort_keys'][2]['name']="length";
+        
+        if (is_wp_error($response)){
+            $response = new WP_JSON_Response( $response );
+            $response->set_status(404);
+        }
+        else
+        {
+            if ( ! ( $response instanceof WP_JSON_ResponseInterface ) ) {
+            $response = new WP_JSON_Response( $response );
+            }
+            $response->set_status(200);
+
+        }
+        return $response;                        
+    }
     
     public function fetch_video_json(){
         $id = isset($_REQUEST['id']) && $_REQUEST['id'] !="" ? 
@@ -93,3 +250,86 @@ class Mobileapp_API
 
 
 }  //end class
+
+
+
+function playlist_videos($playlist_id){
+    $args = array(
+            'playlist'        => $playlist_id,
+            'taxonomy'      => 'playlist',
+    );
+    $videos= Film\Video::get_many($args);
+    $movies= array();
+    foreach ($videos as $key => $video) {
+      $movie_id             =   $video['id'];
+      $movies[$key]['movie_id']   = $movie_id;
+      $video        =   Film\Video::get($movie_id);
+      $movies[$key]['no_of_views']  = $video['no_of_views'];
+      $movies[$key]['no_of_likes']  = $video['post_like_count'];
+      $movies[$key]['title']      = $video['title'];
+      $movies[$key]['type']     = $video['type'];
+      $movies[$key]['tagline']    = $video['tagline'];
+      $movies[$key]['videourl']   = $video['videourl'];
+      $movies[$key]['embedurl']   = $video['embedurl'];
+      $movies[$key]['director']   = $video['director'];
+      $movies[$key]['image']      = $video['medium_image'];
+      $movies[$key]['duration']   = $video['duration'];
+      $movies[$key]['region']     = $video['region'][0];
+      $movies[$key]['language']   = $video['language'][0];
+      $movies[$key]['genres']     = $video['categories'];
+
+      if($movies[$key]['type']  =='youtube'){
+        $url = explode("=",$video['videourl']);
+        $movies[$key]['videourl'] = $url[1];
+      }else{
+        $movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
+      }   
+    }
+    return $movies;
+}
+
+function videos_by_string($str){
+        $params = array(
+                'order'      => 'DESC',
+                'orderby'    => 'post_date',
+                'post_type'  => 'post',
+                'post_status'=> 'publish',
+                'title'      =>  $str
+    );
+
+    $movies = array();
+    $searched_movies = get_posts( $params );
+    $n=0;
+    foreach ($searched_movies as $key => $searched_movie) {
+        $movie_id                       =   $searched_movie->ID;
+        $searched_movie                 =   Film\Video::get($movie_id);
+        if (stripos($searched_movie['title'],$str) < 1) {
+        continue;
+        }   
+        $movies[$n]['movie_id']     =   $movie_id;
+        $movies[$n]['no_of_views']  =   $searched_movie['no_of_views'];
+        $movies[$n]['no_of_likes']  =   $searched_movie['post_like_count'];
+        $movies[$n]['title']        =   $searched_movie['title'];
+        $movies[$n]['type']         =   $searched_movie['type'];
+        $movies[$n]['tagline']      =   $searched_movie['tagline'];
+        $movies[$n]['videourl']     =   $searched_movie['videourl'];
+        $movies[$n]['embedurl']     =   $searched_movie['embedurl'];
+        $movies[$n]['director']     =   $searched_movie['director'];
+        $movies[$n]['image']        =   $searched_movie['medium_image'];
+        $movies[$n]['duration']     =   $searched_movie['duration'];
+        $movies[$n]['region']       =   $searched_movie['region'][0];
+        $movies[$n]['language']     =   $searched_movie['language'][0];
+        $movies[$n]['genres']       =   $searched_movie['categories'];
+
+        if($movies[$n]['type']  =='youtube'){
+            $url = explode("=",$searched_movie['videourl']);
+            $movies[$n]['videourl'] = $url[1];
+        }else{
+            $movies[$n]['embedurl'] = "http:".$movies[$n]['embedurl'];
+        }       
+        $n++;
+    }
+
+    return $movies;
+
+}

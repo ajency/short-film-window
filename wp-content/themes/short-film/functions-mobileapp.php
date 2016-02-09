@@ -60,9 +60,11 @@ function single_video($id){
 				$movie['embedurl']		=	$res['embedurl'];
 				$movie['director']		=	$res['director'];
 				$movie['image']			=	$res['medium_image'];
-				$movie['country']		=	"India - Asia";	
 				$movie['duration']		=	$res['duration'];
-
+				$movie['region']		=	$res['region'][0];
+				$movie['language']		=	$res['language'][0];
+				$movie['genres']		=	$res['categories'];
+				$movie['content']		=	$res['content'];
 				if($movie['type']	=='youtube'){
 					$url = explode("=",$res['videourl']);
 					$movie['videourl'] = $url[1];
