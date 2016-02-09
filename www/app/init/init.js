@@ -89,6 +89,9 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         $scope.display = 'result';
         $scope.Videodetails = DetailsAPI.singleVideoarray.singleVideoarray;
         console.log($scope.Videodetails);
+        DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id).then(function(data) {
+          return document.getElementById('synopsis').outerHTML = data.content;
+        });
         $scope.checkIfaddedlist();
         return $scope.initPlayer();
       } else {
@@ -102,6 +105,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
             };
             DetailsAPI.singleVideoarray = obj;
             $scope.Videodetails = data;
+            $scope.Videodetails;
             document.getElementById('synopsis').outerHTML = $scope.Videodetails.content;
             return $scope.initPlayer();
           };
@@ -122,6 +126,7 @@ angular.module('SFWApp.init', []).controller('InitCtrl', [
         $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
         return console.log($scope.player1);
       } else {
+        console.log($scope.videourl);
         return player = new YT.Player('player2', {
           height: '100%',
           width: '100%',
