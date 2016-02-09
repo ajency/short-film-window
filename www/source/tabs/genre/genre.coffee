@@ -21,6 +21,7 @@ angular.module 'SFWApp.tabs'
     $scope.init = ->
       console.log 'in genre'
       $scope.genre = DetailsAPI.genre_array
+      console.log $scope.genre 
 
     $scope.singleGenre = (genreId)->
       DetailsAPI.videoId = genreId

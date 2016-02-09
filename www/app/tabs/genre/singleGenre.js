@@ -56,6 +56,7 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           value = [];
         }
         $scope.getwatchlistDetails = value;
+        console.log(DetailsAPI.GlobalChild_array);
         if (DetailsAPI.GlobalChild_array.length > 0) {
           $scope.genreData = DetailsAPI.GlobalChild_array;
           $scope.genre = DetailsAPI.Global_array;
@@ -64,7 +65,8 @@ angular.module('SFWApp.tabs').controller('singleGenre', [
           device_width = $window.innerWidth;
           device_height = $window.innerHeight;
           $scope.used_height = 88 + 73;
-          return $scope.hgt = device_height - $scope.used_height;
+          $scope.hgt = device_height - $scope.used_height;
+          return $scope.display = 'result';
         } else {
           return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then((function(_this) {
             return function(data) {

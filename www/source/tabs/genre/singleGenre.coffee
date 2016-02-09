@@ -50,6 +50,7 @@ angular.module 'SFWApp.tabs'
         if _.isNull value
           value = []
         $scope.getwatchlistDetails = value 
+        console.log DetailsAPI.GlobalChild_array
 
         if ( DetailsAPI.GlobalChild_array.length >0 )
           $scope.genreData= DetailsAPI.GlobalChild_array
@@ -61,6 +62,7 @@ angular.module 'SFWApp.tabs'
           device_height = $window.innerHeight;
           $scope.used_height = 88 + 73
           $scope.hgt = device_height - $scope.used_height
+          $scope.display = 'result'
         else
           GenreAPI.GetSingleGenre(DetailsAPI.videoId)
           .then (data)=>

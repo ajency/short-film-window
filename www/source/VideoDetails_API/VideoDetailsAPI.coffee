@@ -27,49 +27,36 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 		$http.get URL+'/wp-json/get_defaults'
 		.then (data)->
-			console.log 'succ'
-			console.log data
 			defer.resolve data.data
 		, (error)->
-			console.log 'eroor'
-			defer.reject error
+	    	defer.reject error
 
 		defer.promise
 
 	DetailsAPI.GetSingleVideo = (VideoId)->
-		console.log VideoId
 
 		defer = $q.defer()
 
 		$http.get URL+"/wp-json/get_video?id=#{VideoId}"
 		.then (data)->
-			console.log 'single video data succ'
-			console.log data
 			defer.resolve data.data
 		, (error)->
-			console.log 'eroor'
 			defer.reject error
 
 		defer.promise
 
 	DetailsAPI.searchResult = (txt)->
-		console.log txt
-
 		defer = $q.defer()
 
 		$http.get URL+"/wp-json/search?str=#{txt}"
 		.then (data)->
-			console.log 'search video data succ'
-			console.log data
 			defer.resolve data.data
 		, (error)->
-			console.log 'eroor'
 			defer.reject error
 
 		defer.promise
 
 	DetailsAPI.setData = (opts={})->
-			console.log opts
 			DetailsAPI.array = opts.premiere
 			DetailsAPI.array_addition = opts.new_addition
 			DetailsAPI.array_noteworthy = opts.noteworthy

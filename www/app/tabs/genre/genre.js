@@ -27,7 +27,8 @@ angular.module('SFWApp.tabs').controller('genreCtrl', [
     };
     $scope.init = function() {
       console.log('in genre');
-      return $scope.genre = DetailsAPI.genre_array;
+      $scope.genre = DetailsAPI.genre_array;
+      return console.log($scope.genre);
     };
     return $scope.singleGenre = function(genreId) {
       DetailsAPI.videoId = genreId;

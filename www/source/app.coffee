@@ -55,7 +55,8 @@ angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','SFWApp.landing','SFWA
     App.currentState = to.name
 
   $rootScope.$on '$stateChangeStart', (ev, toState, toParams, fromState, fromParams) ->
-    if fromState.name == 'init' and toState.name == 'landingvideo'
+    if fromState.name != '' and toState.name == 'appInitialize'
+      console.log 'prevent'
       ev.preventDefault() 
 
 ]

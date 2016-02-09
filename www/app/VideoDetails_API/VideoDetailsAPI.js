@@ -20,39 +20,28 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       var defer;
       defer = $q.defer();
       $http.get(URL + '/wp-json/get_defaults').then(function(data) {
-        console.log('succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
     };
     DetailsAPI.GetSingleVideo = function(VideoId) {
       var defer;
-      console.log(VideoId);
       defer = $q.defer();
       $http.get(URL + ("/wp-json/get_video?id=" + VideoId)).then(function(data) {
-        console.log('single video data succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
     };
     DetailsAPI.searchResult = function(txt) {
       var defer;
-      console.log(txt);
       defer = $q.defer();
       $http.get(URL + ("/wp-json/search?str=" + txt)).then(function(data) {
-        console.log('search video data succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
@@ -61,7 +50,6 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       if (opts == null) {
         opts = {};
       }
-      console.log(opts);
       DetailsAPI.array = opts.premiere;
       DetailsAPI.array_addition = opts.new_addition;
       DetailsAPI.array_noteworthy = opts.noteworthy;

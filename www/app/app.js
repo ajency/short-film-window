@@ -50,7 +50,8 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'SFWApp.landing', '
       return App.currentState = to.name;
     });
     return $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState, fromParams) {
-      if (fromState.name === 'init' && toState.name === 'landingvideo') {
+      if (fromState.name !== '' && toState.name === 'appInitialize') {
+        console.log('prevent');
         return ev.preventDefault();
       }
     });
