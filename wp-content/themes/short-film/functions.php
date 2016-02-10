@@ -2765,19 +2765,19 @@ function sendPushNotifications($ID, $post)
 
   $post_date = $post["post_date"]; 
   $post_modified = $post["post_modified"]; 
-  $ID = $post["ID"];
+  $ID = (string)$post["ID"];
 
   $object_id=1;
   $object_type='default_data';
   delete_cache_data($object_id,$object_type);//call to delete the cache data
-  
-  /*if ($post_date == $post_modified) 
+  fetch_default_data();//call to update the cache data
+  if ($post_date == $post_modified) 
   {
     require 'push.php'; 
     $data = array("alert" => $post_title,"movieId" => $ID);
     $notify = new pushNotifications;
     $notify->sendNotifications($data);
-  }*/
+  }
 
 }
 
@@ -2848,8 +2848,31 @@ function populate_likes_and_views()
 } //end function
 
 */
+add_action( 'admin_menu', 'wporg_custom_admin_menu' );
+ 
+function wporg_custom_admin_menu() {
+    add_options_page(
+        'Cache Data Update Feature',
+        'Refresh Cache Data',
+        'manage_options',
+        'wporg-plugin',
+        'wporg_options_page'
+    );
+}
+function wporg_options_page() {
+  global $wpdb;
+  $object_id=1;
+  $object_type='default_data';
+  delete_cache_data($object_id,$object_type);
+  fetch_default_data();
 
-
+    ?>
+    <div class="wrap">
+        <h2>Cache Data Update Feature</h2>
+        <b>You Have Succesfully Updated the Cache Data !!!</b>
+    </div>
+    <?php
+}
 //code added by kapil//
 require_once (get_template_directory().'/api/class.mobileapp.api.php');
 require_once(get_template_directory().'/functions-mobileapp.php');

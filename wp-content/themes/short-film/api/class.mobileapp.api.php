@@ -223,8 +223,9 @@ class Mobileapp_API
         if(count($cached_data)>0)
         return $response   =$cached_data[$id]; 
 
-
-		$response = array('defaults'=>array('filters'=>array(),'sort_keys'=>array(), 'content'=>array()));
+        $response=fetch_default_data();
+        
+		/*$response = array('defaults'=>array('filters'=>array(),'sort_keys'=>array(), 'content'=>array()));
 		
         $weekly_premiere    =   one_random_weekly_premiere();
         $new_additions      =   new_additions();
@@ -248,7 +249,7 @@ class Mobileapp_API
         $object_type='default_data';
         $object_id=1;
         save_cached_data($object_id,$object_type,$response);
-
+*/
 		if (is_wp_error($response)){
             $response = new WP_JSON_Response( $response );
             $response->set_status(404);
@@ -347,4 +348,35 @@ function videos_by_string($str){
 
     return $movies;
 
+}
+
+
+function fetch_default_data(){
+
+    $response = array('defaults'=>array('filters'=>array(),'sort_keys'=>array(), 'content'=>array()));
+        
+        $weekly_premiere    =   one_random_weekly_premiere();
+        $new_additions      =   new_additions();
+        $noteworthy         =   noteworthy();
+        $awesome_playlists  =   five_awesome_playlists_init(5);
+        $genres             =   genres();
+        $languages          =   languages();
+        $playlists          =   five_awesome_playlists_init();
+        $popular  = array(
+                        'popular'=>array('weekly_premiere'=>$weekly_premiere, 'new_additions'=>$new_additions, 'noteworthy'=>$noteworthy, 'awesome_playlist'=>$awesome_playlists ),
+                        'genre'  =>$genres,
+                        'playlists'=>$playlists
+                    );
+            
+
+
+        $response['defaults']['content']=$popular;
+        $response['defaults']['filters']=array('languages'=>$languages);
+        $response['defaults']['sort_keys']=array('freshness','popularity','length');
+
+        $object_type='default_data';
+        $object_id=1;
+        save_cached_data($object_id,$object_type,$response);
+
+        return $response;
 }
