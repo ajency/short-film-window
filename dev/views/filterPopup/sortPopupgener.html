@@ -1,0 +1,25 @@
+<div class="popup white sortPopup" ng-init= "popup()">
+    <div class="popup-head">
+         <h4>Sort</h4>
+    </div>
+    <div class="popup-body">
+        <div class="sortInner padding" ng-click ="getId(0)">
+         <!--  <img src="img/icons/fresh_grey.png"/> -->
+         <img ng-src="{{ Popuparray[0] }}" >
+          <span id="1" style = "{{ txtcolor[0] }}">Freshness</span>
+        </div>
+        <div class="sortInner padding" ng-click ="getId(1)">
+          <img ng-src="{{ Popuparray[1] }}">
+          <span id= "2" style = "{{ txtcolor[1] }}">Popularity</span>
+        </div>
+        <div class="sortInner padding" ng-click ="getId(2)">
+          <img ng-src= "{{ Popuparray[2] }}">
+          <span id="3" style= "{{ txtcolor[2] }}">Length</span>
+        </div>
+    </div>
+    <div class="col popupFooter padding0">
+      <button class="button col col-50 pull-left text-uppercase" ng-click ="getId('') ; hideNoReset()">Close</button>
+      <button class="button col col-50 pull-right text-uppercase" ng-click ="FiltersortApply()">Apply</button>
+    </div>
+
+</div>
