@@ -2774,7 +2774,9 @@ function sendPushNotifications($ID, $post)
   if ($post_date == $post_modified) 
   {
     require 'push.php'; 
-    $data = array("alert" => $post_title,"movieId" => $ID);
+    $data_movie= single_video($post["ID"]);  
+    $moviedetails=urlencode(json_encode($data_movie));
+    $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails);
     $notify = new pushNotifications;
     $notify->sendNotifications($data);
   }
