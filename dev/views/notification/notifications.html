@@ -1,4 +1,4 @@
-<ion-view>
+<!-- <ion-view>
     <ion-view class="singleGenre">
         <ion-content ng-switch="result" ng-init="getNotifications()" class="notifications">
 
@@ -31,4 +31,60 @@
         <ion-footer-bar class="bar bar-footer submitFormFooter">
             <button ng-click="clearNotifications()" class="button button-small col text-uppercase primaryText">Clear all notifications</button>
         </ion-footer-bar>
-    </ion-view>
+    </ion-view> -->
+<ion-view class="singleGenre">
+    <ion-content class="popular" ng-switch="result" ng-init="getNotifications()">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="getNotifications()"></ion-refresher>
+        <div ng-switch-when="display" id="genreswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
+        <div ng-if="refreshSwiper">
+            <div class="swiper-wrapper">
+                <div ng-repeat="notify in notificationArray" style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
+                    <div class="list card margin0 cardOuter" style="width:100%">
+                        <div class="watchlistIcon">
+                            <button class="button button-icon" ng-click="addwatchlist(notify.movieDetails,notify.notificationId)">
+                                <i class="ion-heart" ng-class="checkIfaddedToWatchList(notify.movieDetails.movie_id)"></i>
+                            </button>
+                        </div>
+                        <div class="item item-image padding0" ng-click="singlePlayService( notify.movieDetails,notify.notificationId )">
+                            <div class="imageContainerOuter" style="height: {{ hgt }}px">
+                                <img src="{{ notify.movieDetails.image }}" />
+                            </div>
+                            <div class="overlay"></div>
+                            <div class="movieDetails padding whiteText">
+                                <div class="title padding-vertical">
+                                    {{ notify.movieDetails.title }} <span>by {{ notify.movieDetails.director}}</span>
+                                </div>
+                                <div class="tagline padding-vertical">
+                                    {{ notify.movieDetails.tagline}}
+                                </div>
+                                <div class="country padding-vertical">
+                                    {{ notify.movieDetails.region }}/ {{ notify.movieDetails.language}}<span></span>
+                                    <div class="pull-right"><i class="ion-android-time"></i> {{ notify.movieDetails.duration }} Min</div>
+                                </div>
+                                <div class="viewsNLikes padding-vertical">
+                                    <span><i class="ion-ios-eye"></i> {{ notify.movieDetails.no_of_views}}</span>
+                                    <span><i class="ion-thumbsup"></i> {{ notify.movieDetails.no_of_likes }}</span>
+                                    <span><i class="ion-thumbsup"></i> {{ notify.status }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>   
+        </div>
+        <div class="col noNotification text-center" ng-switch-when="no-new-notifications"> <img src="img/icons/notification_disabled.png">
+            <br>
+            <h4 class="text-uppercase">No new notifications</h4>
+            <p class="text-uppercase"> You will be notified when we add something new :D </p>
+        </div>
+        <div class="loaderOuter" ng-switch-when="loader">
+            <div class="loading-spinner">
+            </div>
+        </div>
+        <aj-error class="errors" ng-switch-when="error" error-type="errorType" tap-to-retry="view.onTapToRetry()"> </aj-error>
+    </ion-content>
+    <ion-footer-bar class="bar bar-footer submitFormFooter">
+        <button ng-click="clearNotifications()" class="button button-small col text-uppercase primaryText">Clear all notifications</button>
+    </ion-footer-bar>
+</ion-view>

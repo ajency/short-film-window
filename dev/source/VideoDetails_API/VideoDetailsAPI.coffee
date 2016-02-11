@@ -27,6 +27,7 @@ shortFilmWindow
 
 		$http.get URL+'/wp-json/get_defaults'
 		.then (data)->
+			console.log data
 			defer.resolve data.data
 		, (error)->
 	    	defer.reject error

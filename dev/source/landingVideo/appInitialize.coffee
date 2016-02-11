@@ -7,7 +7,6 @@ shortFilmWindow
 
       if App.isWebView()
         ParsePushPlugin.getInstallationObjectId (id) ->
-          console.log id
           ParseConfiguration.installationId = id
         , (e) ->
           ParseConfiguration.installationId =  0

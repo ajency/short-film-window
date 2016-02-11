@@ -8,17 +8,21 @@ shortFilmWindow.service 'ParseNotificationService', [
       getNotificationsWithStatus: ->
         deferred = $q.defer()
         installation_id = ParseConfiguration.installationId
-        console.log "******"+installation_id
+        # installation_id = 'SlTCCS8Eom'
         Parse.Cloud.run 'listAllNotificationsForUser', {"installation_id" : installation_id},
           success: (results) ->
             notificationArray = []
             _.each results, (value) ->
               dt = moment(value.attributes.createdAt).format('LLLL')
-              obj =
+              j = {}
+              if value.attributes.notificationId.attributes.movieDetails             
+                j = angular.fromJson decodeURIComponent value.attributes.notificationId.attributes.movieDetails
+               obj =
                 "createdAt": dt
                 "notificationId": value.attributes.notificationId.id
                 "installationId": value.attributes.installationId.id
                 "alert": value.attributes.notificationId.attributes.alert
+                "movieDetails": j
                 "status": value.attributes.status
               notificationArray.push obj
             deferred.resolve notificationArray
@@ -31,6 +35,7 @@ shortFilmWindow.service 'ParseNotificationService', [
       getUnreadNotificationsCount: ->
         deferred = $q.defer()
         installation_id = ParseConfiguration.installationId
+        # installation_id = 'SlTCCS8Eom'
         Parse.Cloud.run 'countUnreadNotifications', {"installation_id" : installation_id},
           success: (count) ->
             deferred.resolve count
@@ -44,6 +49,7 @@ shortFilmWindow.service 'ParseNotificationService', [
       updateNotificationStatus: (notification_id)->
         deferred = $q.defer()
         installation_id = ParseConfiguration.installationId
+        # installation_id = 'SlTCCS8Eom'
         Parse.Cloud.run 'updateNotificationStatusAsRead', {"installation_id" : installation_id,"notification_id" : notification_id},
           success: (results) ->
             deferred.resolve results
@@ -56,6 +62,7 @@ shortFilmWindow.service 'ParseNotificationService', [
       deleteNotifications: ()->
         deferred = $q.defer()
         installation_id = ParseConfiguration.installationId
+        # installation_id = 'SlTCCS8Eom'
         Parse.Cloud.run 'deleteAllNotification', {"installation_id" : installation_id},
           success: (results) ->
             deferred.resolve results
