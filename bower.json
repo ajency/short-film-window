@@ -10,6 +10,7 @@
     "ion-sticky": "~1.0.4",
     "angular-vimeo-embed": "~0.1.2",
     "moment": "~2.11.1",
-    "ng-fastclick": "^1.0.2"
+    "ng-fastclick": "^1.0.2",
+    "angular-lazy-img": "^1.2.2"
   }
 }

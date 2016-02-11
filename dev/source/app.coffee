@@ -38,11 +38,20 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
 
 ]
 
-shortFilmWindow.config ['$ionicConfigProvider','$compileProvider', ($ionicConfigProvider,$compileProvider)->
+shortFilmWindow.config ['$compileProvider', ($compileProvider)->
   # $ionicConfigProvider.views.maxCache 0
   # $ionicConfigProvider.views.forwardCache false
   # $ionicConfigProvider.views.transition 'none'
   $compileProvider.debugInfoEnabled false
+
+  # scrollable = document.querySelector '#genreScroll'
+  # lazyImgConfigProvider.setOptions
+  #   offset: 100
+  #   errorClass: 'error'
+  #   successClass: 'success'
+  #   onError: (image) ->
+  #   onSuccess: (image) ->
+  #   container: angular.element(scrollable)
 
 ]
 
