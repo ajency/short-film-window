@@ -248,7 +248,8 @@ function genres()
 	{
 
 		////get image urls
-		$cat_image = s8_get_taxonomy_image_src($category, 'default');
+		// $cat_image = s8_get_taxonomy_image_src($category, 'default');
+		$cat_image = s8_get_taxonomy_image_src($category);
 
 		$cat_image_url = $cat_image['src'];
 
