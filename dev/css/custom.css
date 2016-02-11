@@ -216,7 +216,7 @@ a {
 .popular .card .item.item-image {
   padding: 0;
   height: 100%;
-  position: relative
+  position: relative;
   /*border: none;*/
 }
 .popular .card .item.item-avtar {
@@ -268,7 +268,6 @@ a {
   width: 100%;
   padding: 20px 5px 0px 5px;
   text-align: left;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.81) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 15%, rgba(0, 0, 0, 0.81) 100%);
 }
 .playlist .playlistDetails .title {
@@ -386,10 +385,7 @@ a {
 }
 .cardDetails {
   height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex
+  display: flex;
   /*.cardOuter
 	{
 		.movieDetails
@@ -430,35 +426,63 @@ a {
 @-webkit-keyframes rotate-forever {
   0% {
     -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes rotate-forever {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 @keyframes rotate-forever {
   0% {
     -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
     -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 .loading-spinner {
   -webkit-animation-duration: 0.75s;
+  -moz-animation-duration: 0.75s;
   animation-duration: 0.75s;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   -webkit-animation-name: rotate-forever;
+  -moz-animation-name: rotate-forever;
   animation-name: rotate-forever;
   -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
   animation-timing-function: linear;
   height: 40px;
   width: 40px;
@@ -483,7 +507,7 @@ a {
   width: 100%;
   z-index: 99;
   height: 45px;
-  border-bottom: 1px solid #d4d4d4
+  border-bottom: 1px solid #d4d4d4;
   /*display: none;*/
   /*transition: width 1s ease;
 	opacity: 0;*/
@@ -509,10 +533,8 @@ a {
   /*width: 100%;	
 		transition: width 1s ease;	
 		opacity: 1;*/
-  -webkit-animation-name: leftSide;
-          animation-name: leftSide;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  animation-name: leftSide;
+  animation-duration: 1s;
   display: block;
 }
 .box.showSearch i.searchIcon {
@@ -523,10 +545,8 @@ a {
   /*width: 0;	
 		transition:width 1s ease;	
 		opacity: 0;	*/
-  -webkit-animation-name: rightSide;
-          animation-name: rightSide;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s
+  animation-name: rightSide;
+  animation-duration: 1s;
   /*opacity: 0;*/
 }
 .box.hideSearch i {
@@ -636,8 +656,7 @@ a {
   -webkit-line-clamp: 2;
   /*transition: all 2s ease;*/
   opacity: 0;
-  -webkit-transition: 0.5s linear all;
-          transition: 0.5s linear all;
+  transition: 0.5s linear all;
 }
 .playlistHeaderSmall.item-divider {
   /*display:none;*/
@@ -645,13 +664,11 @@ a {
 }
 .playlistHeaderSmall.item-divider.assertive {
   opacity: 1;
-  -webkit-transition: 1s linear all;
-          transition: 1s linear all;
+  transition: 1s linear all;
 }
 .playlistHeaderSmall.ng-hide {
   opacity: 0;
-  -webkit-transition: 0.5s linear all;
-          transition: 0.5s linear all;
+  transition: 0.5s linear all;
 }
 .popularswiper .swiper-wrapper .list:last-child {
   margin-bottom: 0;
@@ -724,7 +741,6 @@ a {
   bottom: 0;
   text-align: left;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.9) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0.9) 100%);
 }
 .movieDetails .title {
@@ -839,7 +855,7 @@ a {
 .synopsis {
   font-size: 1.2em;
   color: #5e5e5e;
-  background: #ffffff
+  background: #ffffff;
   /*.synopsisDiv {
 	   transition: 1s linear all;
 	   max-height:3000px;
@@ -876,12 +892,10 @@ a {
   overflow: hidden;
   /*text-overflow: ellipsis;*/
   font-size: 2.6vh;
-  -webkit-transition: 0.5s linear all;
-          transition: 0.5s linear all;
+  transition: 0.5s linear all;
 }
 .synopsis .synopsisDivHide .toggleSynopsis i:before {
-  -webkit-transition: all 1s ease;
-          transition: all 1s ease;
+  transition: all 1s ease;
 }
 .synopsis .synopsisDivShow {
   /*transition: 1s linear all;*/
@@ -891,19 +905,14 @@ a {
   max-width: 100%;
   max-height: 3000px;
   font-size: 2.6vh;
-  -webkit-transition: 0.5s linear all;
-          transition: 0.5s linear all;
+  transition: 0.5s linear all;
 }
 .synopsis .synopsisDivShow .toggleSynopsis i {
-  -webkit-transition: all 2s ease;
-          transition: all 2s ease;
+  transition: all 2s ease;
 }
 .synopsis .synopsisDivShow .toggleSynopsis i:before {
-  -webkit-transition: all 1s ease;
-          transition: all 1s ease;
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transition: all 1s ease;
+  transform: rotate(180deg);
 }
 @keyframes showDiv {
   0% {
@@ -964,7 +973,7 @@ a {
   background-size: contain;
   height: 25px;
   width: 25px;
-  float: left
+  float: left;
   /*&.icon-filter, .icon-filter_red
 	{
 		background-image: url('../img/icons/filter_grey.png');
@@ -1029,7 +1038,6 @@ a {
 }
 .genre .playlist .playlistDetails {
   padding: 30% 5px 0px 5px;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0.81) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 15%, rgba(0, 0, 0, 0.81) 100%);
 }
 .genre .playlist .playlistDetails .title {
@@ -1081,7 +1089,7 @@ a {
   /*margin-right: 10px;
 			    margin-top: 2px;*/
   margin: auto;
-  margin-top: 20px
+  margin-top: 20px;
   /* .overlay
 			    {
 			    	background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);
@@ -1140,7 +1148,7 @@ a {
 			    bottom: 2px;*/
   text-align: left;
   padding: 10px 15px 0;
-  margin-top: -30px
+  margin-top: -30px;
   /*color: #fff;*/
 }
 .singleGenre .scroll {
@@ -1399,7 +1407,7 @@ a {
   z-index: 9999999;
 }
 .sortPopup .popup-body .sortInner:last-child {
-  border-bottom: none
+  border-bottom: none;
   /*margin-bottom: 10px;*/
 }
 .sortPopup .popup-body .sortInner img {
@@ -1451,7 +1459,7 @@ a {
 .customRadio .item-radio input:checked ~ .radio-icon.ion-checkmark:before,
 .customRadioDuration .item-radio input:checked ~ .radio-icon.ion-checkmark:before {
   content: "\f3a7";
-  color: #af152f
+  color: #af152f;
   /*transform: scale(0.8);*/
 }
 .errors {
@@ -1529,26 +1537,33 @@ a {
   background: #d4d4d4;
   color: #af152f;
 }
-.notifications .item {
-  border-bottom: 1px solid #d4d4d4;
-  float: left;
-  width: 100%;
+.notifications {
+  /*.item
+	{
+		border-bottom: 1px solid @grayLightest;
+		float: left;
+		width: 100%;
+	}*/
+  /*p
+	{
+		white-space: normal;
+		color: @grayDark;
+		font-size: 2.6vh;
+	}*/
 }
-.notifications h5 span {
+.notifications .notificationDate {
+  margin-bottom: 10px;
+}
+.notifications .notificationDate span {
   color: #aeaeae;
   font-size: 1.9vh;
 }
-.notifications h5 span i {
-  color: #aeaeae;
-  font-size: 12px;
+.notifications .notificationDate span i {
+  color: #ffffff;
+  /*font-size: 14px;*/
 }
-.notifications h5 span.unread i {
-  color: #5ab515;
-}
-.notifications p {
-  white-space: normal;
-  color: #2e2e2e;
-  font-size: 2.6vh;
+.notifications .notificationDate span.unread i {
+  color: #17f117;
 }
 .noNotification {
   padding: 10%;
@@ -1767,4 +1782,3 @@ a {
     display: none;
   }
 }
-/*# sourceMappingURL=custom.css.map */
