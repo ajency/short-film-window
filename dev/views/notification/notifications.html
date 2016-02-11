@@ -35,8 +35,8 @@
 <ion-view class="singleGenre">
     <ion-content class="popular" ng-switch="result" ng-init="getNotifications()">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="getNotifications()"></ion-refresher>
-        <div ng-switch-when="display" id="genreswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
         <div ng-if="refreshSwiper">
+        <div ng-switch-when="display" id="genreswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
             <div class="swiper-wrapper">
                 <div ng-repeat="notify in notificationArray" style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
                     <div class="list card margin0 cardOuter" style="width:100%">
