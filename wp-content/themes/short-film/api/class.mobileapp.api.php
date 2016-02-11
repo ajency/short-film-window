@@ -358,10 +358,10 @@ function fetch_default_data(){
         $weekly_premiere    =   one_random_weekly_premiere();
         $new_additions      =   new_additions();
         $noteworthy         =   noteworthy();
-        $awesome_playlists  =   five_awesome_playlists_init(5);
+        $awesome_playlists  =   five_awesome_playlists(5);
         $genres             =   genres();
         $languages          =   languages();
-        $playlists          =   five_awesome_playlists_init();
+        $playlists          =   five_awesome_playlists();
         $popular  = array(
                         'popular'=>array('weekly_premiere'=>$weekly_premiere, 'new_additions'=>$new_additions, 'noteworthy'=>$noteworthy, 'awesome_playlist'=>$awesome_playlists ),
                         'genre'  =>$genres,
