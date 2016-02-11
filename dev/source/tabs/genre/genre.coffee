@@ -19,16 +19,8 @@ shortFilmWindow
 
 
     $scope.init = ->
-      console.log 'in genre'
-      $scope.genreobj = DetailsAPI.genre_array
-      console.log $scope.genreobj 
-      $scope.objectToArray()
-
-    $scope.objectToArray = ()->
-      $scope.genre = []
-      _.each $scope.genreobj, (value, key, list)->
-        $scope.genre.push value
-      console.log $scope.genre  
+      $scope.genre = DetailsAPI.genre_array
+      console.log $scope.genre
 
 
     $scope.singleGenre = (genreId)->

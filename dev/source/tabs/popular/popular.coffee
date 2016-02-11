@@ -149,6 +149,7 @@ shortFilmWindow
 
 
       $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
+      console.log $scope.allContentArray
       $scope.initWatchlist()   
 
     $scope.initWatchlist = ()->

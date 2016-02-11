@@ -1,11 +1,17 @@
 shortFilmWindow
 .factory 'share',['$q', 'App', '$http' ,($q, App, $http)->
     share = {}
-    share.shareNative = (params,slug) ->
+    share.shareNative = (slug,params='') ->
         console.log "Sharing video"
 
         if window.plugins and window.plugins.socialsharing
-            window.plugins.socialsharing.share null, 'shortFilm Window', null, URL, (->
+            switch params
+              when ''
+                shareURL = URL+'/'+slug
+              else
+                shareURL = URL+'/'+params+'/'+slug
+    
+            window.plugins.socialsharing.share null, 'shortFilm Window', null, shareURL, (->
               console.log 'Success'
             ), (error) ->
               console.log 'Share fail ' + error

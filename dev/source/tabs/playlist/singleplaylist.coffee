@@ -40,8 +40,8 @@ shortFilmWindow
             $scope.getwatchlistDetails.splice matchInWatchList,1
             Storage.watchlistDetails 'set', $scope.getwatchlistDetails 
 
-    $scope.share = () ->
-        share.shareNative()
+    $scope.share = (slug) ->
+        share.shareNative(slug,'playlist')
         
     $scope.init = () ->
         Storage.watchlistDetails 'get'
@@ -60,6 +60,7 @@ shortFilmWindow
                 $scope.hgt = device_height - $scope.used_height
                 # width for header..
                 $scope.headerwidth = device_width - 100 -27
+                console.log $scope.playlist
 
             else
                 $scope.display= 'loader'
@@ -77,6 +78,7 @@ shortFilmWindow
                     $scope.hgt = device_height - $scope.used_height
                     $scope.headerwidth = device_width - 100 - 27
                     $ionicLoading.hide();
+                    console.log $scope.playlist
                 , (error)=>
                     $scope.display= 'error'
                     $ionicLoading.hide();

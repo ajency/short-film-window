@@ -1,7 +1,7 @@
 <ion-view class="singleGenre" ng-init="init()">
     <ion-header-bar class="bar bar-header primary">
         <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>GENRE</button>
-        <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i></button>
+        <button class="button button-icon whiteText" ng-click="share(genre.genre_slug)"><i class="ion-android-share-alt"></i></button>
     </ion-header-bar>
     <div ng-switch="display">
         <ion-content class="popular " ion-sticky>
