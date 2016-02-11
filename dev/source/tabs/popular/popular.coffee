@@ -109,6 +109,8 @@ shortFilmWindow
       awPlalistArr = []
       $scope.allContentArray = []
 
+      console.log DetailsAPI
+
       premierArr.push
         "order": 1
         "cardtitle" : "Weekly Premiere"

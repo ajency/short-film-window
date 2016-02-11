@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'notificationsCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','ParseNotificationService','Storage','$timeout'
-  ,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,ParseNotificationService,Storage,$timeout)->
+.controller 'notificationsCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','ParseNotificationService','Storage','$timeout','$window'
+  ,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,ParseNotificationService,Storage,$timeout,$window)->
 
     $scope.notificationArray = []
 
@@ -8,6 +8,7 @@ shortFilmWindow
       $scope.getNotifications()
 
     $scope.getNotifications = ()->
+      $scope.hgt = $window.innerHeight - 88
       if App.isOnline()
         $scope.result = 'loader'
         Storage.watchlistDetails 'get'
@@ -23,9 +24,9 @@ shortFilmWindow
               $scope.initWatchlist
             else
               $scope.refreshSwiper = false
+              $scope.notificationArray = data
               $timeout ( ->
                 $scope.refreshSwiper = true
-                $scope.notificationArray = data
                 $scope.result = 'display'
                 ),50
 
