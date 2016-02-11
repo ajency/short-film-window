@@ -226,7 +226,12 @@
 	font-size: 1.2em;
 	color: @grayLight;
 	background: @white;
-	
+	position: relative;
+	.loading-spinner
+	{
+		height: 25px;
+		width: 25px;
+	}
 	img
 	{
 		display: block;
@@ -237,6 +242,15 @@
 		border: none;
 		color: @grayLight;
 		text-decoration: none;
+	}
+	.synopsisText
+	{
+		/*display: -webkit-box;*/
+	    max-width: 100%;
+	   /* max-height: 3000px;		    */
+	   margin-bottom: 20px;
+	    font-size:2.6vh;	
+	    transition: 0.5s linear all;   
 	}
 
 	/*.synopsisDiv {
@@ -253,18 +267,13 @@
 	   max-height:80px;
 	   opacity: 0;
 	}*/
-	.synopsisDivHide
-	{
-		/*transition: 0.5s linear all;*/
+	/*.synopsisDivHide
+	{		
 		.synopsisText
-		{
-			/*display: -webkit-box;*/
+		{			
 		    max-width: 100%;
-		    max-height: 80px;
-		    /*-webkit-line-clamp: 4;
-		    -webkit-box-orient: vertical;*/
-		    overflow: hidden;
-		    /*text-overflow: ellipsis;*/
+		    max-height: 80px;		 
+		    overflow: hidden;		    
 		    font-size:2.6vh;
 		    transition: 0.5s linear all;
 		}
@@ -275,18 +284,9 @@
 				transition: all 1s ease;
 			}
 		}
-	}
-	.synopsisDivShow
-	{
-		/*transition: 1s linear all;*/
-		.synopsisText
-		{
-			/*display: -webkit-box;*/
-		    max-width: 100%;
-		    max-height: 3000px;		    
-		    font-size:2.6vh;	
-		    transition: 0.5s linear all;   
-		}
+	}*/
+	/*.synopsisDivShow
+	{		
 		.toggleSynopsis
 		{
 			i
@@ -299,7 +299,7 @@
 				}
 			}
 		}
-	}
+	}*/
 	@keyframes showDiv {
 	    0% {height: 110px;}	   
 	    100% {height: 100%;}
