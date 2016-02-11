@@ -14,8 +14,8 @@ shortFilmWindow
   $scope.refreshSwiper = true
 
 
-  $scope.share = () ->
-    share.shareNative()
+  $scope.share = (slug) ->
+    share.shareNative(slug,'category')
 
   $scope.checkIfaddedToWatchList = (movie_id)->
     if $scope.getwatchlistDetails.length > 0
@@ -32,7 +32,6 @@ shortFilmWindow
 
         
   $scope.addwatchlist = (movieData) ->
-    console.log movieData 
     obj = 
       "movie_id" : movieData.movie_id
       "singleVideoarray" : movieData

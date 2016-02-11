@@ -12,9 +12,9 @@ shortFilmWindow
 
     $scope.showVideo = false
 
-    $scope.share = ()->
+    $scope.share = (slug)->
         console.log "social sharing "
-        share.shareNative()
+        share.shareNative(slug)
 
     $scope.addwatchlist = ()->
         $scope.CheckWatchlist()
