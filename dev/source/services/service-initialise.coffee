@@ -23,8 +23,9 @@ shortFilmWindow
               noteworthy: $rootScope.vData.defaults.content.popular.noteworthy
               awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist
               genre: $rootScope.vData.defaults.content.genre
-              playlist: $rootScope.vData.defaults.content.playlists
+              playlist: $rootScope.vData.defaults.content.playlists  
            .then (data) ->
+             console.log data
              deferred.resolve $rootScope.vData
        else
          deferred.reject()
