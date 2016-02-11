@@ -300,6 +300,56 @@ shortFilmWindow.factory('PulltorefreshAPI', [
   }
 ]);
 
+shortFilmWindow.directive('isLoaded', function() {
+  return {
+    scope: false,
+    restrict: 'A',
+    link: function(scope, elements, args) {
+      if (scope.$last) {
+        scope.$emit('content-changed');
+        return console.log('page Is Ready!');
+      }
+    }
+  };
+});
+
+shortFilmWindow.directive('scrollWatch', function($rootScope) {
+  return function(scope, elem, attr) {
+    var start, threshold;
+    start = 0;
+    threshold = 150;
+    return elem.bind('scroll', function(e) {
+      if (e.detail.scrollTop - start > threshold) {
+        $rootScope.slideHeader = true;
+      } else {
+        $rootScope.slideHeader = false;
+      }
+      if ($rootScope.slideHeaderPrevious >= e.detail.scrollTop - start) {
+        $rootScope.slideHeader = false;
+      }
+      $rootScope.slideHeaderPrevious = e.detail.scrollTop - start;
+      return $rootScope.$apply();
+    });
+  };
+});
+
+shortFilmWindow.directive('swiper', function() {
+  return {
+    link: function(scope, element, attr) {
+      return scope.$on('content-changed', function() {
+        return new Swiper(element, {
+          direction: 'vertical',
+          pagination: '.swiper-pagination',
+          paginationClickable: true,
+          loop: false,
+          freeModeMinimumVelocity: 0.08,
+          freeModeSticky: true
+        });
+      });
+    }
+  };
+});
+
 shortFilmWindow.controller('InitCtrl', [
   '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', 'ParseNotificationService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, ParseNotificationService, $rootScope) {
     var onPlayerReady, onPlayerStateChange, stopVideo;
@@ -495,55 +545,6 @@ shortFilmWindow.controller('InitCtrl', [
     return $scope.showSynopsisDiv = false;
   }
 ]);
-
-shortFilmWindow.directive('isLoaded', function() {
-  return {
-    scope: false,
-    restrict: 'A',
-    link: function(scope, elements, args) {
-      if (scope.$last) {
-        scope.$emit('content-changed');
-        return console.log('page Is Ready!');
-      }
-    }
-  };
-});
-
-shortFilmWindow.directive('scrollWatch', function($rootScope) {
-  return function(scope, elem, attr) {
-    var start, threshold;
-    start = 0;
-    threshold = 150;
-    return elem.bind('scroll', function(e) {
-      if (e.detail.scrollTop - start > threshold) {
-        $rootScope.slideHeader = true;
-      } else {
-        $rootScope.slideHeader = false;
-      }
-      if ($rootScope.slideHeaderPrevious >= e.detail.scrollTop - start) {
-        $rootScope.slideHeader = false;
-      }
-      $rootScope.slideHeaderPrevious = e.detail.scrollTop - start;
-      return $rootScope.$apply();
-    });
-  };
-});
-
-shortFilmWindow.directive('swiper', function() {
-  return {
-    link: function(scope, element, attr) {
-      return scope.$on('content-changed', function() {
-        return new Swiper(element, {
-          direction: 'vertical',
-          pagination: '.swiper-pagination',
-          paginationClickable: true,
-          speed: 150,
-          loop: false
-        });
-      });
-    }
-  };
-});
 
 shortFilmWindow.controller('appInitializeCtrl', [
   '$scope', 'App', 'DetailsAPI', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, DetailsAPI, InitialiseService, ParseConfiguration, $rootScope) {
