@@ -52,6 +52,8 @@ function single_video($id){
 		if(!empty($id) && is_numeric($id)){
 			$res 			= 	Film\Video::get($id);
 			if(!is_wp_error($res)){
+				$content = apply_filters ("the_content", $res['content']);
+				
 				$movie['found']			= true;
 				$movie['movie_id']		=	$id;
 				$movie['no_of_views']	=	$res['no_of_views'];
@@ -67,7 +69,7 @@ function single_video($id){
 				$movie['region']		=	$res['region'][0];
 				$movie['language']		=	$res['language'][0];
 				$movie['genres']		=	$res['categories'];
-				$movie['content']		=	$res['content'];
+				$movie['content']		=	$content;
 				$movie['slug']				=	$res['slug'];
 				if($movie['type']	=='youtube'){
 					$url = explode("=",$res['videourl']);
