@@ -38,7 +38,7 @@
         <div ng-if="refreshSwiper">
         <div ng-switch-when="display" id="genreswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
             <div class="swiper-wrapper">
-                <div ng-repeat="notify in notificationArray" style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
+                <div ng-repeat="notify in notificationArray | orderBy:'-createdAt' " style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
                     <div class="list card margin0 cardOuter" style="width:100%">
                         <div class="watchlistIcon">
                             <button class="button button-icon" ng-click="addwatchlist(notify.movieDetails,notify.notificationId)">
@@ -52,9 +52,9 @@
                             <div class="overlay"></div>
                             <div class="movieDetails padding whiteText">
                                 <div class="notificationDate padding-vertical">
-                                    <span class="notiDate">Date</span>
-                                    <span class="pull-right read"><i class="ion-record"></i></span>
-                                    <span class="pull-right unread"><i class="ion-record"></i></span>
+                                    <span class="notiDate">{{notify.fromnow}}</span>
+                                    <span ng-if="notify.status == 'read'" class="pull-right read"><i class="ion-record"></i></span>
+                                    <span ng-if="notify.status == 'unread'" class="pull-right unread"><i class="ion-record"></i></span>
                                 </div>
                                 <div class="title padding-vertical">
                                     {{ notify.movieDetails.title }} <span>by {{ notify.movieDetails.director}}</span>
@@ -69,7 +69,6 @@
                                 <div class="viewsNLikes padding-vertical">
                                     <span><i class="ion-ios-eye"></i> {{ notify.movieDetails.no_of_views}}</span>
                                     <span><i class="ion-thumbsup"></i> {{ notify.movieDetails.no_of_likes }}</span>
-                                    <span><i class="ion-thumbsup"></i> {{ notify.status }}</span>
                                 </div>
                             </div>
                         </div>

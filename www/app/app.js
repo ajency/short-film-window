@@ -56,214 +56,6 @@ shortFilmWindow.config([
   }
 ]);
 
-shortFilmWindow.factory('App', [
-  '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
-    var App;
-    App = void 0;
-    return App = {
-      start: true,
-      unreadNotifications: 0,
-      menuEnabled: {
-        left: false,
-        right: false
-      },
-      previousState: '',
-      currentState: '',
-      fromNotification: 0,
-      notificationPayload: [],
-      navigate: function(state, params, opts) {
-        var animate, back;
-        animate = void 0;
-        back = void 0;
-        if (params === null) {
-          params = {};
-        }
-        if (opts === null) {
-          opts = {};
-        }
-        if (!_.isEmpty(opts)) {
-          animate = _.has(opts, 'animate') ? opts.animate : false;
-          back = _.has(opts, 'back') ? opts.back : false;
-          $ionicHistory.nextViewOptions({
-            disableAnimate: !animate,
-            disableBack: !back
-          });
-        }
-        return $state.go(state, params);
-      },
-      getbackView: function() {
-        return console.log($ionicHistory.backView());
-      },
-      goBack: function(count) {
-        if (this.fromNotification) {
-          this.fromNotification = 0;
-          return $state.go("popular");
-        } else {
-          return $ionicHistory.goBack(count);
-        }
-      },
-      isAndroid: function() {
-        return ionic.Platform.isAndroid();
-      },
-      isIOS: function() {
-        return ionic.Platform.isIOS();
-      },
-      isWebView: function() {
-        return ionic.Platform.isWebView();
-      },
-      isOnline: function() {
-        if (this.isWebView()) {
-          console.log($cordovaNetwork.getNetwork());
-          return $cordovaNetwork.isOnline();
-        } else {
-          return navigator.onLine;
-        }
-      },
-      deviceUUID: function() {
-        if (this.isWebView()) {
-          return device.uuid;
-        } else {
-          return 'DUMMYUUID';
-        }
-      },
-      hideKeyboardAccessoryBar: function() {
-        if ($window.cordova && $window.cordova.plugins.Keyboard) {
-          return $cordovaKeyboard.hideAccessoryBar(true);
-        }
-      }
-    };
-  }
-]);
-
-shortFilmWindow.directive('ajError', [
-  function() {
-    return {
-      restrict: 'E',
-      replace: true,
-      templateUrl: 'views/Global/error.html',
-      scope: {
-        tapToRetry: '&',
-        errorType: '='
-      },
-      link: function(scope, el, attr) {
-        var button, errorMsg, errorTitle;
-        switch (scope.errorType) {
-          case 'offline':
-            errorMsg = 'No internet availability';
-            errorTitle = 'Error';
-            button = 'Retry';
-            break;
-          case 'server_error':
-            errorMsg = 'Could not connect to server';
-            break;
-          case 'no_Search_result':
-            errorMsg = 'No results found';
-            errorTitle = 'Result';
-            button = 'Close';
-            break;
-          default:
-            errorMsg = 'Something Went Wrong';
-            errorTitle = 'Error';
-            button = 'Retry';
-        }
-        scope.errorMsg = errorMsg;
-        scope.errorTitle = errorTitle;
-        scope.button = button;
-        return scope.onTryAgain = function() {
-          return scope.tapToRetry();
-        };
-      }
-    };
-  }
-]);
-
-shortFilmWindow.factory('share', [
-  '$q', 'App', '$http', function($q, App, $http) {
-    var share;
-    share = {};
-    share.shareNative = function(params, slug) {
-      console.log("Sharing video");
-      if (window.plugins && window.plugins.socialsharing) {
-        return window.plugins.socialsharing.share(null, 'shortFilm Window', null, URL, (function() {
-          return console.log('Success');
-        }), function(error) {
-          return console.log('Share fail ' + error);
-        });
-      } else {
-        return console.log('Share plugin not available');
-      }
-    };
-    return share;
-  }
-]);
-
-shortFilmWindow.controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
-    var onPlayerReady, onPlayerStateChange, stopVideo;
-    $scope.videoDetails = DetailsAPI.singleVideoarray;
-    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
-    console.log($scope.videourl);
-    $scope.switchHeaderBar = true;
-    $timeout(function() {
-      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
-    }, 5000);
-    $scope.toggleHeader = function() {
-      $scope.switchHeaderBar = !$scope.switchHeaderBar;
-      return $timeout(function() {
-        $scope.switchHeaderBar = !$scope.switchHeaderBar;
-        return $scope.$apply();
-      }, 5000);
-    };
-    $scope.view = {
-      back: function() {
-        var count;
-        count = -1;
-        return App.goBack(count);
-      },
-      vType: $scope.videoDetails.singleVideoarray.type,
-      vimomeo: true,
-      init: function() {
-        var modifiedUrl, player;
-        if (this.vType === 'vimeo') {
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          this.vimomeo = true;
-          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-        } else {
-          this.vimomeo = false;
-          return player = new YT.Player('player2', {
-            height: '100%',
-            width: '100%',
-            videoId: $scope.videourl,
-            playerVars: {
-              'autoplay': 1,
-              'rel': 0,
-              'wmode': 'transparent',
-              'modestbranding': 1
-            },
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-            }
-          });
-        }
-      }
-    };
-    onPlayerReady = function(event) {
-      return event.target.playVideo();
-    };
-    onPlayerStateChange = function(event) {
-      var done;
-      if (event.data === YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        return done = true;
-      }
-    };
-    return stopVideo = function() {
-      return player.stopVideo();
-    };
-  }
-]);
-
 shortFilmWindow.controller('watchlistCtrl', [
   '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
     $scope.watchlistDetails = [];
@@ -441,52 +233,72 @@ shortFilmWindow.factory('PulltorefreshAPI', [
   }
 ]);
 
-shortFilmWindow.directive('isLoaded', function() {
-  return {
-    scope: false,
-    restrict: 'A',
-    link: function(scope, elements, args) {
-      if (scope.$last) {
-        scope.$emit('content-changed');
-        return console.log('page Is Ready!');
+shortFilmWindow.controller('playerCtrl', [
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
+    var onPlayerReady, onPlayerStateChange, stopVideo;
+    $scope.videoDetails = DetailsAPI.singleVideoarray;
+    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
+    console.log($scope.videourl);
+    $scope.switchHeaderBar = true;
+    $timeout(function() {
+      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
+    }, 5000);
+    $scope.toggleHeader = function() {
+      $scope.switchHeaderBar = !$scope.switchHeaderBar;
+      return $timeout(function() {
+        $scope.switchHeaderBar = !$scope.switchHeaderBar;
+        return $scope.$apply();
+      }, 5000);
+    };
+    $scope.view = {
+      back: function() {
+        var count;
+        count = -1;
+        return App.goBack(count);
+      },
+      vType: $scope.videoDetails.singleVideoarray.type,
+      vimomeo: true,
+      init: function() {
+        var modifiedUrl, player;
+        if (this.vType === 'vimeo') {
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          this.vimomeo = true;
+          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        } else {
+          this.vimomeo = false;
+          return player = new YT.Player('player2', {
+            height: '100%',
+            width: '100%',
+            videoId: $scope.videourl,
+            playerVars: {
+              'autoplay': 1,
+              'rel': 0,
+              'wmode': 'transparent',
+              'modestbranding': 1
+            },
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
       }
-    }
-  };
-});
-
-shortFilmWindow.directive('scrollWatch', function($rootScope) {
-  return function(scope, elem, attr) {
-    var start, threshold;
-    start = 0;
-    threshold = 150;
-    return elem.bind('scroll', function(e) {
-      if (e.detail.scrollTop - start > threshold) {
-        $rootScope.slideHeader = true;
-      } else {
-        $rootScope.slideHeader = false;
+    };
+    onPlayerReady = function(event) {
+      return event.target.playVideo();
+    };
+    onPlayerStateChange = function(event) {
+      var done;
+      if (event.data === YT.PlayerState.PLAYING && !done) {
+        setTimeout(stopVideo, 6000);
+        return done = true;
       }
-      if ($rootScope.slideHeaderPrevious >= e.detail.scrollTop - start) {
-        $rootScope.slideHeader = false;
-      }
-      $rootScope.slideHeaderPrevious = e.detail.scrollTop - start;
-      return $rootScope.$apply();
-    });
-  };
-});
-
-shortFilmWindow.directive('swiper', function() {
-  return {
-    link: function(scope, element, attr) {
-      return scope.$on('content-changed', function() {
-        return new Swiper(element, {
-          direction: 'vertical',
-          pagination: '.swiper-pagination',
-          paginationClickable: true
-        });
-      });
-    }
-  };
-});
+    };
+    return stopVideo = function() {
+      return player.stopVideo();
+    };
+  }
+]);
 
 shortFilmWindow.controller('InitCtrl', [
   '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', 'ParseNotificationService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, ParseNotificationService, $rootScope) {
@@ -683,6 +495,53 @@ shortFilmWindow.controller('InitCtrl', [
     return $scope.showSynopsisDiv = false;
   }
 ]);
+
+shortFilmWindow.directive('isLoaded', function() {
+  return {
+    scope: false,
+    restrict: 'A',
+    link: function(scope, elements, args) {
+      if (scope.$last) {
+        scope.$emit('content-changed');
+        return console.log('page Is Ready!');
+      }
+    }
+  };
+});
+
+shortFilmWindow.directive('scrollWatch', function($rootScope) {
+  return function(scope, elem, attr) {
+    var start, threshold;
+    start = 0;
+    threshold = 150;
+    return elem.bind('scroll', function(e) {
+      if (e.detail.scrollTop - start > threshold) {
+        $rootScope.slideHeader = true;
+      } else {
+        $rootScope.slideHeader = false;
+      }
+      if ($rootScope.slideHeaderPrevious >= e.detail.scrollTop - start) {
+        $rootScope.slideHeader = false;
+      }
+      $rootScope.slideHeaderPrevious = e.detail.scrollTop - start;
+      return $rootScope.$apply();
+    });
+  };
+});
+
+shortFilmWindow.directive('swiper', function() {
+  return {
+    link: function(scope, element, attr) {
+      return scope.$on('content-changed', function() {
+        return new Swiper(element, {
+          direction: 'vertical',
+          pagination: '.swiper-pagination',
+          paginationClickable: true
+        });
+      });
+    }
+  };
+});
 
 shortFilmWindow.controller('appInitializeCtrl', [
   '$scope', 'App', 'DetailsAPI', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, DetailsAPI, InitialiseService, ParseConfiguration, $rootScope) {
@@ -996,14 +855,14 @@ shortFilmWindow.service('ParseNotificationService', [
             var notificationArray;
             notificationArray = [];
             _.each(results, function(value) {
-              var dt, j, obj;
-              dt = moment(value.attributes.createdAt).format('LLLL');
+              var j, obj;
               j = {};
               if (value.attributes.notificationId.attributes.movieDetails) {
                 j = angular.fromJson(decodeURIComponent(value.attributes.notificationId.attributes.movieDetails));
               }
               obj = {
-                "createdAt": dt,
+                "fromnow": moment(value.attributes.createdAt).fromNow(),
+                "createdAt": value.attributes.createdAt,
                 "notificationId": value.attributes.notificationId.id,
                 "installationId": value.attributes.installationId.id,
                 "alert": value.attributes.notificationId.attributes.alert,
@@ -1281,6 +1140,147 @@ shortFilmWindow.factory('Storage', [
       }
     };
     return Storage;
+  }
+]);
+
+shortFilmWindow.factory('App', [
+  '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
+    var App;
+    App = void 0;
+    return App = {
+      start: true,
+      unreadNotifications: 0,
+      menuEnabled: {
+        left: false,
+        right: false
+      },
+      previousState: '',
+      currentState: '',
+      fromNotification: 0,
+      notificationPayload: [],
+      navigate: function(state, params, opts) {
+        var animate, back;
+        animate = void 0;
+        back = void 0;
+        if (params === null) {
+          params = {};
+        }
+        if (opts === null) {
+          opts = {};
+        }
+        if (!_.isEmpty(opts)) {
+          animate = _.has(opts, 'animate') ? opts.animate : false;
+          back = _.has(opts, 'back') ? opts.back : false;
+          $ionicHistory.nextViewOptions({
+            disableAnimate: !animate,
+            disableBack: !back
+          });
+        }
+        return $state.go(state, params);
+      },
+      getbackView: function() {
+        return console.log($ionicHistory.backView());
+      },
+      goBack: function(count) {
+        if (this.fromNotification) {
+          this.fromNotification = 0;
+          return $state.go("popular");
+        } else {
+          return $ionicHistory.goBack(count);
+        }
+      },
+      isAndroid: function() {
+        return ionic.Platform.isAndroid();
+      },
+      isIOS: function() {
+        return ionic.Platform.isIOS();
+      },
+      isWebView: function() {
+        return ionic.Platform.isWebView();
+      },
+      isOnline: function() {
+        if (this.isWebView()) {
+          console.log($cordovaNetwork.getNetwork());
+          return $cordovaNetwork.isOnline();
+        } else {
+          return navigator.onLine;
+        }
+      },
+      deviceUUID: function() {
+        if (this.isWebView()) {
+          return device.uuid;
+        } else {
+          return 'DUMMYUUID';
+        }
+      },
+      hideKeyboardAccessoryBar: function() {
+        if ($window.cordova && $window.cordova.plugins.Keyboard) {
+          return $cordovaKeyboard.hideAccessoryBar(true);
+        }
+      }
+    };
+  }
+]);
+
+shortFilmWindow.directive('ajError', [
+  function() {
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'views/Global/error.html',
+      scope: {
+        tapToRetry: '&',
+        errorType: '='
+      },
+      link: function(scope, el, attr) {
+        var button, errorMsg, errorTitle;
+        switch (scope.errorType) {
+          case 'offline':
+            errorMsg = 'No internet availability';
+            errorTitle = 'Error';
+            button = 'Retry';
+            break;
+          case 'server_error':
+            errorMsg = 'Could not connect to server';
+            break;
+          case 'no_Search_result':
+            errorMsg = 'No results found';
+            errorTitle = 'Result';
+            button = 'Close';
+            break;
+          default:
+            errorMsg = 'Something Went Wrong';
+            errorTitle = 'Error';
+            button = 'Retry';
+        }
+        scope.errorMsg = errorMsg;
+        scope.errorTitle = errorTitle;
+        scope.button = button;
+        return scope.onTryAgain = function() {
+          return scope.tapToRetry();
+        };
+      }
+    };
+  }
+]);
+
+shortFilmWindow.factory('share', [
+  '$q', 'App', '$http', function($q, App, $http) {
+    var share;
+    share = {};
+    share.shareNative = function(params, slug) {
+      console.log("Sharing video");
+      if (window.plugins && window.plugins.socialsharing) {
+        return window.plugins.socialsharing.share(null, 'shortFilm Window', null, URL, (function() {
+          return console.log('Success');
+        }), function(error) {
+          return console.log('Share fail ' + error);
+        });
+      } else {
+        return console.log('Share plugin not available');
+      }
+    };
+    return share;
   }
 ]);
 

@@ -13,12 +13,12 @@ shortFilmWindow.service 'ParseNotificationService', [
           success: (results) ->
             notificationArray = []
             _.each results, (value) ->
-              dt = moment(value.attributes.createdAt).format('LLLL')
               j = {}
               if value.attributes.notificationId.attributes.movieDetails             
                 j = angular.fromJson decodeURIComponent value.attributes.notificationId.attributes.movieDetails
                obj =
-                "createdAt": dt
+                "fromnow": moment(value.attributes.createdAt).fromNow()
+                "createdAt": value.attributes.createdAt
                 "notificationId": value.attributes.notificationId.id
                 "installationId": value.attributes.installationId.id
                 "alert": value.attributes.notificationId.attributes.alert
