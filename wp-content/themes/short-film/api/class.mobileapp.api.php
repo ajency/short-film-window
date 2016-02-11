@@ -48,6 +48,7 @@ function genre_videos($genre_id, $language_id, $sort_id){
       $movies[$key]['region']     = $video['region'][0];
       $movies[$key]['language']   = $video['language'][0];
       $movies[$key]['genres']     = $video['categories'];
+      $movies[$key]['slug']     = $video['slug'];
 
       if($movies[$key]['type']  =='youtube'){
         $url = explode("=",$video['videourl']);
@@ -293,6 +294,7 @@ function playlist_videos($playlist_id){
       $movies[$key]['region']     = $video['region'][0];
       $movies[$key]['language']   = $video['language'][0];
       $movies[$key]['genres']     = $video['categories'];
+      $movies[$key]['slug']     = $video['slug'];
 
       if($movies[$key]['type']  =='youtube'){
         $url = explode("=",$video['videourl']);
@@ -336,6 +338,7 @@ function videos_by_string($str){
         $movies[$n]['region']       =   $searched_movie['region'][0];
         $movies[$n]['language']     =   $searched_movie['language'][0];
         $movies[$n]['genres']       =   $searched_movie['categories'];
+        $movies[$n]['slug']       =   $searched_movie['slug'];
 
         if($movies[$n]['type']  =='youtube'){
             $url = explode("=",$searched_movie['videourl']);

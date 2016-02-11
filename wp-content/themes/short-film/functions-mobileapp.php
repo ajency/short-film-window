@@ -33,6 +33,7 @@ function one_random_weekly_premiere(){
 		$result['image']				=	$data['medium_image'];
 		$result['country']				=	"India - Asia";
 		$result['duration']				=	$data['duration'];
+		$result['slug']				=	$data['slug'];
 		$result['region']		=	$data['region'][0];
 		$result['language']		=	$data['language'][0];
 
@@ -67,6 +68,7 @@ function single_video($id){
 				$movie['language']		=	$res['language'][0];
 				$movie['genres']		=	$res['categories'];
 				$movie['content']		=	$res['content'];
+				$movie['slug']				=	$res['slug'];
 				if($movie['type']	=='youtube'){
 					$url = explode("=",$res['videourl']);
 					$movie['videourl'] = $url[1];
@@ -106,6 +108,7 @@ function new_additions(){
 		$movies[$key]['duration']		=	$recent_movie['duration'];
 		$movies[$key]['region']		=	$recent_movie['region'][0];
 		$movies[$key]['language']		=	$recent_movie['language'][0];
+		$movies[$key]['slug']		=	$recent_movie['slug'];
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$recent_movie['videourl']);
@@ -148,6 +151,7 @@ function noteworthy(){
 		$movies[$key]['duration']		=	$noteworthy_movie['duration'];
 		$movies[$key]['region']		=	$noteworthy_movie['region'][0];
 		$movies[$key]['language']		=	$noteworthy_movie['language'][0];
+		$movies[$key]['slug']		=	$noteworthy_movie['slug'];
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$noteworthy_movie['videourl']);
