@@ -36,6 +36,7 @@ shortFilmWindow
 					controller: 'popularCtrl'
 
 		.state 'genre',
+			cache: true
 			url: '/genre'
 			parent: 'tabhome'
 			views:

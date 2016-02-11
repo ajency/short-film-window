@@ -15,7 +15,9 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
     $rootScope.App = App
     device_width = $window.innerWidth;
     device_height = $window.innerHeight;
-    App.navigate 'appInitialize'        
+    App.navigate 'appInitialize'
+
+  FastClick.attach document.body          
 
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     if to.name == 'notifications'
@@ -33,6 +35,14 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
     if fromState.name != '' and toState.name == 'appInitialize'
       console.log 'prevent'
       ev.preventDefault() 
+
+]
+
+shortFilmWindow.config ['$ionicConfigProvider','$compileProvider', ($ionicConfigProvider,$compileProvider)->
+  # $ionicConfigProvider.views.maxCache 0
+  # $ionicConfigProvider.views.forwardCache false
+  # $ionicConfigProvider.views.transition 'none'
+  $compileProvider.debugInfoEnabled false
 
 ]
 

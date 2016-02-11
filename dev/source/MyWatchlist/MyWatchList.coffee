@@ -1,5 +1,4 @@
 shortFilmWindow
-
 .controller 'watchlistCtrl', ['$scope','Storage','DetailsAPI','App','$window','$ionicScrollDelegate','$timeout'
      ,($scope,Storage,DetailsAPI,App,$window,$ionicScrollDelegate,$timeout)->
         $scope.watchlistDetails = []

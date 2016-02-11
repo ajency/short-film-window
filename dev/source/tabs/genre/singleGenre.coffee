@@ -1,6 +1,6 @@
 shortFilmWindow
 
-.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share','$window','Storage', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share,$window,Storage)->
+.controller 'singleGenre', ['$scope','$ionicLoading','App','GenreAPI','DetailsAPI','$ionicHistory','share','$window','Storage','$timeout', ($scope,$ionicLoading,App,GenreAPI,DetailsAPI,$ionicHistory,share,$window,Storage,$timeout)->
 
   $scope.lang = null
   $scope.sort_key = null
@@ -11,6 +11,7 @@ shortFilmWindow
   $scope.Popuparray = []
   $scope.PopuparrayClicked = ['img/icons/fresh_red.png','img/icons/popularity_red.png','img/icons/length-Red.png']
   $scope.PopuparrayImages = ['img/icons/fresh_grey.png','img/icons/popularity_grey.png','img/icons/length_grey.png']
+  $scope.refreshSwiper = true
 
 
   $scope.share = () ->
@@ -50,19 +51,17 @@ shortFilmWindow
         if _.isNull value
           value = []
         $scope.getwatchlistDetails = value 
-        console.log DetailsAPI.GlobalChild_array
-
-        if ( DetailsAPI.GlobalChild_array.length >0 )
+        if DetailsAPI.GlobalChild_array.length >0 
           $scope.genreData= DetailsAPI.GlobalChild_array
           $scope.genre = DetailsAPI.Global_array
           $scope.sortData = DetailsAPI.Sort
           $scope.language = DetailsAPI.Filter
-
           device_width = $window.innerWidth;
           device_height = $window.innerHeight;
           $scope.used_height = 88 + 73
           $scope.hgt = device_height - $scope.used_height
           $scope.display = 'result'
+          return
         else
           GenreAPI.GetSingleGenre(DetailsAPI.videoId)
           .then (data)=>
@@ -75,21 +74,20 @@ shortFilmWindow
             $scope.sortData= data.sort_keys
             $scope.language = data.filters.languages
             $scope.display = 'result'
-
             device_width = $window.innerWidth;
             device_height = $window.innerHeight;
             $scope.used_height = 88 + 73
             $scope.hgt = device_height + 3 - $scope.used_height
 
           , (error)=>
-            $scope.display = 'error'
+              $scope.display = 'error'
 
 
 
   $scope.sortGenre = ()->
     $ionicLoading.show
       scope: $scope
-      templateUrl:'views/filterPopup/sortPopupgener.html'
+      templateUrl:'filterPopup/sortPopupgener.html'
       hideOnStateChange: true
 
   $scope.langSelected = (language_id) ->
@@ -98,7 +96,7 @@ shortFilmWindow
   $scope.filterGenre = ()->
     $ionicLoading.show
       scope: $scope
-      templateUrl:'views/filterPopup/filterpopup.html'
+      templateUrl:'filterPopup/filterpopup.html'
       hideOnStateChange: true
 
   $scope.getId = (sort_id)->
@@ -119,8 +117,6 @@ shortFilmWindow
 
 
   $scope.FiltersortApply = ()->
-    console.log $scope.lang
-    console.log $scope.sort_key
     if _.isNull($scope.lang)
       $scope.filterimg = 'img/icons/filter_grey.png'
     else
@@ -146,18 +142,23 @@ shortFilmWindow
       DetailsAPI.Sort = data.sort_keys
       if DetailsAPI.GlobalChild_array.length > 0
         $scope.display = 'result'
+        $scope.genreData= data.movies
+        $scope.genre = data.genre
+        $scope.sortData= data.sort_keys
+        $scope.language = data.filters.languages
+        $ionicLoading.hide()
+        $scope.refreshSwiper = false
+
+        $timeout (->
+          $scope.refreshSwiper = true
+          $scope.display = 'result'
+          ), 100
       else
         $scope.errorType = 'no_Search_result'
         $scope.display = 'error'
-
-      $scope.genreData= data.movies
-      $scope.genre = data.genre
-      $scope.sortData= data.sort_keys
-      $scope.language = data.filters.languages
-      $ionicLoading.hide();
     , (error)=>
-      $scope.errorType = ''
-      $scope.display = 'error'
+        $scope.errorType = ''
+        $scope.display = 'error'
 
       $ionicLoading.hide();
 
@@ -171,7 +172,7 @@ shortFilmWindow
     $scope.sort_key = null
     $scope.lang = ''
     arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
-    $ionicLoading.hide();
+    $ionicLoading.hide()
     hideOnStateChange: false
     $scope.display = 'loader'
     GenreAPI.ApplyFilter(arr)

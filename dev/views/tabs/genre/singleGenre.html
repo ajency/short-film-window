@@ -1,6 +1,6 @@
 <ion-view class="singleGenre" ng-init="init()">
     <ion-header-bar class="bar bar-header primary">
-        <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Genre</button>
+        <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>GENRE</button>
         <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i></button>
     </ion-header-bar>
     <div ng-switch="display">
@@ -13,6 +13,7 @@
                     <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
                     <div class=" bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right"><i class="ion-android-time"></i>{{ genre.run_time }} Min</span></div>
                 </div>
+                <div ng-if="refreshSwiper">
                 <div id="genreswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
                     <div class="swiper-wrapper">
                         <div ng-repeat="data in genreData" style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
@@ -47,6 +48,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </ion-content>
