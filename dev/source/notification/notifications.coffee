@@ -9,6 +9,7 @@ shortFilmWindow
 
     $scope.getNotifications = ()->
       $scope.hgt = $window.innerHeight - 88
+      $scope.swiperhgt = $scope.hgt - 31
       if App.isOnline()
         $scope.result = 'loader'
         Storage.watchlistDetails 'get'
