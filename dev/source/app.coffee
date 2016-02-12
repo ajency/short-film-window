@@ -17,7 +17,7 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
     device_height = $window.innerHeight;
     App.navigate 'appInitialize'
 
-  FastClick.attach document.body          
+  # FastClick.attach document.body          
 
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     if to.name == 'notifications'

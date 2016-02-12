@@ -6,6 +6,8 @@ shortFilmWindow
         direction: 'vertical'
         pagination: '.swiper-pagination'
         paginationClickable: true
+        # resistance : true
+        # resistanceRatio : 
         # speed : 150
         # nested: true
         # watchSlidesProgress : true
@@ -14,9 +16,9 @@ shortFilmWindow
         # lazyLoadingInPrevNextAmount : 3
         # loop : false
         # effect: 'coverflow',
-        loop: false
-        freeModeMinimumVelocity : 0.08
-        freeModeSticky : true
+        # loop: false
+        # freeModeMinimumVelocity : 0.08
+        # freeModeSticky : true
         # grabCursor: true,
         # centeredSlides: true,
         # slidesPerView: 'auto',

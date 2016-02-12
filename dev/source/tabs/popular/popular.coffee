@@ -11,7 +11,6 @@ shortFilmWindow
     $scope.singleplaylist = (playlistId)->
       DetailsAPI.videoId = playlistId
       App.navigate "singlePlaylist"
-
    
     $scope.checkIfaddedlist = () ->
       _.each $scope.allContentArray, (val,key)->   
