@@ -215,7 +215,7 @@ shortFilmWindow
 
   $scope.view =
     onTapToRetry : ->
-      $scope.reset()
+      $scope.init()
       $scope.display = 'loader'
 
 

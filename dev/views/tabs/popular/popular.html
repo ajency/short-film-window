@@ -3,15 +3,15 @@
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
         <div ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper">
+           <div class="item item-avatar item-divider">
+                <img src="img/icons/{{currentCard.iconimg}}.png">
+                <div class="primaryText cardTitle">{{currentCard.cardtitle}}</div>
+                <p>{{currentCard.p}}</p>
+            </div>
         
             <div class="swiper-wrapper">
                 <div ng-repeat="data in allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide">
                     <div ng-if="data.order !=4">
-                        <div class="item item-avatar item-divider">
-                            <img src="img/icons/{{data.iconimg}}.png">
-                            <div class="primaryText cardTitle">{{data.cardtitle}}</div>
-                            <p>{{data.p}}</p>
-                        </div>
                         <div class="item item-image padding0">
                         
                             <div class="watchlistIcon">

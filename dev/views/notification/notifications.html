@@ -1,37 +1,3 @@
-<!-- <ion-view>
-    <ion-view class="singleGenre">
-        <ion-content ng-switch="result" ng-init="getNotifications()" class="notifications">
-
-            <ion-refresher pulling-text="Pull to refresh..." on-refresh="getNotifications()"></ion-refresher>
-
-            <ion-list ng-switch-when="display">
-                <ion-item ng-repeat="notify in notificationArray" ng-click="markNotificationAsRead(notify.notificationId)">
-                    <h5>
-              <span class="text-uppercase date">{{notify.createdAt}}</span>
-              <span class="read pull-right" ng-if="notify.status == 'read'"><i class="ion-record"></i></span>
-              <span class="unread pull-right" ng-if="notify.status == 'unread'"><i class="ion-record"></i></span>
-            </h5>
-                    <p>{{notify.alert}}</p>
-                </ion-item>
-            </ion-list>
-            <div class="col noNotification text-center" ng-switch-when="no-new-notifications">
-                <img src="img/icons/notification_disabled.png" />
-                <br>
-                <h4 class="text-uppercase">No new notifications</h4>
-                <p class="text-uppercase">
-                    You will be notified when we add something new :D
-                </p>
-            </div>
-            <div class="loaderOuter" ng-switch-when="loader">
-                <div class="loading-spinner"></div>
-            </div>
-            <aj-error class="errors" ng-switch-when="error" error-type="errorType" tap-to-retry="view.onTapToRetry()">
-            </aj-error>
-        </ion-content>
-        <ion-footer-bar class="bar bar-footer submitFormFooter">
-            <button ng-click="clearNotifications()" class="button button-small col text-uppercase primaryText">Clear all notifications</button>
-        </ion-footer-bar>
-    </ion-view> -->
 <ion-view class="singleGenre">
     <ion-content class="popular notifications" ng-switch="result" ng-init="getNotifications()">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="getNotifications()"></ion-refresher>

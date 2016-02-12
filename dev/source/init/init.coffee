@@ -84,17 +84,18 @@ shortFilmWindow
 
 
     $scope.init = (movieId = '')->
-        console.log movieId
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
-            console.log $scope.Videodetails
+            $scope.checkIfaddedlist()
             DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id)
             .then (data)->
                 $scope.showLoaderOrSynopsis = false
-                document.getElementById('synopsis').outerHTML = (data.content);
-            $scope.checkIfaddedlist()
-            $scope.initPlayer()
+                document.getElementById('synopsis').outerHTML = (data.content)
+                $scope.initPlayer()
+            , (error)=>
+                # $scope.display = 'error' 
+                console.log 'error'  
         else
             DetailsAPI.GetSingleVideo(movieId)
             .then (data)=>
@@ -108,7 +109,8 @@ shortFilmWindow
                 $scope.initPlayer()
 
             , (error)=>
-                $scope.display = 'error'    
+                # $scope.display = 'error' 
+                console.log 'error'   
 
     $scope.initPlayer = ()->
         $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
@@ -164,6 +166,10 @@ shortFilmWindow
 
 
     $scope.view =
+        onTapToRetry: ->
+            console.log 'retry'
+            $scope.init()
+
         back:->
             DetailsAPI.singleVideoarray = []
             # $ionicHistory.goBack();

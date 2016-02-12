@@ -3,13 +3,16 @@ shortFilmWindow
   ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window,InitialiseService,Storage)->
     
     $scope.getwatchlistDetails = []
+    $scope.currentCard = {}
 
     $rootScope.$on 'watchListUpdate', (event, data)->
       $scope.getwatchlistDetails = data
-      $scope.checkIfaddedlist()
+      $scope.checkIfaddedlist()  
 
     $scope.detectSlideChange =(swiperInstance)->
       console.log swiperInstance.activeIndex
+      $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex]
+
 
     $scope.singleplaylist = (playlistId)->
       DetailsAPI.videoId = playlistId
@@ -151,7 +154,7 @@ shortFilmWindow
 
 
       $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
-      console.log $scope.allContentArray
+      $scope.currentCard = $scope.allContentArray[0]
       $scope.initWatchlist()   
 
     $scope.initWatchlist = ()->

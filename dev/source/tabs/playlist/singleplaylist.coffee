@@ -98,6 +98,12 @@ shortFilmWindow
         DetailsAPI.GlobalChild_array = []
         count = -1
         App.goBack count
+
+    $scope.view = 
+        onTapToRetry : ->
+            console.log 'retry'
+            $scope.init()
+
     
 
 ]

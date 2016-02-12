@@ -7,6 +7,11 @@ shortFilmWindow
     $rootScope.$on 'receiveNotification', (event, pn)->
       $scope.getNotifications()
 
+    $scope.view = 
+      onTapToRetry: ->
+        console.log 'retry'
+        $scope.getNotifications()  
+
     $scope.getNotifications = ()->
       $scope.hgt = $window.innerHeight - 88
       $scope.swiperhgt = $scope.hgt - 31

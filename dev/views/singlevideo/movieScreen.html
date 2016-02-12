@@ -7,70 +7,60 @@
     </ion-header-bar>
     <div ng-switch="display">
         <ion-content class="singleMovieContent" overflow-scroll='true'>
-        <div ng-hide="showVideo" class="videoOuterVimeo">
-            <div id="player" class="singleMovieOuter" ng-switch-when="result">
-                <div class="movieVideo">
-                    <div class="imageContainerOuter">
-                        <img ng-src="{{ Videodetails.image}}" />
-                        <div class="overlay"></div>
-                    </div>
-                    <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()" /></div>
-                    <div class="movieDetails padding whiteText">
-                        <div class="title">
-                            {{ Videodetails.title }} <span> by {{ Videodetails.director }}</span>
+            <div ng-hide="showVideo" class="videoOuterVimeo">
+                <div id="player" class="singleMovieOuter" ng-switch-when="result">
+                    <div class="movieVideo">
+                        <div class="imageContainerOuter">
+                            <img ng-src="{{ Videodetails.image}}" />
+                            <div class="overlay"></div>
                         </div>
-                        <div class="tagline">
-                            {{ Videodetails.tagline }}
-                        </div>
-                        <div class="country">
-                            {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
-                            <div class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }} Min</div>
-                        </div>
-                        <div class="category">
-                            <label ng-repeat="data in Videodetails.genres">
-                                <div>{{ data }}</div>
-                            </label>
-                        </div>
-                        <div class="viewsNLikes padding-top">
-                            <span><i class="ion-ios-eye"></i> {{ Videodetails.no_of_views }}</span>
-                            <span><i class="ion-thumbsup"></i> {{ Videodetails.no_of_likes }}</span>
+                        <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()" /></div>
+                        <div class="movieDetails padding whiteText">
+                            <div class="title">
+                                {{ Videodetails.title }} <span> by {{ Videodetails.director }}</span>
+                            </div>
+                            <div class="tagline">
+                                {{ Videodetails.tagline }}
+                            </div>
+                            <div class="country">
+                                {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
+                                <div class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }} Min</div>
+                            </div>
+                            <div class="category">
+                                <label ng-repeat="data in Videodetails.genres">
+                                    <div>{{ data }}</div>
+                                </label>
+                            </div>
+                            <div class="viewsNLikes padding-top">
+                                <span><i class="ion-ios-eye"></i> {{ Videodetails.no_of_views }}</span>
+                                <span><i class="ion-thumbsup"></i> {{ Videodetails.no_of_likes }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="synopsis padding" ng-show="display == 'result'">
-                <h5 class="primaryText text-uppercase bold">Synopsis</h5>
-
-                <div class="loaderOuter" ng-show="showLoaderOrSynopsis">
-                    <div class="loading-spinner"></div>
-                </div>
-
-                <div class="synopsisDiv" ng-class="{true : 'synopsisDivShow' , false : 'synopsisDivHide' } [showSynopsisDiv]">
-
-                    <div class="synopsisText" ng-hide="showLoaderOrSynopsis">
-                        <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
+                <div class="synopsis padding" ng-show="display == 'result'">
+                    <h5 class="primaryText text-uppercase bold">Synopsis</h5>
+                    <div class="loaderOuter" ng-show="showLoaderOrSynopsis">
+                        <div class="loading-spinner"></div>
+                    </div>
+                    <div class="synopsisDiv" ng-class="{true : 'synopsisDivShow' , false : 'synopsisDivHide' } [showSynopsisDiv]">
+                        <div class="synopsisText" ng-hide="showLoaderOrSynopsis">
+                            <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
+                            </div>
                         </div>
-                    </div>                 
-
-                    <!-- <div class="toggleSynopsis text-center padding" ng-click="showSynopsisDiv = !showSynopsisDiv">
+                        <!-- <div class="toggleSynopsis text-center padding" ng-click="showSynopsisDiv = !showSynopsisDiv">
                         <i class="ion-chevron-down primaryText"></i>
                     </div> -->
+                    </div>
                 </div>
             </div>
-
-            
-
-            </div>
-
-
-            <div ng-show="showVideo"  class="videoOuter">
+            <div ng-show="showVideo" class="videoOuter">
                 <div id="player2" ng-show="vType != 'vimeo' ">
                 </div>
                 <div class="player1video" ng-show="vType == 'vimeo' ">
                     <iframe id="player1" ng-src="{{player1}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
             </div>
-
         </ion-content>
         <div class="loaderOuter" ng-switch-when="loader">
             <div class="loading-spinner"></div>
