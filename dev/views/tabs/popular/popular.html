@@ -2,7 +2,8 @@
     <ion-content class="popular" ng-init="initApp()" ng-switch="display">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
-        <div ng-switch-when="result" swiper id="popularswipeId" class="swiper-container popularswiper">
+        <div ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper">
+        
             <div class="swiper-wrapper">
                 <div ng-repeat="data in allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide">
                     <div ng-if="data.order !=4">

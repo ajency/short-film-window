@@ -1,11 +1,17 @@
 shortFilmWindow
 .directive 'swiper', ->
   link: (scope, element, attr) ->
+    restrict : 'AEC'
     scope.$on 'content-changed', ->
       new Swiper(element,
         direction: 'vertical'
         pagination: '.swiper-pagination'
         paginationClickable: true
+        onSlideChangeEnd : (swiper)->
+            scope.currSwiper = swiper
+            scope.$apply attr.detectSwiperSlide
+
+        # autoHeight : true
         # resistance : true
         # resistanceRatio : 
         # speed : 150

@@ -8,6 +8,9 @@ shortFilmWindow
       $scope.getwatchlistDetails = data
       $scope.checkIfaddedlist()
 
+    $scope.detectSlideChange =(swiperInstance)->
+      console.log swiperInstance.activeIndex
+
     $scope.singleplaylist = (playlistId)->
       DetailsAPI.videoId = playlistId
       App.navigate "singlePlaylist"

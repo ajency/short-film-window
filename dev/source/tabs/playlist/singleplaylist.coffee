@@ -11,6 +11,10 @@ shortFilmWindow
 
     $rootScope.slideHeaderPrevious = 0
 
+    $scope.detectSlideChange = (swiperInstance)->
+        console.log 'asdsada'
+        console.log swiperInstance
+
 
     $scope.checkIfaddedToWatchList = (movie_id)->
         if $scope.getwatchlistDetails.length > 0
