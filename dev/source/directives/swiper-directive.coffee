@@ -10,6 +10,9 @@ shortFilmWindow
         onSlideChangeEnd : (swiper)->
             scope.currSwiper = swiper
             scope.$apply attr.detectSwiperSlide
+        onSlideChangeStart : (swiper)->
+            scope.currSwiper = swiper
+            scope.$apply attr.detectSwiperSlide    
 
         # autoHeight : true
         # resistance : true

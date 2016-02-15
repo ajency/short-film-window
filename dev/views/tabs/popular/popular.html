@@ -2,12 +2,12 @@
     <ion-content class="popular" ng-init="initApp()" ng-switch="display">
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
-        <div ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper">
-           <div class="item item-avatar item-divider">
+         <div class="item item-avatar item-divider">
                 <img src="img/icons/{{currentCard.iconimg}}.png">
                 <div class="primaryText cardTitle">{{currentCard.cardtitle}}</div>
-                <p>{{currentCard.p}}</p>
+                <p>{{currentCard.p}} {{refreshSwiper}}</p>
             </div>
+        <div ng-if="refreshSwiper" ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper">
         
             <div class="swiper-wrapper">
                 <div ng-repeat="data in allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide">

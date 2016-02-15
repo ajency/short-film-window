@@ -1,17 +1,18 @@
 shortFilmWindow
-.controller 'popularCtrl', ['$scope','$rootScope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window','InitialiseService','Storage'
-  ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window,InitialiseService,Storage)->
+.controller 'popularCtrl', ['$scope','$rootScope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window','InitialiseService','Storage','$timeout'
+  ,($scope,$rootScope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window,InitialiseService,Storage,$timeout)->
     
     $scope.getwatchlistDetails = []
     $scope.currentCard = {}
+    $scope.refreshSwiper = true
 
     $rootScope.$on 'watchListUpdate', (event, data)->
       $scope.getwatchlistDetails = data
       $scope.checkIfaddedlist()  
 
     $scope.detectSlideChange =(swiperInstance)->
-      console.log swiperInstance.activeIndex
       $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex]
+      console.log swiperInstance.activeIndex,$scope.currentCard
 
 
     $scope.singleplaylist = (playlistId)->
@@ -70,16 +71,12 @@ shortFilmWindow
           $scope.videoId = DetailsAPI.array.videoId
           $scope.$broadcast('scroll.refreshComplete');
           $ionicLoading.hide();
-
-
+          $scope.initApp()
         , (error)=>
-          $scope.$broadcast('scroll.refreshComplete');
-          if App.isOnline
-            $scope.errorType = 'offline'
-            $scope.display = 'error'
-          else
-            $scope.classname = 'no_Search_result'
-            $scope.display = 'error'
+            $scope.$broadcast('scroll.refreshComplete');
+            console.log 'no net'
+            # $scope.checkNetwork = false
+            # $scope.display = 'nonetwork'
 
           $ionicLoading.hide();
 
@@ -153,9 +150,18 @@ shortFilmWindow
         "movieId": ""
 
 
-      $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
-      $scope.currentCard = $scope.allContentArray[0]
-      $scope.initWatchlist()   
+      # $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
+      # $scope.currentCard = $scope.allContentArray[0]
+      # $scope.initWatchlist()
+      $scope.refreshSwiper = false
+      $timeout (->
+        $scope.refreshSwiper = true
+        console.log 'asdsad'
+        # $scope.$apply()
+        $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
+        $scope.currentCard = $scope.allContentArray[0]
+        $scope.initWatchlist() 
+        ),100   
 
     $scope.initWatchlist = ()->
       Storage.watchlistDetails 'get'
