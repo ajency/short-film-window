@@ -123,73 +123,6 @@ htmlEnDeCode = (function() {
   };
 })();
 
-shortFilmWindow.controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
-    var onPlayerReady, onPlayerStateChange, stopVideo;
-    $scope.videoDetails = DetailsAPI.singleVideoarray;
-    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
-    console.log($scope.videourl);
-    $scope.switchHeaderBar = true;
-    $timeout(function() {
-      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
-    }, 5000);
-    $scope.toggleHeader = function() {
-      $scope.switchHeaderBar = !$scope.switchHeaderBar;
-      return $timeout(function() {
-        $scope.switchHeaderBar = !$scope.switchHeaderBar;
-        return $scope.$apply();
-      }, 5000);
-    };
-    $scope.view = {
-      back: function() {
-        var count;
-        count = -1;
-        return App.goBack(count);
-      },
-      vType: $scope.videoDetails.singleVideoarray.type,
-      vimomeo: true,
-      init: function() {
-        var modifiedUrl, player;
-        if (this.vType === 'vimeo') {
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          this.vimomeo = true;
-          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-        } else {
-          this.vimomeo = false;
-          return player = new YT.Player('player2', {
-            height: '100%',
-            width: '100%',
-            videoId: $scope.videourl,
-            playerVars: {
-              'autoplay': 1,
-              'rel': 0,
-              'wmode': 'transparent',
-              'modestbranding': 1
-            },
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-            }
-          });
-        }
-      }
-    };
-    onPlayerReady = function(event) {
-      return event.target.playVideo();
-    };
-    onPlayerStateChange = function(event) {
-      var done;
-      if (event.data === YT.PlayerState.PLAYING && !done) {
-        setTimeout(stopVideo, 6000);
-        return done = true;
-      }
-    };
-    return stopVideo = function() {
-      return player.stopVideo();
-    };
-  }
-]);
-
 shortFilmWindow.controller('watchlistCtrl', [
   '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
     $scope.watchlistDetails = [];
@@ -265,6 +198,73 @@ shortFilmWindow.controller('watchlistCtrl', [
           return $scope.hgt = device_height - $scope.used_height;
         }), 100);
       }
+    };
+  }
+]);
+
+shortFilmWindow.controller('playerCtrl', [
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
+    var onPlayerReady, onPlayerStateChange, stopVideo;
+    $scope.videoDetails = DetailsAPI.singleVideoarray;
+    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
+    console.log($scope.videourl);
+    $scope.switchHeaderBar = true;
+    $timeout(function() {
+      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
+    }, 5000);
+    $scope.toggleHeader = function() {
+      $scope.switchHeaderBar = !$scope.switchHeaderBar;
+      return $timeout(function() {
+        $scope.switchHeaderBar = !$scope.switchHeaderBar;
+        return $scope.$apply();
+      }, 5000);
+    };
+    $scope.view = {
+      back: function() {
+        var count;
+        count = -1;
+        return App.goBack(count);
+      },
+      vType: $scope.videoDetails.singleVideoarray.type,
+      vimomeo: true,
+      init: function() {
+        var modifiedUrl, player;
+        if (this.vType === 'vimeo') {
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          this.vimomeo = true;
+          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        } else {
+          this.vimomeo = false;
+          return player = new YT.Player('player2', {
+            height: '100%',
+            width: '100%',
+            videoId: $scope.videourl,
+            playerVars: {
+              'autoplay': 1,
+              'rel': 0,
+              'wmode': 'transparent',
+              'modestbranding': 1
+            },
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+            }
+          });
+        }
+      }
+    };
+    onPlayerReady = function(event) {
+      return event.target.playVideo();
+    };
+    onPlayerStateChange = function(event) {
+      var done;
+      if (event.data === YT.PlayerState.PLAYING && !done) {
+        setTimeout(stopVideo, 6000);
+        return done = true;
+      }
+    };
+    return stopVideo = function() {
+      return player.stopVideo();
     };
   }
 ]);
@@ -623,6 +623,47 @@ shortFilmWindow.controller('InitCtrl', [
   }
 ]);
 
+shortFilmWindow.controller('appInitializeCtrl', [
+  '$scope', 'App', 'DetailsAPI', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, DetailsAPI, InitialiseService, ParseConfiguration, $rootScope) {
+    return $scope.initApp = function() {
+      var firstScriptTag, tag;
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      if (App.isWebView()) {
+        ParsePushPlugin.getInstallationObjectId(function(id) {
+          return ParseConfiguration.installationId = id;
+        }, function(e) {
+          return ParseConfiguration.installationId = 0;
+        });
+        window.ParsePushPlugin.on('openPN', function(pn) {
+          return $rootScope.$broadcast('openNotification', {
+            payload: pn
+          });
+        });
+        window.ParsePushPlugin.on('receivePN', function(pn) {
+          return $rootScope.$broadcast('receiveNotification', {
+            payload: pn
+          });
+        });
+      }
+      tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      $scope.display = 'loader';
+      $scope.errorType = 'offline';
+      return InitialiseService.initialize().then(function(data) {
+        if (!App.isOnline()) {
+          return $scope.display = 'error';
+        } else {
+          return App.navigate('popular');
+        }
+      }, function(error) {
+        return $scope.display = 'error';
+      });
+    };
+  }
+]);
+
 shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
   '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     return $stateProvider.state('appInitialize', {
@@ -725,47 +766,6 @@ shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
       controller: 'singlePlaylist',
       templateUrl: 'tabs/playlist/singlePlaylist.html'
     });
-  }
-]);
-
-shortFilmWindow.controller('appInitializeCtrl', [
-  '$scope', 'App', 'DetailsAPI', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, DetailsAPI, InitialiseService, ParseConfiguration, $rootScope) {
-    return $scope.initApp = function() {
-      var firstScriptTag, tag;
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      if (App.isWebView()) {
-        ParsePushPlugin.getInstallationObjectId(function(id) {
-          return ParseConfiguration.installationId = id;
-        }, function(e) {
-          return ParseConfiguration.installationId = 0;
-        });
-        window.ParsePushPlugin.on('openPN', function(pn) {
-          return $rootScope.$broadcast('openNotification', {
-            payload: pn
-          });
-        });
-        window.ParsePushPlugin.on('receivePN', function(pn) {
-          return $rootScope.$broadcast('receiveNotification', {
-            payload: pn
-          });
-        });
-      }
-      tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      $scope.display = 'loader';
-      $scope.errorType = 'offline';
-      return InitialiseService.initialize().then(function(data) {
-        if (!App.isOnline()) {
-          return $scope.display = 'error';
-        } else {
-          return App.navigate('popular');
-        }
-      }, function(error) {
-        return $scope.display = 'error';
-      });
-    };
   }
 ]);
 
@@ -903,21 +903,47 @@ shortFilmWindow.service('InitialiseService', [
           DetailsAPI.GetVideoDetails().then(function(data) {
             return $rootScope.vData = data;
           }).then(function(data) {
-            return $ImageCacheFactory.Cache([data.defaults.content.popular.weekly_premiere.image]).then(function(cachedata) {
-              return console.log(cachedata);
-            })["finally"](function() {
-              return DetailsAPI.setData({
-                premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
-                new_addition: $rootScope.vData.defaults.content.popular.new_additions,
-                noteworthy: $rootScope.vData.defaults.content.popular.noteworthy,
-                awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist,
-                genre: $rootScope.vData.defaults.content.genre,
-                playlist: $rootScope.vData.defaults.content.playlists
-              });
-            }).then(function(data) {
-              console.log(data);
-              return deferred.resolve($rootScope.vData);
+            var allImageUrls;
+            allImageUrls = [];
+            _.each(data.defaults.content, function(defaultValue, key) {
+              switch (key) {
+                case 'genre':
+                  return _.each(defaultValue, function(value) {
+                    return allImageUrls.push(value.genre_image_url);
+                  });
+                case 'playlists':
+                  return _.each(defaultValue, function(value) {
+                    return allImageUrls.push(value.playlist_image_url);
+                  });
+                case 'popular':
+                  return _.each(defaultValue, function(popularValue, popularKey) {
+                    switch (popularKey) {
+                      case 'awesome_playlist':
+                        return _.each(popularValue.awesome_playlist, function(value) {
+                          return allImageUrls.push(value.playlist_image_url);
+                        });
+                      case 'new_additions':
+                        return _.each(popularValue.new_additions, function(value) {
+                          return allImageUrls.push(value.image);
+                        });
+                      case 'weekly_premiere':
+                        return _.each(popularValue.weekly_premiere, function(value) {
+                          return allImageUrls.push(value.image);
+                        });
+                    }
+                  });
+              }
             });
+            $ImageCacheFactory.Cache([allImageUrls]);
+            DetailsAPI.setData({
+              premiere: $rootScope.vData.defaults.content.popular.weekly_premiere,
+              new_addition: $rootScope.vData.defaults.content.popular.new_additions,
+              noteworthy: $rootScope.vData.defaults.content.popular.noteworthy,
+              awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist,
+              genre: $rootScope.vData.defaults.content.genre,
+              playlist: $rootScope.vData.defaults.content.playlists
+            });
+            return deferred.resolve($rootScope.vData);
           });
         } else {
           deferred.reject();
@@ -1710,179 +1736,6 @@ shortFilmWindow.controller('singleGenre', [
   }
 ]);
 
-shortFilmWindow.controller('playlistCtrl', [
-  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
-    $scope.doRefresh = function() {
-      return PulltorefreshAPI.pullrequest().then((function(_this) {
-        return function(data) {
-          console.log(data.defaults.content.popular.weekly_premiere.image);
-          PulltorefreshAPI.saveData({
-            premiere: data.defaults.content.popular.weekly_premiere,
-            new_addition: data.defaults.content.popular.new_additions,
-            noteworthy: data.defaults.content.popular.noteworthy,
-            awesome_playlist: data.defaults.content.popular.awesome_playlist,
-            genre: data.defaults.content.genre,
-            playlist: data.defaults.content.playlists
-          });
-          $scope.playlist = DetailsAPI.playlist_array;
-          $scope.$broadcast('scroll.refreshComplete');
-          return $ionicLoading.hide();
-        };
-      })(this), (function(_this) {
-        return function(error) {
-          $scope.$broadcast('scroll.refreshComplete');
-          console.log('Error Loading data');
-          return $ionicLoading.hide();
-        };
-      })(this));
-    };
-    $scope.test = function() {
-      return $scope.playlist = DetailsAPI.playlist_array;
-    };
-    return $scope.singleplaylist = function(playlistId) {
-      console.log(playlistId);
-      DetailsAPI.videoId = playlistId;
-      console.log(DetailsAPI.videoId);
-      return App.navigate("singlePlaylist");
-    };
-  }
-]);
-
-shortFilmWindow.factory('PlaylistAPI', [
-  '$q', 'App', '$http', function($q, App, $http) {
-    var GenreAPI;
-    GenreAPI = {};
-    GenreAPI.GetSingleplaylist = function(playlistId) {
-      var defer;
-      defer = $q.defer();
-      $http.get(URL + ("/wp-json/get_playlist_videos/?playlist_id=" + playlistId)).then(function(data) {
-        var j;
-        j = angular.fromJson(data.data);
-        return defer.resolve(j);
-      }, function(error) {
-        console.log('eroor');
-        return defer.reject(error);
-      });
-      return defer.promise;
-    };
-    return GenreAPI;
-  }
-]);
-
-shortFilmWindow.controller('singlePlaylist', [
-  '$scope', '$rootScope', '$ionicScrollDelegate', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', 'Storage', function($scope, $rootScope, $ionicScrollDelegate, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout, Storage) {
-    $scope.display = 'loader';
-    $scope.getwatchlistDetails = [];
-    $rootScope.slideHeader = false;
-    $rootScope.slideHeaderPrevious = 0;
-    $scope.detectSlideChange = function(swiperInstance) {
-      console.log('asdsada');
-      return console.log(swiperInstance);
-    };
-    $scope.checkIfaddedToWatchList = function(movie_id) {
-      var match;
-      if ($scope.getwatchlistDetails.length > 0) {
-        match = _.findIndex($scope.getwatchlistDetails, {
-          "movie_id": movie_id
-        });
-        if (match !== -1) {
-          return 'selected';
-        } else {
-          return 'notselected';
-        }
-      } else {
-        return 'notselected';
-      }
-    };
-    $scope.findIndexInWatchlist = function(movieId) {
-      var match;
-      return match = _.findIndex($scope.getwatchlistDetails, {
-        "movie_id": movieId
-      });
-    };
-    $scope.addwatchlist = function(movieData) {
-      var matchInWatchList, obj;
-      console.log(movieData);
-      obj = {
-        "movie_id": movieData.movie_id,
-        "singleVideoarray": movieData
-      };
-      matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id);
-      if (matchInWatchList === -1) {
-        $scope.getwatchlistDetails.push(obj);
-        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
-      } else {
-        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
-        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
-      }
-    };
-    $scope.share = function(slug) {
-      return share.shareNative(slug, 'playlist');
-    };
-    $scope.init = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        if (_.isNull(value)) {
-          value = [];
-        }
-        $scope.getwatchlistDetails = value;
-        if (DetailsAPI.GlobalChild_array.length > 0) {
-          $scope.playlistData = DetailsAPI.GlobalChild_array;
-          $scope.playlist = DetailsAPI.Global_array;
-          $scope.display = 'result';
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 44 + 120;
-          $scope.hgt = device_height - $scope.used_height;
-          $scope.headerwidth = device_width - 100 - 27;
-          return console.log($scope.playlist);
-        } else {
-          $scope.display = 'loader';
-          return PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId).then((function(_this) {
-            return function(data) {
-              DetailsAPI.Global_array = data.playlist;
-              DetailsAPI.GlobalChild_array = data.movies;
-              $scope.playlistData = data.movies;
-              $scope.playlist = data.playlist;
-              $scope.display = 'result';
-              device_width = $window.innerWidth;
-              device_height = $window.innerHeight;
-              $scope.used_height = 44 + 120;
-              $scope.hgt = device_height - $scope.used_height;
-              $scope.headerwidth = device_width - 100 - 27;
-              $ionicLoading.hide();
-              return console.log($scope.playlist);
-            };
-          })(this), (function(_this) {
-            return function(error) {
-              $scope.display = 'error';
-              return $ionicLoading.hide();
-            };
-          })(this));
-        }
-      });
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    $scope.back = function() {
-      var count;
-      DetailsAPI.Global_array = [];
-      DetailsAPI.GlobalChild_array = [];
-      count = -1;
-      return App.goBack(count);
-    };
-    return $scope.view = {
-      onTapToRetry: function() {
-        console.log('retry');
-        return $scope.init();
-      }
-    };
-  }
-]);
-
 shortFilmWindow.controller('popularCtrl', [
   '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', 'InitialiseService', 'Storage', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window, InitialiseService, Storage) {
     $scope.getwatchlistDetails = [];
@@ -2070,6 +1923,179 @@ shortFilmWindow.controller('popularCtrl', [
         $scope.getwatchlistDetails = value;
         return $scope.checkIfaddedlist();
       });
+    };
+  }
+]);
+
+shortFilmWindow.controller('playlistCtrl', [
+  '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
+    $scope.doRefresh = function() {
+      return PulltorefreshAPI.pullrequest().then((function(_this) {
+        return function(data) {
+          console.log(data.defaults.content.popular.weekly_premiere.image);
+          PulltorefreshAPI.saveData({
+            premiere: data.defaults.content.popular.weekly_premiere,
+            new_addition: data.defaults.content.popular.new_additions,
+            noteworthy: data.defaults.content.popular.noteworthy,
+            awesome_playlist: data.defaults.content.popular.awesome_playlist,
+            genre: data.defaults.content.genre,
+            playlist: data.defaults.content.playlists
+          });
+          $scope.playlist = DetailsAPI.playlist_array;
+          $scope.$broadcast('scroll.refreshComplete');
+          return $ionicLoading.hide();
+        };
+      })(this), (function(_this) {
+        return function(error) {
+          $scope.$broadcast('scroll.refreshComplete');
+          console.log('Error Loading data');
+          return $ionicLoading.hide();
+        };
+      })(this));
+    };
+    $scope.test = function() {
+      return $scope.playlist = DetailsAPI.playlist_array;
+    };
+    return $scope.singleplaylist = function(playlistId) {
+      console.log(playlistId);
+      DetailsAPI.videoId = playlistId;
+      console.log(DetailsAPI.videoId);
+      return App.navigate("singlePlaylist");
+    };
+  }
+]);
+
+shortFilmWindow.factory('PlaylistAPI', [
+  '$q', 'App', '$http', function($q, App, $http) {
+    var GenreAPI;
+    GenreAPI = {};
+    GenreAPI.GetSingleplaylist = function(playlistId) {
+      var defer;
+      defer = $q.defer();
+      $http.get(URL + ("/wp-json/get_playlist_videos/?playlist_id=" + playlistId)).then(function(data) {
+        var j;
+        j = angular.fromJson(data.data);
+        return defer.resolve(j);
+      }, function(error) {
+        console.log('eroor');
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
+    return GenreAPI;
+  }
+]);
+
+shortFilmWindow.controller('singlePlaylist', [
+  '$scope', '$rootScope', '$ionicScrollDelegate', '$ionicLoading', 'App', 'PlaylistAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', '$timeout', 'Storage', function($scope, $rootScope, $ionicScrollDelegate, $ionicLoading, App, PlaylistAPI, DetailsAPI, $ionicHistory, share, $window, $timeout, Storage) {
+    $scope.display = 'loader';
+    $scope.getwatchlistDetails = [];
+    $rootScope.slideHeader = false;
+    $rootScope.slideHeaderPrevious = 0;
+    $scope.detectSlideChange = function(swiperInstance) {
+      console.log('asdsada');
+      return console.log(swiperInstance);
+    };
+    $scope.checkIfaddedToWatchList = function(movie_id) {
+      var match;
+      if ($scope.getwatchlistDetails.length > 0) {
+        match = _.findIndex($scope.getwatchlistDetails, {
+          "movie_id": movie_id
+        });
+        if (match !== -1) {
+          return 'selected';
+        } else {
+          return 'notselected';
+        }
+      } else {
+        return 'notselected';
+      }
+    };
+    $scope.findIndexInWatchlist = function(movieId) {
+      var match;
+      return match = _.findIndex($scope.getwatchlistDetails, {
+        "movie_id": movieId
+      });
+    };
+    $scope.addwatchlist = function(movieData) {
+      var matchInWatchList, obj;
+      console.log(movieData);
+      obj = {
+        "movie_id": movieData.movie_id,
+        "singleVideoarray": movieData
+      };
+      matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id);
+      if (matchInWatchList === -1) {
+        $scope.getwatchlistDetails.push(obj);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      } else {
+        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      }
+    };
+    $scope.share = function(slug) {
+      return share.shareNative(slug, 'playlist');
+    };
+    $scope.init = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        if (_.isNull(value)) {
+          value = [];
+        }
+        $scope.getwatchlistDetails = value;
+        if (DetailsAPI.GlobalChild_array.length > 0) {
+          $scope.playlistData = DetailsAPI.GlobalChild_array;
+          $scope.playlist = DetailsAPI.Global_array;
+          $scope.display = 'result';
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 44 + 120;
+          $scope.hgt = device_height - $scope.used_height;
+          $scope.headerwidth = device_width - 100 - 27;
+          return console.log($scope.playlist);
+        } else {
+          $scope.display = 'loader';
+          return PlaylistAPI.GetSingleplaylist(DetailsAPI.videoId).then((function(_this) {
+            return function(data) {
+              DetailsAPI.Global_array = data.playlist;
+              DetailsAPI.GlobalChild_array = data.movies;
+              $scope.playlistData = data.movies;
+              $scope.playlist = data.playlist;
+              $scope.display = 'result';
+              device_width = $window.innerWidth;
+              device_height = $window.innerHeight;
+              $scope.used_height = 44 + 120;
+              $scope.hgt = device_height - $scope.used_height;
+              $scope.headerwidth = device_width - 100 - 27;
+              $ionicLoading.hide();
+              return console.log($scope.playlist);
+            };
+          })(this), (function(_this) {
+            return function(error) {
+              $scope.display = 'error';
+              return $ionicLoading.hide();
+            };
+          })(this));
+        }
+      });
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    $scope.back = function() {
+      var count;
+      DetailsAPI.Global_array = [];
+      DetailsAPI.GlobalChild_array = [];
+      count = -1;
+      return App.goBack(count);
+    };
+    return $scope.view = {
+      onTapToRetry: function() {
+        console.log('retry');
+        return $scope.init();
+      }
     };
   }
 ]);
