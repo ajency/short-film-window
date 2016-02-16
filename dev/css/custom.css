@@ -680,6 +680,14 @@ a {
 #watchlistswiperId .cardOuter {
   width: 100%;
 }
+.item.popularStickyHeader {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.popularswiper {
+  top: 80px;
+}
 .bar {
   background-size: 100% 0px;
 }
