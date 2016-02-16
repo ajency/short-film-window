@@ -8,12 +8,13 @@ shortFilmWindow
 
     $rootScope.$on 'watchListUpdate', (event, data)->
       $scope.getwatchlistDetails = data
-      $scope.checkIfaddedlist()  
+      $scope.checkIfaddedlist()
+
+    $rootScope.$on 'refreshContent',(event,data)->
+      $scope.doRefresh()    
 
     $scope.detectSlideChange =(swiperInstance)->
       $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex]
-      console.log swiperInstance.activeIndex,$scope.currentCard
-
 
     $scope.singleplaylist = (playlistId)->
       DetailsAPI.videoId = playlistId
@@ -29,14 +30,14 @@ shortFilmWindow
           if match != -1
             $scope.allContentArray[match].addedToWatchList = 1
 
-    $scope.findIndexInallContentArray = (movieId) ->
+    findIndexInallContentArray = (movieId) ->
       match = _.findIndex $scope.allContentArray, {"movieId": movieId}      
 
-    $scope.findIndexInWatchlist = (movieId) ->
+    findIndexInWatchlist = (movieId) ->
       match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
 
     $scope.updateFlagInallContentArray = (movieId,flag) ->
-      matchIndex = $scope.findIndexInallContentArray(movieId)
+      matchIndex = findIndexInallContentArray(movieId)
       $scope.allContentArray[matchIndex].addedToWatchList = flag
           
     $scope.addwatchlist = (movieData) -> 
@@ -44,7 +45,7 @@ shortFilmWindow
         "movie_id" : movieData.movieId
         "singleVideoarray" : movieData.content
 
-      matchInWatchList = $scope.findIndexInWatchlist(movieData.movieId)
+      matchInWatchList = findIndexInWatchlist(movieData.movieId)
       if matchInWatchList  == -1
         $scope.updateFlagInallContentArray(movieData.movieId,1)
         $scope.getwatchlistDetails.push(obj)
@@ -63,7 +64,6 @@ shortFilmWindow
         .then (data)=>
           $scope.checkNetwork = true
           PulltorefreshAPI.saveData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
-          
           $scope.premeiere= DetailsAPI.array
           $scope.addition= DetailsAPI.array_addition
           $scope.noteworthy= DetailsAPI.array_noteworthy
@@ -74,15 +74,9 @@ shortFilmWindow
           $scope.initApp()
         , (error)=>
             $scope.$broadcast('scroll.refreshComplete');
-            console.log 'no net'
-            # $scope.checkNetwork = false
-            # $scope.display = 'nonetwork'
 
           $ionicLoading.hide();
 
-    $scope.singleplay = (videoid)->
-      DetailsAPI.videoId = videoid
-      App.navigate 'init'
 
     $scope.singlePlayService = (videoData)->
       DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
@@ -99,20 +93,18 @@ shortFilmWindow
       if !App.isOnline()
         $scope.checkNetwork = false
         $scope.display = 'nonetwork'
+        broadcastOnComplete()
       else  
-        $scope.initDetailsApi()
+        initDetailsApi()
         $scope.display = 'result'
  
-    $scope.initDetailsApi = ()->
+    initDetailsApi = ()->
 
       premierArr = []
       additionArr = []
       noteworthyArr = []
       awPlalistArr = []
       $scope.allContentArray = []
-
-      console.log DetailsAPI
-
       premierArr.push
         "order": 1
         "cardtitle" : "Weekly Premiere"
@@ -150,26 +142,21 @@ shortFilmWindow
         "movieId": ""
 
 
-      # $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
-      # $scope.currentCard = $scope.allContentArray[0]
-      # $scope.initWatchlist()
       $scope.refreshSwiper = false
       $timeout (->
         $scope.refreshSwiper = true
-        console.log 'asdsad'
-        # $scope.$apply()
         $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
         $scope.currentCard = $scope.allContentArray[0]
-        $scope.initWatchlist() 
+        initWatchlist() 
         ),100   
 
-    $scope.initWatchlist = ()->
+    initWatchlist = ()->
       Storage.watchlistDetails 'get'
         .then (value)->
           if _.isNull value
             value = []
           $scope.getwatchlistDetails = value  
-          $scope.checkIfaddedlist()              
+          $scope.checkIfaddedlist()                 
       
 
 

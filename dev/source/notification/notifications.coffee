@@ -13,6 +13,7 @@ shortFilmWindow
         $scope.getNotifications()  
 
     $scope.getNotifications = ()->
+      $rootScope.$broadcast 'refreshContent',{}
       $scope.hgt = $window.innerHeight - 88
       $scope.swiperhgt = $scope.hgt - 31
       if App.isOnline()
