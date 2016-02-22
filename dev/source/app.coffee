@@ -42,8 +42,8 @@ shortFilmWindow.config ['$compileProvider','$ionicConfigProvider', ($compileProv
   # $ionicConfigProvider.views.maxCache 0
   # $ionicConfigProvider.views.forwardCache false
   # $ionicConfigProvider.views.transition 'none'
-  if ionic.Platform.isAndroid()
-    $ionicConfigProvider.scrolling.jsScrolling false 
+  # if ionic.Platform.isAndroid()
+  $ionicConfigProvider.scrolling.jsScrolling false 
   
   $compileProvider.debugInfoEnabled false
 
