@@ -1073,6 +1073,9 @@ a {
 .genre .overlay {
   background: rgba(0, 0, 0, 0);
 }
+.genre .playlistContentInner .overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
 .singleGenre {
   /*.imageContainerOuter
 	{
