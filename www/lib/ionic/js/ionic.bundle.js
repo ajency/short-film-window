@@ -58825,7 +58825,8 @@ IonicModule
   '$ionicConfig',
   '$ionicBind',
   '$ionicViewSwitcher',
-function($compile, $ionicConfig, $ionicBind, $ionicViewSwitcher) {
+  '$timeout',
+function($compile, $ionicConfig, $ionicBind, $ionicViewSwitcher,$timeout) {
 
   //Returns ' key="value"' if value exists
   function attrStr(k, v) {
@@ -58953,7 +58954,9 @@ function($compile, $ionicConfig, $ionicBind, $ionicViewSwitcher) {
 
             if ($ionicConfig.views.maxCache() > 0) {
               // keep the tabs in the DOM, only css hide it
+              $timeout(function () {
               $ionicViewSwitcher.viewEleIsActive(childElement, false);
+              },100);
 
             } else {
               // do not keep tabs in the DOM

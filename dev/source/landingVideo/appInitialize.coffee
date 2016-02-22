@@ -33,5 +33,7 @@ shortFilmWindow
       , (error) ->
             $scope.display = 'error'
 
+    $scope.initApp()        
+
        
 ]                    

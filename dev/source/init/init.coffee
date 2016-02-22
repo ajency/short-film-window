@@ -116,11 +116,14 @@ shortFilmWindow
         $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
         $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl
 
+
+
         if($scope.vType == 'vimeo')
-          modifiedUrl = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
-          console.log modifiedUrl
+
+          videoLinkURL = document.createElement 'a'
+          videoLinkURL.href = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
+          modifiedUrl = videoLinkURL.protocol+'//'+videoLinkURL.hostname+videoLinkURL.pathname
           $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
-          console.log $scope.player1
         else
           console.log $scope.videourl
           player = new YT.Player('player2', {
