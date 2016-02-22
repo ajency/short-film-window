@@ -703,8 +703,8 @@ a {
 .overlay {
   position: absolute;
   left: 0;
-  top: 0;
-  height: 100%;
+  bottom: 0;
+  height: 300%;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
 }

@@ -38,10 +38,13 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
 
 ]
 
-shortFilmWindow.config ['$compileProvider', ($compileProvider)->
+shortFilmWindow.config ['$compileProvider','$ionicConfigProvider', ($compileProvider,$ionicConfigProvider)->
   # $ionicConfigProvider.views.maxCache 0
   # $ionicConfigProvider.views.forwardCache false
   # $ionicConfigProvider.views.transition 'none'
+  if ionic.Platform.isAndroid()
+    $ionicConfigProvider.scrolling.jsScrolling false 
+  
   $compileProvider.debugInfoEnabled false
 
   # scrollable = document.querySelector '#genreScroll'
