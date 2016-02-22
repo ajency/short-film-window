@@ -51,9 +51,7 @@ shortFilmWindow.run([
 
 shortFilmWindow.config([
   '$compileProvider', '$ionicConfigProvider', function($compileProvider, $ionicConfigProvider) {
-    if (ionic.Platform.isAndroid()) {
-      $ionicConfigProvider.scrolling.jsScrolling(false);
-    }
+    $ionicConfigProvider.scrolling.jsScrolling(false);
     return $compileProvider.debugInfoEnabled(false);
   }
 ]);
@@ -522,6 +520,12 @@ shortFilmWindow.factory('PulltorefreshAPI', [
   }
 ]);
 
+shortFilmWindow.filter('encodeDecodeFilter', function() {
+  return function(text) {
+    return htmlEnDeCode.htmlDecode(text);
+  };
+});
+
 shortFilmWindow.directive('isLoaded', function() {
   return {
     scope: false,
@@ -580,11 +584,47 @@ shortFilmWindow.directive('swiper', function() {
   };
 });
 
-shortFilmWindow.filter('encodeDecodeFilter', function() {
-  return function(text) {
-    return htmlEnDeCode.htmlDecode(text);
-  };
-});
+shortFilmWindow.controller('appInitializeCtrl', [
+  '$scope', 'App', 'DetailsAPI', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, DetailsAPI, InitialiseService, ParseConfiguration, $rootScope) {
+    $scope.initApp = function() {
+      var firstScriptTag, tag;
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      if (App.isWebView()) {
+        ParsePushPlugin.getInstallationObjectId(function(id) {
+          return ParseConfiguration.installationId = id;
+        }, function(e) {
+          return ParseConfiguration.installationId = 0;
+        });
+        window.ParsePushPlugin.on('openPN', function(pn) {
+          return $rootScope.$broadcast('openNotification', {
+            payload: pn
+          });
+        });
+        window.ParsePushPlugin.on('receivePN', function(pn) {
+          return $rootScope.$broadcast('receiveNotification', {
+            payload: pn
+          });
+        });
+      }
+      tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      $scope.display = 'loader';
+      $scope.errorType = 'offline';
+      return InitialiseService.initialize().then(function(data) {
+        if (!App.isOnline()) {
+          return $scope.display = 'error';
+        } else {
+          return App.navigate('popular');
+        }
+      }, function(error) {
+        return $scope.display = 'error';
+      });
+    };
+    return $scope.initApp();
+  }
+]);
 
 shortFilmWindow.controller('InitCtrl', [
   '$scope', '$sce', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'InitialiseService', 'ParseNotificationService', '$rootScope', function($scope, $sce, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, InitialiseService, ParseNotificationService, $rootScope) {
@@ -785,48 +825,6 @@ shortFilmWindow.controller('InitCtrl', [
       $scope.init();
     }
     return $scope.showSynopsisDiv = false;
-  }
-]);
-
-shortFilmWindow.controller('appInitializeCtrl', [
-  '$scope', 'App', 'DetailsAPI', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, DetailsAPI, InitialiseService, ParseConfiguration, $rootScope) {
-    $scope.initApp = function() {
-      var firstScriptTag, tag;
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      if (App.isWebView()) {
-        ParsePushPlugin.getInstallationObjectId(function(id) {
-          return ParseConfiguration.installationId = id;
-        }, function(e) {
-          return ParseConfiguration.installationId = 0;
-        });
-        window.ParsePushPlugin.on('openPN', function(pn) {
-          return $rootScope.$broadcast('openNotification', {
-            payload: pn
-          });
-        });
-        window.ParsePushPlugin.on('receivePN', function(pn) {
-          return $rootScope.$broadcast('receiveNotification', {
-            payload: pn
-          });
-        });
-      }
-      tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      $scope.display = 'loader';
-      $scope.errorType = 'offline';
-      return InitialiseService.initialize().then(function(data) {
-        if (!App.isOnline()) {
-          return $scope.display = 'error';
-        } else {
-          return App.navigate('popular');
-        }
-      }, function(error) {
-        return $scope.display = 'error';
-      });
-    };
-    return $scope.initApp();
   }
 ]);
 
