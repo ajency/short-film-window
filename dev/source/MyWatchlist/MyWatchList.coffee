@@ -21,8 +21,6 @@ shortFilmWindow
                     if($scope.watchlistDetails.length >0)
                         device_width = $window.innerWidth;
                         device_height = $window.innerHeight;
-                        console.log device_width
-                        console.log device_height
                         $scope.used_height = 43 +72
                         $scope.hgt = device_height - $scope.used_height
                         $scope.display = 'result'
@@ -34,21 +32,12 @@ shortFilmWindow
 
 
         $scope.updatewatchlist = (Id)->
-            console.log Id
             $scope.CheckWatchlist(Id)
             $ionicScrollDelegate.resize()
 
 
 
-        $scope.singleplay = (videoid)->
-            console.log videoid
-            DetailsAPI.videoId = videoid
-            console.log DetailsAPI.videoId
-            console.log "enterd single play ."
-            App.navigate 'init'
-
         $scope.singlePlayService = (videoData)->
-            console.log videoData
             DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
             DetailsAPI.singleVideoarray.singleVideoarray = videoData
             App.navigate 'init'     
@@ -56,7 +45,6 @@ shortFilmWindow
 
         $scope.CheckWatchlist = (Id) ->
             matchIndex = _.findLastIndex $scope.watchlistDetails, {"movie_id": Id }
-            console.log 'remove from watchlist',matchIndex
             $scope.watchlistDetails.splice matchIndex,1
             Storage.watchlistDetails 'set', $scope.watchlistDetails
             if _.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length == 0
@@ -67,8 +55,6 @@ shortFilmWindow
                     $scope.refreshSwiper = true
                     device_width = $window.innerWidth;
                     device_height = $window.innerHeight;
-                    console.log device_width
-                    console.log device_height
                     $scope.used_height = 43 +72
                     $scope.hgt = device_height - $scope.used_height
                     ), 100

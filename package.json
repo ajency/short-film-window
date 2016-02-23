@@ -15,6 +15,7 @@
     "gulp-angular-templatecache": "^1.8.0",
     "gulp-clean": "latest",
     "gulp-coffee": "latest",
+    "gulp-copy": "0.0.2",
     "gulp-minifier": "latest",
     "gulp-minify": "latest",
     "gulp-ng-annotate": "^1.1.0",

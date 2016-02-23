@@ -17,17 +17,17 @@
                         <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()" /></div>
                         <div class="movieDetails padding whiteText">
                             <div class="title">
-                                {{ Videodetails.title }} <span> by {{ Videodetails.director }}</span>
+                                {{ ::Videodetails.title }} <span> by {{ ::Videodetails.director }}</span>
                             </div>
                             <div class="tagline">
-                                {{ Videodetails.tagline }}
+                                {{ ::Videodetails.tagline }}
                             </div>
                             <div class="country">
-                                {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
-                                <div class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }} Min</div>
+                                {{ ::Videodetails.region }} / {{::Videodetails.language }}<span></span>
+                                <div class="pull-right"><i class="ion-android-time"></i> {{::Videodetails.duration }} Min</div>
                             </div>
                             <div class="category">
-                                <label ng-repeat="data in Videodetails.genres">
+                                <label ng-repeat="data in ::Videodetails.genres">
                                     <div>{{ data }}</div>
                                 </label>
                             </div>

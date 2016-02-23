@@ -41,7 +41,6 @@ shortFilmWindow.service 'ParseNotificationService', [
             deferred.resolve count
             return
           error: (error) ->
-            console.log error
             deferred.reject '0'
             return
         deferred.promise

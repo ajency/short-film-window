@@ -11,17 +11,13 @@ shortFilmWindow
 
 		$http.get URL + '/wp-json/get_defaults'
 		.then (data)->
-			console.log 'succ'
-			console.log data
 			defer.resolve data.data
 		, (error)->
-			console.log 'eroor'
-			defer.reject error
+	    	defer.reject error
 
 		defer.promise
 
 	PulltorefreshAPI.saveData = (opts={})->
-		console.log opts
 		DetailsAPI.array = opts.premiere
 		DetailsAPI.array_addition = opts.new_addition
 		DetailsAPI.array_noteworthy = opts.noteworthy

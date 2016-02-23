@@ -4,7 +4,7 @@ shortFilmWindow
 
     $scope.videoDetails = DetailsAPI.singleVideoarray
     $scope.videourl = $scope.videoDetails.singleVideoarray.videourl
-    console.log $scope.videourl
+
 
     $scope.switchHeaderBar = true
 

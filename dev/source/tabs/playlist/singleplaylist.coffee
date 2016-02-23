@@ -11,10 +11,6 @@ shortFilmWindow
 
     $rootScope.slideHeaderPrevious = 0
 
-    $scope.detectSlideChange = (swiperInstance)->
-        console.log 'asdsada'
-        console.log swiperInstance
-
 
     $scope.checkIfaddedToWatchList = (movie_id)->
         if $scope.getwatchlistDetails.length > 0
@@ -64,7 +60,6 @@ shortFilmWindow
                 $scope.hgt = device_height - $scope.used_height
                 # width for header..
                 $scope.headerwidth = device_width - 100 -27
-                console.log $scope.playlist
 
             else
                 $scope.display= 'loader'
@@ -82,7 +77,7 @@ shortFilmWindow
                     $scope.hgt = device_height - $scope.used_height
                     $scope.headerwidth = device_width - 100 - 27
                     $ionicLoading.hide();
-                    console.log $scope.playlist
+      
                 , (error)=>
                     $scope.display= 'error'
                     $ionicLoading.hide();
@@ -101,7 +96,6 @@ shortFilmWindow
 
     $scope.view = 
         onTapToRetry : ->
-            console.log 'retry'
             $scope.init()
 
     

@@ -5,4 +5,3 @@ shortFilmWindow
   link: (scope, elements, args) ->
     if scope.$last
       scope.$emit 'content-changed'
-      console.log 'page Is Ready!'

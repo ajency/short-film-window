@@ -3,7 +3,7 @@ shortFilmWindow
 
     restrict: 'E'
     replace: true
-    templateUrl:    'views/Global/error.html'
+    templateUrl:    'Global/error.html'
 
     scope:
         tapToRetry: '&'

@@ -12,7 +12,7 @@
                             </button>
                         </div>
                         <div class="notificationDate padding-top">
-                            <span class="notiDate">{{notify.fromnow}}</span>
+                            <span class="notiDate">{{ ::notify.fromnow }}</span>
                             <span ng-if="notify.status == 'read'" class="pull-right read"><i class="ion-record"></i></span>
                             <span ng-if="notify.status == 'unread'" class="pull-right unread"><i class="ion-record"></i></span>
                         </div>
@@ -24,18 +24,18 @@
                             <div class="movieDetails padding whiteText">
                                 
                                 <div class="title padding-vertical">
-                                    {{ notify.movieDetails.title }} <span>by {{ notify.movieDetails.director}}</span>
+                                    {{ ::notify.movieDetails.title }} <span>by {{ ::notify.movieDetails.director}}</span>
                                 </div>
                                 <div class="tagline padding-vertical">
-                                    {{ notify.movieDetails.tagline}}
+                                    {{ ::notify.movieDetails.tagline}}
                                 </div>
                                 <div class="country padding-vertical">
-                                    {{ notify.movieDetails.region }}/ {{ notify.movieDetails.language}}<span></span>
-                                    <div class="pull-right"><i class="ion-android-time"></i> {{ notify.movieDetails.duration }} Min</div>
+                                    {{ ::notify.movieDetails.region }}/ {{ ::notify.movieDetails.language}}<span></span>
+                                    <div class="pull-right"><i class="ion-android-time"></i> {{ ::notify.movieDetails.duration }} Min</div>
                                 </div>
                                 <div class="viewsNLikes padding-vertical">
-                                    <span><i class="ion-ios-eye"></i> {{ notify.movieDetails.no_of_views}}</span>
-                                    <span><i class="ion-thumbsup"></i> {{ notify.movieDetails.no_of_likes }}</span>
+                                    <span><i class="ion-ios-eye"></i> {{ ::notify.movieDetails.no_of_views}}</span>
+                                    <span><i class="ion-thumbsup"></i> {{ ::notify.movieDetails.no_of_likes }}</span>
                                 </div>                                
                             </div>
                         </div>

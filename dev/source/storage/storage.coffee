@@ -8,7 +8,6 @@ shortFilmWindow
         switch action
             when 'set'                
                 localforage.setItem 'watchlist_details', params, (err, value) ->
-                   console.log 'update',value 
                    $rootScope.$broadcast 'watchListUpdate' , params 
             when 'get'
                 localforage.getItem 'watchlist_details'

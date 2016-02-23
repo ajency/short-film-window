@@ -11,7 +11,6 @@ shortFilmWindow
             j = angular.fromJson data.data 
             defer.resolve j
         , (error)->
-            console.log 'eroor'
             defer.reject error
 
         defer.promise

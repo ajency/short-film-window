@@ -27,7 +27,6 @@ shortFilmWindow
 
 		$http.get URL+'/wp-json/get_defaults'
 		.then (data)->
-			console.log data
 			defer.resolve data.data
 		, (error)->
 	    	defer.reject error
@@ -65,22 +64,6 @@ shortFilmWindow
 			DetailsAPI.genre_array = opts.genre
 			DetailsAPI.playlist_array = opts.playlist
 			DetailsAPI.initialize = 1
-
-			# Pre-loading all images ....
-
-			# i = 0
-
-			# while i < DetailsAPI.genre_array.length
-			# 	DetailsAPI.imagArray = DetailsAPI.genre_array[i].genre_image_url
-			# 	# $ImageCacheFactory.Cache [
-			# 	# 	DetailsAPI.genre_array[i].genre_image_url,
-			# 	# ]
-			# 	# .then ()=>
-			# 	# 	console.log("Images done loading!");
-			# 	# ,(failed)=>
-			# 	# 	console.log("An image filed: "+failed);
-			# i++
-
 
 
 	DetailsAPI

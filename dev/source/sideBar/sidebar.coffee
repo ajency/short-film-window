@@ -25,7 +25,6 @@ shortFilmWindow
 
       
   $scope.addwatchlist = (movieData) ->
-    console.log movieData 
     obj = 
         "movie_id" : movieData.movie_id
         "singleVideoarray" : movieData
@@ -99,7 +98,6 @@ shortFilmWindow
       if _.isNull value
         value = []
       $scope.watchlistDetails = value
-      console.log $scope.watchlistDetails
 
       $scope.afterSearch = false
       txt = document.getElementById("autocomplete");
@@ -127,19 +125,15 @@ shortFilmWindow
           $scope.display = 'error'
 
   $scope.onTapToRetry = () ->
-    console.log $scope.errorType
     if $scope.errorType == ''
       $scope.searchMovie()
     else
       $scope.hideSearch()
 
   $scope.hideSearch = () ->
-    console.log "hide Search Bar"
-    # $scope.swp.$destroy();
     $scope.display = 'tabview'
 
   $scope.SeacrchClicked = ()->
-    console.log "search"
     $scope.showsearchbar = true
 
 

@@ -46,7 +46,6 @@ shortFilmWindow.factory 'App', [
         ionic.Platform.isWebView()
       isOnline: ->
         if @isWebView()
-          console.log $cordovaNetwork.getNetwork()
           $cordovaNetwork.isOnline()
         else
           navigator.onLine

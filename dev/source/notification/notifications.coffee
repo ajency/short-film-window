@@ -9,7 +9,6 @@ shortFilmWindow
 
     $scope.view = 
       onTapToRetry: ->
-        console.log 'retry'
         $scope.getNotifications()  
 
     $scope.getNotifications = ()->
@@ -58,7 +57,6 @@ shortFilmWindow
     $scope.markNotificationAsRead = (notification_id)->
       if App.isOnline()
         matchIndex = _.findLastIndex $scope.notificationArray, {"notificationId": ''+notification_id+''}
-        console.log matchIndex
         $scope.notificationArray[matchIndex].status = 'read'
         if $rootScope.unreadNotificationCount
           $rootScope.unreadNotificationCount--
