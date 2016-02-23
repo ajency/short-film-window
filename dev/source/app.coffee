@@ -58,4 +58,26 @@ shortFilmWindow.config ['$compileProvider','$ionicConfigProvider', ($compileProv
 
 ]
 
+$(document).ready ->
+  boxWidth = $('.box').width()
+  $('.box').removeClass 'hideSearch'
+  $('.box').removeClass 'showSearch'
+  $('.slide-right').click ->
+    $('.box').removeClass 'showSearch'
+    $('.box').addClass 'hideSearch'
+    setTimeout (->
+      $('.box').removeClass 'hideSearch'
+      $('.box').addClass 'removeBox'
+    ), 1000
+    setTimeout (->
+      $('.box i.searchIcon').hide()
+    ), 500
+  $('.slide-left').click ->
+    $('.box').removeClass 'removeBox'
+    $('.box').removeClass 'hideSearch'
+    $('.box').addClass 'showSearch'
+    setTimeout (->
+      $('.box.showSearch i.searchIcon').show()
+    ), 700
+
 

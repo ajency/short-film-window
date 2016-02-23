@@ -112,39 +112,3 @@
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>
-<script type="text/javascript">
-$(document).ready(function() {
-    var boxWidth = $(".box").width();
-    $(".box").removeClass("hideSearch");
-    $(".box").removeClass("showSearch");
-    $(".slide-right").click(function() {
-        console.log('asdsa');
-        $(".box").removeClass("showSearch");
-        $(".box").addClass("hideSearch");
-        setTimeout(function() {
-            $('.box').removeClass('hideSearch');
-            $('.box').addClass('removeBox');
-        }, 1000);
-
-        setTimeout(function() {
-            $('.box i.searchIcon').hide(); // or fade, css display however you'd like.
-        }, 500);
-
-    });
-    $(".slide-left").click(function() {
-        // $(".box").animate({
-        //     //width: boxWidth
-        // });
-        $('.box').removeClass('removeBox');
-        $(".box").removeClass("hideSearch");
-        $(".box").addClass("showSearch");
-        // $('#autocomplete').attr('autofocus', true);
-
-
-
-        setTimeout(function() {
-            $('.box.showSearch i.searchIcon').show(); // or fade, css display however you'd like.
-        }, 700);
-    });
-});
-</script>
