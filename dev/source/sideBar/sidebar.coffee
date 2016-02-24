@@ -1,14 +1,16 @@
 shortFilmWindow
-.controller 'sidebarCtrl', ($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService) ->
+.controller 'sidebarCtrl', ($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService,$timeout) ->
   $scope.showsearchbar =  false
-  $scope.display = 'tabview'
+  $scope.searchDisplay = 'tabview'
   $scope.errorType = ''
   $scope.SearchResult = []
   $scope.classname = ''
   $scope.watchListCount = '0'
-  $scope.afterSearch = false
   $rootScope.unreadNotificationCount = 0
   $scope.getwatchlistDetails= []
+
+  $scope.hideSearchBar = ()->
+    $scope.showsearchbar = 'hide'
 
   $scope.checkIfaddedToWatchList = (movie_id)->
     if $scope.getwatchlistDetails.length > 0
@@ -92,49 +94,36 @@ shortFilmWindow
     App.navigate 'init'  
 
   $scope.searchMovie = () ->
-
     Storage.watchlistDetails 'get'
     .then (value)->
       if _.isNull value
         value = []
       $scope.watchlistDetails = value
-
-      $scope.afterSearch = false
-      txt = document.getElementById("autocomplete");
-      txtvalue = txt.value;
-      $scope.display = 'loader'
-      DetailsAPI.searchResult(txtvalue)
-        .then (data)=>
-          $scope.afterSearch = true
-          $scope.SearchResult = data
-
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 32
-          $scope.hgt = device_height - $scope.used_height
-
+      txt = document.getElementById("autocomplete")
+      $scope.searchDisplay = 'loader'
+      DetailsAPI.searchResult(txt.value).then (data)->
+        $scope.SearchResult = [] if !_.isEmpty $scope.SearchResult
+        $scope.SearchResult = data
+        device_width = $window.innerWidth
+        device_height = $window.innerHeight
+        $scope.hgt = device_height - 32
+        $timeout ->
           if $scope.SearchResult.length == 0
             $scope.errorType = 'no_Search_result'
-            $scope.display = 'error'
+            $scope.searchDisplay = 'error'
           else
             $scope.classname = 'searchResult'
-            $scope.display = 'searchresult'
+            $scope.searchDisplay = 'searchresult'
+      , (error)=>
+            $scope.errorType = 'offline'
+            $scope.searchDisplay = 'error'      
 
-        , (error)=>
-          $scope.errorType = 'offline'
-          $scope.display = 'error'
+
+
+
 
   $scope.onTapToRetry = () ->
-    if $scope.errorType == ''
-      $scope.searchMovie()
-    else
-      $scope.hideSearch()
-
-  $scope.hideSearch = () ->
-    $scope.display = 'tabview'
-
-  $scope.SeacrchClicked = ()->
-    $scope.showsearchbar = true
+    $scope.searchMovie()
 
 
 
@@ -180,9 +169,6 @@ shortFilmWindow
           type: 'button-positive'
         }
       ])
-    return
-
-  return
 
 
 

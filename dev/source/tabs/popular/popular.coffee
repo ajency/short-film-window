@@ -141,12 +141,13 @@ shortFilmWindow
         "addedToWatchList" : 0
         "movieId": ""
 
+      $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
+      $scope.currentCard = $scope.allContentArray[0]  
+
 
       $scope.refreshSwiper = false
       $timeout (->
         $scope.refreshSwiper = true
-        $scope.allContentArray = _.union premierArr, additionArr, noteworthyArr, awPlalistArr
-        $scope.currentCard = $scope.allContentArray[0]
         initWatchlist() 
         ),100   
 

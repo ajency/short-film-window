@@ -552,6 +552,7 @@ a {
 .box.hideSearch i {
   display: none;
 }
+
 @keyframes leftSide {
   0% {
     width: 0;
@@ -610,7 +611,7 @@ a {
 .box i.searchIcon {
   right: 10px;
   font-size: 22px;
-  display: none;
+  /*display: none;*/
 }
 .searchResult {
   /*.cardDetails:first-child

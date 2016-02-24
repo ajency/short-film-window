@@ -15,7 +15,8 @@ shortFilmWindow
 
 		.state 'home',
 			url: '/sidebar'
-			abstract: true
+			# abstract: true
+			cache : false
 			controller: 'sidebarCtrl'
 			templateUrl: 'home/home.html'
 

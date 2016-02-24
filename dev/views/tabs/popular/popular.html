@@ -10,7 +10,7 @@
         <div ng-if="refreshSwiper" ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper"  style="height: {{ hgt }}px">
         
             <div class="swiper-wrapper">
-                <div ng-repeat="data in allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide">
+                <div ng-repeat="data in ::allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide">
                     <div ng-if="data.order !=4">
                         <div class="item item-image padding0" style="height: {{ hgt }}px">
                         
