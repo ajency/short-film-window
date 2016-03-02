@@ -258,7 +258,7 @@ class Video
 			$params = array(
 						'orderby'           => 'meta_value_num',
                     	'meta_key'          => 'duration',
-						'order'            		=> 'DESC',
+						'order'            		=> 'ASC',
 						'post_type' 	   		=> 'post',
 						'post_status'      		=> 'publish',
 						'cat'		  	 	  => $args['genre'],							
@@ -377,7 +377,7 @@ class Video
 			$params = array(
 						'orderby'           => 'meta_value_num',
                     	'meta_key'          => 'duration',
-						'order'            		=> 'DESC',
+						'order'            		=> 'ASC',
 						'post_type' 	   		=> 'post',
 						'post_status'      		=> 'publish',
 						'cat'		  	 	  => $args['genre'],							
