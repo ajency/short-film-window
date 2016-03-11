@@ -2732,7 +2732,7 @@ function save_cached_data($object_id='',$object_type,$data){
 }
 function delete_cache_data($object_id,$object_type){
     global $wpdb;
-    echo 'hello';
+    
     $wpdb->delete( 'cache_data', array( 'object_id' => $object_id,'object_type' => $object_type ) );
 }
 
