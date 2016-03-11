@@ -2732,7 +2732,7 @@ function save_cached_data($object_id='',$object_type,$data){
 }
 function delete_cache_data($object_id,$object_type){
     global $wpdb;
-
+    echo 'hello';
     $wpdb->delete( 'cache_data', array( 'object_id' => $object_id,'object_type' => $object_type ) );
 }
 
@@ -2887,9 +2887,7 @@ function my_wp_trash_post ($post_id) {
     }
 }
 add_action('publish_to_trash', 'my_wp_trash_post');
-add_action('draft_to_trash',   'my_wp_trash_post');
-add_action('future_to_trash',  'my_wp_trash_post');
-add_action('untrash_post',  'my_wp_trash_post');
+// add_action('untrash_post',  'my_wp_trash_post');
 
 
 //code added by kapil//
