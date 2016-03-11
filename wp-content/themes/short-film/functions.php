@@ -2875,6 +2875,23 @@ function wporg_options_page() {
     </div>
     <?php
 }
+
+
+function my_wp_trash_post ($post_id) {
+    global $post;
+    if('post' == $post->post_type) {
+      $object_id=1;
+      $object_type='default_data';
+      delete_cache_data($object_id,$object_type);
+      fetch_default_data();  
+    }
+}
+add_action('publish_to_trash', 'my_wp_trash_post');
+add_action('draft_to_trash',   'my_wp_trash_post');
+add_action('future_to_trash',  'my_wp_trash_post');
+add_action('untrash_post',  'my_wp_trash_post');
+
+
 //code added by kapil//
 require_once (get_template_directory().'/api/class.mobileapp.api.php');
 require_once(get_template_directory().'/functions-mobileapp.php');
