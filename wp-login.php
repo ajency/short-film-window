@@ -22,7 +22,6 @@ if ( force_ssl_admin() && ! is_ssl() ) {
 	}
 }
 
-
 /**
  * Output the login page header.
  *
@@ -98,13 +97,9 @@ function login_header( $title = 'Log In', $message = '', $wp_error = '' ) {
 	if ( is_multisite() ) {
 		$login_header_url   = network_home_url();
 		$login_header_title = get_current_site()->site_name;
-	} 
-	else 
-	{
-		// $login_header_url   = __( 'https://wordpress.org/' );
-		// $login_header_title = __( 'Powered by WordPress' );
-		$login_header_url   =  site_url();
-		$login_header_title = __( 'shortfilmwindow' );
+	} else {
+		$login_header_url   = __( 'https://wordpress.org/' );
+		$login_header_title = __( 'Powered by WordPress' );
 	}
 
 	/**
