@@ -1,4 +1,4 @@
-angular.module('SFWApp.VideoDetailsAPI').factory('PulltorefreshAPI', [
+shortFilmWindow.factory('PulltorefreshAPI', [
   '$q', 'App', '$http', 'DetailsAPI', function($q, App, $http, DetailsAPI) {
     var PulltorefreshAPI;
     PulltorefreshAPI = {};
@@ -6,11 +6,8 @@ angular.module('SFWApp.VideoDetailsAPI').factory('PulltorefreshAPI', [
       var defer;
       defer = $q.defer();
       $http.get(GLOBAL_URL + '/wp-json/get_defaults').then(function(data) {
-        console.log('succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
@@ -19,7 +16,6 @@ angular.module('SFWApp.VideoDetailsAPI').factory('PulltorefreshAPI', [
       if (opts == null) {
         opts = {};
       }
-      console.log(opts);
       DetailsAPI.array = opts.premiere;
       DetailsAPI.array_addition = opts.new_addition;
       DetailsAPI.array_noteworthy = opts.noteworthy;

@@ -1,9 +1,10 @@
-angular.module('SFWApp.Global', []).factory('App', [
+shortFilmWindow.factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
     var App;
     App = void 0;
     return App = {
       start: true,
+      unreadNotifications: 0,
       menuEnabled: {
         left: false,
         right: false
@@ -11,6 +12,7 @@ angular.module('SFWApp.Global', []).factory('App', [
       previousState: '',
       currentState: '',
       fromNotification: 0,
+      notificationPayload: [],
       navigate: function(state, params, opts) {
         var animate, back;
         animate = void 0;

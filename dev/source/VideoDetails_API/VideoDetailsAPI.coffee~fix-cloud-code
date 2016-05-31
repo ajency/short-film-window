@@ -63,6 +63,8 @@ shortFilmWindow
 			DetailsAPI.array_awplalist = opts.awesome_playlist
 			DetailsAPI.genre_array = opts.genre
 			DetailsAPI.playlist_array = opts.playlist
+<<<<<<< HEAD:www/source/VideoDetails_API/VideoDetailsAPI.coffee
+
 			# Pre-loading all images ....
 
 			# i = 0
@@ -78,7 +80,9 @@ shortFilmWindow
 			# 	# 	console.log("An image filed: "+failed);
 			# i++
 
+=======
 			DetailsAPI.initialize = 1
+>>>>>>> SFW-develop:dev/source/VideoDetails_API/VideoDetailsAPI.coffee
 
 
 	DetailsAPI

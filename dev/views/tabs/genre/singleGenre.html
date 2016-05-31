@@ -18,7 +18,7 @@
                     <div class="swiper-wrapper">
                         <div ng-repeat="data in genreData" style="height: {{ hgt }}px" class="cardDetails swiper-slide" is-loaded>
                             <div class="list card margin0 cardOuter">
-                            
+
                             <div class="watchlistIcon">
                             <button class="button button-icon" ng-click="addwatchlist(data)">
                             <i class="ion-heart" ng-class="checkIfaddedToWatchList(data.movie_id)"></i>
@@ -33,7 +33,7 @@
                                             {{ ::data.title }} <span>by {{ ::data.director}}</span>
                                         </div>
                                         <div class="tagline padding-vertical">
-                                            {{ ::data.tagline}} 
+                                            {{ ::data.tagline}}
                                         </div>
                                         <div class="country padding-vertical">
                                             {{ ::data.region }}/ {{ ::data.language}}<span></span>

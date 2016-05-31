@@ -10,14 +10,14 @@ shortFilmWindow.value('ParseConfiguration',
  )
 
 shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', ($ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
-  
+
   $ionicPlatform.ready ->
     $rootScope.App = App
     device_width = $window.innerWidth;
     device_height = $window.innerHeight;
     App.navigate 'appInitialize'
 
-  # FastClick.attach document.body          
+  # FastClick.attach document.body
 
   $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     if to.name == 'notifications'
@@ -34,7 +34,7 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
   $rootScope.$on '$stateChangeStart', (ev, toState, toParams, fromState, fromParams) ->
     if fromState.name != '' and toState.name == 'appInitialize'
       console.log 'prevent'
-      ev.preventDefault() 
+      ev.preventDefault()
 
 ]
 
@@ -43,8 +43,8 @@ shortFilmWindow.config ['$compileProvider','$ionicConfigProvider', ($compileProv
   # $ionicConfigProvider.views.forwardCache false
   # $ionicConfigProvider.views.transition 'none'
   # if ionic.Platform.isAndroid()
-  $ionicConfigProvider.scrolling.jsScrolling false 
-  
+  $ionicConfigProvider.scrolling.jsScrolling false
+
   $compileProvider.debugInfoEnabled false
 
   # scrollable = document.querySelector '#genreScroll'

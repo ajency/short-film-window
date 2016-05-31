@@ -7,10 +7,20 @@
     "gulp-sass": "^2.0.4",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
+    "gulp-rename": "^1.2.0",
+    "yargs": "^3.32.0"
   },
   "devDependencies": {
     "bower": "^1.3.3",
+    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-clean": "latest",
+    "gulp-coffee": "latest",
+    "gulp-copy": "0.0.2",
+    "gulp-minifier": "latest",
+    "gulp-minify": "latest",
+    "gulp-ng-annotate": "^1.1.0",
+    "gulp-sourcemaps": "latest",
+    "gulp-uglify": "latest",
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },
@@ -18,18 +28,26 @@
     "cordova-plugin-device",
     "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
+    {
+      "locator": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin",
+      "id": "cordova-plugin-x-socialsharing"
+    },
+    "cordova-plugin-inappbrowser",
+    {
+      "locator": "https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git",
+      "id": "cordova-plugin-x-toast"
+    },
+    {
+      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
+      "id": "cordova-plugin-network-information"
+    },
+    "phonegap-plugin-push@~1.5.3",
+    "cordova-plugin-splashscreen",
     {
       "locator": "https://github.com/taivo/parse-push-plugin",
       "id": "com.phonegap.parsepushplugin"
-    },
-    {
-      "locator": "https://github.com/Paldom/SpinnerDialog.git",
-      "id": "cordova-plugin-spinner-dialog"
-    },
-    "cordova-plugin-statusbar",
-    "cordova-plugin-network-information"
+    }
   ],
   "cordovaPlatforms": [
     "ios",

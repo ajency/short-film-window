@@ -1,9 +1,9 @@
-angular.module('SFWApp.Global').directive('ajError', [
+shortFilmWindow.directive('ajError', [
   function() {
     return {
       restrict: 'E',
       replace: true,
-      templateUrl: 'views/Global/error.html',
+      templateUrl: 'Global/error.html',
       scope: {
         tapToRetry: '&',
         errorType: '='
@@ -13,6 +13,8 @@ angular.module('SFWApp.Global').directive('ajError', [
         switch (scope.errorType) {
           case 'offline':
             errorMsg = 'No internet availability';
+            errorTitle = 'Error';
+            button = 'Retry';
             break;
           case 'server_error':
             errorMsg = 'Could not connect to server';

@@ -1,9 +1,8 @@
-angular.module('SFWApp.tabs').controller('playlistCtrl', [
+shortFilmWindow.controller('playlistCtrl', [
   '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     $scope.doRefresh = function() {
       return PulltorefreshAPI.pullrequest().then((function(_this) {
         return function(data) {
-          console.log(data.defaults.content.popular.weekly_premiere.image);
           PulltorefreshAPI.saveData({
             premiere: data.defaults.content.popular.weekly_premiere,
             new_addition: data.defaults.content.popular.new_additions,
@@ -19,7 +18,6 @@ angular.module('SFWApp.tabs').controller('playlistCtrl', [
       })(this), (function(_this) {
         return function(error) {
           $scope.$broadcast('scroll.refreshComplete');
-          console.log('Error Loading data');
           return $ionicLoading.hide();
         };
       })(this));
@@ -28,9 +26,7 @@ angular.module('SFWApp.tabs').controller('playlistCtrl', [
       return $scope.playlist = DetailsAPI.playlist_array;
     };
     return $scope.singleplaylist = function(playlistId) {
-      console.log(playlistId);
       DetailsAPI.videoId = playlistId;
-      console.log(DetailsAPI.videoId);
       return App.navigate("singlePlaylist");
     };
   }

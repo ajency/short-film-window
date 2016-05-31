@@ -1,4 +1,4 @@
-angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
+shortFilmWindow.factory('DetailsAPI', [
   '$q', 'App', '$http', '$ImageCacheFactory', function($q, App, $http, $ImageCacheFactory) {
     var DetailsAPI;
     DetailsAPI = {};
@@ -15,43 +15,33 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
     DetailsAPI.array = [];
     DetailsAPI.singleVideoarray = [];
     DetailsAPI.imagArray = [];
+    DetailsAPI.initialize = 0;
     DetailsAPI.GetVideoDetails = function() {
       var defer;
       defer = $q.defer();
       $http.get(GLOBAL_URL + '/wp-json/get_defaults').then(function(data) {
-        console.log('succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
     };
     DetailsAPI.GetSingleVideo = function(VideoId) {
       var defer;
-      console.log(VideoId);
       defer = $q.defer();
       $http.get(GLOBAL_URL + ("/wp-json/get_video?id=" + VideoId)).then(function(data) {
-        console.log('single video data succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
     };
     DetailsAPI.searchResult = function(txt) {
       var defer;
-      console.log(txt);
       defer = $q.defer();
       $http.get(GLOBAL_URL + ("/wp-json/search?str=" + txt)).then(function(data) {
-        console.log('search video data succ');
-        console.log(data);
         return defer.resolve(data.data);
       }, function(error) {
-        console.log('eroor');
         return defer.reject(error);
       });
       return defer.promise;
@@ -60,13 +50,13 @@ angular.module('SFWApp.VideoDetailsAPI', []).factory('DetailsAPI', [
       if (opts == null) {
         opts = {};
       }
-      console.log(opts);
       DetailsAPI.array = opts.premiere;
       DetailsAPI.array_addition = opts.new_addition;
       DetailsAPI.array_noteworthy = opts.noteworthy;
       DetailsAPI.array_awplalist = opts.awesome_playlist;
       DetailsAPI.genre_array = opts.genre;
-      return DetailsAPI.playlist_array = opts.playlist;
+      DetailsAPI.playlist_array = opts.playlist;
+      return DetailsAPI.initialize = 1;
     };
     return DetailsAPI;
   }
