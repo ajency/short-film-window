@@ -3,21 +3,14 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init',
   javascriptKey: 'ZjvDbNoggTgKtbIJW8asuVw8huGoEBPVvcKbbXru',
   clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo'
 }).run([
-  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
+  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', 'Set_Get', '$cordovaSplashscreen', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', 'InitialiseService', function($ionicPlatform, $state, $rootScope, App, $timeout, Set_Get, $cordovaSplashscreen, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration, InitialiseService) {
     var device_height, device_width, firstScriptTag, swiper, tag;
     $ionicPlatform.ready(function() {
       $rootScope.isAndroid = ionic.Platform.isAndroid();
-      ParsePushPlugin.on('receivePN', function(pn) {
-        console.log('yo i got this push notification:' + JSON.stringify(pn));
-        return $rootScope.$broadcast('receivePN', {
-          payload: pn
-        });
-      });
-      return ParsePushPlugin.on('openPN', function(pn) {
-        console.log('Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify(pn));
-        return $rootScope.$broadcast('openPN', {
-          payload: pn
-        });
+      return InitialiseService.initialize().then(function(data) {
+        return App.navigate('popular');
+      }, function(error) {
+        return $cordovaToast.show('Please Connect to Internet', 'long', 'bottom');
       });
     });
     $rootScope.App = App;
@@ -47,8 +40,5 @@ angular.module('SFWApp', ['ionic', 'ngCordova', 'SFWApp.landing', 'SFWApp.init',
         ev.preventDefault();
       }
     });
-    $timeout(function() {
-      return App.navigate('landingvideo');
-    }, 3000);
   }
 ]);

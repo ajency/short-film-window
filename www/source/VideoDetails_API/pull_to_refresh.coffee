@@ -9,7 +9,7 @@ angular.module 'SFWApp.VideoDetailsAPI'
 
 		defer = $q.defer()
 
-		$http.get URL + '/wp-json/get_defaults'
+		$http.get GLOBAL_URL + '/wp-json/get_defaults'
 		.then (data)->
 			console.log 'succ'
 			console.log data

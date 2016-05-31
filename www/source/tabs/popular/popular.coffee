@@ -24,7 +24,7 @@ angular.module 'SFWApp.tabs',[]
 
 			PulltorefreshAPI.pullrequest()
 			.then (data)=>
-				console.log data.defaults.content.popular.weekly_premiere.image
+				console.log data
 				PulltorefreshAPI.saveData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
 
 				$scope.premeiere= DetailsAPI.array
@@ -73,6 +73,10 @@ angular.module 'SFWApp.tabs',[]
 						direction: 'vertical'
 					});
 
+
 		App.previousState = 'landing' if App.previousState == 'landing'
+
+		$scope.$on '$ionicView.afterEnter', (event, view)->
+			App.hideSplashScreen()
 
 ]

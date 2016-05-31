@@ -6,7 +6,7 @@ angular.module('SFWApp.tabs').factory('PlaylistAPI', [
       var defer;
       console.log(playlistId);
       defer = $q.defer();
-      $http.get(URL + ("/wp-json/get_playlist_videos/?playlist_id=" + playlistId)).then(function(data) {
+      $http.get(GLOBAL_URL + ("/wp-json/get_playlist_videos/?playlist_id=" + playlistId)).then(function(data) {
         console.log('single genre data succ');
         console.log(data);
         return defer.resolve(data.data);

@@ -24,7 +24,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 		defer = $q.defer()
 
 
-		$http.get URL+'/wp-json/get_defaults'
+		$http.get GLOBAL_URL+'/wp-json/get_defaults'
 		.then (data)->
 			console.log 'succ'
 			console.log data
@@ -40,7 +40,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 		defer = $q.defer()
 
-		$http.get URL+"/wp-json/get_video?id=#{VideoId}"
+		$http.get GLOBAL_URL+"/wp-json/get_video?id=#{VideoId}"
 		.then (data)->
 			console.log 'single video data succ'
 			console.log data
@@ -56,7 +56,7 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 
 		defer = $q.defer()
 
-		$http.get URL+"/wp-json/search?str=#{txt}"
+		$http.get GLOBAL_URL+"/wp-json/search?str=#{txt}"
 		.then (data)->
 			console.log 'search video data succ'
 			console.log data
@@ -81,9 +81,9 @@ angular.module 'SFWApp.VideoDetailsAPI',[]
 			# i = 0
 
 			# while i < DetailsAPI.genre_array.length
-			# 	DetailsAPI.imagArray = DetailsAPI.genre_array[i].genre_image_url
+			# 	DetailsAPI.imagArray = DetailsAPI.genre_array[i].genre_image_GLOBAL_URL
 			# 	# $ImageCacheFactory.Cache [
-			# 	# 	DetailsAPI.genre_array[i].genre_image_url,
+			# 	# 	DetailsAPI.genre_array[i].genre_image_GLOBAL_URL,
 			# 	# ]
 			# 	# .then ()=>
 			# 	# 	console.log("Images done loading!");

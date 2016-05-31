@@ -4,7 +4,7 @@ angular.module 'SFWApp.landing', []
     ,($scope,App,DetailsAPI,$sce,$ionicLoading,$ImageCacheFactory,$cordovaToast,$state,$timeout,$ionicPlatform,InitialiseService)->
         $scope.view =
             skip : true
-
+            land_vid_html5_api : angular.element("#land_vid_html5_api")
             skiplangingVideo:->
                 land_vid_html5_api.pause();
                 console.log "skip videoa"
@@ -15,15 +15,22 @@ angular.module 'SFWApp.landing', []
                     maxWidth: 600
                     hideOnStateChange:true
                     showDelay: 0
+                App.navigate 'popular'
             init:->
                 console.log 'sadsasadad'
                 InitialiseService.initialize()
                 .then (data) ->
-                    console.log data
                     $ionicLoading.hide()
-                    App.navigate 'popular'
                 , (error) ->
                     $cordovaToast.show('Please Connect to Internet', 'long', 'bottom')
+            viedoEnded : ()->
+                console.log 'ended',1
+                App.navigate 'popular'
+
+        $scope.$on '$ionicView.afterEnter', ()->
+            $scope.view.land_vid_html5_api = angular.element("#land_vid_html5_api")
+            console.log $scope.view.land_vid_html5_api[0].onended
+            $scope.view.land_vid_html5_api[0].onended = $scope.view.viedoEnded
 
 
 

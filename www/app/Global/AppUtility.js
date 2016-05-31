@@ -69,6 +69,11 @@ angular.module('SFWApp.Global', []).factory('App', [
         if ($window.cordova && $window.cordova.plugins.Keyboard) {
           return $cordovaKeyboard.hideAccessoryBar(true);
         }
+      },
+      hideSplashScreen: function() {
+        if (navigator.splashscreen) {
+          navigator.splashscreen.hide();
+        }
       }
     };
   }

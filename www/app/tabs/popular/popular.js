@@ -10,7 +10,7 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
     $scope.doRefresh = function() {
       return PulltorefreshAPI.pullrequest().then((function(_this) {
         return function(data) {
-          console.log(data.defaults.content.popular.weekly_premiere.image);
+          console.log(data);
           PulltorefreshAPI.saveData({
             premiere: data.defaults.content.popular.weekly_premiere,
             new_addition: data.defaults.content.popular.new_additions,
@@ -63,7 +63,10 @@ angular.module('SFWApp.tabs', []).controller('popularCtrl', [
       direction: 'vertical'
     });
     if (App.previousState === 'landing') {
-      return App.previousState = 'landing';
+      App.previousState = 'landing';
     }
+    return $scope.$on('$ionicView.afterEnter', function(event, view) {
+      return App.hideSplashScreen();
+    });
   }
 ]);

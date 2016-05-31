@@ -231,7 +231,7 @@ a {
   border-bottom: none;
 }
 .playlist .playlistContent .imageContainer {
-  height: 170px;
+  height: 144px;
   width: 50%;
   position: relative;
   float: left;
@@ -446,8 +446,8 @@ a {
 		i
 		{
 			display: none;
-		}		
-	}	
+		}
+	}
 	&.showSearch
 	{
 		i
@@ -460,8 +460,8 @@ a {
   display: none;
 }
 .box.showSearch {
-  /*width: 100%;	
-		transition: width 1s ease;	
+  /*width: 100%;
+		transition: width 1s ease;
 		opacity: 1;*/
   -webkit-animation-name: leftSide;
           animation-name: leftSide;
@@ -473,8 +473,8 @@ a {
   display: block;
 }
 .box.hideSearch {
-  /*width: 0;	
-		transition:width 1s ease;	
+  /*width: 0;
+		transition:width 1s ease;
 		opacity: 0;	*/
   -webkit-animation-name: rightSide;
           animation-name: rightSide;
@@ -1012,14 +1012,14 @@ a {
 }
 /*.filteredGenre
 {
-	.card 
+	.card
 	{
 		box-shadow: none;
 		border-bottom: none;
 	}
 	.item
 	{
-		position: relative;		
+		position: relative;
 		padding: 0;
 		&.item.item-image
 		{
@@ -1029,15 +1029,15 @@ a {
 	.cardTitle
 	{
 		padding:10px 10px 0 120px;
-		font-size: 1em;    	
+		font-size: 1em;
 	}
 	.totalfilmsNTime
 	{
 		position: absolute;
 	    width: 100%;
 	    bottom: 3px;
-	    padding:0 9px 0 120px;	   
-	    font-size: 0.6em;    
+	    padding:0 9px 0 120px;
+	    font-size: 0.6em;
 	    span
 	    {
 	    	i
@@ -1052,12 +1052,12 @@ a {
 		padding-left:120px;
 		font-size: 0.7em;
 		line-height: 1.5;
-		white-space: normal; 
+		white-space: normal;
 	}
 
 	&.genreImgOuter
 	{
-		.item-thumbnail-left 
+		.item-thumbnail-left
 		{
 			min-height: 90px;
 			img
@@ -1066,7 +1066,7 @@ a {
 	    		max-height: 70px;
 			}
 		}
-		.cardTitle , .totalfilmsNTime 
+		.cardTitle , .totalfilmsNTime
 		{
 			padding-left: 90px;
 		}

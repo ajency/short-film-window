@@ -1,6 +1,6 @@
-var URL, device_height, device_width;
+var GLOBAL_URL, device_height, device_width;
 
-URL = 'http://shortfilm.staging.wpengine.com';
+GLOBAL_URL = 'http://shortfilm.staging.wpengine.com';
 
 device_width = '';
 

@@ -34,7 +34,7 @@ angular.module('SFWApp.Global', []).factory 'App', [
         if this.fromNotification
           this.fromNotification = 0
           $state.go "popular"
-        else  
+        else
           $ionicHistory.goBack count
       isAndroid: ->
         ionic.Platform.isAndroid()
@@ -55,5 +55,8 @@ angular.module('SFWApp.Global', []).factory 'App', [
       hideKeyboardAccessoryBar: ->
         if $window.cordova and $window.cordova.plugins.Keyboard
           return $cordovaKeyboard.hideAccessoryBar(true)
+      hideSplashScreen : ()->
+        if navigator.splashscreen then navigator.splashscreen.hide()
+
         return
 ]

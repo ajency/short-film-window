@@ -5,7 +5,7 @@ angular.module('SFWApp.VideoDetailsAPI').factory('PulltorefreshAPI', [
     PulltorefreshAPI.pullrequest = function() {
       var defer;
       defer = $q.defer();
-      $http.get(URL + '/wp-json/get_defaults').then(function(data) {
+      $http.get(GLOBAL_URL + '/wp-json/get_defaults').then(function(data) {
         console.log('succ');
         console.log(data);
         return defer.resolve(data.data);
