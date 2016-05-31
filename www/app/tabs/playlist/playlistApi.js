@@ -9,7 +9,7 @@ angular.module('SFWApp.tabs').factory('PlaylistAPI', [
       $http.get(GLOBAL_URL + ("/wp-json/get_playlist_videos/?playlist_id=" + playlistId)).then(function(data) {
         console.log('single genre data succ');
         console.log(data);
-        return defer.resolve(data.data);
+        return defer.resolve(angular.fromJson(data.data));
       }, function(error) {
         console.log('eroor');
         return defer.reject(error);

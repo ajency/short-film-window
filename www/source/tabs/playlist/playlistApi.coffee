@@ -12,7 +12,7 @@ angular.module 'SFWApp.tabs'
         .then (data)->
             console.log 'single genre data succ'
             console.log data
-            defer.resolve data.data
+            defer.resolve angular.fromJson(data.data)
         , (error)->
             console.log 'eroor'
             defer.reject error
