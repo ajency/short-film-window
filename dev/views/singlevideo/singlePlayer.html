@@ -1,0 +1,19 @@
+<ion-view ng-init="view.init()">
+    <ion-header-bar ng-show="switchHeaderBar" class="bar bar-header primary singlePlayerHeader">
+        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back"></i>BACK</button>
+        <button class="button button-icon whiteText watchList" ng-click="addwatchlist()">
+            <i ng-class="{'ion-heart': watchlistimg == 'icon-favorite','ion-heart selected': watchlistimg == 'icon-unfavorite'}"></i></button>
+        <button class="button button-icon whiteText" ng-click="share() "><i class="ion-android-share-alt"></i></button>
+    </ion-header-bar>
+    <ion-content class="videoOuter" ng-class="{true : 'has-header' , false : 'no-header' } [switchHeaderBar]">
+        <i ng-click="toggleHeader()" class="ion-chevron-down downArrow" ng-show="!switchHeaderBar"></i>
+        <!-- You Tube player player -->
+        <div id="player2" ng-hide="view.vimomeo">
+        </div>
+        <!-- Vimeo player -->
+        <div class="player1video" ng-show="view.vimomeo">
+            <iframe id="player1" ng-src="{{player1}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <!--  <vimeo-video player-id="video3" video-url="'https://vimeo.com/97564754'" player-width="640" player-height="360"></vimeo-video> -->
+        </div>
+    </ion-content>
+</ion-view>

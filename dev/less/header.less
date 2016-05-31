@@ -1,0 +1,43 @@
+.bar
+{
+	&.bar-header
+	{	
+		.title
+		{
+			font-size:1.2em !important;
+			text-align: center !important;
+			left: 0 !important;
+			right: 0 !important;
+		}
+		.button.button-icon.ion-navicon
+		{
+			font-size: 25px;
+		}
+	}
+}
+.tabs-striped
+{
+	.tabs
+	{
+		background: @primary;
+		color: @white;
+		height: 42px;
+	}
+	.tab-item
+	{		
+		&.tab-item-active, &.activated, &.active
+		{
+			border-color: @white;
+		}
+	}
+}
+.bar .button.button-icon 
+{
+	&.icon
+	{
+		&:before
+		{
+			font-size:1.3em;
+		}
+	}
+}
