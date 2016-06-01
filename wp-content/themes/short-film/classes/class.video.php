@@ -490,7 +490,7 @@ class Video
 						'post_type' 	   		=> 'post',
 						'post_status'      		=> 'publish',
 						'cat'		  	 	  => $args['genre'],	
-						'posts_per_page'   		=> $args['posts_per_page'],
+						'posts_per_page'   		=> -1,
 						'offset'           		=> $args['offset'],
 						'exclude'				=> $args['exclude'],
 		

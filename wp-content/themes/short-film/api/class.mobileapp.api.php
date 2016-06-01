@@ -321,9 +321,14 @@ function videos_by_string($str){
     foreach ($searched_movies as $key => $searched_movie) {
         $movie_id                       =   $searched_movie->ID;
         $searched_movie                 =   Film\Video::get($movie_id);
-        if (stripos($searched_movie['title'],$str) < 1) {
+        /*if (stripos($searched_movie['title'],$str) < 1) {
         continue;
-        }   
+        }  */
+
+        if( stripos($searched_movie['title'], $str) === false ){
+            continue;
+        }
+
         $movies[$n]['movie_id']     =   $movie_id;
         $movies[$n]['no_of_views']  =   $searched_movie['no_of_views'];
         $movies[$n]['no_of_likes']  =   $searched_movie['post_like_count'];
