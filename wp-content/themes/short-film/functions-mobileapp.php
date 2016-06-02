@@ -39,6 +39,7 @@ function one_random_weekly_premiere(){
 
 	if($result['type']	=='youtube'){
 		$url = explode("=",$data['videourl']);
+		if(isset($url[1]))
 		$result['videourl'] = $url[1];
 	}else{
 		$result['embedurl'] = "http:".$result['embedurl'];
@@ -73,6 +74,7 @@ function single_video($id){
 				$movie['slug']				=	$res['slug'];
 				if($movie['type']	=='youtube'){
 					$url = explode("=",$res['videourl']);
+					if(isset($url[1]))
 					$movie['videourl'] = $url[1];
 				}else{
 					$movie['embedurl'] = "http:".$movie['embedurl'];
@@ -158,6 +160,7 @@ function noteworthy(){
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$noteworthy_movie['videourl']);
+			if(isset($url[1]))
 			$movies[$key]['videourl'] = $url[1];
 		}else{
 			$movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
