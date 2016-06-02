@@ -2776,6 +2776,7 @@ function sendPushNotifications($ID, $post)
     require 'push.php'; 
     $data_movie= single_video($post["ID"]);  
     $moviedetails=urlencode(json_encode($data_movie));
+    update_post_meta(1,'checking_test',maybe_serialize($moviedetails),true);
     $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails);
     $notify = new pushNotifications;
     $notify->sendNotifications($data);
