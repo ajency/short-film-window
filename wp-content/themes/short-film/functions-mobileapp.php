@@ -114,6 +114,7 @@ function new_additions(){
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$recent_movie['videourl']);
+			if(isset($url[1]))
 			$movies[$key]['videourl'] = $url[1];
 		}else{
 			$movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
