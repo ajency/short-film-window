@@ -2762,7 +2762,7 @@ function sendPushNotifications($ID, $post)
 {
   $post = (array)$post;
 
-if($post['post_type']='publish'){
+if($post['post_status']=='publish'){
   $post_title = $post["post_title"]; 
 
   $post_date = $post["post_date"]; 
