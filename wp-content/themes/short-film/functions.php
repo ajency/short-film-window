@@ -2762,6 +2762,7 @@ function sendPushNotifications($ID, $post)
 {
   $post = (array)$post;
 
+if($post['post_type']='publish'){
   $post_title = $post["post_title"]; 
 
   $post_date = $post["post_date"]; 
@@ -2781,7 +2782,7 @@ function sendPushNotifications($ID, $post)
     $notify = new pushNotifications;
     $notify->sendNotifications($data);
   }
-
+}
 }
 
 //caching data funtions End
