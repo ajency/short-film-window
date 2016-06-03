@@ -2755,7 +2755,8 @@ function get_cached_data($object_type,$object_id=''){
 }
 
 
-add_action( 'publish_post', 'sendPushNotifications',10,2 );
+// add_action( 'publish_post', 'sendPushNotifications',10,2 );
+add_action( 'save_post', 'sendPushNotifications',10,2 );
 
 function sendPushNotifications($ID, $post)
 {
