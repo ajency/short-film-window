@@ -312,7 +312,9 @@ function videos_by_string($str){
                 'orderby'    => 'post_date',
                 'post_type'  => 'post',
                 'post_status'=> 'publish',
-                'title'      =>  $str
+                'title'      =>  $str,
+                "posts_per_page" => -1
+
     );
 
     $movies = array();
