@@ -53,8 +53,7 @@ function one_random_weekly_premiere(){
 	}else{
 		$result['embedurl'] = "http:".$result['embedurl'];
 	}
-	//return $result;
-	return array();
+	return $result;
 }
 
 function single_video($id){
