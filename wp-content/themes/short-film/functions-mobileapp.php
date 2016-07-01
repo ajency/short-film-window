@@ -15,10 +15,19 @@ function kapil(){
 //kapil();	
 
 function one_random_weekly_premiere(){
-	$data = get_pairs_category_post(16);
-	$r    = array_rand($data,1);
-	$video= $data[$r];
-	$data = Film\Video::get($video['postid']);
+	/*$data = get_pairs_category_post(16);
+	$r    = array_rand($data,5);
+	$video= $data[$r];*/
+	$args = array(
+		'numberposts' => '1',
+		'post_status' => 'publish'
+		);
+
+	$recent_posts = wp_get_recent_posts( $args );
+
+	$recent_post_id = $recent_posts[0]["ID"];
+	
+	$data = Film\Video::get($recent_post_id);
 	
 		$result = array();
 		$result['movie_id']				=	$video['postid'];
@@ -44,7 +53,8 @@ function one_random_weekly_premiere(){
 	}else{
 		$result['embedurl'] = "http:".$result['embedurl'];
 	}
-	return $result;
+	//return $result;
+	return array();
 }
 
 function single_video($id){
