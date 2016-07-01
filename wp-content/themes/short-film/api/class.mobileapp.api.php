@@ -213,7 +213,7 @@ class Mobileapp_API
 	public function fetch_defaults_json()
 	{	
 
-        $object_type='default_data';
+        /*$object_type='default_data';
         $id=1;
         $cached_data=get_cached_data($object_type,$id);//data to fetch the stored proposal data
 
@@ -222,7 +222,7 @@ class Mobileapp_API
         $cached_data=array();
 
         if(count($cached_data)>0)
-        return $response   =$cached_data[$id]; 
+        return $response   =$cached_data[$id]; */
 
         $response=fetch_default_data();
         

@@ -30,7 +30,7 @@ function one_random_weekly_premiere(){
 	$data = Film\Video::get($recent_post_id);
 	
 		$result = array();
-		$result['movie_id']				=	$video['postid'];
+		$result['movie_id']				=	$recent_post_id;
 		$result['no_of_views']			=	$data['no_of_views'];
 		$result['no_of_likes']			=	$data['post_like_count'];
 		$result['title']				=	$data['title'];
