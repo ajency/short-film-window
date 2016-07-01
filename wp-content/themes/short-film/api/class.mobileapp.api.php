@@ -45,8 +45,10 @@ function genre_videos($genre_id, $language_id, $sort_id){
       $movies[$key]['director']   = $video['director'];
       $movies[$key]['image']      = $video['medium_image'];
       $movies[$key]['duration']   = $video['duration'];
-      $movies[$key]['region']     = $video['region'][0];
-      $movies[$key]['language']   = $video['language'][0];
+      //$movies[$key]['region']     = $video['region'][0];
+      //$movies[$key]['language']   = $video['language'][0];
+      $movies[$key]['region']     = implode(', ', $video['region']);
+      $movies[$key]['language']   = implode(', ', $video['language']);
       $movies[$key]['genres']     = $video['categories'];
       $movies[$key]['slug']     = $video['slug'];
 
