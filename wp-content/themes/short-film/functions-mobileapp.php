@@ -43,8 +43,8 @@ function one_random_weekly_premiere(){
 		$result['country']				=	"India - Asia";
 		$result['duration']				=	$data['duration'];
 		$result['slug']				=	$data['slug'];
-		$result['region']		=	$data['region'][0];
-		$result['language']		=	$data['language'][0];
+		$result['region']		=	implode(', ', $data['region']);
+		$result['language']		=	implode(', ', $data['language']);
 
 	if($result['type']	=='youtube'){
 		$url = explode("=",$data['videourl']);
@@ -76,8 +76,8 @@ function single_video($id){
 				$movie['director']		=	$res['director'];
 				$movie['image']			=	$res['medium_image'];
 				$movie['duration']		=	$res['duration'];
-				$movie['region']		=	$res['region'][0];
-				$movie['language']		=	$res['language'][0];
+				$movie['region']		=	implode(', ', $res['region']);
+				$movie['language']		=	implode(', ', $res['language']);
 				$movie['genres']		=	$res['categories'];
 				$movie['content']		=	$content;
 				$movie['slug']				=	$res['slug'];
@@ -119,8 +119,8 @@ function new_additions(){
 		$movies[$key]['image']			=	$recent_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
 		$movies[$key]['duration']		=	$recent_movie['duration'];
-		$movies[$key]['region']		=	$recent_movie['region'][0];
-		$movies[$key]['language']		=	$recent_movie['language'][0];
+		$movies[$key]['region']		=		implode(', ', $recent_movie['region']);
+		$movies[$key]['language']		=	implode(', ', $recent_movie['language']);
 		$movies[$key]['slug']		=	$recent_movie['slug'];
 
 		if($movies[$key]['type']	=='youtube'){
@@ -163,8 +163,8 @@ function noteworthy(){
 		$movies[$key]['image']			=	$noteworthy_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
 		$movies[$key]['duration']		=	$noteworthy_movie['duration'];
-		$movies[$key]['region']		=	$noteworthy_movie['region'][0];
-		$movies[$key]['language']		=	$noteworthy_movie['language'][0];
+		$movies[$key]['region']		=		implode(', ', $noteworthy_movie['region']);
+		$movies[$key]['language']		=	implode(', ', $noteworthy_movie['language']);
 		$movies[$key]['slug']		=	$noteworthy_movie['slug'];
 
 		if($movies[$key]['type']	=='youtube'){

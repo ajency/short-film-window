@@ -296,8 +296,8 @@ class Video
 						////'region'		  	 	=> $args['region'],						
 						//'meta_key'				=> $meta_key,
 						//'meta_value'			=> $args['language'],
-						'posts_per_page'   		=> $args['posts_per_page'],
-						'offset'           		=> $args['offset'],
+						//'posts_per_page'   		=> $args['posts_per_page'],
+						//'offset'           		=> $args['offset'],
 						'exclude'				=> $args['exclude'],
 						
 						'tax_query' => array(
@@ -310,6 +310,13 @@ class Video
 										)
 		
 					);
+
+			if (array_key_exists("mobile",$args)){
+				$params['posts_per_page'] = -1;
+			}else{
+				$params['posts_per_page'] = $args['posts_per_page'];
+				$params['offset'] = $args['offset'];
+			}
 		}
 		else
 		{

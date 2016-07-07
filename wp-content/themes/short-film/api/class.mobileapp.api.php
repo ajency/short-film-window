@@ -276,6 +276,7 @@ function playlist_videos($playlist_id){
     $args = array(
             'playlist'        => $playlist_id,
             'taxonomy'      => 'playlist',
+            'mobile'        => true,
     );
     $videos= Film\Video::get_many($args);
     $movies= array();
@@ -293,8 +294,8 @@ function playlist_videos($playlist_id){
       $movies[$key]['director']   = $video['director'];
       $movies[$key]['image']      = $video['medium_image'];
       $movies[$key]['duration']   = $video['duration'];
-      $movies[$key]['region']     = $video['region'][0];
-      $movies[$key]['language']   = $video['language'][0];
+      $movies[$key]['region']     = implode(', ', $video['region']);
+      $movies[$key]['language']   = implode(', ', $video['language']);
       $movies[$key]['genres']     = $video['categories'];
       $movies[$key]['slug']     = $video['slug'];
 
@@ -344,8 +345,8 @@ function videos_by_string($str){
         $movies[$n]['director']     =   $searched_movie['director'];
         $movies[$n]['image']        =   $searched_movie['medium_image'];
         $movies[$n]['duration']     =   $searched_movie['duration'];
-        $movies[$n]['region']       =   $searched_movie['region'][0];
-        $movies[$n]['language']     =   $searched_movie['language'][0];
+        $movies[$n]['region']       =   implode(', ', $searched_movie['region']);
+        $movies[$n]['language']     =   implode(', ', $searched_movie['language']);
         $movies[$n]['genres']       =   $searched_movie['categories'];
         $movies[$n]['slug']       =   $searched_movie['slug'];
 
