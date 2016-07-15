@@ -1056,7 +1056,11 @@ jQuery(document).ready(function(){
 		genre = jQuery('#genre').val();
         language = jQuery('#language').val();
         jQuery('.search-results-message').hide();
-        offset = jQuery('#offset').val();
+        offset = parseInt(jQuery('#offset').val());
+
+        if(offset > 0){
+        	offset = offset-1;
+        }
 
         var total_no_of_videos = jQuery('#total_no_of_videos').val();
 
@@ -1078,7 +1082,7 @@ jQuery(document).ready(function(){
         }
         else
         {
-            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude='+jQuery('#searchids').val()+'&sort='+jQuery('#sort').val();
+            data = 'genre='+genre+'&language='+language+'&posts_per_page='+posts_per_page+'&offset='+offset+'&exclude=0'+'&sort='+jQuery('#sort').val();
         }
 
 

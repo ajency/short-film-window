@@ -566,6 +566,7 @@ jQuery(document).ready(function(){
     jQuery('#offset').val(count);
 	
 	jQuery('#genre').live('change',function(e){
+        
         jQuery('#searchids').val("");
         jQuery('.search').val("");
 		jQuery('#offset').val(0)
