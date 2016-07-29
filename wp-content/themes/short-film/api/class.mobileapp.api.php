@@ -375,8 +375,9 @@ function fetch_default_data(){
         $genres             =   genres();
         $languages          =   languages();
         $playlists          =   five_awesome_playlists();
+        $mostpopular        =   mostpopular();
         $popular  = array(
-                        'popular'=>array('weekly_premiere'=>$weekly_premiere, 'new_additions'=>$new_additions, 'noteworthy'=>$noteworthy, 'awesome_playlist'=>$awesome_playlists ),
+                        'popular'=>array('weekly_premiere'=>$weekly_premiere, 'new_additions'=>$new_additions, 'noteworthy'=>$noteworthy, 'awesome_playlist'=>$awesome_playlists,'most_popular'=>$mostpopular),
                         'genre'  =>$genres,
                         'playlists'=>$playlists
                     );

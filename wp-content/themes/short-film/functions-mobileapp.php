@@ -96,7 +96,7 @@ function single_video($id){
 
 function new_additions(){
 		$params = array(
-				'numberposts' => 3,
+				'numberposts' => 2,
 				'order' => 'DESC',
 				'post_type'   => 'post',
 				'post_status' => 'publish'
@@ -314,4 +314,57 @@ function languages(){
 	}
 	return $languages;
 }
+
+function mostpopular(){
+		$params = array(
+				//'numberposts'=> 2,
+				'order'		 => 'ASC',
+                'orderby'    => 'meta_value_num',
+                'meta_key'   => '_post_like_count',
+				'post_type'	 => 'post',
+				'post_status'=> 'publish',
+				'posts_per_page' => -1
+
+	);
+
+	$movies = array();
+	$mostpopular_movies = get_posts( $params );
+
+	foreach ($mostpopular_movies as $key => $mostpopular_movie) {
+		$movie_id 						= 	$mostpopular_movie->ID;
+		$movies[$key]['movie_id']		=	$movie_id;
+		$mostpopular_movie 				= 	Film\Video::get($movie_id);
+		$movies[$key]['no_of_views']	=	$mostpopular_movie['no_of_views'];
+		$movies[$key]['no_of_likes']	=	$mostpopular_movie['post_like_count'];
+		$movies[$key]['title']			=	$mostpopular_movie['title'];
+		$movies[$key]['type']			=	$mostpopular_movie['type'];
+		$movies[$key]['tagline']		=	$mostpopular_movie['tagline'];
+		$movies[$key]['videourl']		=	$mostpopular_movie['videourl'];
+		$movies[$key]['embedurl']		=	$mostpopular_movie['embedurl'];
+		$movies[$key]['director']		=	$mostpopular_movie['director'];
+		$movies[$key]['image']			=	$mostpopular_movie['medium_image'];
+		$movies[$key]['country']		=	"India - Asia";
+		$movies[$key]['duration']		=	$mostpopular_movie['duration'];
+		$movies[$key]['region']		=		implode(', ', $mostpopular_movie['region']);
+		$movies[$key]['language']		=	implode(', ', $mostpopular_movie['language']);
+		$movies[$key]['slug']		=	$mostpopular_movie['slug'];
+
+		if($movies[$key]['type']	=='youtube'){
+			$url = explode("=",$mostpopular_movie['videourl']);
+			if(isset($url[1]))
+			$movies[$key]['videourl'] = $url[1];
+		}else{
+			$movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
+		}		
+	}
+		$sort = new SortMdArray;
+	    $sort->sort_order = 'desc'; 
+	    $sort->sort_key = 'no_of_likes';
+	    $sort->sortByKey($movies);
+
+	    $fmovies = array_slice($movies, 0, 2);
+
+		return $fmovies;
+}
+
 ?>

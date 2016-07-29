@@ -2891,6 +2891,24 @@ function my_wp_trash_post ($post_id) {
 add_action('publish_to_trash', 'my_wp_trash_post');
 // add_action('untrash_post',  'my_wp_trash_post');
 
+class SortMdArray {
+    public $sort_order = 'asc'; // default
+    public $sort_key = 'position'; // default
+     
+    public function sortByKey(&$array) {       
+        usort($array, array(__CLASS__, 'sortByKeyCallback'));     
+    }
+     
+    function sortByKeyCallback($a, $b) {
+        if($this->sort_order == 'asc') {
+            $return = $a[$this->sort_key] - $b[$this->sort_key];
+        } else if($this->sort_order == 'desc') {
+            $return = $b[$this->sort_key] - $a[$this->sort_key];
+        }
+        return $return;
+    } 
+}
+
 
 //code added by kapil//
 require_once (get_template_directory().'/api/class.mobileapp.api.php');
