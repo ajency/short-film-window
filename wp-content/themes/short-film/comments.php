@@ -59,6 +59,10 @@ The comments page for Bones
 
 <!--####################-->
 					<?php //// comment_form(); ?> 
+
+					<?php
+					$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+					?>
 	
 	<div id="fbcomments" data-width="100%">
 		<div id="fb-root">
@@ -66,7 +70,7 @@ The comments page for Bones
 			
 		<script src="http://connect.facebook.net/en_US/all.js#xfbml=1">
 		</script>
-		<fb:comments href="<?php the_permalink(); ?>" data-width="100%"> </fb:comments>
+		<fb:comments href="<?php echo $current_url; ?>" data-width="100%"> </fb:comments>
 		
 	</div>
 	
