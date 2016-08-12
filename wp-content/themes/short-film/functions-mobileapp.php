@@ -137,8 +137,59 @@ function new_additions(){
 
 
 function noteworthy(){
-		$params = array(
-				'numberposts'=> 3,
+
+	$categories = array_slice(get_categories(), 0, 5);
+
+	$selected = array();
+	$movies = array();
+	foreach($categories as $key=>$cat){
+		$args = array(
+			'post_type'	 => 'post',
+			'post_status'=> 'publish',
+			'orderby'		 => 'rand',
+			'numberposts' => 1,
+			'cat' => $cat->term_id,
+			'post__not_in' => $selected
+			);
+		$movie = get_posts( $args );
+		$movie_id = $movie[0]->ID;
+		$selected[] = $movie_id;
+
+
+		$movies[$key]['movie_id']		=	$movie_id;
+		$noteworthy_movie 				= 	Film\Video::get($movie_id);
+		$movies[$key]['no_of_views']	=	$noteworthy_movie['no_of_views'];
+		$movies[$key]['no_of_likes']	=	$noteworthy_movie['post_like_count'];
+		$movies[$key]['title']			=	$noteworthy_movie['title'];
+		$movies[$key]['type']			=	$noteworthy_movie['type'];
+		$movies[$key]['tagline']		=	$noteworthy_movie['tagline'];
+		$movies[$key]['videourl']		=	$noteworthy_movie['videourl'];
+		$movies[$key]['embedurl']		=	$noteworthy_movie['embedurl'];
+		$movies[$key]['director']		=	$noteworthy_movie['director'];
+		$movies[$key]['image']			=	$noteworthy_movie['medium_image'];
+		$movies[$key]['country']		=	"India - Asia";
+		$movies[$key]['duration']		=	$noteworthy_movie['duration'];
+		$movies[$key]['region']		=		implode(', ', $noteworthy_movie['region']);
+		$movies[$key]['language']		=	implode(', ', $noteworthy_movie['language']);
+		$movies[$key]['slug']		=	$noteworthy_movie['slug'];
+		$movies[$key]['genreCategory'] = $cat->name;
+
+		if($movies[$key]['type']	=='youtube'){
+			$url = explode("=",$noteworthy_movie['videourl']);
+			if(isset($url[1]))
+			$movies[$key]['videourl'] = $url[1];
+		}else{
+			$movies[$key]['embedurl'] = "http:".$movies[$key]['embedurl'];
+		}		
+	}
+
+	//print_r($movies);
+
+	return $movies;
+
+
+	/*$params = array(
+				'numberposts'=> 5,
 				'order'		 => 'DESC',
                 'orderby'    => 'meta_value_num',
                 'meta_key'   => '_post_like_count',
@@ -176,7 +227,7 @@ function noteworthy(){
 		}		
 	}
 
-	return $movies;
+	return $movies;*/
 }
 
 function five_awesome_playlists_init(){
