@@ -138,7 +138,7 @@ function new_additions(){
 
 function noteworthy(){
 
-	/*$categories = array_slice(get_categories(), 0, 5);
+	$categories = array_slice(get_categories(), 0, 5);
 
 	$selected = array();
 	$movies = array();
@@ -185,10 +185,10 @@ function noteworthy(){
 
 	//print_r($movies);
 
-	return $movies;*/
+	return $movies;
 
 
-	$params = array(
+	/*$params = array(
 				'numberposts'=> 3,
 				'order'		 => 'DESC',
                 'orderby'    => 'meta_value_num',
@@ -227,7 +227,7 @@ function noteworthy(){
 		}		
 	}
 
-	return $movies;
+	return $movies;*/
 }
 
 function five_awesome_playlists_init(){
