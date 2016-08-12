@@ -189,7 +189,7 @@ function noteworthy(){
 
 
 	$params = array(
-				'numberposts'=> 5,
+				'numberposts'=> 3,
 				'order'		 => 'DESC',
                 'orderby'    => 'meta_value_num',
                 'meta_key'   => '_post_like_count',
