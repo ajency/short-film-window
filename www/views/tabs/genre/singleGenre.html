@@ -1,46 +1,81 @@
-      <ion-side-menus ng-init="init()">
-    <ion-side-menu-content class="singleGenre" >
-      <ion-header-bar class="bar bar-header primary">
-        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>       
-        <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
-      </ion-header-bar>
-      <ion-content class="popular">
-        <div class="list card margin0 cardOuter">
+<ion-view class="singleGenre" ng-init="init()">
+  <ion-header-bar class="bar bar-header primary">
+    <button class="button button-icon whiteText text-uppercase" ng-click="back()"><i class="ion-ios-arrow-back margin0"></i>Genre</button>
+    <button class="button button-icon whiteText" ng-click="share()"><i class="ion-android-share-alt"></i></button>
+  </ion-header-bar>
+<div ng-switch ="display">
 
-          <div class="item item-avatar">
-            <img src="{{ genre.genre_image_url }}">
-            <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
-            <div class="primaryText bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ genre.run_time }} MIN</span></div>
-          </div>
-          <div ng-repeat ="data in genreData">
-          <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
-                <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
-                <div class="overlay" ></div>
-                <div class="movieDetails padding whiteText">
-                  <div class="title padding-vertical">
-                  {{ data.title }} <span>by {{ data.director}}</span>
-                  </div>
-                  <div class="tagline padding-vertical">
-                    {{ data.tagline}}
-                  </div>
-                  <div class="country padding-vertical">
-                    {{ data.region }}/ {{ data.language}}<span></span>
-                    <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{ data.duration }} MIN</span>
-                  </div>                  
-                  <div class="viewsNLikes padding-vertical">
-                    <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
-                    <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
-                  </div>
-                </div>
+<ion-content class="popular " ion-sticky>
+  <!-- <div class="swiper-container  genreswiper ">
+    <div class="swiper-wrapper"> -->
+
+      <div ng-switch-when="result">
+         <div  class="item item-avatar singleGenreAvtar item-divider">
+          <img src="{{ genre.genre_image_url }}">
+          <div class="primaryText cardTitle">{{ genre.genre_name }}</div>
+        <div class=" bold totalfilmsNTime">{{ genre.genre_count }} Films<span class="pull-right"><i class="ion-android-time"></i>{{ genre.run_time }} Min</span></div>
+      </div>
+<div snapscroll fit-window-height snap-index="snapIndex" after-snap="afterSnap(snapIndex)" snap-animation="snapAnimation" ng-swipe-up="swipeUp()" ng-swipe-down="swipeDown()">
+    <div ng-repeat ="data in genreData" style="height: {{ hgt }}px"  class="cardDetails swiper-slide">
+      <div class="list card margin0 cardOuter">
+
+
+    <div  class="list card margin0 cardOuter ">
+
+      <div class="item item-image padding0" ng-click="singleplay( data.movie_id )">
+            <div class="imageContainerOuter"><img src="{{ data.image }}" /></div>
+            <div class="overlay" ></div>
+            <div class="movieDetails padding whiteText">
+              <div class="title padding-vertical">
+              {{ data.title }} <span>by {{ data.director}}</span>
+              </div>
+              <div class="tagline padding-vertical">
+                {{ data.tagline}}
+              </div>
+              <div class="country padding-vertical">
+                {{ data.region }}/ {{ data.language}}<span></span>
+                <div class="pull-right"><i class="ion-android-time"></i> {{ data.duration }} Min</div>
+              </div>
+              <div class="viewsNLikes padding-vertical">
+                <span><i class="ion-ios-eye"></i> {{ data.no_of_views}}</span>
+                <span><i class="ion-thumbsup"></i> {{ data.no_of_likes }}</span>
               </div>
             </div>
-
+          </div>
         </div>
-      </ion-content>  
-      <ion-footer-bar class="bar bar-footer">
-        <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()"><i class="ion-funnel"></i>Filter</button>   
-        <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()"><i class="ion-android-arrow-up"></i>Sort</button>
-      </ion-footer-bar>
-    </ion-side-menu-content>   
-  </ion-side-menus>
-  
+
+    </div>
+
+</div>
+</div>
+</div>
+<!-- </div>
+</div> -->
+  </ion-content>
+
+
+  <ion-footer-bar class="bar bar-footer genreFooter">
+    <button class="button button-clear button-small col col-50 pull-left text-uppercase" ng-click="filterGenre()">
+      <img src= "{{ filterimg }}"></i>Filter</button>
+    <button class="button button-clear button-small col col-50 pull-right text-uppercase" ng-click="sortGenre()">
+      <img src =" {{ sortimg }}"></i>Sort</button>
+  </ion-footer-bar>
+<!-- </div> -->
+
+
+
+<div class="loaderOuter" ng-switch-when="loader">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <aj-error class="errors"
+      ng-switch-when="error"
+      error-type="errorType"
+      tap-to-retry="view.onTapToRetry()">
+    </aj-error>
+    </div>
+
+</ion-view>
+
+
+

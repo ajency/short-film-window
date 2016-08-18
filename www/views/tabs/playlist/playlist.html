@@ -1,30 +1,32 @@
-<ion-content class="popular playlist" ng-init="test()">
+<ion-view>
+<ion-content class="popular playlist" ng-init="test()" overflow-scroll='true'>
 <ion-refresher
             pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
              </ion-refresher>
             <div class="playlistContent">
               <div ng-repeat ="data in playlist">
-                <div class="col imageContainer">
-                  <div class="playlistContentInner">  
-                    <img src="{{ data.playlist_image_url }}"/>
-                    <div class="playlistDetails">
-                      <div class="title">
+                <div class="col imageContainer" ng-click="singleplaylist( data.playlist_id)">
+                  <div class="playlistContentInner">
+                    <img ng-src="{{ data.playlist_image_url }}"/>
+                    <div class="playlistDetails playlistDetailsInner">
+                      <!-- <div class="title">
                           {{ data.playlist_description }}
+                      </div> -->
+                      <div class="totalFilms pull-left">
+                        <div class="pull-left"><span class="filmNo">{{ data.playlist_count }}</span> Films</div>
+                        <div class="pull-right"><i class="ion-android-time"></i>{{ data.run_time }} Min</div>
                       </div>
-                      <div class="totalFilms">
-                        <span>{{ data.playlist_count }} Films</span>
-                        <span class="pull-right text-uppercase"><i class="ion-android-time"></i>{{ data.run_time }} MIN</span>
-                      </div>
-                    </div> 
+                    </div>
                   </div>
                 </div>
-              </div> 
-              </div>             
+              </div>
+              </div>
               <div class="padding endOfPlaylist text-uppercase text-center">
-              <i class="ion-social-dropbox-outline"></i>
+              <i class="icon-cust icon-endPlaylist"></i>
               <h4 class="bold margin0">Thats it</h4>
               <p>End of the line, folks</p>
-            
+
             </div>
           </ion-content>
+        </ion-view>

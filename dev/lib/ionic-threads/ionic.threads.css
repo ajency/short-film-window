@@ -1,0 +1,80 @@
+/***************************************/
+/*Comments                             */
+/***************************************/
+
+.ion-comment {
+  font-size: 12px;
+  padding: 6px 15px;
+  overflow: visible;
+  white-space: normal;
+  border: none;
+}
+.ion-comment .item-options .button {
+  background-color: #f8f8f8;
+}
+.ion-comment--text p {
+  overflow: visible;
+  white-space: normal;
+}
+.ion-comment .item-content,
+.ion-comment .item-content p {
+  padding: 0;
+  overflow: visible;
+  white-space: normal;
+  font-size: 13px;
+  color: #3f3f3f
+}
+.ion-comment--author {
+  color: #4267b2;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+.ion-comment--op {
+  color: #8899a6;
+}
+.ion-comment--replies {
+  color: #8899a6;
+  text-align: right;
+}
+.ion-comment--score {
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #8899a6;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.ion-comment--container {
+  background-color: #f8f8f8;
+}
+.ion-comment--children {
+  margin-left: 10px;
+}
+ion-list .list{
+  padding-right: 5px;
+}
+ion-item button{
+  font-size: 100% !important;
+  font:inherit !important;
+}
+ion-item .replyToComment{
+  padding-right: 40px;
+}
+.commentInput{
+  width: 88%;
+}
+.rplyCommentDiv{
+  display: flex;
+}
+.rplyCommentDiv button{
+    height: 25px;
+    background-color: #4267b2;
+    color: white;
+    border: none;
+}
+.commentDiv{
+  padding-left: 10px;
+  padding-right: 5px;
+}
+

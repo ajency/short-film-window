@@ -1,16 +1,18 @@
-<ion-view class="movieScreen"> 
+<ion-view class="movieScreen">
 <ion-header-bar class="bar bar-header movieHeader">
         <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back margin0"></i>Back</button>
-        <button class="button button-icon whiteText watchList"><i class="ion-heart"></i></button>
-        <button class="button button-icon whiteText"><i class="ion-android-share-alt"></i></button>
+        <button class="button button-icon whiteText watchList" ng-click= "addwatchlist()">
+          <i ng-class="{'ion-heart': watchlistimg == 'icon-favorite','ion-heart selected': watchlistimg == 'icon-unfavorite'}"></i></button>
+        <button class="button button-icon whiteText" ng-click="share() "><i class="ion-android-share-alt"></i></button>
       </ion-header-bar>
- <ion-content class="singleMovieContent">      
-     <div id="player" class="singleMovieOuter" ng-init="init()">
+      <div ng-switch ="display">
+ <ion-content class="singleMovieContent" ng-switch-when = "result" overflow-scroll='true'>
+     <div id="player" class="singleMovieOuter" >
         <div class="movieVideo">
           <div class="imageContainerOuter">
-            <img src="{{ Videodetails.image}}"/>
+            <img ng-src="{{ Videodetails.image}}"/>
             <div class="overlay"></div>
-          </div>                  
+          </div>
           <div class="playIcon"><img src="img/play.png" ng-click="view.playVideo()"/></div>
           <div class="movieDetails padding whiteText">
             <div class="title">
@@ -20,13 +22,12 @@
               {{ Videodetails.tagline }}
             </div>
             <div class="country">
-              {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
-              <span class="pull-right text-uppercase"><i class="ion-android-time"></i> {{Videodetails.duration }}  MIN</span>
+              {{ Videodetails.region ? Videodetails.region : 'n/a'}} / {{Videodetails.language ? Videodetails.language : 'n/a' }}<span></span>
+              <div class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }}  Min</div>
             </div>
             <div class="category">
               <label ng-repeat ="data in Videodetails.genres">
-              <span class="inline">{{ data }}</span>
-              
+              <div>{{ data }}</div>
             </label>
             </div>
             <div class="viewsNLikes padding-top">
@@ -34,37 +35,33 @@
               <span><i class="ion-thumbsup"></i> {{ Videodetails.no_of_likes }}</span>
             </div>
           </div>
-       </div>   
+       </div>
     </div>
-    <div class="synopsis">
-      <h5 class="primaryText text-uppercase bold padding-horizontal padding-top">Synopsis</h5>
-      <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
-        
-      </div> 
-    <!--   <div class="col text-center">
-        <i class="ion-ios-arrow-down"></i>
-      </div>   -->     
-    </div>
-  <!--   <div class="infocus">
-      <h5 class="primaryText text-uppercase bold padding-horizontal padding-top">In focus</h5>
-      <p class="padding-horizontal primaryText subheading">
-       In conversation with Mr. Smith, the villan behind the Matrix       
-      </p> 
-      <div class="padding-horizontal"><img src="img/killerkart.jpg"/></div>  
-      <div class="movieText">
-        <p class="padding">
-          Here identification with characters, which we as story-consumers naturally grasp for and storyteller helpfully provide, plays with suspense and our expectations. We know enough about Rick to know that he is not a bad man, but not enough to know.... whether he will another man. We also know enough about his possible victims to not like him all that much, but not enough to actually wish him dead. The film extends this excruciating waiting game as long as possible with long following shots and meandering conversations.
-          <br><br>
-          And appropriately this short, gritty thriller ends at an old and decaying outdoor theater in the middle of the forest.
-        </p>   
-        <h5 class="primaryText text-uppercase text-center bold">Show your love</h5>     
-        <div class="text-center socialIcons">
-          <span class="inline"><i class="ion-social-facebook"></i></span>
-          <span class="inline"><i class="ion-social-pinterest"></i></span>
-          <span class="inline"><i class="ion-social-twitter"></i></span>
-          <span class="inline"><i class="ion-social-googleplus"></i></span>
+    <div class="synopsis padding">
+      <h5 class="primaryText text-uppercase bold">Synopsis</h5>
+      <div class="synopsisText">
+        <div class="padding-horizontal" id="synopsis" ng-bind="bindHTML">
         </div>
-      </div>               
-    </div> -->
-  </ion-content>
-</ion-view> 
+      </div>
+        <div class="toggleSynopsis text-center padding">
+          <i class="ion-chevron-down primaryText"></i>
+        </div>
+
+    </div>
+ </ion-content>
+
+  <aj-error class="errors"
+      ng-switch-when="error"
+      error-type="view.errorType"
+      tap-to-retry="view.onTapToRetry()">
+    </aj-error>
+    </div>
+</ion-view>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".toggleSynopsis").click(function(){
+      alert("djhf");
+      $(".synopsisText").slideDown();
+    });
+  });
+</script>

@@ -3196,7 +3196,7 @@ a.subdued {
       font-size: 20px;
       line-height: 32px; }
     .bar .button.button-icon {
-      font-size: 15px; }
+      font-size: 16px; }
       .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
         vertical-align: top;
         font-size: 32px;
@@ -5669,7 +5669,7 @@ label, input, button, select, textarea {
   line-height: 1.42857; }
 
 input, button, select, textarea {
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
+  font-family: 'Lato', sans-serif;}
 
 .item-input {
   display: -webkit-box;

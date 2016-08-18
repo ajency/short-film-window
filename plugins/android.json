@@ -7,21 +7,42 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.ionicframework.shortfilmwindow549658"
-        },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ionicframework.shortfilmwindow549658"
+            "PACKAGE_NAME": "com.ShortFilm"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ionicframework.shortfilmwindow549658"
+            "PACKAGE_NAME": "com.ShortFilm"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ionicframework.shortfilmwindow549658"
+            "PACKAGE_NAME": "com.ShortFilm"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.shortfilmwindow549658"
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "586411814878247",
+            "APP_NAME": "shortfilmWindowTest",
+            "PACKAGE_NAME": "com.ShortFilm"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "com.phonegap.parsepushplugin": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-spinner-dialog": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        }
+    }
 }

@@ -1,69 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
-
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700' rel='stylesheet' type='text/css'/>
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet"/>
-    <link href="css/style.css" rel="stylesheet"/>
-    <link href="css/custom.css" rel="stylesheet"/>
-    
-    
-
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
-    <!---Bower js-->
-    <script src="lib/underscore/underscore-min.js"></script>
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
-
-
-
-
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-
-    <!-- your app's js -->
-    <script src="app/app.js"></script>
-    <script src="app/Navigation.js"></script>
-
-
-
-    <!---init js-->
-    <script src="app/init/init.js"></script>
-
-    <!--Global js-->
-    <script src="app/Global/AppUtility.js"></script>
-
-    <!--SideBar js-->
-    <script src="app/sideBar/sidebar.js"></script>
-
-    <!--singlePlayer-->
-    <script src="app/SinglePlayer/singlePlayer.js"></script>
-    <script src="app/SinglePlayer/VideoDetailsService.js"></script>
-
-     <!--Video API-->
-    <script src="app/VideoDetails_API/VideoDetailsAPI.js"></script>
-
-    <!--VideoLanding -->
-    <script src="app/landingVideo/landingvideo.js"></script>
-
-
-
-
-
-
-</head>
-<body ng-app="SFWApp"  class="platform-ios platform-cordova platform-webview">
-  <ion-nav-view>
-  
-  </ion-nav-view>
-</body>
-</html>
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"> --> <meta name="viewport" content="width=device-width,user-scalable=no,height=device-height,initial-scale=1,maximum-scale=1"> <title></title> <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700' rel='stylesheet' type='text/css'/>--> <style>@font-face {
+        font-family: Montserrat;
+        src: url("./fonts/Montserrat/Montserrat-Regular.ttf");
+      }
+      @font-face {
+        font-family: Lato;
+        src: url("./fonts/Lato/Lato-Regular.ttf");
+      }</style> <link href="lib/ionic/css/ionic.css" rel="stylesheet"> <link href="css/common.css" rel="stylesheet"> <script src="https://www.youtube.com/iframe_api"></script> <script src="lib/ionic/js/ionic.bundle.js"></script> <script src="lib/vendor.js"></script> <!-- cordova script (this will be a 404 during development) --> <script src="cordova.js"></script> <script src="https://cdn.rawgit.com/nraboy/ng-cordova-oauth/master/dist/ng-cordova-oauth.min.js"></script> <script src="views/templates.js"></script> <!-- your app's js --> <script src="app/app.js"></script> </head> <body ng-app="SFWApp" id="ion-app" class="platform-ios" ng-cloak> <ion-nav-view> </ion-nav-view> </body> </html>

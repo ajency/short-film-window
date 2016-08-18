@@ -1,0 +1,10 @@
+ionic plugin add cordova-plugin-device &&
+ionic plugin add cordova-plugin-console &&
+ionic plugin add cordova-plugin-whitelist &&
+ionic plugin add com.ionic.keyboard &&
+ionic plugin add  https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin &&
+ionic plugin add  cordova-plugin-inappbrowser &&
+ionic plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git &&
+ionic plugin add  phonegap-plugin-push@~1.5.3 &&
+ionic plugin add  https://github.com/taivo/parse-push-plugin
+ionic plugin add  cordova-plugin-splashscreen 

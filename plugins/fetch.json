@@ -1,16 +1,8 @@
 {
-    "cordova-plugin-device": {
+    "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-console": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-console"
+            "id": "cordova-plugin-splashscreen"
         },
         "is_top_level": true,
         "variables": {}
@@ -23,18 +15,54 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-splashscreen": {
+    "cordova-plugin-console": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-splashscreen"
+            "id": "cordova-plugin-console"
         },
         "is_top_level": true,
         "variables": {}
     },
-    "com.ionic.keyboard": {
+    "cordova-plugin-device": {
         "source": {
             "type": "registry",
-            "id": "com.ionic.keyboard"
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "ionic-plugin-keyboard": {
+        "source": {
+            "type": "registry",
+            "id": "ionic-plugin-keyboard"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-dialogs": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-dialogs"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-facebook4": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jeduan/cordova-plugin-facebook4",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {
+            "APP_ID": "586411814878247",
+            "APP_NAME": "shortfilmWindowTest"
+        }
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser"
         },
         "is_top_level": true,
         "variables": {}

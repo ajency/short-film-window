@@ -1,0 +1,12 @@
+<ion-view>
+    <ion-header-bar class="bar bar-header primary">
+        <h5 class="title whiteText">{{pageHeader}}</h5>
+    </ion-header-bar>
+    <ion-content class="mainContent" ng-switch="display">
+        <div class="loaderOuter" ng-switch-when="loader">
+            <div class="loading-spinner"></div>
+        </div>
+        <aj-error class="errors" ng-switch-when="error" error-type="errorType" tap-to-retry="initApp()">
+        </aj-error>
+    </ion-content>
+</ion-view>

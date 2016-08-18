@@ -1,0 +1,14 @@
+<ion-view ng-init="view.init()">
+    <ion-header-bar class="bar bar-header movieHeader" style="background:black;">
+        <button class="button button-icon whiteText text-uppercase" ng-click="view.back()"><i class="ion-ios-arrow-back"></i>BACK</button>
+    </ion-header-bar>
+    <ion-content class="videoOuter no-header">
+      
+        <div class="player1video">
+            <!-- Vimeo player -->
+            <iframe id="player1" ng-show="view.vimomeo" ng-src="{{player1}}" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <!-- You Tube player player -->
+            <div id="player2" ng-hide="view.vimomeo" ></div>
+        </div>
+    </ion-content>
+</ion-view>

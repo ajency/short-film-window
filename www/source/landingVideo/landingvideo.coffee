@@ -1,39 +1,51 @@
 angular.module 'SFWApp.landing', []
 
-.controller 'landingCtrl', ['$scope','App','DetailsAPI','$sce','$ionicLoading'
+.controller 'landingCtrl', ['$scope','App','DetailsAPI','$sce','$ionicLoading','$ImageCacheFactory','$cordovaToast','$state','$timeout','$ionicPlatform','InitialiseService'
+    ,($scope,App,DetailsAPI,$sce,$ionicLoading,$ImageCacheFactory,$cordovaToast,$state,$timeout,$ionicPlatform,InitialiseService)->
 
-	,($scope,App,DetailsAPI,$sce,$ionicLoading)->
-		$scope.view =
+        console.log "LANDING CONTROLLER"
+        $scope.view =
+            skip : true
+            land_vid_html5_api : angular.element("#land_vid_html5_api")
+            skiplangingVideo:->
+                land_vid_html5_api.pause();
+                console.log "skip videoa"
+                $ionicLoading.show
+                    content: 'Loading'
+                    animation: none
+                    showBackdrop: true
+                    maxWidth: 600
+                    hideOnStateChange:true
+                    showDelay: 0
+                App.navigate 'popular'
+            init:->
+                console.log 'sadsasadad'
+                InitialiseService.initialize()
+                .then (data) ->
+                    $ionicLoading.hide()
+                , (error) ->
+                    $cordovaToast.show('Please Connect to Internet', 'long', 'bottom')
+            viedoEnded : ()->
+                console.log 'ended',1
+                App.navigate 'popular'
 
-			skiplangingVideo:->
-				land_vid_html5_api.pause();
-				console.log "skip video"
-				$ionicLoading.show
-				  content: 'Loading'
-				  animation: 'fade-in'
-				  showBackdrop: true
-				  maxWidth: 600
-				  hideOnStateChange:true
-				  showDelay: 0
-			init:->
+        $scope.$on '$ionicView.afterEnter', ()->
+            $scope.view.land_vid_html5_api = angular.element("#land_vid_html5_api")
+            console.log $scope.view.land_vid_html5_api[0].onended
+            $scope.view.land_vid_html5_api[0].onended = $scope.view.viedoEnded
 
-				# $scope.landingVideo = $sce.trustAsHtml('<video id="land_vid_html5_api" class="vjs-tech" poster="img/LandingHeader.jpg" data-setup="{ controls: false,autoplay: true, preload: auto, loop: true, width: 100%, height:auto }" loop="" preload="auto" autoplay=""><source src="video/LandingVideo.mp4" type="video/mp4"></video>');
-				# console.log $scope.landingVideo
-				console.log 'enterd init'
 
-				DetailsAPI.GetVideoDetails()
-				.then (data)=>
-					console.log data.defaults.content.popular.weekly_premiere.image
-					DetailsAPI.setData({premiere :data.defaults.content.popular.weekly_premiere,new_addition :data.defaults.content.popular.new_additions,noteworthy :data.defaults.content.popular.noteworthy,awesome_playlist:data.defaults.content.popular.awesome_playlist,genre:data.defaults.content.genre ,playlist:data.defaults.content.playlists})
-					console.log 'enterd api'
-					$ionicLoading.hide();
-					App.navigate 'popular'
 
-				, (error)=>
-					$ionicLoading.hide();
-					console.log 'Error Loading data'
-	
 
-	  
+
+        # $timeout (->
+        #     console.log 'timeout'
+        #
+        #     return
+        #   ), 5000
+        # return
+
+
+
+
 ]
-				

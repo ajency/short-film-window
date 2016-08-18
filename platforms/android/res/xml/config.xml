@@ -1,21 +1,50 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.shortfilmwindow549658" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ShortFilm" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <feature name="Keyboard">
-        <param name="android-package" value="com.ionic.keyboard.IonicKeyboard" />
-        <param name="onload" value="true" />
+    <feature name="ParsePushPlugin">
+        <param name="android-package" value="com.phonegap.parsepushplugin.ParsePushPlugin" />
     </feature>
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="SpinnerDialog">
+        <param name="android-package" value="hu.dpal.phonegap.plugins.SpinnerDialog" />
+    </feature>
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="onload" value="true" />
     </feature>
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="FacebookConnectPlugin">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <access origin="https://m.facebook.com" />
+    <access origin="https://graph.facebook.com" />
+    <access origin="https://api.facebook.com" />
+    <access origin="https://*.fbcdn.net" />
+    <access origin="https://*.akamaihd.net" />
+    <preference name="android-minSdkVersion" value="15" />
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -42,12 +71,25 @@
       Ionic Framework Team
     </author>
     <content src="index.html" />
+    <access origin="*" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="6000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="AllowInlineMediaPlayback" value="true" />
+    <allow-navigation href="http://www.youtube.com/embed/*" />
+    <allow-navigation href="http://player.vimeo.com/video/*" />
+    <allow-navigation href="https://www.youtube.com/embed/*" />
+    <allow-navigation href="https://m.facebook.com/*/*/*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-intent href="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
 </widget>
