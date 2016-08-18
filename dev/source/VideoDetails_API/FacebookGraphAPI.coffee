@@ -42,7 +42,6 @@ shortFilmWindow
 
 	    facebookConnectPlugin.login [ 'manage_pages','publish_pages'], fbLoginSuccess, (error) ->
 	      console.log 'Login Error'
-	      console.error error
 	      defer.reject error
 	    return defer.promise
 				   
