@@ -1,10 +1,10 @@
 angular.module 'SFWApp.tabs',[]
-.controller 'popularCtrl', ['$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window'
-	,($scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
+.controller 'popularCtrl', ['InitialiseService','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$window'
+	,(InitialiseService,$scope, App, PulltorefreshAPI, DetailsAPI,$ionicLoading,$window)->
 
 
 
-
+		InitialiseService.initialize()
 
 		$scope.singleplaylist = (playlistId)->
 			console.log playlistId
@@ -77,6 +77,6 @@ angular.module 'SFWApp.tabs',[]
 		App.previousState = 'landing' if App.previousState == 'landing'
 
 		$scope.$on '$ionicView.afterEnter', (event, view)->
-			App.hideSplashScreen()
+			# App.hideSplashScreen()
 
 ]

@@ -1,5 +1,7 @@
 shortFilmWindow
-.controller 'sidebarCtrl', ($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService,$timeout) ->
+.controller 'sidebarCtrl',["$scope","$rootScope", "$ionicModal", "$ionicPopup", "$ionicSideMenuDelegate","App","DetailsAPI","$ionicLoading","$window","Storage","ParseNotificationService","$timeout",
+($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService,$timeout) ->
+  
   $scope.showsearchbar =  false
   $scope.searchDisplay = 'tabview'
   $scope.errorType = ''
@@ -8,7 +10,6 @@ shortFilmWindow
   $scope.watchListCount = '0'
   $rootScope.unreadNotificationCount = 0
   $scope.getwatchlistDetails= []
-
   $scope.hideSearchBar = ()->
     $scope.showsearchbar = 'hide'
 
@@ -23,11 +24,11 @@ shortFilmWindow
         'notselected'
 
   $scope.findIndexInWatchlist = (movieId) ->
-    match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
+    match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}
 
-      
+
   $scope.addwatchlist = (movieData) ->
-    obj = 
+    obj =
         "movie_id" : movieData.movie_id
         "singleVideoarray" : movieData
 
@@ -37,19 +38,21 @@ shortFilmWindow
         Storage.watchlistDetails 'set', $scope.getwatchlistDetails
     else
         $scope.getwatchlistDetails.splice matchInWatchList,1
-        Storage.watchlistDetails 'set', $scope.getwatchlistDetails 
+        Storage.watchlistDetails 'set', $scope.getwatchlistDetails
 
 
   $rootScope.$on 'openNotification', (event, pn)->
     App.fromNotification = 1
-    DetailsAPI.videoId = 131
+    console.log "PUSH NOTIFICATION",pn,"SIDEBAR"
+    DetailsAPI.videoId = pn.payload.movieId
     # pn.payload.movieId
     if $rootScope.unreadNotificationCount
       $rootScope.unreadNotificationCount--
-    App.notificationPayload = pn 
-    App.navigate('init')    
+    App.notificationPayload = pn
+    App.navigate 'init'
 
   $rootScope.$on 'receiveNotification', (event, pn)->
+    console.log "PUSH NOTIFICATION RECEIVED", pn
     $rootScope.unreadNotificationCount++
 
 
@@ -58,7 +61,7 @@ shortFilmWindow
   # onSelect: (suggestion) ->
   #   alert 'You selected: ' + suggestion.value + ', ' + suggestion.data
 
-  $scope.device_height = $window.innerHeight;
+  $scope.device_height = $window.innerHeight
   $scope.hgt = parseInt($scope.device_height) - parseInt(45)
 
 
@@ -91,32 +94,34 @@ shortFilmWindow
   $scope.singlePlayService = (videoData)->
     DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
     DetailsAPI.singleVideoarray.singleVideoarray = videoData
-    App.navigate 'init'  
+    App.navigate 'init'
 
-  $scope.searchMovie = () ->
-    Storage.watchlistDetails 'get'
-    .then (value)->
-      if _.isNull value
-        value = []
-      $scope.watchlistDetails = value
-      txt = document.getElementById("autocomplete")
-      $scope.searchDisplay = 'loader'
-      DetailsAPI.searchResult(txt.value).then (data)->
-        $scope.SearchResult = [] if !_.isEmpty $scope.SearchResult
-        $scope.SearchResult = data
-        device_width = $window.innerWidth
-        device_height = $window.innerHeight
-        $scope.hgt = device_height - 32
-        $timeout ->
-          if $scope.SearchResult.length == 0
-            $scope.errorType = 'no_Search_result'
-            $scope.searchDisplay = 'error'
-          else
-            $scope.classname = 'searchResult'
-            $scope.searchDisplay = 'searchresult'
-      , (error)=>
-            $scope.errorType = 'offline'
-            $scope.searchDisplay = 'error'      
+  $scope.searchMovie = (txt=null) ->
+    console.log txt
+    if txt
+      Storage.watchlistDetails 'get'
+      .then (value)->
+        if _.isNull value
+          value = []
+        $scope.watchlistDetails = value
+        $scope.searchDisplay = 'loader'
+        App.hideKeyboard()
+        DetailsAPI.searchResult(txt).then (data)->
+          $scope.SearchResult = [] if !_.isEmpty $scope.SearchResult
+          $scope.SearchResult = data
+          device_width = $window.innerWidth
+          device_height = $window.innerHeight
+          $scope.hgt = device_height - 32
+          $timeout ->
+            if $scope.SearchResult.length == 0
+              $scope.errorType = 'no_Search_result'
+              $scope.searchDisplay = 'error'
+            else
+              $scope.classname = 'searchResult'
+              $scope.searchDisplay = 'searchresult'
+        , (error)->
+              $scope.errorType = 'offline'
+              $scope.searchDisplay = 'error'
 
 
 
@@ -128,13 +133,13 @@ shortFilmWindow
 
 
   $scope.hide = () ->
-    $ionicLoading.hide();
+    $ionicLoading.hide()
     hideOnStateChange: false
 
 
   $scope.displayWeb = (Url) ->
     $ionicSideMenuDelegate.toggleLeft()
-    window.open(Url, '_system');
+    window.open(Url, '_system')
     return true
 
   $scope.submit = ->
@@ -171,5 +176,5 @@ shortFilmWindow
       ])
 
 
-
+]
 

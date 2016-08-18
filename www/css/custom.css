@@ -240,7 +240,7 @@ a {
 .playlist .playlistContent .imageContainer img {
   /*width: 100%;*/
   height: 100%;
-  width: auto !important;
+  width: 100% !important;
   position: relative;
   left: 100%;
   margin-left: -200%;
@@ -364,7 +364,7 @@ a {
 }
 .imageContainerOuter img {
   height: 100%;
-  width: auto !important;
+  width: 100% !important;
   position: relative;
   left: 100%;
   margin-left: -200%;

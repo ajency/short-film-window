@@ -15,6 +15,7 @@ shortFilmWindow
 
 		defer.promise
 	GenreAPI.ApplyFilter = (param)->
+
 		defer = $q.defer()
 
 		$http.get GLOBAL_URL+"/wp-json/get_genre_videos?genre_id=#{param[0]}&sort_key=#{param[1]}&language_id=#{param[2]}"

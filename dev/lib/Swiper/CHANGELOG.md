@@ -1,5 +1,26 @@
 # Change Log
 
+## Swiper 3.3.1 - Released on February 7, 2016
+  * New `uniqueNavElements` parameter. If enabled (by default) and navigation elements' parameters passed as the string (like `.pagination`) then Swiper will look for such elements through child elements first. Applies for pagination, prev/next buttons and scrollbar
+  * New `onPaginationRendered` callback. Will be fired after pagination elements generated and added to DOM
+  * New `.reLoop()` method, which combines `.destroyLoop()` + `.createLoop()` methods with additional positioning fixes. Useful to call after you have changed `slidesPerView` parameter, it will dynamically recreate duplicated slides required for loop
+  * Fixed not working mousewheel control in IE 11
+  * Fixed issue with lazy loading images not being recalculated after window resize
+  * Fixed issues when using loop with breakpoints changing `slidesPerView/Group` parameters
+  * Numerous minor fixes
+
+## Swiper 3.3.0 - Released on January 10, 2016
+  * New 3D Flip effect. Can be enabled with `effect: 'flip' parameter
+  * New types of pagination with new parameters:
+    * `paginationType` - type of pagination. Can be `'bullets'` (default) or `'fraction'` or `'progress'` or `'custom'`
+    * `paginationFractionRender(swiper, currentClass, totalClass)` - custom function to render "fraction" type pagination
+    * `paginationProgressRender(swiper, progressbarClass)` - custom function to render "progress" type pagination
+    * `paginationCustomRender(swiper, current, total)` - custom function to render "custom" type pagination
+  * New `lazyLoadingInPrevNextAmount` parameter allows to lazy load images in specified amount of next/prev slides
+  * New `autoplayStopOnLast` parameter (`true` by default) tells to autoplay should it stop on last slide or start from first slide
+  * New `onAutoplay(swiper)` callback
+  * Minor fixes
+
 ## Swiper 3.2.7 - Released on December 7, 2015
   * Fixed issue with using HTMLElements for next/prevButton parameters with breakpoints
   * Fixed issue with not working Auto Height when using Controller

@@ -30,7 +30,7 @@
                                     {{ ::notify.movieDetails.tagline}}
                                 </div>
                                 <div class="country padding-vertical">
-                                    {{ ::notify.movieDetails.region }}/ {{ ::notify.movieDetails.language}}<span></span>
+                                    {{ ::notify.movieDetails.region ? notify.movieDetails.region : 'No regions' }}/ {{ ::notify.movieDetails.language ? notify.movieDetails.language : 'No languages'}}<span></span>
                                     <div class="pull-right"><i class="ion-android-time"></i> {{ ::notify.movieDetails.duration }} Min</div>
                                 </div>
                                 <div class="viewsNLikes padding-vertical">

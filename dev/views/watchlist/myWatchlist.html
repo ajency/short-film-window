@@ -32,7 +32,7 @@
                                                 {{ data.singleVideoarray.tagline}}
                                             </div>
                                             <div class="country padding-vertical">
-                                                {{ data.singleVideoarray.region }}/ {{ data.singleVideoarray.language}}
+                                                <span>{{ ::data.singleVideoarray.region ? data.singleVideoarray.region : 'No regions' }} / {{::data.singleVideoarray.language ? data.singleVideoarray.language : 'No languages'}}</span>
                                                 <div class="pull-right"><i class="ion-android-time"></i> {{ data.singleVideoarray.duration }} Min</div>
                                             </div>
                                             <div class="viewsNLikes padding-vertical">

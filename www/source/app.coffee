@@ -29,21 +29,37 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
       , (error) ->
           $cordovaToast.show('Please Connect to Internet', 'long', 'bottom')
 
+      
+        window.fbAsyncInit = ->
+          Parse.FacebookUtils.init
+            appId: '955517544488844'
+            version: 'v2.3'
+            xfbml: true
+          return
 
+        ((d, s, id) ->
+          js = undefined
+          fjs = d.getElementsByTagName(s)[0]
+          if d.getElementById(id)
+            return
+          js = d.createElement(s)
+          js.id = id
+          js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.7'
+          fjs.parentNode.insertBefore js, fjs
+          return
+        ) document, 'script', 'facebook-jssdk'
 
 
     $rootScope.App = App
 
   #....YouTube Api loading
-    tag = document.createElement('script')
-    tag.src = 'https://www.youtube.com/iframe_api'
-    firstScriptTag = document.getElementsByTagName('script')[0]
-    firstScriptTag.parentNode.insertBefore tag, firstScriptTag
+    # tag = document.createElement('script')
+    # tag.src = 'https://www.youtube.com/iframe_api'
+    # firstScriptTag = document.getElementsByTagName('script')[0]
+    # firstScriptTag.parentNode.insertBefore tag, firstScriptTag
     #..... device screen size
     device_width = $window.innerWidth;
     device_height = $window.innerHeight;
-    console.log device_width
-    console.log device_height
 
     #....swiper initialization
     swiper = new Swiper('.swiper-container', {

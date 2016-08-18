@@ -42,6 +42,7 @@ shortFilmWindow
           DetailsAPI.setData
             premiere: $rootScope.vData.defaults.content.popular.weekly_premiere
             new_addition: $rootScope.vData.defaults.content.popular.new_additions
+            mstPopular : $rootScope.vData.defaults.content.popular.most_popular
             noteworthy: $rootScope.vData.defaults.content.popular.noteworthy
             awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist
             genre: $rootScope.vData.defaults.content.genre

@@ -22,7 +22,7 @@
               {{ Videodetails.tagline }}
             </div>
             <div class="country">
-              {{ Videodetails.region }} / {{Videodetails.language }}<span></span>
+              {{ Videodetails.region ? Videodetails.region : 'n/a'}} / {{Videodetails.language ? Videodetails.language : 'n/a' }}<span></span>
               <div class="pull-right"><i class="ion-android-time"></i> {{Videodetails.duration }}  Min</div>
             </div>
             <div class="category">

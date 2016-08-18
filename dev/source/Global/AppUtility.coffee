@@ -33,6 +33,9 @@ shortFilmWindow.factory 'App', [
       getbackView: ->
         console.log $ionicHistory.backView()
       goBack: (count) ->
+        console.log "in back function"
+        console.log this.previousState
+        console.log this.currentState
         if this.fromNotification
           this.fromNotification = 0
           $state.go "popular"
@@ -58,7 +61,18 @@ shortFilmWindow.factory 'App', [
         if $window.cordova and $window.cordova.plugins.Keyboard
           return $cordovaKeyboard.hideAccessoryBar(true)
       hideSplashScreen : ()->
-        if navigator.splashscreen then navigator.splashscreen.hide()
-
+        if navigator.splashscreen then return navigator.splashscreen.hide()
+      hideKeyboard : ()->
+        if @isWebView() and cordova.plugins.Keyboard then return cordova.plugins.Keyboard.close()
+      showKeyboard : ->
+        return true
+        # if @isWebView() and cordova.plugins.Keyboard then return cordova.plugins.Keyboard.show()
+      setInitialRun : (initial) ->
+        $window.localStorage['initialRun'] = if initial then 'true' else 'false'
         return
+      isInitialRun : ->
+        value = $window.localStorage['initialRun'] or 'true'
+        value == 'true'
+
+
 ]

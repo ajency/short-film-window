@@ -2,6 +2,8 @@ angular.module 'SFWApp.landing', []
 
 .controller 'landingCtrl', ['$scope','App','DetailsAPI','$sce','$ionicLoading','$ImageCacheFactory','$cordovaToast','$state','$timeout','$ionicPlatform','InitialiseService'
     ,($scope,App,DetailsAPI,$sce,$ionicLoading,$ImageCacheFactory,$cordovaToast,$state,$timeout,$ionicPlatform,InitialiseService)->
+
+        console.log "LANDING CONTROLLER"
         $scope.view =
             skip : true
             land_vid_html5_api : angular.element("#land_vid_html5_api")
@@ -10,7 +12,7 @@ angular.module 'SFWApp.landing', []
                 console.log "skip videoa"
                 $ionicLoading.show
                     content: 'Loading'
-                    animation: 'fade-in'
+                    animation: none
                     showBackdrop: true
                     maxWidth: 600
                     hideOnStateChange:true

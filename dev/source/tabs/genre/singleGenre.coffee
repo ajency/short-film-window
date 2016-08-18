@@ -28,11 +28,11 @@ shortFilmWindow
       'notselected'
 
   $scope.findIndexInWatchlist = (movieId) ->
-    match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
+    match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}
 
         
   $scope.addwatchlist = (movieData) ->
-    obj = 
+    obj =
       "movie_id" : movieData.movie_id
       "singleVideoarray" : movieData
 
@@ -42,28 +42,28 @@ shortFilmWindow
       Storage.watchlistDetails 'set', $scope.getwatchlistDetails
     else
       $scope.getwatchlistDetails.splice matchInWatchList,1
-      Storage.watchlistDetails 'set', $scope.getwatchlistDetails    
+      Storage.watchlistDetails 'set', $scope.getwatchlistDetails
       
   $scope.init = () ->
     Storage.watchlistDetails 'get'
       .then (value)->
         if _.isNull value
           value = []
-        $scope.getwatchlistDetails = value 
-        if DetailsAPI.GlobalChild_array.length >0 
+        $scope.getwatchlistDetails = value
+        if DetailsAPI.GlobalChild_array.length >0
           $scope.genreData= DetailsAPI.GlobalChild_array
           $scope.genre = DetailsAPI.Global_array
           $scope.sortData = DetailsAPI.Sort
           $scope.language = DetailsAPI.Filter
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
+          device_width = $window.innerWidth
+          device_height = $window.innerHeight
           $scope.used_height = 88 + 73
           $scope.hgt = device_height - $scope.used_height
           $scope.display = 'result'
           return
         else
           GenreAPI.GetSingleGenre(DetailsAPI.videoId)
-          .then (data)=>
+          .then (data)->
             DetailsAPI.GlobalChild_array = data.movies
             DetailsAPI.Global_array = data.genre
             DetailsAPI.Filter = data.filters.languages
@@ -73,12 +73,12 @@ shortFilmWindow
             $scope.sortData= data.sort_keys
             $scope.language = data.filters.languages
             $scope.display = 'result'
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
+            device_width = $window.innerWidth
+            device_height = $window.innerHeight
             $scope.used_height = 88 + 73
             $scope.hgt = device_height + 3 - $scope.used_height
 
-          , (error)=>
+          , (error)->
               $scope.display = 'error'
 
 
@@ -129,12 +129,12 @@ shortFilmWindow
 
     arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
 
-    $ionicLoading.hide();
+    $ionicLoading.hide()
     hideOnStateChange: false
     $scope.display = 'loader'
 
     GenreAPI.ApplyFilter(arr)
-    .then (data)=>
+    .then (data)->
       DetailsAPI.GlobalChild_array = data.movies
       DetailsAPI.Global_array = data.genre
       DetailsAPI.Filter = data.filters.languages
@@ -155,27 +155,27 @@ shortFilmWindow
       else
         $scope.errorType = 'no_Search_result'
         $scope.display = 'error'
-    , (error)=>
+    , (error)->
         $scope.errorType = ''
         $scope.display = 'error'
 
-      $ionicLoading.hide();
+      $ionicLoading.hide()
 
   $scope.hide = () ->
-    $ionicLoading.hide();
+    $ionicLoading.hide()
     hideOnStateChange: false
 
   $scope.reset = () ->
     $scope.sortimg = 'img/icons/sort_notapplied.png'
     $scope.filterimg = 'img/icons/filter_grey.png'
     $scope.sort_key = null
-    $scope.lang = ''
+    $scope.lang = null
     arr = [ DetailsAPI.Global_array.genre_id , $scope.sort_key, $scope.lang ]
     $ionicLoading.hide()
     hideOnStateChange: false
     $scope.display = 'loader'
     GenreAPI.ApplyFilter(arr)
-    .then (data)=>
+    .then (data)->
       DetailsAPI.GlobalChild_array = data.movies
       DetailsAPI.Global_array = data.genre
       DetailsAPI.Filter = data.filters.languages
@@ -185,25 +185,22 @@ shortFilmWindow
       $scope.genre = data.genre
       $scope.sortData= data.sort_keys
       $scope.language = data.filters.languages
-      $ionicLoading.hide();
+      $ionicLoading.hide()
       $scope.display = 'result'
-    , (error)=>
+    , (error)->
       $scope.errorType = ''
       $scope.display = 'error'
-      $ionicLoading.hide();
+      $ionicLoading.hide()
 
   $scope.hideNoReset = ()->
-    $scope.sortimg = 'img/icons/sort_notapplied.png'
-    $scope.filterimg = 'img/icons/filter_grey.png'
-    $scope.sort_key = null
-    $scope.lang = ''
-    $ionicLoading.hide();
+    
+    $ionicLoading.hide()
     hideOnStateChange: false
 
   $scope.singlePlayService = (videoData)->
     DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
     DetailsAPI.singleVideoarray.singleVideoarray = videoData
-    App.navigate 'init'  
+    App.navigate 'init'
 
   $scope.back = ()->
     DetailsAPI.GlobalChild_array = []

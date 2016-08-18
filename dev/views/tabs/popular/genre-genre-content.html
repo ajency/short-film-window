@@ -1,0 +1,27 @@
+<div class="awesomePlaylistContent" style="height:{{hgt}}px;">
+    <div class="limitDiv" ng-repeat="genredata in data.content | limitTo: 5">
+        <div class="playlistContent">
+            <div class="col imageContainer" ng-click="singlePlaylistGenre( genredata.genre_id, genredata.genre_taxonomy)">
+                <div class="playlistContentInner">
+                    <img src="{{ ::genredata.genre_image_url }}" />
+                    <div class="playlistDetails playlistDetailsInner">
+                        <div class="totalFilms pull-left">
+                            <div class="pull-left"><span class="filmNo">{{ ::genredata.genre_count }}</span> Films</div>
+                            <div class="pull-right"><span class="time"><i class="ion-android-time"></i>{{ ::genredata.run_time }}Min</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!--  <div class="limitDiv"> -->
+        <div class="playlistContent divHeight">
+            <div class="col imageContainer popularImageCont">
+                <div class="viewPlaylist text-center">
+                    <div class="text">Thats just the beginning!</div>
+                    <button ui-sref="genre" class="primary button button-small whiteText text-uppercase">See all genre</button>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+</div>

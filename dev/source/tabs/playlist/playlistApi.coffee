@@ -8,8 +8,6 @@ shortFilmWindow
         defer = $q.defer()
         $http.get GLOBAL_URL+"/wp-json/get_playlist_videos/?playlist_id=#{playlistId}"
         .then (data)->
-            console.log 'single genre data succ'
-            console.log data
             defer.resolve angular.fromJson(data.data)
         , (error)->
             defer.reject error

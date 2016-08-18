@@ -113,10 +113,8 @@
 			{
 				/*width: 100%;*/
 			    height: 100%;
-			    width: auto !important;
+			    width: 100% !important;
 			    position: relative;
-			    left: 100%;
-			    margin-left: -200%;
 			}
 		}
 		.playlistContentInner
@@ -237,8 +235,6 @@
 				padding-bottom: 5px;
 			}
 		}
-<<<<<<< HEAD:www/less/popular.less
-=======
 	}	
 	.awesomePlaylistContent
 	{
@@ -261,7 +257,6 @@
 		{
 			width: 100%;
 		}
->>>>>>> SFW-develop:dev/less/popular.less
 	}
 }
 .endOfPlaylist
@@ -296,13 +291,8 @@
 	box-shadow: none;
 	.movieDetails
 	{
-<<<<<<< HEAD:www/less/popular.less
-		bottom: 60px;
-	}
-=======
 		bottom: 0px;
 	}	
->>>>>>> SFW-develop:dev/less/popular.less
 }
 .cardDetails
 {
@@ -329,7 +319,7 @@
 	img
 	{
 		height: 100%;
-		width: auto !important;
+		width: 100% !important;
 		position: relative;
 		left: 100%;
 		margin-left: -200%;
@@ -431,12 +421,31 @@
   margin-left: -15px;
 }
 
+.search-action{
+	width: 53px;
+	height:53px;
+    text-align:center;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 100;
+    border: none;
+}
+.search-arrow{
+	width: 53px;
+	height:53px;
+	text-align:center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 100;
+    border: none;
+}
 .box
 {
 	position: absolute;
 	right: 0;
-	top: 0;
-	width: 100%;
+	top: 15px;
 	z-index: 99;
 	height: 45px;
 	border-bottom: 1px solid @grayLightest;
@@ -500,12 +509,7 @@
 	input
 	{
 		width: 100%;
-<<<<<<< HEAD:www/less/popular.less
-	    padding-left: 30px;
-	    position: relative;
-	    height: 100%;
-	    color: @grayDark;
-=======
+
 	    padding-left: 45px;
 	    position: relative;	    
 	    height: 100%;
@@ -513,7 +517,6 @@
 	    line-height: 1.2;
 	    font-size: 16px;  
 	    border-radius: 0;  
->>>>>>> SFW-develop:dev/less/popular.less
 	}
 	i
 	{
@@ -604,10 +607,6 @@
     /*transition: all 2s ease;*/   
     opacity:0;
    transition: 0.5s linear all;
-}
-.playlistHeaderSmall.item-divider {
-   /*display:none;*/
-   /*transition: 5s linear all;*/
 }
 .playlistHeaderSmall.item-divider.assertive
 {

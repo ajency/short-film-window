@@ -8,7 +8,7 @@
        <h4 class="text-uppercase padding item-divider filterHeader">Language</h4>
         <div ng-repeat = "data in language" class="customRadio">
             <label class="item item-radio">
-            <input type="radio" name="group1"ng-click="langSelected({{ data.id}} )">
+            <input type="radio" name="group1" ng-checked="data.id == lang" ng-click="langSelected(data.id)" >
             <div class="item-content">
                {{ data.name}}
             </div>

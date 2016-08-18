@@ -8,6 +8,7 @@ shortFilmWindow
 	DetailsAPI.array_addition = []
 	DetailsAPI.array_noteworthy = []
 	DetailsAPI.array_awplaylist = []
+	DetailsAPI.array_mostpopular = []
 	DetailsAPI.genre_array = []
 	DetailsAPI.playlist_array = []
 	DetailsAPI.Global_array = []
@@ -23,8 +24,6 @@ shortFilmWindow
 
 	DetailsAPI.GetVideoDetails = ()->
 		defer = $q.defer()
-
-
 		$http.get GLOBAL_URL+'/wp-json/get_defaults'
 		.then (data)->
 			defer.resolve data.data
@@ -63,6 +62,7 @@ shortFilmWindow
 			DetailsAPI.array_awplalist = opts.awesome_playlist
 			DetailsAPI.genre_array = opts.genre
 			DetailsAPI.playlist_array = opts.playlist
+			DetailsAPI.array_mostpopular = opts.mstPopular
 			# Pre-loading all images ....
 
 			# i = 0

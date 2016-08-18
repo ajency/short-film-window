@@ -5,15 +5,17 @@ shortFilmWindow
     $scope.notificationArray = []
 
     $rootScope.$on 'receiveNotification', (event, pn)->
+      console.log "RECEIVE PUSH Notifications",event,pn
       $scope.getNotifications()
 
-    $scope.view = 
+    $scope.view =
       onTapToRetry: ->
-        $scope.getNotifications()  
+        $scope.getNotifications()
 
     $scope.getNotifications = ()->
+      console.log "GET Notifications"
       $rootScope.$broadcast 'refreshContent',{}
-      $scope.hgt = $window.innerHeight - 88
+      $scope.hgt = $window.innerHeight - 80
       $scope.swiperhgt = $scope.hgt - 31
       if App.isOnline()
         $scope.result = 'loader'
@@ -21,10 +23,10 @@ shortFilmWindow
         .then (value)->
           if _.isNull value
             value = []
-          $scope.getwatchlistDetails = value  
- 
+          $scope.getwatchlistDetails = value
           ParseNotificationService.getNotificationsWithStatus()
           .then (data) ->
+            console.log data,"PARSE Notifications"
             if data.length == 0
               $scope.result = 'no-new-notifications'
               $scope.initWatchlist
@@ -35,7 +37,8 @@ shortFilmWindow
                 $scope.refreshSwiper = true
                 $scope.result = 'display'
                 ),50
-
+          , (error) ->
+            $scope.result = 'error'
           .catch (error) ->
             $scope.result = 'error'
       else
@@ -52,7 +55,7 @@ shortFilmWindow
         .catch (error) ->
           $scope.result = 'error'
       else
-        $scope.result = 'error'   
+        $scope.result = 'error'
 
     $scope.markNotificationAsRead = (notification_id)->
       if App.isOnline()
@@ -70,7 +73,7 @@ shortFilmWindow
         $scope.result = 'error'
 
 
-    $scope.checkIfaddedToWatchList = (movie_id)-> 
+    $scope.checkIfaddedToWatchList = (movie_id)->
       if $scope.getwatchlistDetails.length > 0
         match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movie_id}
         if match != -1
@@ -81,12 +84,12 @@ shortFilmWindow
         'notselected'
 
     $scope.findIndexInWatchlist = (movieId) ->
-      match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}  
+      match = _.findIndex $scope.getwatchlistDetails, {"movie_id": movieId}
 
           
     $scope.addwatchlist = (movieData,notificationId) ->
-      $scope.markNotificationAsRead(notificationId) 
-      obj = 
+      $scope.markNotificationAsRead(notificationId)
+      obj =
         "movie_id" : movieData.movie_id
         "singleVideoarray" : movieData
 
@@ -96,13 +99,13 @@ shortFilmWindow
         Storage.watchlistDetails 'set', $scope.getwatchlistDetails
       else
         $scope.getwatchlistDetails.splice matchInWatchList,1
-        Storage.watchlistDetails 'set', $scope.getwatchlistDetails   
+        Storage.watchlistDetails 'set', $scope.getwatchlistDetails
 
     $scope.singlePlayService = (videoData,notificationId)->
-      $scope.markNotificationAsRead(notificationId) 
+      $scope.markNotificationAsRead(notificationId)
       DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
       DetailsAPI.singleVideoarray.singleVideoarray = videoData
-      App.navigate 'init'      
+      App.navigate 'init'
 
 
 

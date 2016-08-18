@@ -2,10 +2,11 @@ shortFilmWindow
 .controller 'playerCtrl', ['$scope','$sce','DetailsAPI','$ionicHistory','App','$timeout'
   ,($scope,$sce,DetailsAPI,$ionicHistory,App,$timeout)->
 
+    $scope.temp = "temp"
     $scope.videoDetails = DetailsAPI.singleVideoarray
     $scope.videourl = $scope.videoDetails.singleVideoarray.videourl
 
-
+    player = null
     $scope.switchHeaderBar = true
 
     $timeout ->
@@ -27,34 +28,36 @@ shortFilmWindow
       vType : $scope.videoDetails.singleVideoarray.type
       vimomeo : true
       init:->
+
         if(@vType == 'vimeo')
           modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl
           @vimomeo = true
           $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
+          # player = document.getElementById('player1')
+          # console.log angular.element(player)
         else
           @vimomeo = false
-          player = new YT.Player('player2', {
-            height: '100%',
-            width: '100%',
-            videoId:$scope.videourl ,
-            playerVars: { 'autoplay': 1, 'rel': 0, 'wmode':'transparent', 'modestbranding' :1 }
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-            }
-          });
+          console.log $scope.videoDetails.singleVideoarray,"videoDetails"
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl
+          
+     
+      
+          onYouTubeIframeAPIReady = () ->
+            player = new YT.Player 'player2',
+              height: '100%',
+              width: '100%',
+              videoId: $scope.videoDetails.singleVideoarray.videourl,
+              events:
+                'onReady': onPlayerReady
+          onPlayerReady = (event)->
+            console.log "PLAY"
+            event.target.playVideo()
 
+        
 
-    onPlayerReady = (event) ->
-        event.target.playVideo()
-
-    onPlayerStateChange = (event) ->
-      if event.data == YT.PlayerState.PLAYING and !done
-        setTimeout stopVideo, 6000
-        done = true
-
-    stopVideo = ->
-      player.stopVideo()
-
-
+          
+          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl)
+          onYouTubeIframeAPIReady()
+          # player = document.getElementById('player2')
+          # console.log angular.element(player).onre
 ]

@@ -14,9 +14,9 @@ shortFilmWindow.service 'ParseNotificationService', [
             notificationArray = []
             _.each results, (value) ->
               j = {}
-              if value.attributes.notificationId.attributes.movieDetails             
+              if value.attributes.notificationId.attributes.movieDetails
                 j = angular.fromJson decodeURIComponent value.attributes.notificationId.attributes.movieDetails
-               obj =
+                obj =
                 "fromnow": moment(value.attributes.createdAt).fromNow()
                 "createdAt": value.attributes.createdAt
                 "notificationId": value.attributes.notificationId.id
@@ -24,6 +24,13 @@ shortFilmWindow.service 'ParseNotificationService', [
                 "alert": value.attributes.notificationId.attributes.alert
                 "movieDetails": j
                 "status": value.attributes.status
+              if _.isString(obj.movieDetails.title) and obj.movieDetails.title.indexOf('+') != -1
+                obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ')
+              if _.isString(obj.movieDetails.director) and obj.movieDetails.director.indexOf('+') != -1
+                obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ')
+              if _.isString(obj.movieDetails.tagline) and obj.movieDetails.tagline.indexOf('+') != -1
+                obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ')
+                
               notificationArray.push obj
             deferred.resolve notificationArray
             return

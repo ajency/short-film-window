@@ -1,6 +1,7 @@
 shortFilmWindow
-.controller 'InitCtrl', ['$scope', '$sce','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','InitialiseService','ParseNotificationService','$rootScope'
-     ,($scope, $sce,App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,InitialiseService,ParseNotificationService,$rootScope)->
+.controller 'InitCtrl', ['$scope','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','ParseNotificationService','$sce','FacebookGraphAPI','$cordovaOauth'
+     ,($scope, App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,ParseNotificationService,$sce,FacebookGraphAPI,$cordovaOauth)->
+
     $scope.Videodetails = []
     # $scope.display = 'loader'
     $scope.addvideoDetails = []
@@ -9,8 +10,31 @@ shortFilmWindow
     $scope.intFlag = '0'
     $scope.watchlistimg = ''
     $scope.showLoaderOrSynopsis = true
-
+    $scope.appURL = GLOBAL_URL
     $scope.showVideo = false
+    $scope.showLoginBtn= true
+    # fbLoginSuccess = (userData) ->
+    #   console.log 'Login Success'
+    #   console.log 'UserInfo: ', userData
+    #   $scope.appURL = GLOBAL_URL
+    #   return
+
+    # facebookConnectPlugin.login [ 'public_profile', 'email' ,'user_friends' ], fbLoginSuccess, (error) ->
+    #   console.log 'Login Error'
+    #   console.error error
+    #   return
+
+    # FacebookGraphAPI.checkLoginStatus()
+    # .then (data)->
+    #     console.log data
+    #     if data.status== 'connected'
+    #         $scope.showLoginBtn= false
+    #     else
+    #         $scope.showLoginBtn= true
+
+    # ,(error)->
+    #     console.log error
+    #     $scope.showLoginBtn= true
 
     $scope.share = (slug)->
         share.shareNative(slug)
@@ -50,14 +74,16 @@ shortFilmWindow
         Storage.watchlistDetails 'get'
         .then (value)->
             $scope.getwatchlistDetails = value
+            obj =
+                "movie_id" : DetailsAPI.singleVideoarray.movie_id
+                "singleVideoarray" : DetailsAPI.singleVideoarray.singleVideoarray
             if _.isNull($scope.getwatchlistDetails) || $scope.getwatchlistDetails.length == 0
-                $scope.addvideoDetails.push(DetailsAPI.singleVideoarray)
+                $scope.addvideoDetails.push(obj)
                 Storage.watchlistDetails 'set', $scope.addvideoDetails
                 $scope.watchlistimg = 'icon-unfavorite'
                 $scope.$apply()
 
             else
-
                 matchIndex = _.findLastIndex $scope.getwatchlistDetails, {"movie_id": DetailsAPI.singleVideoarray.movie_id }
                 if matchIndex != -1
                     $scope.getwatchlistDetails.splice matchIndex,1
@@ -67,7 +93,7 @@ shortFilmWindow
                     $scope.watchlistimg = 'icon-favorite'
                     $scope.$apply()
                 else
-                    $scope.getwatchlistDetails.push(DetailsAPI.singleVideoarray)
+                    $scope.getwatchlistDetails.push(obj)
                     wl = $scope.getwatchlistDetails
                     $scope.addvideoDetails = wl
                     Storage.watchlistDetails 'set', $scope.addvideoDetails
@@ -79,79 +105,46 @@ shortFilmWindow
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
+            console.log "Displaying video details"
+            console.log GLOBAL_URL
+            console.log $scope.Videodetails
             $scope.checkIfaddedlist()
             DetailsAPI.GetSingleVideo(DetailsAPI.singleVideoarray.movie_id)
             .then (data)->
                 $scope.showLoaderOrSynopsis = false
-                document.getElementById('synopsis').outerHTML = (data.content)
-                $scope.initPlayer()
-            , (error)=>
-                # $scope.display = 'error' 
-                console.log 'error'  
+                $scope.synopsisData = data.content
+                console.log $scope.synopsisData
+                
+            , (error)->
+                # $scope.display = 'error'
         else
             DetailsAPI.GetSingleVideo(movieId)
-            .then (data)=>
+            .then (data)->
                 $scope.display = 'result'
                 obj = {"movie_id":data.movie_id,"singleVideoarray":data}
                 DetailsAPI.singleVideoarray = obj
                 $scope.Videodetails = data
-                $scope.Videodetails
                 $scope.showLoaderOrSynopsis = false
-                document.getElementById('synopsis').outerHTML = ($scope.Videodetails.content);
-                $scope.initPlayer()
+                $scope.synopsisData = $scope.Videodetails.content
 
-            , (error)=>
-                # $scope.display = 'error' 
-                console.log 'error'   
-
-    $scope.initPlayer = ()->
-        $scope.vType = DetailsAPI.singleVideoarray.singleVideoarray.type
-        $scope.videourl = DetailsAPI.singleVideoarray.singleVideoarray.videourl
-
-
-
-        if($scope.vType == 'vimeo')
-
-          videoLinkURL = document.createElement 'a'
-          videoLinkURL.href = DetailsAPI.singleVideoarray.singleVideoarray.embedurl
-          modifiedUrl = videoLinkURL.protocol+'//'+videoLinkURL.hostname+videoLinkURL.pathname
-          $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl)
-        else
-          player = new YT.Player('player2', {
-            height: '100%',
-            width: '100%',
-            videoId:$scope.videourl ,
-            playerVars: { 'autoplay': 0, 'rel': 0, 'wmode':'transparent', 'modestbranding' :1 }
-            events: {
-              'onReady': onPlayerReady,
-              'onStateChange': onPlayerStateChange
-            }
-          });  
-
-    onPlayerReady = (event) ->
-        event.target.playVideo()
-
-    onPlayerStateChange = (event) ->
-      if event.data == YT.PlayerState.PLAYING and !done
-        setTimeout stopVideo, 6000
-        done = true
-
-    stopVideo = ->
-      player.stopVideo()    
-
+            , (error)->
+                # $scope.display = 'error'
+                console.log 'error'
 
     $scope.initializeApp = ()->
 
       $scope.display = 'loader'
-
+      console.log "INITIALIZEAPP ", DetailsAPI
       ParseNotificationService.updateNotificationStatus(App.notificationPayload.payload.notificationId)
-      .then (data)->  
+      .then (data)->
+        console.log "PARSE INIT FROM APP",data
         $scope.init(DetailsAPI.videoId)
 
       .catch (error)->
         $scope.init(DetailsAPI.videoId)
 
-
+    $scope.trustAsHtml = (string) ->
+        $sce.trustAsHtml string
 
 
     $scope.view =
@@ -169,15 +162,40 @@ shortFilmWindow
         playVideo : ()->
           # App.navigate 'singlePlayer'
           $scope.showVideo = true
+          App.navigate 'singlePlayer'
 
      if App.fromNotification
       $scope.initializeApp()
-    else
+     else
       $scope.init()
 
-    $scope.showSynopsisDiv = false
+    
+    # $scope.LoginwithFacebook = ->
+    #   console.log 'clicked'
+    #   $cordovaOauth.facebook('586411814878247', [ 'email' ]).then ((result) ->
+    #     alert 'Auth Success..!!' + result
+    #     return
+    #   ), (error) ->
+    #     alert 'Auth Failed..!!' + error
+    #     return
+    #   return
 
-]
+    # $scope.showSynopsisDiv = false
+
+    # $scope.displayWeb = (Url) ->
+    #     console.log Url
+    #     window.open(Url, '_system')
+    #     return true
+    # $scope.loginFacebook = ()->
+    #     FacebookGraphAPI.loginToFacebook($scope.Videodetails.slug)
+    #     .then (data)->
+    #         console.log 'Login successfull'
+    #     ,(error)->
+    #         console.log 'Login error'
+
+
+    
+   ]
 
 
 

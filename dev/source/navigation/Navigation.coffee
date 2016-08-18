@@ -7,7 +7,13 @@ shortFilmWindow
 
 	$stateProvider
 
-	    .state 'appInitialize',
+	    .state 'appSlides',
+			url: '/appSlides'
+			abstract: false
+			controller: 'appSlidesCtrl'
+			templateUrl: 'landingVideo/appSlides.html'
+
+		.state 'appInitialize',
 			url: '/appInitialize'
 			abstract: false
 			controller: 'appInitializeCtrl'

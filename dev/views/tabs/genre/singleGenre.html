@@ -11,7 +11,7 @@
                 <div class="item item-avatar singleGenreAvtar item-divider">
                     <img src="{{ genre.genre_image_url }}">
                     <div class="primaryText cardTitle">{{ ::genre.genre_name }}</div>
-                    <div class=" bold totalfilmsNTime">{{ ::genre.genre_count }} Films<span class="pull-right"><i class="ion-android-time"></i>{{ ::genre.run_time }} Min</span></div>
+                    <div class=" bold totalfilmsNTime">{{ ::genre.genre_count }}{{genre.genre_count==1 ? 'Film' : 'Films' }} <span class="pull-right"><i class="ion-android-time"></i>{{ ::genre.run_time }} Min</span></div>
                 </div>
                 <div ng-if="refreshSwiper">
                 <div id="genreswiperId" class="swiper-container genreswiper" swiper style="height: {{ hgt }}px;">
@@ -36,7 +36,7 @@
                                             {{ ::data.tagline}}
                                         </div>
                                         <div class="country padding-vertical">
-                                            {{ ::data.region }}/ {{ ::data.language}}<span></span>
+                                            <span>{{ ::data.region ? data.region : 'No regions' }} / {{::data.language ? data.language : 'No languages'}}</span>
                                             <div class="pull-right"><i class="ion-android-time"></i> {{ ::data.duration }} Min</div>
                                         </div>
                                         <div class="viewsNLikes padding-vertical">

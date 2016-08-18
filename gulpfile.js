@@ -11,34 +11,34 @@ var gulp = require('gulp'),
     templateCache = require('gulp-angular-templatecache'),
     bower = require('bower'),
     sass = require('gulp-sass'),
+    less = require('gulp-less'),
     minifyCss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     sh = require('shelljs');
 
 
 var paths = {
-    coffee: ['dev/source/**/*.coffee'],
-    css: ['dev/css/**/*.css','dev/lib/Swiper/dist/css/swiper.min.css'],
+    coffee: ['dev/source/**/*.coffee','dev/source/**/*/*.coffee',],
+    css: ['dev/css/**/*.css','dev/lib/Swiper/dist/css/swiper.min.css',"dev/lib/ionic-threads/ionic.threads.css"],
     html: ['dev/**/*.html'],
     indexhtml: ['dev/index.html'],
     sass: ['./scss/**/*.scss'],
-
-    vendorJS:["dev/lib/jquery/dist/jquery.min.js",
+    less: ['dev/less/*.less'],
+    vendorJS:[
     "dev/lib/underscore/underscore-min.js",
-    "dev/lib/Swiper/dist/js/swiper.js",
+    "dev/lib/moment/moment.js",
+    "dev/lib/Swiper/dist/js/swiper.min.js",
     "dev/lib/angular-snapscroll.js",
     "dev/lib/ngCordova/dist/ng-cordova.min.js",
     "dev/lib/angular-sanitize/angular-sanitize.min.js",
     "dev/lib/angular-animate/angular-animate.min.js",
-    "dev/lib/Vimeo-jQuery-API-0.10.1/dist/jquery.vimeo.api.min.js",
-    "dev/lib/Vimeo-jQuery-API-0.10.1/src/jquery.vimeo.api.js",
-    "dev/lib/ionic-image-lazy-loader/ionic-image-lazy-load.js",
+    "dev/lib/ionic-image-lazy-load/ionic-image-lazy-load.js",
     "dev/lib/ion-sticky/ion-sticky.js",
     "dev/lib/imageCachefactory/ionic.ion.imagecachefactory.js",
-    "dev/lib/angular-vimeo-embed/dist/angular-vimeo-embed.min.js",
-    "dev/lib/localforage/dist/localforage.js",
+    "dev/lib/localforage/dist/localforage.min.js",
     "dev/lib/parse-1.6.14.min.js",
-    "dev/lib/moment/min/moment.min.js"]
+    "dev/lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js",
+    "dev/lib/ionic-threads/ionic.threads.js"]
 };
 
 
@@ -48,7 +48,6 @@ gulp.task('cleanall', function() {
         })
         .pipe(clean());
 });
-
 
 gulp.task('minifycss', function() {
     return gulp.src(paths.css)
@@ -105,10 +104,12 @@ gulp.task('concatVendor', function() {
 
 
 gulp.task('watch', function() {
-    gulp.watch(paths.css, ['minifycss']);
-    gulp.watch(paths.coffee, ['coffee']);
-    gulp.watch(paths.html, [ 'templateCache']);
-    gulp.watch(paths.indexhtml, [ 'minifyhtml']);
+    gulp.watch(paths.css, ['all']);
+    gulp.watch(paths.coffee, ['all']);
+    gulp.watch(paths.html, ['all']);
+    gulp.watch(paths.indexhtml, [ 'all']);
 });
 
 gulp.task("buildlib",['concatVendor']);
+
+gulp.task("all",['concatVendor','coffee','minifyhtml','minifycss','templateCache']);

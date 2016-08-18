@@ -17,7 +17,7 @@ angular.module('SFWApp.sidebar', [])
     console.log "init called"
     Storage.watchlistDetails 'get'
     .then (value)->
-        console.log value
+        console.log value,"WATCHLIST"
         $scope.watchlistDetails = value
         if  _.isNull($scope.watchlistDetails)
           $scope.watchListCount = '0'

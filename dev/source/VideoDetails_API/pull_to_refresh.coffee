@@ -24,6 +24,7 @@ shortFilmWindow
 		DetailsAPI.array_awplalist = opts.awesome_playlist
 		DetailsAPI.genre_array = opts.genre
 		DetailsAPI.playlist_array = opts.playlist
+		DetailsAPI.array_mostpopular = opts.mstPopular
 
 	PulltorefreshAPI
 

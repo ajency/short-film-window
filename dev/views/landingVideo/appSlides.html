@@ -1,0 +1,65 @@
+<!-- <ion-nav-bar class="bar-step">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+</ion-nav-bar>
+ --><ion-view>
+    <!-- <ion-nav-buttons side="right"> 
+       <button class="button button-clear skipBtn"
+              ng-click="startApp()" ng-show="slideIndex != 2">
+        Skip 
+      </button>
+    </ion-nav-buttons> -->
+    <ion-slide-box on-slide-changed="slideChanged(index)" class="slidesContainer">
+      <ion-slide class="slide1">
+      <div class="overlay"></div>
+      <div class="button-small skipBtn">
+          <button class="button button-clear "
+              ng-click="startApp()">
+            Skip 
+          </button>
+        </div>
+        <div id="logo">
+            <img src="img/logo.png"/>
+        </div>
+        <h3>Welcome to the world of ShortFilmWindow</h3>
+        <div class="loaderOuter" ng-show="apiLoading">
+            <div class="loading-spinner"></div>
+        </div>
+
+       
+      </ion-slide>
+      <ion-slide class="slide2">
+      <div class="overlay"></div>
+      <div class="button-small skipBtn">
+          <button class="button button-clear "
+              ng-click="startApp()">
+            Skip 
+          </button>
+        </div>
+      <div id="logo">
+            <img src="img/logo.png"/>
+        </div>
+        <h3>Weekly Premieres, Reviews and interviews.</h3>
+        <div class="loaderOuter" ng-show="apiLoading">
+            <div class="loading-spinner"></div>
+        </div>
+
+      </ion-slide>
+      <ion-slide class="slide3">
+      <div class="overlay"></div>
+      <div id="logo">
+            <img src="img/logo.png"/>
+        </div>
+        <h3>Genre Based Discovery, Dozens of Playlists and Watchlist</h3>
+        <div class="loaderOuter" ng-show="apiLoading">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="row getStarted">
+            <div class="button-small col text-center">
+              <button class="button button-outline" ng-click="startApp()">Get Started</button>
+            </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+    
+</ion-view>

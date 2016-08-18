@@ -6,9 +6,9 @@ shortFilmWindow
 
     Storage.watchlistDetails = (action, params)->
         switch action
-            when 'set'                
+            when 'set'
                 localforage.setItem 'watchlist_details', params, (err, value) ->
-                   $rootScope.$broadcast 'watchListUpdate' , params 
+                   $rootScope.$broadcast 'watchListUpdate' , params
             when 'get'
                 localforage.getItem 'watchlist_details'
             when 'remove'

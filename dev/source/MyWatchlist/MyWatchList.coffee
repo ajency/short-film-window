@@ -13,15 +13,16 @@ shortFilmWindow
         $scope.getData= ()->
             Storage.watchlistDetails 'get'
             .then (value)->
+                console.log value
                 $scope.watchlistDetails = value
                 if  _.isNull($scope.watchlistDetails)
                     $scope.display = 'no_result'
                     $scope.$apply()
                 else
                     if($scope.watchlistDetails.length >0)
-                        device_width = $window.innerWidth;
-                        device_height = $window.innerHeight;
-                        $scope.used_height = 43 +72
+                        device_width = $window.innerWidth
+                        device_height = $window.innerHeight
+                        $scope.used_height = 43 +90
                         $scope.hgt = device_height - $scope.used_height
                         $scope.display = 'result'
                         $scope.$apply()
@@ -40,7 +41,7 @@ shortFilmWindow
         $scope.singlePlayService = (videoData)->
             DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
             DetailsAPI.singleVideoarray.singleVideoarray = videoData
-            App.navigate 'init'     
+            App.navigate 'init'
 
 
         $scope.CheckWatchlist = (Id) ->
@@ -53,8 +54,8 @@ shortFilmWindow
                 $scope.refreshSwiper = false
                 $timeout (->
                     $scope.refreshSwiper = true
-                    device_width = $window.innerWidth;
-                    device_height = $window.innerHeight;
+                    device_width = $window.innerWidth
+                    device_height = $window.innerHeight
                     $scope.used_height = 43 +72
                     $scope.hgt = device_height - $scope.used_height
                     ), 100

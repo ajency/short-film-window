@@ -1,5 +1,5 @@
 <ion-view>
-    <ion-content class="popular" ng-init="initApp()" ng-switch="display">
+    <ion-content class="popular" ng-init="initApp()" ng-switch="display" ng-cloak>
         <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
         </ion-refresher>
          <div class="item item-avatar item-divider popularStickyHeader">
@@ -7,12 +7,12 @@
                 <div class="primaryText cardTitle">{{currentCard.cardtitle}}</div>
                 <p>{{currentCard.p}}</p>
             </div>
-        <div ng-if="refreshSwiper" ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper"  style="height: {{ hgt }}px">
+        <div ng-if="refreshSwiper" ng-switch-when="result" curr-swiper="" detect-swiper-slide="detectSlideChange(currSwiper)" swiper id="popularswipeId" class="swiper-container popularswiper"  style="height:{{hgt}}px;">
 
             <div class="swiper-wrapper">
-                <div ng-repeat="data in ::allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide">
-                    <div ng-if="data.order !=4">
-                        <div class="item item-image padding0" style="height: {{ hgt }}px">
+                <div ng-repeat="data in ::allContentArray | orderBy: data.order " is-loaded class="list card margin0 cardOuter swiper-slide " ng-cloak>
+                    <div ng-if="data.order !=5 && data.order !=6">
+                        <div class="item item-image padding0" style="height:{{hgt}}px;">
 
                             <div class="watchlistIcon">
                             <button class="button button-icon" ng-click="addwatchlist(data)">
@@ -33,7 +33,7 @@
                                         {{ ::data.content.tagline}}
                                     </div>
                                     <div class="country padding-vertical">
-                                        {{ ::data.content.region }}/ {{ ::data.content.language}}<span></span>
+                                        <span>{{ data.content.region ? data.content.region : 'No regions'}} / {{ data.content.language ? data.content.language : 'No languages'}}</span>
                                         <span class="pull-right"><i class="ion-android-time"></i> {{ ::data.content.duration }} Min</span>
                                     </div>
                                     <div class="viewsNLikes padding-vertical">
@@ -44,7 +44,10 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-if="data.order == 4">
+                    <div ng-if="data.order == 5">
+                        <ng-include class="playlist" src="'tabs/popular/genre-genre-content.html'" scope="" onload=""></ng-include>
+                    </div>
+                    <div ng-if="data.order == 6">
                         <ng-include class="playlist" src="'tabs/popular/playlist-playlist-content.html'" scope="" onload=""></ng-include>
                     </div>
                 </div>

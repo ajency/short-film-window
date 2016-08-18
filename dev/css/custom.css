@@ -248,7 +248,7 @@ a {
 .playlist .playlistContent .imageContainer img {
   /*width: 100%;*/
   height: 100%;
-  width: auto !important;
+  width: 100% !important;
   position: relative;
   left: 100%;
   margin-left: -200%;
@@ -290,8 +290,8 @@ a {
 }
 .playlist .playlistDetails .totalFilms div i {
   /*float: right;
-    				width: 15px;
-    				text-align: right;*/
+            width: 15px;
+            text-align: right;*/
 }
 .playlist .playlistDetails .totalFilms div .time {
   /*float: left;*/
@@ -342,17 +342,22 @@ a {
 .playlist .awesomePlaylistContent {
   width: 100%;
   float: left;
+  display: inline-block;
+  padding-bottom: 15px;
 }
 .limitDiv {
   float: left;
   width: 50%;
+  height: 50%;
 }
 .limitDiv .playlistContent {
   width: 100%;
   float: left;
+  height: 100%;
 }
 .limitDiv .playlistContent .imageContainer {
   width: 100%;
+  height: 100%;
 }
 .endOfPlaylist {
   float: left;
@@ -387,12 +392,12 @@ a {
   height: 100%;
   display: flex;
   /*.cardOuter
-	{
-		.movieDetails
-		{
-			bottom:0;
-		}
-	}*/
+  {
+    .movieDetails
+    {
+      bottom:0;
+    }
+  }*/
 }
 .marginB {
   margin-bottom: 10px !important;
@@ -405,7 +410,7 @@ a {
 }
 .imageContainerOuter img {
   height: 100%;
-  width: auto !important;
+  width: 100% !important;
   position: relative;
   left: 100%;
   margin-left: -200%;
@@ -505,36 +510,35 @@ a {
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 99;
   height: 45px;
   border-bottom: 1px solid #d4d4d4;
   /*display: none;*/
   /*transition: width 1s ease;
-	opacity: 0;*/
+  opacity: 0;*/
   /*&.hideSearch
-	{
-		i
-		{
-			display: none;
-		}
-	}
-	&.showSearch
-	{
-		i
-		{
-			display: block;
-		}
-	}*/
+  {
+    i
+    {
+      display: none;
+    }
+  }
+  &.showSearch
+  {
+    i
+    {
+      display: block;
+    }
+  }*/
 }
 .box.removeBox {
   display: none;
 }
 .box.showSearch {
   /*width: 100%;
-		transition: width 1s ease;
-		opacity: 1;*/
+    transition: width 1s ease;
+    opacity: 1;*/
   animation-name: leftSide;
-  animation-duration: 1s;
+  animation-duration: 1.5s;
   display: block;
 }
 .box.showSearch i.searchIcon {
@@ -543,10 +547,10 @@ a {
 }
 .box.hideSearch {
   /*width: 0;
-		transition:width 1s ease;
-		opacity: 0;	*/
+    transition:width 1s ease;
+    opacity: 0; */
   animation-name: rightSide;
-  animation-duration: 1s;
+  animation-duration: 1.5s;
   /*opacity: 0;*/
 }
 .box.hideSearch i {
@@ -615,9 +619,9 @@ a {
 }
 .searchResult {
   /*.cardDetails:first-child
-	{
-		margin-top: 44px;
-	}*/
+  {
+    margin-top: 44px;
+  }*/
 }
 .searchResult .imageContainerOuter {
   margin-top: 32px;
@@ -711,7 +715,7 @@ a {
 }
 .movieVideo {
   /*background: url('../img/image1.jpg');
-	height: 740px;
+  height: 740px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;*/
@@ -867,53 +871,54 @@ a {
   color: #5e5e5e;
   background: #ffffff;
   position: relative;
+  min-height: 16%;
   /*.synopsisDiv {
-	   transition: 1s linear all;
-	   max-height:3000px;
-	   overflow-x: scroll;
-	   opacity: 1;
-	   .synopsisText
-	   {
-	   		font-size:2.6vh;
-	   }
-	}
-	.synopsisDiv.ng-hide {
-	   max-height:80px;
-	   opacity: 0;
-	}*/
+     transition: 1s linear all;
+     max-height:3000px;
+     overflow-x: scroll;
+     opacity: 1;
+     .synopsisText
+     {
+        font-size:2.6vh;
+     }
+  }
+  .synopsisDiv.ng-hide {
+     max-height:80px;
+     opacity: 0;
+  }*/
   /*.synopsisDivHide
-	{		
-		.synopsisText
-		{			
-		    max-width: 100%;
-		    max-height: 80px;		 
-		    overflow: hidden;		    
-		    font-size:2.6vh;
-		    transition: 0.5s linear all;
-		}
-		.toggleSynopsis
-		{
-			i:before
-			{
-				transition: all 1s ease;
-			}
-		}
-	}*/
+  {   
+    .synopsisText
+    {     
+        max-width: 100%;
+        max-height: 80px;    
+        overflow: hidden;       
+        font-size:2.6vh;
+        transition: 0.5s linear all;
+    }
+    .toggleSynopsis
+    {
+      i:before
+      {
+        transition: all 1s ease;
+      }
+    }
+  }*/
   /*.synopsisDivShow
-	{		
-		.toggleSynopsis
-		{
-			i
-			{
-				transition: all 2s ease;
-				&:before
-				{
-					transition: all 1s ease;
-					transform: rotate(180deg);
-				}
-			}
-		}
-	}*/
+  {   
+    .toggleSynopsis
+    {
+      i
+      {
+        transition: all 2s ease;
+        &:before
+        {
+          transition: all 1s ease;
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }*/
 }
 .synopsis .loading-spinner {
   height: 25px;
@@ -931,7 +936,7 @@ a {
 .synopsis .synopsisText {
   /*display: -webkit-box;*/
   max-width: 100%;
-  /* max-height: 3000px;		    */
+  /* max-height: 3000px;        */
   margin-bottom: 20px;
   font-size: 2.6vh;
   transition: 0.5s linear all;
@@ -997,23 +1002,23 @@ a {
   width: 25px;
   float: left;
   /*&.icon-filter, .icon-filter_red
-	{
-		background-image: url('../img/icons/filter_grey.png');
-		vertical-align: middle;
-		float: none;
-		margin: -3px 5px 0 0 !important;
-	}
-	.icon-filter_red
-	{
-		background-image: url('../img/icons/filter_red.png');
-	}
-	&.icon-sort
-	{
-		background-image: url('../img/icons/sort_notapplied.png');
-		vertical-align: middle;
-		float: none;
-		margin: -3px 5px 0 0 !important;
-	}*/
+  {
+    background-image: url('../img/icons/filter_grey.png');
+    vertical-align: middle;
+    float: none;
+    margin: -3px 5px 0 0 !important;
+  }
+  .icon-filter_red
+  {
+    background-image: url('../img/icons/filter_red.png');
+  }
+  &.icon-sort
+  {
+    background-image: url('../img/icons/sort_notapplied.png');
+    vertical-align: middle;
+    float: none;
+    margin: -3px 5px 0 0 !important;
+  }*/
 }
 .icon-cust.icon-home {
   background-image: url('../img/icons/home.png');
@@ -1080,9 +1085,9 @@ a {
 }
 .singleGenre {
   /*.imageContainerOuter
-	{
-		padding-top: 45px;
-	}*/
+  {
+    padding-top: 45px;
+  }*/
 }
 .singleGenre .popular .cardOuter .movieDetails {
   bottom: 0px;
@@ -1116,13 +1121,13 @@ a {
   /*float: left;*/
   text-align: center;
   /*margin-right: 10px;
-			    margin-top: 2px;*/
+          margin-top: 2px;*/
   margin: auto;
   margin-top: 20px;
   /* .overlay
-			    {
-			    	background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);
-			    }	*/
+          {
+            background: linear-gradient(to bottom, rgba(0,0,0,1) 0%,rgba(0,0,0,0.51) 80%,rgba(0,0,0,0.39) 100%);
+          } */
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .playlist-thumbnail img {
   height: 100%;
@@ -1132,9 +1137,9 @@ a {
   margin-left: -200%;
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .singlePlaylistDetails {
-  /*	position: absolute;
-		    	top: 0;
-		    	left: 0;*/
+  /*  position: absolute;
+          top: 0;
+          left: 0;*/
   width: 100%;
   padding: 10px;
   text-align: center;
@@ -1171,10 +1176,10 @@ a {
 }
 .singleGenre .singleGenreAvtar.item-thumbnail-left .totalfilmsNTime {
   /*position: absolute;
-			    width: 100%;
-			    left: 0;
-			    padding: 0 14px 0 116px;
-			    bottom: 2px;*/
+          width: 100%;
+          left: 0;
+          padding: 0 14px 0 116px;
+          bottom: 2px;*/
   text-align: left;
   padding: 10px 15px 0;
   margin-top: -30px;
@@ -1321,66 +1326,69 @@ a {
 }
 /*.filteredGenre
 {
-	.card
-	{
-		box-shadow: none;
-		border-bottom: none;
-	}
-	.item
-	{
-		position: relative;
-		padding: 0;
-		&.item.item-image
-		{
-			margin-bottom: 10px;
-		}
-	}
-	.cardTitle
-	{
-		padding:10px 10px 0 120px;
-		font-size: 1em;
-	}
-	.totalfilmsNTime
-	{
-		position: absolute;
-	    width: 100%;
-	    bottom: 3px;
-	    padding:0 9px 0 120px;
-	    font-size: 0.6em;
-	    span
-	    {
-	    	i
-	    	{
-	    		line-height: 2;
-	    		margin-right: 1px;
-	    	}
-	    }
-	}
-	.movieDescription
-	{
-		padding-left:120px;
-		font-size: 0.7em;
-		line-height: 1.5;
-		white-space: normal;
-	}
+  .card
+  {
+    box-shadow: none;
+    border-bottom: none;
+  }
+  .item
+  {
+    position: relative;
+    padding: 0;
+    &.item.item-image
+    {
+      margin-bottom: 10px;
+    }
+  }
+  .cardTitle
+  {
+    padding:10px 10px 0 120px;
+    font-size: 1em;
+  }
+  .totalfilmsNTime
+  {
+    position: absolute;
+      width: 100%;
+      bottom: 3px;
+      padding:0 9px 0 120px;
+      font-size: 0.6em;
+      span
+      {
+        i
+        {
+          line-height: 2;
+          margin-right: 1px;
+        }
+      }
+  }
+  .movieDescription
+  {
+    padding-left:120px;
+    font-size: 0.7em;
+    line-height: 1.5;
+    white-space: normal;
+  }
 
-	&.genreImgOuter
-	{
-		.item-thumbnail-left
-		{
-			min-height: 90px;
-			img
-			{
-				max-width: 70px;
-	    		max-height: 70px;
-			}
-		}
-		.cardTitle , .totalfilmsNTime
-		{
-			padding-left: 90px;
-		}
-	}
+  &.genreImgOuter
+  {
+    .item-thumbnail-left
+    {
+      min-height: 90px;
+      img
+      {
+        max-width: 70px;
+          max-height: 70px;
+      }
+    }
+    .cardTitle , .totalfilmsNTime
+    {
+      padding-left: 90px;
+    }
+  }
 }*/
+.box{
+  display: none;
+}
 .filterNo {
   height: 16px;
   width: 16px;
@@ -1576,17 +1584,17 @@ a {
 }
 .notifications {
   /*.item
-	{
-		border-bottom: 1px solid @grayLightest;
-		float: left;
-		width: 100%;
-	}*/
+  {
+    border-bottom: 1px solid @grayLightest;
+    float: left;
+    width: 100%;
+  }*/
   /*p
-	{
-		white-space: normal;
-		color: @grayDark;
-		font-size: 2.6vh;
-	}*/
+  {
+    white-space: normal;
+    color: @grayDark;
+    font-size: 2.6vh;
+  }*/
 }
 .notifications .watchlistIcon {
   top: 50px !important;
@@ -1805,9 +1813,9 @@ a {
     margin-top: 2px;
   }
   /*.notifications p
-	{
-		font-size: 0.9em;
-	}*/
+  {
+    font-size: 0.9em;
+  }*/
   .searchResult .cardDetails {
     margin-top: 1px;
   }
@@ -1829,4 +1837,119 @@ a {
   .limitDiv:nth-child(5) {
     display: none;
   }
+}
+/*newly Added CSS*/
+.col.imageContainer.popularImageCont {
+    height: 50%;
+}
+.playlistContent.divHeight{
+  height: 100%;
+}
+.fb_iframe_widget span {
+    display: inline-block;
+    position: relative;
+    text-align: justify;
+    height: 100vh !important;
+    /*height: 500px !important;*/
+}
+.fb_iframe_widget iframe {
+    height: 100vh !important;
+    /*height: inherit !important;*/
+    left: 0px !important;
+    width: 100% !important;
+}
+.fb-comments-container {
+    min-height: 450px;
+    overflow: scroll;
+    height: 100% !important;
+}
+.fb-comments {
+    height: 100vh !important;
+    position: relative;
+    padding-left: 5px;
+}
+.slider {
+  height: 100%;
+}
+.slider-pager .slider-pager-page {
+    color: #fff;
+}
+.slider-slide {
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+  padding-top: 80px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 300;
+}
+.slider-slide h3{
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+  right: 5%;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+.slidesContainer #logo {
+      margin: 30px 0px;
+        top: 0px;
+        z-index: 999;
+        position: relative;
+}
+.slidesContainer #logo img{
+    width: 50%;
+}
+.slidesContainer .slide1{
+    background:url("../img/1image.jpg")no-repeat;
+    background-size: cover;
+}
+.slidesContainer .slide2{
+    background:url("../img/2image.jpg")no-repeat;
+    background-size: cover;
+}
+.slidesContainer .slide3{
+    background:url("../img/3image.jpg")no-repeat;
+    background-size: cover;
+}
+.bar-step{
+    background-color: inherit;
+    background-size: 0;
+    border: 0px !important; 
+
+}
+.bar-step button{
+   color:#fff;
+   font-size: 1.3em;
+}
+.overlay{
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: #000;
+    opacity: .6;
+    position: absolute;
+    top: 0px;
+}
+.skipBtn{
+    border: none;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff !important;
+    top: 3%;
+    position: absolute;
+    right: 3%;
+
+}
+.skipBtn .button-clear{
+    color: #fff;
+}
+.getStarted{
+    position: absolute;
+    bottom: 6%;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.getStarted .button-clear{
+    color: #fff;
 }

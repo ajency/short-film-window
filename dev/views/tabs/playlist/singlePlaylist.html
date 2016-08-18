@@ -51,7 +51,7 @@
                                         {{ ::data.tagline}}
                                     </div>
                                     <div class="country padding-vertical">
-                                        {{ ::data.region }}/ {{ ::data.language}}
+                                        <span>{{ ::data.region ? data.region : 'No regions' }} / {{::data.language ? data.language : 'No languages'}}</span>
                                         <div class="pull-right"><i class="ion-android-time"></i> {{ ::data.duration }} Min</div>
                                     </div>
                                     <div class="viewsNLikes padding-vertical">
