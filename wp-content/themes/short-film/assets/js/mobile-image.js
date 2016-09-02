@@ -2,7 +2,7 @@
 	
 	$(document).on('click', '#uploadForMobile', function(){
 		
-		tb_show('test', 'media-upload.php?type=image&TB_iframe=1');
+		tb_show('Upload mobile image', 'media-upload.php?type=image&TB_iframe=1');
 
 		window.send_to_editor = function( html ) 
 		{
@@ -28,7 +28,7 @@
 						$( "#uploadForMobile" ).attr('id','removeMobileImage');
 					}else{
 						if(new_response.reason == 'wrong_size'){
-							alert('Please upload image with 2:3 ration only!');
+							alert('Please upload image with 3:2 ratio only!');
 						}else{
 							alert('Image not found!');
 						}

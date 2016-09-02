@@ -2973,7 +2973,7 @@ add_action( 'wp_ajax_upload_mobile_image', 'upload_mobile_image' );
 function upload_mobile_image() {
 
   $img_url = $_REQUEST['imgurl'];
-  $img_path = '/var/www/html/short-film-window'.str_replace(get_site_url(), '', $img_url);
+  $img_path = $_SERVER['DOCUMENT_ROOT'].str_replace(get_site_url(), '', $img_url);
 
   if(file_exists($img_path)){
     list($width, $height) = getimagesize($img_path);
