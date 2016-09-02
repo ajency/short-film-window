@@ -28,6 +28,8 @@ function one_random_weekly_premiere(){
 	$recent_post_id = $recent_posts[0]["ID"];
 	
 	$data = Film\Video::get($recent_post_id);
+
+	
 	
 		$result = array();
 		$result['movie_id']				=	$recent_post_id;
@@ -39,7 +41,15 @@ function one_random_weekly_premiere(){
 		$result['videourl']				=	$data['videourl'];
 		$result['embedurl']				=	$data['embedurl'];
 		$result['director']				=	$data['director'];
-		$result['image']				=	$data['medium_image'];
+
+		$mobile_image = get_post_meta($recent_post_id, 'mobile_image', TRUE);
+	    if($mobile_image != '') {
+			$result['image']				=	$mobile_image;
+		}else{
+			$result['image']				=	$data['medium_image'];
+		}
+
+
 		$result['country']				=	"India - Asia";
 		$result['duration']				=	$data['duration'];
 		$result['slug']				=	$data['slug'];
@@ -74,7 +84,15 @@ function single_video($id){
 				$movie['videourl']		=	$res['videourl'];
 				$movie['embedurl']		=	$res['embedurl'];
 				$movie['director']		=	$res['director'];
-				$movie['image']			=	$res['medium_image'];
+
+				$mobile_image = get_post_meta($id, 'mobile_image', TRUE);
+				if($mobile_image != '') {
+					$movie['image']				=	$mobile_image;
+				}else{
+					$movie['image']				=	$res['medium_image'];
+				}
+
+				//$movie['image']			=	$res['medium_image'];
 				$movie['duration']		=	$res['duration'];
 				$movie['region']		=	implode(', ', $res['region']);
 				$movie['language']		=	implode(', ', $res['language']);
@@ -116,7 +134,15 @@ function new_additions(){
 		$movies[$key]['videourl']		=	$recent_movie['videourl'];
 		$movies[$key]['embedurl']		=	$recent_movie['embedurl'];
 		$movies[$key]['director']		=	$recent_movie['director'];
-		$movies[$key]['image']			=	$recent_movie['medium_image'];
+
+		$mobile_image = get_post_meta($recent_movie['ID'], 'mobile_image', TRUE);
+		if($mobile_image != '') {
+			$movies[$key]['image']				=	$mobile_image;
+		}else{
+			$movies[$key]['image']				=	$recent_movie['medium_image'];
+		}
+
+		//$movies[$key]['image']			=	$recent_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
 		$movies[$key]['duration']		=	$recent_movie['duration'];
 		$movies[$key]['region']		=		implode(', ', $recent_movie['region']);
@@ -166,7 +192,15 @@ function noteworthy(){
 		$movies[$key]['videourl']		=	$noteworthy_movie['videourl'];
 		$movies[$key]['embedurl']		=	$noteworthy_movie['embedurl'];
 		$movies[$key]['director']		=	$noteworthy_movie['director'];
-		$movies[$key]['image']			=	$noteworthy_movie['medium_image'];
+
+		$mobile_image = get_post_meta($movie_id, 'mobile_image', TRUE);
+		if($mobile_image != '') {
+			$movies[$key]['image']				=	$mobile_image;
+		}else{
+			$movies[$key]['image']				=	$noteworthy_movie['medium_image'];
+		}
+
+		//$movies[$key]['image']			=	$noteworthy_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
 		$movies[$key]['duration']		=	$noteworthy_movie['duration'];
 		$movies[$key]['region']		=		implode(', ', $noteworthy_movie['region']);
@@ -393,7 +427,15 @@ function mostpopular(){
 		$movies[$key]['videourl']		=	$mostpopular_movie['videourl'];
 		$movies[$key]['embedurl']		=	$mostpopular_movie['embedurl'];
 		$movies[$key]['director']		=	$mostpopular_movie['director'];
-		$movies[$key]['image']			=	$mostpopular_movie['medium_image'];
+
+		$mobile_image = get_post_meta($movie_id, 'mobile_image', TRUE);
+		if($mobile_image != '') {
+			$movies[$key]['image']				=	$mobile_image;
+		}else{
+			$movies[$key]['image']				=	$mostpopular_movie['medium_image'];
+		}
+		
+		//$movies[$key]['image']			=	$mostpopular_movie['medium_image'];
 		$movies[$key]['country']		=	"India - Asia";
 		$movies[$key]['duration']		=	$mostpopular_movie['duration'];
 		$movies[$key]['region']		=		implode(', ', $mostpopular_movie['region']);

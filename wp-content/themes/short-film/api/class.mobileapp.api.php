@@ -43,7 +43,15 @@ function genre_videos($genre_id, $language_id, $sort_id){
       $movies[$key]['videourl']   = $video['videourl'];
       $movies[$key]['embedurl']   = $video['embedurl'];
       $movies[$key]['director']   = $video['director'];
-      $movies[$key]['image']      = $video['medium_image'];
+
+      $mobile_image = get_post_meta($movie_id, 'mobile_image', TRUE);
+        if($mobile_image != '') {
+            $movies[$key]['image']              =   $mobile_image;
+        }else{
+            $movies[$key]['image']              =   $video['medium_image'];
+        }
+
+      //$movies[$key]['image']      = $video['medium_image'];
       $movies[$key]['duration']   = $video['duration'];
       //$movies[$key]['region']     = $video['region'][0];
       //$movies[$key]['language']   = $video['language'][0];
@@ -292,7 +300,15 @@ function playlist_videos($playlist_id){
       $movies[$key]['videourl']   = $video['videourl'];
       $movies[$key]['embedurl']   = $video['embedurl'];
       $movies[$key]['director']   = $video['director'];
-      $movies[$key]['image']      = $video['medium_image'];
+
+      $mobile_image = get_post_meta($movie_id, 'mobile_image', TRUE);
+      if($mobile_image != '') {
+            $movies[$key]['image']              =   $mobile_image;
+        }else{
+            $movies[$key]['image']              =   $video['medium_image'];
+        }
+
+      //$movies[$key]['image']      = $video['medium_image'];
       $movies[$key]['duration']   = $video['duration'];
       $movies[$key]['region']     = implode(', ', $video['region']);
       $movies[$key]['language']   = implode(', ', $video['language']);
@@ -343,7 +359,15 @@ function videos_by_string($str){
         $movies[$n]['videourl']     =   $searched_movie['videourl'];
         $movies[$n]['embedurl']     =   $searched_movie['embedurl'];
         $movies[$n]['director']     =   $searched_movie['director'];
-        $movies[$n]['image']        =   $searched_movie['medium_image'];
+
+        $mobile_image = get_post_meta($movie_id, 'mobile_image', TRUE);
+      if($mobile_image != '') {
+            $movies[$n]['image']              =   $mobile_image;
+        }else{
+            $movies[$n]['image']              =   $searched_movie['medium_image'];
+        }
+
+        //$movies[$n]['image']        =   $searched_movie['medium_image'];
         $movies[$n]['duration']     =   $searched_movie['duration'];
         $movies[$n]['region']       =   implode(', ', $searched_movie['region']);
         $movies[$n]['language']     =   implode(', ', $searched_movie['language']);

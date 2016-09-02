@@ -2913,3 +2913,132 @@ class SortMdArray {
 //code added by kapil//
 require_once (get_template_directory().'/api/class.mobileapp.api.php');
 require_once(get_template_directory().'/functions-mobileapp.php');
+
+
+
+
+
+
+
+
+
+
+
+
+function wpdocs_register_meta_boxes() {
+    add_meta_box( 'meta-box-id', __( 'Mobile Image', 'textdomain' ), 'wpdocs_my_display_callback', 'post','side',
+        'core' );
+    wp_enqueue_script( 'mobile_image_js', get_template_directory_uri() . '/assets/js/mobile-image.js', array( 'jquery' ));
+    wp_localize_script( 'mobile_image_js', 'mobilecustom', array(
+      'ajax_url' => admin_url( 'admin-ajax.php' )
+      ));
+}
+add_action( 'add_meta_boxes', 'wpdocs_register_meta_boxes' );
+
+
+function wpdocs_my_display_callback( $post ) {
+
+    $mobile_image = get_post_meta($post->ID, 'mobile_image', TRUE);
+    if($mobile_image != '') {
+      $display = '';
+      $mobile_uploader_text = 'Remove mobile image';
+      $img_action_id = 'removeMobileImage';
+    }else{
+      $display = 'display:none';
+      $mobile_uploader_text = 'Set mobile image';
+      $img_action_id = 'uploadForMobile';      
+    }
+    ?>
+    <img class="mobile-preview-image" style="<?php echo $display; ?>" src="<?php echo $mobile_image; ?>" width="150">
+    <input type="hidden" name="mobile_image" id="mobile_image" value="" class="regular-text" />
+    <p><a href="" id="<?php echo $img_action_id; ?>" data-post="<?php echo $post->ID; ?>"><?php echo $mobile_uploader_text; ?></a></p>
+    <?php
+}
+ 
+/**
+ * Save meta box content.
+ *
+ * @param int $post_id Post ID
+ */
+function wpdocs_save_meta_box( $post_id ) {
+    // Save logic goes here. Don't forget to include nonce checks!
+}
+add_action( 'save_post', 'wpdocs_save_meta_box' );
+
+
+
+
+add_action( 'wp_ajax_upload_mobile_image', 'upload_mobile_image' );
+
+function upload_mobile_image() {
+
+  $img_url = $_REQUEST['imgurl'];
+  $img_path = '/var/www/html/short-film-window'.str_replace(get_site_url(), '', $img_url);
+
+  if(file_exists($img_path)){
+    list($width, $height) = getimagesize($img_path);
+
+    $var1=$width;
+    $var2=$height;
+
+    for($x=$var2;$x>1;$x--) {
+      if(($var1%$x)==0 && ($var2 % $x)==0) {
+        $var1 = $var1/$x;
+        $var2 = $var2/$x;
+      }
+    }
+    $ratio = "$var1 : $var2";
+
+    if($ratio == '3 : 2'){
+      update_post_meta($_REQUEST['post_id'],'mobile_image',$_REQUEST['imgurl']);
+      $response = array(
+        'status'=>'success',
+        'mobile_image'=>$_REQUEST['imgurl'],
+        'image_path'=>$img_path,
+        'img_height'=>$height,
+        'img_width'=>$width
+        );
+    }else{
+      $response = array(
+      'status'=>'failed',
+      'reason'=>'wrong_size'
+      );
+    }
+
+  }else{
+    $response = array(
+    'status'=>'failed',
+    'reason'=>'no_file'
+    );
+  }
+  
+  echo json_encode($response);
+  die();
+}
+
+
+
+add_action( 'wp_ajax_remove_mobile_image', 'remove_mobile_image' );
+
+function remove_mobile_image() {
+
+  delete_post_meta($_REQUEST['post_id'],'mobile_image');
+  $response = array(
+    'status'=>'success'
+    );
+  echo json_encode($response);
+  die();
+}
+
+
+
+
+add_action( 'admin_enqueue_scripts', 'enqueue_admin' );
+
+function enqueue_admin()
+{
+  wp_enqueue_script( 'thickbox' );
+  wp_enqueue_style('thickbox');
+
+  wp_enqueue_script('media-upload');
+}
