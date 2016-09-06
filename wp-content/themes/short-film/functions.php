@@ -2926,8 +2926,7 @@ require_once(get_template_directory().'/functions-mobileapp.php');
 
 
 function wpdocs_register_meta_boxes() {
-    add_meta_box( 'meta-box-id', __( 'Mobile Image', 'textdomain' ), 'wpdocs_my_display_callback', 'post','side',
-        'core' );
+    add_meta_box( 'meta-box-id', __( 'Mobile Image', 'textdomain' ), 'wpdocs_my_display_callback', 'post','side','low','core' );
     wp_enqueue_script( 'mobile_image_js', get_template_directory_uri() . '/assets/js/mobile-image.js', array( 'jquery' ));
     wp_localize_script( 'mobile_image_js', 'mobilecustom', array(
       'ajax_url' => admin_url( 'admin-ajax.php' )
