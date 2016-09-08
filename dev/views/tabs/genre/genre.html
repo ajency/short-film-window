@@ -6,8 +6,8 @@
             <div class="playlist genreOuter">
                 <div class="playlistContent generContent">
                     <div class="col imageContainer" ng-click="singleGenre( data.genre_id)">
-                          <div class="playlistContentInner">
-                            <img image-lazy-src="{{ data.genre_image_url }}" />
+                          <div class="playlistContentInner" style="background-image: url({{ data.genre_image_url }})">
+                            <!--<img image-lazy-src="{{ data.genre_image_url }}" />-->
                             <div class="overlay"></div>
                             <div class="playlistDetails">
                                 <div class="title">
