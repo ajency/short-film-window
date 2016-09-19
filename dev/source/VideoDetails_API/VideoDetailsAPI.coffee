@@ -26,6 +26,7 @@ shortFilmWindow
 		defer = $q.defer()
 		$http.get GLOBAL_URL+'/wp-json/get_defaults'
 		.then (data)->
+			console.log "In get video details api",data
 			defer.resolve data.data
 		, (error)->
 	    	defer.reject error

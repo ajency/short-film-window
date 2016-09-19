@@ -102,6 +102,7 @@ shortFilmWindow
 
 
     $scope.init = (movieId = '')->
+        console.log "Inside Init controller", DetailsAPI.singleVideoarray.movie_id
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
@@ -113,7 +114,7 @@ shortFilmWindow
             .then (data)->
                 $scope.showLoaderOrSynopsis = false
                 $scope.synopsisData = data.content
-                console.log $scope.synopsisData
+                # console.log $scope.synopsisData
                 
             , (error)->
                 # $scope.display = 'error'

@@ -313,7 +313,7 @@ a {
   text-align: right;
 }
 .playlist .playlistDetails .totalFilms .filmNo {
-  font-size: 3.5vh;
+  /*font-size: 3.5vh;*/
 }
 .playlist .playlistDetails .totalFilms i {
   margin-right: 4px;
@@ -348,7 +348,7 @@ a {
   font-size: 2.8vh;
 }
 .playlist.genreOuter .playlistDetails .totalFilms {
-  font-size: 2.3vh;
+  /*font-size: 2.3vh;*/
   padding-bottom: 5px;
 }
 .playlist .awesomePlaylistContent {
@@ -1940,9 +1940,12 @@ a {
     height: 100%;
     z-index: 0;
     background: #000;
-    opacity: .6;
+    opacity: .1;
     position: absolute;
     top: 0px;
+}
+.shadow{
+  opacity: .6 !important;
 }
 .skipBtn{
     border: none;

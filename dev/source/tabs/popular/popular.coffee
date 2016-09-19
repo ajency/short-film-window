@@ -146,7 +146,7 @@ shortFilmWindow
       genArr.push
         "order":5
         "cardtitle": "Genre List"
-        "p": "Best selected categories ever!!"
+        "p": "Choose Your Genre"
         "iconimg": "genre"
         "content": DetailsAPI.genre_array
         "addedToWatchList": 0
