@@ -55,6 +55,7 @@ function one_random_weekly_premiere(){
 		$result['slug']				=	$data['slug'];
 		$result['region']		=	implode(', ', $data['region']);
 		$result['language']		=	implode(', ', $data['language']);
+		$result['genres']     		= $data['categories'];
 
 	if($result['type']	=='youtube'){
 		$url = explode("=",$data['videourl']);
@@ -148,6 +149,7 @@ function new_additions(){
 		$movies[$key]['region']		=		implode(', ', $recent_movie['region']);
 		$movies[$key]['language']		=	implode(', ', $recent_movie['language']);
 		$movies[$key]['slug']		=	$recent_movie['slug'];
+		$movies[$key]['genres']     		= $recent_movie['categories'];
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$recent_movie['videourl']);
@@ -207,6 +209,7 @@ function noteworthy(){
 		$movies[$key]['language']		=	implode(', ', $noteworthy_movie['language']);
 		$movies[$key]['slug']		=	$noteworthy_movie['slug'];
 		$movies[$key]['genreCategory'] = $cat->name;
+		$movies[$key]['genres']     		= $noteworthy_movie['categories'];
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$noteworthy_movie['videourl']);
@@ -441,6 +444,7 @@ function mostpopular(){
 		$movies[$key]['region']		=		implode(', ', $mostpopular_movie['region']);
 		$movies[$key]['language']		=	implode(', ', $mostpopular_movie['language']);
 		$movies[$key]['slug']		=	$mostpopular_movie['slug'];
+		$movies[$key]['genres']     		= $mostpopular_movie['categories'];
 
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$mostpopular_movie['videourl']);
