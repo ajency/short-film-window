@@ -819,6 +819,19 @@ a {
   float: left;
   white-space: nowrap;
 }
+.movieDetails .inlist.category {
+  white-space: normal;
+}
+.movieDetails .inlist.category, .movieDetails .inlist.category label, .movieDetails .inlist.category div {
+  float: none;
+}
+.movieDetails .inlist.category label {
+  display: inline-block;
+}
+.movieDetails .inlist.category div {
+  display: block;
+      padding: 0px 10px 3px;
+}
 .movieDetails .viewsNLikes {
   font-size: 2.3vh;
   color: #d4d4d4;

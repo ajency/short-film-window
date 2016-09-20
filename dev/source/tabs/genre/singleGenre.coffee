@@ -51,6 +51,7 @@ shortFilmWindow
           value = []
         $scope.getwatchlistDetails = value
         if DetailsAPI.GlobalChild_array.length >0
+          console.log "Len not zero"
           $scope.genreData= DetailsAPI.GlobalChild_array
           $scope.genre = DetailsAPI.Global_array
           $scope.sortData = DetailsAPI.Sort
@@ -60,10 +61,11 @@ shortFilmWindow
           $scope.used_height = 88 + 73
           $scope.hgt = device_height - $scope.used_height
           $scope.display = 'result'
-          return
+          console.log "Global Child array",$scope.genreData
         else
           GenreAPI.GetSingleGenre(DetailsAPI.videoId)
           .then (data)->
+            console.log "Length zero"
             DetailsAPI.GlobalChild_array = data.movies
             DetailsAPI.Global_array = data.genre
             DetailsAPI.Filter = data.filters.languages
@@ -77,10 +79,10 @@ shortFilmWindow
             device_height = $window.innerHeight
             $scope.used_height = 88 + 73
             $scope.hgt = device_height + 3 - $scope.used_height
-
+            console.log "Global Child array",$scope.genreData
           , (error)->
               $scope.display = 'error'
-
+      
 
 
   $scope.sortGenre = ()->

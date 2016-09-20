@@ -39,6 +39,11 @@
                                             <span>{{ ::data.region ? data.region : 'No regions' }} / {{::data.language ? data.language : 'No languages'}}</span>
                                             <div class="pull-right"><i class="ion-android-time"></i> {{ ::data.duration }} Min</div>
                                         </div>
+                                        <div class="category inlist">
+                                            <label ng-repeat="genre in ::data.genres">
+                                                <div>{{genre}}</div>
+                                            </label>
+                                        </div>
                                         <div class="viewsNLikes padding-vertical">
                                             <span><i class="ion-ios-eye"></i> {{ ::data.no_of_views}}</span>
                                             <span><i class="ion-thumbsup"></i> {{ ::data.no_of_likes }}</span>
