@@ -1892,6 +1892,9 @@ a {
 .fb-comments {
     height: 100vh !important;
     position: relative;
+    /*padding-left: 5px;*/
+}
+.leftPadding{
     padding-left: 5px;
 }
 .slider {

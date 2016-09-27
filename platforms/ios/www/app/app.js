@@ -1,6 +1,6 @@
 var GLOBAL_URL, device_height, device_width;
 
-GLOBAL_URL = 'http://shortfilm.staging.wpengine.com';
+GLOBAL_URL = 'http://www.shortfilmwindow.com';
 
 device_width = '';
 
@@ -614,12 +614,6 @@ shortFilmWindow.factory('PulltorefreshAPI', [
   }
 ]);
 
-shortFilmWindow.filter('encodeDecodeFilter', function() {
-  return function(text) {
-    return htmlEnDeCode.htmlDecode(text);
-  };
-});
-
 shortFilmWindow.directive('dynFbCommentBox', function() {
   var createHTML, postLink;
   createHTML = function(href, numposts, colorscheme) {
@@ -697,6 +691,221 @@ shortFilmWindow.directive('swiper', function() {
     }
   };
 });
+
+shortFilmWindow.filter('encodeDecodeFilter', function() {
+  return function(text) {
+    return htmlEnDeCode.htmlDecode(text);
+  };
+});
+
+shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
+  '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    return $stateProvider.state('appSlides', {
+      url: '/appSlides',
+      abstract: false,
+      controller: 'appSlidesCtrl',
+      templateUrl: 'landingVideo/appSlides.html'
+    }).state('appInitialize', {
+      url: '/appInitialize',
+      abstract: false,
+      controller: 'appInitializeCtrl',
+      templateUrl: 'landingVideo/appInitialize.html'
+    }).state('home', {
+      url: '/sidebar',
+      cache: false,
+      controller: 'sidebarCtrl',
+      templateUrl: 'home/home.html'
+    }).state('tabhome', {
+      url: '/homeTab',
+      parent: 'home',
+      abstract: true,
+      views: {
+        "homeview": {
+          templateUrl: 'home/homeTab.html'
+        }
+      }
+    }).state('popular', {
+      url: '/popular',
+      parent: 'tabhome',
+      views: {
+        "popularContent": {
+          templateUrl: 'tabs/popular/popular.html',
+          controller: 'popularCtrl'
+        }
+      }
+    }).state('genre', {
+      cache: true,
+      url: '/genre',
+      parent: 'tabhome',
+      views: {
+        "genreContent": {
+          templateUrl: 'tabs/genre/genre.html',
+          controller: 'genreCtrl',
+          params: {
+            'data': null
+          }
+        }
+      }
+    }).state('playlist', {
+      url: '/playlist',
+      parent: 'tabhome',
+      views: {
+        "playlistContent": {
+          templateUrl: 'tabs/playlist/playlist.html',
+          controller: 'playlistCtrl'
+        }
+      }
+    }).state('watchList', {
+      url: '/watchList',
+      cache: false,
+      parent: 'home',
+      views: {
+        "homeview": {
+          templateUrl: 'watchlist/myWatchlist.html',
+          controller: 'watchlistCtrl'
+        }
+      }
+    }).state('notifications', {
+      url: '/notifications',
+      cache: false,
+      parent: 'home',
+      views: {
+        "homeview": {
+          templateUrl: 'notification/notifications.html',
+          controller: 'notificationsCtrl'
+        }
+      }
+    }).state('init', {
+      url: '/init',
+      cache: false,
+      controller: 'InitCtrl',
+      templateUrl: 'singlevideo/movieScreen.html'
+    }).state('singlePlayer', {
+      url: '/singlePlayer',
+      cache: false,
+      controller: 'playerCtrl',
+      templateUrl: 'singlevideo/singlePlayer.html'
+    }).state('landingvideo', {
+      url: '/landing',
+      cache: false,
+      controller: 'landingCtrl',
+      templateUrl: 'landingVideo/splash.html'
+    }).state('navbar', {
+      url: '/navbar',
+      abstract: false,
+      templateUrl: 'home/navBar.html'
+    }).state('singleGenre', {
+      url: '/singleGenre',
+      cache: false,
+      controller: 'singleGenre',
+      templateUrl: 'tabs/genre/singleGenre.html'
+    }).state('singlePlaylist', {
+      url: '/singlePlaylist',
+      cache: false,
+      controller: 'singlePlaylist',
+      templateUrl: 'tabs/playlist/singlePlaylist.html'
+    });
+  }
+]);
+
+shortFilmWindow.controller('appInitializeCtrl', [
+  '$scope', 'App', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, InitialiseService, ParseConfiguration, $rootScope) {
+    $scope.initApp = function() {
+      console.log("APP STARTED");
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      if (App.isWebView()) {
+        console.log("ISWEBVIEW");
+        ParsePushPlugin.getInstallationObjectId(function(id) {
+          console.log(id, "installationId");
+          return ParseConfiguration.installationId = id;
+        }, function(e) {
+          console.log(e, "installationId-ERROR");
+          return ParseConfiguration.installationId = 0;
+        });
+        window.ParsePushPlugin.on('openPN', function(pn) {
+          console.log("OPENPN", pn);
+          return $rootScope.$broadcast('openNotification', {
+            payload: pn
+          });
+        });
+        window.ParsePushPlugin.on('receivePN', function(pn) {
+          console.log("RECEIVEPN", pn);
+          return $rootScope.$broadcast('receiveNotification', {
+            payload: pn
+          });
+        });
+      }
+      $scope.display = 'loader';
+      $scope.errorType = 'offline';
+      if (!App.isOnline()) {
+        return $scope.display = 'error';
+      } else {
+        return InitialiseService.initialize().then(function(data) {
+          console.log(data, " INITIALIZED");
+          return App.navigate('popular');
+        }, function(error) {
+          return $scope.display = 'error';
+        });
+      }
+    };
+    return $scope.initApp();
+  }
+]);
+
+shortFilmWindow.controller('appSlidesCtrl', [
+  '$scope', 'App', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, InitialiseService, ParseConfiguration, $rootScope) {
+    $scope.initApp = function() {
+      console.log("APP STARTED for the first time");
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      if (App.isWebView()) {
+        console.log("ISWEBVIEW");
+        ParsePushPlugin.getInstallationObjectId(function(id) {
+          console.log(id, "installationId");
+          return ParseConfiguration.installationId = id;
+        }, function(e) {
+          console.log(e, "installationId-ERROR");
+          return ParseConfiguration.installationId = 0;
+        });
+        window.ParsePushPlugin.on('openPN', function(pn) {
+          console.log("OPENPN", pn);
+          return $rootScope.$broadcast('openNotification', {
+            payload: pn
+          });
+        });
+        window.ParsePushPlugin.on('receivePN', function(pn) {
+          console.log("RECEIVEPN", pn);
+          return $rootScope.$broadcast('receiveNotification', {
+            payload: pn
+          });
+        });
+      }
+      $scope.startApp = function() {
+        if (!App.isOnline()) {
+          return $scope.display = 'error';
+        } else {
+          $scope.apiLoading = true;
+          return InitialiseService.initialize().then(function(data) {
+            console.log(data, " INITIALIZED");
+            $scope.apiLoading = false;
+            return App.navigate('popular');
+          }, function(error) {
+            return $scope.display = 'error';
+          });
+        }
+      };
+      $scope.next = function() {
+        $ionicSlideBoxDelegate.next();
+      };
+      $scope.previous = function() {
+        $ionicSlideBoxDelegate.previous();
+      };
+      return $scope.slideChanged = function(index) {
+        $scope.slideIndex = index;
+      };
+    };
+    return $scope.initApp();
+  }
+]);
 
 shortFilmWindow.controller('InitCtrl', [
   '$scope', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', 'ParseNotificationService', '$sce', 'FacebookGraphAPI', '$cordovaOauth', function($scope, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, ParseNotificationService, $sce, FacebookGraphAPI, $cordovaOauth) {
@@ -842,215 +1051,6 @@ shortFilmWindow.controller('InitCtrl', [
     } else {
       return $scope.init();
     }
-  }
-]);
-
-shortFilmWindow.controller('appInitializeCtrl', [
-  '$scope', 'App', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, InitialiseService, ParseConfiguration, $rootScope) {
-    $scope.initApp = function() {
-      console.log("APP STARTED");
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      if (App.isWebView()) {
-        console.log("ISWEBVIEW");
-        ParsePushPlugin.getInstallationObjectId(function(id) {
-          console.log(id, "installationId");
-          return ParseConfiguration.installationId = id;
-        }, function(e) {
-          console.log(e, "installationId-ERROR");
-          return ParseConfiguration.installationId = 0;
-        });
-        window.ParsePushPlugin.on('openPN', function(pn) {
-          console.log("OPENPN", pn);
-          return $rootScope.$broadcast('openNotification', {
-            payload: pn
-          });
-        });
-        window.ParsePushPlugin.on('receivePN', function(pn) {
-          console.log("RECEIVEPN", pn);
-          return $rootScope.$broadcast('receiveNotification', {
-            payload: pn
-          });
-        });
-      }
-      $scope.display = 'loader';
-      $scope.errorType = 'offline';
-      if (!App.isOnline()) {
-        return $scope.display = 'error';
-      } else {
-        return InitialiseService.initialize().then(function(data) {
-          console.log(data, " INITIALIZED");
-          return App.navigate('popular');
-        }, function(error) {
-          return $scope.display = 'error';
-        });
-      }
-    };
-    return $scope.initApp();
-  }
-]);
-
-shortFilmWindow.controller('appSlidesCtrl', [
-  '$scope', 'App', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, InitialiseService, ParseConfiguration, $rootScope) {
-    $scope.initApp = function() {
-      console.log("APP STARTED for the first time");
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
-      if (App.isWebView()) {
-        console.log("ISWEBVIEW");
-        ParsePushPlugin.getInstallationObjectId(function(id) {
-          console.log(id, "installationId");
-          return ParseConfiguration.installationId = id;
-        }, function(e) {
-          console.log(e, "installationId-ERROR");
-          return ParseConfiguration.installationId = 0;
-        });
-        window.ParsePushPlugin.on('openPN', function(pn) {
-          console.log("OPENPN", pn);
-          return $rootScope.$broadcast('openNotification', {
-            payload: pn
-          });
-        });
-        window.ParsePushPlugin.on('receivePN', function(pn) {
-          console.log("RECEIVEPN", pn);
-          return $rootScope.$broadcast('receiveNotification', {
-            payload: pn
-          });
-        });
-      }
-      $scope.startApp = function() {
-        if (!App.isOnline()) {
-          return $scope.display = 'error';
-        } else {
-          $scope.apiLoading = true;
-          return InitialiseService.initialize().then(function(data) {
-            console.log(data, " INITIALIZED");
-            $scope.apiLoading = false;
-            return App.navigate('popular');
-          }, function(error) {
-            return $scope.display = 'error';
-          });
-        }
-      };
-      $scope.next = function() {
-        $ionicSlideBoxDelegate.next();
-      };
-      $scope.previous = function() {
-        $ionicSlideBoxDelegate.previous();
-      };
-      return $scope.slideChanged = function(index) {
-        $scope.slideIndex = index;
-      };
-    };
-    return $scope.initApp();
-  }
-]);
-
-shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
-  '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    return $stateProvider.state('appSlides', {
-      url: '/appSlides',
-      abstract: false,
-      controller: 'appSlidesCtrl',
-      templateUrl: 'landingVideo/appSlides.html'
-    }).state('appInitialize', {
-      url: '/appInitialize',
-      abstract: false,
-      controller: 'appInitializeCtrl',
-      templateUrl: 'landingVideo/appInitialize.html'
-    }).state('home', {
-      url: '/sidebar',
-      cache: false,
-      controller: 'sidebarCtrl',
-      templateUrl: 'home/home.html'
-    }).state('tabhome', {
-      url: '/homeTab',
-      parent: 'home',
-      abstract: true,
-      views: {
-        "homeview": {
-          templateUrl: 'home/homeTab.html'
-        }
-      }
-    }).state('popular', {
-      url: '/popular',
-      parent: 'tabhome',
-      views: {
-        "popularContent": {
-          templateUrl: 'tabs/popular/popular.html',
-          controller: 'popularCtrl'
-        }
-      }
-    }).state('genre', {
-      cache: true,
-      url: '/genre',
-      parent: 'tabhome',
-      views: {
-        "genreContent": {
-          templateUrl: 'tabs/genre/genre.html',
-          controller: 'genreCtrl',
-          params: {
-            'data': null
-          }
-        }
-      }
-    }).state('playlist', {
-      url: '/playlist',
-      parent: 'tabhome',
-      views: {
-        "playlistContent": {
-          templateUrl: 'tabs/playlist/playlist.html',
-          controller: 'playlistCtrl'
-        }
-      }
-    }).state('watchList', {
-      url: '/watchList',
-      cache: false,
-      parent: 'home',
-      views: {
-        "homeview": {
-          templateUrl: 'watchlist/myWatchlist.html',
-          controller: 'watchlistCtrl'
-        }
-      }
-    }).state('notifications', {
-      url: '/notifications',
-      cache: false,
-      parent: 'home',
-      views: {
-        "homeview": {
-          templateUrl: 'notification/notifications.html',
-          controller: 'notificationsCtrl'
-        }
-      }
-    }).state('init', {
-      url: '/init',
-      cache: false,
-      controller: 'InitCtrl',
-      templateUrl: 'singlevideo/movieScreen.html'
-    }).state('singlePlayer', {
-      url: '/singlePlayer',
-      cache: false,
-      controller: 'playerCtrl',
-      templateUrl: 'singlevideo/singlePlayer.html'
-    }).state('landingvideo', {
-      url: '/landing',
-      cache: false,
-      controller: 'landingCtrl',
-      templateUrl: 'landingVideo/splash.html'
-    }).state('navbar', {
-      url: '/navbar',
-      abstract: false,
-      templateUrl: 'home/navBar.html'
-    }).state('singleGenre', {
-      url: '/singleGenre',
-      cache: false,
-      controller: 'singleGenre',
-      templateUrl: 'tabs/genre/singleGenre.html'
-    }).state('singlePlaylist', {
-      url: '/singlePlaylist',
-      cache: false,
-      controller: 'singlePlaylist',
-      templateUrl: 'tabs/playlist/singlePlaylist.html'
-    });
   }
 ]);
 

@@ -1,6 +1,6 @@
 var GLOBAL_URL, device_height, device_width;
 
-GLOBAL_URL = 'http://shortfilm.staging.wpengine.com';
+GLOBAL_URL = 'http://www.shortfilmwindow.com';
 
 device_width = '';
 
@@ -161,6 +161,72 @@ htmlEnDeCode = (function() {
     htmlDecode: htmlDecode
   };
 })();
+
+shortFilmWindow.controller('watchlistCtrl', [
+  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
+    $scope.watchlistDetails = [];
+    $scope.display = 'loader';
+    $scope.watchFlag = '0';
+    $scope.refreshSwiper = true;
+    $scope.addvideoDetails = [];
+    $scope.init = function() {
+      return $scope.getData();
+    };
+    $scope.getData = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        console.log(value);
+        $scope.watchlistDetails = value;
+        if (_.isNull($scope.watchlistDetails)) {
+          $scope.display = 'no_result';
+          return $scope.$apply();
+        } else {
+          if ($scope.watchlistDetails.length > 0) {
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 43 + 90;
+            $scope.hgt = device_height - $scope.used_height;
+            $scope.display = 'result';
+            return $scope.$apply();
+          } else {
+            $scope.display = 'no_result';
+            return $scope.$apply();
+          }
+        }
+      });
+    };
+    $scope.updatewatchlist = function(Id) {
+      $scope.CheckWatchlist(Id);
+      return $ionicScrollDelegate.resize();
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    return $scope.CheckWatchlist = function(Id) {
+      var matchIndex;
+      matchIndex = _.findLastIndex($scope.watchlistDetails, {
+        "movie_id": Id
+      });
+      $scope.watchlistDetails.splice(matchIndex, 1);
+      Storage.watchlistDetails('set', $scope.watchlistDetails);
+      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
+        return $scope.display = 'no_result';
+      } else {
+        $scope.refreshSwiper = false;
+        return $timeout((function() {
+          var device_height, device_width;
+          $scope.refreshSwiper = true;
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 43 + 72;
+          return $scope.hgt = device_height - $scope.used_height;
+        }), 100);
+      }
+    };
+  }
+]);
 
 shortFilmWindow.factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
@@ -335,72 +401,6 @@ shortFilmWindow.factory('share', [
       }
     };
     return share;
-  }
-]);
-
-shortFilmWindow.controller('watchlistCtrl', [
-  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
-    $scope.watchlistDetails = [];
-    $scope.display = 'loader';
-    $scope.watchFlag = '0';
-    $scope.refreshSwiper = true;
-    $scope.addvideoDetails = [];
-    $scope.init = function() {
-      return $scope.getData();
-    };
-    $scope.getData = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        console.log(value);
-        $scope.watchlistDetails = value;
-        if (_.isNull($scope.watchlistDetails)) {
-          $scope.display = 'no_result';
-          return $scope.$apply();
-        } else {
-          if ($scope.watchlistDetails.length > 0) {
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            $scope.used_height = 43 + 90;
-            $scope.hgt = device_height - $scope.used_height;
-            $scope.display = 'result';
-            return $scope.$apply();
-          } else {
-            $scope.display = 'no_result';
-            return $scope.$apply();
-          }
-        }
-      });
-    };
-    $scope.updatewatchlist = function(Id) {
-      $scope.CheckWatchlist(Id);
-      return $ionicScrollDelegate.resize();
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    return $scope.CheckWatchlist = function(Id) {
-      var matchIndex;
-      matchIndex = _.findLastIndex($scope.watchlistDetails, {
-        "movie_id": Id
-      });
-      $scope.watchlistDetails.splice(matchIndex, 1);
-      Storage.watchlistDetails('set', $scope.watchlistDetails);
-      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
-        return $scope.display = 'no_result';
-      } else {
-        $scope.refreshSwiper = false;
-        return $timeout((function() {
-          var device_height, device_width;
-          $scope.refreshSwiper = true;
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 43 + 72;
-          return $scope.hgt = device_height - $scope.used_height;
-        }), 100);
-      }
-    };
   }
 ]);
 
@@ -614,12 +614,6 @@ shortFilmWindow.factory('PulltorefreshAPI', [
   }
 ]);
 
-shortFilmWindow.filter('encodeDecodeFilter', function() {
-  return function(text) {
-    return htmlEnDeCode.htmlDecode(text);
-  };
-});
-
 shortFilmWindow.directive('dynFbCommentBox', function() {
   var createHTML, postLink;
   createHTML = function(href, numposts, colorscheme) {
@@ -695,6 +689,12 @@ shortFilmWindow.directive('swiper', function() {
         });
       });
     }
+  };
+});
+
+shortFilmWindow.filter('encodeDecodeFilter', function() {
+  return function(text) {
+    return htmlEnDeCode.htmlDecode(text);
   };
 });
 

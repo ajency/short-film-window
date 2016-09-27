@@ -32,7 +32,8 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
       
         window.fbAsyncInit = ->
           Parse.FacebookUtils.init
-            appId: '955517544488844'
+            # appId: '955517544488844'
+            appId: '586411814878247'
             version: 'v2.3'
             xfbml: true
           return
