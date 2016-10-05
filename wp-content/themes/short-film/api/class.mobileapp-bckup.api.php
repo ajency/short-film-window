@@ -229,13 +229,10 @@ class Mobileapp_API
 
        // print_r($cached_data);
         if(!is_array($cached_data))
-            $cached_data=array();
-        
+        $cached_data=array();
+
         if(count($cached_data)>0)
-        {
-            $cached_data[$id]['defaults']['content']['popular']['noteworthy'] = noteworthy();
-            return $response   =$cached_data[$id]; 
-        }
+        return $response   =$cached_data[$id]; 
 
         $response=fetch_default_data();
         
