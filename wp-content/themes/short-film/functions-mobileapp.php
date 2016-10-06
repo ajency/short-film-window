@@ -166,14 +166,8 @@ function new_additions(){
 
 function noteworthy(){
 
-	//$categories = array_slice(get_categories(), 0, 5);
-	$all_categories = get_categories();
-	$categories_keys = array_rand($all_categories, 5);
-	$categories = array();
-	foreach($categories_keys as $keys)
-	{
-		array_push($categories,$all_categories[$keys]);
-	}
+	$categories = array_slice(get_categories(), 0, 5);
+	shuffle($categories);
 
 	$selected = array();
 	$movies = array();
