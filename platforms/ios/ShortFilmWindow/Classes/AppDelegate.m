@@ -27,27 +27,13 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     self.viewController = [[MainViewController alloc] init];
-    [super application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    [Parse setApplicationId:@"DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO" clientKey:@"gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5"];
-    
-    //
-    // Basic notification config, left as cut-and-paste instead of part of plugin code for easy customization
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
-   // [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    
-    return YES;
-//    return [super application:application didFinishLaunchingWithOptions:launchOptions];
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 @end

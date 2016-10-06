@@ -1,32 +1,65 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-console.console",
+        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
+        "pluginId": "cordova-plugin-console",
+        "clobbers": [
+            "console"
+        ]
+    },
+    {
+        "id": "cordova-plugin-console.logger",
+        "file": "plugins/cordova-plugin-console/www/logger.js",
+        "pluginId": "cordova-plugin-console",
+        "clobbers": [
+            "cordova.logger"
+        ]
+    },
+    {
         "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
         "pluginId": "cordova-plugin-device",
         "clobbers": [
             "device"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-spinner-dialog/www/spinner.js",
-        "id": "cordova-plugin-spinner-dialog.SpinnerDialog",
-        "pluginId": "cordova-plugin-spinner-dialog",
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
         "merges": [
-            "window.plugins.spinnerDialog"
+            "navigator.notification"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-        "id": "cordova-plugin-statusbar.statusbar",
-        "pluginId": "cordova-plugin-statusbar",
+        "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
+        "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
+        "pluginId": "cordova-plugin-facebook4",
         "clobbers": [
-            "window.StatusBar"
+            "facebookConnectPlugin"
         ]
     },
     {
-        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "id": "ionic-plugin-keyboard.keyboard",
+        "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
         "pluginId": "ionic-plugin-keyboard",
         "clobbers": [
             "cordova.plugins.Keyboard"
@@ -34,8 +67,16 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-network-information/www/network.js",
+        "id": "com.phonegap.parsepushplugin.ParsePushPlugin",
+        "file": "plugins/com.phonegap.parsepushplugin/www/parse-push-plugin.js",
+        "pluginId": "com.phonegap.parsepushplugin",
+        "clobbers": [
+            "ParsePushPlugin"
+        ]
+    },
+    {
         "id": "cordova-plugin-network-information.network",
+        "file": "plugins/cordova-plugin-network-information/www/network.js",
         "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "navigator.connection",
@@ -43,76 +84,55 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
         "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
         "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "Connection"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "pluginId": "cordova-plugin-splashscreen",
-        "clobbers": [
-            "navigator.splashscreen"
+        "id": "cordova-plugin-spinner-dialog.SpinnerDialog",
+        "file": "plugins/cordova-plugin-spinner-dialog/www/spinner.js",
+        "pluginId": "cordova-plugin-spinner-dialog",
+        "merges": [
+            "window.plugins.spinnerDialog"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "id": "cordova-plugin-statusbar.statusbar",
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "pluginId": "cordova-plugin-statusbar",
+        "clobbers": [
+            "window.StatusBar"
+        ]
+    },
+    {
         "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
         "pluginId": "cordova-plugin-x-socialsharing",
         "clobbers": [
             "window.plugins.socialsharing"
-        ]
-    },
-    {
-        "file": "plugins/com.phonegap.parsepushplugin/www/parse-push-plugin.js",
-        "id": "com.phonegap.parsepushplugin.ParsePushPlugin",
-        "pluginId": "com.phonegap.parsepushplugin",
-        "clobbers": [
-            "ParsePushPlugin"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
-        "id": "cordova-plugin-console.console",
-        "pluginId": "cordova-plugin-console",
-        "clobbers": [
-            "console"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-console/www/logger.js",
-        "id": "cordova-plugin-console.logger",
-        "pluginId": "cordova-plugin-console",
-        "clobbers": [
-            "cordova.logger"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-facebook4/www/facebook-native.js",
-        "id": "cordova-plugin-facebook4.FacebookConnectPlugin",
-        "pluginId": "cordova-plugin-facebook4",
-        "clobbers": [
-            "facebookConnectPlugin"
         ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "cordova-plugin-console": "1.0.3",
     "cordova-plugin-device": "1.1.2",
-    "cordova-plugin-spinner-dialog": "1.3.1",
-    "cordova-plugin-statusbar": "2.1.3",
+    "cordova-plugin-dialogs": "1.2.1",
+    "cordova-plugin-facebook4": "1.7.1",
+    "cordova-plugin-inappbrowser": "1.4.0",
+    "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-whitelist": "1.2.2",
     "ionic-plugin-keyboard": "2.2.0",
-    "cordova-plugin-network-information": "1.2.1",
-    "cordova-plugin-splashscreen": "3.2.2",
-    "cordova-plugin-x-socialsharing": "5.1.1",
     "com.phonegap.parsepushplugin": "0.8.0",
-    "cordova-plugin-console": "1.0.3",
-    "cordova-plugin-facebook4": "1.7.1"
-}
+    "cordova-plugin-network-information": "1.2.1",
+    "cordova-plugin-spinner-dialog": "1.3.1",
+    "cordova-plugin-statusbar": "2.1.3",
+    "cordova-plugin-x-socialsharing": "5.1.1",
+    "nl.x-services.plugins.backgroundaudio": "1.0.1"
+};
 // BOTTOM OF METADATA
 });

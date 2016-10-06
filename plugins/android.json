@@ -26,6 +26,9 @@
             "APP_ID": "586411814878247",
             "APP_NAME": "shortfilmWindowTest",
             "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "nl.x-services.plugins.backgroundaudio": {
+            "PACKAGE_NAME": "com.ShortFilm"
         }
     },
     "dependent_plugins": {

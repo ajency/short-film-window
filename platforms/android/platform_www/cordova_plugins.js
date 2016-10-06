@@ -95,7 +95,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-x-socialsharing": "5.1.1",
     "ionic-plugin-keyboard": "2.2.0",
-    "cordova-plugin-facebook4": "1.7.1"
+    "cordova-plugin-facebook4": "1.7.1",
+    "nl.x-services.plugins.backgroundaudio": "1.0.1"
 };
 // BOTTOM OF METADATA
 });

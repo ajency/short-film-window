@@ -76,7 +76,7 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
 
 ]
 
-shortFilmWindow.config ['$compileProvider','$ionicConfigProvider', ($compileProvider,$ionicConfigProvider)->
+shortFilmWindow.config ['$compileProvider','$ionicConfigProvider','$sceDelegateProvider', ($compileProvider,$ionicConfigProvider,$sceDelegateProvider)->
   # $ionicConfigProvider.views.maxCache 0
   # $ionicConfigProvider.views.forwardCache false
   # $ionicConfigProvider.views.transition 'none'
@@ -84,7 +84,10 @@ shortFilmWindow.config ['$compileProvider','$ionicConfigProvider', ($compileProv
   $ionicConfigProvider.scrolling.jsScrolling false
 
   $compileProvider.debugInfoEnabled false
-
+  $sceDelegateProvider.resourceUrlWhitelist [
+    'self'
+    new RegExp('^(http[s]?)://(w{3}.)?youtube.com/.+$')
+  ]
   # scrollable = document.querySelector '#genreScroll'
   # lazyImgConfigProvider.setOptions
   #   offset: 100

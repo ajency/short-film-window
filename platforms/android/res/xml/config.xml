@@ -83,6 +83,7 @@
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="AllowInlineMediaPlayback" value="true" />
     <allow-navigation href="http://www.youtube.com/embed/*" />
+    <allow-navigation href="://.youtube.com/*" />
     <allow-navigation href="http://player.vimeo.com/video/*" />
     <allow-navigation href="https://www.youtube.com/embed/*" />
     <allow-navigation href="https://m.facebook.com/*/*/*" />
