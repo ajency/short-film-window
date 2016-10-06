@@ -167,7 +167,7 @@ function new_additions(){
 function noteworthy(){
 
 	$categories = array_slice(get_categories(), 0, 5);
-	shuffle($categories);
+	//shuffle($categories);
 
 	$selected = array();
 	$movies = array();
@@ -176,12 +176,11 @@ function noteworthy(){
 			'post_type'	 => 'post',
 			'post_status'=> 'publish',
 			'orderby'		 => 'rand',
-			'numberposts' => 1,
 			'cat' => $cat->term_id,
 			'post__not_in' => $selected
 			);
 		$movie = get_posts( $args );
-		$movie_id = $movie[0]->ID;
+		$movie_id = $movie[rand(0,sizeof($movie))]->ID;
 		$selected[] = $movie_id;
 
 
