@@ -172,15 +172,20 @@ function noteworthy(){
 	$selected = array();
 	$movies = array();
 	foreach($categories as $key=>$cat){
+
 		$args = array(
 			'post_type'	 => 'post',
 			'post_status'=> 'publish',
 			'orderby'		 => 'rand',
 			'cat' => $cat->term_id,
-			'post__not_in' => $selected
+			'post__not_in' => $selected,
+			'posts_per_page' => 1,
+  			'orderby' => 'rand'
 			);
 		$movie = get_posts( $args );
-		$movie_id = $movie[rand(0,sizeof($movie))]->ID;
+		//$movie_id = $movie[rand(0,sizeof($movie))]->ID;
+		$movie_id = $movie[0]->ID;
+
 		$selected[] = $movie_id;
 
 
