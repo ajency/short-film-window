@@ -178,13 +178,13 @@ function noteworthy(){
 			'post_status'=> 'publish',
 			'orderby'		 => 'rand',
 			'cat' => $cat->term_id,
-			'post__not_in' => $selected,
-			'posts_per_page' => 1,
-  			'orderby' => 'rand'
+			'post__not_in' => $selected
 			);
 		$movie = get_posts( $args );
 		//$movie_id = $movie[rand(0,sizeof($movie))]->ID;
-		$movie_id = $movie[0]->ID;
+
+		$randomMovie = array_rand($movie, 1);
+		$movie_id = $movie[$randomMovie]->ID;
 
 		$selected[] = $movie_id;
 
