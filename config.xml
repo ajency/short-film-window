@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ShortFilm" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sfwindow" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ShortFilmWindow</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -19,6 +19,11 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="AllowInlineMediaPlayback" value="true" />
+    <preference name="ParseAppId" value="DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO" />
+    <preference name="ParseClientKey" value="gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5" />
+
+    <!-- Do not replace this string value. It must be "PARSE_DOT_COM"-->
+    <preference name="ParseServerUrl" value="PARSE_DOT_COM" />
     <allow-navigation href="http://www.youtube.com/embed/*" />
     <allow-navigation href="://.youtube.com/*" />
     <allow-navigation href="http://player.vimeo.com/video/*" />

@@ -8,44 +8,50 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ShortFilm"
+            "PACKAGE_NAME": "com.sfwindow"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ShortFilm"
+            "PACKAGE_NAME": "com.sfwindow"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.ShortFilm"
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.sfwindow"
         },
         "cordova-plugin-facebook4": {
             "APP_ID": "586411814878247",
             "APP_NAME": "shortfilmWindowTest",
-            "PACKAGE_NAME": "com.ShortFilm"
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.sfwindow"
         },
         "nl.x-services.plugins.backgroundaudio": {
-            "PACKAGE_NAME": "com.ShortFilm"
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "parse-push-plugin": {
+            "PACKAGE_NAME": "com.sfwindow"
         }
     },
     "dependent_plugins": {
-        "com.phonegap.parsepushplugin": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
         "cordova-plugin-spinner-dialog": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.ShortFilm"
+            "PACKAGE_NAME": "com.sfwindow"
         },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.ShortFilm"
+            "PACKAGE_NAME": "com.sfwindow"
         }
     }
 }

@@ -9,6 +9,9 @@
     "libz.tbd": 2,
     "libsqlite3.tbd": 2,
     "CoreTelephony.framework": 2,
-    "Social.framework": 2,
-    "MessageUI.framework": 2
+    "Social.framework": 1,
+    "MessageUI.framework": 1,
+    "AddressBook.framework": 1,
+    "libsqlite3.dylib": 1,
+    "Accounts.framework": 1
 }

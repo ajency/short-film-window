@@ -9,7 +9,7 @@ shortFilmWindow
       if App.isWebView()
         console.log "ISWEBVIEW"
         ParsePushPlugin.getInstallationObjectId (id) ->
-          console.log id,"installationId"
+          console.log id,"---------------------------------installationId"
           ParseConfiguration.installationId = id
         , (e) ->
           console.log e,"installationId-ERROR"
@@ -21,6 +21,7 @@ shortFilmWindow
 
         window.ParsePushPlugin.on 'receivePN', (pn)->
           console.log "RECEIVEPN",pn
+          console.log pn
           $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
       # tag = document.createElement('script')

@@ -28,9 +28,11 @@ shortFilmWindow
           .then (data) ->
             console.log data,"PARSE Notifications"
             if data.length == 0
+              console.log "No data"
               $scope.result = 'no-new-notifications'
               $scope.initWatchlist
             else
+              console.log "Data present"
               $scope.refreshSwiper = false
               $scope.notificationArray = data
               $timeout ( ->
@@ -38,10 +40,13 @@ shortFilmWindow
                 $scope.result = 'display'
                 ),50
           , (error) ->
+            console.log "In error", error
             $scope.result = 'error'
           .catch (error) ->
+            console.log "In error", error
             $scope.result = 'error'
       else
+        console.log "App not online"
         $scope.result = 'error'
 
     $scope.clearNotifications = ()->

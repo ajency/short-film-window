@@ -8,7 +8,8 @@ shortFilmWindow.service 'ParseNotificationService', [
       getNotificationsWithStatus: ->
         deferred = $q.defer()
         installation_id = ParseConfiguration.installationId
-        # installation_id = 'SlTCCS8Eom'
+        console.log "ParseConfiguration.installationId", ParseConfiguration.installationId
+        # installation_id = '8512cf62-3d0b-4c41-8d8f-ea50a2af386a'
         Parse.Cloud.run 'listAllNotificationsForUser', {"installation_id" : installation_id},
           success: (results) ->
             notificationArray = []

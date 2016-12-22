@@ -7,12 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.ShortFilm"
         },
@@ -24,30 +18,39 @@
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ShortFilm"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ShortFilm"
         },
         "nl.x-services.plugins.backgroundaudio": {
             "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "parse-push-plugin": {
+            "PACKAGE_NAME": "com.ShortFilm"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.sfwindow"
         }
     },
     "dependent_plugins": {
         "com.phonegap.parsepushplugin": {
             "PACKAGE_NAME": "com.ShortFilm"
         },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
         "cordova-plugin-spinner-dialog": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.ShortFilm"
         },
         "cordova-plugin-x-socialsharing": {
