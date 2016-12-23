@@ -11,10 +11,10 @@ var shortFilmWindow;
 shortFilmWindow = angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'ngSanitize', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'ionic.contrib.ui.ionThread', 'templates']);
 
 shortFilmWindow.value('ParseConfiguration', {
-  applicationId: 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO',
-  javascriptKey: 'TTrki92xoLK7s4POTGeFk4i2Ynm8tPbPl7QrKl7K',
-  clientKey: 'gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5',
-  masterKey: 'LALmaz73J44ndeC2n7vuuySMVLGHUSTEQADmJPKN',
+  applicationId: 'SE6Q1hXbqyYvg6aE1RA0raCtThoVSsYbSPJzOpu3',
+  javascriptKey: 'tFtsQns0YNDCv1pa6GenmdambG5z27s28UEmBnie',
+  clientKey: 'CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj',
+  masterKey: 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H',
   installationId: ''
 });
 
@@ -949,116 +949,6 @@ shortFilmWindow.controller('appSlidesCtrl', [
   }
 ]);
 
-shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
-  '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    return $stateProvider.state('appSlides', {
-      url: '/appSlides',
-      abstract: false,
-      controller: 'appSlidesCtrl',
-      templateUrl: 'landingVideo/appSlides.html'
-    }).state('appInitialize', {
-      url: '/appInitialize',
-      abstract: false,
-      controller: 'appInitializeCtrl',
-      templateUrl: 'landingVideo/appInitialize.html'
-    }).state('home', {
-      url: '/sidebar',
-      cache: false,
-      controller: 'sidebarCtrl',
-      templateUrl: 'home/home.html'
-    }).state('tabhome', {
-      url: '/homeTab',
-      parent: 'home',
-      abstract: true,
-      views: {
-        "homeview": {
-          templateUrl: 'home/homeTab.html'
-        }
-      }
-    }).state('popular', {
-      url: '/popular',
-      parent: 'tabhome',
-      views: {
-        "popularContent": {
-          templateUrl: 'tabs/popular/popular.html',
-          controller: 'popularCtrl'
-        }
-      }
-    }).state('genre', {
-      cache: true,
-      url: '/genre',
-      parent: 'tabhome',
-      views: {
-        "genreContent": {
-          templateUrl: 'tabs/genre/genre.html',
-          controller: 'genreCtrl',
-          params: {
-            'data': null
-          }
-        }
-      }
-    }).state('playlist', {
-      url: '/playlist',
-      parent: 'tabhome',
-      views: {
-        "playlistContent": {
-          templateUrl: 'tabs/playlist/playlist.html',
-          controller: 'playlistCtrl'
-        }
-      }
-    }).state('watchList', {
-      url: '/watchList',
-      cache: false,
-      parent: 'home',
-      views: {
-        "homeview": {
-          templateUrl: 'watchlist/myWatchlist.html',
-          controller: 'watchlistCtrl'
-        }
-      }
-    }).state('notifications', {
-      url: '/notifications',
-      cache: false,
-      parent: 'home',
-      views: {
-        "homeview": {
-          templateUrl: 'notification/notifications.html',
-          controller: 'notificationsCtrl'
-        }
-      }
-    }).state('init', {
-      url: '/init',
-      cache: false,
-      controller: 'InitCtrl',
-      templateUrl: 'singlevideo/movieScreen.html'
-    }).state('singlePlayer', {
-      url: '/singlePlayer',
-      cache: false,
-      controller: 'playerCtrl',
-      templateUrl: 'singlevideo/singlePlayer.html'
-    }).state('landingvideo', {
-      url: '/landing',
-      cache: false,
-      controller: 'landingCtrl',
-      templateUrl: 'landingVideo/splash.html'
-    }).state('navbar', {
-      url: '/navbar',
-      abstract: false,
-      templateUrl: 'home/navBar.html'
-    }).state('singleGenre', {
-      url: '/singleGenre',
-      cache: false,
-      controller: 'singleGenre',
-      templateUrl: 'tabs/genre/singleGenre.html'
-    }).state('singlePlaylist', {
-      url: '/singlePlaylist',
-      cache: false,
-      controller: 'singlePlaylist',
-      templateUrl: 'tabs/playlist/singlePlaylist.html'
-    });
-  }
-]);
-
 shortFilmWindow.controller('notificationsCtrl', [
   '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$stateParams', 'ParseNotificationService', 'Storage', '$timeout', '$window', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $stateParams, ParseNotificationService, Storage, $timeout, $window) {
     $scope.notificationArray = [];
@@ -1554,6 +1444,116 @@ shortFilmWindow.factory('Storage', [
       }
     };
     return Storage;
+  }
+]);
+
+shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
+  '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    return $stateProvider.state('appSlides', {
+      url: '/appSlides',
+      abstract: false,
+      controller: 'appSlidesCtrl',
+      templateUrl: 'landingVideo/appSlides.html'
+    }).state('appInitialize', {
+      url: '/appInitialize',
+      abstract: false,
+      controller: 'appInitializeCtrl',
+      templateUrl: 'landingVideo/appInitialize.html'
+    }).state('home', {
+      url: '/sidebar',
+      cache: false,
+      controller: 'sidebarCtrl',
+      templateUrl: 'home/home.html'
+    }).state('tabhome', {
+      url: '/homeTab',
+      parent: 'home',
+      abstract: true,
+      views: {
+        "homeview": {
+          templateUrl: 'home/homeTab.html'
+        }
+      }
+    }).state('popular', {
+      url: '/popular',
+      parent: 'tabhome',
+      views: {
+        "popularContent": {
+          templateUrl: 'tabs/popular/popular.html',
+          controller: 'popularCtrl'
+        }
+      }
+    }).state('genre', {
+      cache: true,
+      url: '/genre',
+      parent: 'tabhome',
+      views: {
+        "genreContent": {
+          templateUrl: 'tabs/genre/genre.html',
+          controller: 'genreCtrl',
+          params: {
+            'data': null
+          }
+        }
+      }
+    }).state('playlist', {
+      url: '/playlist',
+      parent: 'tabhome',
+      views: {
+        "playlistContent": {
+          templateUrl: 'tabs/playlist/playlist.html',
+          controller: 'playlistCtrl'
+        }
+      }
+    }).state('watchList', {
+      url: '/watchList',
+      cache: false,
+      parent: 'home',
+      views: {
+        "homeview": {
+          templateUrl: 'watchlist/myWatchlist.html',
+          controller: 'watchlistCtrl'
+        }
+      }
+    }).state('notifications', {
+      url: '/notifications',
+      cache: false,
+      parent: 'home',
+      views: {
+        "homeview": {
+          templateUrl: 'notification/notifications.html',
+          controller: 'notificationsCtrl'
+        }
+      }
+    }).state('init', {
+      url: '/init',
+      cache: false,
+      controller: 'InitCtrl',
+      templateUrl: 'singlevideo/movieScreen.html'
+    }).state('singlePlayer', {
+      url: '/singlePlayer',
+      cache: false,
+      controller: 'playerCtrl',
+      templateUrl: 'singlevideo/singlePlayer.html'
+    }).state('landingvideo', {
+      url: '/landing',
+      cache: false,
+      controller: 'landingCtrl',
+      templateUrl: 'landingVideo/splash.html'
+    }).state('navbar', {
+      url: '/navbar',
+      abstract: false,
+      templateUrl: 'home/navBar.html'
+    }).state('singleGenre', {
+      url: '/singleGenre',
+      cache: false,
+      controller: 'singleGenre',
+      templateUrl: 'tabs/genre/singleGenre.html'
+    }).state('singlePlaylist', {
+      url: '/singlePlaylist',
+      cache: false,
+      controller: 'singlePlaylist',
+      templateUrl: 'tabs/playlist/singlePlaylist.html'
+    });
   }
 ]);
 

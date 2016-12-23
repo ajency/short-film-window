@@ -44,6 +44,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ShortFilm"
         }
     },
     "dependent_plugins": {
@@ -51,9 +54,6 @@
             "PACKAGE_NAME": "com.ShortFilm"
         },
         "cordova-plugin-spinner-dialog": {
-            "PACKAGE_NAME": "com.ShortFilm"
-        },
-        "cordova-plugin-x-socialsharing": {
             "PACKAGE_NAME": "com.ShortFilm"
         }
     }

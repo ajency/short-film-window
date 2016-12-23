@@ -19,8 +19,10 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="AllowInlineMediaPlayback" value="true" />
-    <preference name="ParseAppId" value="DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO" />
-    <preference name="ParseClientKey" value="gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5" />
+    <!--<preference name="ParseAppId" value="DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO" />
+    <preference name="ParseClientKey" value="gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5" />-->
+    <preference name="ParseAppId" value="SE6Q1hXbqyYvg6aE1RA0raCtThoVSsYbSPJzOpu3" />
+    <preference name="ParseClientKey" value="CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj" />
 
     <!-- Do not replace this string value. It must be "PARSE_DOT_COM"-->
     <preference name="ParseServerUrl" value="PARSE_DOT_COM" />

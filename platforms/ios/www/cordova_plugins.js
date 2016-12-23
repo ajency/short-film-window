@@ -9,14 +9,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
-        "id": "cordova-plugin-x-socialsharing.SocialSharing",
-        "pluginId": "cordova-plugin-x-socialsharing",
-        "clobbers": [
-            "window.plugins.socialsharing"
-        ]
-    },
-    {
         "file": "plugins/com.phonegap.parsepushplugin/www/parse-push-plugin.js",
         "id": "com.phonegap.parsepushplugin.ParsePushPlugin",
         "pluginId": "com.phonegap.parsepushplugin",
@@ -122,6 +114,14 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "id": "cordova-plugin-x-socialsharing.SocialSharing",
+        "file": "plugins/cordova-plugin-x-socialsharing/www/SocialSharing.js",
+        "pluginId": "cordova-plugin-x-socialsharing",
+        "clobbers": [
+            "window.plugins.socialsharing"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -129,7 +129,6 @@ module.exports.metadata =
 {
     "cordova-plugin-spinner-dialog": "1.3.1",
     "cordova-plugin-whitelist": "1.2.2",
-    "cordova-plugin-x-socialsharing": "5.1.1",
     "com.phonegap.parsepushplugin": "0.8.0",
     "cordova-plugin-facebook4": "1.7.1",
     "cordova-plugin-dialogs": "1.2.1",
@@ -141,7 +140,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "4.0.0",
     "cordova-plugin-console": "1.0.4",
     "parse-push-plugin": "1.0.5",
-    "ionic-plugin-keyboard": "2.2.1"
+    "ionic-plugin-keyboard": "2.2.1",
+    "cordova-plugin-x-socialsharing": "5.1.3"
 };
 // BOTTOM OF METADATA
 });
