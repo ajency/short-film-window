@@ -2776,9 +2776,13 @@ if($post['post_status']=='publish'){
   if ($post_date == $post_modified) 
   {
     require 'push.php'; 
-    $data_movie= single_video($post["ID"]);  
+    $data_movie= single_video($post["ID"]);
+
+    $post_thumbnail_id = get_post_thumbnail_id($post["ID"]);
+    $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'thumbnail');
+
     $moviedetails=urlencode(json_encode($data_movie));
-    $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails);
+    $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url);
     $notify = new pushNotifications;
     $notify->sendNotifications($data);
   }
