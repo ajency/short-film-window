@@ -2782,7 +2782,7 @@ if($post['post_status']=='publish'){
     $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'thumbnail');
 
     $moviedetails=urlencode(json_encode($data_movie));
-    $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url);
+    $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url[0]);
     $notify = new pushNotifications;
     $notify->sendNotifications($data);
   }

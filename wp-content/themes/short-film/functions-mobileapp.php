@@ -216,6 +216,11 @@ function noteworthy(){
 		$movies[$key]['genreCategory'] = $cat->name;
 		$movies[$key]['genres']     		= $noteworthy_movie['categories'];
 
+		$post_thumbnail_id = get_post_thumbnail_id($movie_id);
+    	$post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'thumbnail');
+    	$movies[$key]['icon']     		= $post_thumbnail_url[0];
+
+
 		if($movies[$key]['type']	=='youtube'){
 			$url = explode("=",$noteworthy_movie['videourl']);
 			if(isset($url[1]))
