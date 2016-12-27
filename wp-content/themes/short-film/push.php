@@ -2,9 +2,17 @@
 
 require 'vendor/autoload.php';
 
-$app_id = 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO';
+//Live Keys
+/*$app_id = 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO';
 $rest_key = '23SdM1zR6lpVfA28dbcOlAJQD8nFgNxLHDwMeTmk';
-$master_key = 'LALmaz73J44ndeC2n7vuuySMVLGHUSTEQADmJPKN';
+$master_key = 'LALmaz73J44ndeC2n7vuuySMVLGHUSTEQADmJPKN';*/
+
+//Test Keys
+$app_id = 'SE6Q1hXbqyYvg6aE1RA0raCtThoVSsYbSPJzOpu3';
+$rest_key = 'xtF1NeSjtofF5I6alLA9JMABhYGCQsIXjXT5Gn2Y';
+$master_key = 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H';
+
+
 
 use Parse\ParseObject;
 use Parse\ParseQuery;
