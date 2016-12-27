@@ -148,6 +148,7 @@ if ( ! isset( $content_width ) ) $content_width = 580;
 add_image_size( 'wpbs-featured', 780, 300, true );
 add_image_size( 'wpbs-featured-home', 970, 311, true);
 add_image_size( 'wpbs-featured-carousel', 970, 400, true);
+add_image_size( 'notification-icon', 64, 64, true);
 
 /*
 to add more sizes, simply copy a line from above
@@ -2779,7 +2780,7 @@ if($post['post_status']=='publish'){
     $data_movie= single_video($post["ID"]);
 
     $post_thumbnail_id = get_post_thumbnail_id($post["ID"]);
-    $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'thumbnail');
+    $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
 
     $moviedetails=urlencode(json_encode($data_movie));
     $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url[0]);

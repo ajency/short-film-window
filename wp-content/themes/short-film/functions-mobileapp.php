@@ -217,7 +217,7 @@ function noteworthy(){
 		$movies[$key]['genres']     		= $noteworthy_movie['categories'];
 
 		$post_thumbnail_id = get_post_thumbnail_id($movie_id);
-    	$post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'thumbnail');
+    	$post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
     	$movies[$key]['icon']     		= $post_thumbnail_url[0];
 
 
