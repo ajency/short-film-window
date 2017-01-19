@@ -6,7 +6,6 @@ shortFilmWindow
       console.log "APP STARTED for the first time"
       #App.hideSplashScreen()
       $ionicPlatform.ready ->
-        Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
         if App.isWebView()
           console.log "ISWEBVIEW"
           ParsePushPlugin.getInstallationObjectId (id) ->
@@ -29,11 +28,11 @@ shortFilmWindow
         if !App.isOnline()
           $scope.display = 'error'
         else
-          $scope.apiLoading=true;
+          $scope.apiLoading=true
           InitialiseService.initialize()
           .then (data) ->
             console.log data, " INITIALIZED"
-            $scope.apiLoading=false;
+            $scope.apiLoading=false
             App.navigate 'popular'
           , (error) ->
                 $scope.display = 'error'

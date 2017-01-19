@@ -52,14 +52,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-network-information": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-network-information"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-statusbar": {
         "source": {
             "type": "registry",
@@ -84,15 +76,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "parse-push-plugin": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/taivo/parse-push-plugin",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "ionic-plugin-keyboard": {
         "source": {
             "type": "registry",
@@ -105,6 +88,24 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-x-socialsharing"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@1.9.2"
+        },
+        "is_top_level": true,
+        "variables": {
+            "SENDER_ID": "936233723943"
+        }
+    },
+    "cordova-plugin-network-information": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-network-information"
         },
         "is_top_level": true,
         "variables": {}

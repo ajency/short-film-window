@@ -24,9 +24,6 @@
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.sfwindow"
         },
-        "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.sfwindow"
-        },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.sfwindow"
         },
@@ -45,7 +42,11 @@
         "nl.x-services.plugins.backgroundaudio": {
             "PACKAGE_NAME": "com.sfwindow"
         },
-        "parse-push-plugin": {
+        "phonegap-plugin-push": {
+            "SENDER_ID": "936233723943",
+            "PACKAGE_NAME": "com.sfwindow"
+        },
+        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.sfwindow"
         }
     },

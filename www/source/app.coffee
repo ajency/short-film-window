@@ -9,12 +9,23 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
   clientKey: 'qm7Z3fHnfXRrN2kirOySQXoiOWixKkLj7yeZeDJo'
  )
 
-.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', 'InitialiseService'
-  , ($ionicPlatform,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration, InitialiseService)->
+.constant 'PushConfig',
+    android:
+        senderID: "936233723943"
+    ios:
+      senderID: "936233723943"
+      gcmSandbox: true
+      alert: true
+      badge: true
+      sound: false
 
+.run ['$ionicPlatform','PushConfig','$state', '$rootScope', 'App', '$timeout','Set_Get','$cordovaSplashscreen','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', 'InitialiseService'
+  , ($ionicPlatform,PushConfig,$state,$rootScope, App, $timeout,Set_Get,$cordovaSplashscreen,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration, InitialiseService)->
+    Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
+    console.log 'RERERERER'
     $ionicPlatform.ready ->
       $rootScope.isAndroid = ionic.Platform.isAndroid()
-
+      
       # ParsePushPlugin.on 'receivePN', (pn)->
       #   console.log 'yo i got this push notification:' + JSON.stringify pn;
       #   $rootScope.$broadcast 'receivePN', { payload: pn }
@@ -22,6 +33,10 @@ angular.module 'SFWApp', ['ionic','ngCordova','SFWApp.landing','SFWApp.init','SF
       # ParsePushPlugin.on 'openPN', (pn)->
       #   console.log 'Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify pn;
       #   $rootScope.$broadcast 'openPN', { payload: pn }
+      push = PushNotification.init 
+      push.on 'notification', (data) ->
+        console.log data
+        alert 'notification received'
       InitialiseService.initialize()
       .then (data) ->
           # $ionicLoading.hide()

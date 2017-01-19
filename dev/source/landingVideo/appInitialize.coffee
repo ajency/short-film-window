@@ -1,28 +1,27 @@
 shortFilmWindow
-.controller 'appInitializeCtrl', ['$scope','App','InitialiseService','ParseConfiguration','$rootScope'
-  ,($scope,App,InitialiseService,ParseConfiguration,$rootScope)->
+.controller 'appInitializeCtrl', ['$scope','App','InitialiseService','ParseConfiguration','$rootScope','$ionicPlatform'
+  ,($scope,App,InitialiseService,ParseConfiguration,$rootScope,$ionicPlatform)->
     $scope.initApp = ()->
 
       console.log "APP STARTED"
       #App.hideSplashScreen()
-      Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
       if App.isWebView()
         console.log "ISWEBVIEW"
-        ParsePushPlugin.getInstallationObjectId (id) ->
-          console.log id,"---------------------------------installationId"
-          ParseConfiguration.installationId = id
-        , (e) ->
-          console.log e,"installationId-ERROR"
-          ParseConfiguration.installationId =  0
+        # ParsePushPlugin.getInstallationObjectId (id) ->
+        #   console.log id,"---------------------------------installationId"
+        #   ParseConfiguration.installationId = id
+        # , (e) ->
+        #   console.log e,"installationId-ERROR"
+        #   ParseConfiguration.installationId =  0
 
-        window.ParsePushPlugin.on 'openPN', (pn)->
-          console.log "OPENPN",pn
-          $rootScope.$broadcast 'openNotification', { payload: pn }
+        # window.ParsePushPlugin.on 'openPN', (pn)->
+        #   console.log "OPENPN",pn
+        #   $rootScope.$broadcast 'openNotification', { payload: pn }
 
-        window.ParsePushPlugin.on 'receivePN', (pn)->
-          console.log "RECEIVEPN",pn
-          console.log pn
-          $rootScope.$broadcast 'receiveNotification', { payload: pn }
+        # window.ParsePushPlugin.on 'receivePN', (pn)->
+        #   console.log "RECEIVEPN",pn
+        #   console.log pn
+        #   $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
       # tag = document.createElement('script')
       # tag.src = 'https://www.youtube.com/iframe_api'
@@ -41,8 +40,8 @@ shortFilmWindow
           App.navigate 'popular'
         , (error) ->
               $scope.display = 'error'
-
-    $scope.initApp()
+    $ionicPlatform.ready ->
+      $scope.initApp()
 
 
 ]

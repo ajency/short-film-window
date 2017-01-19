@@ -16,55 +16,79 @@ shortFilmWindow.value('ParseConfiguration', {
   clientKey: 'CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj',
   masterKey: 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H',
   installationId: ''
+}).constant('PushConfig', {
+  android: {
+    senderID: "936233723943"
+  },
+  ios: {
+    senderID: "936233723943",
+    gcmSandbox: true,
+    alert: true,
+    badge: true,
+    sound: false
+  }
 });
 
 shortFilmWindow.run([
-  '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function($ionicPlatform, $state, $rootScope, App, $timeout, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
+  'PushConfig', '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function(PushConfig, $ionicPlatform, $state, $rootScope, App, $timeout, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
+    var device_height, device_width;
     $ionicPlatform.ready(function() {
-      var device_height, device_width;
-      $rootScope.App = App;
-      device_width = $window.innerWidth;
-      device_height = $window.innerHeight;
-      $rootScope.device_height = $window.innerHeight;
-      App.hideSplashScreen();
-      console.log('Checking if initial');
-      console.log(App.isInitialRun());
-      if (App.isInitialRun()) {
-        App.setInitialRun(false);
-        App.navigate('appSlides');
-      } else {
-        App.navigate('appInitialize');
-      }
-      $ionicPlatform.registerBackButtonAction((function(event) {
-        var count;
-        if ($state.current.name === 'popular') {
-          navigator.app.exitApp();
-        } else {
-          count = -1;
-          App.goBack(count);
-        }
-      }), 100);
-      window.fbAsyncInit = function() {
-        Parse.FacebookUtils.init({
-          appId: '586411814878247',
-          version: 'v2.4',
-          cookie: true,
-          xfbml: true
+      var push;
+      $rootScope.isAndroid = ionic.Platform.isAndroid();
+      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      if (ionic.Platform.isWebView()) {
+        push = PushNotification.init(PushConfig);
+        push.on('registration', function(data) {
+          return console.log('DEVICE ID ->', data, data.registrationId);
         });
-      };
-      return (function(d, s, id) {
-        var fjs, js;
-        js = void 0;
-        fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-          return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = 'https://connect.facebook.net/en_US/sdk.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, 'script', 'facebook-jssdk');
+        push.on('notification', function(data) {
+          console.log(data);
+          return alert('notification received');
+        });
+      }
+      return $rootScope.App = App;
     });
+    device_width = $window.innerWidth;
+    device_height = $window.innerHeight;
+    $rootScope.device_height = $window.innerHeight;
+    App.hideSplashScreen();
+    console.log('Checking if initial');
+    console.log(App.isInitialRun());
+    if (App.isInitialRun()) {
+      App.setInitialRun(false);
+      App.navigate('appSlides');
+    } else {
+      App.navigate('appInitialize');
+    }
+    $ionicPlatform.registerBackButtonAction((function(event) {
+      var count;
+      if ($state.current.name === 'popular') {
+        navigator.app.exitApp();
+      } else {
+        count = -1;
+        App.goBack(count);
+      }
+    }), 100);
+    window.fbAsyncInit = function() {
+      Parse.FacebookUtils.init({
+        appId: '586411814878247',
+        version: 'v2.4',
+        cookie: true,
+        xfbml: true
+      });
+    };
+    (function(d, s, id) {
+      var fjs, js;
+      js = void 0;
+      fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       console.log("FROM : " + from.name + " , TO : " + to.name);
       if (to.name === 'notifications') {
@@ -847,32 +871,11 @@ shortFilmWindow.controller('InitCtrl', [
 ]);
 
 shortFilmWindow.controller('appInitializeCtrl', [
-  '$scope', 'App', 'InitialiseService', 'ParseConfiguration', '$rootScope', function($scope, App, InitialiseService, ParseConfiguration, $rootScope) {
+  '$scope', 'App', 'InitialiseService', 'ParseConfiguration', '$rootScope', '$ionicPlatform', function($scope, App, InitialiseService, ParseConfiguration, $rootScope, $ionicPlatform) {
     $scope.initApp = function() {
       console.log("APP STARTED");
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
       if (App.isWebView()) {
         console.log("ISWEBVIEW");
-        ParsePushPlugin.getInstallationObjectId(function(id) {
-          console.log(id, "---------------------------------installationId");
-          return ParseConfiguration.installationId = id;
-        }, function(e) {
-          console.log(e, "installationId-ERROR");
-          return ParseConfiguration.installationId = 0;
-        });
-        window.ParsePushPlugin.on('openPN', function(pn) {
-          console.log("OPENPN", pn);
-          return $rootScope.$broadcast('openNotification', {
-            payload: pn
-          });
-        });
-        window.ParsePushPlugin.on('receivePN', function(pn) {
-          console.log("RECEIVEPN", pn);
-          console.log(pn);
-          return $rootScope.$broadcast('receiveNotification', {
-            payload: pn
-          });
-        });
       }
       $scope.display = 'loader';
       $scope.errorType = 'offline';
@@ -887,7 +890,9 @@ shortFilmWindow.controller('appInitializeCtrl', [
         });
       }
     };
-    return $scope.initApp();
+    return $ionicPlatform.ready(function() {
+      return $scope.initApp();
+    });
   }
 ]);
 
@@ -896,7 +901,6 @@ shortFilmWindow.controller('appSlidesCtrl', [
     $scope.initApp = function() {
       console.log("APP STARTED for the first time");
       $ionicPlatform.ready(function() {
-        Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
         if (App.isWebView()) {
           console.log("ISWEBVIEW");
           ParsePushPlugin.getInstallationObjectId(function(id) {
@@ -946,6 +950,116 @@ shortFilmWindow.controller('appSlidesCtrl', [
       };
     };
     return $scope.initApp();
+  }
+]);
+
+shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
+  '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    return $stateProvider.state('appSlides', {
+      url: '/appSlides',
+      abstract: false,
+      controller: 'appSlidesCtrl',
+      templateUrl: 'landingVideo/appSlides.html'
+    }).state('appInitialize', {
+      url: '/appInitialize',
+      abstract: false,
+      controller: 'appInitializeCtrl',
+      templateUrl: 'landingVideo/appInitialize.html'
+    }).state('home', {
+      url: '/sidebar',
+      cache: false,
+      controller: 'sidebarCtrl',
+      templateUrl: 'home/home.html'
+    }).state('tabhome', {
+      url: '/homeTab',
+      parent: 'home',
+      abstract: true,
+      views: {
+        "homeview": {
+          templateUrl: 'home/homeTab.html'
+        }
+      }
+    }).state('popular', {
+      url: '/popular',
+      parent: 'tabhome',
+      views: {
+        "popularContent": {
+          templateUrl: 'tabs/popular/popular.html',
+          controller: 'popularCtrl'
+        }
+      }
+    }).state('genre', {
+      cache: true,
+      url: '/genre',
+      parent: 'tabhome',
+      views: {
+        "genreContent": {
+          templateUrl: 'tabs/genre/genre.html',
+          controller: 'genreCtrl',
+          params: {
+            'data': null
+          }
+        }
+      }
+    }).state('playlist', {
+      url: '/playlist',
+      parent: 'tabhome',
+      views: {
+        "playlistContent": {
+          templateUrl: 'tabs/playlist/playlist.html',
+          controller: 'playlistCtrl'
+        }
+      }
+    }).state('watchList', {
+      url: '/watchList',
+      cache: false,
+      parent: 'home',
+      views: {
+        "homeview": {
+          templateUrl: 'watchlist/myWatchlist.html',
+          controller: 'watchlistCtrl'
+        }
+      }
+    }).state('notifications', {
+      url: '/notifications',
+      cache: false,
+      parent: 'home',
+      views: {
+        "homeview": {
+          templateUrl: 'notification/notifications.html',
+          controller: 'notificationsCtrl'
+        }
+      }
+    }).state('init', {
+      url: '/init',
+      cache: false,
+      controller: 'InitCtrl',
+      templateUrl: 'singlevideo/movieScreen.html'
+    }).state('singlePlayer', {
+      url: '/singlePlayer',
+      cache: false,
+      controller: 'playerCtrl',
+      templateUrl: 'singlevideo/singlePlayer.html'
+    }).state('landingvideo', {
+      url: '/landing',
+      cache: false,
+      controller: 'landingCtrl',
+      templateUrl: 'landingVideo/splash.html'
+    }).state('navbar', {
+      url: '/navbar',
+      abstract: false,
+      templateUrl: 'home/navBar.html'
+    }).state('singleGenre', {
+      url: '/singleGenre',
+      cache: false,
+      controller: 'singleGenre',
+      templateUrl: 'tabs/genre/singleGenre.html'
+    }).state('singlePlaylist', {
+      url: '/singlePlaylist',
+      cache: false,
+      controller: 'singlePlaylist',
+      templateUrl: 'tabs/playlist/singlePlaylist.html'
+    });
   }
 ]);
 
@@ -1447,416 +1561,6 @@ shortFilmWindow.factory('Storage', [
   }
 ]);
 
-shortFilmWindow.controller('navigateCtrl', [function() {}]).config([
-  '$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-    return $stateProvider.state('appSlides', {
-      url: '/appSlides',
-      abstract: false,
-      controller: 'appSlidesCtrl',
-      templateUrl: 'landingVideo/appSlides.html'
-    }).state('appInitialize', {
-      url: '/appInitialize',
-      abstract: false,
-      controller: 'appInitializeCtrl',
-      templateUrl: 'landingVideo/appInitialize.html'
-    }).state('home', {
-      url: '/sidebar',
-      cache: false,
-      controller: 'sidebarCtrl',
-      templateUrl: 'home/home.html'
-    }).state('tabhome', {
-      url: '/homeTab',
-      parent: 'home',
-      abstract: true,
-      views: {
-        "homeview": {
-          templateUrl: 'home/homeTab.html'
-        }
-      }
-    }).state('popular', {
-      url: '/popular',
-      parent: 'tabhome',
-      views: {
-        "popularContent": {
-          templateUrl: 'tabs/popular/popular.html',
-          controller: 'popularCtrl'
-        }
-      }
-    }).state('genre', {
-      cache: true,
-      url: '/genre',
-      parent: 'tabhome',
-      views: {
-        "genreContent": {
-          templateUrl: 'tabs/genre/genre.html',
-          controller: 'genreCtrl',
-          params: {
-            'data': null
-          }
-        }
-      }
-    }).state('playlist', {
-      url: '/playlist',
-      parent: 'tabhome',
-      views: {
-        "playlistContent": {
-          templateUrl: 'tabs/playlist/playlist.html',
-          controller: 'playlistCtrl'
-        }
-      }
-    }).state('watchList', {
-      url: '/watchList',
-      cache: false,
-      parent: 'home',
-      views: {
-        "homeview": {
-          templateUrl: 'watchlist/myWatchlist.html',
-          controller: 'watchlistCtrl'
-        }
-      }
-    }).state('notifications', {
-      url: '/notifications',
-      cache: false,
-      parent: 'home',
-      views: {
-        "homeview": {
-          templateUrl: 'notification/notifications.html',
-          controller: 'notificationsCtrl'
-        }
-      }
-    }).state('init', {
-      url: '/init',
-      cache: false,
-      controller: 'InitCtrl',
-      templateUrl: 'singlevideo/movieScreen.html'
-    }).state('singlePlayer', {
-      url: '/singlePlayer',
-      cache: false,
-      controller: 'playerCtrl',
-      templateUrl: 'singlevideo/singlePlayer.html'
-    }).state('landingvideo', {
-      url: '/landing',
-      cache: false,
-      controller: 'landingCtrl',
-      templateUrl: 'landingVideo/splash.html'
-    }).state('navbar', {
-      url: '/navbar',
-      abstract: false,
-      templateUrl: 'home/navBar.html'
-    }).state('singleGenre', {
-      url: '/singleGenre',
-      cache: false,
-      controller: 'singleGenre',
-      templateUrl: 'tabs/genre/singleGenre.html'
-    }).state('singlePlaylist', {
-      url: '/singlePlaylist',
-      cache: false,
-      controller: 'singlePlaylist',
-      templateUrl: 'tabs/playlist/singlePlaylist.html'
-    });
-  }
-]);
-
-shortFilmWindow.controller('genreCtrl', [
-  '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$stateParams', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $stateParams) {
-    $scope.notificationPayload = $stateParams.data;
-    $scope.doRefresh = function() {
-      return PulltorefreshAPI.pullrequest().then((function(_this) {
-        return function(data) {
-          PulltorefreshAPI.saveData({
-            premiere: data.defaults.content.popular.weekly_premiere,
-            new_addition: data.defaults.content.popular.new_additions,
-            mstPopular: data.defaults.content.popular.most_popular,
-            noteworthy: data.defaults.content.popular.noteworthy,
-            awesome_playlist: data.defaults.content.popular.awesome_playlist,
-            genre: data.defaults.content.genre,
-            playlist: data.defaults.content.playlists
-          });
-          $scope.genreobj = DetailsAPI.genre_array;
-          $scope.$broadcast('scroll.refreshComplete');
-          return $ionicLoading.hide();
-        };
-      })(this), (function(_this) {
-        return function(error) {
-          $scope.$broadcast('scroll.refreshComplete');
-          return $ionicLoading.hide();
-        };
-      })(this));
-    };
-    $scope.init = function() {
-      return $scope.genre = DetailsAPI.genre_array;
-    };
-    return $scope.singleGenre = function(genreId) {
-      DetailsAPI.videoId = genreId;
-      return App.navigate("singleGenre");
-    };
-  }
-]);
-
-shortFilmWindow.factory('GenreAPI', [
-  '$q', 'App', '$http', function($q, App, $http) {
-    var GenreAPI;
-    GenreAPI = {};
-    GenreAPI.GetSingleGenre = function(GenreId) {
-      var defer;
-      defer = $q.defer();
-      $http.get(GLOBAL_URL + ("/wp-json/get_genre_videos?genre_id=" + GenreId)).then(function(data) {
-        return defer.resolve(data.data);
-      }, function(error) {
-        return defer.reject(error);
-      });
-      return defer.promise;
-    };
-    GenreAPI.ApplyFilter = function(param) {
-      var defer;
-      defer = $q.defer();
-      $http.get(GLOBAL_URL + ("/wp-json/get_genre_videos?genre_id=" + param[0] + "&sort_key=" + param[1] + "&language_id=" + param[2])).then(function(data) {
-        return defer.resolve(data.data);
-      }, function(error) {
-        return defer.reject(error);
-      });
-      return defer.promise;
-    };
-    return GenreAPI;
-  }
-]);
-
-shortFilmWindow.controller('singleGenre', [
-  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', 'Storage', '$timeout', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share, $window, Storage, $timeout) {
-    $scope.lang = null;
-    $scope.sort_key = null;
-    $scope.errorType = '';
-    $scope.filterimg = 'img/icons/filter_grey.png';
-    $scope.sortimg = 'img/icons/sort_notapplied.png';
-    $scope.display = 'loader';
-    $scope.Popuparray = [];
-    $scope.PopuparrayClicked = ['img/icons/fresh_red.png', 'img/icons/popularity_red.png', 'img/icons/length-Red.png'];
-    $scope.PopuparrayImages = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
-    $scope.refreshSwiper = true;
-    $scope.share = function(slug) {
-      return share.shareNative(slug, 'category');
-    };
-    $scope.checkIfaddedToWatchList = function(movie_id) {
-      var match;
-      if ($scope.getwatchlistDetails.length > 0) {
-        match = _.findIndex($scope.getwatchlistDetails, {
-          "movie_id": movie_id
-        });
-        if (match !== -1) {
-          return 'selected';
-        } else {
-          return 'notselected';
-        }
-      } else {
-        return 'notselected';
-      }
-    };
-    $scope.findIndexInWatchlist = function(movieId) {
-      var match;
-      return match = _.findIndex($scope.getwatchlistDetails, {
-        "movie_id": movieId
-      });
-    };
-    $scope.addwatchlist = function(movieData) {
-      var matchInWatchList, obj;
-      obj = {
-        "movie_id": movieData.movie_id,
-        "singleVideoarray": movieData
-      };
-      matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id);
-      if (matchInWatchList === -1) {
-        $scope.getwatchlistDetails.push(obj);
-        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
-      } else {
-        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
-        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
-      }
-    };
-    $scope.init = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        if (_.isNull(value)) {
-          value = [];
-        }
-        $scope.getwatchlistDetails = value;
-        if (DetailsAPI.GlobalChild_array.length > 0) {
-          console.log("Len not zero");
-          $scope.genreData = DetailsAPI.GlobalChild_array;
-          $scope.genre = DetailsAPI.Global_array;
-          $scope.sortData = DetailsAPI.Sort;
-          $scope.language = DetailsAPI.Filter;
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 88 + 73;
-          $scope.hgt = device_height - $scope.used_height;
-          $scope.display = 'result';
-          return console.log("Global Child array", $scope.genreData);
-        } else {
-          return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then(function(data) {
-            console.log("Length zero");
-            DetailsAPI.GlobalChild_array = data.movies;
-            DetailsAPI.Global_array = data.genre;
-            DetailsAPI.Filter = data.filters.languages;
-            DetailsAPI.Sort = data.sort_keys;
-            $scope.genreData = data.movies;
-            $scope.genre = data.genre;
-            $scope.sortData = data.sort_keys;
-            $scope.language = data.filters.languages;
-            $scope.display = 'result';
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            $scope.used_height = 88 + 73;
-            $scope.hgt = device_height + 3 - $scope.used_height;
-            return console.log("Global Child array", $scope.genreData);
-          }, function(error) {
-            return $scope.display = 'error';
-          });
-        }
-      });
-    };
-    $scope.sortGenre = function() {
-      return $ionicLoading.show({
-        scope: $scope,
-        templateUrl: 'filterPopup/sortPopupgener.html',
-        hideOnStateChange: true
-      });
-    };
-    $scope.langSelected = function(language_id) {
-      return $scope.lang = language_id;
-    };
-    $scope.filterGenre = function() {
-      return $ionicLoading.show({
-        scope: $scope,
-        templateUrl: 'filterPopup/filterpopup.html',
-        hideOnStateChange: true
-      });
-    };
-    $scope.getId = function(sort_id) {
-      $scope.sort_key = sort_id;
-      $scope.Popuparray = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
-      $scope.Popuparray[sort_id] = $scope.PopuparrayClicked[sort_id];
-      $scope.txtcolor = ['', '', ''];
-      return $scope.txtcolor[sort_id] = 'color:#AF152F';
-    };
-    $scope.popup = function() {
-      if (_.isNull($scope.sort_key)) {
-        return $scope.Popuparray = $scope.PopuparrayImages;
-      } else {
-        $scope.Popuparray = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
-        $scope.Popuparray[$scope.sort_key] = $scope.PopuparrayClicked[$scope.sort_key];
-        $scope.txtcolor = ['', '', ''];
-        return $scope.txtcolor[$scope.sort_key] = 'color:#AF152F';
-      }
-    };
-    $scope.FiltersortApply = function() {
-      var arr;
-      if (_.isNull($scope.lang)) {
-        $scope.filterimg = 'img/icons/filter_grey.png';
-      } else {
-        $scope.filterimg = 'img/icons/filter_red.png';
-      }
-      if (_.isNull($scope.sort_key)) {
-        $scope.sortimg = 'img/icons/sort_notapplied.png';
-      } else {
-        $scope.sortimg = $scope.PopuparrayClicked[$scope.sort_key];
-      }
-      arr = [DetailsAPI.Global_array.genre_id, $scope.sort_key, $scope.lang];
-      $ionicLoading.hide();
-      ({
-        hideOnStateChange: false
-      });
-      $scope.display = 'loader';
-      GenreAPI.ApplyFilter(arr).then(function(data) {
-        DetailsAPI.GlobalChild_array = data.movies;
-        DetailsAPI.Global_array = data.genre;
-        DetailsAPI.Filter = data.filters.languages;
-        DetailsAPI.Sort = data.sort_keys;
-        if (DetailsAPI.GlobalChild_array.length > 0) {
-          $scope.display = 'result';
-          $scope.genreData = data.movies;
-          $scope.genre = data.genre;
-          $scope.sortData = data.sort_keys;
-          $scope.language = data.filters.languages;
-          $ionicLoading.hide();
-          $scope.refreshSwiper = false;
-          return $timeout((function() {
-            $scope.refreshSwiper = true;
-            return $scope.display = 'result';
-          }), 100);
-        } else {
-          $scope.errorType = 'no_Search_result';
-          return $scope.display = 'error';
-        }
-      }, function(error) {
-        $scope.errorType = '';
-        return $scope.display = 'error';
-      });
-      return $ionicLoading.hide();
-    };
-    $scope.hide = function() {
-      $ionicLoading.hide();
-      return {
-        hideOnStateChange: false
-      };
-    };
-    $scope.reset = function() {
-      var arr;
-      $scope.sortimg = 'img/icons/sort_notapplied.png';
-      $scope.filterimg = 'img/icons/filter_grey.png';
-      $scope.sort_key = null;
-      $scope.lang = null;
-      arr = [DetailsAPI.Global_array.genre_id, $scope.sort_key, $scope.lang];
-      $ionicLoading.hide();
-      ({
-        hideOnStateChange: false
-      });
-      $scope.display = 'loader';
-      return GenreAPI.ApplyFilter(arr).then(function(data) {
-        DetailsAPI.GlobalChild_array = data.movies;
-        DetailsAPI.Global_array = data.genre;
-        DetailsAPI.Filter = data.filters.languages;
-        DetailsAPI.Sort = data.sort_keys;
-        $scope.genreData = data.movies;
-        $scope.genre = data.genre;
-        $scope.sortData = data.sort_keys;
-        $scope.language = data.filters.languages;
-        $ionicLoading.hide();
-        return $scope.display = 'result';
-      }, function(error) {
-        $scope.errorType = '';
-        $scope.display = 'error';
-        return $ionicLoading.hide();
-      });
-    };
-    $scope.hideNoReset = function() {
-      $ionicLoading.hide();
-      return {
-        hideOnStateChange: false
-      };
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    $scope.back = function() {
-      var count;
-      DetailsAPI.GlobalChild_array = [];
-      DetailsAPI.Global_array = [];
-      DetailsAPI.Filter = [];
-      DetailsAPI.Sort = [];
-      count = -1;
-      return App.goBack(count);
-    };
-    return $scope.view = {
-      onTapToRetry: function() {
-        $scope.init();
-        return $scope.display = 'loader';
-      }
-    };
-  }
-]);
-
 shortFilmWindow.controller('playlistCtrl', [
   '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', function($scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading) {
     $scope.doRefresh = function() {
@@ -2214,6 +1918,306 @@ shortFilmWindow.controller('popularCtrl', [
         $scope.getwatchlistDetails = value;
         return $scope.checkIfaddedlist();
       });
+    };
+  }
+]);
+
+shortFilmWindow.controller('genreCtrl', [
+  '$rootScope', '$scope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$stateParams', function($rootScope, $scope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $stateParams) {
+    $scope.notificationPayload = $stateParams.data;
+    $scope.doRefresh = function() {
+      return PulltorefreshAPI.pullrequest().then((function(_this) {
+        return function(data) {
+          PulltorefreshAPI.saveData({
+            premiere: data.defaults.content.popular.weekly_premiere,
+            new_addition: data.defaults.content.popular.new_additions,
+            mstPopular: data.defaults.content.popular.most_popular,
+            noteworthy: data.defaults.content.popular.noteworthy,
+            awesome_playlist: data.defaults.content.popular.awesome_playlist,
+            genre: data.defaults.content.genre,
+            playlist: data.defaults.content.playlists
+          });
+          $scope.genreobj = DetailsAPI.genre_array;
+          $scope.$broadcast('scroll.refreshComplete');
+          return $ionicLoading.hide();
+        };
+      })(this), (function(_this) {
+        return function(error) {
+          $scope.$broadcast('scroll.refreshComplete');
+          return $ionicLoading.hide();
+        };
+      })(this));
+    };
+    $scope.init = function() {
+      return $scope.genre = DetailsAPI.genre_array;
+    };
+    return $scope.singleGenre = function(genreId) {
+      DetailsAPI.videoId = genreId;
+      return App.navigate("singleGenre");
+    };
+  }
+]);
+
+shortFilmWindow.factory('GenreAPI', [
+  '$q', 'App', '$http', function($q, App, $http) {
+    var GenreAPI;
+    GenreAPI = {};
+    GenreAPI.GetSingleGenre = function(GenreId) {
+      var defer;
+      defer = $q.defer();
+      $http.get(GLOBAL_URL + ("/wp-json/get_genre_videos?genre_id=" + GenreId)).then(function(data) {
+        return defer.resolve(data.data);
+      }, function(error) {
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
+    GenreAPI.ApplyFilter = function(param) {
+      var defer;
+      defer = $q.defer();
+      $http.get(GLOBAL_URL + ("/wp-json/get_genre_videos?genre_id=" + param[0] + "&sort_key=" + param[1] + "&language_id=" + param[2])).then(function(data) {
+        return defer.resolve(data.data);
+      }, function(error) {
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
+    return GenreAPI;
+  }
+]);
+
+shortFilmWindow.controller('singleGenre', [
+  '$scope', '$ionicLoading', 'App', 'GenreAPI', 'DetailsAPI', '$ionicHistory', 'share', '$window', 'Storage', '$timeout', function($scope, $ionicLoading, App, GenreAPI, DetailsAPI, $ionicHistory, share, $window, Storage, $timeout) {
+    $scope.lang = null;
+    $scope.sort_key = null;
+    $scope.errorType = '';
+    $scope.filterimg = 'img/icons/filter_grey.png';
+    $scope.sortimg = 'img/icons/sort_notapplied.png';
+    $scope.display = 'loader';
+    $scope.Popuparray = [];
+    $scope.PopuparrayClicked = ['img/icons/fresh_red.png', 'img/icons/popularity_red.png', 'img/icons/length-Red.png'];
+    $scope.PopuparrayImages = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
+    $scope.refreshSwiper = true;
+    $scope.share = function(slug) {
+      return share.shareNative(slug, 'category');
+    };
+    $scope.checkIfaddedToWatchList = function(movie_id) {
+      var match;
+      if ($scope.getwatchlistDetails.length > 0) {
+        match = _.findIndex($scope.getwatchlistDetails, {
+          "movie_id": movie_id
+        });
+        if (match !== -1) {
+          return 'selected';
+        } else {
+          return 'notselected';
+        }
+      } else {
+        return 'notselected';
+      }
+    };
+    $scope.findIndexInWatchlist = function(movieId) {
+      var match;
+      return match = _.findIndex($scope.getwatchlistDetails, {
+        "movie_id": movieId
+      });
+    };
+    $scope.addwatchlist = function(movieData) {
+      var matchInWatchList, obj;
+      obj = {
+        "movie_id": movieData.movie_id,
+        "singleVideoarray": movieData
+      };
+      matchInWatchList = $scope.findIndexInWatchlist(movieData.movie_id);
+      if (matchInWatchList === -1) {
+        $scope.getwatchlistDetails.push(obj);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      } else {
+        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      }
+    };
+    $scope.init = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        if (_.isNull(value)) {
+          value = [];
+        }
+        $scope.getwatchlistDetails = value;
+        if (DetailsAPI.GlobalChild_array.length > 0) {
+          console.log("Len not zero");
+          $scope.genreData = DetailsAPI.GlobalChild_array;
+          $scope.genre = DetailsAPI.Global_array;
+          $scope.sortData = DetailsAPI.Sort;
+          $scope.language = DetailsAPI.Filter;
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 88 + 73;
+          $scope.hgt = device_height - $scope.used_height;
+          $scope.display = 'result';
+          return console.log("Global Child array", $scope.genreData);
+        } else {
+          return GenreAPI.GetSingleGenre(DetailsAPI.videoId).then(function(data) {
+            console.log("Length zero");
+            DetailsAPI.GlobalChild_array = data.movies;
+            DetailsAPI.Global_array = data.genre;
+            DetailsAPI.Filter = data.filters.languages;
+            DetailsAPI.Sort = data.sort_keys;
+            $scope.genreData = data.movies;
+            $scope.genre = data.genre;
+            $scope.sortData = data.sort_keys;
+            $scope.language = data.filters.languages;
+            $scope.display = 'result';
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 88 + 73;
+            $scope.hgt = device_height + 3 - $scope.used_height;
+            return console.log("Global Child array", $scope.genreData);
+          }, function(error) {
+            return $scope.display = 'error';
+          });
+        }
+      });
+    };
+    $scope.sortGenre = function() {
+      return $ionicLoading.show({
+        scope: $scope,
+        templateUrl: 'filterPopup/sortPopupgener.html',
+        hideOnStateChange: true
+      });
+    };
+    $scope.langSelected = function(language_id) {
+      return $scope.lang = language_id;
+    };
+    $scope.filterGenre = function() {
+      return $ionicLoading.show({
+        scope: $scope,
+        templateUrl: 'filterPopup/filterpopup.html',
+        hideOnStateChange: true
+      });
+    };
+    $scope.getId = function(sort_id) {
+      $scope.sort_key = sort_id;
+      $scope.Popuparray = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
+      $scope.Popuparray[sort_id] = $scope.PopuparrayClicked[sort_id];
+      $scope.txtcolor = ['', '', ''];
+      return $scope.txtcolor[sort_id] = 'color:#AF152F';
+    };
+    $scope.popup = function() {
+      if (_.isNull($scope.sort_key)) {
+        return $scope.Popuparray = $scope.PopuparrayImages;
+      } else {
+        $scope.Popuparray = ['img/icons/fresh_grey.png', 'img/icons/popularity_grey.png', 'img/icons/length_grey.png'];
+        $scope.Popuparray[$scope.sort_key] = $scope.PopuparrayClicked[$scope.sort_key];
+        $scope.txtcolor = ['', '', ''];
+        return $scope.txtcolor[$scope.sort_key] = 'color:#AF152F';
+      }
+    };
+    $scope.FiltersortApply = function() {
+      var arr;
+      if (_.isNull($scope.lang)) {
+        $scope.filterimg = 'img/icons/filter_grey.png';
+      } else {
+        $scope.filterimg = 'img/icons/filter_red.png';
+      }
+      if (_.isNull($scope.sort_key)) {
+        $scope.sortimg = 'img/icons/sort_notapplied.png';
+      } else {
+        $scope.sortimg = $scope.PopuparrayClicked[$scope.sort_key];
+      }
+      arr = [DetailsAPI.Global_array.genre_id, $scope.sort_key, $scope.lang];
+      $ionicLoading.hide();
+      ({
+        hideOnStateChange: false
+      });
+      $scope.display = 'loader';
+      GenreAPI.ApplyFilter(arr).then(function(data) {
+        DetailsAPI.GlobalChild_array = data.movies;
+        DetailsAPI.Global_array = data.genre;
+        DetailsAPI.Filter = data.filters.languages;
+        DetailsAPI.Sort = data.sort_keys;
+        if (DetailsAPI.GlobalChild_array.length > 0) {
+          $scope.display = 'result';
+          $scope.genreData = data.movies;
+          $scope.genre = data.genre;
+          $scope.sortData = data.sort_keys;
+          $scope.language = data.filters.languages;
+          $ionicLoading.hide();
+          $scope.refreshSwiper = false;
+          return $timeout((function() {
+            $scope.refreshSwiper = true;
+            return $scope.display = 'result';
+          }), 100);
+        } else {
+          $scope.errorType = 'no_Search_result';
+          return $scope.display = 'error';
+        }
+      }, function(error) {
+        $scope.errorType = '';
+        return $scope.display = 'error';
+      });
+      return $ionicLoading.hide();
+    };
+    $scope.hide = function() {
+      $ionicLoading.hide();
+      return {
+        hideOnStateChange: false
+      };
+    };
+    $scope.reset = function() {
+      var arr;
+      $scope.sortimg = 'img/icons/sort_notapplied.png';
+      $scope.filterimg = 'img/icons/filter_grey.png';
+      $scope.sort_key = null;
+      $scope.lang = null;
+      arr = [DetailsAPI.Global_array.genre_id, $scope.sort_key, $scope.lang];
+      $ionicLoading.hide();
+      ({
+        hideOnStateChange: false
+      });
+      $scope.display = 'loader';
+      return GenreAPI.ApplyFilter(arr).then(function(data) {
+        DetailsAPI.GlobalChild_array = data.movies;
+        DetailsAPI.Global_array = data.genre;
+        DetailsAPI.Filter = data.filters.languages;
+        DetailsAPI.Sort = data.sort_keys;
+        $scope.genreData = data.movies;
+        $scope.genre = data.genre;
+        $scope.sortData = data.sort_keys;
+        $scope.language = data.filters.languages;
+        $ionicLoading.hide();
+        return $scope.display = 'result';
+      }, function(error) {
+        $scope.errorType = '';
+        $scope.display = 'error';
+        return $ionicLoading.hide();
+      });
+    };
+    $scope.hideNoReset = function() {
+      $ionicLoading.hide();
+      return {
+        hideOnStateChange: false
+      };
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    $scope.back = function() {
+      var count;
+      DetailsAPI.GlobalChild_array = [];
+      DetailsAPI.Global_array = [];
+      DetailsAPI.Filter = [];
+      DetailsAPI.Sort = [];
+      count = -1;
+      return App.goBack(count);
+    };
+    return $scope.view = {
+      onTapToRetry: function() {
+        $scope.init();
+        return $scope.display = 'loader';
+      }
     };
   }
 ]);

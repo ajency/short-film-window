@@ -1,4 +1,4 @@
 node_modules/
-platforms/
+platforms/*
 plugins/
 www/.DS_Store

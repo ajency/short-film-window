@@ -18,9 +18,6 @@
     <feature name="InAppBrowser">
         <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
-    </feature>
     <feature name="SpinnerDialog">
         <param name="android-package" value="hu.dpal.phonegap.plugins.SpinnerDialog" />
     </feature>
@@ -43,8 +40,11 @@
         <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="ParsePushPlugin">
-        <param name="android-package" value="github.taivo.parsepushplugin.ParsePushPlugin" />
+    <feature name="PushNotification">
+        <param name="android-package" value="com.adobe.phonegap.push.PushPlugin" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
     <name>ShortFilmWindow</name>
     <description>

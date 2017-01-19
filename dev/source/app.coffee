@@ -16,12 +16,36 @@ shortFilmWindow.value('ParseConfiguration',
   masterKey: 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H'
   installationId: ''
  )
+.constant 'PushConfig',
+    android:
+        senderID: "936233723943"
+    ios:
+      senderID: "936233723943"
+      gcmSandbox: true
+      alert: true
+      badge: true
+      sound: false
 
-shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', ($ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
+shortFilmWindow.run ['PushConfig','$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', (PushConfig,$ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
 
-  $ionicPlatform.ready ->
+ $ionicPlatform.ready ->
+      $rootScope.isAndroid = ionic.Platform.isAndroid()
+      Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
+      # ParsePushPlugin.on 'receivePN', (pn)->
+      #   console.log 'yo i got this push notification:' + JSON.stringify pn;
+      #   $rootScope.$broadcast 'receivePN', { payload: pn }
 
-    $rootScope.App = App
+      # ParsePushPlugin.on 'openPN', (pn)->
+      #   console.log 'Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify pn;
+      #   $rootScope.$broadcast 'openPN', { payload: pn }
+      if ionic.Platform.isWebView()
+        push = PushNotification.init PushConfig
+        push.on 'registration', (data) ->
+          console.log 'DEVICE ID ->',data,data.registrationId
+        push.on 'notification', (data) ->
+          console.log data
+          alert 'notification received'
+      $rootScope.App = App
     device_width = $window.innerWidth
     device_height = $window.innerHeight
     $rootScope.device_height = $window.innerHeight
@@ -45,7 +69,7 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
     ), 100
 
   # FastClick.attach document.body
-    window.fbAsyncInit = ->
+ window.fbAsyncInit = ->
           Parse.FacebookUtils.init
             appId: '586411814878247'
             version: 'v2.4'
@@ -65,7 +89,7 @@ shortFilmWindow.run ['$ionicPlatform','$state', '$rootScope', 'App', '$timeout',
           return
         ) document, 'script', 'facebook-jssdk'
 
-  $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
+ $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     console.log "FROM : #{from.name} , TO : #{to.name}"
     if to.name == 'notifications'
       $rootScope.pageHeader = 'Notifications'
