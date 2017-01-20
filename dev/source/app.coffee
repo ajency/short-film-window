@@ -15,10 +15,20 @@ shortFilmWindow.value('ParseConfiguration',
   clientKey: 'CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj'
   masterKey: 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H'
   installationId: ''
- )
+ ).value 'FirebaseKey',
+  # RELEASE KEYS
+ 
+
+  # TEST KEYS
+    apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
+    authDomain: "shortfilmwindow-e5571.firebaseapp.com",
+    databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
+    storageBucket: "shortfilmwindow-e5571.appspot.com",
+    messagingSenderId: "936233723943"
+ 
 .constant 'PushConfig',
     android:
-        senderID: "936233723943"
+      senderID: "936233723943"
     ios:
       senderID: "936233723943"
       gcmSandbox: true
@@ -26,25 +36,22 @@ shortFilmWindow.value('ParseConfiguration',
       badge: true
       sound: false
 
-shortFilmWindow.run ['PushConfig','$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', (PushConfig,$ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
+shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', (PushConfig,FirebaseApi,$ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
 
  $ionicPlatform.ready ->
       $rootScope.isAndroid = ionic.Platform.isAndroid()
-      Parse.initialize ParseConfiguration.applicationId,ParseConfiguration.javascriptKey,ParseConfiguration.masterKey
-      # ParsePushPlugin.on 'receivePN', (pn)->
-      #   console.log 'yo i got this push notification:' + JSON.stringify pn;
-      #   $rootScope.$broadcast 'receivePN', { payload: pn }
-
-      # ParsePushPlugin.on 'openPN', (pn)->
-      #   console.log 'Yo, I get this when the user clicks open a notification from the tray:' + JSON.stringify pn;
-      #   $rootScope.$broadcast 'openPN', { payload: pn }
+      FirebaseApi.firebaseInit()
+      console.log ionic.Platform.platform(), 'IONIC'
       if ionic.Platform.isWebView()
         push = PushNotification.init PushConfig
         push.on 'registration', (data) ->
-          console.log 'DEVICE ID ->',data,data.registrationId
+          console.log 'DEVICE ID ->',data.registrationId
+          FirebaseApi.registerDevice data.registrationId
         push.on 'notification', (data) ->
           console.log data
-          alert 'notification received'
+          $rootScope.$broadcast 'receiveNotification', { payload: data }
+      else
+        FirebaseApi.registerDevice('DUMMY_UUID')
       $rootScope.App = App
     device_width = $window.innerWidth
     device_height = $window.innerHeight
@@ -69,25 +76,25 @@ shortFilmWindow.run ['PushConfig','$ionicPlatform','$state', '$rootScope', 'App'
     ), 100
 
   # FastClick.attach document.body
- window.fbAsyncInit = ->
-          Parse.FacebookUtils.init
-            appId: '586411814878247'
-            version: 'v2.4'
-            cookie: true
-            xfbml: true
-          return
+#  window.fbAsyncInit = ->
+#           Parse.FacebookUtils.init
+#             appId: '586411814878247'
+#             version: 'v2.4'
+#             cookie: true
+#             xfbml: true
+#           return
 
-        ((d, s, id) ->
-          js = undefined
-          fjs = d.getElementsByTagName(s)[0]
-          if d.getElementById(id)
-            return
-          js = d.createElement(s)
-          js.id = id
-          js.src = 'https://connect.facebook.net/en_US/sdk.js'
-          fjs.parentNode.insertBefore js, fjs
-          return
-        ) document, 'script', 'facebook-jssdk'
+#         ((d, s, id) ->
+#           js = undefined
+#           fjs = d.getElementsByTagName(s)[0]
+#           if d.getElementById(id)
+#             return
+#           js = d.createElement(s)
+#           js.id = id
+#           js.src = 'https://connect.facebook.net/en_US/sdk.js'
+#           fjs.parentNode.insertBefore js, fjs
+#           return
+#         ) document, 'script', 'facebook-jssdk'
 
  $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     console.log "FROM : #{from.name} , TO : #{to.name}"

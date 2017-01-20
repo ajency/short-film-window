@@ -16,6 +16,12 @@ shortFilmWindow.value('ParseConfiguration', {
   clientKey: 'CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj',
   masterKey: 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H',
   installationId: ''
+}).value('FirebaseKey', {
+  apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
+  authDomain: "shortfilmwindow-e5571.firebaseapp.com",
+  databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
+  storageBucket: "shortfilmwindow-e5571.appspot.com",
+  messagingSenderId: "936233723943"
 }).constant('PushConfig', {
   android: {
     senderID: "936233723943"
@@ -30,21 +36,27 @@ shortFilmWindow.value('ParseConfiguration', {
 });
 
 shortFilmWindow.run([
-  'PushConfig', '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function(PushConfig, $ionicPlatform, $state, $rootScope, App, $timeout, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
+  'PushConfig', 'FirebaseApi', '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', 'ParseConfiguration', function(PushConfig, FirebaseApi, $ionicPlatform, $state, $rootScope, App, $timeout, $window, $cordovaNetwork, $cordovaToast, DetailsAPI, ParseConfiguration) {
     var device_height, device_width;
     $ionicPlatform.ready(function() {
       var push;
       $rootScope.isAndroid = ionic.Platform.isAndroid();
-      Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.javascriptKey, ParseConfiguration.masterKey);
+      FirebaseApi.firebaseInit();
+      console.log(ionic.Platform.platform(), 'IONIC');
       if (ionic.Platform.isWebView()) {
         push = PushNotification.init(PushConfig);
         push.on('registration', function(data) {
-          return console.log('DEVICE ID ->', data, data.registrationId);
+          console.log('DEVICE ID ->', data.registrationId);
+          return FirebaseApi.registerDevice(data.registrationId);
         });
         push.on('notification', function(data) {
           console.log(data);
-          return alert('notification received');
+          return $rootScope.$broadcast('receiveNotification', {
+            payload: data
+          });
         });
+      } else {
+        FirebaseApi.registerDevice('DUMMY_UUID');
       }
       return $rootScope.App = App;
     });
@@ -69,26 +81,6 @@ shortFilmWindow.run([
         App.goBack(count);
       }
     }), 100);
-    window.fbAsyncInit = function() {
-      Parse.FacebookUtils.init({
-        appId: '586411814878247',
-        version: 'v2.4',
-        cookie: true,
-        xfbml: true
-      });
-    };
-    (function(d, s, id) {
-      var fjs, js;
-      js = void 0;
-      fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {
-        return;
-      }
-      js = d.createElement(s);
-      js.id = id;
-      js.src = 'https://connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
       console.log("FROM : " + from.name + " , TO : " + to.name);
       if (to.name === 'notifications') {
@@ -186,6 +178,130 @@ htmlEnDeCode = (function() {
     htmlDecode: htmlDecode
   };
 })();
+
+shortFilmWindow.controller('watchlistCtrl', [
+  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
+    $scope.watchlistDetails = [];
+    $scope.display = 'loader';
+    $scope.watchFlag = '0';
+    $scope.refreshSwiper = true;
+    $scope.addvideoDetails = [];
+    $scope.init = function() {
+      return $scope.getData();
+    };
+    $scope.getData = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        console.log(value);
+        $scope.watchlistDetails = value;
+        if (_.isNull($scope.watchlistDetails)) {
+          $scope.display = 'no_result';
+          return $scope.$apply();
+        } else {
+          if ($scope.watchlistDetails.length > 0) {
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 43 + 90;
+            $scope.hgt = device_height - $scope.used_height;
+            $scope.display = 'result';
+            return $scope.$apply();
+          } else {
+            $scope.display = 'no_result';
+            return $scope.$apply();
+          }
+        }
+      });
+    };
+    $scope.updatewatchlist = function(Id) {
+      $scope.CheckWatchlist(Id);
+      return $ionicScrollDelegate.resize();
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    return $scope.CheckWatchlist = function(Id) {
+      var matchIndex;
+      matchIndex = _.findLastIndex($scope.watchlistDetails, {
+        "movie_id": Id
+      });
+      $scope.watchlistDetails.splice(matchIndex, 1);
+      Storage.watchlistDetails('set', $scope.watchlistDetails);
+      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
+        return $scope.display = 'no_result';
+      } else {
+        $scope.refreshSwiper = false;
+        return $timeout((function() {
+          var device_height, device_width;
+          $scope.refreshSwiper = true;
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 43 + 72;
+          return $scope.hgt = device_height - $scope.used_height;
+        }), 100);
+      }
+    };
+  }
+]);
+
+shortFilmWindow.controller('playerCtrl', [
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
+    var player;
+    $scope.temp = "temp";
+    $scope.videoDetails = DetailsAPI.singleVideoarray;
+    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
+    player = null;
+    $scope.switchHeaderBar = true;
+    $timeout(function() {
+      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
+    }, 5000);
+    $scope.toggleHeader = function() {
+      $scope.switchHeaderBar = !$scope.switchHeaderBar;
+      return $timeout(function() {
+        $scope.switchHeaderBar = !$scope.switchHeaderBar;
+        return $scope.$apply();
+      }, 5000);
+    };
+    return $scope.view = {
+      back: function() {
+        var count;
+        count = -1;
+        return App.goBack(count);
+      },
+      vType: $scope.videoDetails.singleVideoarray.type,
+      vimomeo: true,
+      init: function() {
+        var modifiedUrl, onPlayerReady, onYouTubeIframeAPIReady;
+        if (this.vType === 'vimeo') {
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          this.vimomeo = true;
+          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        } else {
+          this.vimomeo = false;
+          console.log($scope.videoDetails.singleVideoarray, "videoDetails");
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          onYouTubeIframeAPIReady = function() {
+            return player = new YT.Player('player2', {
+              height: '100%',
+              width: '100%',
+              videoId: $scope.videoDetails.singleVideoarray.videourl,
+              events: {
+                'onReady': onPlayerReady
+              }
+            });
+          };
+          onPlayerReady = function(event) {
+            console.log("PLAY");
+            return event.target.playVideo();
+          };
+          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl);
+          return onYouTubeIframeAPIReady();
+        }
+      }
+    };
+  }
+]);
 
 shortFilmWindow.factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
@@ -360,130 +476,6 @@ shortFilmWindow.factory('share', [
       }
     };
     return share;
-  }
-]);
-
-shortFilmWindow.controller('watchlistCtrl', [
-  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
-    $scope.watchlistDetails = [];
-    $scope.display = 'loader';
-    $scope.watchFlag = '0';
-    $scope.refreshSwiper = true;
-    $scope.addvideoDetails = [];
-    $scope.init = function() {
-      return $scope.getData();
-    };
-    $scope.getData = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        console.log(value);
-        $scope.watchlistDetails = value;
-        if (_.isNull($scope.watchlistDetails)) {
-          $scope.display = 'no_result';
-          return $scope.$apply();
-        } else {
-          if ($scope.watchlistDetails.length > 0) {
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            $scope.used_height = 43 + 90;
-            $scope.hgt = device_height - $scope.used_height;
-            $scope.display = 'result';
-            return $scope.$apply();
-          } else {
-            $scope.display = 'no_result';
-            return $scope.$apply();
-          }
-        }
-      });
-    };
-    $scope.updatewatchlist = function(Id) {
-      $scope.CheckWatchlist(Id);
-      return $ionicScrollDelegate.resize();
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    return $scope.CheckWatchlist = function(Id) {
-      var matchIndex;
-      matchIndex = _.findLastIndex($scope.watchlistDetails, {
-        "movie_id": Id
-      });
-      $scope.watchlistDetails.splice(matchIndex, 1);
-      Storage.watchlistDetails('set', $scope.watchlistDetails);
-      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
-        return $scope.display = 'no_result';
-      } else {
-        $scope.refreshSwiper = false;
-        return $timeout((function() {
-          var device_height, device_width;
-          $scope.refreshSwiper = true;
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 43 + 72;
-          return $scope.hgt = device_height - $scope.used_height;
-        }), 100);
-      }
-    };
-  }
-]);
-
-shortFilmWindow.controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
-    var player;
-    $scope.temp = "temp";
-    $scope.videoDetails = DetailsAPI.singleVideoarray;
-    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
-    player = null;
-    $scope.switchHeaderBar = true;
-    $timeout(function() {
-      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
-    }, 5000);
-    $scope.toggleHeader = function() {
-      $scope.switchHeaderBar = !$scope.switchHeaderBar;
-      return $timeout(function() {
-        $scope.switchHeaderBar = !$scope.switchHeaderBar;
-        return $scope.$apply();
-      }, 5000);
-    };
-    return $scope.view = {
-      back: function() {
-        var count;
-        count = -1;
-        return App.goBack(count);
-      },
-      vType: $scope.videoDetails.singleVideoarray.type,
-      vimomeo: true,
-      init: function() {
-        var modifiedUrl, onPlayerReady, onYouTubeIframeAPIReady;
-        if (this.vType === 'vimeo') {
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          this.vimomeo = true;
-          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-        } else {
-          this.vimomeo = false;
-          console.log($scope.videoDetails.singleVideoarray, "videoDetails");
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          onYouTubeIframeAPIReady = function() {
-            return player = new YT.Player('player2', {
-              height: '100%',
-              width: '100%',
-              videoId: $scope.videoDetails.singleVideoarray.videourl,
-              events: {
-                'onReady': onPlayerReady
-              }
-            });
-          };
-          onPlayerReady = function(event) {
-            console.log("PLAY");
-            return event.target.playVideo();
-          };
-          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl);
-          return onYouTubeIframeAPIReady();
-        }
-      }
-    };
   }
 ]);
 
@@ -903,25 +895,12 @@ shortFilmWindow.controller('appSlidesCtrl', [
       $ionicPlatform.ready(function() {
         if (App.isWebView()) {
           console.log("ISWEBVIEW");
-          ParsePushPlugin.getInstallationObjectId(function(id) {
+          return ParsePushPlugin.getInstallationObjectId(function(id) {
             console.log(id, "installationId---------------------------");
             return ParseConfiguration.installationId = id;
           }, function(e) {
             console.log(e, "installationId-ERROR");
             return ParseConfiguration.installationId = 0;
-          });
-          window.ParsePushPlugin.on('openPN', function(pn) {
-            console.log("OPENPN", pn);
-            return $rootScope.$broadcast('openNotification', {
-              payload: pn
-            });
-          });
-          return window.ParsePushPlugin.on('receivePN', function(pn) {
-            console.log("RECEIVEPN", pn);
-            console.log(pn);
-            return $rootScope.$broadcast('receiveNotification', {
-              payload: pn
-            });
           });
         }
       });
@@ -1191,6 +1170,178 @@ shortFilmWindow.controller('notificationsCtrl', [
       DetailsAPI.singleVideoarray.singleVideoarray = videoData;
       return App.navigate('init');
     };
+  }
+]);
+
+shortFilmWindow.service('FirebaseApi', [
+  '$ionicPlatform', '$q', 'FirebaseKey', 'App', 'Storage', 'PushConfig', function($ionicPlatform, $q, FirebaseKey, App, Storage, PushConfig) {
+    var DEVICETOKEN, firebaseCloudApi;
+    DEVICETOKEN = null;
+    firebaseCloudApi = {};
+    firebaseCloudApi.setDeviceToke = function(token) {
+      if (token == null) {
+        token = null;
+      }
+      if (token) {
+        return DEVICETOKEN = token;
+      }
+    };
+    firebaseCloudApi.getDeviceToken = function() {
+      var defer;
+      defer = $q.defer();
+      if (ionic.Platform.isWebView()) {
+        Storage.deviceToken('get').then(function(deviceToken) {
+          var push;
+          if (deviceToken) {
+            DEVICETOKEN = deviceToken;
+            return defer.resolve(deviceToken);
+          } else {
+            push = PushNotification.init(PushSettings);
+            return push.on('registration', function(data) {
+              Storage.deviceToken('set', data.registrationId);
+              DEVICETOKEN = data.registrationId;
+              return defer.resolve(data.registrationId);
+            });
+          }
+        });
+      } else {
+        DEVICETOKEN = 'DUMMY_UUID';
+        Storage.deviceToken('set', 'DUMMY_UUID');
+        defer.resolve('DUMMY_UUID');
+      }
+      return defer.promise;
+    };
+    firebaseCloudApi.firebaseInit = function() {
+      console.log(' INITIALISING FIREBASE');
+      return firebase.initializeApp(FirebaseKey);
+    };
+    firebaseCloudApi.saveNotification = function() {
+      var defer;
+      console.log(User, ' USER');
+      defer = $q.defer();
+      firebase.database().ref('notification/' + DEVICETOKEN).push({
+        "createdAt": "2016-11-25T05:35:10.017Z",
+        "data": {
+          "typeOfEvent": "Wedding",
+          "updatedOn": "2016-11-25 11:05",
+          "venueId": 445,
+          "venueName": "Aura Grande",
+          "venueSlug": "aura-grande-andheri-east"
+        },
+        "hasSaved": false,
+        "hasSeen": false,
+        "message": "Recce meeting scheduled on Saturday, December 24 2016, 20:30 PM for Velantan dsilva is Confirmed",
+        "objectId": "03ikAu36Hr",
+        "processed": true,
+        "processedDate": {
+          "__type": "Date",
+          "iso": "2016-11-25T05:36:09.990Z"
+        },
+        "recipientUser": "afreenquadri@yahoo.com",
+        "sentStatus": false,
+        "title": "Recce meeting is Confirmed",
+        "type": "edit_scheduled_event_status",
+        "updatedAt": "2016-11-25T05:36:10.022Z"
+      }).then(function(result) {
+        return defer.resolve(result);
+      }, function(error) {
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
+    firebaseCloudApi.fetchNotifications = function() {
+      var defer;
+      defer = $q.defer();
+      firebase.database().ref('notification/' + DEVICETOKEN).once('value').then(function(data) {
+        var i, j, keys, notificationList, notifications, ref, temp;
+        if (data.val()) {
+          notificationService.notificationList = [];
+          temp = data.val();
+          keys = Object.keys(temp);
+          notifications = [];
+          for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+            temp[keys[i]].id = keys[i];
+            notifications.push(temp[keys[i]]);
+          }
+          notificationService.addNotificationtoList(notifications);
+          notificationList = _.filter(notifications, function(value) {
+            if (_.isObject(value)) {
+              return value;
+            }
+          });
+          return defer.resolve(notificationList);
+        } else {
+          return defer.resolve([]);
+        }
+      }, function(error) {
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
+    firebaseCloudApi.fetchAllDevices = function() {
+      var defer;
+      defer = $q.defer();
+      firebase.database().ref('installation').once('value').then(function(data) {
+        return defer.resolve(data.val());
+      }, function(error) {
+        return defer.reject(error);
+      });
+      return defer.promise;
+    };
+    firebaseCloudApi.updateNotificationStatus = function(notificationId) {
+      var defer;
+      console.log(DEVICETOKEN, notificationId);
+      if (notificationId) {
+        defer = $q.defer();
+        firebase.database().ref('notification/' + DEVICETOKEN(+'/' + notificationId)).update({
+          hasSeen: true
+        }).then(function(result) {
+          console.log(result, 'RESS');
+          return defer.resolve(result);
+        }, function(error) {
+          return defer.reject(error);
+        });
+        return defer.promise;
+      } else {
+        return defer.reject('Notification ID is null');
+      }
+    };
+    firebaseCloudApi.registerDevice = function(deviceToken) {
+      return firebaseCloudApi.getDeviceToken().then(function(token) {
+        console.log(token, 'DEVICETOKEN -- registerDevice');
+        return firebaseCloudApi.fetchAllDevices().then(function(result) {
+          var flag, i, j, keys, ref;
+          if (result) {
+            keys = Object.keys(result);
+            flag = false;
+            for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+              if (result[keys[i]].deviceToken === token) {
+                flag = true;
+              }
+            }
+            if (flag) {
+              console.log('deviceAlreadyRegistered');
+            } else {
+              console.log('newDevice');
+            }
+            if (!flag) {
+              return firebase.database().ref('installation').push({
+                device: ionic.Platform.platform(),
+                deviceToken: token
+              });
+            }
+          } else {
+            if (result === null) {
+              return firebase.database().ref('installation').push({
+                device: ionic.Platform.platform(),
+                deviceToken: token
+              });
+            }
+          }
+        });
+      });
+    };
+    return firebaseCloudApi;
   }
 ]);
 
@@ -1542,7 +1693,7 @@ shortFilmWindow.controller('sidebarCtrl', [
 ]);
 
 shortFilmWindow.factory('Storage', [
-  '$rootScope', function($rootScope) {
+  '$rootScope', '$q', function($rootScope, $q) {
     var Storage;
     Storage = {};
     Storage.watchlistDetails = function(action, params) {
@@ -1556,6 +1707,30 @@ shortFilmWindow.factory('Storage', [
         case 'remove':
           return localforage.removeItem('watchlist_details');
       }
+    };
+    Storage.deviceToken = function(action, data) {
+      var defer;
+      if (data == null) {
+        data = {};
+      }
+      defer = $q.defer();
+      switch (action) {
+        case 'set':
+          localforage.setItem('device_token', data).then(function() {
+            return defer.resolve();
+          });
+          break;
+        case 'get':
+          localforage.getItem('device_token').then(function(data) {
+            return defer.resolve(data);
+          });
+          break;
+        case 'remove':
+          localforage.removeItem('device_token').then(function() {
+            return defer.resolve();
+          });
+      }
+      return defer.promise;
     };
     return Storage;
   }
@@ -1712,212 +1887,6 @@ shortFilmWindow.controller('singlePlaylist', [
       onTapToRetry: function() {
         return $scope.init();
       }
-    };
-  }
-]);
-
-shortFilmWindow.controller('popularCtrl', [
-  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', 'InitialiseService', 'Storage', '$timeout', 'GenreAPI', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window, InitialiseService, Storage, $timeout, GenreAPI) {
-    var findIndexInWatchlist, findIndexInallContentArray, initDetailsApi, initWatchlist;
-    $scope.getwatchlistDetails = [];
-    $scope.currentCard = {};
-    $scope.refreshSwiper = true;
-    $rootScope.$on('watchListUpdate', function(event, data) {
-      $scope.getwatchlistDetails = data;
-      return $scope.checkIfaddedlist();
-    });
-    $rootScope.$on('refreshContent', function(event, data) {
-      return $scope.doRefresh();
-    });
-    $scope.detectSlideChange = function(swiperInstance) {
-      return $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex];
-    };
-    $scope.singlePlaylistGenre = function(playlistId, type) {
-      DetailsAPI.videoId = playlistId;
-      if (type === "playlist") {
-        App.navigate("singlePlaylist");
-      }
-      if (type === "category") {
-        return App.navigate("singleGenre");
-      }
-    };
-    $scope.checkIfaddedlist = function() {
-      _.each($scope.allContentArray, function(val, key) {
-        return $scope.allContentArray[key].addedToWatchList = 0;
-      });
-      if ($scope.getwatchlistDetails.length > 0) {
-        return _.each($scope.getwatchlistDetails, function(watchlistData) {
-          var match;
-          match = _.findIndex($scope.allContentArray, {
-            "movieId": watchlistData.movie_id
-          });
-          if (match !== -1) {
-            return $scope.allContentArray[match].addedToWatchList = 1;
-          }
-        });
-      }
-    };
-    findIndexInallContentArray = function(movieId) {
-      var match;
-      return match = _.findIndex($scope.allContentArray, {
-        "movieId": movieId
-      });
-    };
-    findIndexInWatchlist = function(movieId) {
-      var match;
-      return match = _.findIndex($scope.getwatchlistDetails, {
-        "movie_id": movieId
-      });
-    };
-    $scope.updateFlagInallContentArray = function(movieId, flag) {
-      var matchIndex;
-      matchIndex = findIndexInallContentArray(movieId);
-      return $scope.allContentArray[matchIndex].addedToWatchList = flag;
-    };
-    $scope.addwatchlist = function(movieData) {
-      var matchInWatchList, obj;
-      obj = {
-        "movie_id": movieData.movieId,
-        "singleVideoarray": movieData.content
-      };
-      matchInWatchList = findIndexInWatchlist(movieData.movieId);
-      if (matchInWatchList === -1) {
-        $scope.updateFlagInallContentArray(movieData.movieId, 1);
-        $scope.getwatchlistDetails.push(obj);
-        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
-      } else {
-        $scope.updateFlagInallContentArray(movieData.movieId, 0);
-        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
-        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
-      }
-    };
-    $scope.doRefresh = function() {
-      console.log("Refreshing");
-      if (!App.isOnline()) {
-        $scope.checkNetwork = false;
-        return console.log("not calling pull api");
-      } else {
-        PulltorefreshAPI.pullrequest().then((function(_this) {
-          return function(data) {
-            console.log("data from pull request");
-            console.log(data);
-            $scope.checkNetwork = true;
-            PulltorefreshAPI.saveData({
-              premiere: data.defaults.content.popular.weekly_premiere,
-              new_addition: data.defaults.content.popular.new_additions,
-              mstPopular: data.defaults.content.popular.most_popular,
-              noteworthy: data.defaults.content.popular.noteworthy,
-              awesome_playlist: data.defaults.content.popular.awesome_playlist,
-              genre: data.defaults.content.genre,
-              playlist: data.defaults.content.playlists
-            });
-            $scope.premeiere = DetailsAPI.array;
-            $scope.addition = DetailsAPI.array_addition;
-            $scope.noteworthy = DetailsAPI.array_noteworthy;
-            $scope.awplalist = DetailsAPI.array_awplalist;
-            $scope.videoId = DetailsAPI.array.videoId;
-            $scope.$broadcast('scroll.refreshComplete');
-            $ionicLoading.hide();
-            return $scope.initApp();
-          };
-        })(this), function(error) {
-          return $scope.$broadcast('scroll.refreshComplete');
-        });
-        return $ionicLoading.hide();
-      }
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    $scope.initApp = function() {
-      console.log("Inside init app");
-      $scope.used_height = 86 + 105;
-      $scope.hgt = $rootScope.device_height + 3 - $scope.used_height;
-      if (!App.isOnline()) {
-        $scope.checkNetwork = false;
-        return $scope.display = 'nonetwork';
-      } else {
-        return initDetailsApi();
-      }
-    };
-    initDetailsApi = function() {
-      var additionArr, awPlalistArr, genArr, noteworthyArr, premierArr;
-      premierArr = [];
-      additionArr = [];
-      noteworthyArr = [];
-      awPlalistArr = [];
-      genArr = [];
-      $scope.allContentArray = [];
-      premierArr.push({
-        "order": 1,
-        "cardtitle": "This Week's Release",
-        "p": "New Cinema of New India",
-        "iconimg": "weekly_premiere",
-        "content": DetailsAPI.array,
-        "addedToWatchList": 0,
-        "movieId": DetailsAPI.array.movie_id
-      });
-      noteworthyArr = _.map(DetailsAPI.array_noteworthy, function(value, key, list) {
-        return {
-          "order": 2,
-          "cardtitle": "Noteworthy",
-          "p": value.genreCategory,
-          "iconimg": "noteworthy",
-          "content": value,
-          "addedToWatchList": 0,
-          "movieId": value.movie_id
-        };
-      });
-      additionArr = _.map(DetailsAPI.array_addition, function(value, key, list) {
-        return {
-          "order": 3,
-          "cardtitle": "New Additions",
-          "p": "Just starting out on their big journey!",
-          "iconimg": "new_additions",
-          "content": value,
-          "addedToWatchList": 0,
-          "movieId": value.movie_id
-        };
-      });
-      genArr.push({
-        "order": 5,
-        "cardtitle": "Genre List",
-        "p": "Choose Your Genre",
-        "iconimg": "genre",
-        "content": DetailsAPI.genre_array,
-        "addedToWatchList": 0,
-        "movieId": ""
-      });
-      awPlalistArr.push({
-        "order": 6,
-        "cardtitle": "Awesome Playlist",
-        "p": "Sit back and relax with some popcorn!",
-        "iconimg": "awesome_playlists",
-        "content": DetailsAPI.array_awplalist,
-        "addedToWatchList": 0,
-        "movieId": ""
-      });
-      $scope.allContentArray = _.union(premierArr, noteworthyArr, additionArr, genArr, awPlalistArr);
-      console.log("Data in final array");
-      console.log($scope.allContentArray);
-      $scope.currentCard = $scope.allContentArray[0];
-      $scope.refreshSwiper = false;
-      $timeout((function() {
-        $scope.refreshSwiper = true;
-        return initWatchlist();
-      }), 1000);
-      return $scope.display = 'result';
-    };
-    return initWatchlist = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        if (_.isNull(value)) {
-          value = [];
-        }
-        $scope.getwatchlistDetails = value;
-        return $scope.checkIfaddedlist();
-      });
     };
   }
 ]);
@@ -2218,6 +2187,212 @@ shortFilmWindow.controller('singleGenre', [
         $scope.init();
         return $scope.display = 'loader';
       }
+    };
+  }
+]);
+
+shortFilmWindow.controller('popularCtrl', [
+  '$scope', '$rootScope', 'App', 'PulltorefreshAPI', 'DetailsAPI', '$ionicLoading', '$window', 'InitialiseService', 'Storage', '$timeout', 'GenreAPI', function($scope, $rootScope, App, PulltorefreshAPI, DetailsAPI, $ionicLoading, $window, InitialiseService, Storage, $timeout, GenreAPI) {
+    var findIndexInWatchlist, findIndexInallContentArray, initDetailsApi, initWatchlist;
+    $scope.getwatchlistDetails = [];
+    $scope.currentCard = {};
+    $scope.refreshSwiper = true;
+    $rootScope.$on('watchListUpdate', function(event, data) {
+      $scope.getwatchlistDetails = data;
+      return $scope.checkIfaddedlist();
+    });
+    $rootScope.$on('refreshContent', function(event, data) {
+      return $scope.doRefresh();
+    });
+    $scope.detectSlideChange = function(swiperInstance) {
+      return $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex];
+    };
+    $scope.singlePlaylistGenre = function(playlistId, type) {
+      DetailsAPI.videoId = playlistId;
+      if (type === "playlist") {
+        App.navigate("singlePlaylist");
+      }
+      if (type === "category") {
+        return App.navigate("singleGenre");
+      }
+    };
+    $scope.checkIfaddedlist = function() {
+      _.each($scope.allContentArray, function(val, key) {
+        return $scope.allContentArray[key].addedToWatchList = 0;
+      });
+      if ($scope.getwatchlistDetails.length > 0) {
+        return _.each($scope.getwatchlistDetails, function(watchlistData) {
+          var match;
+          match = _.findIndex($scope.allContentArray, {
+            "movieId": watchlistData.movie_id
+          });
+          if (match !== -1) {
+            return $scope.allContentArray[match].addedToWatchList = 1;
+          }
+        });
+      }
+    };
+    findIndexInallContentArray = function(movieId) {
+      var match;
+      return match = _.findIndex($scope.allContentArray, {
+        "movieId": movieId
+      });
+    };
+    findIndexInWatchlist = function(movieId) {
+      var match;
+      return match = _.findIndex($scope.getwatchlistDetails, {
+        "movie_id": movieId
+      });
+    };
+    $scope.updateFlagInallContentArray = function(movieId, flag) {
+      var matchIndex;
+      matchIndex = findIndexInallContentArray(movieId);
+      return $scope.allContentArray[matchIndex].addedToWatchList = flag;
+    };
+    $scope.addwatchlist = function(movieData) {
+      var matchInWatchList, obj;
+      obj = {
+        "movie_id": movieData.movieId,
+        "singleVideoarray": movieData.content
+      };
+      matchInWatchList = findIndexInWatchlist(movieData.movieId);
+      if (matchInWatchList === -1) {
+        $scope.updateFlagInallContentArray(movieData.movieId, 1);
+        $scope.getwatchlistDetails.push(obj);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      } else {
+        $scope.updateFlagInallContentArray(movieData.movieId, 0);
+        $scope.getwatchlistDetails.splice(matchInWatchList, 1);
+        return Storage.watchlistDetails('set', $scope.getwatchlistDetails);
+      }
+    };
+    $scope.doRefresh = function() {
+      console.log("Refreshing");
+      if (!App.isOnline()) {
+        $scope.checkNetwork = false;
+        return console.log("not calling pull api");
+      } else {
+        PulltorefreshAPI.pullrequest().then((function(_this) {
+          return function(data) {
+            console.log("data from pull request");
+            console.log(data);
+            $scope.checkNetwork = true;
+            PulltorefreshAPI.saveData({
+              premiere: data.defaults.content.popular.weekly_premiere,
+              new_addition: data.defaults.content.popular.new_additions,
+              mstPopular: data.defaults.content.popular.most_popular,
+              noteworthy: data.defaults.content.popular.noteworthy,
+              awesome_playlist: data.defaults.content.popular.awesome_playlist,
+              genre: data.defaults.content.genre,
+              playlist: data.defaults.content.playlists
+            });
+            $scope.premeiere = DetailsAPI.array;
+            $scope.addition = DetailsAPI.array_addition;
+            $scope.noteworthy = DetailsAPI.array_noteworthy;
+            $scope.awplalist = DetailsAPI.array_awplalist;
+            $scope.videoId = DetailsAPI.array.videoId;
+            $scope.$broadcast('scroll.refreshComplete');
+            $ionicLoading.hide();
+            return $scope.initApp();
+          };
+        })(this), function(error) {
+          return $scope.$broadcast('scroll.refreshComplete');
+        });
+        return $ionicLoading.hide();
+      }
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    $scope.initApp = function() {
+      console.log("Inside init app");
+      $scope.used_height = 86 + 105;
+      $scope.hgt = $rootScope.device_height + 3 - $scope.used_height;
+      if (!App.isOnline()) {
+        $scope.checkNetwork = false;
+        return $scope.display = 'nonetwork';
+      } else {
+        return initDetailsApi();
+      }
+    };
+    initDetailsApi = function() {
+      var additionArr, awPlalistArr, genArr, noteworthyArr, premierArr;
+      premierArr = [];
+      additionArr = [];
+      noteworthyArr = [];
+      awPlalistArr = [];
+      genArr = [];
+      $scope.allContentArray = [];
+      premierArr.push({
+        "order": 1,
+        "cardtitle": "This Week's Release",
+        "p": "New Cinema of New India",
+        "iconimg": "weekly_premiere",
+        "content": DetailsAPI.array,
+        "addedToWatchList": 0,
+        "movieId": DetailsAPI.array.movie_id
+      });
+      noteworthyArr = _.map(DetailsAPI.array_noteworthy, function(value, key, list) {
+        return {
+          "order": 2,
+          "cardtitle": "Noteworthy",
+          "p": value.genreCategory,
+          "iconimg": "noteworthy",
+          "content": value,
+          "addedToWatchList": 0,
+          "movieId": value.movie_id
+        };
+      });
+      additionArr = _.map(DetailsAPI.array_addition, function(value, key, list) {
+        return {
+          "order": 3,
+          "cardtitle": "New Additions",
+          "p": "Just starting out on their big journey!",
+          "iconimg": "new_additions",
+          "content": value,
+          "addedToWatchList": 0,
+          "movieId": value.movie_id
+        };
+      });
+      genArr.push({
+        "order": 5,
+        "cardtitle": "Genre List",
+        "p": "Choose Your Genre",
+        "iconimg": "genre",
+        "content": DetailsAPI.genre_array,
+        "addedToWatchList": 0,
+        "movieId": ""
+      });
+      awPlalistArr.push({
+        "order": 6,
+        "cardtitle": "Awesome Playlist",
+        "p": "Sit back and relax with some popcorn!",
+        "iconimg": "awesome_playlists",
+        "content": DetailsAPI.array_awplalist,
+        "addedToWatchList": 0,
+        "movieId": ""
+      });
+      $scope.allContentArray = _.union(premierArr, noteworthyArr, additionArr, genArr, awPlalistArr);
+      console.log("Data in final array");
+      console.log($scope.allContentArray);
+      $scope.currentCard = $scope.allContentArray[0];
+      $scope.refreshSwiper = false;
+      $timeout((function() {
+        $scope.refreshSwiper = true;
+        return initWatchlist();
+      }), 1000);
+      return $scope.display = 'result';
+    };
+    return initWatchlist = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        if (_.isNull(value)) {
+          value = [];
+        }
+        $scope.getwatchlistDetails = value;
+        return $scope.checkIfaddedlist();
+      });
     };
   }
 ]);

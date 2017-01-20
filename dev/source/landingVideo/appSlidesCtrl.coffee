@@ -15,14 +15,14 @@ shortFilmWindow
             console.log e,"installationId-ERROR"
             ParseConfiguration.installationId =  0
 
-          window.ParsePushPlugin.on 'openPN', (pn)->
-            console.log "OPENPN",pn
-            $rootScope.$broadcast 'openNotification', { payload: pn }
+          # window.ParsePushPlugin.on 'openPN', (pn)->
+          #   console.log "OPENPN",pn
+          #   $rootScope.$broadcast 'openNotification', { payload: pn }
 
-          window.ParsePushPlugin.on 'receivePN', (pn)->
-            console.log "RECEIVEPN",pn
-            console.log pn
-            $rootScope.$broadcast 'receiveNotification', { payload: pn }
+          # window.ParsePushPlugin.on 'receivePN', (pn)->
+          #   console.log "RECEIVEPN",pn
+          #   console.log pn
+          #   $rootScope.$broadcast 'receiveNotification', { payload: pn }
 
       $scope.startApp = ->
         if !App.isOnline()
