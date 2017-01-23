@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'sidebarCtrl',["$scope","$rootScope", "$ionicModal", "$ionicPopup", "$ionicSideMenuDelegate","App","DetailsAPI","$ionicLoading","$window","Storage","ParseNotificationService","$timeout",
-($scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,ParseNotificationService,$timeout) ->
+.controller 'sidebarCtrl',["FirebaseApi","$scope","$rootScope", "$ionicModal", "$ionicPopup", "$ionicSideMenuDelegate","App","DetailsAPI","$ionicLoading","$window","Storage","$timeout",
+(FirebaseApi,$scope,$rootScope, $ionicModal, $ionicPopup, $ionicSideMenuDelegate,App,DetailsAPI,$ionicLoading,$window,Storage,$timeout) ->
   
   $scope.showsearchbar =  false
   $scope.searchDisplay = 'tabview'
@@ -86,7 +86,7 @@ shortFilmWindow
               $scope.$apply()
 
   $rootScope.getnotificationcount = ()->
-    ParseNotificationService.getUnreadNotificationsCount()
+    FirebaseApi.getUnreadNotificationsCount()
     .then (value)->
       $rootScope.unreadNotificationCount = value
 

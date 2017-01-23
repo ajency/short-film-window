@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'notificationsCtrl', ['$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','ParseNotificationService','Storage','$timeout','$window'
-  ,($rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,ParseNotificationService,Storage,$timeout,$window)->
+.controller 'notificationsCtrl', ['FirebaseApi','$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','ParseNotificationService','Storage','$timeout','$window'
+  ,(FirebaseApi,$rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,ParseNotificationService,Storage,$timeout,$window)->
 
     $scope.notificationArray = []
 
@@ -24,13 +24,12 @@ shortFilmWindow
           if _.isNull value
             value = []
           $scope.getwatchlistDetails = value
-          ParseNotificationService.getNotificationsWithStatus()
+          FirebaseApi.fetchNotifications()
           .then (data) ->
             console.log data,"PARSE Notifications"
             if data.length == 0
               console.log "No data"
               $scope.result = 'no-new-notifications'
-              $scope.initWatchlist
             else
               console.log "Data present"
               $scope.refreshSwiper = false
@@ -54,7 +53,7 @@ shortFilmWindow
         $scope.notificationArray = []
         $scope.result = 'no-new-notifications'
         $rootScope.unreadNotificationCount = 0
-        ParseNotificationService.deleteNotifications()
+        FirebaseApi.deleteNotifications()
         .then (data) ->
           console.log data
         .catch (error) ->
@@ -69,7 +68,7 @@ shortFilmWindow
         if $rootScope.unreadNotificationCount
           $rootScope.unreadNotificationCount--
 
-        ParseNotificationService.updateNotificationStatus(notification_id)
+        FirebaseApi.updateNotificationStatus(notification_id)
         .then (data) ->
           console.log data
         .catch (error) ->

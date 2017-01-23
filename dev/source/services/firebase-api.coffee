@@ -22,7 +22,7 @@ shortFilmWindow
                                     DEVICETOKEN = deviceToken
                                     defer.resolve deviceToken
                               else
-                                    push = PushNotification.init PushSettings
+                                    push = PushNotification.init PushConfig
                                     push.on 'registration', (data) ->
                                           Storage.deviceToken 'set', data.registrationId
                                           DEVICETOKEN = data.registrationId
@@ -46,32 +46,30 @@ shortFilmWindow
             #             defer.reject error
             #       defer.promise
             firebaseCloudApi.saveNotification = () ->
-                  console.log User,' USER'
+                  console.log DEVICETOKEN
                   defer = $q.defer()
                   firebase.database().ref('notification/'+ DEVICETOKEN).push
-                        "createdAt": "2016-11-25T05:35:10.017Z",
-                        "data": {
-                             
-                              "typeOfEvent": "Wedding",
-                              "updatedOn": "2016-11-25 11:05",
-                              "venueId": 445,
-                              "venueName": "Aura Grande",
-                              "venueSlug": "aura-grande-andheri-east"
-                        },
-                        "hasSaved": false,
-                        "hasSeen": false,
-                        "message": "Recce meeting scheduled on Saturday, December 24 2016, 20:30 PM for Velantan dsilva is Confirmed",
-                        "objectId": "03ikAu36Hr",
-                        "processed": true,
-                        "processedDate": {
-                              "__type": "Date",
-                              "iso": "2016-11-25T05:36:09.990Z"
-                        },
-                        "recipientUser": "afreenquadri@yahoo.com",
-                        "sentStatus": false,
-                        "title": "Recce meeting is Confirmed",
-                        "type": "edit_scheduled_event_status",
-                        "updatedAt": "2016-11-25T05:36:10.022Z"
+                        "movieId": 930
+                        "alert": "TEST Notification"
+                        "createdAt" : "2016-12-22T12:56:59.706Z"
+                        "updatedAt" : "2016-12-22T12:57:14.455Z"
+                        "movieDetails" :
+                              "found":true
+                              "movie_id":930
+                              "no_of_views":"193"
+                              "no_of_likes":"189"
+                              "title":"test notif"
+                              "type":"youtube"
+                              "tagline":""
+                              "videourl":"https:\/\/balsamiq.com\/"
+                              "embedurl":"https:\/\/www.youtube.com\/embed\/?autoplay=1"
+                              "director":"ShortFilmWindow"
+                              "image":"http:\/\/shortfilm.staging.wpengine.com\/wp-content\/themes\/short-film\/assets\/img\/placeholder.jpg"
+                              "duration":"5","region":""
+                              "language":""
+                              "genres":["Uncategorized"]
+                              "content":""
+                              "slug":"test-notif-2"
     
     
                   .then (result) ->
@@ -83,23 +81,53 @@ shortFilmWindow
                   defer = $q.defer()
                   firebase.database().ref('notification/' + DEVICETOKEN).once('value').then (data)->
                         if data.val()
-                              notificationService.notificationList = []
                               temp = data.val()
                               keys = Object.keys(temp)
                               notifications = []
                               for i in [0...keys.length]
                                     temp[keys[i]].id = keys[i]
-                                    notifications.push temp[keys[i]]
-                              notificationService.addNotificationtoList notifications
-                              notificationList = _.filter notifications, (value)-> value if _.isObject(value)
-                              defer.resolve notificationList
+                                    t = temp[keys[i]]
+                                    obj =
+                                          "fromnow": moment(t.createdAt).fromNow()
+                                          "createdAt": t.createdAt
+                                          "notificationId": t.id
+                                          "alert": t.alert
+                                          "movieDetails": t.movieDetails
+                                          "status": t.status
+                                    if _.isString(obj.movieDetails.title) and obj.movieDetails.title.indexOf('+') != -1
+                                          obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ')
+                                    if _.isString(obj.movieDetails.director) and obj.movieDetails.director.indexOf('+') != -1
+                                          obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ')
+                                    if _.isString(obj.movieDetails.tagline) and obj.movieDetails.tagline.indexOf('+') != -1
+                                          obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ')
+                                    notifications.push obj
+                              defer.resolve notifications
                         else
                               defer.resolve []
                   , (error)->
                         defer.reject error
                   defer.promise
                   
-                  
+            firebaseCloudApi.getUnreadNotificationsCount= () ->
+                  count = 0
+                  defer = $q.defer()
+                  firebase.database().ref('notification/' + DEVICETOKEN).once('value').then (data)->
+                        if data.val()
+                              temp = data.val()
+                              keys = Object.keys(temp)
+                              notifications = []
+                              for i in [0...keys.length]
+                                    temp[keys[i]].id = keys[i]
+                                    t = temp[keys[i]]
+                                    console.log t
+                                    if t.status == 'unread'
+                                          count++
+                              defer.resolve count
+                        else
+                              defer.resolve count
+                  , (error)->
+                        defer.reject error
+                  defer.promise
             firebaseCloudApi.fetchAllDevices = ()->
                   defer = $q.defer()
                   firebase.database().ref('installation').once('value').then (data)->
@@ -107,12 +135,23 @@ shortFilmWindow
                   , (error)->
                         defer.reject error
                   defer.promise
+            firebaseCloudApi.deleteNotifications = ()->
+                  deferred = $q.defer()
+                  # installation_id = 'SlTCCS8Eom'
+                  firebase.database().ref('notification/' + DEVICETOKEN).remove()
+                        .then (result)->
+                              console.log result,'RESS'
+                              defer.resolve result
+                        , (error)->
+                              defer.reject error
+                        defer.promise
+                  deferred.promise
             firebaseCloudApi.updateNotificationStatus = (notificationId)->
                   console.log DEVICETOKEN, notificationId
                   if notificationId
                         defer = $q.defer()
-                        firebase.database().ref('notification/' + DEVICETOKEN +'/'+ notificationId).update
-                              hasSeen : true
+                        firebase.database().ref('notification/' + DEVICETOKEN + '/' + notificationId).update
+                              status : 'read'
                         .then (result)->
                               console.log result,'RESS'
                               defer.resolve result

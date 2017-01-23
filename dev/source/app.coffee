@@ -52,6 +52,11 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
           $rootScope.$broadcast 'receiveNotification', { payload: data }
       else
         FirebaseApi.registerDevice('DUMMY_UUID')
+      
+      # FirebaseApi.saveNotification()
+      FirebaseApi.fetchNotifications().then (result)->
+        console.log result,'NOTIFICATIONS'
+      FirebaseApi.getUnreadNotificationsCount()
       $rootScope.App = App
     device_width = $window.innerWidth
     device_height = $window.innerHeight
@@ -76,25 +81,25 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
     ), 100
 
   # FastClick.attach document.body
-#  window.fbAsyncInit = ->
-#           Parse.FacebookUtils.init
-#             appId: '586411814878247'
-#             version: 'v2.4'
-#             cookie: true
-#             xfbml: true
-#           return
+ window.fbAsyncInit = ->
+          FB.init
+            appId: '586411814878247'
+            version: 'v2.4'
+            cookie: true
+            xfbml: true
+          return
 
-#         ((d, s, id) ->
-#           js = undefined
-#           fjs = d.getElementsByTagName(s)[0]
-#           if d.getElementById(id)
-#             return
-#           js = d.createElement(s)
-#           js.id = id
-#           js.src = 'https://connect.facebook.net/en_US/sdk.js'
-#           fjs.parentNode.insertBefore js, fjs
-#           return
-#         ) document, 'script', 'facebook-jssdk'
+        ((d, s, id) ->
+          js = undefined
+          fjs = d.getElementsByTagName(s)[0]
+          if d.getElementById(id)
+            return
+          js = d.createElement(s)
+          js.id = id
+          js.src = 'https://connect.facebook.net/en_US/sdk.js'
+          fjs.parentNode.insertBefore js, fjs
+          return
+        ) document, 'script', 'facebook-jssdk'
 
  $rootScope.$on '$stateChangeSuccess', (ev, to, toParams, from, fromParams) ->
     console.log "FROM : #{from.name} , TO : #{to.name}"

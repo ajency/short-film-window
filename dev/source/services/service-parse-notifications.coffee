@@ -6,6 +6,7 @@ shortFilmWindow.service 'ParseNotificationService', [
   ($q, $window, ParseConfiguration,$rootScope) ->
     {
       getNotificationsWithStatus: ->
+        console.log 'GETNOTIFICATIONSWITHSTATUS'
         deferred = $q.defer()
         installation_id = ParseConfiguration.installationId
         console.log "ParseConfiguration.installationId", ParseConfiguration.installationId
