@@ -2794,6 +2794,7 @@ function sendPushNotifications($ID, $post)
                 $data['notificationId'] = $notificationId->name;
                 $notify->sendNotifications($data,'ios');
                 $notify->sendNotifications($data,'android');
+                die;
 
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";

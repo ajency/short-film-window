@@ -1,7 +1,7 @@
 <?php
 
 define( 'API_ACCESS_KEY', 'AAAA2fvg6Cc:APA91bGh237ztTXzpmDFw4kqXvCe5luRdk70eiGmyDjbDO1FDXiiOvh_TWoGapFhkG2MNqLt16DeqzdRgJ1ctrPNb40eiOhEOXQvcydIG6SwTpYiqBXC6Tv0VU1KCPgcBYfpo8q_Q150' );
-define( 'NOTIFICATIONS_STORE_DB', "https://test-project-fc7cb.firebaseio.com/notifications.json");
+define( 'NOTIFICATIONS_STORE_DB', "https://shortfilmwindow-e5571.firebaseio.com/notifications.json");
 define( 'FCM_SEND_URL', "https://fcm.googleapis.com/fcm/send");
 define( 'TOPIC_ANDROID', "android");
 define( 'TOPIC_ANDROID_KEY', "data");
@@ -32,6 +32,9 @@ class firePush
             $data = array('to' => $token, $dataKey => $msg);
             $json = json_encode($data);
 
+            print "<pre>";
+            print $json;
+
             $headers = array();
             $headers[] = "Content-Type: application/json";
             $headers[] = "Authorization: key= ".API_ACCESS_KEY;
@@ -41,7 +44,10 @@ class firePush
             curl_setopt($ch, CURLOPT_HTTPHEADER,$headers);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_exec($ch);
+            $res = curl_exec($ch);
+
+            print "<pre>";
+            print $res;
             if(curl_errno($ch))
             {
                 //TODO show failure or error on screen or log or email?
