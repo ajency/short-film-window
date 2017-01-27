@@ -32,9 +32,6 @@ class firePush
             $data = array('to' => $token, $dataKey => $msg);
             $json = json_encode($data, JSON_UNESCAPED_SLASHES);
 
-            print "<pre>";
-            print $json;
-
             $headers = array();
             $headers[] = "Content-Type: application/json";
             $headers[] = "Authorization: key= ".API_ACCESS_KEY;
@@ -46,8 +43,6 @@ class firePush
             curl_setopt($ch, CURLOPT_POST, 1);
             $res = curl_exec($ch);
 
-            print "<pre>";
-            print $res;
             if(curl_errno($ch))
             {
                 //TODO show failure or error on screen or log or email?
