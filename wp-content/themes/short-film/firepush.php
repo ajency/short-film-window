@@ -17,7 +17,7 @@ class firePush
 
             $ch = curl_init(FCM_SEND_URL);
 
-            $token = "/topics/".$topic;
+            $token = '/topics/'.$topic;
 
             if($topic == TOPIC_ANDROID)
             {
@@ -30,7 +30,7 @@ class firePush
             }
 
             $data = array('to' => $token, $dataKey => $msg);
-            $json = json_encode($data);
+            $json = json_encode($data, JSON_UNESCAPED_SLASHES);
 
             print "<pre>";
             print $json;
