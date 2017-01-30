@@ -73,11 +73,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "xml": "<feature name=\"PushNotification\"><param name=\"android-package\" value=\"com.adobe.phonegap.push.PushPlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -240,11 +240,11 @@
         "nl.x-services.plugins.backgroundaudio": {
             "PACKAGE_NAME": "com.sfwindow"
         },
-        "phonegap-plugin-push": {
-            "SENDER_ID": "936233723943",
+        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.sfwindow"
         },
-        "cordova-plugin-network-information": {
+        "phonegap-plugin-push": {
+            "SENDER_ID": "936233723943",
             "PACKAGE_NAME": "com.sfwindow"
         }
     },
@@ -333,14 +333,6 @@
             "runs": true
         },
         {
-            "id": "phonegap-plugin-push.PushNotification",
-            "file": "plugins/phonegap-plugin-push/www/push.js",
-            "pluginId": "phonegap-plugin-push",
-            "clobbers": [
-                "PushNotification"
-            ]
-        },
-        {
             "id": "cordova-plugin-network-information.network",
             "file": "plugins/cordova-plugin-network-information/www/network.js",
             "pluginId": "cordova-plugin-network-information",
@@ -355,6 +347,14 @@
             "pluginId": "cordova-plugin-network-information",
             "clobbers": [
                 "Connection"
+            ]
+        },
+        {
+            "id": "phonegap-plugin-push.PushNotification",
+            "file": "plugins/phonegap-plugin-push/www/push.js",
+            "pluginId": "phonegap-plugin-push",
+            "clobbers": [
+                "PushNotification"
             ]
         }
     ],
@@ -371,7 +371,7 @@
         "cordova-plugin-x-socialsharing": "5.1.3",
         "ionic-plugin-keyboard": "2.2.1",
         "nl.x-services.plugins.backgroundaudio": "1.0.1",
-        "phonegap-plugin-push": "1.9.2",
-        "cordova-plugin-network-information": "1.3.1"
+        "cordova-plugin-network-information": "1.3.1",
+        "phonegap-plugin-push": "1.9.2"
     }
 }

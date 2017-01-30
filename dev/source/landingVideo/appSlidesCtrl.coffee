@@ -1,20 +1,11 @@
 shortFilmWindow
-.controller 'appSlidesCtrl', ['$scope','App','InitialiseService','ParseConfiguration','$rootScope','$ionicPlatform'
-  ,($scope,App,InitialiseService,ParseConfiguration,$rootScope,$ionicPlatform)->
+.controller 'appSlidesCtrl', ['$scope','App','InitialiseService','$rootScope','$ionicPlatform'
+  ,($scope,App,InitialiseService,$rootScope,$ionicPlatform)->
     $scope.initApp = ()->
 
       console.log "APP STARTED for the first time"
       #App.hideSplashScreen()
-      $ionicPlatform.ready ->
-        if App.isWebView()
-          console.log "ISWEBVIEW"
-          ParsePushPlugin.getInstallationObjectId (id) ->
-            console.log id,"installationId---------------------------"
-            ParseConfiguration.installationId = id
-          , (e) ->
-            console.log e,"installationId-ERROR"
-            ParseConfiguration.installationId =  0
-
+     
           # window.ParsePushPlugin.on 'openPN', (pn)->
           #   console.log "OPENPN",pn
           #   $rootScope.$broadcast 'openNotification', { payload: pn }

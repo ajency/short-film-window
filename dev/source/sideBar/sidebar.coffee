@@ -88,6 +88,7 @@ shortFilmWindow
   $rootScope.getnotificationcount = ()->
     FirebaseApi.getUnreadNotificationsCount()
     .then (value)->
+      console.log 'GET UNREAD ROOT'
       $rootScope.unreadNotificationCount = value
 
 

@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'notificationsCtrl', ['FirebaseApi','$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','ParseNotificationService','Storage','$timeout','$window'
-  ,(FirebaseApi,$rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,ParseNotificationService,Storage,$timeout,$window)->
+.controller 'notificationsCtrl', ['FirebaseApi','$rootScope','$scope','App','PulltorefreshAPI','DetailsAPI','$ionicLoading','$stateParams','Storage','$timeout','$window'
+  ,(FirebaseApi,$rootScope,$scope,App,PulltorefreshAPI,DetailsAPI,$ionicLoading,$stateParams,Storage,$timeout,$window)->
 
     $scope.notificationArray = []
 
@@ -26,7 +26,7 @@ shortFilmWindow
           $scope.getwatchlistDetails = value
           FirebaseApi.fetchNotifications()
           .then (data) ->
-            console.log data,"PARSE Notifications"
+            console.log data," Notifications"
             if data.length == 0
               console.log "No data"
               $scope.result = 'no-new-notifications'
@@ -64,15 +64,19 @@ shortFilmWindow
     $scope.markNotificationAsRead = (notification_id)->
       if App.isOnline()
         matchIndex = _.findLastIndex $scope.notificationArray, {"notificationId": ''+notification_id+''}
+        if $scope.notificationArray[matchIndex].status == 'unread'
+          console.log 'PUsH'
+          FirebaseApi.updateNotificationStatus(notification_id)
+          .then (data) ->
+            console.log data
+          .catch (error) ->
+            $scope.result = 'error'
+        else
+          console.log 'DONT PUsH'
         $scope.notificationArray[matchIndex].status = 'read'
         if $rootScope.unreadNotificationCount
           $rootScope.unreadNotificationCount--
-
-        FirebaseApi.updateNotificationStatus(notification_id)
-        .then (data) ->
-          console.log data
-        .catch (error) ->
-          $scope.result = 'error'
+       
       else
         $scope.result = 'error'
 
@@ -106,6 +110,7 @@ shortFilmWindow
         Storage.watchlistDetails 'set', $scope.getwatchlistDetails
 
     $scope.singlePlayService = (videoData,notificationId)->
+      console.log notificationId
       $scope.markNotificationAsRead(notificationId)
       DetailsAPI.singleVideoarray.movie_id = videoData.movie_id
       DetailsAPI.singleVideoarray.singleVideoarray = videoData

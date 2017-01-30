@@ -92,6 +92,14 @@
         "is_top_level": true,
         "variables": {}
     },
+    "cordova-plugin-network-information": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-network-information"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "phonegap-plugin-push": {
         "source": {
             "type": "registry",
@@ -101,13 +109,5 @@
         "variables": {
             "SENDER_ID": "936233723943"
         }
-    },
-    "cordova-plugin-network-information": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-network-information"
-        },
-        "is_top_level": true,
-        "variables": {}
     }
 }

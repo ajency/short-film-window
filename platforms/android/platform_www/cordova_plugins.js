@@ -83,14 +83,6 @@ module.exports = [
         "runs": true
     },
     {
-        "id": "phonegap-plugin-push.PushNotification",
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
         "id": "cordova-plugin-network-information.network",
         "file": "plugins/cordova-plugin-network-information/www/network.js",
         "pluginId": "cordova-plugin-network-information",
@@ -105,6 +97,14 @@ module.exports = [
         "pluginId": "cordova-plugin-network-information",
         "clobbers": [
             "Connection"
+        ]
+    },
+    {
+        "id": "phonegap-plugin-push.PushNotification",
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
         ]
     }
 ];
@@ -123,8 +123,8 @@ module.exports.metadata =
     "cordova-plugin-x-socialsharing": "5.1.3",
     "ionic-plugin-keyboard": "2.2.1",
     "nl.x-services.plugins.backgroundaudio": "1.0.1",
-    "phonegap-plugin-push": "1.9.2",
-    "cordova-plugin-network-information": "1.3.1"
+    "cordova-plugin-network-information": "1.3.1",
+    "phonegap-plugin-push": "1.9.2"
 };
 // BOTTOM OF METADATA
 });

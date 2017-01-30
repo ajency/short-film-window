@@ -36,7 +36,6 @@ var paths = {
     "dev/lib/ion-sticky/ion-sticky.js",
     "dev/lib/imageCachefactory/ionic.ion.imagecachefactory.js",
     "dev/lib/localforage/dist/localforage.min.js",
-    "dev/lib/parse-1.6.14.min.js",
     "dev/lib/firebase/firebase.js",
     "dev/lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js",
     "dev/lib/ionic-threads/ionic.threads.js"]

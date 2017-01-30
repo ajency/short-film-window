@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'appInitializeCtrl', ['$scope','App','InitialiseService','ParseConfiguration','$rootScope','$ionicPlatform'
-  ,($scope,App,InitialiseService,ParseConfiguration,$rootScope,$ionicPlatform)->
+.controller 'appInitializeCtrl', ['$scope','App','InitialiseService','$rootScope','$ionicPlatform'
+  ,($scope,App,InitialiseService,$rootScope,$ionicPlatform)->
     $scope.initApp = ()->
 
       console.log "APP STARTED"

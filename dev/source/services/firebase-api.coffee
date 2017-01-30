@@ -1,6 +1,6 @@
 shortFilmWindow
-.service 'FirebaseApi', ['$ionicPlatform', '$q', 'FirebaseKey','App', 'Storage', 'PushConfig',
-      ($ionicPlatform, $q, FirebaseKey, App, Storage, PushConfig)->
+.service 'FirebaseApi', ['$ionicPlatform', '$q', 'FirebaseKey','App', 'Storage', 'PushConfig','$rootScope',
+      ($ionicPlatform, $q, FirebaseKey, App, Storage, PushConfig, $rootScope)->
             DEVICETOKEN = null
             # Storage.vendorDetails 'get'
             # .then (details)->
@@ -30,9 +30,9 @@ shortFilmWindow
                         
 
                   else
-                        DEVICETOKEN = 'DUMMY_UUID'
-                        Storage.deviceToken 'set', 'DUMMY_UUID'
-                        defer.resolve 'DUMMY_UUID'
+                        DEVICETOKEN = 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV'
+                        Storage.deviceToken 'set', 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV'
+                        defer.resolve 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV'
                   defer.promise
             firebaseCloudApi.firebaseInit = ()->
                   console.log ' INITIALISING FIREBASE'
@@ -48,7 +48,7 @@ shortFilmWindow
             firebaseCloudApi.saveNotification = () ->
                   console.log DEVICETOKEN
                   defer = $q.defer()
-                  firebase.database().ref('notification/'+ DEVICETOKEN).push
+                  firebase.database().ref('notifications/'+ DEVICETOKEN).push
                         "movieId": 930
                         "alert": "TEST Notification"
                         "createdAt" : "2016-12-22T12:56:59.706Z"
@@ -79,28 +79,54 @@ shortFilmWindow
                   defer.promise
             firebaseCloudApi.fetchNotifications = () ->
                   defer = $q.defer()
-                  firebase.database().ref('notification/' + DEVICETOKEN).once('value').then (data)->
+                  firebase.database().ref('notifications').once('value').then (data)->
+                        count = 0
                         if data.val()
+                              console.log data.val(), 'NOTIFICATIONS'
                               temp = data.val()
                               keys = Object.keys(temp)
                               notifications = []
                               for i in [0...keys.length]
                                     temp[keys[i]].id = keys[i]
                                     t = temp[keys[i]]
+                                    movieDetails = JSON.parse(decodeURIComponent(t.movieDetails))
                                     obj =
-                                          "fromnow": moment(t.createdAt).fromNow()
-                                          "createdAt": t.createdAt
+                                          "fromnow": moment(moment.unix(t.created).toString()).fromNow()
+                                          "createdAt": t.created
                                           "notificationId": t.id
                                           "alert": t.alert
-                                          "movieDetails": t.movieDetails
+                                          "movieDetails": movieDetails
                                           "status": t.status
+                                    flag = false
+                                    if t.deviceIDs
+                                          t2 = t.deviceIDs[DEVICETOKEN]
+                                          if t2
+                                                if t2.hasCleared == false && t2.hasSeen == false
+                                                      obj.status = 'unread'
+                                                      count++
+                                                else if t2.hasCleared == false && t2.hasSeen == true
+                                                      obj.status = 'read'
+                                          else
+                                                count++
+                                                obj.status = 'unread'
+                                    else
+                                          count++
+                                          obj.status = 'unread'
                                     if _.isString(obj.movieDetails.title) and obj.movieDetails.title.indexOf('+') != -1
                                           obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ')
                                     if _.isString(obj.movieDetails.director) and obj.movieDetails.director.indexOf('+') != -1
                                           obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ')
                                     if _.isString(obj.movieDetails.tagline) and obj.movieDetails.tagline.indexOf('+') != -1
                                           obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ')
-                                    notifications.push obj
+                                    if t.deviceIDs
+                                          if t.deviceIDs[DEVICETOKEN]
+                                                if !t.deviceIDs[DEVICETOKEN].hasCleared
+                                                      notifications.push obj
+                                          else
+                                                notifications.push obj
+                                    else
+                                          notifications.push obj
+                              $rootScope.unreadNotificationCount = count
                               defer.resolve notifications
                         else
                               defer.resolve []
@@ -111,17 +137,26 @@ shortFilmWindow
             firebaseCloudApi.getUnreadNotificationsCount= () ->
                   count = 0
                   defer = $q.defer()
-                  firebase.database().ref('notification/' + DEVICETOKEN).once('value').then (data)->
+                  firebase.database().ref('notifications').once('value').then (data)->
+                        console.log 'GET UNREAD'
                         if data.val()
                               temp = data.val()
                               keys = Object.keys(temp)
-                              notifications = []
                               for i in [0...keys.length]
                                     temp[keys[i]].id = keys[i]
                                     t = temp[keys[i]]
-                                    console.log t
-                                    if t.status == 'unread'
+                                    console.log t, 'NOTF'
+                                    if t.deviceIDs
+                                          t2 = t.deviceIDs[DEVICETOKEN]
+                                          if t2
+                                                if t2.hasCleared == false && t2.hasSeen == false
+                                                      count++
+                                          else
+                                                count++
+                                    else
                                           count++
+                              $rootScope.unreadNotificationCount = count
+                              console.log 'TOTAL UNREAD', count
                               defer.resolve count
                         else
                               defer.resolve count
@@ -138,22 +173,32 @@ shortFilmWindow
             firebaseCloudApi.deleteNotifications = ()->
                   deferred = $q.defer()
                   # installation_id = 'SlTCCS8Eom'
-                  firebase.database().ref('notification/' + DEVICETOKEN).remove()
-                        .then (result)->
-                              console.log result,'RESS'
-                              defer.resolve result
-                        , (error)->
-                              defer.reject error
-                        defer.promise
+                  firebase.database().ref('notifications').once('value').then (data)->
+                        console.log data.val(),'RESS'
+                        result = data.val()
+                        if result
+                              keys = Object.keys(result)
+                              console.log keys,'keys'
+                              for i in [0...keys.length]
+                                    firebase.database().ref('notifications/'+keys[i]+'/deviceIDs/'+DEVICETOKEN).update
+                                          hasCleared: true
+                                    .then (result)->
+                                          
+                                          deferred.resolve result
+                                    , (error)->
+                                          deferred.reject error
+                  , (error)->
+                        deferred.reject error
                   deferred.promise
             firebaseCloudApi.updateNotificationStatus = (notificationId)->
                   console.log DEVICETOKEN, notificationId
                   if notificationId
                         defer = $q.defer()
-                        firebase.database().ref('notification/' + DEVICETOKEN + '/' + notificationId).update
-                              status : 'read'
+                        firebase.database().ref('notifications/'+notificationId+'/deviceIDs').child(DEVICETOKEN ).set
+                              hasCleared:false
+                              hasSeen: true
                         .then (result)->
-                              console.log result,'RESS'
+                              
                               defer.resolve result
                         , (error)->
                               defer.reject error
@@ -201,6 +246,7 @@ shortFilmWindow
             #             # firebase.database().ref('installation/' + User.user_id + '/' + deviceToken).remove().then (result)->
             #             , (error)->
             #                   console.log error, 'error'
+            
             
             firebaseCloudApi
 ]

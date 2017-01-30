@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'InitCtrl', ['$scope','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','ParseNotificationService','$sce','FacebookGraphAPI','$cordovaOauth'
-     ,($scope, App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,ParseNotificationService,$sce,FacebookGraphAPI,$cordovaOauth)->
+.controller 'InitCtrl', ['$scope','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','$sce','FacebookGraphAPI','$cordovaOauth'
+     ,($scope, App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,$sce,FacebookGraphAPI,$cordovaOauth)->
 
     $scope.Videodetails = []
     # $scope.display = 'loader'
@@ -134,14 +134,8 @@ shortFilmWindow
 
     $scope.initializeApp = ()->
 
-      $scope.display = 'loader'
-      console.log "INITIALIZEAPP ", DetailsAPI
-      ParseNotificationService.updateNotificationStatus(App.notificationPayload.payload.notificationId)
-      .then (data)->
-        console.log "PARSE INIT FROM APP",data
-        $scope.init(DetailsAPI.videoId)
-
-      .catch (error)->
+        $scope.display = 'loader'
+        console.log "INITIALIZEAPP ", DetailsAPI
         $scope.init(DetailsAPI.videoId)
 
     $scope.trustAsHtml = (string) ->

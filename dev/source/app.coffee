@@ -1,21 +1,7 @@
 
 shortFilmWindow = angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','ngSanitize','ion-sticky','ionicLazyLoad','ionic.ion.imageCacheFactory','ionic.contrib.ui.ionThread','templates']
 
-shortFilmWindow.value('ParseConfiguration',
-  # RELEASE KEYS
-  # applicationId: 'DMhdPZNQAUzklzpPb9Lhp8qHZFjcVU9klP0jxLsO'
-  # javascriptKey: 'TTrki92xoLK7s4POTGeFk4i2Ynm8tPbPl7QrKl7K'
-  # clientKey: 'gsGvDg9ZkEqzwqYZiFsTZZsMQxdCQ9EcNbrTWAY5'
-  # masterKey: 'LALmaz73J44ndeC2n7vuuySMVLGHUSTEQADmJPKN'
-  # installationId: ''
-
-  # TEST KEYS
-  applicationId: 'SE6Q1hXbqyYvg6aE1RA0raCtThoVSsYbSPJzOpu3'
-  javascriptKey: 'tFtsQns0YNDCv1pa6GenmdambG5z27s28UEmBnie'
-  clientKey: 'CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj'
-  masterKey: 'ggzi9G7iFRYLkYgnt5woWM30fauFGRgeNZBYYm5H'
-  installationId: ''
- ).value 'FirebaseKey',
+shortFilmWindow.value 'FirebaseKey',
   # RELEASE KEYS
  
 
@@ -29,14 +15,17 @@ shortFilmWindow.value('ParseConfiguration',
 .constant 'PushConfig',
     android:
       senderID: "936233723943"
+      clearBadge: true
     ios:
       senderID: "936233723943"
       gcmSandbox: true
+      clearBadge: true
       alert: true
       badge: true
       sound: false
 
-shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI','ParseConfiguration', (PushConfig,FirebaseApi,$ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI,ParseConfiguration)->
+shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$rootScope', 'App', '$timeout','$window','$cordovaNetwork','$cordovaToast','DetailsAPI'
+, (PushConfig,FirebaseApi,$ionicPlatform,$state,$rootScope, App, $timeout,$window, $cordovaNetwork,$cordovaToast,DetailsAPI)->
 
  $ionicPlatform.ready ->
       $rootScope.isAndroid = ionic.Platform.isAndroid()
@@ -46,6 +35,14 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
         push = PushNotification.init PushConfig
         push.on 'registration', (data) ->
           console.log 'DEVICE ID ->',data.registrationId
+          platform = ionic.Platform.platform()
+          console.log platform, "PLATFROM NAME"
+          push.subscribe ''+platform+'', ()->
+            console.log 'SUB : success'
+          ,(e)->
+            console.log 'error:'
+            console.log e
+          
           FirebaseApi.registerDevice data.registrationId
         push.on 'notification', (data) ->
           console.log data
@@ -56,19 +53,21 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
       # FirebaseApi.saveNotification()
       FirebaseApi.fetchNotifications().then (result)->
         console.log result,'NOTIFICATIONS'
+      , (error)->
+        console.log 'ERROR'
       FirebaseApi.getUnreadNotificationsCount()
       $rootScope.App = App
-    device_width = $window.innerWidth
-    device_height = $window.innerHeight
-    $rootScope.device_height = $window.innerHeight
-    App.hideSplashScreen()
-    console.log 'Checking if initial'
-    console.log App.isInitialRun()
-    if App.isInitialRun()
-      App.setInitialRun false
-      App.navigate 'appSlides'
-    else
-      App.navigate 'appInitialize'
+      device_width = $window.innerWidth
+      device_height = $window.innerHeight
+      $rootScope.device_height = $window.innerHeight
+      App.hideSplashScreen()
+      console.log 'Checking if initial'
+      console.log App.isInitialRun()
+      if App.isInitialRun()
+        App.setInitialRun false
+        App.navigate 'appSlides'
+      else
+        App.navigate 'appInitialize'
 
     $ionicPlatform.registerBackButtonAction ((event) ->
       if $state.current.name == 'popular'
