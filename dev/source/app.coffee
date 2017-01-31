@@ -30,7 +30,7 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
  $ionicPlatform.ready ->
       $rootScope.isAndroid = ionic.Platform.isAndroid()
       FirebaseApi.firebaseInit()
-      console.log ionic.Platform.platform(), 'IONIC'
+      console.log ionic.Platform.platform(), 'IONIC',moment().unix().valueOf()
       if ionic.Platform.isWebView()
         push = PushNotification.init PushConfig
         push.on 'registration', (data) ->

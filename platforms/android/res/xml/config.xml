@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sfwindow" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.sfwindow" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
@@ -95,7 +95,4 @@
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="SplashScreenDelay" value="2000" />
     <preference name="AllowInlineMediaPlayback" value="true" />
-    <preference name="ParseAppId" value="SE6Q1hXbqyYvg6aE1RA0raCtThoVSsYbSPJzOpu3" />
-    <preference name="ParseClientKey" value="CVWd2liGMvD7ueuVUwuQyaapCDTNH0r4PaOfwqBj" />
-    <preference name="ParseServerUrl" value="PARSE_DOT_COM" />
 </widget>

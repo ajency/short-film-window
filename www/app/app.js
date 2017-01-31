@@ -37,7 +37,7 @@ shortFilmWindow.run([
       var device_height, device_width, push;
       $rootScope.isAndroid = ionic.Platform.isAndroid();
       FirebaseApi.firebaseInit();
-      console.log(ionic.Platform.platform(), 'IONIC');
+      console.log(ionic.Platform.platform(), 'IONIC', moment().unix().valueOf());
       if (ionic.Platform.isWebView()) {
         push = PushNotification.init(PushConfig);
         push.on('registration', function(data) {
@@ -208,72 +208,6 @@ htmlEnDeCode = (function() {
     htmlDecode: htmlDecode
   };
 })();
-
-shortFilmWindow.controller('watchlistCtrl', [
-  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
-    $scope.watchlistDetails = [];
-    $scope.display = 'loader';
-    $scope.watchFlag = '0';
-    $scope.refreshSwiper = true;
-    $scope.addvideoDetails = [];
-    $scope.init = function() {
-      return $scope.getData();
-    };
-    $scope.getData = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        console.log(value);
-        $scope.watchlistDetails = value;
-        if (_.isNull($scope.watchlistDetails)) {
-          $scope.display = 'no_result';
-          return $scope.$apply();
-        } else {
-          if ($scope.watchlistDetails.length > 0) {
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            $scope.used_height = 43 + 90;
-            $scope.hgt = device_height - $scope.used_height;
-            $scope.display = 'result';
-            return $scope.$apply();
-          } else {
-            $scope.display = 'no_result';
-            return $scope.$apply();
-          }
-        }
-      });
-    };
-    $scope.updatewatchlist = function(Id) {
-      $scope.CheckWatchlist(Id);
-      return $ionicScrollDelegate.resize();
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    return $scope.CheckWatchlist = function(Id) {
-      var matchIndex;
-      matchIndex = _.findLastIndex($scope.watchlistDetails, {
-        "movie_id": Id
-      });
-      $scope.watchlistDetails.splice(matchIndex, 1);
-      Storage.watchlistDetails('set', $scope.watchlistDetails);
-      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
-        return $scope.display = 'no_result';
-      } else {
-        $scope.refreshSwiper = false;
-        return $timeout((function() {
-          var device_height, device_width;
-          $scope.refreshSwiper = true;
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 43 + 72;
-          return $scope.hgt = device_height - $scope.used_height;
-        }), 100);
-      }
-    };
-  }
-]);
 
 shortFilmWindow.factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
@@ -448,6 +382,72 @@ shortFilmWindow.factory('share', [
       }
     };
     return share;
+  }
+]);
+
+shortFilmWindow.controller('watchlistCtrl', [
+  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
+    $scope.watchlistDetails = [];
+    $scope.display = 'loader';
+    $scope.watchFlag = '0';
+    $scope.refreshSwiper = true;
+    $scope.addvideoDetails = [];
+    $scope.init = function() {
+      return $scope.getData();
+    };
+    $scope.getData = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        console.log(value);
+        $scope.watchlistDetails = value;
+        if (_.isNull($scope.watchlistDetails)) {
+          $scope.display = 'no_result';
+          return $scope.$apply();
+        } else {
+          if ($scope.watchlistDetails.length > 0) {
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 43 + 90;
+            $scope.hgt = device_height - $scope.used_height;
+            $scope.display = 'result';
+            return $scope.$apply();
+          } else {
+            $scope.display = 'no_result';
+            return $scope.$apply();
+          }
+        }
+      });
+    };
+    $scope.updatewatchlist = function(Id) {
+      $scope.CheckWatchlist(Id);
+      return $ionicScrollDelegate.resize();
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    return $scope.CheckWatchlist = function(Id) {
+      var matchIndex;
+      matchIndex = _.findLastIndex($scope.watchlistDetails, {
+        "movie_id": Id
+      });
+      $scope.watchlistDetails.splice(matchIndex, 1);
+      Storage.watchlistDetails('set', $scope.watchlistDetails);
+      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
+        return $scope.display = 'no_result';
+      } else {
+        $scope.refreshSwiper = false;
+        return $timeout((function() {
+          var device_height, device_width;
+          $scope.refreshSwiper = true;
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 43 + 72;
+          return $scope.hgt = device_height - $scope.used_height;
+        }), 100);
+      }
+    };
   }
 ]);
 
@@ -1193,8 +1193,9 @@ shortFilmWindow.controller('notificationsCtrl', [
 
 shortFilmWindow.service('FirebaseApi', [
   '$ionicPlatform', '$q', 'FirebaseKey', 'App', 'Storage', 'PushConfig', '$rootScope', function($ionicPlatform, $q, FirebaseKey, App, Storage, PushConfig, $rootScope) {
-    var DEVICETOKEN, firebaseCloudApi;
+    var DEVICETOKEN, LIMITTOLAST, firebaseCloudApi;
     DEVICETOKEN = null;
+    LIMITTOLAST = 20;
     firebaseCloudApi = {};
     firebaseCloudApi.setDeviceToke = function(token) {
       if (token == null) {
@@ -1203,6 +1204,24 @@ shortFilmWindow.service('FirebaseApi', [
       if (token) {
         return DEVICETOKEN = token;
       }
+    };
+    firebaseCloudApi.getCreationDate = function() {
+      var defer;
+      defer = $q.defer();
+      Storage.creationDate('get').then(function(date) {
+        if (date) {
+          return defer.resolve(date);
+        } else {
+          return firebase.database().ref('installation/' + DEVICETOKEN).once('value').then(function(data) {
+            console.log(data.val(), 'DATe');
+            Storage.creationDate('set', data.val().createdAt);
+            return defer.resolve(data.val().createdAt);
+          }, function(error) {
+            return defer.reject(error);
+          });
+        }
+      });
+      return defer.promise;
     };
     firebaseCloudApi.getDeviceToken = function() {
       var defer;
@@ -1271,70 +1290,73 @@ shortFilmWindow.service('FirebaseApi', [
     firebaseCloudApi.fetchNotifications = function() {
       var defer;
       defer = $q.defer();
-      firebase.database().ref('notifications').once('value').then(function(data) {
-        var count, flag, i, j, keys, movieDetails, notifications, obj, ref, t, t2, temp;
-        count = 0;
-        if (data.val()) {
-          console.log(data.val(), 'NOTIFICATIONS');
-          temp = data.val();
-          keys = Object.keys(temp);
-          notifications = [];
-          for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-            temp[keys[i]].id = keys[i];
-            t = temp[keys[i]];
-            movieDetails = JSON.parse(decodeURIComponent(t.movieDetails));
-            obj = {
-              "fromnow": moment(moment.unix(t.created).toString()).fromNow(),
-              "createdAt": t.created,
-              "notificationId": t.id,
-              "alert": t.alert,
-              "movieDetails": movieDetails,
-              "status": t.status
-            };
-            flag = false;
-            if (t.deviceIDs) {
-              t2 = t.deviceIDs[DEVICETOKEN];
-              if (t2) {
-                if (t2.hasCleared === false && t2.hasSeen === false) {
-                  obj.status = 'unread';
+      firebaseCloudApi.getCreationDate().then(function(date) {
+        return firebase.database().ref('notifications').orderByChild('created').startAt(date).limitToLast(LIMITTOLAST).once('value').then(function(data) {
+          var count, flag, i, j, keys, movieDetails, notifications, obj, ref, t, t2, temp;
+          count = 0;
+          if (data.val()) {
+            temp = data.val();
+            keys = Object.keys(temp);
+            notifications = [];
+            for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+              temp[keys[i]].id = keys[i];
+              t = temp[keys[i]];
+              movieDetails = JSON.parse(decodeURIComponent(t.movieDetails));
+              obj = {
+                "fromnow": moment(moment.unix(t.created).toString()).fromNow(),
+                "createdAt": t.created,
+                "notificationId": t.id,
+                "alert": t.alert,
+                "movieDetails": movieDetails,
+                "status": t.status
+              };
+              flag = false;
+              if (t.deviceIDs) {
+                t2 = t.deviceIDs[DEVICETOKEN];
+                if (t2) {
+                  if (t2.hasCleared === false && t2.hasSeen === false) {
+                    obj.status = 'unread';
+                    count++;
+                  } else if (t2.hasCleared === false && t2.hasSeen === true) {
+                    obj.status = 'read';
+                  }
+                } else {
                   count++;
-                } else if (t2.hasCleared === false && t2.hasSeen === true) {
-                  obj.status = 'read';
+                  obj.status = 'unread';
                 }
               } else {
                 count++;
                 obj.status = 'unread';
               }
-            } else {
-              count++;
-              obj.status = 'unread';
-            }
-            if (_.isString(obj.movieDetails.title) && obj.movieDetails.title.indexOf('+') !== -1) {
-              obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ');
-            }
-            if (_.isString(obj.movieDetails.director) && obj.movieDetails.director.indexOf('+') !== -1) {
-              obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ');
-            }
-            if (_.isString(obj.movieDetails.tagline) && obj.movieDetails.tagline.indexOf('+') !== -1) {
-              obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ');
-            }
-            if (t.deviceIDs) {
-              if (t.deviceIDs[DEVICETOKEN]) {
-                if (!t.deviceIDs[DEVICETOKEN].hasCleared) {
+              if (_.isString(obj.movieDetails.title) && obj.movieDetails.title.indexOf('+') !== -1) {
+                obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ');
+              }
+              if (_.isString(obj.movieDetails.director) && obj.movieDetails.director.indexOf('+') !== -1) {
+                obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ');
+              }
+              if (_.isString(obj.movieDetails.tagline) && obj.movieDetails.tagline.indexOf('+') !== -1) {
+                obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ');
+              }
+              if (t.deviceIDs) {
+                if (t.deviceIDs[DEVICETOKEN]) {
+                  if (!t.deviceIDs[DEVICETOKEN].hasCleared) {
+                    notifications.push(obj);
+                  }
+                } else {
                   notifications.push(obj);
                 }
               } else {
                 notifications.push(obj);
               }
-            } else {
-              notifications.push(obj);
             }
+            $rootScope.unreadNotificationCount = count;
+            return defer.resolve(notifications);
+          } else {
+            return defer.resolve([]);
           }
-          $rootScope.unreadNotificationCount = count;
-          return defer.resolve(notifications);
-        } else {
-          return defer.resolve([]);
-        }
+        }, function(error) {
+          return defer.reject(error);
+        });
       }, function(error) {
         return defer.reject(error);
       });
@@ -1344,35 +1366,37 @@ shortFilmWindow.service('FirebaseApi', [
       var count, defer;
       count = 0;
       defer = $q.defer();
-      firebase.database().ref('notifications').once('value').then(function(data) {
-        var i, j, keys, ref, t, t2, temp;
-        console.log('GET UNREAD');
-        if (data.val()) {
-          temp = data.val();
-          keys = Object.keys(temp);
-          for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-            temp[keys[i]].id = keys[i];
-            t = temp[keys[i]];
-            console.log(t, 'NOTF');
-            if (t.deviceIDs) {
-              t2 = t.deviceIDs[DEVICETOKEN];
-              if (t2) {
-                if (t2.hasCleared === false && t2.hasSeen === false) {
+      firebaseCloudApi.getCreationDate().then(function(date) {
+        console.log(date, 'DATE');
+        return firebase.database().ref('notifications').orderByChild('created').startAt(date).limitToLast(LIMITTOLAST).once('value').then(function(data) {
+          var i, j, keys, ref, t, t2, temp;
+          if (data.val()) {
+            temp = data.val();
+            keys = Object.keys(temp);
+            for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+              temp[keys[i]].id = keys[i];
+              t = temp[keys[i]];
+              if (t.deviceIDs) {
+                t2 = t.deviceIDs[DEVICETOKEN];
+                if (t2) {
+                  if (t2.hasCleared === false && t2.hasSeen === false) {
+                    count++;
+                  }
+                } else {
                   count++;
                 }
               } else {
                 count++;
               }
-            } else {
-              count++;
             }
+            $rootScope.unreadNotificationCount = count;
+            return defer.resolve(count);
+          } else {
+            return defer.resolve(count);
           }
-          $rootScope.unreadNotificationCount = count;
-          console.log('TOTAL UNREAD', count);
-          return defer.resolve(count);
-        } else {
-          return defer.resolve(count);
-        }
+        }, function(error) {
+          return defer.reject(error);
+        });
       }, function(error) {
         return defer.reject(error);
       });
@@ -1391,25 +1415,29 @@ shortFilmWindow.service('FirebaseApi', [
     firebaseCloudApi.deleteNotifications = function() {
       var deferred;
       deferred = $q.defer();
-      firebase.database().ref('notifications').once('value').then(function(data) {
-        var i, j, keys, ref, result, results;
-        console.log(data.val(), 'RESS');
-        result = data.val();
-        if (result) {
-          keys = Object.keys(result);
-          console.log(keys, 'keys');
-          results = [];
-          for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-            results.push(firebase.database().ref('notifications/' + keys[i] + '/deviceIDs/' + DEVICETOKEN).update({
-              hasCleared: true
-            }).then(function(result) {
-              return deferred.resolve(result);
-            }, function(error) {
-              return deferred.reject(error);
-            }));
+      firebaseCloudApi.getCreationDate().then(function(date) {
+        return firebase.database().ref('notifications').orderByChild('created').startAt(date).limitToLast(LIMITTOLAST).once('value').then(function(data) {
+          var i, j, keys, ref, result, results;
+          result = data.val();
+          if (result) {
+            keys = Object.keys(result);
+            results = [];
+            for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
+              results.push(firebase.database().ref('notifications/' + keys[i] + '/deviceIDs/' + DEVICETOKEN).update({
+                hasCleared: true
+              }).then(function(result) {
+                return deferred.resolve(result);
+              }, function(error) {
+                return deferred.reject(error);
+              }));
+            }
+            return results;
+          } else {
+            return deferred.reject('error');
           }
-          return results;
-        }
+        }, function(error) {
+          return deferred.reject(error);
+        });
       }, function(error) {
         return deferred.reject(error);
       });
@@ -1436,15 +1464,15 @@ shortFilmWindow.service('FirebaseApi', [
     firebaseCloudApi.registerDevice = function(deviceToken) {
       return firebaseCloudApi.getDeviceToken().then(function(token) {
         console.log(token, 'DEVICETOKEN -- registerDevice');
-        return firebaseCloudApi.fetchAllDevices().then(function(result) {
-          var flag, i, j, keys, ref;
+        return firebase.database().ref('installation/' + token).once('value').then(function(data) {
+          var flag, result, timestamp;
+          result = data.val();
+          flag = false;
+          console.log(result, 'FETCH DATA');
+          timestamp = moment().unix().valueOf();
           if (result) {
-            keys = Object.keys(result);
-            flag = false;
-            for (i = j = 0, ref = keys.length; 0 <= ref ? j < ref : j > ref; i = 0 <= ref ? ++j : --j) {
-              if (result[keys[i]].deviceToken === token) {
-                flag = true;
-              }
+            if (result.deviceToken === token) {
+              flag = true;
             }
             if (flag) {
               console.log('deviceAlreadyRegistered');
@@ -1452,17 +1480,21 @@ shortFilmWindow.service('FirebaseApi', [
               console.log('newDevice');
             }
             if (!flag) {
-              return firebase.database().ref('installation').push({
+              firebase.database().ref('installation').child(token).set({
                 device: ionic.Platform.platform(),
-                deviceToken: token
+                deviceToken: token,
+                createdAt: timestamp
               });
+              return Storage.creationDate('set', timestamp);
             }
           } else {
             if (result === null) {
-              return firebase.database().ref('installation').push({
+              firebase.database().ref('installation').child(token).set({
                 device: ionic.Platform.platform(),
-                deviceToken: token
+                deviceToken: token,
+                createdAt: timestamp
               });
+              return Storage.creationDate('set', timestamp);
             }
           }
         });
@@ -1856,6 +1888,30 @@ shortFilmWindow.factory('Storage', [
           break;
         case 'remove':
           localforage.removeItem('device_token').then(function() {
+            return defer.resolve();
+          });
+      }
+      return defer.promise;
+    };
+    Storage.creationDate = function(action, data) {
+      var defer;
+      if (data == null) {
+        data = {};
+      }
+      defer = $q.defer();
+      switch (action) {
+        case 'set':
+          localforage.setItem('creation_date', data).then(function() {
+            return defer.resolve();
+          });
+          break;
+        case 'get':
+          localforage.getItem('creation_date').then(function(data) {
+            return defer.resolve(data);
+          });
+          break;
+        case 'remove':
+          localforage.removeItem('creation_date').then(function() {
             return defer.resolve();
           });
       }

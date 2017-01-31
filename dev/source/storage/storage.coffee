@@ -26,6 +26,19 @@ shortFilmWindow
                 localforage.removeItem 'device_token'
                 .then -> defer.resolve()
         defer.promise
+    Storage.creationDate = (action, data={})->
+        defer = $q.defer()
+        switch action
+            when 'set'
+                localforage.setItem 'creation_date', data
+                .then -> defer.resolve()
+            when 'get'
+                localforage.getItem 'creation_date'
+                .then (data)-> defer.resolve data
+            when 'remove'
+                localforage.removeItem 'creation_date'
+                .then -> defer.resolve()
+        defer.promise
 
     Storage
 ]

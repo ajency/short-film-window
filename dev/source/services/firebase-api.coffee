@@ -2,6 +2,7 @@ shortFilmWindow
 .service 'FirebaseApi', ['$ionicPlatform', '$q', 'FirebaseKey','App', 'Storage', 'PushConfig','$rootScope',
       ($ionicPlatform, $q, FirebaseKey, App, Storage, PushConfig, $rootScope)->
             DEVICETOKEN = null
+            LIMITTOLAST = 20
             # Storage.vendorDetails 'get'
             # .then (details)->
             #       User = details
@@ -13,6 +14,22 @@ shortFilmWindow
                         # Storage.vendorDetails 'get'
                         # .then (details)->
                         #       User = details
+            firebaseCloudApi.getCreationDate = ()->
+                  defer = $q.defer()
+                  Storage.creationDate 'get'
+                  .then (date) ->
+                        if date
+                              defer.resolve date
+                        else
+                              firebase.database().ref('installation/' + DEVICETOKEN ).once('value').then (data)->
+                                    console.log data.val(), 'DATe'
+                                    Storage.creationDate 'set', data.val().createdAt
+                                    defer.resolve data.val().createdAt
+                              , (error)->
+                                    defer.reject error
+                  
+                  defer.promise
+
             firebaseCloudApi.getDeviceToken = ()->
                   defer = $q.defer()
                   if ionic.Platform.isWebView()
@@ -79,57 +96,59 @@ shortFilmWindow
                   defer.promise
             firebaseCloudApi.fetchNotifications = () ->
                   defer = $q.defer()
-                  firebase.database().ref('notifications').once('value').then (data)->
-                        count = 0
-                        if data.val()
-                              console.log data.val(), 'NOTIFICATIONS'
-                              temp = data.val()
-                              keys = Object.keys(temp)
-                              notifications = []
-                              for i in [0...keys.length]
-                                    temp[keys[i]].id = keys[i]
-                                    t = temp[keys[i]]
-                                    movieDetails = JSON.parse(decodeURIComponent(t.movieDetails))
-                                    obj =
-                                          "fromnow": moment(moment.unix(t.created).toString()).fromNow()
-                                          "createdAt": t.created
-                                          "notificationId": t.id
-                                          "alert": t.alert
-                                          "movieDetails": movieDetails
-                                          "status": t.status
-                                    flag = false
-                                    if t.deviceIDs
-                                          t2 = t.deviceIDs[DEVICETOKEN]
-                                          if t2
-                                                if t2.hasCleared == false && t2.hasSeen == false
-                                                      obj.status = 'unread'
+                  firebaseCloudApi.getCreationDate().then (date)->
+                        firebase.database().ref('notifications').orderByChild('created').startAt(date).limitToLast(LIMITTOLAST).once('value').then (data)->
+                              count = 0
+                              if data.val()
+                                    temp = data.val()
+                                    keys = Object.keys(temp)
+                                    notifications = []
+                                    for i in [0...keys.length]
+                                          temp[keys[i]].id = keys[i]
+                                          t = temp[keys[i]]
+                                          movieDetails = JSON.parse(decodeURIComponent(t.movieDetails))
+                                          obj =
+                                                "fromnow": moment(moment.unix(t.created).toString()).fromNow()
+                                                "createdAt": t.created
+                                                "notificationId": t.id
+                                                "alert": t.alert
+                                                "movieDetails": movieDetails
+                                                "status": t.status
+                                          flag = false
+                                          if t.deviceIDs
+                                                t2 = t.deviceIDs[DEVICETOKEN]
+                                                if t2
+                                                      if t2.hasCleared == false && t2.hasSeen == false
+                                                            obj.status = 'unread'
+                                                            count++
+                                                      else if t2.hasCleared == false && t2.hasSeen == true
+                                                            obj.status = 'read'
+                                                else
                                                       count++
-                                                else if t2.hasCleared == false && t2.hasSeen == true
-                                                      obj.status = 'read'
+                                                      obj.status = 'unread'
                                           else
                                                 count++
                                                 obj.status = 'unread'
-                                    else
-                                          count++
-                                          obj.status = 'unread'
-                                    if _.isString(obj.movieDetails.title) and obj.movieDetails.title.indexOf('+') != -1
-                                          obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ')
-                                    if _.isString(obj.movieDetails.director) and obj.movieDetails.director.indexOf('+') != -1
-                                          obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ')
-                                    if _.isString(obj.movieDetails.tagline) and obj.movieDetails.tagline.indexOf('+') != -1
-                                          obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ')
-                                    if t.deviceIDs
-                                          if t.deviceIDs[DEVICETOKEN]
-                                                if !t.deviceIDs[DEVICETOKEN].hasCleared
+                                          if _.isString(obj.movieDetails.title) and obj.movieDetails.title.indexOf('+') != -1
+                                                obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ')
+                                          if _.isString(obj.movieDetails.director) and obj.movieDetails.director.indexOf('+') != -1
+                                                obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ')
+                                          if _.isString(obj.movieDetails.tagline) and obj.movieDetails.tagline.indexOf('+') != -1
+                                                obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ')
+                                          if t.deviceIDs
+                                                if t.deviceIDs[DEVICETOKEN]
+                                                      if !t.deviceIDs[DEVICETOKEN].hasCleared
+                                                            notifications.push obj
+                                                else
                                                       notifications.push obj
                                           else
                                                 notifications.push obj
-                                    else
-                                          notifications.push obj
-                              $rootScope.unreadNotificationCount = count
-                              defer.resolve notifications
-                        else
-                              defer.resolve []
+                                    $rootScope.unreadNotificationCount = count
+                                    defer.resolve notifications
+                              else
+                                    defer.resolve []
+                        , (error)->
+                              defer.reject error
                   , (error)->
                         defer.reject error
                   defer.promise
@@ -137,29 +156,30 @@ shortFilmWindow
             firebaseCloudApi.getUnreadNotificationsCount= () ->
                   count = 0
                   defer = $q.defer()
-                  firebase.database().ref('notifications').once('value').then (data)->
-                        console.log 'GET UNREAD'
-                        if data.val()
-                              temp = data.val()
-                              keys = Object.keys(temp)
-                              for i in [0...keys.length]
-                                    temp[keys[i]].id = keys[i]
-                                    t = temp[keys[i]]
-                                    console.log t, 'NOTF'
-                                    if t.deviceIDs
-                                          t2 = t.deviceIDs[DEVICETOKEN]
-                                          if t2
-                                                if t2.hasCleared == false && t2.hasSeen == false
+                  firebaseCloudApi.getCreationDate().then (date)->
+                        console.log date, 'DATE'
+                        firebase.database().ref('notifications').orderByChild('created').startAt(date).limitToLast(LIMITTOLAST).once('value').then (data)->
+                              if data.val()
+                                    temp = data.val()
+                                    keys = Object.keys(temp)
+                                    for i in [0...keys.length]
+                                          temp[keys[i]].id = keys[i]
+                                          t = temp[keys[i]]
+                                          if t.deviceIDs
+                                                t2 = t.deviceIDs[DEVICETOKEN]
+                                                if t2
+                                                      if t2.hasCleared == false && t2.hasSeen == false
+                                                            count++
+                                                else
                                                       count++
                                           else
                                                 count++
-                                    else
-                                          count++
-                              $rootScope.unreadNotificationCount = count
-                              console.log 'TOTAL UNREAD', count
-                              defer.resolve count
-                        else
-                              defer.resolve count
+                                    $rootScope.unreadNotificationCount = count
+                                    defer.resolve count
+                              else
+                                    defer.resolve count
+                        , (error)->
+                              defer.reject error
                   , (error)->
                         defer.reject error
                   defer.promise
@@ -172,21 +192,24 @@ shortFilmWindow
                   defer.promise
             firebaseCloudApi.deleteNotifications = ()->
                   deferred = $q.defer()
-                  # installation_id = 'SlTCCS8Eom'
-                  firebase.database().ref('notifications').once('value').then (data)->
-                        console.log data.val(),'RESS'
-                        result = data.val()
-                        if result
-                              keys = Object.keys(result)
-                              console.log keys,'keys'
-                              for i in [0...keys.length]
-                                    firebase.database().ref('notifications/'+keys[i]+'/deviceIDs/'+DEVICETOKEN).update
-                                          hasCleared: true
-                                    .then (result)->
-                                          
-                                          deferred.resolve result
-                                    , (error)->
-                                          deferred.reject error
+
+                  firebaseCloudApi.getCreationDate().then (date)->
+                        firebase.database().ref('notifications').orderByChild('created').startAt(date).limitToLast(LIMITTOLAST).once('value').then (data)->
+                              result = data.val()
+                              if result
+                                    keys = Object.keys(result)
+                                    for i in [0...keys.length]
+                                          firebase.database().ref('notifications/'+keys[i]+'/deviceIDs/'+DEVICETOKEN).update
+                                                hasCleared: true
+                                          .then (result)->
+                                                
+                                                deferred.resolve result
+                                          , (error)->
+                                                deferred.reject error
+                              else
+                                    deferred.reject 'error'
+                        , (error)->
+                              deferred.reject error
                   , (error)->
                         deferred.reject error
                   deferred.promise
@@ -210,23 +233,29 @@ shortFilmWindow
                   firebaseCloudApi.getDeviceToken()
                   .then (token)->
                         console.log token,'DEVICETOKEN -- registerDevice'
-                        firebaseCloudApi.fetchAllDevices().then (result)->
+                        firebase.database().ref('installation/' + token).once('value').then (data)->
+                              result = data.val()
+                              flag = false
+                              console.log result, 'FETCH DATA'
+                              timestamp = moment().unix().valueOf()
                               if result
-                                    keys = Object.keys(result)
-                                    flag = false
-                                    for i in [0...keys.length]
-                                          if result[keys[i]].deviceToken == token
-                                                flag= true
+                                    if result.deviceToken == token
+                                          flag= true
                                     if flag then console.log 'deviceAlreadyRegistered' else console.log 'newDevice'
                                     if !flag
-                                          firebase.database().ref('installation').push
+                                          firebase.database().ref('installation').child(token).set
                                                 device: ionic.Platform.platform()
                                                 deviceToken: token
+                                                createdAt: timestamp
+                                          Storage.creationDate 'set', timestamp
                               else
                                     if result == null
-                                          firebase.database().ref('installation').push
+                                          firebase.database().ref('installation').child(token).set
                                                 device: ionic.Platform.platform()
                                                 deviceToken: token
+                                                createdAt: timestamp
+                                          
+                                          Storage.creationDate 'set', timestamp
             # firebaseCloudApi.logout = ()->
             #       firebaseCloudApi.getDeviceToken().then (deviceToken)->
             #             console.log 'FIREBASE LOGOUT',User,deviceToken
