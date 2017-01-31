@@ -2783,18 +2783,23 @@ function sendPushNotifications($ID, $post)
             $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
 
             $moviedetails=urlencode(json_encode($data_movie));
-            $data = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url[0]);
+            $movieData = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url[0]);
+
+            $data = [];
+            $data['data'] = $movieData;
+            $data['title'] = "This Weeks Release";
+            $data['body'] = $post_title;
+            $data['image'] = $post_thumbnail_url[0];
 
             $notify = new firePush();
 
             try {
 
                 $data['created'] = time();
-                $notificationId = $notify->saveNotification($data);
+                $notificationId = $notify->saveNotification($movieData);
                 $data['notificationId'] = $notificationId->name;
                 $notify->sendNotifications($data,'ios');
                 $notify->sendNotifications($data,'android');
-
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
