@@ -2795,7 +2795,7 @@ function sendPushNotifications($ID, $post)
 
             try {
 
-                $data['created'] = time();
+                $movieData['created'] = time();
                 $notificationId = $notify->saveNotification($movieData);
                 $data['notificationId'] = $notificationId->name;
                 $notify->sendNotifications($data,'ios');
