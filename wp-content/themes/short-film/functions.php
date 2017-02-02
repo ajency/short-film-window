@@ -2794,7 +2794,6 @@ function sendPushNotifications($ID, $post)
             $notify = new firePush();
 
             try {
-
                 $movieData['created'] = time();
                 $notificationId = $notify->saveNotification($movieData);
                 $data['notificationId'] = $notificationId->name;
