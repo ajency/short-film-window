@@ -2787,7 +2787,7 @@ function sendPushNotifications($ID, $post)
 
             $data = [];
             $data['data'] = $movieData;
-            $data['title'] = "This Weeks Release";
+            $data['title'] = "This Week's Release";
             $data['body'] = $post_title;
             $data['image'] = $post_thumbnail_url[0];
 
