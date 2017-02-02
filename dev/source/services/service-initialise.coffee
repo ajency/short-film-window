@@ -5,11 +5,38 @@ shortFilmWindow
   'App'
   '$rootScope'
   '$ImageCacheFactory'
-  ($q, DetailsAPI, App, $rootScope, $ImageCacheFactory) ->
+  'FirebaseApi'
+  'PushConfig'
+  ($q, DetailsAPI, App, $rootScope, $ImageCacheFactory, FirebaseApi, PushConfig) ->
     { initialize: ->
+
       deferred = undefined
       deferred = undefined
+      
       deferred = $q.defer()
+      
+      if ionic.Platform.isWebView()
+        push = PushNotification.init PushConfig
+        push.on 'notification', (data) ->
+          console.log data
+          $rootScope.$broadcast 'receiveNotification', { payload: data }
+        push.on 'registration', (data) ->
+          console.log 'DEVICE ID ->',data.registrationId
+
+          platform = ionic.Platform.platform()
+          push.subscribe ''+platform+'', ()->
+            console.log 'SUB : success '+platform
+          ,(e)->
+
+            alert "ERRR"
+            console.log 'error:'
+            console.log e
+          
+          FirebaseApi.registerDevice data.registrationId
+        , (er)->
+          alert 'ERRR'
+      else
+        FirebaseApi.registerDevice('DUMMY_UUID_NEW')
       if App.isOnline()
         DetailsAPI.GetVideoDetails().then (data) ->
           $rootScope.vData = data
@@ -21,22 +48,22 @@ shortFilmWindow
                 _.each defaultValue, (value)->
                   allImageUrls.push value.genre_image_url
 
-              when 'playlists'  
+              when 'playlists'
                 _.each defaultValue, (value)->
                   allImageUrls.push value.playlist_image_url
 
-              when 'popular'  
+              when 'popular'
                  _.each defaultValue, (popularValue,popularKey)->
                   switch popularKey
                     when 'awesome_playlist'
                       _.each popularValue.awesome_playlist, (value)->
-                        allImageUrls.push value.playlist_image_url 
+                        allImageUrls.push value.playlist_image_url
                     when 'new_additions'
                       _.each popularValue.new_additions, (value)->
                         allImageUrls.push value.image
                     when 'weekly_premiere'
                       _.each popularValue.weekly_premiere, (value)->
-                        allImageUrls.push value.image           
+                        allImageUrls.push value.image
              
           $ImageCacheFactory.Cache([ allImageUrls ])
           DetailsAPI.setData
@@ -46,7 +73,7 @@ shortFilmWindow
             noteworthy: $rootScope.vData.defaults.content.popular.noteworthy
             awesome_playlist: $rootScope.vData.defaults.content.popular.awesome_playlist
             genre: $rootScope.vData.defaults.content.genre
-            playlist: $rootScope.vData.defaults.content.playlists  
+            playlist: $rootScope.vData.defaults.content.playlists
 
           deferred.resolve $rootScope.vData
        else

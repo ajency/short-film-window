@@ -19,11 +19,12 @@ shortFilmWindow.value('FirebaseKey', {
 }).constant('PushConfig', {
   android: {
     senderID: "936233723943",
+    icon: "notification_icon",
     clearBadge: true
   },
   ios: {
     senderID: "936233723943",
-    gcmSandbox: true,
+    gcmSandbox: false,
     clearBadge: true,
     alert: true,
     badge: true,
@@ -48,10 +49,13 @@ shortFilmWindow.run([
           push.subscribe('' + platform + '', function() {
             return console.log('SUB : success');
           }, function(e) {
+            alert("ERRR");
             console.log('error:');
             return console.log(e);
           });
           return FirebaseApi.registerDevice(data.registrationId);
+        }, function(er) {
+          return alert('ERRR');
         });
         push.on('notification', function(data) {
           console.log(data);
@@ -1505,13 +1509,39 @@ shortFilmWindow.service('FirebaseApi', [
 ]);
 
 shortFilmWindow.service('InitialiseService', [
-  '$q', 'DetailsAPI', 'App', '$rootScope', '$ImageCacheFactory', function($q, DetailsAPI, App, $rootScope, $ImageCacheFactory) {
+  '$q', 'DetailsAPI', 'App', '$rootScope', '$ImageCacheFactory', 'FirebaseApi', 'PushConfig', function($q, DetailsAPI, App, $rootScope, $ImageCacheFactory, FirebaseApi, PushConfig) {
     return {
       initialize: function() {
-        var deferred;
+        var deferred, push;
         deferred = void 0;
         deferred = void 0;
         deferred = $q.defer();
+        if (ionic.Platform.isWebView()) {
+          push = PushNotification.init(PushConfig);
+          push.on('notification', function(data) {
+            console.log(data);
+            return $rootScope.$broadcast('receiveNotification', {
+              payload: data
+            });
+          });
+          push.on('registration', function(data) {
+            var platform;
+            console.log('DEVICE ID ->', data.registrationId);
+            platform = ionic.Platform.platform();
+            push.subscribe('' + platform + '', function() {
+              return console.log('SUB : success ' + platform);
+            }, function(e) {
+              alert("ERRR");
+              console.log('error:');
+              return console.log(e);
+            });
+            return FirebaseApi.registerDevice(data.registrationId);
+          }, function(er) {
+            return alert('ERRR');
+          });
+        } else {
+          FirebaseApi.registerDevice('DUMMY_UUID_NEW');
+        }
         if (App.isOnline()) {
           DetailsAPI.GetVideoDetails().then(function(data) {
             return $rootScope.vData = data;
@@ -2387,6 +2417,9 @@ shortFilmWindow.controller('popularCtrl', [
       return $scope.checkIfaddedlist();
     });
     $rootScope.$on('refreshContent', function(event, data) {
+      return $scope.doRefresh();
+    });
+    $rootScope.$on('receiveNotification', function(event, pn) {
       return $scope.doRefresh();
     });
     $scope.detectSlideChange = function(swiperInstance) {

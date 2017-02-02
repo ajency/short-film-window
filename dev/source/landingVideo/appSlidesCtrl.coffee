@@ -14,7 +14,7 @@ shortFilmWindow
           #   console.log "RECEIVEPN",pn
           #   console.log pn
           #   $rootScope.$broadcast 'receiveNotification', { payload: pn }
-
+    
       $scope.startApp = ->
         if !App.isOnline()
           $scope.display = 'error'

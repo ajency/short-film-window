@@ -10,6 +10,8 @@ shortFilmWindow
       $scope.checkIfaddedlist()
     $rootScope.$on 'refreshContent',(event,data)->
       $scope.doRefresh()
+    $rootScope.$on 'receiveNotification', (event, pn)->
+      $scope.doRefresh()
 
     $scope.detectSlideChange =(swiperInstance)->
       $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex]

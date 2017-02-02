@@ -3,7 +3,11 @@ shortFilmWindow = angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','ngS
 
 shortFilmWindow.value 'FirebaseKey',
   # RELEASE KEYS
- 
+    # apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU"
+    # authDomain: "sfwindow-b3160.firebaseapp.com"
+    # databaseURL: "https://sfwindow-b3160.firebaseio.com"
+    # storageBucket: "sfwindow-b3160.appspot.com"
+    # messagingSenderId: "499710069011"
 
   # TEST KEYS
     apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
@@ -14,11 +18,14 @@ shortFilmWindow.value 'FirebaseKey',
  
 .constant 'PushConfig',
     android:
+      # senderID: "499710069011"
       senderID: "936233723943"
+      icon: "notification_icon"
       clearBadge: true
     ios:
+      # senderID: "499710069011"
       senderID: "936233723943"
-      gcmSandbox: true
+      gcmSandbox: false
       clearBadge: true
       alert: true
       badge: true
@@ -35,15 +42,21 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
         push = PushNotification.init PushConfig
         push.on 'registration', (data) ->
           console.log 'DEVICE ID ->',data.registrationId
+
           platform = ionic.Platform.platform()
           console.log platform, "PLATFROM NAME"
           push.subscribe ''+platform+'', ()->
             console.log 'SUB : success'
           ,(e)->
+
+            alert "ERRR"
             console.log 'error:'
             console.log e
           
           FirebaseApi.registerDevice data.registrationId
+        , (er)->
+          alert 'ERRR'
+          
         push.on 'notification', (data) ->
           console.log data
           $rootScope.$broadcast 'receiveNotification', { payload: data }
