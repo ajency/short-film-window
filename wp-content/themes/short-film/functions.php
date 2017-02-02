@@ -2783,7 +2783,7 @@ function sendPushNotifications($ID, $post)
             $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
 
             $moviedetails=urlencode(json_encode($data_movie));
-            $movieData = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails,"icon" => $post_thumbnail_url[0]);
+            $movieData = array("alert" => $post_title,"movieId" => $ID,"movieDetails" => $moviedetails);
 
             $data = [];
             $data['data'] = $movieData;
