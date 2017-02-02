@@ -3,28 +3,28 @@ shortFilmWindow = angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','ngS
 
 shortFilmWindow.value 'FirebaseKey',
   # RELEASE KEYS
-    # apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU"
-    # authDomain: "sfwindow-b3160.firebaseapp.com"
-    # databaseURL: "https://sfwindow-b3160.firebaseio.com"
-    # storageBucket: "sfwindow-b3160.appspot.com"
-    # messagingSenderId: "499710069011"
+    apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU"
+    authDomain: "sfwindow-b3160.firebaseapp.com"
+    databaseURL: "https://sfwindow-b3160.firebaseio.com"
+    storageBucket: "sfwindow-b3160.appspot.com"
+    messagingSenderId: "499710069011"
 
   # TEST KEYS
-    apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
-    authDomain: "shortfilmwindow-e5571.firebaseapp.com",
-    databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
-    storageBucket: "shortfilmwindow-e5571.appspot.com",
-    messagingSenderId: "936233723943"
+    # apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
+    # authDomain: "shortfilmwindow-e5571.firebaseapp.com",
+    # databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
+    # storageBucket: "shortfilmwindow-e5571.appspot.com",
+    # messagingSenderId: "936233723943"
  
 .constant 'PushConfig',
     android:
-      # senderID: "499710069011"
-      senderID: "936233723943"
+      senderID: "499710069011"
+      # senderID: "936233723943"
       icon: "notification_icon"
       clearBadge: true
     ios:
-      # senderID: "499710069011"
-      senderID: "936233723943"
+      senderID: "499710069011"
+      # senderID: "936233723943"
       gcmSandbox: false
       clearBadge: true
       alert: true

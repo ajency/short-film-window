@@ -1,6 +1,6 @@
 var GLOBAL_URL, device_height, device_width;
 
-GLOBAL_URL = 'http://shortfilm.staging.wpengine.com';
+GLOBAL_URL = 'http://www.shortfilmwindow.com';
 
 device_width = '';
 
@@ -11,19 +11,19 @@ var shortFilmWindow;
 shortFilmWindow = angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'ngSanitize', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'ionic.contrib.ui.ionThread', 'templates']);
 
 shortFilmWindow.value('FirebaseKey', {
-  apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
-  authDomain: "shortfilmwindow-e5571.firebaseapp.com",
-  databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
-  storageBucket: "shortfilmwindow-e5571.appspot.com",
-  messagingSenderId: "936233723943"
+  apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU",
+  authDomain: "sfwindow-b3160.firebaseapp.com",
+  databaseURL: "https://sfwindow-b3160.firebaseio.com",
+  storageBucket: "sfwindow-b3160.appspot.com",
+  messagingSenderId: "499710069011"
 }).constant('PushConfig', {
   android: {
-    senderID: "936233723943",
+    senderID: "499710069011",
     icon: "notification_icon",
     clearBadge: true
   },
   ios: {
-    senderID: "936233723943",
+    senderID: "499710069011",
     gcmSandbox: false,
     clearBadge: true,
     alert: true,
