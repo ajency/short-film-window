@@ -37,50 +37,34 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
  $ionicPlatform.ready ->
       $rootScope.isAndroid = ionic.Platform.isAndroid()
       FirebaseApi.firebaseInit()
-      console.log ionic.Platform.platform(), 'IONIC',moment().unix().valueOf()
-      if ionic.Platform.isWebView()
-        push = PushNotification.init PushConfig
-        push.on 'registration', (data) ->
-          console.log 'DEVICE ID ->',data.registrationId
-
-          platform = ionic.Platform.platform()
-          console.log platform, "PLATFROM NAME"
-          push.subscribe ''+platform+'', ()->
-            console.log 'SUB : success'
-          ,(e)->
-
-            alert "ERRR"
-            console.log 'error:'
-            console.log e
-          
-          FirebaseApi.registerDevice data.registrationId
-        , (er)->
-          alert 'ERRR'
-          
-        push.on 'notification', (data) ->
-          console.log data
-          $rootScope.$broadcast 'receiveNotification', { payload: data }
-      else
-        FirebaseApi.registerDevice('DUMMY_UUID')
-      
-      # FirebaseApi.saveNotification()
-      FirebaseApi.fetchNotifications().then (result)->
-        console.log result,'NOTIFICATIONS'
-      , (error)->
-        console.log 'ERROR'
-      FirebaseApi.getUnreadNotificationsCount()
       $rootScope.App = App
       device_width = $window.innerWidth
       device_height = $window.innerHeight
       $rootScope.device_height = $window.innerHeight
-      App.hideSplashScreen()
-      console.log 'Checking if initial'
-      console.log App.isInitialRun()
-      if App.isInitialRun()
-        App.setInitialRun false
-        App.navigate 'appSlides'
-      else
-        App.navigate 'appInitialize'
+      FirebaseApi.pushPluginInit().then (result) ->
+        console.log result
+        if ionic.Platform.isWebView()
+          push = PushNotification.init PushConfig
+          push.on 'notification', (data) ->
+            console.log data
+            $rootScope.$broadcast 'receiveNotification', { payload: data }
+            
+        App.hideSplashScreen()
+        if App.isInitialRun()
+          App.setInitialRun false
+          App.navigate 'appSlides'
+        else
+          App.navigate 'appInitialize'
+        
+      , (error)->
+        console.log error, 'ERROR'
+        navigator.app.exitApp()
+      # FirebaseApi.fetchNotifications().then (result)->
+      #   console.log result,'NOTIFICATIONS'
+      # , (error)->
+      #   console.log 'ERROR'
+      # FirebaseApi.getUnreadNotificationsCount()
+      
 
     $ionicPlatform.registerBackButtonAction ((event) ->
       if $state.current.name == 'popular'

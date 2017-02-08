@@ -1,8 +1,7 @@
 shortFilmWindow
-.controller 'appSlidesCtrl', ['$scope','App','InitialiseService','$rootScope','$ionicPlatform'
-  ,($scope,App,InitialiseService,$rootScope,$ionicPlatform)->
+.controller 'appSlidesCtrl', ['$scope','App','InitialiseService','$rootScope','$ionicPlatform','FirebaseApi'
+  ,($scope,App,InitialiseService,$rootScope,$ionicPlatform,FirebaseApi)->
     $scope.initApp = ()->
-
       console.log "APP STARTED for the first time"
       #App.hideSplashScreen()
      

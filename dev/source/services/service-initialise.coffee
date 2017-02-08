@@ -15,28 +15,6 @@ shortFilmWindow
       
       deferred = $q.defer()
       
-      if ionic.Platform.isWebView()
-        push = PushNotification.init PushConfig
-        push.on 'notification', (data) ->
-          console.log data
-          $rootScope.$broadcast 'receiveNotification', { payload: data }
-        push.on 'registration', (data) ->
-          console.log 'DEVICE ID ->',data.registrationId
-
-          platform = ionic.Platform.platform()
-          push.subscribe ''+platform+'', ()->
-            console.log 'SUB : success '+platform
-          ,(e)->
-
-            alert "ERRR"
-            console.log 'error:'
-            console.log e
-          
-          FirebaseApi.registerDevice data.registrationId
-        , (er)->
-          alert 'ERRR'
-      else
-        FirebaseApi.registerDevice('DUMMY_UUID_NEW')
       if App.isOnline()
         DetailsAPI.GetVideoDetails().then (data) ->
           $rootScope.vData = data

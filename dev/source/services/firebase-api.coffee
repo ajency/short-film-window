@@ -14,6 +14,41 @@ shortFilmWindow
                         # Storage.vendorDetails 'get'
                         # .then (details)->
                         #       User = details
+            firebaseCloudApi.firebaseInit = ()->
+                  console.log ' INITIALISING FIREBASE'
+                  firebase.initializeApp FirebaseKey
+            
+            firebaseCloudApi.pushPluginInit = ()->
+                  console.log ' INITIALISING PUSH PLUGIN'
+                  defer = $q.defer()
+                  if ionic.Platform.isWebView()
+                        push = PushNotification.init PushConfig
+                        push.on 'registration', (data) ->
+                              console.log 'DEVICE ID ->',data.registrationId
+                              
+                              firebaseCloudApi.registerDevice data.registrationId
+                              .then (result) ->
+                                    platform = ionic.Platform.platform()
+                                    push.subscribe ''+platform+'', ()->
+                                          defer.resolve 'SUCCESS'
+                                    ,(e)->
+                                          defer.reject 'ERROR'
+                              , (error)->
+                                    defer.reject 'ERROR'
+                              
+                        , (er)->
+                              defer.reject 'ERRR'
+                        
+                        
+                        push.on 'error', (data) ->
+                              defer.reject 'ERROR'
+                        
+                  else
+                        firebaseCloudApi.registerDevice('DUMMY_UUID').then (result)->
+                              defer.resolve 'SUCCESS'
+                        , (ERR)->
+                              defer.reject 'ERROR'
+                  defer.promise
             firebaseCloudApi.getCreationDate = ()->
                   defer = $q.defer()
                   Storage.creationDate 'get'
@@ -47,14 +82,10 @@ shortFilmWindow
                         
 
                   else
-                        DEVICETOKEN = 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV'
-                        Storage.deviceToken 'set', 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV'
-                        defer.resolve 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV'
+                        DEVICETOKEN = 'DUMMY_UUID'
+                        Storage.deviceToken 'set', 'DUMMY_UUID'
+                        defer.resolve 'DUMMY_UUID'
                   defer.promise
-            firebaseCloudApi.firebaseInit = ()->
-                  console.log ' INITIALISING FIREBASE'
-                  firebase.initializeApp FirebaseKey
-
             # firebaseCloudApi.getUser = ()->
             #       defer = $q.defer()
             #       firebase.database().ref('user/DUMMY_UUID').once('value').then (data)->
@@ -225,11 +256,11 @@ shortFilmWindow
                               defer.resolve result
                         , (error)->
                               defer.reject error
-                        defer.promise
                   else
                         defer.reject 'Notification ID is null'
-                  
+                  defer.promise
             firebaseCloudApi.registerDevice = (deviceToken)->
+                  defer = $q.defer()
                   firebaseCloudApi.getDeviceToken()
                   .then (token)->
                         console.log token,'DEVICETOKEN -- registerDevice'
@@ -256,6 +287,10 @@ shortFilmWindow
                                                 createdAt: timestamp
                                           
                                           Storage.creationDate 'set', timestamp
+                              defer.resolve 'success'
+                        , (error)->
+                              defer.reject 'error'
+                  defer.promise
             # firebaseCloudApi.logout = ()->
             #       firebaseCloudApi.getDeviceToken().then (deviceToken)->
             #             console.log 'FIREBASE LOGOUT',User,deviceToken

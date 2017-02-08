@@ -35,56 +35,36 @@ shortFilmWindow.value('FirebaseKey', {
 shortFilmWindow.run([
   'PushConfig', 'FirebaseApi', '$ionicPlatform', '$state', '$rootScope', 'App', '$timeout', '$window', '$cordovaNetwork', '$cordovaToast', 'DetailsAPI', function(PushConfig, FirebaseApi, $ionicPlatform, $state, $rootScope, App, $timeout, $window, $cordovaNetwork, $cordovaToast, DetailsAPI) {
     $ionicPlatform.ready(function() {
-      var device_height, device_width, push;
+      var device_height, device_width;
       $rootScope.isAndroid = ionic.Platform.isAndroid();
       FirebaseApi.firebaseInit();
-      console.log(ionic.Platform.platform(), 'IONIC', moment().unix().valueOf());
-      if (ionic.Platform.isWebView()) {
-        push = PushNotification.init(PushConfig);
-        push.on('registration', function(data) {
-          var platform;
-          console.log('DEVICE ID ->', data.registrationId);
-          platform = ionic.Platform.platform();
-          console.log(platform, "PLATFROM NAME");
-          push.subscribe('' + platform + '', function() {
-            return console.log('SUB : success');
-          }, function(e) {
-            alert("ERRR");
-            console.log('error:');
-            return console.log(e);
-          });
-          return FirebaseApi.registerDevice(data.registrationId);
-        }, function(er) {
-          return alert('ERRR');
-        });
-        push.on('notification', function(data) {
-          console.log(data);
-          return $rootScope.$broadcast('receiveNotification', {
-            payload: data
-          });
-        });
-      } else {
-        FirebaseApi.registerDevice('DUMMY_UUID');
-      }
-      FirebaseApi.fetchNotifications().then(function(result) {
-        return console.log(result, 'NOTIFICATIONS');
-      }, function(error) {
-        return console.log('ERROR');
-      });
-      FirebaseApi.getUnreadNotificationsCount();
       $rootScope.App = App;
       device_width = $window.innerWidth;
       device_height = $window.innerHeight;
       $rootScope.device_height = $window.innerHeight;
-      App.hideSplashScreen();
-      console.log('Checking if initial');
-      console.log(App.isInitialRun());
-      if (App.isInitialRun()) {
-        App.setInitialRun(false);
-        return App.navigate('appSlides');
-      } else {
-        return App.navigate('appInitialize');
-      }
+      return FirebaseApi.pushPluginInit().then(function(result) {
+        var push;
+        console.log(result);
+        if (ionic.Platform.isWebView()) {
+          push = PushNotification.init(PushConfig);
+          push.on('notification', function(data) {
+            console.log(data);
+            return $rootScope.$broadcast('receiveNotification', {
+              payload: data
+            });
+          });
+        }
+        App.hideSplashScreen();
+        if (App.isInitialRun()) {
+          App.setInitialRun(false);
+          return App.navigate('appSlides');
+        } else {
+          return App.navigate('appInitialize');
+        }
+      }, function(error) {
+        console.log(error, 'ERROR');
+        return navigator.app.exitApp();
+      });
     });
     $ionicPlatform.registerBackButtonAction((function(event) {
       var count;
@@ -212,6 +192,130 @@ htmlEnDeCode = (function() {
     htmlDecode: htmlDecode
   };
 })();
+
+shortFilmWindow.controller('playerCtrl', [
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
+    var player;
+    $scope.temp = "temp";
+    $scope.videoDetails = DetailsAPI.singleVideoarray;
+    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
+    player = null;
+    $scope.switchHeaderBar = true;
+    $timeout(function() {
+      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
+    }, 5000);
+    $scope.toggleHeader = function() {
+      $scope.switchHeaderBar = !$scope.switchHeaderBar;
+      return $timeout(function() {
+        $scope.switchHeaderBar = !$scope.switchHeaderBar;
+        return $scope.$apply();
+      }, 5000);
+    };
+    return $scope.view = {
+      back: function() {
+        var count;
+        count = -1;
+        return App.goBack(count);
+      },
+      vType: $scope.videoDetails.singleVideoarray.type,
+      vimomeo: true,
+      init: function() {
+        var modifiedUrl, onPlayerReady, onYouTubeIframeAPIReady;
+        if (this.vType === 'vimeo') {
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          this.vimomeo = true;
+          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        } else {
+          this.vimomeo = false;
+          console.log($scope.videoDetails.singleVideoarray, "videoDetails");
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          onYouTubeIframeAPIReady = function() {
+            return player = new YT.Player('player2', {
+              height: '100%',
+              width: '100%',
+              videoId: $scope.videoDetails.singleVideoarray.videourl,
+              events: {
+                'onReady': onPlayerReady
+              }
+            });
+          };
+          onPlayerReady = function(event) {
+            console.log("PLAY");
+            return event.target.playVideo();
+          };
+          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl);
+          return onYouTubeIframeAPIReady();
+        }
+      }
+    };
+  }
+]);
+
+shortFilmWindow.controller('watchlistCtrl', [
+  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
+    $scope.watchlistDetails = [];
+    $scope.display = 'loader';
+    $scope.watchFlag = '0';
+    $scope.refreshSwiper = true;
+    $scope.addvideoDetails = [];
+    $scope.init = function() {
+      return $scope.getData();
+    };
+    $scope.getData = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        console.log(value);
+        $scope.watchlistDetails = value;
+        if (_.isNull($scope.watchlistDetails)) {
+          $scope.display = 'no_result';
+          return $scope.$apply();
+        } else {
+          if ($scope.watchlistDetails.length > 0) {
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 43 + 90;
+            $scope.hgt = device_height - $scope.used_height;
+            $scope.display = 'result';
+            return $scope.$apply();
+          } else {
+            $scope.display = 'no_result';
+            return $scope.$apply();
+          }
+        }
+      });
+    };
+    $scope.updatewatchlist = function(Id) {
+      $scope.CheckWatchlist(Id);
+      return $ionicScrollDelegate.resize();
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    return $scope.CheckWatchlist = function(Id) {
+      var matchIndex;
+      matchIndex = _.findLastIndex($scope.watchlistDetails, {
+        "movie_id": Id
+      });
+      $scope.watchlistDetails.splice(matchIndex, 1);
+      Storage.watchlistDetails('set', $scope.watchlistDetails);
+      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
+        return $scope.display = 'no_result';
+      } else {
+        $scope.refreshSwiper = false;
+        return $timeout((function() {
+          var device_height, device_width;
+          $scope.refreshSwiper = true;
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 43 + 72;
+          return $scope.hgt = device_height - $scope.used_height;
+        }), 100);
+      }
+    };
+  }
+]);
 
 shortFilmWindow.factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
@@ -386,130 +490,6 @@ shortFilmWindow.factory('share', [
       }
     };
     return share;
-  }
-]);
-
-shortFilmWindow.controller('watchlistCtrl', [
-  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
-    $scope.watchlistDetails = [];
-    $scope.display = 'loader';
-    $scope.watchFlag = '0';
-    $scope.refreshSwiper = true;
-    $scope.addvideoDetails = [];
-    $scope.init = function() {
-      return $scope.getData();
-    };
-    $scope.getData = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        console.log(value);
-        $scope.watchlistDetails = value;
-        if (_.isNull($scope.watchlistDetails)) {
-          $scope.display = 'no_result';
-          return $scope.$apply();
-        } else {
-          if ($scope.watchlistDetails.length > 0) {
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            $scope.used_height = 43 + 90;
-            $scope.hgt = device_height - $scope.used_height;
-            $scope.display = 'result';
-            return $scope.$apply();
-          } else {
-            $scope.display = 'no_result';
-            return $scope.$apply();
-          }
-        }
-      });
-    };
-    $scope.updatewatchlist = function(Id) {
-      $scope.CheckWatchlist(Id);
-      return $ionicScrollDelegate.resize();
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    return $scope.CheckWatchlist = function(Id) {
-      var matchIndex;
-      matchIndex = _.findLastIndex($scope.watchlistDetails, {
-        "movie_id": Id
-      });
-      $scope.watchlistDetails.splice(matchIndex, 1);
-      Storage.watchlistDetails('set', $scope.watchlistDetails);
-      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
-        return $scope.display = 'no_result';
-      } else {
-        $scope.refreshSwiper = false;
-        return $timeout((function() {
-          var device_height, device_width;
-          $scope.refreshSwiper = true;
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 43 + 72;
-          return $scope.hgt = device_height - $scope.used_height;
-        }), 100);
-      }
-    };
-  }
-]);
-
-shortFilmWindow.controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
-    var player;
-    $scope.temp = "temp";
-    $scope.videoDetails = DetailsAPI.singleVideoarray;
-    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
-    player = null;
-    $scope.switchHeaderBar = true;
-    $timeout(function() {
-      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
-    }, 5000);
-    $scope.toggleHeader = function() {
-      $scope.switchHeaderBar = !$scope.switchHeaderBar;
-      return $timeout(function() {
-        $scope.switchHeaderBar = !$scope.switchHeaderBar;
-        return $scope.$apply();
-      }, 5000);
-    };
-    return $scope.view = {
-      back: function() {
-        var count;
-        count = -1;
-        return App.goBack(count);
-      },
-      vType: $scope.videoDetails.singleVideoarray.type,
-      vimomeo: true,
-      init: function() {
-        var modifiedUrl, onPlayerReady, onYouTubeIframeAPIReady;
-        if (this.vType === 'vimeo') {
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          this.vimomeo = true;
-          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-        } else {
-          this.vimomeo = false;
-          console.log($scope.videoDetails.singleVideoarray, "videoDetails");
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          onYouTubeIframeAPIReady = function() {
-            return player = new YT.Player('player2', {
-              height: '100%',
-              width: '100%',
-              videoId: $scope.videoDetails.singleVideoarray.videourl,
-              events: {
-                'onReady': onPlayerReady
-              }
-            });
-          };
-          onPlayerReady = function(event) {
-            console.log("PLAY");
-            return event.target.playVideo();
-          };
-          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl);
-          return onYouTubeIframeAPIReady();
-        }
-      }
-    };
   }
 ]);
 
@@ -918,7 +898,7 @@ shortFilmWindow.controller('appInitializeCtrl', [
 ]);
 
 shortFilmWindow.controller('appSlidesCtrl', [
-  '$scope', 'App', 'InitialiseService', '$rootScope', '$ionicPlatform', function($scope, App, InitialiseService, $rootScope, $ionicPlatform) {
+  '$scope', 'App', 'InitialiseService', '$rootScope', '$ionicPlatform', 'FirebaseApi', function($scope, App, InitialiseService, $rootScope, $ionicPlatform, FirebaseApi) {
     $scope.initApp = function() {
       console.log("APP STARTED for the first time");
       $scope.startApp = function() {
@@ -1209,6 +1189,44 @@ shortFilmWindow.service('FirebaseApi', [
         return DEVICETOKEN = token;
       }
     };
+    firebaseCloudApi.firebaseInit = function() {
+      console.log(' INITIALISING FIREBASE');
+      return firebase.initializeApp(FirebaseKey);
+    };
+    firebaseCloudApi.pushPluginInit = function() {
+      var defer, push;
+      console.log(' INITIALISING PUSH PLUGIN');
+      defer = $q.defer();
+      if (ionic.Platform.isWebView()) {
+        push = PushNotification.init(PushConfig);
+        push.on('registration', function(data) {
+          console.log('DEVICE ID ->', data.registrationId);
+          return firebaseCloudApi.registerDevice(data.registrationId).then(function(result) {
+            var platform;
+            platform = ionic.Platform.platform();
+            return push.subscribe('' + platform + '', function() {
+              return defer.resolve('SUCCESS');
+            }, function(e) {
+              return defer.reject('ERROR');
+            });
+          }, function(error) {
+            return defer.reject('ERROR');
+          });
+        }, function(er) {
+          return defer.reject('ERRR');
+        });
+        push.on('error', function(data) {
+          return defer.reject('ERROR');
+        });
+      } else {
+        firebaseCloudApi.registerDevice('DUMMY_UUID').then(function(result) {
+          return defer.resolve('SUCCESS');
+        }, function(ERR) {
+          return defer.reject('ERROR');
+        });
+      }
+      return defer.promise;
+    };
     firebaseCloudApi.getCreationDate = function() {
       var defer;
       defer = $q.defer();
@@ -1246,15 +1264,11 @@ shortFilmWindow.service('FirebaseApi', [
           }
         });
       } else {
-        DEVICETOKEN = 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV';
-        Storage.deviceToken('set', 'AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV');
-        defer.resolve('AAAANbS6cgA:APA91bEFfdZj4pMPeeRTx8Ldn5LPdsRKkyPFRdCamiOwvE8O7mJZMwblKS9Fv2_3roAoCwu6bkrU_xT2vdyO28dAJNfZQJtbwC0XvxwFit5yzNXheEyzsUD7jD-_Lhl6uT0KIi_Uu4LV');
+        DEVICETOKEN = 'DUMMY_UUID';
+        Storage.deviceToken('set', 'DUMMY_UUID');
+        defer.resolve('DUMMY_UUID');
       }
       return defer.promise;
-    };
-    firebaseCloudApi.firebaseInit = function() {
-      console.log(' INITIALISING FIREBASE');
-      return firebase.initializeApp(FirebaseKey);
     };
     firebaseCloudApi.saveNotification = function() {
       var defer;
@@ -1460,13 +1474,15 @@ shortFilmWindow.service('FirebaseApi', [
         }, function(error) {
           return defer.reject(error);
         });
-        return defer.promise;
       } else {
-        return defer.reject('Notification ID is null');
+        defer.reject('Notification ID is null');
       }
+      return defer.promise;
     };
     firebaseCloudApi.registerDevice = function(deviceToken) {
-      return firebaseCloudApi.getDeviceToken().then(function(token) {
+      var defer;
+      defer = $q.defer();
+      firebaseCloudApi.getDeviceToken().then(function(token) {
         console.log(token, 'DEVICETOKEN -- registerDevice');
         return firebase.database().ref('installation/' + token).once('value').then(function(data) {
           var flag, result, timestamp;
@@ -1489,7 +1505,7 @@ shortFilmWindow.service('FirebaseApi', [
                 deviceToken: token,
                 createdAt: timestamp
               });
-              return Storage.creationDate('set', timestamp);
+              Storage.creationDate('set', timestamp);
             }
           } else {
             if (result === null) {
@@ -1498,11 +1514,15 @@ shortFilmWindow.service('FirebaseApi', [
                 deviceToken: token,
                 createdAt: timestamp
               });
-              return Storage.creationDate('set', timestamp);
+              Storage.creationDate('set', timestamp);
             }
           }
+          return defer.resolve('success');
+        }, function(error) {
+          return defer.reject('error');
         });
       });
+      return defer.promise;
     };
     return firebaseCloudApi;
   }
@@ -1512,36 +1532,10 @@ shortFilmWindow.service('InitialiseService', [
   '$q', 'DetailsAPI', 'App', '$rootScope', '$ImageCacheFactory', 'FirebaseApi', 'PushConfig', function($q, DetailsAPI, App, $rootScope, $ImageCacheFactory, FirebaseApi, PushConfig) {
     return {
       initialize: function() {
-        var deferred, push;
+        var deferred;
         deferred = void 0;
         deferred = void 0;
         deferred = $q.defer();
-        if (ionic.Platform.isWebView()) {
-          push = PushNotification.init(PushConfig);
-          push.on('notification', function(data) {
-            console.log(data);
-            return $rootScope.$broadcast('receiveNotification', {
-              payload: data
-            });
-          });
-          push.on('registration', function(data) {
-            var platform;
-            console.log('DEVICE ID ->', data.registrationId);
-            platform = ionic.Platform.platform();
-            push.subscribe('' + platform + '', function() {
-              return console.log('SUB : success ' + platform);
-            }, function(e) {
-              alert("ERRR");
-              console.log('error:');
-              return console.log(e);
-            });
-            return FirebaseApi.registerDevice(data.registrationId);
-          }, function(er) {
-            return alert('ERRR');
-          });
-        } else {
-          FirebaseApi.registerDevice('DUMMY_UUID_NEW');
-        }
         if (App.isOnline()) {
           DetailsAPI.GetVideoDetails().then(function(data) {
             return $rootScope.vData = data;
@@ -1592,108 +1586,6 @@ shortFilmWindow.service('InitialiseService', [
         } else {
           deferred.reject();
         }
-        return deferred.promise;
-      }
-    };
-  }
-]);
-
-shortFilmWindow.service('ParseNotificationService', [
-  '$q', '$window', 'ParseConfiguration', '$rootScope', function($q, $window, ParseConfiguration, $rootScope) {
-    return {
-      getNotificationsWithStatus: function() {
-        var deferred, installation_id;
-        console.log('GETNOTIFICATIONSWITHSTATUS');
-        deferred = $q.defer();
-        installation_id = ParseConfiguration.installationId;
-        console.log("ParseConfiguration.installationId", ParseConfiguration.installationId);
-        Parse.Cloud.run('listAllNotificationsForUser', {
-          "installation_id": installation_id
-        }, {
-          success: function(results) {
-            var notificationArray;
-            notificationArray = [];
-            _.each(results, function(value) {
-              var j, obj;
-              j = {};
-              if (value.attributes.notificationId.attributes.movieDetails) {
-                j = angular.fromJson(decodeURIComponent(value.attributes.notificationId.attributes.movieDetails));
-                obj = {
-                  "fromnow": moment(value.attributes.createdAt).fromNow(),
-                  "createdAt": value.attributes.createdAt,
-                  "notificationId": value.attributes.notificationId.id,
-                  "installationId": value.attributes.installationId.id,
-                  "alert": value.attributes.notificationId.attributes.alert,
-                  "movieDetails": j,
-                  "status": value.attributes.status
-                };
-              }
-              if (_.isString(obj.movieDetails.title) && obj.movieDetails.title.indexOf('+') !== -1) {
-                obj.movieDetails.title = obj.movieDetails.title.replace(/\+/g, ' ');
-              }
-              if (_.isString(obj.movieDetails.director) && obj.movieDetails.director.indexOf('+') !== -1) {
-                obj.movieDetails.director = obj.movieDetails.director.replace(/\+/g, ' ');
-              }
-              if (_.isString(obj.movieDetails.tagline) && obj.movieDetails.tagline.indexOf('+') !== -1) {
-                obj.movieDetails.tagline = obj.movieDetails.tagline.replace(/\+/g, ' ');
-              }
-              return notificationArray.push(obj);
-            });
-            deferred.resolve(notificationArray);
-          },
-          error: function(error) {
-            deferred.reject(error);
-          }
-        });
-        return deferred.promise;
-      },
-      getUnreadNotificationsCount: function() {
-        var deferred, installation_id;
-        deferred = $q.defer();
-        installation_id = ParseConfiguration.installationId;
-        Parse.Cloud.run('countUnreadNotifications', {
-          "installation_id": installation_id
-        }, {
-          success: function(count) {
-            deferred.resolve(count);
-          },
-          error: function(error) {
-            deferred.reject('0');
-          }
-        });
-        return deferred.promise;
-      },
-      updateNotificationStatus: function(notification_id) {
-        var deferred, installation_id;
-        deferred = $q.defer();
-        installation_id = ParseConfiguration.installationId;
-        Parse.Cloud.run('updateNotificationStatusAsRead', {
-          "installation_id": installation_id,
-          "notification_id": notification_id
-        }, {
-          success: function(results) {
-            deferred.resolve(results);
-          },
-          error: function(error) {
-            deferred.reject(error);
-          }
-        });
-        return deferred.promise;
-      },
-      deleteNotifications: function() {
-        var deferred, installation_id;
-        deferred = $q.defer();
-        installation_id = ParseConfiguration.installationId;
-        Parse.Cloud.run('deleteAllNotification', {
-          "installation_id": installation_id
-        }, {
-          success: function(results) {
-            deferred.resolve(results);
-          },
-          error: function(error) {
-            deferred.reject(error);
-          }
-        });
         return deferred.promise;
       }
     };

@@ -15,11 +15,10 @@ shortFilmWindow
 
     $scope.detectSlideChange =(swiperInstance)->
       $scope.currentCard = $scope.allContentArray[swiperInstance.activeIndex]
-
     $scope.singlePlaylistGenre = (playlistId, type)->
       DetailsAPI.videoId = playlistId
-      if type=="playlist" then App.navigate "singlePlaylist" 
-      if type=="category" then App.navigate "singleGenre" 
+      if type=="playlist" then App.navigate "singlePlaylist"
+      if type=="category" then App.navigate "singleGenre"
 
     $scope.checkIfaddedlist = () ->
       _.each $scope.allContentArray, (val,key)->
