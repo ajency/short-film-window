@@ -2,10 +2,10 @@
 
 $test = true;
 if($test){
-    $api_access_key = 'AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk';
+    $api_access_key = 'AAAA2fvg6Cc:APA91bGh237ztTXzpmDFw4kqXvCe5luRdk70eiGmyDjbDO1FDXiiOvh_TWoGapFhkG2MNqLt16DeqzdRgJ1ctrPNb40eiOhEOXQvcydIG6SwTpYiqBXC6Tv0VU1KCPgcBYfpo8q_Q150';
     $notification_storage_db = 'https://shortfilmwindow-e5571.firebaseio.com/notifications.json';
 } else {
-    $api_access_key = 'AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU';
+    $api_access_key = 'AAAAdFkKiRM:APA91bHakngVy9EGqjjyCHXI3m_oDPeTU2RJaFHvfTmKUsQjxGoxu71xxwCy1qppNlZ0fRzei8u22UF0sovmv0OC_gw3jE7MvjaFscSypg1wwuakSNLE8MRpMf7eFjeQNNWD8e5QpU62';
     $notification_storage_db = 'https://sfwindow-b3160.firebaseio.com/notifications.json';
 }
 
