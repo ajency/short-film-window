@@ -2756,8 +2756,8 @@ function get_cached_data($object_type,$object_id=''){
 }
 
 
-// add_action( 'publish_post', 'sendPushNotifications',10,2 );
-add_action( 'save_post', 'sendPushNotifications',10,2 );
+add_action( 'publish_post', 'sendPushNotifications',10,2 );
+//add_action( 'save_post', 'sendPushNotifications',10,2 );
 
 function sendPushNotifications($ID, $post)
 {
@@ -2774,8 +2774,8 @@ function sendPushNotifications($ID, $post)
         $object_type='default_data';
         delete_cache_data($object_id,$object_type);//call to delete the cache data
         fetch_default_data();//call to update the cache data
-        if ($post_date == $post_modified)
-        {
+        /*if ($post_date == $post_modified)
+        {*/
             require 'firepush.php';
             $data_movie= single_video($post["ID"]);
 
@@ -2787,7 +2787,8 @@ function sendPushNotifications($ID, $post)
 
             $data = [];
             $data['data'] = $movieData;
-            $data['title'] = "This Week's Release";
+            //$data['title'] = "This Week's Release";
+            $data['title'] = "Now Watch";
             $data['body'] = $post_title;
             $data['image'] = $post_thumbnail_url[0];
 
@@ -2803,7 +2804,7 @@ function sendPushNotifications($ID, $post)
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
 
-        }
+        //}
     }
 }
 
