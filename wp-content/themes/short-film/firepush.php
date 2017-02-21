@@ -1,7 +1,13 @@
 <?php
 
-define( 'API_ACCESS_KEY', 'AAAAdFkKiRM:APA91bHakngVy9EGqjjyCHXI3m_oDPeTU2RJaFHvfTmKUsQjxGoxu71xxwCy1qppNlZ0fRzei8u22UF0sovmv0OC_gw3jE7MvjaFscSypg1wwuakSNLE8MRpMf7eFjeQNNWD8e5QpU62' );
-define( 'NOTIFICATIONS_STORE_DB', "https://sfwindow-b3160.firebaseio.com/notifications.json");
+//LIVE KEYS
+/*define( 'API_ACCESS_KEY', 'AAAAdFkKiRM:APA91bHakngVy9EGqjjyCHXI3m_oDPeTU2RJaFHvfTmKUsQjxGoxu71xxwCy1qppNlZ0fRzei8u22UF0sovmv0OC_gw3jE7MvjaFscSypg1wwuakSNLE8MRpMf7eFjeQNNWD8e5QpU62' );
+define( 'NOTIFICATIONS_STORE_DB', "https://sfwindow-b3160.firebaseio.com/notifications.json");*/
+
+//TEST KEYS
+define( 'API_ACCESS_KEY', 'AAAA2fvg6Cc:APA91bGh237ztTXzpmDFw4kqXvCe5luRdk70eiGmyDjbDO1FDXiiOvh_TWoGapFhkG2MNqLt16DeqzdRgJ1ctrPNb40eiOhEOXQvcydIG6SwTpYiqBXC6Tv0VU1KCPgcBYfpo8q_Q150' );
+define( 'NOTIFICATIONS_STORE_DB', "https://shortfilmwindow-e5571.firebaseio.com/notifications.json");
+
 define( 'FCM_SEND_URL', "https://fcm.googleapis.com/fcm/send");
 define( 'TOPIC_ANDROID', "android");
 define( 'TOPIC_ANDROID_KEY', "data");
