@@ -2756,12 +2756,64 @@ function get_cached_data($object_type,$object_id=''){
 }
 
 
+
+
+add_action( 'auto-draft_to_publish', 'sendFirePushNotifications',10,2 );
+add_action( 'draft_to_publish', 'sendFirePushNotifications',10,2 );
+add_action( 'pending_to_publish', 'sendFirePushNotifications',10,2 );
+
+function sendFirePushNotifications($post)
+{
+        $post = (array)$post;
+        $post_title = $post["post_title"];
+
+        $post_date = $post["post_date"];
+        $post_modified = $post["post_modified"];
+        $ID = (string)$post["ID"];
+
+        $object_id=1;
+        $object_type='default_data';
+        delete_cache_data($object_id,$object_type);//call to delete the cache data
+        fetch_default_data();//call to update the cache data
+        
+            require 'firepush.php';
+            $data_movie= single_video($post["ID"]);
+
+            $post_thumbnail_id = get_post_thumbnail_id($post["ID"]);
+            $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
+
+            $moviedetails=urlencode(json_encode($data_movie));
+            $movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);
+
+            $data = [];
+            $data['data'] = $movieData;
+            //$data['title'] = "This Week's Release";
+            $data['title'] = "Now Watch";
+            $data['body'] = $post_title;
+            $data['image'] = $post_thumbnail_url[0];
+
+            $notify = new firePush();
+
+            try {
+                $movieData['created'] = time();
+                $notificationId = $notify->saveNotification($movieData);
+                $data['notificationId'] = $notificationId->name;
+                $notify->sendNotifications($data,'ios');
+                $notify->sendNotifications($data,'android');
+            } catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
+}
+
+
+
+
+
+
+
+
 //add_action( 'publish_post', 'sendPushNotifications',10,2 );
 //add_action( 'save_post', 'sendPushNotifications',10,2 );
-
-add_action( 'auto-draft_to_publish', 'sendPushNotifications',10,2 );
-add_action( 'draft_to_publish', 'sendPushNotifications',10,2 );
-add_action( 'pending_to_publish', 'sendPushNotifications',10,2 );
 
 function sendPushNotifications($ID, $post)
 {
