@@ -3,29 +3,38 @@ shortFilmWindow = angular.module 'SFWApp', ['ionic','ngCordova','ngAnimate','ngS
 
 shortFilmWindow.value 'FirebaseKey',
   # RELEASE KEYS
-    apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU"
-    authDomain: "sfwindow-b3160.firebaseapp.com"
-    databaseURL: "https://sfwindow-b3160.firebaseio.com"
-    storageBucket: "sfwindow-b3160.appspot.com"
-    messagingSenderId: "499710069011"
+    # apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU"
+    # authDomain: "sfwindow-b3160.firebaseapp.com"
+    # databaseURL: "https://sfwindow-b3160.firebaseio.com"
+    # storageBucket: "sfwindow-b3160.appspot.com"
+    # messagingSenderId: "499710069011"
 
   # TEST KEYS
-    # apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
-    # authDomain: "shortfilmwindow-e5571.firebaseapp.com",
-    # databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
-    # storageBucket: "shortfilmwindow-e5571.appspot.com",
-    # messagingSenderId: "936233723943"
+    apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
+    authDomain: "shortfilmwindow-e5571.firebaseapp.com",
+    databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
+    storageBucket: "shortfilmwindow-e5571.appspot.com",
+    messagingSenderId: "936233723943"
+  
+  # # Live Test Keys
+  #   apiKey: "AIzaSyDAuU8ZODWrmz6qM2qK_f1jxP3S4qg8t48",
+  #   authDomain: "sfwindowtest.firebaseapp.com",
+  #   databaseURL: "https://sfwindowtest.firebaseio.com",
+  #   storageBucket: "sfwindowtest.appspot.com",
+  #   messagingSenderId: "462103939939"
  
 .constant 'PushConfig',
     android:
-      senderID: "499710069011"
-      # senderID: "936233723943"
+      # senderID: "499710069011"
+      senderID: "936233723943"
+      # senderID: "462103939939"
       icon: "notification_icon"
       clearBadge: true
     ios:
-      senderID: "499710069011"
-      # senderID: "936233723943"
-      gcmSandbox: false
+      # senderID: "499710069011"
+      senderID: "936233723943"
+      # senderID: "462103939939"
+      gcmSandbox: true
       clearBadge: true
       alert: true
       badge: true
@@ -41,24 +50,24 @@ shortFilmWindow.run ['PushConfig','FirebaseApi','$ionicPlatform','$state', '$roo
       device_width = $window.innerWidth
       device_height = $window.innerHeight
       $rootScope.device_height = $window.innerHeight
-      FirebaseApi.pushPluginInit().then (result) ->
-        console.log result
-        if ionic.Platform.isWebView()
-          push = PushNotification.init PushConfig
-          push.on 'notification', (data) ->
-            console.log data
-            $rootScope.$broadcast 'receiveNotification', { payload: data }
+      # FirebaseApi.pushPluginInit().then (result) ->
+      #   console.log result
+      #   if ionic.Platform.isWebView()
+      #     push = PushNotification.init PushConfig
+      #     push.on 'notification', (data) ->
+      #       console.log data
+      #       $rootScope.$broadcast 'receiveNotification', { payload: data }
             
-        App.hideSplashScreen()
-        if App.isInitialRun()
-          App.setInitialRun false
-          App.navigate 'appSlides'
-        else
-          App.navigate 'appInitialize'
+      App.hideSplashScreen()
+      if App.isInitialRun()
+        App.setInitialRun false
+        App.navigate 'appSlides'
+      else
+        App.navigate 'appInitialize'
         
-      , (error)->
-        console.log error, 'ERROR'
-        navigator.app.exitApp()
+      # , (error)->
+      #   console.log error, 'ERROR'
+      #   alert( 'ERORROR')
       # FirebaseApi.fetchNotifications().then (result)->
       #   console.log result,'NOTIFICATIONS'
       # , (error)->

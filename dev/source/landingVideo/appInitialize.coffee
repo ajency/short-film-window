@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'appInitializeCtrl', ['$scope','App','InitialiseService','$rootScope','$ionicPlatform'
-  ,($scope,App,InitialiseService,$rootScope,$ionicPlatform)->
+.controller 'appInitializeCtrl', ['$scope','App','InitialiseService','$rootScope','$ionicPlatform','FirebaseApi','PushConfig'
+  ,($scope,App,InitialiseService,$rootScope,$ionicPlatform, FirebaseApi,PushConfig)->
     $scope.initApp = ()->
 
       console.log "APP STARTED"
@@ -34,12 +34,41 @@ shortFilmWindow
       if !App.isOnline()
         $scope.display = 'error'
       else
-        InitialiseService.initialize()
-        .then (data) ->
-          console.log data, " INITIALIZED"
-          App.navigate 'popular'
-        , (error) ->
-              $scope.display = 'error'
+        FirebaseApi.pushPluginInit().then (result) ->
+          console.log result
+          if ionic.Platform.isWebView()
+            push = PushNotification.init PushConfig
+            push.on 'notification', (data) ->
+              console.log data
+              payload = data.additionalData
+              if App.isAndroid()
+                if payload.coldstart
+                    $rootScope.$broadcast 'openNotification', { payload: payload.data }
+                else if !payload.foreground and !payload.coldstart
+                    $rootScope.$broadcast 'openNotification', { payload: payload.data }
+                else if payload.foreground
+                    $rootScope.$broadcast 'receiveNotification', { payload: payload.data }
+                else if !payload.foreground
+                    $rootScope.$broadcast 'receiveNotification', { payload: payload.data }
+              
+              else if App.isIOS()
+                  console.log 'ios'
+                  console.log '----'
+                  console.log payload
+                  console.log '----'
+                  if payload.foreground
+                      $rootScope.$broadcast 'receiveNotification', { payload: JSON.parse(payload["gcm.notification.data"]) }
+                  else if !payload.foreground
+                      $rootScope.$broadcast 'openNotification', { payload: JSON.parse(payload["gcm.notification.data"]) }
+          InitialiseService.initialize()
+          .then (data) ->
+            console.log data, " INITIALIZED"
+            App.navigate 'popular'
+          , (error) ->
+                $scope.display = 'error'
+        , (error)->
+            $scope.display = 'error'
+        
     $ionicPlatform.ready ->
       $scope.initApp()
 

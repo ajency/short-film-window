@@ -193,7 +193,7 @@
                 "parents": {
                     "/resources": [
                         {
-                            "xml": "<string name=\"google_app_id\">499710069011</string>",
+                            "xml": "<string name=\"google_app_id\">936233723943</string>",
                             "count": 1
                         }
                     ]
@@ -244,7 +244,7 @@
             "PACKAGE_NAME": "com.sfwindow"
         },
         "phonegap-plugin-push": {
-            "SENDER_ID": "499710069011",
+            "SENDER_ID": "936233723943",
             "PACKAGE_NAME": "com.sfwindow"
         }
     },

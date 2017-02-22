@@ -1,6 +1,6 @@
 var GLOBAL_URL, device_height, device_width;
 
-GLOBAL_URL = 'http://www.shortfilmwindow.com';
+GLOBAL_URL = 'http://shortfilm.staging.wpengine.com';
 
 device_width = '';
 
@@ -11,20 +11,20 @@ var shortFilmWindow;
 shortFilmWindow = angular.module('SFWApp', ['ionic', 'ngCordova', 'ngAnimate', 'ngSanitize', 'ion-sticky', 'ionicLazyLoad', 'ionic.ion.imageCacheFactory', 'ionic.contrib.ui.ionThread', 'templates']);
 
 shortFilmWindow.value('FirebaseKey', {
-  apiKey: "AIzaSyCIzwFzGdQUCc_CXpo7WfW8rg_5kHyQjfU",
-  authDomain: "sfwindow-b3160.firebaseapp.com",
-  databaseURL: "https://sfwindow-b3160.firebaseio.com",
-  storageBucket: "sfwindow-b3160.appspot.com",
-  messagingSenderId: "499710069011"
+  apiKey: "AIzaSyCVSA3tkbBp7Sk_4HB3GYnfFL0u3XUbJfk",
+  authDomain: "shortfilmwindow-e5571.firebaseapp.com",
+  databaseURL: "https://shortfilmwindow-e5571.firebaseio.com",
+  storageBucket: "shortfilmwindow-e5571.appspot.com",
+  messagingSenderId: "936233723943"
 }).constant('PushConfig', {
   android: {
-    senderID: "499710069011",
+    senderID: "936233723943",
     icon: "notification_icon",
     clearBadge: true
   },
   ios: {
-    senderID: "499710069011",
-    gcmSandbox: false,
+    senderID: "936233723943",
+    gcmSandbox: true,
     clearBadge: true,
     alert: true,
     badge: true,
@@ -42,29 +42,13 @@ shortFilmWindow.run([
       device_width = $window.innerWidth;
       device_height = $window.innerHeight;
       $rootScope.device_height = $window.innerHeight;
-      return FirebaseApi.pushPluginInit().then(function(result) {
-        var push;
-        console.log(result);
-        if (ionic.Platform.isWebView()) {
-          push = PushNotification.init(PushConfig);
-          push.on('notification', function(data) {
-            console.log(data);
-            return $rootScope.$broadcast('receiveNotification', {
-              payload: data
-            });
-          });
-        }
-        App.hideSplashScreen();
-        if (App.isInitialRun()) {
-          App.setInitialRun(false);
-          return App.navigate('appSlides');
-        } else {
-          return App.navigate('appInitialize');
-        }
-      }, function(error) {
-        console.log(error, 'ERROR');
-        return navigator.app.exitApp();
-      });
+      App.hideSplashScreen();
+      if (App.isInitialRun()) {
+        App.setInitialRun(false);
+        return App.navigate('appSlides');
+      } else {
+        return App.navigate('appInitialize');
+      }
     });
     $ionicPlatform.registerBackButtonAction((function(event) {
       var count;
@@ -192,130 +176,6 @@ htmlEnDeCode = (function() {
     htmlDecode: htmlDecode
   };
 })();
-
-shortFilmWindow.controller('playerCtrl', [
-  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
-    var player;
-    $scope.temp = "temp";
-    $scope.videoDetails = DetailsAPI.singleVideoarray;
-    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
-    player = null;
-    $scope.switchHeaderBar = true;
-    $timeout(function() {
-      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
-    }, 5000);
-    $scope.toggleHeader = function() {
-      $scope.switchHeaderBar = !$scope.switchHeaderBar;
-      return $timeout(function() {
-        $scope.switchHeaderBar = !$scope.switchHeaderBar;
-        return $scope.$apply();
-      }, 5000);
-    };
-    return $scope.view = {
-      back: function() {
-        var count;
-        count = -1;
-        return App.goBack(count);
-      },
-      vType: $scope.videoDetails.singleVideoarray.type,
-      vimomeo: true,
-      init: function() {
-        var modifiedUrl, onPlayerReady, onYouTubeIframeAPIReady;
-        if (this.vType === 'vimeo') {
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          this.vimomeo = true;
-          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
-        } else {
-          this.vimomeo = false;
-          console.log($scope.videoDetails.singleVideoarray, "videoDetails");
-          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
-          onYouTubeIframeAPIReady = function() {
-            return player = new YT.Player('player2', {
-              height: '100%',
-              width: '100%',
-              videoId: $scope.videoDetails.singleVideoarray.videourl,
-              events: {
-                'onReady': onPlayerReady
-              }
-            });
-          };
-          onPlayerReady = function(event) {
-            console.log("PLAY");
-            return event.target.playVideo();
-          };
-          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl);
-          return onYouTubeIframeAPIReady();
-        }
-      }
-    };
-  }
-]);
-
-shortFilmWindow.controller('watchlistCtrl', [
-  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
-    $scope.watchlistDetails = [];
-    $scope.display = 'loader';
-    $scope.watchFlag = '0';
-    $scope.refreshSwiper = true;
-    $scope.addvideoDetails = [];
-    $scope.init = function() {
-      return $scope.getData();
-    };
-    $scope.getData = function() {
-      return Storage.watchlistDetails('get').then(function(value) {
-        var device_height, device_width;
-        console.log(value);
-        $scope.watchlistDetails = value;
-        if (_.isNull($scope.watchlistDetails)) {
-          $scope.display = 'no_result';
-          return $scope.$apply();
-        } else {
-          if ($scope.watchlistDetails.length > 0) {
-            device_width = $window.innerWidth;
-            device_height = $window.innerHeight;
-            $scope.used_height = 43 + 90;
-            $scope.hgt = device_height - $scope.used_height;
-            $scope.display = 'result';
-            return $scope.$apply();
-          } else {
-            $scope.display = 'no_result';
-            return $scope.$apply();
-          }
-        }
-      });
-    };
-    $scope.updatewatchlist = function(Id) {
-      $scope.CheckWatchlist(Id);
-      return $ionicScrollDelegate.resize();
-    };
-    $scope.singlePlayService = function(videoData) {
-      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
-      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
-      return App.navigate('init');
-    };
-    return $scope.CheckWatchlist = function(Id) {
-      var matchIndex;
-      matchIndex = _.findLastIndex($scope.watchlistDetails, {
-        "movie_id": Id
-      });
-      $scope.watchlistDetails.splice(matchIndex, 1);
-      Storage.watchlistDetails('set', $scope.watchlistDetails);
-      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
-        return $scope.display = 'no_result';
-      } else {
-        $scope.refreshSwiper = false;
-        return $timeout((function() {
-          var device_height, device_width;
-          $scope.refreshSwiper = true;
-          device_width = $window.innerWidth;
-          device_height = $window.innerHeight;
-          $scope.used_height = 43 + 72;
-          return $scope.hgt = device_height - $scope.used_height;
-        }), 100);
-      }
-    };
-  }
-]);
 
 shortFilmWindow.factory('App', [
   '$state', '$ionicHistory', '$window', '$cordovaNetwork', function($state, $ionicHistory, $window, $cordovaNetwork) {
@@ -490,6 +350,130 @@ shortFilmWindow.factory('share', [
       }
     };
     return share;
+  }
+]);
+
+shortFilmWindow.controller('watchlistCtrl', [
+  '$scope', 'Storage', 'DetailsAPI', 'App', '$window', '$ionicScrollDelegate', '$timeout', function($scope, Storage, DetailsAPI, App, $window, $ionicScrollDelegate, $timeout) {
+    $scope.watchlistDetails = [];
+    $scope.display = 'loader';
+    $scope.watchFlag = '0';
+    $scope.refreshSwiper = true;
+    $scope.addvideoDetails = [];
+    $scope.init = function() {
+      return $scope.getData();
+    };
+    $scope.getData = function() {
+      return Storage.watchlistDetails('get').then(function(value) {
+        var device_height, device_width;
+        console.log(value);
+        $scope.watchlistDetails = value;
+        if (_.isNull($scope.watchlistDetails)) {
+          $scope.display = 'no_result';
+          return $scope.$apply();
+        } else {
+          if ($scope.watchlistDetails.length > 0) {
+            device_width = $window.innerWidth;
+            device_height = $window.innerHeight;
+            $scope.used_height = 43 + 90;
+            $scope.hgt = device_height - $scope.used_height;
+            $scope.display = 'result';
+            return $scope.$apply();
+          } else {
+            $scope.display = 'no_result';
+            return $scope.$apply();
+          }
+        }
+      });
+    };
+    $scope.updatewatchlist = function(Id) {
+      $scope.CheckWatchlist(Id);
+      return $ionicScrollDelegate.resize();
+    };
+    $scope.singlePlayService = function(videoData) {
+      DetailsAPI.singleVideoarray.movie_id = videoData.movie_id;
+      DetailsAPI.singleVideoarray.singleVideoarray = videoData;
+      return App.navigate('init');
+    };
+    return $scope.CheckWatchlist = function(Id) {
+      var matchIndex;
+      matchIndex = _.findLastIndex($scope.watchlistDetails, {
+        "movie_id": Id
+      });
+      $scope.watchlistDetails.splice(matchIndex, 1);
+      Storage.watchlistDetails('set', $scope.watchlistDetails);
+      if (_.isNull($scope.watchlistDetails) || $scope.watchlistDetails.length === 0) {
+        return $scope.display = 'no_result';
+      } else {
+        $scope.refreshSwiper = false;
+        return $timeout((function() {
+          var device_height, device_width;
+          $scope.refreshSwiper = true;
+          device_width = $window.innerWidth;
+          device_height = $window.innerHeight;
+          $scope.used_height = 43 + 72;
+          return $scope.hgt = device_height - $scope.used_height;
+        }), 100);
+      }
+    };
+  }
+]);
+
+shortFilmWindow.controller('playerCtrl', [
+  '$scope', '$sce', 'DetailsAPI', '$ionicHistory', 'App', '$timeout', function($scope, $sce, DetailsAPI, $ionicHistory, App, $timeout) {
+    var player;
+    $scope.temp = "temp";
+    $scope.videoDetails = DetailsAPI.singleVideoarray;
+    $scope.videourl = $scope.videoDetails.singleVideoarray.videourl;
+    player = null;
+    $scope.switchHeaderBar = true;
+    $timeout(function() {
+      return $scope.switchHeaderBar = !$scope.switchHeaderBar;
+    }, 5000);
+    $scope.toggleHeader = function() {
+      $scope.switchHeaderBar = !$scope.switchHeaderBar;
+      return $timeout(function() {
+        $scope.switchHeaderBar = !$scope.switchHeaderBar;
+        return $scope.$apply();
+      }, 5000);
+    };
+    return $scope.view = {
+      back: function() {
+        var count;
+        count = -1;
+        return App.goBack(count);
+      },
+      vType: $scope.videoDetails.singleVideoarray.type,
+      vimomeo: true,
+      init: function() {
+        var modifiedUrl, onPlayerReady, onYouTubeIframeAPIReady;
+        if (this.vType === 'vimeo') {
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          this.vimomeo = true;
+          return $scope.player1 = $sce.trustAsResourceUrl(modifiedUrl);
+        } else {
+          this.vimomeo = false;
+          console.log($scope.videoDetails.singleVideoarray, "videoDetails");
+          modifiedUrl = $scope.videoDetails.singleVideoarray.embedurl;
+          onYouTubeIframeAPIReady = function() {
+            return player = new YT.Player('player2', {
+              height: '100%',
+              width: '100%',
+              videoId: $scope.videoDetails.singleVideoarray.videourl,
+              events: {
+                'onReady': onPlayerReady
+              }
+            });
+          };
+          onPlayerReady = function(event) {
+            console.log("PLAY");
+            return event.target.playVideo();
+          };
+          $scope.player2 = $sce.trustAsResourceUrl(modifiedUrl);
+          return onYouTubeIframeAPIReady();
+        }
+      }
+    };
   }
 ]);
 
@@ -730,7 +714,7 @@ shortFilmWindow.filter('encodeDecodeFilter', function() {
 });
 
 shortFilmWindow.controller('InitCtrl', [
-  '$scope', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', '$sce', 'FacebookGraphAPI', '$cordovaOauth', function($scope, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, $sce, FacebookGraphAPI, $cordovaOauth) {
+  'FirebaseApi', 'PushConfig', '$scope', 'App', 'DetailsAPI', '$ionicLoading', '$ionicHistory', 'share', 'Storage', '$sce', 'FacebookGraphAPI', '$cordovaOauth', '$rootScope', function(FirebaseApi, PushConfig, $scope, App, DetailsAPI, $ionicLoading, $ionicHistory, share, Storage, $sce, FacebookGraphAPI, $cordovaOauth, $rootScope) {
     $scope.Videodetails = [];
     $scope.addvideoDetails = [];
     $scope.getwatchlistDetails = [];
@@ -811,7 +795,7 @@ shortFilmWindow.controller('InitCtrl', [
       if (movieId == null) {
         movieId = '';
       }
-      console.log("Inside Init controller", DetailsAPI.singleVideoarray.movie_id);
+      console.log("Inside Init controller", DetailsAPI.singleVideoarray.movie_id, DetailsAPI);
       if (!angular.isUndefined(DetailsAPI.singleVideoarray.movie_id)) {
         $scope.display = 'result';
         $scope.Videodetails = DetailsAPI.singleVideoarray.singleVideoarray;
@@ -843,7 +827,55 @@ shortFilmWindow.controller('InitCtrl', [
     $scope.initializeApp = function() {
       $scope.display = 'loader';
       console.log("INITIALIZEAPP ", DetailsAPI);
-      return $scope.init(DetailsAPI.videoId);
+      return FirebaseApi.pushPluginInit().then(function(result) {
+        var push;
+        console.log(result);
+        if (ionic.Platform.isWebView()) {
+          push = PushNotification.init(PushConfig);
+          push.on('notification', function(data) {
+            var payload;
+            console.log(data);
+            payload = data.additionalData;
+            if (App.isAndroid()) {
+              if (payload.coldstart) {
+                return $rootScope.$broadcast('openNotification', {
+                  payload: payload.data
+                });
+              } else if (!payload.foreground && !payload.coldstart) {
+                return $rootScope.$broadcast('openNotification', {
+                  payload: payload.data
+                });
+              } else if (payload.foreground) {
+                return $rootScope.$broadcast('receiveNotification', {
+                  payload: payload.data
+                });
+              } else if (!payload.foreground) {
+                return $rootScope.$broadcast('receiveNotification', {
+                  payload: payload.data
+                });
+              }
+            } else if (App.isIOS()) {
+              console.log('ios');
+              console.log('----');
+              console.log(payload);
+              console.log('----');
+              if (payload.foreground) {
+                return $rootScope.$broadcast('receiveNotification', {
+                  payload: payload["gcm.notification.data"]
+                });
+              } else if (!payload.foreground) {
+                return $rootScope.$broadcast('openNotification', {
+                  payload: payload["gcm.notification.data"]
+                });
+              }
+            }
+          });
+        }
+        $scope.init(DetailsAPI.videoId);
+        return $scope.display = 'result';
+      }, function(error) {
+        return $scope.display = 'error';
+      });
     };
     $scope.trustAsHtml = function(string) {
       return $sce.trustAsHtml(string);
@@ -872,7 +904,7 @@ shortFilmWindow.controller('InitCtrl', [
 ]);
 
 shortFilmWindow.controller('appInitializeCtrl', [
-  '$scope', 'App', 'InitialiseService', '$rootScope', '$ionicPlatform', function($scope, App, InitialiseService, $rootScope, $ionicPlatform) {
+  '$scope', 'App', 'InitialiseService', '$rootScope', '$ionicPlatform', 'FirebaseApi', 'PushConfig', function($scope, App, InitialiseService, $rootScope, $ionicPlatform, FirebaseApi, PushConfig) {
     $scope.initApp = function() {
       console.log("APP STARTED");
       if (App.isWebView()) {
@@ -883,9 +915,56 @@ shortFilmWindow.controller('appInitializeCtrl', [
       if (!App.isOnline()) {
         return $scope.display = 'error';
       } else {
-        return InitialiseService.initialize().then(function(data) {
-          console.log(data, " INITIALIZED");
-          return App.navigate('popular');
+        return FirebaseApi.pushPluginInit().then(function(result) {
+          var push;
+          console.log(result);
+          if (ionic.Platform.isWebView()) {
+            push = PushNotification.init(PushConfig);
+            push.on('notification', function(data) {
+              var payload;
+              console.log(data);
+              payload = data.additionalData;
+              if (App.isAndroid()) {
+                if (payload.coldstart) {
+                  return $rootScope.$broadcast('openNotification', {
+                    payload: payload.data
+                  });
+                } else if (!payload.foreground && !payload.coldstart) {
+                  return $rootScope.$broadcast('openNotification', {
+                    payload: payload.data
+                  });
+                } else if (payload.foreground) {
+                  return $rootScope.$broadcast('receiveNotification', {
+                    payload: payload.data
+                  });
+                } else if (!payload.foreground) {
+                  return $rootScope.$broadcast('receiveNotification', {
+                    payload: payload.data
+                  });
+                }
+              } else if (App.isIOS()) {
+                console.log('ios');
+                console.log('----');
+                console.log(payload);
+                console.log('----');
+                if (payload.foreground) {
+                  return $rootScope.$broadcast('receiveNotification', {
+                    payload: JSON.parse(payload["gcm.notification.data"])
+                  });
+                } else if (!payload.foreground) {
+                  return $rootScope.$broadcast('openNotification', {
+                    payload: JSON.parse(payload["gcm.notification.data"])
+                  });
+                }
+              }
+            });
+          }
+          return InitialiseService.initialize().then(function(data) {
+            console.log(data, " INITIALIZED");
+            return App.navigate('popular');
+          }, function(error) {
+            return $scope.display = 'error';
+          });
         }, function(error) {
           return $scope.display = 'error';
         });
@@ -898,32 +977,77 @@ shortFilmWindow.controller('appInitializeCtrl', [
 ]);
 
 shortFilmWindow.controller('appSlidesCtrl', [
-  '$scope', 'App', 'InitialiseService', '$rootScope', '$ionicPlatform', 'FirebaseApi', function($scope, App, InitialiseService, $rootScope, $ionicPlatform, FirebaseApi) {
+  '$scope', 'App', 'InitialiseService', '$rootScope', '$ionicPlatform', 'FirebaseApi', 'PushConfig', function($scope, App, InitialiseService, $rootScope, $ionicPlatform, FirebaseApi, PushConfig) {
     $scope.initApp = function() {
       console.log("APP STARTED for the first time");
-      $scope.startApp = function() {
-        if (!App.isOnline()) {
-          return $scope.display = 'error';
-        } else {
-          $scope.apiLoading = true;
-          return InitialiseService.initialize().then(function(data) {
-            console.log(data, " INITIALIZED");
-            $scope.apiLoading = false;
-            return App.navigate('popular');
-          }, function(error) {
-            return $scope.display = 'error';
+      return FirebaseApi.pushPluginInit().then(function(result) {
+        var push;
+        console.log(result, "PUSH INIT APP appSlidesCtrl");
+        if (ionic.Platform.isWebView()) {
+          push = PushNotification.init(PushConfig);
+          return push.on('notification', function(data) {
+            var payload;
+            console.log(data);
+            payload = data.additionalData;
+            if (App.isAndroid()) {
+              if (payload.coldstart) {
+                return $rootScope.$broadcast('openNotification', {
+                  payload: payload.data
+                });
+              } else if (!payload.foreground && !payload.coldstart) {
+                return $rootScope.$broadcast('openNotification', {
+                  payload: payload.data
+                });
+              } else if (payload.foreground) {
+                return $rootScope.$broadcast('receiveNotification', {
+                  payload: payload.data
+                });
+              } else if (!payload.foreground) {
+                return $rootScope.$broadcast('receiveNotification', {
+                  payload: payload.data
+                });
+              }
+            } else if (App.isIOS()) {
+              console.log('ios');
+              console.log('----');
+              console.log(payload);
+              console.log('----');
+              if (payload.foreground) {
+                return $rootScope.$broadcast('receiveNotification', {
+                  payload: JSON.parse(payload["gcm.notification.data"])
+                });
+              } else if (!payload.foreground) {
+                return $rootScope.$broadcast('openNotification', {
+                  payload: JSON.parse(payload["gcm.notification.data"])
+                });
+              }
+            }
           });
         }
-      };
-      $scope.next = function() {
-        $ionicSlideBoxDelegate.next();
-      };
-      $scope.previous = function() {
-        $ionicSlideBoxDelegate.previous();
-      };
-      return $scope.slideChanged = function(index) {
-        $scope.slideIndex = index;
-      };
+      });
+    };
+    $scope.startApp = function() {
+      if (!App.isOnline()) {
+        return $scope.display = 'error';
+      } else {
+        $scope.apiLoading = true;
+        return InitialiseService.initialize().then(function(data) {
+          console.log(data, " INITIALIZED");
+          $scope.apiLoading = false;
+          return App.navigate('popular');
+        }, function(error) {
+          return $scope.display = 'error';
+        });
+      }
+    };
+    $scope.next = function() {
+      $ionicSlideBoxDelegate.next();
+    };
+    $scope.previous = function() {
+      $ionicSlideBoxDelegate.previous();
+    };
+    $scope.slideChanged = function(index) {
+      $scope.slideIndex = index;
     };
     return $scope.initApp();
   }
@@ -1270,41 +1394,6 @@ shortFilmWindow.service('FirebaseApi', [
       }
       return defer.promise;
     };
-    firebaseCloudApi.saveNotification = function() {
-      var defer;
-      console.log(DEVICETOKEN);
-      defer = $q.defer();
-      firebase.database().ref('notifications/' + DEVICETOKEN).push({
-        "movieId": 930,
-        "alert": "TEST Notification",
-        "createdAt": "2016-12-22T12:56:59.706Z",
-        "updatedAt": "2016-12-22T12:57:14.455Z",
-        "movieDetails": {
-          "found": true,
-          "movie_id": 930,
-          "no_of_views": "193",
-          "no_of_likes": "189",
-          "title": "test notif",
-          "type": "youtube",
-          "tagline": "",
-          "videourl": "https:\/\/balsamiq.com\/",
-          "embedurl": "https:\/\/www.youtube.com\/embed\/?autoplay=1",
-          "director": "ShortFilmWindow",
-          "image": "http:\/\/shortfilm.staging.wpengine.com\/wp-content\/themes\/short-film\/assets\/img\/placeholder.jpg",
-          "duration": "5",
-          "region": "",
-          "language": "",
-          "genres": ["Uncategorized"],
-          "content": "",
-          "slug": "test-notif-2"
-        }
-      }).then(function(result) {
-        return defer.resolve(result);
-      }, function(error) {
-        return defer.reject(error);
-      });
-      return defer.promise;
-    };
     firebaseCloudApi.fetchNotifications = function() {
       var defer;
       defer = $q.defer();
@@ -1519,8 +1608,10 @@ shortFilmWindow.service('FirebaseApi', [
           }
           return defer.resolve('success');
         }, function(error) {
-          return defer.reject('error');
+          return defer.reject();
         });
+      }, function(error) {
+        return defer.reject();
       });
       return defer.promise;
     };
@@ -1648,7 +1739,7 @@ shortFilmWindow.controller('sidebarCtrl', [
       if ($rootScope.unreadNotificationCount) {
         $rootScope.unreadNotificationCount--;
       }
-      App.notificationPayload = pn;
+      App.notificationPayload = decodeURIComponent(pn.payload.movieDetails);
       return App.navigate('init');
     });
     $rootScope.$on('receiveNotification', function(event, pn) {

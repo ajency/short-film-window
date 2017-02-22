@@ -1,6 +1,6 @@
 shortFilmWindow
-.controller 'InitCtrl', ['$scope','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','$sce','FacebookGraphAPI','$cordovaOauth'
-     ,($scope, App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,$sce,FacebookGraphAPI,$cordovaOauth)->
+.controller 'InitCtrl', ['FirebaseApi','PushConfig','$scope','App','DetailsAPI','$ionicLoading','$ionicHistory','share','Storage','$sce','FacebookGraphAPI','$cordovaOauth','$rootScope'
+     ,(FirebaseApi,PushConfig,$scope, App,DetailsAPI,$ionicLoading,$ionicHistory,share,Storage,$sce,FacebookGraphAPI,$cordovaOauth,$rootScope)->
 
     $scope.Videodetails = []
     # $scope.display = 'loader'
@@ -13,28 +13,6 @@ shortFilmWindow
     $scope.appURL = GLOBAL_URL
     $scope.showVideo = false
     $scope.showLoginBtn= true
-    # fbLoginSuccess = (userData) ->
-    #   console.log 'Login Success'
-    #   console.log 'UserInfo: ', userData
-    #   $scope.appURL = GLOBAL_URL
-    #   return
-
-    # facebookConnectPlugin.login [ 'public_profile', 'email' ,'user_friends' ], fbLoginSuccess, (error) ->
-    #   console.log 'Login Error'
-    #   console.error error
-    #   return
-
-    # FacebookGraphAPI.checkLoginStatus()
-    # .then (data)->
-    #     console.log data
-    #     if data.status== 'connected'
-    #         $scope.showLoginBtn= false
-    #     else
-    #         $scope.showLoginBtn= true
-
-    # ,(error)->
-    #     console.log error
-    #     $scope.showLoginBtn= true
 
     $scope.share = (slug)->
         share.shareNative(slug)
@@ -102,7 +80,7 @@ shortFilmWindow
 
 
     $scope.init = (movieId = '')->
-        console.log "Inside Init controller", DetailsAPI.singleVideoarray.movie_id
+        console.log "Inside Init controller", DetailsAPI.singleVideoarray.movie_id, DetailsAPI
         if !angular.isUndefined(DetailsAPI.singleVideoarray.movie_id )
             $scope.display = 'result'
             $scope.Videodetails =  DetailsAPI.singleVideoarray.singleVideoarray
@@ -136,7 +114,37 @@ shortFilmWindow
 
         $scope.display = 'loader'
         console.log "INITIALIZEAPP ", DetailsAPI
-        $scope.init(DetailsAPI.videoId)
+        FirebaseApi.pushPluginInit().then (result) ->
+            console.log result
+            if ionic.Platform.isWebView()
+                push = PushNotification.init PushConfig
+                push.on 'notification', (data) ->
+                    console.log data
+                    payload = data.additionalData
+                    if App.isAndroid()
+                        if payload.coldstart
+                            $rootScope.$broadcast 'openNotification', { payload: payload.data }
+                        else if !payload.foreground and !payload.coldstart
+                            $rootScope.$broadcast 'openNotification', { payload: payload.data }
+                        else if payload.foreground
+                            $rootScope.$broadcast 'receiveNotification', { payload: payload.data }
+                        else if !payload.foreground
+                            $rootScope.$broadcast 'receiveNotification', { payload: payload.data }
+                  
+                    else if App.isIOS()
+                        console.log 'ios'
+                        console.log '----'
+                        console.log payload
+                        console.log '----'
+                        if payload.foreground
+                            $rootScope.$broadcast 'receiveNotification', { payload: payload["gcm.notification.data"] }
+                        else if !payload.foreground
+                            $rootScope.$broadcast 'openNotification', { payload: payload["gcm.notification.data"] }
+
+            $scope.init(DetailsAPI.videoId)
+            $scope.display = 'result'
+        , (error)->
+            $scope.display = 'error'
 
     $scope.trustAsHtml = (string) ->
         $sce.trustAsHtml string

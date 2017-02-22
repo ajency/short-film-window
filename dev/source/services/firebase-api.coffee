@@ -93,38 +93,6 @@ shortFilmWindow
             #       , (error)->
             #             defer.reject error
             #       defer.promise
-            firebaseCloudApi.saveNotification = () ->
-                  console.log DEVICETOKEN
-                  defer = $q.defer()
-                  firebase.database().ref('notifications/'+ DEVICETOKEN).push
-                        "movieId": 930
-                        "alert": "TEST Notification"
-                        "createdAt" : "2016-12-22T12:56:59.706Z"
-                        "updatedAt" : "2016-12-22T12:57:14.455Z"
-                        "movieDetails" :
-                              "found":true
-                              "movie_id":930
-                              "no_of_views":"193"
-                              "no_of_likes":"189"
-                              "title":"test notif"
-                              "type":"youtube"
-                              "tagline":""
-                              "videourl":"https:\/\/balsamiq.com\/"
-                              "embedurl":"https:\/\/www.youtube.com\/embed\/?autoplay=1"
-                              "director":"ShortFilmWindow"
-                              "image":"http:\/\/shortfilm.staging.wpengine.com\/wp-content\/themes\/short-film\/assets\/img\/placeholder.jpg"
-                              "duration":"5","region":""
-                              "language":""
-                              "genres":["Uncategorized"]
-                              "content":""
-                              "slug":"test-notif-2"
-    
-    
-                  .then (result) ->
-                        defer.resolve result
-                  , (error) ->
-                        defer.reject error
-                  defer.promise
             firebaseCloudApi.fetchNotifications = () ->
                   defer = $q.defer()
                   firebaseCloudApi.getCreationDate().then (date)->
@@ -289,28 +257,26 @@ shortFilmWindow
                                           Storage.creationDate 'set', timestamp
                               defer.resolve 'success'
                         , (error)->
-                              defer.reject 'error'
+                              defer.reject()
+                  , (error)->
+                        defer.reject()
                   defer.promise
-            # firebaseCloudApi.logout = ()->
-            #       firebaseCloudApi.getDeviceToken().then (deviceToken)->
-            #             console.log 'FIREBASE LOGOUT',User,deviceToken
-            #             firebaseCloudApi.fetchAllDevices().then (result)->
-            #                   if result
-            #                         keys = Object.keys(result)
-            #                         flag = false
-            #                         for i in [0...keys.length]
-            #                               if result[keys[i]].deviceToken == deviceToken
-            #                                     console.log keys[i]
-            #                                     firebase.database().ref('installation/' + User.user_id + '/' + keys[i]).remove().then (result)->
-            #                                           console.log result
-            #                                     , (error) ->
-            #                                           console.log error
-            #                   else
-            #                         console.log 'NO DEVICE FOUND'
-            #             # firebase.database().ref('installation/' + User.user_id + '/' + deviceToken).remove().then (result)->
-            #             , (error)->
-            #                   console.log error, 'error'
-            
+            # firebaseCloudApi.init = ()->
+            #       defer = $q.defer()
+            #       firebaseCloudApi.pushPluginInit().then (result) ->
+            #             console.log result
+            #             if ionic.Platform.isWebView()
+            #                   push = PushNotification.init PushConfig
+            #                   push.on 'notification', (data) ->
+            #                         console.log data
+            #                         $rootScope.$broadcast 'receiveNotification', { payload: data }
+            #                         return defer.resolve 'success'
+            #             else
+            #                   return defer.resolve 'success'
+            #       , (error)->
+            #             console.log error, 'ERROR'
+            #             return defer.reject()
+            #       defer.promise
             
             firebaseCloudApi
 ]

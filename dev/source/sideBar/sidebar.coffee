@@ -48,7 +48,7 @@ shortFilmWindow
     # pn.payload.movieId
     if $rootScope.unreadNotificationCount
       $rootScope.unreadNotificationCount--
-    App.notificationPayload = pn
+    App.notificationPayload = decodeURIComponent(pn.payload.movieDetails)
     App.navigate 'init'
 
   $rootScope.$on 'receiveNotification', (event, pn)->
