@@ -1,5 +1,5 @@
 <?php
-$test = false;
+$test = true;
 if($test){
     $api_access_key = 'AAAA2fvg6Cc:APA91bGh237ztTXzpmDFw4kqXvCe5luRdk70eiGmyDjbDO1FDXiiOvh_TWoGapFhkG2MNqLt16DeqzdRgJ1ctrPNb40eiOhEOXQvcydIG6SwTpYiqBXC6Tv0VU1KCPgcBYfpo8q_Q150';
     $notification_storage_db = 'https://shortfilmwindow-e5571.firebaseio.com/notifications.json';
