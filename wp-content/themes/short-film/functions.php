@@ -2782,8 +2782,8 @@ function sendFirePushNotifications($post)
             $post_thumbnail_id = get_post_thumbnail_id($post["ID"]);
             $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
 
-            $moviedetails=urlencode(json_encode($data_movie));
-            //$movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);
+            /*$moviedetails=urlencode(json_encode($data_movie));
+            $movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);*/
             $movieData = array("alert" => $post_title,"movieId" => $post["ID"]);
 
             $data = [];
@@ -2796,20 +2796,20 @@ function sendFirePushNotifications($post)
             $notify = new firePush();
 
             try {
-                $notificationfile = fopen(get_home_path()."/notification_log.txt", "a") or die("Unable to open file!");
+                //$notificationfile = fopen(get_home_path()."/notification_log.txt", "a") or die("Unable to open file!");
                 $movieData['created'] = time();
 
                 $notificationId = $notify->saveNotification($movieData);
                 $data['notificationId'] = $notificationId->name;
-                fwrite($notificationfile, "\n". print_r($data,true));
+                //fwrite($notificationfile, "\n". print_r($data,true));
 
                 $ios_send = $notify->sendNotifications($data,'ios');
-                fwrite($notificationfile, "\n". print_r($ios_send,true));
+                //fwrite($notificationfile, "\n". print_r($ios_send,true));
                 
                 $android_send = $notify->sendNotifications($data,'android');
-                fwrite($notificationfile, "\n". print_r($android_send,true));
+                //fwrite($notificationfile, "\n". print_r($android_send,true));
 
-                fclose($notificationfile);
+                //fclose($notificationfile);
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
