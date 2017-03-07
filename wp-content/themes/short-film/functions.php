@@ -2795,11 +2795,20 @@ function sendFirePushNotifications($post)
             $notify = new firePush();
 
             try {
+                $notificationfile = fopen(get_home_path()."/notification_log.txt", "a") or die("Unable to open file!");
                 $movieData['created'] = time();
+
                 $notificationId = $notify->saveNotification($movieData);
                 $data['notificationId'] = $notificationId->name;
-                $notify->sendNotifications($data,'ios');
-                $notify->sendNotifications($data,'android');
+                fwrite($notificationfile, "\n". print_r($data,true));
+
+                $ios_send = $notify->sendNotifications($data,'ios');
+                fwrite($notificationfile, "\n". print_r($ios_send,true));
+                
+                $android_send = $notify->sendNotifications($data,'android');
+                fwrite($notificationfile, "\n". print_r($android_send,true));
+
+                fclose($notificationfile);
             } catch (Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
