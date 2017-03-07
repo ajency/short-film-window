@@ -2783,7 +2783,8 @@ function sendFirePushNotifications($post)
             $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
 
             $moviedetails=urlencode(json_encode($data_movie));
-            $movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);
+            //$movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);
+            $movieData = array("alert" => $post_title,"movieId" => $post["ID"]);
 
             $data = [];
             $data['data'] = $movieData;
