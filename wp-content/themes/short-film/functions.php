@@ -2782,12 +2782,12 @@ function sendFirePushNotifications($post)
             $post_thumbnail_id = get_post_thumbnail_id($post["ID"]);
             $post_thumbnail_url = wp_get_attachment_image_src($post_thumbnail_id, 'notification-icon');
 
-            /*$moviedetails=urlencode(json_encode($data_movie));
-            $movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);*/
-            $movieData = array("alert" => $post_title,"movieId" => $post["ID"]);
+            $moviedetails=urlencode(json_encode($data_movie));
+            $movieData = array("alert" => $post_title,"movieId" => $post["ID"],"movieDetails" => $moviedetails);
+            //$movieData = array("alert" => $post_title,"movieId" => $post["ID"]);
 
             $data = [];
-            $data['data'] = $movieData;
+            $data['data'] = array("alert" => $post_title,"movieId" => $post["ID"]);
             //$data['title'] = "This Week's Release";
             $data['title'] = "Now Watch";
             $data['body'] = $post_title;
